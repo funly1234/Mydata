@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://mobile.51cto.com/android-546316.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+    
+    <title>2017 Android GitHub常用开源框架汇总 - 51CTO.COM</title>
+    <meta name="description" content="现在 GitHub 上流行的开源库极大地节省了开发者从 0 开发的时间，很多公司和个人都在 GitHub 上开源自己的项目，今天我们就来整理一下 Android 开发中一些非常流行的库，也是我们必须掌握的，这样可以使我们在使用到时快速的查找到，这里的总结基本也都是自己在开发中用到的，也就是一些个人的见解，只做参考，不具有权威性">
+    <meta name="keywords" content="Android,GitHub,开源框架">
+    <!--<base target="_blank">--><base href="." target="_blank">
+    <link rel="stylesheet" type="text/css" href="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/article_head.css">
+    <link rel="stylesheet" type="text/css" href="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/article_layout.css">
+    <script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/hm.js"></script><script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/hm.js"></script><script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/jquery.min.js"></script>
+    <script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/mobile.js"></script>
+<script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/share.js"></script><link rel="stylesheet" href="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/share_style0_16.css"><link rel="stylesheet" type="text/css" href="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/layout_51cto.css"></head>
+<body>
+<!-- 导航 开始-->
+<!-- top start -->
+<div class="home-top" id="topx">
+    <div class="w1001 cent">
+        <div class="pdr10 fl">中国领先的IT技术网站</div>
+        <div class="pdr10 fl">|</div>
+        <div class="pdr10 fl">
+            <div class="subweb"><span class="trans">51CTO旗下网站</span><i></i>
+                <!--旗下网站-->
+                <div class="subweb-list">
+                    <a href="http://www.51cto.com/" target="_blank">51CTO.com</a>
+                    <a href="http://cio.51cto.com/" target="_blank">CIOage.com</a>
+                    <a href="http://www.watchstor.com/" target="_blank">WatchStor.com</a>
+                    <a href="http://www.hc3i.cn/" target="_blank">HC3i.cn</a>
+                </div>
+                <!--旗下网站-->
+            </div>
+        </div>
+        <div class="pdr10 fl">|</div>
+        <div class="pdr10 fl"><a href="http://www.51cto.com/about/map.htm" target="_blank">地图</a></div>
+        <div class="top-r">
+        <div id="login_status" style="text-align:right;" class="login"><i></i><a href="http://home.51cto.com/index?reback=http://mobile.51cto.com/android-546316.htm" target="_self">登录</a> <a href="http://home.51cto.com/user/register?reback=http://mobile.51cto.com/android-546316.htm" target="_self">注册</a><a href="http://home.51cto.com/members/in-fo?www" target="_blank"><span class="jsVipDrop" style="position: relative;"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/vip_grey.png" style="float:right; width:15px; height:14px; border:none; margin-top:10px"><div id="vip_mes_top" style="display:none;position: absolute;right:-75px;top: 22px;width: 137px;z-index: 99;"><div style="background: #faf7e6 none repeat scroll 0 0;border: 1px solid #ecb7a5;color: #666;font-size: 12px;padding: 3px 5px;position: relative;"><span style="background: rgba(0, 0, 0, 0) url(https://static5.51cto.com/home/web/images/hidearro.png) no-repeat scroll center center;display: inline-block;height: 7px;position: absolute;right: 57px;top: -6px;width: 12px;"></span><div style="color:#f60; text-align:center;">一个会员，全站特权</div></div></div></span></a><span class="fl">|</span><a onclick="addFavorite(this.href, &#39;51CTO! 官方站&#39;);return false;" href="http://www.51cto.com/">收藏本站</a></div>
+        </div>
+    </div>
+</div>
+<!-- top end -->
+<!-- 导航 结束-->
+
+<!-- 频道导航 -->
+<div class="top_bg">
+	<div class="wrap">
+		<div id="tonglanad" class="left"><script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/ad.js"></script><script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/ad.php"></script><iframe width="760" height="90" noresize="" scrolling="No" frameborder="0" marginheight="0" marginwidth="0" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/mobile.html" align="center"></iframe></div>
+		<div id="list4" class="right" style="position:relative;">
+			<ul>
+				<li id="wordlinkad1"><script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wordlink1.js"></script><script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/ajs.php"></script><a href="http://gg.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3933__zoneid=270__cb=0ae40ad791__oadest=http%3A%2F%2Fedu.51cto.com%2Fzt%2Fzt_id-1.html%3Fan" target="_blank"><font color="red">网络安全一个大写的反“作死”</font></a><div id="beacon_0ae40ad791" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/lg.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</li>
+				<li id="wordlinkad2"><script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wordlink2.js"></script><script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/ajs(1).php"></script><a href="http://gg.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3546__zoneid=631__cb=1bab30bf76__oadest=http%3A%2F%2Fedu.51cto.com%2Ftraining%2Ftraining_id-44.html%3Fxiaoshou" target="_blank"><font color="red">助你4个月成为大数据工程师</font></a><div id="beacon_1bab30bf76" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/lg(1).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</li>
+				<li id="wordlinkad3"><script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wordlink3.js"></script><script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/ajs(2).php"></script><a href="http://gg.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=6283__zoneid=256__cb=67e5b28d46__oadest=http%3A%2F%2Fclick.aliyun.com%2Fm%2F26997%2F" target="_blank"><font color="red">阿里云数据库技术峰会</font></a><div id="beacon_67e5b28d46" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/lg(2).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</li>
+				<li id="wordlinkad4"><script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wordlink4.js"></script><script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/ajs(3).php"></script><a href="http://gg3.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3549__zoneid=636__cb=3f658a1cf1__oadest=http%3A%2F%2Fedu.51cto.com%2Ftraining%2Ftraining_id-17.html%3Fxiaoshou" target="_blank"><font color="red">2016年备战软考-重难点解析</font></a><div id="beacon_3f658a1cf1" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/lg(3).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</li>
+			<div style="right: 0px; width: 24px; height: 14px; z-index: 12; position: absolute; background: transparent url(http://s5.51cto.com/wyfs02/M00/86/BB/wKiom1fI4nWStYqXAAAEoZQn6vs942.png) repeat scroll 0% 0%; bottom: 2px;"></div></ul>
+			<div style="right: 0px; width: 24px; height: 14px; z-index: 12; position: absolute; background: transparent url(&#39;http://s5.51cto.com/wyfs02/M00/86/BB/wKiom1fI4nWStYqXAAAEoZQn6vs942.png&#39;) repeat scroll 0% 0%; bottom: 2px;"><div style="right: 0px; width: 24px; height: 14px; z-index: 12; position: absolute; background: transparent url(http://s5.51cto.com/wyfs02/M00/86/BB/wKiom1fI4nWStYqXAAAEoZQn6vs942.png) repeat scroll 0% 0%; bottom: 2px;"></div></div>
+		</div>
+	</div>
+	<div class="nav">
+		<a href="http://www.51cto.com/" class="logo"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/nr_logo.png" alt=""></a>
+		<ul>
+			<li><a href="http://mobile.51cto.com/" class="active">移动开发</a></li>
+			<li><a href="http://mobile.51cto.com/">首页</a></li>
+			<li><a href="http://mobile.51cto.com/news/">业界资讯</a></li>
+			<li><a href="http://mobile.51cto.com/app-show/">移动应用</a></li>
+			<li><a href="http://mobile.51cto.com/dev">平台技术</a></li>
+			<li><a href="http://mobile.51cto.com/speclist/">专题</a></li>
+		</ul>
+		<div class="nav-rsear">
+			<form method="post" action="http://www.51cto.com/php/search.php" name="searchform" target="_blank">
+				<input name="keyword" id="q" type="text" placeholder="输入您要搜索的内容" class="sear-1">
+				<input name="" type="submit" value="" class="sear-2">
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- 频道导航结束 -->
+
+<div class="main">
+    <!-- 左侧内容 -->
+    <div class="main_left">
+        <div class="wznr">
+            <h2>2017 Android GitHub常用开源框架汇总</h2>
+            <p>现在 GitHub 上流行的开源库极大地节省了开发者从 0 开发的时间，很多公司和个人都在 GitHub 上开源自己的项目，今天我们就来整理一下 Android 开发中一些非常流行的库，也是我们必须掌握的，这样可以使我们在使用到时快速的查找到，这里的总结基本也都是自己在开发中用到的，也就是一些个人的见解，只做参考，不具有权威性</p>
+            <dl>
+                <dt><span>作者：佚名</span><span>来源：<a href="https://mp.weixin.qq.com/s/BxQXb75DqVR37WbHgLS_BQ" target="_blank">Android开发中文站</a></span>|<em>2017-07-28 09:00</em></dt>
+                <dd><div class="fl zxf_showBox" style="padding-right: 10px;position:relative;"> <a href="http://mobile.51cto.com/android-546316.htm###" title=" " target="_self" class="z_bds_more">&nbsp;移动端</a> <div class="navcodebox clearfix"><div class="ico"></div><span> <img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKiom1kvkpKBgQFIAACDBen2-dg668.jpg" width="105" height="107"> <p>51CTO技术栈</p> </span><span> <img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKioL1i40HrAObC6AAAcvPVCCV0975.jpg" width="105" height="107"> <p>51CTO微站服务号</p> </span><span><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKioL1i40HrQZy_TAAAcDOkrRAE327.jpg" width="107" height="107"> <p>51CTO学院客户端</p> </span></div> </div>
+                	<div class="left" style="padding-right: 10px">
+                		<a href="javascript:favorBox(&#39;open&#39;);" title="一键收藏，随时查看，分享好友！" target="_self" class="bds_more1">&nbsp;收藏</a>
+                	</div>
+					<div class="bdsharebuttonbox left bdshare-button-style0-16" data-tag="share_2" data-bd-bind="1503160283711">
+						<a href="javascript:;" class="bds_more" data-cmd="more">&nbsp;&nbsp;分享</a>
+					</div>
+                </dd>
+            </dl>
+        </div>
+        <div class="zwnr">
+            <h2><a href="http://mdsa.51cto.com/act/TechNeo/TechNeo14" target="_blank" style="text-decoration:none;">【51CTO活动】8.26 带你深度了解清华大学、搜狗基于算法的IT运维实践与探索</a></h2><br>
+            <p style="text-align: center;"><a href="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKioL1l6jt6ArYQOAAGTtfmmsb8562.jpg-wh_651x-s_34825014.jpg" target="_blank"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKioL1l6jt6ArYQOAAGTtfmmsb8562.jpg-wh_651x-s_34825014.jpg" border="0" alt="2017 Android GitHub常用开源框架汇总 " title="2017 Android GitHub常用开源框架汇总 "></a></p>
+<p>现在 GitHub 上流行的开源库极大地节省了开发者从 0 开发的时间，很多公司和个人都在 GitHub 上开源自己的项目，今天我们就来整理一下  Android  开发中一些非常流行的库，也是我们必须掌握的，这样可以使我们在使用到时快速的查找到，这里的总结基本也都是自己在开发中用到的，也就是一些个人的见解，只做参考，不具有权威性</p>
+<p><strong>一、网络库</strong></p>
+<p><strong>1. Retrofit</strong></p>
+<p>Retrofit 是 Square 公司研发的网络请求库，也是目前 Android 最流行的 HttpClient  库之一，越来越多的公司开始使用这个请求库，并且可以完美结合 RxJava，就像官网介绍的一样，Retrofit 是一款类型安全的网络框架，基于 HTTP  协议，服务于 Android 和 Java 语言</p>
+<p>GitHub 地址：<a href="https://github.com/square/retrofit">Retrofit GitHub 地址</a></p>
+<p><strong>2. okhttp</strong></p>
+<p>同样 okhttp 也是 Square 公司研发的网络请求库，是一款基于 HTTP 和 HTTP2.0 协议的网络框架，服务于 Java 和  Android 客户端，okhttp 以 21K 的 stars 排在 GitHub 中 android 子标题的第二名，很多公司都在使用，从 Retrofit  2.0 开始内置 okhttp 框架，Retrofit 专注封装接口完成业务需求，okhttp 专注网络请求的高效安全</p>
+<p>GitHub 地址：<a href="https://github.com/square/okhttp">okhttp GitHub 地址</a></p>
+<p><strong>3. volley</strong></p>
+<p>Google 的 Andorid 开发团队也意识到有必要将 HTTP 的通信操作再进行简化，于是在 2013 年度的 Google I/O  大会上推出了一个新的网络通信框架—Volley，Volley  在性能方面进行了大幅度的调整，它是设计目标是适合进行数据量不大，但通信频繁的网络操作，对于数据量大的网络操作就会表现糟糕</p>
+<p>GitHub 地址：<a href="https://github.com/google/volley">volley GitHub 地址</a></p>
+<p>网络方面的库我们就介绍上面主要用到的 3 个</p>
+<p><strong>二、图片加载库</strong></p>
+<p>在 Android  设备上面，快速高效的显示图片是极为重要的，在过去的很长时间里，我们在如何高效的存储图像这方面遇到了很多问题，例如图片太大，但是内存却比较小，但是越来越多优秀开源框架的使用解决了我们这方面的问题，接下来我们来看看这些优秀的开源框架</p>
+<p><strong>1. glide</strong></p>
+<p>在泰国举行的谷歌开发者论坛上，谷歌为我们介绍了一个名叫 glide 的图片加载框架，作者是 bumptech 这个库被广泛的应用在 Google  开源的项目中，包括 2014 年 Google I/O 大会上发布的官方 App</p>
+<p>GitHub 地址：<a href="https://github.com/bumptech/glide">Glide GitHub 地址</a></p>
+<p><strong>2. fresco</strong></p>
+<p>一款管理图片内存的方案，是目前最强大的图片加载框架之一，facebook 的出身证明了它不是重复的制造轮子，在管理图片的内存上以及渐进式加载、加载 gif  都具有独有特性</p>
+<p>GitHub 地址：<a href="https://github.com/facebook/fresco">Fresco GitHub 地址</a></p>
+<p><strong>3. picasso</strong></p>
+<p>非常强大的图片下载、缓存框架，picasso 更强调的是图片的下载，更重要的是这也是 square 团队的作品，想必提到 square  团队，它出片的东西我们还是非常的放心使用</p>
+<p>GitHub 地址：<a href="https://github.com/square/picasso">picasso GitHub 地址</a></p>
+<p><strong>4. Android-Universal-Image-Loader</strong></p>
+<p>看到这个，想必有一定经验的 Android 开发者都会非常的熟悉，曾经的图片加载之王当之无愧，15.4k 的 stars 足以证明它的热门，与 glide  不同的是 UIL 提供了大量的配置方式，图片加载状态的回调，加载动画等，以及提供了移动端图片加载框架的缓存思路，三级缓存策略等</p>
+<p>GitHub 地址：<a href="https://github.com/nostra13/Android-Universal-Image-Loader">UIL GitHub 地址</a></p>
+<p><strong>5. PhotoView</strong></p>
+<p>一款 ImageView 展示框架，支持缩放，响应手势，位于图片排行榜的第五位，PhotoView  与上面不同的是图片的展示功能，可以实现类似微信头像的放大功能，还有就是很多 App 的图片显示响应手势按压式如何是现实的，这里 PhotoView  将都可以轻松实现</p>
+<p>GitHub 地址：<a href="https://github.com/chrisbanes/PhotoView">PhotoView GitHub 地址</a></p>
+<p><strong>6. CircleImageView</strong></p>
+<p>圆角 ImageView，在我们的 App 中这个想必是太常见了，也许我们可以有无数种展示圆角图片的方法，但是 CircleImageView  绝对是我们在开发时需要优先考虑的，如果你还不知道 CircleImageView，那么你需要赶快去体验它在处理圆角图片时的强大了，相信你肯定会觉得和  CircleImageView 相见恨晚，需要注意的是这个并不是图片加载库，暂且归类放在这里</p>
+<p>GitHub 地址：<a href="https://github.com/hdodenhof/CircleImageView">CircleImageView GitHub 地址</a></p>
+<p>关于图片加载库我们就介绍这 6 个，大家可以根据自己的特定情况来选择使用</p>
+<p>三、UI</p>
+<p><strong>1. material-dialogs</strong></p>
+<p>是一款自定义View框架，如多你还是一个自定义 View 的新人，对 Dialog 使用还有点生疏，那么通过使用 material-dialogs  可以提升你的 Dilaog 使用能力</p>
+<p>GitHub 地址：<a href="https://github.com/afollestad/material-dialogs">material-dialogs GitHub 地址</a></p>
+<p><strong>2. flexbox-layout</strong></p>
+<p>是一款弹性伸缩布局，FlexboxLayout 作为 LinearLayout 和 RelativeLayout  的替代者，值得大家在项目开发中去尝试使用，毕竟是 Google 出品</p>
+<p>GitHub 地址：<a href="https://github.com/google/flexbox-layout">flexbox-layout GitHub 地址</a></p>
+<p><strong>3. AndroidSwipeLayout</strong></p>
+<p>非常强大的滑动式布局，滑动删除是我们 app 中的常见需求，商品详情的上下滑动需求在实际开发中我们也是经常遇到，AndroidSwipeLayout 在  GitHub 上有 8300 个 stars，证明还是值得使用</p>
+<p>GitHub 地址：<a href="https://github.com/daimajia/AndroidSwipeLayout">AndroidSwipeLayout GitHub 地址</a></p>
+<p><strong>4. BaseRecyclerViewAdapterHelper</strong></p>
+<p>强大的通用 RecyclerView 适配器，在 GitHub Android 适配器排行榜第一</p>
+<p>GitHub 地址：<a href="https://github.com/CymChad/BaseRecyclerViewAdapterHelper">BaseRecyclerViewAdapterHelper GitHub 地址</a></p>
+<p><strong>5. MaterialDrawer</strong></p>
+<p>强大的材料风格的抽屉框架，非常灵活，易于使用</p>
+<p>GitHub 地址：<a href="https://github.com/mikepenz/MaterialDrawer">MaterialDrawer GitHub 地址</a></p>
+<p><strong>6. Android-ObservableScrollView</strong></p>
+<p>一款让视图滑动更具有视觉效果的滑动式框架，在 GitHub 上提供了 12 种滑动效果，可以用来提升 App 的滑动体验</p>
+<p>GitHub 地址：<a href="https://github.com/ksoichiro/Android-ObservableScrollView">Android-ObservableScrollView GitHub 地址</a></p>
+<p><strong>7. AppIntro</strong></p>
+<p>一款提供快速制作欢迎页的框架，在国内的 App 开发中，ViewPager 开发 App 的欢迎页已经是标配的需求，但是 AppIntro  也是绝对值得你一看</p>
+<p>GitHub 地址：<a href="https://github.com/apl-devs/AppIntro">AppIntro GitHub 地址</a></p>
+<p><strong>8. ViewPagerIndicator</strong></p>
+<p>一款基于 ViewPager 的页面指示器开源框架，作者是 Android 大神  JakeWharton，只是已经很长时间没有更新了，大家可以参考使用</p>
+<p>GitHub 地址：<a href="https://github.com/JakeWharton/ViewPagerIndicator">ViewPagerIndicator GitHub 地址</a></p>
+<p>好了 UI 相关的库就介绍这么多，以后发现好用的会添加进来，方便查阅</p>
+<p><strong>四、动画</strong></p>
+<p><strong>1. lottie-android</strong></p>
+<p>动画类框架排行榜第一名，一款可以在 Android 端快速展示 Adobe Afeter Effect(AE) 工具所做动画的框架，利用 json 文  件快速实现动画效果是它最大的便利，而这个 json 文件也是由 Adobe 提供的 AE 工具制作的，在 AE 中装一个 Bodymovin  的插件，使用这个插件最终将动画效果生成 json 文件，这个 json 文件即可由 LottieAnimationView  解析并生成绚丽的动画效果，而且它还支持跨平台</p>
+<p>GitHub 地址：<a href="https://github.com/airbnb/lottie-android">lottie-android GitHub 地址</a></p>
+<p><strong>2. Material-Animations</strong></p>
+<p>一款提供场景转换过渡能力的动画框架，与 lottie-android 不同的是，Material-Animations 提供的是场景切换的动画效果</p>
+<p>GitHub 地址：<a href="https://github.com/lgvalle/Material-Animations">Material-Animations GitHub 地址</a></p>
+<p><strong>3. AndroidViewAnimations</strong></p>
+<p>一款提供可爱动画集的动画框架，在 lottie-android 和 Material-Animations  两个动画框架霸主之后排名第三，可见也是非常厉害</p>
+<p>GitHub 地址：<a href="https://github.com/daimajia/AndroidViewAnimations">AndoridViewAnimations GitHub 地址</a></p>
+<p><strong>4. recyclerview-animators</strong></p>
+<p>为 recyclerview 提供扩展动画的框架，recyclerview 已经推出了很长时间，如果你还在使用 ListView，那就说明你老了</p>
+<p>GitHub 地址：<a href="https://github.com/wasabeef/recyclerview-animators">recyclerview-animators GitHub 地址</a></p>
+<p><strong>五、json 解析框架</strong></p>
+<p><strong>1. fastjson</strong></p>
+<p>一款基于 json 解析、生成的框架，是阿里出品，这就保证了代码的质量，在网络请求时使用较多，值得尝试</p>
+<p>GitHub 地址：<a href="https://github.com/alibaba/fastjson">fastjson GitHub 地址</a></p>
+<p><strong>六、内存泄露检测</strong></p>
+<p><strong>1. leakcanary</strong></p>
+<p>一款内存检测框架，服务于 Java 和 Andorid 客户端，方便简洁是 leakcanary 最大的特点，只需要在应用的 apllication  中集成，就可以直接使用它，15.9k 的 stars 足够说明它的厉害，最关键是是，它也是 square 团队的作品，就这一条，不用说相信大家也都明白</p>
+<p>GitHub 地址：<a href="https://github.com/square/leakcanary">leakcanary GitHub 地址</a></p>
+<p><strong>七、页面路由</strong></p>
+<p><strong>1. ARouter</strong></p>
+<p>一款提供服务、页面跳转的路由框架，由阿里出品，该框架提供：从外部 URL  映射到内部页面、跨模块的页面跳转(模块化必备，页面解耦)，拦截跳转过程等能力，绝对是一个企业级的开发框架</p>
+<p>GitHub 地址：<a href="https://github.com/alibaba/ARouter">ARouter GitHub 地址</a></p>
+<p><strong>八、数据库框架</strong></p>
+<p><strong>1. realm-java</strong></p>
+<p>Realm 是一款专门为移动端打造的数据库框架，比普通的数据库更快，力压 greenDAO</p>
+<p>GitHub 地址：<a href="https://github.com/realm/realm-java">Realm GitHub 地址</a></p>
+<p><strong>2. greenDAO</strong></p>
+<p>greenDAO 是一款高效、快速的 SQLite 型数据库，star 数量和 Realm 不相上下，由 greenrobot  团队开发维护，此团队还有一个很牛的框架便是 EventBus</p>
+<p>GitHub 地址：<a href="https://github.com/greenrobot/greenDAO">greenDAO GitHub 地址</a></p>
+<p><strong>九、异步</strong></p>
+<p><strong>1. RxJava</strong></p>
+<p>RxJava 是 ReactiveExtensions 的 Java VM 实现：用于通过使用 observable  序列来组合异步和基于事件程序的库，它扩展观察者模式以支持数据/事件序列，并添加允许你以声明组合序列的操作符，同时提取对低级线程、同步、线程安全性和并发数据结构等问题的隐藏</p>
+<p>GitHub 地址：<a href="https://github.com/ReactiveX/RxJava">RxJava GitHub 地址</a></p>
+<p><strong>2. RxAndroid</strong></p>
+<p>一款 Android 客户端组件间异步通信框架，位于通信框架排行榜的第二名，仅在 EventBus 之后，两者的区别是 EventBus  是用来取代组件之间繁琐的 Interface，而 RxAndroid 是用来取代 AnsyTask 的，两者并不冲突</p>
+<p>GitHub 地址：<a href="https://github.com/ReactiveX/RxAndroid">RxAndroid GitHub 地址</a></p>
+<p><strong>3. agera</strong></p>
+<p>Agera 是一组类和接口，可以帮组编写 Android 的功能，异步和无效应用程序，需要 Android SDK 版本 9 或更高，是 Google  官方出品</p>
+<p>GitHub 地址：<a href="https://github.com/google/agera">Agera GitHub 地址</a></p>
+<p><strong>4. RxBinding</strong></p>
+<p>一款提供 UI 组件事件响应能力的框架，通过 RxBinding 可以理解响应式编程的快乐，让项目的事件流程更加的清晰</p>
+<p>GitHub 地址：<a href="https://github.com/JakeWharton/RxBinding">RxBinding GitHub 地址</a></p>
+<p><strong>十、事件消息</strong></p>
+<p><strong>1. EventBus</strong></p>
+<p>事件间通信框架 stars 第一，在大型项目的 Activities、Fragments、Threads、Services 都有使用场景，尽管  EventBus 在向未创建的组件传递事件时有些局限，仅适合在活着的组件之间传递消息，但任然不妨碍在各个大型项目的场景中使用</p>
+<p>GitHub 地址：<a href="https://github.com/greenrobot/EventBus">EventBus GitHub 地址</a></p>
+<p><strong>十一、图表</strong></p>
+<p><strong>1. MPAndroidChart</strong></p>
+<p>MPAndroidChart 是一款图表框架，以快速、简洁，强大著称的图表框架，支持线条、饼型、气泡和烛台图，以及缩放、拖动和动画</p>
+<p>GitHub 地址：<a href="https://github.com/PhilJay/MPAndroidChart">MPAndroidChart GitHub 地址</a></p>
+<p><strong>十二、生成模板代码</strong></p>
+<p><strong>1. butterknife</strong></p>
+<p>使用注解生成模板代码，将 view 与方法和参数绑定，配合 Android Studio 提供的 ButterKnife 插件，帮组开发者省却了频繁的  findViewById 的烦恼，最新的 ButterKnife 还提供了 onclick 绑定以及字符串的初始化，初学者可以查阅 ButterKnife 以及  ButterKnife 进一步学习，作者是 JakeWharton，是大名鼎鼎的 square 的团队成员之一</p>
+<p>GitHub 地址：<a href="https://github.com/JakeWharton/butterknife">butterknife GitHub 地址</a></p>
+<p>今天的总结就先到这里，后续会不断更新</p><div align="right">【责任编辑：<a class="ln" href="mailto:sunsj@51cto.com">枯木</a> TEL：（010）68476606】</div><br>
+            <a href="http://mobile.51cto.com/android-546316.htm###" class="dzdz zhan" target="_self">点赞 <span>0</span></a>
+        </div>
+        <div class="share5">
+            <ul>
+                <li><a href="http://www.51cto.com/php/search.php?keyword=Android" target="_blank" class="underline">Android</a>&nbsp;&nbsp;<a href="http://www.51cto.com/php/search.php?keyword=GitHub" target="_blank" class="underline">GitHub</a>&nbsp;&nbsp;<a href="http://www.51cto.com/php/search.php?keyword=%BF%AA%D4%B4%BF%F2%BC%DC" target="_blank" class="underline">开源框架</a></li>
+            </ul>
+            <dl>
+                <dt><em>分享:</em>
+<div class="bdsharebuttonbox bdshare-button-style0-16" data-tag="share_1" data-bd-bind="1503160283711">
+    <a class="wb" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="wx" data-cmd="weixin" title="分享到微信"></a>
+    <a class="more" data-cmd="more"></a>
+</div>
+</dt>
+<script type="text/javascript">
+    window._bd_share_config = {
+        common : {
+            bdText : document.title
+        },
+        share : [{
+            "bdSize" : 16,
+        }]
+    }
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<!-- Baidu Button END -->
+            </dl>
+        </div>
+        <div class="nrdp comment">
+            <div class="comment center">
+	<div class="inner center" id="cmscmt_iframe"><div class="title"><span class="word">内容点评</span><p class="con">已有<span class="total" id="cmt_num">1</span>条评论,<span class="total" id="zan_num">0</span>次赞</p><p style="float:right; margin-top: 17px;">还可以输入<span id="uyan_tts">500</span>字</p></div><div class="frame center"><textarea value="" id="comment" onblur="window.CMSCMT.shoIntro(this);" onfocus="window.CMSCMT.hidIntro(this);" onkeydown="window.CMSCMT.checkTxt(this, 140);" onkeyup="window.CMSCMT.checkTxt(this, 140);" style="color:#7c7c7c; font-family:Microsoft Yahei;">请输入你的评论</textarea></div><div class="user"><a id="uyan_cmt_btn" onclick="window.CMSCMT.addCmt(this);" class="submit" data-track="submit">提交</a><dl><dt class="icon"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/duface.png" alt=""></dt><dd class="btn"><span>您还没有登录！</span><span class="note">请先</span>&nbsp;<a href="javascript:void(0)" style="color:red;" onclick="show_iframe_login(&#39;http://mobile.51cto.com/android-546316.htm&#39;);return false;">登录</a>&nbsp;<span class="note">或</span>&nbsp;<a href="http://home.51cto.com/user/register?reback=http%253A%252F%252Fmobile.51cto.com%252Fandroid-546316.htm" style="color:red;">注册</a>&nbsp;</dd></dl></div><ul class="list center first" id="uyan_cmt_list"><li class="element" id="cmt_12472"><dl class=""><dt class="head"><a target="_blank" href="http://home.51cto.com/space?uid=12638591.html"><img onerror="CMSCMT.noUface(this, &#39;/static/images/duface.png&#39;);" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/avatar.php" onload="CMSCMT.loadUface(this, &#39;http://ucenter.51cto.com/avatar.php?uid=12638591&#39;);" style="border: 0 none; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.22); border-radius: 4px; width: 50px; height: 50px;"></a></dt><dd><div class="name"><a target="_blank" href="http://home.51cto.com/space?uid=12638591.html" id="cmt_uname_12472">糯糯酱</a></div><p class="con">楼主分享得很棒哦~欢迎大家加我扣扣：1041373364和我们上海迅傲股份一起讨论这方面的开发合作。</p><div class="tool line one"><div class="date">发表于:2017-08-01 14:23:11</div><div class="btn"><div class="shareBox"><div class="jiathis_style_24x24"><a class="jiathis_button_tsina" onclick="CMSCMT.cmtShare(&#39;sina&#39;,&#39;楼主分享得很棒哦~欢迎大家加我扣扣：1041373364和我们上海迅傲股份一起讨论这方面的开发合作。&#39;);"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKioL1SsonugeKo0AAAGlF6KMqM876.png" alt=""></a><a class="jiathis_button_qzone" onclick="CMSCMT.cmtShare(&#39;qzone&#39;,&#39;楼主分享得很棒哦~欢迎大家加我扣扣：1041373364和我们上海迅傲股份一起讨论这方面的开发合作。&#39;);"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKiom1SsobuxdEMvAAAF92NU77A112.png" alt=""></a><a class="jiathis_button_tqq" onclick="CMSCMT.cmtShare(&#39;tqq&#39;,&#39;楼主分享得很棒哦~欢迎大家加我扣扣：1041373364和我们上海迅傲股份一起讨论这方面的开发合作。&#39;);"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKiom1SsobuDEp5ZAAAGB9ePTKU216.png" alt=""></a></div></div><a class="reply self" style="cursor: pointer;" onclick="CMSCMT.addRpyBox(12472,12472,&#39;one&#39;);" id="cmt_rpy_12472">回&nbsp;&nbsp;复 </a><a class="support self" style="cursor: pointer; " onclick="CMSCMT.cmtUD(12472);">顶(<span id="zan_12472">0</span>)</a><a class="share self">分享 </a></div></div><ul class="list center second" id="cmt_reply_list_12472"></ul></dd></dl></li><li><div id="uyan_more_rpy_12472"></div></li></ul><div class="more line" id="uyan_more_cmt"></div><div class="ui-overlay-mask" style="display: none;position: fixed; text-align:center;left:0; top:0; height:100%; width:100%;z-index: 9999;background-color:rgba(0, 0, 0, 0.6);"><div id="login" style="left:0; top:0;z-index: 9999;background:#fff;margin:20px auto;position:relative;display: inline-block;top: 40%;transform: translateY(-50%);"><span class="offbtn" onclick="hide()" style="position: absolute; right:15px; top:20px; display:inline-block; width:15px; height:14px;background: url(http://static1.51cto.com/home/web/images/iframe_login/offbtn.png) no-repeat center center; z-index: 99; cursor:pointer;"></span></div></div></div>
+</div>
+<script type="text/javascript" id="UYScript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/iframe_cmt.js" async=""></script>
+
+        </div>
+        <div class="dzk">
+            <dl><dt class="show">大家都在看</dt><dt>猜你喜欢</dt></dl>
+            <div>
+                <ul>
+                    <li class="show">
+                        <div class="djdzk" id="djdzk"><div class="m15"><a href="http://cio.51cto.com/art/201707/543878.htm"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKioL1lZtoCjH-wNAABJm8pqvCw862.jpg-wh_151x97-wm_-wmp_-s_335121086.jpg" title="《网络安全法》调研|采访过30多位CIO，我们得出这样的结论"></a><a href="http://cio.51cto.com/art/201707/543878.htm" title="《网络安全法》调研|采访过30多位CIO，我们得出这样的结论">《网络安全法》调研|采访过30多位CIO，我们得出这样的结论</a></div><div class="m15"><a href="http://network.51cto.com/art/201707/545421.htm"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKioL1lyt1Wh8S0BAAH2p59Yd8I357.jpg-wh_151x97-wm_-wmp_-s_4201500803.jpg" title="焦李成教授：人工智能时代后深度学习的挑战与思考"></a><a href="http://network.51cto.com/art/201707/545421.htm" title="焦李成教授：人工智能时代后深度学习的挑战与思考">焦李成教授：人工智能时代后深度学习的挑战与思考</a></div><div class="m15"><a href="http://developer.51cto.com/art/201707/545405.htm"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKioL1lxZquBJW5ZAAGvv7aEnJo600.jpg-wh_151x97-wm_-wmp_-s_592228541.jpg" title="放弃了 7 年的 Java，投身互联网做 PHP，我是如何成为创业公司的 CTO？"></a><a href="http://developer.51cto.com/art/201707/545405.htm" title="放弃了 7 年的 Java，投身互联网做 PHP，我是如何成为创业公司的 CTO？">放弃了 7 年的 Java，投身互联网做 PHP，我是如何成为创业公司的 CTO？</a></div><div><a href="http://news.51cto.com/art/201708/546877.htm"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKioL1mIB8TwFUqtAARNp3jetyY769.png-wh_151x97-wm_-wmp_-s_1577745646.png" title="你离IT技术大神只差7月的这十篇热门文章！"></a><a href="http://news.51cto.com/art/201708/546877.htm" title="你离IT技术大神只差7月的这十篇热门文章！">你离IT技术大神只差7月的这十篇热门文章！</a></div></div>
+                    </li>
+                    <li>
+                       <div class="djdzk" id="cnxh"><div class="m15"><a href="http://news.51cto.com/art/201705/539930.htm?pc"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKiom1kbgr6zCudhAAAyCmpPP_4775.jpg-wh_151x97-wm_-wmp_-s_3296160126.jpg" title="谷歌I/O开发者大会2017前瞻 手机已"></a><a href="http://news.51cto.com/art/201705/539930.htm?pc" title="谷歌I/O开发者大会2017前瞻 手机已">谷歌I/O开发者大会2017前瞻 手机已</a></div><div class="m15"><a href="http://news.51cto.com/art/201705/539927.htm?pc"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKioL1kbf1Ty2ageAAKD4JOHTxk552.png-wh_151x97-wm_-wmp_-s_2787768401.png" title="即将到来的I/0大会，Android将解"></a><a href="http://news.51cto.com/art/201705/539927.htm?pc" title="即将到来的I/0大会，Android将解">即将到来的I/0大会，Android将解</a></div><div class="m15"><a href="http://news.51cto.com/art/201705/539926.htm?pc"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKiom1kbftDjytsgAAB2r5CsSjc64.jpeg-wh_151x97-wm_-wmp_-s_4063560536.jpeg" title="谷歌嫌Android开源问题太多，打算开"></a><a href="http://news.51cto.com/art/201705/539926.htm?pc" title="谷歌嫌Android开源问题太多，打算开">谷歌嫌Android开源问题太多，打算开</a></div><div><a href="http://os.51cto.com/art/201705/539799.htm?pc"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKiom1kanZKhd82WAADD2Bk9XAI235.jpg-wh_151x97-wm_-wmp_-s_433710048.jpg" title="取代Android？聊聊谷歌的Fuchs"></a><a href="http://os.51cto.com/art/201705/539799.htm?pc" title="取代Android？聊聊谷歌的Fuchs">取代Android？聊聊谷歌的Fuchs</a></div></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 文章左侧结束 -->
+    <!-- 文章右侧 -->
+    <div class="wrap_right">
+        <div><!-- intel广告位 -->
+
+<span class="mtgg" id="right1_ad" style="height:auto; width:300px;margin-bottom: 10px;">
+
+<script type="text/javascript">
+var s=window.location.toString();
+var s1=s.substr(7,s.length);
+var s2=s1.indexOf(".");
+s=s.substr(7,s2);
+if ( s == 'stor') {
+    var m3_u = (location.protocol=='https:'?'https://gg.51cto.com/www/delivery/ajs.php':'http://gg1.51cto.com/www/delivery/ajs.php');
+    var m3_r = Math.floor(Math.random()*99999999999);
+    if (!document.MAX_used) document.MAX_used = ',';
+    document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+    document.write ("?zoneid=987");
+    document.write ('&amp;cb=' + m3_r);
+    if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+    document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+    document.write ("&amp;loc=" + escape(window.location));
+    if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+    if (document.context) document.write ("&context=" + escape(document.context));
+    if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+    document.write ("'><\/scr"+"ipt>");
+
+}else if (s == 'server'){
+    var m3_u = (location.protocol=='https:'?'https://gg.51cto.com/www/delivery/ajs.php':'http://gg1.51cto.com/www/delivery/ajs.php');
+    var m3_r = Math.floor(Math.random()*99999999999);
+    if (!document.MAX_used) document.MAX_used = ',';
+    document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+    document.write ("?zoneid=986");
+    document.write ('&amp;cb=' + m3_r);
+    if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+    document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+    document.write ("&amp;loc=" + escape(window.location));
+    if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+    if (document.context) document.write ("&context=" + escape(document.context));
+    if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+    document.write ("'><\/scr"+"ipt>");
+
+}else if(s == 'network'){
+    var m3_u = (location.protocol=='https:'?'https://gg.51cto.com/www/delivery/ajs.php':'http://gg1.51cto.com/www/delivery/ajs.php');
+    var m3_r = Math.floor(Math.random()*99999999999);
+    if (!document.MAX_used) document.MAX_used = ',';
+    document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+    document.write ("?zoneid=985");
+    document.write ('&amp;cb=' + m3_r);
+    if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+    document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+    document.write ("&amp;loc=" + escape(window.location));
+    if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+    if (document.context) document.write ("&context=" + escape(document.context));
+    if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+    document.write ("'><\/scr"+"ipt>");
+
+//    var str = '<div class="m30" style="position:relative;">';
+//    str += '<iframe src="http://network.51cto.com/act/art/intel" scrolling="no" frameborder="0" sytle="" width="300" align="middle" height="360" target ="_parent"></iframe>';
+//    str +='<div style="left: 0px; width: 24px; height: 14px; z-index: 12; position: absolute; background: transparent url(http://s5.51cto.com/wyfs02/M00/86/BB/wKiom1fI4nWStYqXAAAEoZQn6vs942.png)repeat scroll 0% 0%; bottom: 2px;"></div>';
+//    str	+= '</div>';
+//    $('#right1_ad').html(str);
+}
+// var timestamp = Date.parse(new Date());
+//timestamp = timestamp / 1000;
+    if (s == 'cloud') {
+//    var str = "<ins class='dcmads' style='display:inline-block;width:300px;height:360px' data-dcm-placement='N5751.51CTO/B11527656.153459357' data-dcm-rendering-mode='script' data-dcm-http-only data-dcm-app-id=''></ins>";
+//
+//        $('#right1_ad').html(str);
+        //1496592000
+        var m3_u = (location.protocol=='https:'?'https://gg.51cto.com/www/delivery/ajs.php':'http://gg3.51cto.com/www/delivery/ajs.php');
+        var m3_r = Math.floor(Math.random()*99999999999);
+        if (!document.MAX_used) document.MAX_used = ',';
+        document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+        document.write ("?zoneid=969");
+        document.write ('&amp;cb=' + m3_r);
+        if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+        document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+        document.write ("&amp;loc=" + escape(window.location));
+        if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+        if (document.context) document.write ("&context=" + escape(document.context));
+        if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+        document.write ("'><\/scr"+"ipt>");
+    }
+    if (s == 'bigdata') {
+        var m3_u = (location.protocol=='https:'?'https://gg.51cto.com/www/delivery/ajs.php':'http://gg2.51cto.com/www/delivery/ajs.php');
+        var m3_r = Math.floor(Math.random()*99999999999);
+        if (!document.MAX_used) document.MAX_used = ',';
+        document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+        document.write ("?zoneid=970");
+        document.write ('&amp;cb=' + m3_r);
+        if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+        document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+        document.write ("&amp;loc=" + escape(window.location));
+        if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+        if (document.context) document.write ("&context=" + escape(document.context));
+        if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+        document.write ("'><\/scr"+"ipt>");
+    }
+</script>
+    <script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/dcmads.js"></script><script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/impl_v39.js"></script>
+    </span></div>
+        <div class="mtgg m30"><script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/ad(1).js"></script><script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/ad(2).php"></script><iframe width="300" height="260" noresize="" scrolling="No" frameborder="0" marginheight="0" marginwidth="0" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/14.html" align="left"></iframe></div>
+        <div><script>
+    var s = window.location.href.toString();
+    var a = s.split('/');
+    var d = a[2];
+    var b = a[5].split('.');
+    var c = b[0];
+
+    if (d == 'cloud.51cto.com' && c > 600000) {
+        var str = "<ins class='dcmads' style='display:inline-block;width:300px;height:360px' data-dcm-placement='N5751.51CTO/B11527656.202054721' data-dcm-rendering-mode='iframe' data-dcm-http-only data-dcm-app-id=''></ins>";
+        document.write(str);
+    }
+
+    if (d == 'bigdata.51cto.com' && c > 600000) {
+        var str = "<ins class='dcmads' style='display:inline-block;width:300px;height:360px' data-dcm-placement='N5751.51CTO/B11527232.153474027' data-dcm-rendering-mode='iframe' data-dcm-http-only data-dcm-app-id=''> </ins>";
+        document.write(str);
+    }
+
+</script>
+<script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/dcmads.js"></script><script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/impl_v39.js"></script></div>
+        <div class="bjtj m30">
+            <h2><span>编辑推荐</span></h2>
+            <dl><dt>头条</dt><dd><a href="http://developer.51cto.com/art/201708/547028.htm" title="阿里8年资深技术专家谈企业级互联网架构的演进之路">阿里8年资深技术专家谈企业级互联网架构的演进之路</a></dd></dl><dl><dt>头条</dt><dd><a href="http://developer.51cto.com/art/201708/547319.htm" title="十年磨一剑，美国巨头视频网站 Hulu 的直播系统架构实践">十年磨一剑，美国巨头视频网站 Hulu 的直播系统架构实践</a></dd></dl><dl><dt>头条</dt><dd><a href="http://ai.51cto.com/art/201703/536061.htm" title="摆好正确姿势 看 Google 神级深度学习框架 TensorFlow 的实践思路">摆好正确姿势 看 Google 神级深度学习框架 TensorFlow 的实践思路</a></dd></dl><dl><dt>外电</dt><dd><a href="http://mobile.51cto.com/iphone-535106.htm" title="iOS与Android设备到底是如何被入侵的？">iOS与Android设备到底是如何被入侵的？</a></dd></dl><dl><dt>头条</dt><dd><a href="http://developer.51cto.com/art/201703/534563.htm" title="你所不了解的移动支付背后的技术支撑">你所不了解的移动支付背后的技术支撑</a></dd></dl>
+        </div>
+        <div></div>
+        <div class="news m30">
+            <dl><dt class="show">24H热文</dt><dt>一周话题</dt><dt>本月最赞</dt></dl>
+            <ul><li class="show"><a href="http://mobile.51cto.com/aprogram-442833.htm" title="Android开发中Handler的经典总结">Android开发中Handler的经典总结</a><a href="http://mobile.51cto.com/aprogram-464015.htm" title="Android" 反编译="" -smali语法="">Android 反编译 -smali语法</a><a href="http://mobile.51cto.com/web-463667.htm" title="开发移动应用程序的三种选择：原生、HTML5或混合">开发移动应用程序的三种选择：原生、HTML5或混合</a><a href="http://mobile.51cto.com/android-386448.htm" title="将HTML5封装成android应用APK文件的几种方法">将HTML5封装成android应用APK文件的几种方法</a><a href="http://mobile.51cto.com/abased-386212.htm" title="App工程结构搭建：几种常见Android代码架构分析">App工程结构搭建：几种常见Android代码架构分析</a><a href="http://mobile.51cto.com/hot-292923.htm" title="人人都是开发者：5款傻瓜式APP开发工具">人人都是开发者：5款傻瓜式APP开发工具</a><a href="http://mobile.51cto.com/ahot-409516.htm" title="手机web——自适应网页设计（html/css控制）">手机web——自适应网页设计（html/css控制）</a><a href="http://mobile.51cto.com/aprogram-434525.htm" title="Android" ndk开发，没有你想象的那么难="">Android NDK开发，没有你想象的那么难</a></li><li><a href="http://mobile.51cto.com/aprogram-442833.htm" title="Android开发中Handler的经典总结">Android开发中Handler的经典总结</a><a href="http://mobile.51cto.com/web-463667.htm" title="开发移动应用程序的三种选择：原生、HTML5或混合">开发移动应用程序的三种选择：原生、HTML5或混合</a><a href="http://mobile.51cto.com/aprogram-464015.htm" title="Android" 反编译="" -smali语法="">Android 反编译 -smali语法</a><a href="http://mobile.51cto.com/aprogram-434525.htm" title="Android" ndk开发，没有你想象的那么难="">Android NDK开发，没有你想象的那么难</a><a href="http://mobile.51cto.com/design-250037.htm" title="21个免费的UI界面设计工具、资源及网站">21个免费的UI界面设计工具、资源及网站</a><a href="http://mobile.51cto.com/abased-386212.htm" title="App工程结构搭建：几种常见Android代码架构分析">App工程结构搭建：几种常见Android代码架构分析</a><a href="http://mobile.51cto.com/android-386448.htm" title="将HTML5封装成android应用APK文件的几种方法">将HTML5封装成android应用APK文件的几种方法</a><a href="http://mobile.51cto.com/ahot-409516.htm" title="手机web——自适应网页设计（html/css控制）">手机web——自适应网页设计（html/css控制）</a></li><li><a href="http://mobile.51cto.com/aprogram-442833.htm" title="Android开发中Handler的经典总结">Android开发中Handler的经典总结</a><a href="http://mobile.51cto.com/web-463667.htm" title="开发移动应用程序的三种选择：原生、HTML5或混合">开发移动应用程序的三种选择：原生、HTML5或混合</a><a href="http://mobile.51cto.com/aprogram-464015.htm" title="Android" 反编译="" -smali语法="">Android 反编译 -smali语法</a><a href="http://mobile.51cto.com/aprogram-434525.htm" title="Android" ndk开发，没有你想象的那么难="">Android NDK开发，没有你想象的那么难</a><a href="http://mobile.51cto.com/abased-386212.htm" title="App工程结构搭建：几种常见Android代码架构分析">App工程结构搭建：几种常见Android代码架构分析</a><a href="http://mobile.51cto.com/design-250037.htm" title="21个免费的UI界面设计工具、资源及网站">21个免费的UI界面设计工具、资源及网站</a><a href="http://mobile.51cto.com/ahot-409516.htm" title="手机web——自适应网页设计（html/css控制）">手机web——自适应网页设计（html/css控制）</a><a href="http://mobile.51cto.com/hot-292923.htm" title="人人都是开发者：5款傻瓜式APP开发工具">人人都是开发者：5款傻瓜式APP开发工具</a></li></ul>
+        </div>
+        <div><div class="areaAd mt5" id="ad_1">
+
+<script type="text/javascript"><!--//<![CDATA[
+var m3_u = (location.protocol=='https:'?'https://gg.51cto.com/www/delivery/ajs.php':'http://gg3.51cto.com/www/delivery/ajs.php');
+var m3_r = Math.floor(Math.random()*99999999999);
+if (!document.MAX_used) document.MAX_used = ',';
+document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+document.write ("?zoneid=693");
+document.write ('&amp;cb=' + m3_r);
+if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+document.write ("&amp;loc=" + escape(window.location));
+if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+if (document.context) document.write ("&context=" + escape(document.context));
+if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+document.write ("'><\/scr"+"ipt>");
+//]]>--></script><script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/ajs(4).php"></script><div style="position:relative;display:inline-block;width:auto;"><a href="http://gg.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=6237__zoneid=693__cb=16f19fee52__oadest=http%3A%2F%2Fwot.51cto.com%3Fwenzhang" target="_blank"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKioL1mNSPzQhpz5AABF6py5GgA308.jpg" width="300" height="90" alt="" title="" border="0"></a><div style="left: 0px; width: 24px; height: 14px; z-index: 12; position: absolute; background: transparent url(&quot;http://s5.51cto.com/wyfs02/M00/86/BB/wKiom1fI4nWStYqXAAAEoZQn6vs942.png&quot;) repeat scroll 0% 0%; bottom: 2px;"></div></div><div id="beacon_16f19fee52" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/lg(4).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+<noscript>&amp;lt;a href='//gg2.51cto.com/www/delivery/ck.php?n=ae95ac07&amp;amp;amp;cb=INSERT_RANDOM_NUMBER_HERE' target='_blank'&amp;gt;&amp;lt;img src='//gg.51cto.com/www/delivery/avw.php?zoneid=693&amp;amp;amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;amp;amp;n=ae95ac07' border='0' alt='' /&amp;gt;&amp;lt;/a&amp;gt;</noscript>
+</div>
+<div style="display:none">
+<span id="ad1">
+
+<script type="text/javascript"><!--//<![CDATA[
+var m3_u = (location.protocol=='https:'?'https://gg.51cto.com/www/delivery/ajs.php':'http://gg3.51cto.com/www/delivery/ajs.php');
+var m3_r = Math.floor(Math.random()*99999999999);
+if (!document.MAX_used) document.MAX_used = ',';
+document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+document.write ("?zoneid=693");
+document.write ('&amp;cb=' + m3_r);
+if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+document.write ("&amp;loc=" + escape(window.location));
+if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+if (document.context) document.write ("&context=" + escape(document.context));
+if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+document.write ("'><\/scr"+"ipt>");
+//]]>--></script><script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/ajs(4).php"></script><div style="position:relative;display:inline-block;width:auto;"><a href="http://gg.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=6237__zoneid=693__cb=16f19fee52__oadest=http%3A%2F%2Fwot.51cto.com%3Fwenzhang" target="_blank"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKioL1mNSPzQhpz5AABF6py5GgA308.jpg" width="300" height="90" alt="" title="" border="0"></a><div style="left: 0px; width: 24px; height: 14px; z-index: 12; position: absolute; background: transparent url(&quot;http://s5.51cto.com/wyfs02/M00/86/BB/wKiom1fI4nWStYqXAAAEoZQn6vs942.png&quot;) repeat scroll 0% 0%; bottom: 2px;"></div></div><div id="beacon_16f19fee52" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/lg(4).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+<noscript>&lt;a href='//gg2.51cto.com/www/delivery/ck.php?n=ae95ac07&amp;amp;cb=INSERT_RANDOM_NUMBER_HERE' target='_blank'&gt;&lt;img src='//gg.51cto.com/www/delivery/avw.php?zoneid=693&amp;amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;amp;n=ae95ac07' border='0' alt='' /&gt;&lt;/a&gt;</noscript>
+</span>
+    </div>
+<script>
+    document.getElementById('ad_1').innerHTML = document.getElementById('ad1').innerHTML;
+</script></div>
+        <div class="spkc m30">
+            <h2><span>视频课程</span><a href="http://edu.51cto.com/">+更多</a></h2>
+            
+            <dl>
+                <dt><a href="http://edu.51cto.com/course/course_id-3580.html"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKiom1VEgRzhgtOkAAFikqd-yN8592_small.jpg" title="[完整]ExcelVBA整合Access/SQLServer编程" alt="[完整]ExcelVBA整合Access/SQLServer编程" width="100px" height="80px"></a><span></span></dt>
+                <dd>
+                    <h3><a href="http://edu.51cto.com/course/course_id-3580.html" target="_blank" title="[完整]ExcelVBA整合Access/SQLServer编程">[完整]ExcelVBA整合Access/SQLServer编程</a></h3>
+                    <h4><span class="fl">讲师：<em><a href="http://edu.51cto.com/lecturer/user_id-8963545.html" target="_blank">谭科</a></em></span><span class="fr"><em>89636</em>人学习过</span></h4>
+                </dd>
+            </dl>
+            
+            <dl>
+                <dt><a href="http://edu.51cto.com/course/course_id-5065.html"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/92cec4b0302f2521fe57884199fe7e2d7eec47_small.png" title="Python自动化开发实战视频课程-全新2.0版本" alt="Python自动化开发实战视频课程-全新2.0版本" width="100px" height="80px"></a><span></span></dt>
+                <dd>
+                    <h3><a href="http://edu.51cto.com/course/course_id-5065.html" target="_blank" title="Python自动化开发实战视频课程-全新2.0版本">Python自动化开发实战视频课程-全新2.0版本</a></h3>
+                    <h4><span class="fl">讲师：<em><a href="http://edu.51cto.com/lecturer/user_id-3050674.html" target="_blank">Alex(李杰)</a></em></span><span class="fr"><em>111402</em>人学习过</span></h4>
+                </dd>
+            </dl>
+            
+            <dl>
+                <dt><a href="http://edu.51cto.com/course/course_id-37.html"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKiom1NUhYuwVE7FAAEyIDq4B_M984_small.jpg" title="Cisco网络工程师和网络安全视频课程（完整版）" alt="Cisco网络工程师和网络安全视频课程（完整版）" width="100px" height="80px"></a><span></span></dt>
+                <dd>
+                    <h3><a href="http://edu.51cto.com/course/course_id-37.html" target="_blank" title="Cisco网络工程师和网络安全视频课程（完整版）">Cisco网络工程师和网络安全视频课程（完整版</a></h3>
+                    <h4><span class="fl">讲师：<em><a href="http://edu.51cto.com/lecturer/user_id-400469.html" target="_blank">韩立刚</a></em></span><span class="fr"><em>776797</em>人学习过</span></h4>
+                </dd>
+            </dl>
+            
+        </div>
+        <div></div>
+        <div class="rmzw m30">
+            <h2><span>热门职位</span><a href="http://gaozhao.51cto.com/">+更多</a></h2>
+            <div id="rmzw"><dl><dt><a href="http://gaozhao.51cto.com/job/view/id-1189.html" target="_blank"> 客户端高级研发工程师 </a></dt><dd><h3>全职/1-3年/本科</h3><span>15k-30k</span><a href="http://gaozhao.51cto.com/company/view/id-353.html" target="_blank">多盟</a></dd></dl><dl><dt><a href="http://gaozhao.51cto.com/job/view/id-7308.html" target="_blank"> 高级安卓开发工程师 </a></dt><dd><h3>全职/3-5年/本科</h3><span>20k-40k</span><a href="http://gaozhao.51cto.com/company/view/id-1112.html" target="_blank">最右</a></dd></dl><dl><dt><a href="http://gaozhao.51cto.com/job/view/id-7281.html" target="_blank"> 音频处理算法 </a></dt><dd><h3>全职/3-5年/不限</h3><span>35k-45k</span><a href="http://gaozhao.51cto.com/company/view/id-1110.html" target="_blank">聚辉咨询</a></dd></dl><dl><dt><a href="http://gaozhao.51cto.com/job/view/id-7224.html" target="_blank"> iOS开发工程师 </a></dt><dd><h3>全职/3-5年/本科</h3><span>8k-10k</span><a href="http://gaozhao.51cto.com/company/view/id-848.html" target="_blank">新商软件</a></dd></dl><dl><dt><a href="http://gaozhao.51cto.com/job/view/id-7200.html" target="_blank"> 高级U3D前端开发工程师 </a></dt><dd><h3>全职/3-5年/本科</h3><span>15k-30k</span><a href="http://gaozhao.51cto.com/company/view/id-1103.html" target="_blank">墨灿游戏</a></dd></dl></div>
+        </div>
+        <div></div>
+        <div class="zxzt m30">
+            <h2><span>最新专题</span><a href="http://mobile.51cto.com/col/1000/spec1.htm">+更多</a></h2>
+            <dl>
+                <dt><a href="http://mobile.51cto.com/iphone-536126.htm" title="产品不行技术来撑，看苹果如何打响技术战"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKioL1jeeJSTe6sTAAXOKS1hfG8593.jpg-wh_100x70-s_3110565891.jpg" alt="产品不行技术来撑，看苹果如何打响技术战" title="产品不行技术来撑，看苹果如何打响技术战"></a></dt>
+                <dd>
+                    <a href="http://mobile.51cto.com/iphone-536126.htm" title="产品不行技术来撑，看苹果如何打响技术战">产品不行技术来撑，看苹果如何打响技术战</a>
+                    <h3><a href="http://www.51cto.com/php/search.php?keyword=%B2%FA%C6%B7">产品</a></h3>
+                </dd>
+            </dl><dl>
+                <dt><a href="http://mobile.51cto.com/mobile-533097.htm" title="不谈架构谈应用！开源时代你将如何“起飞”？"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKiom1i1FIeTMfrpAADh7TDbdVA082.jpg-wh_100x70-s_4273819645.jpg" alt="不谈架构谈应用！开源时代你将如何“起飞”？" title="不谈架构谈应用！开源时代你将如何“起飞”？"></a></dt>
+                <dd>
+                    <a href="http://mobile.51cto.com/mobile-533097.htm" title="不谈架构谈应用！开源时代你将如何“起飞”？">不谈架构谈应用！开源时代你将如何“起飞”？</a>
+                    <h3><a href="http://www.51cto.com/php/search.php?keyword=%D2%C6%B6%AF">移动</a></h3>
+                </dd>
+            </dl><dl>
+                <dt><a href="http://mobile.51cto.com/anews-528454.htm" title="基于React与Vue后，移动开源项目Weex如何定义未来"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKioL1h-AOOzMAFkAAANEa-Gu6w358.jpg-wh_100x70-s_2912020025.jpg" alt="基于React与Vue后，移动开源项目Weex如何定义未来" title="基于React与Vue后，移动开源项目Weex如何定义未来"></a></dt>
+                <dd>
+                    <a href="http://mobile.51cto.com/anews-528454.htm" title="基于React与Vue后，移动开源项目Weex如何定义未来">基于React与Vue后，移动开源项目Weex如何定义未来</a>
+                    <h3><a href="http://www.51cto.com/php/search.php?keyword=React">React</a></h3>
+                </dd>
+            </dl><dl>
+                <dt><a href="http://mobile.51cto.com/mobile-528316.htm" title="看看16年,移动开发都发生了什么"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKioL1hvYonRGkr-AABUcRgjHeo923.jpg-wh_100x70-s_4121701693.jpg" alt="看看16年,移动开发都发生了什么" title="看看16年,移动开发都发生了什么"></a></dt>
+                <dd>
+                    <a href="http://mobile.51cto.com/mobile-528316.htm" title="看看16年,移动开发都发生了什么">看看16年,移动开发都发生了什么</a>
+                    <h3><a href="http://www.51cto.com/php/search.php?keyword=%D2%C6%B6%AF">移动</a></h3>
+                </dd>
+            </dl>
+        </div>
+        <div></div>
+        <div id="jcpl"><div class="jcpl m30"><h2><span>精彩评论</span></h2><dl><dt><a href="http://home.51cto.com/index.php?s=/space/11483847"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/avatar(1).php" width="45px" height="45px"></a></dt><dd><a href="http://home.51cto.com/index.php?s=/space/11483847"></a><h3><a href="http://home.51cto.com/index.php?s=/space/11483847">sun1421434124</a>评论了：<a href="http://news.51cto.com/art/201707/546002.htm">终于找到程序员无休止加班的原因了！</a></h3><h4>需求人白天一整天讨论需求，汪狗闲一天。快下班了，需求踢过来，很急，需要加班完成，你妹，从来都是这样。</h4></dd></dl><dl><dt><a href="http://home.51cto.com/index.php?s=/space/13166841"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/avatar(2).php" width="45px" height="45px"></a></dt><dd><a href="http://home.51cto.com/index.php?s=/space/13166841"></a><h3><a href="http://home.51cto.com/index.php?s=/space/13166841">Papaba0829</a>评论了：<a href="http://news.51cto.com/art/201707/546002.htm">终于找到程序员无休止加班的原因了！</a></h3><h4>不想被替代，又不想加班，还想要有可观的收入，这不是痴人说梦  这是真的存在的。现在美国硅谷的一些独角兽公司招聘码农，放宽有求，只要有学位证，只要是码农，只要上过两年以上的班，都可以过去工作，工资年薪在50万人民币到150万人民币不等，重点是不扣税。还有可能抽到绿卡，长期留美国</h4></dd></dl><dl><dt><a href="http://home.51cto.com/index.php?s=/space/5870861"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/avatar(3).php" width="45px" height="45px"></a></dt><dd><a href="http://home.51cto.com/index.php?s=/space/5870861"></a><h3><a href="http://home.51cto.com/index.php?s=/space/5870861">小旋风007</a>评论了：<a href="http://news.51cto.com/art/201707/546002.htm">终于找到程序员无休止加班的原因了！</a></h3><h4>这么长，我竟然看完了，哈哈哈！生动形象，幽默风趣 ，赞一个。 I miss girls O(∩_∩)O哈哈哈~</h4></dd></dl><dl><dt><a href="http://home.51cto.com/index.php?s=/space/157560"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/avatar(4).php" width="45px" height="45px"></a></dt><dd><a href="http://home.51cto.com/index.php?s=/space/157560"></a><h3><a href="http://home.51cto.com/index.php?s=/space/157560">mayufenga1</a>评论了：<a href="http://news.51cto.com/art/201707/546002.htm">终于找到程序员无休止加班的原因了！</a></h3><h4>这是我见过的描述最生动的实情</h4></dd></dl></div></div>
+        <div></div>
+        <div class="news m30">
+            <dl><dt class="show">精选博文</dt><dt>论坛热帖</dt><dt>下载排行</dt></dl>
+            <div>
+                <ul>
+                    <li class="show">
+                        <a href="http://yaoyinjie.blog.51cto.com/3189782/650902/" target="_blank" title="hbase之Reverse DNS问题">hbase之Reverse DNS问题</a><a href="http://wangqingpei557.blog.51cto.com/1009349/650845/" target="_blank" title=".NET简谈组件程序设计之(初识.NET线程Thread) ">.NET简谈组件程序设计之(初识.NET线</a><a href="http://itkiller.blog.51cto.com/3484952/650802/" target="_blank" title="别了，200亿先生">别了，200亿先生</a><a href="http://yejunsheng.blog.51cto.com/793131/650728/" target="_blank" title="单林多域群集环境中将Exchange 2003迁移到Exchange 2010系列之一">单林多域群集环境中将Exchange 2003</a><a href="http://xiaosuncunzhang.blog.51cto.com/317407/650636/" target="_blank" title="“好好学习 天天向上”新解">“好好学习 天天向上”新解</a>
+                    </li>
+                    <li>
+                        <a href="http://bbs.51cto.com/thread-1175788-1.html" target="_blank" title="Office 365新老、第三方邮箱邮件自动关联同步">Office 365新老、第三方邮箱邮件自动</a><a href="http://bbs.51cto.com/thread-1435503-1.html" target="_blank" title="SQL Server找出缺失的时间点">SQL Server找出缺失的时间点</a><a href="http://bbs.51cto.com/thread-1448395-1.html" target="_blank" title="无线路由桥接问题">无线路由桥接问题</a><a href="http://bbs.51cto.com/thread-1448505-1.html" target="_blank" title="不吐不快！说一说作为程序员最烦的两件事儿！">不吐不快！说一说作为程序员最烦的两</a><a href="http://bbs.51cto.com/thread-1467889-1.html" target="_blank" title="Python会是下一个PHP吗？">Python会是下一个PHP吗？</a>
+                    </li>
+                    <li>
+                        <a href="http://down.51cto.com/data/1422758/" target="_blank" title="PTLR_云计算平台上处理大规模移动数据的置信域逻辑回归算法">PTLR_云计算平台上处理大规模移动数</a><a href="http://down.51cto.com/data/1422757/" target="_blank" title="如何在linux操作系统下检测内存泄漏">如何在linux操作系统下检测内存泄漏</a><a href="http://down.51cto.com/data/1422756/" target="_blank" title="使窗体右上角的X按钮失效删除系统菜单">使窗体右上角的X按钮失效删除系统菜</a><a href="http://down.51cto.com/data/1422755/" target="_blank" title="三种Windows操作系统远程控制的实现">三种Windows操作系统远程控制的实现</a><a href="http://down.51cto.com/data/1422754/" target="_blank" title="如何有效缩短Windows XP启动时间">如何有效缩短Windows XP启动时间</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div></div>
+        <div class="ds m30">
+            <h2><span>读 书 </span><a href="http://book.51cto.com/">+更多</a></h2>
+            <dl>
+                
+                <dt><a href="http://book.51cto.com/art/200704/44848.htm" title="《网管员必读——网络管理》"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/152218698.jpg" width="98px" height="144px"></a></dt>
+                <dd><h3><a href="http://book.51cto.com/art/200704/44848.htm" title="《网管员必读——网络管理》">《网管员必读——网络管理》</a></h3>
+                    本书在全面介绍微软最新网络操作系统Windows Server 2003的基础上，简要地介绍了UNIX和Linux两大操作系统的代表产品：Sun（太阳）公司的Sol...
+                </dd>
+                
+            </dl>
+        </div>
+        <div></div>
+        <div class="dydy">
+            <dl>
+                <dt><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/dydy.jpg" alt=""></dt>
+                <dd>
+                    <h3>订阅51CTO邮刊</h3>
+                    <h4><a href="http://news.51cto.com/col/1323/">点击这里查看样刊</a></h4>
+                    <a href="http://home.51cto.com/index.php?s=/Subscribe"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/ljdy.jpg" alt="订阅51CTO邮刊"></a>
+                </dd>
+            </dl>
+        </div>
+        <div></div>
+    </div>
+    <!-- 文章右侧结束 -->
+    </div>
+<div class="footer_nav">
+   <div class="wrap">
+       <h2>51CTO旗下网站：</h2>
+       <a href="http://www.51cto.com/">领先的IT技术网站 51CTO</a>|<a href="http://www.watchstor.com/">领先的中文存储媒体 WatchStor</a>|
+       <a href="http://cio.51cto.com/">中国首个CIO网站 CIOage </a>|<a href="http://www.hc3i.cn/">中国首家数字医疗网站 HC3i</a>
+   </div>
+</div>
+<div id="ft"><div id="foot" align="center"><script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/copy_right.js"></script>Copyright&#169;2005-2017 <a href="http://www.51cto.com/">51CTO.COM</a> 版权所有 未经许可 请勿转载<script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/111ef0d5dd0beb1ff4ebd70294eb2ea1" type="text/javascript"></script></div></div>
+<div class="clk"><a class="ewm" href="http://mobile.51cto.com/android-546316.htm###" target="_self"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKiom1lfV4XgxZ3zAADAK8-_E6k046.jpg" style="display: none;"></a><a class="yjk" href="http://mobile.51cto.com/android-546316.htm#comment" target="_self"></a><a class="topx" href="http://mobile.51cto.com/android-546316.htm#topx" target="_self"></a></div>
+<script>
+    $(function(){
+        var host = window.location.host;
+        document.getElementById('cnxh').style.display = '';
+    });
+    var $$ = function(func){
+        if (document.addEventListener) {
+            window.addEventListener("load", func, false);
+        }
+        else if (document.attachEvent) {
+            window.attachEvent("onload", func);
+        }
+    };
+
+    $$(function(){
+        show();
+    });
+    var show = function(){
+        var aa = $('#cmscmt_iframe dl').html();
+        setTimeout(function(){
+            $("[data-track]").live("click", function() {
+                if (aa.indexOf('uid') > -1) {
+                    var label = $(this).data("track") + '-login';
+                } else {
+                    var label = $(this).data("track") + '-not-login';
+                }console.log(label);
+                window._hmt && window._hmt.push(['_trackEvent', label, 'click']);
+
+            });
+        }, 3000);
+    }
+
+</script>
+<script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/count.js"></script><script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/count.php"></script>
+<!-- 悬浮广告 -->
+
+<!--end-->
+<!-- 学院广告位 -->
+
+<div id="edu_adver">
+    <div class="aderbox">
+        <span class="educlose">×</span>
+        <a href="http://edu.51cto.com/px/train/127?qizhi"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wKiom1mVQ9OQDZ6jAABG7OW0yjs866.png" width="100" height="300" alt="官方软考报名与培训中心" title="Python一种神奇的语言"></a>
+    </div>
+</div>
+<style type="text/css">
+    #edu_adver{position:fixed; top:240px; left:50%; margin-left:-623px; width:100px; height:300px; border:1px solid #c4c4c6;}
+    #edu_adver .aderbox{position:relative;}
+    #edu_adver  .educlose{position:absolute; right:6px; top:6px; background:#655c4d; color:#fff; font-size:12px;  display:inline-block; width:13px; height:13px; text-align:center; line-height:13px; cursor:pointer;}
+</style>
+<script>
+    $('#edu_adver .educlose').click(function () {
+        $("#edu_adver").hide();
+    });
+    var s=window.location.toString();
+    var s1=s.substr(7,s.length);
+    var s2=s1.indexOf(".");
+    s=s.substr(7,s2);
+    if(s=="stor"||s=="server"||s=="network"){
+        $("#edu_adver").hide();
+    }
+//    if (s == 'ai') {
+//        $('.aderbox').find('a')[0].href = '';
+//        $('.aderbox').find('img')[0].src = 'https://s2.51cto.com/wyfs02/M00/9C/37/wKioL1ltr5bwCB7VAAA8eAL27pA88.jpeg';
+//    }
+</script>
+<script>
+$(function(){
+var str = '<div class="fl zxf_showBox" style="padding-right: 10px;position:relative;"> ' +
+        '<a href="###" title=" " target="_self" class="z_bds_more">&nbsp;移动端</a> <div class="navcodebox clearfix">'+
+        '<div class="ico"></div>'+
+        '<span> <img src="https://s3.51cto.com/wyfs02/M02/97/8A/wKiom1kvkpKBgQFIAACDBen2-dg668.jpg" width="105" height="107"> <p>51CTO技术栈</p> </span>'+
+        '<span> <img src="http://s5.51cto.com/wyfs02/M02/8E/33/wKioL1i40HrAObC6AAAcvPVCCV0975.jpg" width="105" height="107"> <p>51CTO微站服务号</p> </span>'+
+        '<span><img src="http://s3.51cto.com/wyfs02/M00/8E/33/wKioL1i40HrQZy_TAAAcDOkrRAE327.jpg" width="107" height="107"> <p>51CTO学院客户端</p> </span></div> </div>';
+    $(".wznr dd").prepend(str);
+    $('.zxf_showBox').hover(function(){
+        $(this).find('.navcodebox').show();
+    },function(){
+        $(this).find('.navcodebox').hide();
+    })
+});
+</script>
+<script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/iframe-member-adv"></script>
+<script type="text/javascript">var artid = 546316</script>
+<script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/index.php" charset="utf-8"></script><script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/vip_top.js"></script>
+<script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/article.js"></script>
+<script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/article_ajax.js"></script>
+<script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/count(1).php" type="text/javascript"></script>
+<script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/favorbox.js"></script>
+<!--  一大波JS来袭 -->
+<div id="MyMoveAd" style="display:none">
+    <span id="pinglun"><script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/getArtCount.php"></script>0</span>
+	<span id="tonglan"><script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/ad.js"></script><script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/ad.php"></script><iframe width="760" height="90" noresize="" scrolling="No" frameborder="0" marginheight="0" marginwidth="0" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/mobile(1).html" align="center"></iframe></span>
+	<span id="wordlink_1"><script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wordlink1.js"></script><script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/ajs.php"></script><a href="http://gg.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3933__zoneid=270__cb=0ae40ad791__oadest=http%3A%2F%2Fedu.51cto.com%2Fzt%2Fzt_id-1.html%3Fan" target="_blank"><font color="red">网络安全一个大写的反“作死”</font></a><div id="beacon_0ae40ad791" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/lg.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</span>
+	<span id="wordlink_2"><script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wordlink2.js"></script><script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/ajs(1).php"></script><a href="http://gg.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3546__zoneid=631__cb=1bab30bf76__oadest=http%3A%2F%2Fedu.51cto.com%2Ftraining%2Ftraining_id-44.html%3Fxiaoshou" target="_blank"><font color="red">助你4个月成为大数据工程师</font></a><div id="beacon_1bab30bf76" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/lg(1).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</span>
+	<span id="wordlink_3"><script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wordlink3.js"></script><script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/ajs(2).php"></script><a href="http://gg.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=6283__zoneid=256__cb=67e5b28d46__oadest=http%3A%2F%2Fclick.aliyun.com%2Fm%2F26997%2F" target="_blank"><font color="red">阿里云数据库技术峰会</font></a><div id="beacon_67e5b28d46" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/lg(2).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</span>
+	<span id="wordlink_4"><script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/wordlink4.js"></script><script type="text/javascript" src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/ajs(3).php"></script><a href="http://gg3.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3549__zoneid=636__cb=3f658a1cf1__oadest=http%3A%2F%2Fedu.51cto.com%2Ftraining%2Ftraining_id-17.html%3Fxiaoshou" target="_blank"><font color="red">2016年备战软考-重难点解析</font></a><div id="beacon_3f658a1cf1" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/lg(3).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</span>
+	<span id="wordlink"><script src="./2017 Android GitHub常用开源框架汇总 - 51CTO.COM_files/ad(3).js"></script></span>
+</div>
+<script type="text/javascript">
+var thistid=546316;
+//收藏按钮
+var favor_url = 'http://mobile.51cto.com/android-546316.htm';
+var favor_title = '2017 Android GitHub常用开源框架汇总';  
+document.getElementById('tonglanad').innerHTML=document.getElementById('tonglan').innerHTML;
+</script>
+<!-- 结束 -->
+
+
+</body></html>

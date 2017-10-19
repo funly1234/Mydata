@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://www.it165.net/pro/html/201508/51801.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=GBK"><script type="text/javascript" charset="utf-8" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/changyan.js"></script>
+	<title>AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台</title>
+	<meta name="keywords" content="代码">
+	<meta name="description" content="一、AndroidStudio配置SVNAndroidStudio关联配置SVN很简单，在Settings里面，找到VersionControl-&gt;Subversion；在这个页面的控制面板中的General中将Usecommandlineclient打勾勾选上，然后浏览本地的SVN安装目录">
+	
+	<link rel="stylesheet" href="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/it165_pro_4.0.Css" type="text/css">
+	<script type="text/javascript" async="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/zcvm"></script><script type="text/javascript" async="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/zcvm(1)"></script><script type="text/javascript" async="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/zcvm(2)"></script><script type="text/javascript" async="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/zcvm(3)"></script><script src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/it165_pro.js" type="text/javascript"></script><link type="text/css" rel="stylesheet" href="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shCore.css"><link type="text/css" rel="stylesheet" href="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shThemeDefault.css"><script src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/jquery.min.js" type="text/javascript"></script><script src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/tabs6.0.js" type="text/javascript"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/syntaxhighlighter.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shCore.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shBrushBash.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shBrushCpp.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shBrushCSharp.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shBrushCss.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shBrushDelphi.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shBrushDiff.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shBrushGroovy.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shBrushJava.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shBrushJScript.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shBrushPhp.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shBrushPlain.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shBrushPython.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shBrushRuby.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shBrushScala.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shBrushSql.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shBrushVb.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/shBrushXml.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/jquery.sgallery.js"></script><script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/jq.Slide.js"></script>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+	<script type="text/javascript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/m.js"></script>
+<script src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/bsStatic.js" type="text/javascript" charset="utf-8"></script><script src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/fingerprint2.min.js" type="text/javascript" charset="utf-8"></script><script src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/bs-engine.js" type="text/javascript" charset="utf-8"></script><style type="text/css">a.bshareDiv,#bsPanel,#bsMorePanel,#bshareF{border:none;background:none;padding:0;margin:0;font:12px Helvetica,Calibri,Tahoma,Arial,宋体,sans-serif;line-height:14px;}#bsPanel div,#bsMorePanel div,#bshareF div{display:block;}.bsRlogo .bsPopupAwd,.bsRlogoSel .bsPopupAwd,.bsLogo .bsPopupAwd,.bsLogoSel .bsPopupAwd{line-height:16px !important;}a.bshareDiv div,#bsFloatTab div{*display:inline;zoom:1;display:inline-block;}a.bshareDiv img,a.bshareDiv div,a.bshareDiv span,a.bshareDiv a,#bshareF table,#bshareF tr,#bshareF td{text-decoration:none;background:none;margin:0;padding:0;border:none;line-height:1.2}a.bshareDiv span{display:inline;float:none;}div.buzzButton{cursor:pointer;font-weight:bold;}.buzzButton .shareCount a{color:#333}.bsStyle1 .shareCount a{color:#fff}span.bshareText{white-space:nowrap;}span.bshareText:hover{text-decoration:underline;}a.bshareDiv .bsPromo,div.bshare-custom .bsPromo{display:none;position:absolute;z-index:100;}a.bshareDiv .bsPromo.bsPromo1,div.bshare-custom .bsPromo.bsPromo1{width:51px;height:18px;top:-18px;left:0;line-height:16px;font-size:12px !important;font-weight:normal !important;color:#fff;text-align:center;background:url(http://static.bshare.cn/frame/images/bshare_box_sprite2.gif) no-repeat 0 -606px;}div.bshare-custom .bsPromo.bsPromo2{background:url(http://static.bshare.cn/frame/images/bshare_promo_sprite.gif) no-repeat;cursor:pointer;}</style><style type="text/css">.bsBox{display:none;z-index:100000001;font-size:12px;background:url(http://static.bshare.cn/frame/images//background-opaque-dark.gif) !important;padding:6px !important;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}.bsClose{_overflow:hidden;cursor:pointer;position:absolute;z-index:10000000;color:#666;font-weight:bold;font-family:Helvetica,Arial;font-size:14px;line-height:20px;}.bsTop{color:#666;background:#f2f2f2;height:24px;line-height:24px;border-bottom:1px solid #e8e8e8;}.bsTop span{float:left;}.bsFrameDiv,#bsMorePanel{border:none;background:#fff;}.bsReturn{float:right;*margin-right:20px;margin-right:36px;text-align:right;cursor:pointer;line-height:24px;color:#666;opacity:0.5;}#bsReturn:hover{text-decoration:underline;opacity:1;}</style><script src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/bsMore.js" type="text/javascript" charset="utf-8"></script><style type="text/css">div.bsClear{clear:both;height:0;line-height:0;overflow:hidden;font-size:0;}.bsSearchDiv{padding:5px 15px;background-color:#fafafa;}.bFind-wrapper-top{background:#fff;border-color:#ccc #aaa #aaa #ccc;border-style:solid;border-width:1px;height:16px;padding:4px;margin:0;}.bFind-wrapper-top input{padding:0 !important;border:none !important;box-shadow:none !important;line-height:16px !important;}.bFind-placeholder{background:url("http://static.bshare.cn/css/images/search-icon.gif") no-repeat;display:block;float:left;height:16px;width:16px;}.bFind{background:none;border:none;float:left;font-size:11px !important;height:16px !important;margin-left:3px;outline:none;padding:0;width:400px;}.bsPlatDiv{height:322px;background:#fff;overflow:auto;padding:0 15px;}#bsLogoList{display:block;list-style:none;overflow:hidden;margin:0;padding:0;}#bsLogoList li{float:left;display:inline-block;width:71px;text-align:center;font-size:12px;height:80px;margin:0 !important;}#bsLogoList .bsPlatIcon{cursor:pointer;display:block !important;text-align:center;}#bsLogoList .bsPlatImg{width:32px;height:32px;border:none !important;display:inline-block;}#bsLogoList .bsPlatImg:hover{-moz-border-radius:7px;-webkit-border-radius:7px;border-radius:7px;box-shadow:0 0 15px #a7a8ac;}#bsLogoList .bsPlatName{white-space:nowrap;text-overflow:ellipsis;overflow:hidden;text-align:center;color:#333 !important;margin-top:2px;line-height:140%;*width:70px;}#bsLogoList .bsPromoM{text-align:center;}.bsFooterDiv{height:24px;line-height:24px;padding:0 15px;border-top:1px solid #e8e8e8;background:#f2f2f2;text-align:right;}a.bsLogoLink{color:#666;}.bsLogoLink:hover{text-decoration:underline;}.bsPromoM{background:url(http://static.bshare.cn/frame/images//bshare_box_sprite2.gif) no-repeat top left;}.bsNew,.bsHot,.bsRec,.bsAwd{background-position:0 -552px;width:19px;margin:5px auto 1px;line-height:16px;height:18px;font-size:12px;color:#fff;overflow:hidden;}.bsNew{background-position:0 -570px;}.bsRec{width:30px;background-position:0 -588px;}.bsAwd{background:url(http://static.bshare.cn/frame/images//promot/promote.gif) no-repeat;}</style><style type="text/css">.bshare-custom{font-size:16px;line-height:20px !important;}.bshare-custom a{text-decoration:none;display:none;zoom:1;height:24px;cursor:pointer;padding-left:27px;vertical-align:middle;color:#2e3192;margin-right:3px;filter:alpha(opacity=100);-moz-opacity:1;-khtml-opacity:1;opacity:1;}.bshare-custom a:hover{text-decoration:underline;filter:alpha(opacity=75);-moz-opacity:0.75;-khtml-opacity:0.75;opacity:0.75;}.bshare-custom .bshare-more{padding-left:0;color:#000;*display:inline;display:inline-block;}.bshare-custom #bshare-shareto{text-decoration:none;font-weight:bold;margin-right:8px;*display:inline;display:inline-block;}.bshare-custom .bshare-115{background:url("http://static.bshare.cn/frame/images/logos/m2/115.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-139mail{background:url("http://static.bshare.cn/frame/images/logos/m2/139mail.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-9dian{background:url("http://static.bshare.cn/frame/images/logos/m2/9dian.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-baiducang{background:url("http://static.bshare.cn/frame/images/logos/m2/baiducang.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-baiduhi{background:url("http://static.bshare.cn/frame/images/logos/m2/baiduhi.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-bgoogle{background:url("http://static.bshare.cn/frame/images/logos/m2/bgoogle.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-bsharesync{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -26px;*display:inline;display:inline-block;}.bshare-custom .bshare-caimi{background:url("http://static.bshare.cn/frame/images/logos/m2/caimi.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-cfol{background:url("http://static.bshare.cn/frame/images/logos/m2/cfol.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-chouti{background:url("http://static.bshare.cn/frame/images/logos/m2/chouti.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-clipboard{background:url("http://static.bshare.cn/frame/images/logos/m2/clipboard.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-cyolbbs{background:url("http://static.bshare.cn/frame/images/logos/m2/cyolbbs.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-cyzone{background:url("http://static.bshare.cn/frame/images/logos/m2/cyzone.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-delicious{background:url("http://static.bshare.cn/frame/images/logos/m2/delicious.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-dig24{background:url("http://static.bshare.cn/frame/images/logos/m2/dig24.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-digg{background:url("http://static.bshare.cn/frame/images/logos/m2/digg.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-diglog{background:url("http://static.bshare.cn/frame/images/logos/m2/diglog.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-diigo{background:url("http://static.bshare.cn/frame/images/logos/m2/diigo.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-douban{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -52px;*display:inline;display:inline-block;}.bshare-custom .bshare-dream{background:url("http://static.bshare.cn/frame/images/logos/m2/dream.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-duitang{background:url("http://static.bshare.cn/frame/images/logos/m2/duitang.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-eastdaymb{background:url("http://static.bshare.cn/frame/images/logos/m2/eastdaymb.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-email{background:url("http://static.bshare.cn/frame/images/logos/m2/email.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-evernote{background:url("http://static.bshare.cn/frame/images/logos/m2/evernote.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-facebook{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -78px;*display:inline;display:inline-block;}.bshare-custom .bshare-fanfou{background:url("http://static.bshare.cn/frame/images/logos/m2/fanfou.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-favorite{background:url("http://static.bshare.cn/frame/images/logos/m2/favorite.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-feixin{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -104px;*display:inline;display:inline-block;}.bshare-custom .bshare-friendfeed{background:url("http://static.bshare.cn/frame/images/logos/m2/friendfeed.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-fwisp{background:url("http://static.bshare.cn/frame/images/logos/m2/fwisp.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-ganniu{background:url("http://static.bshare.cn/frame/images/logos/m2/ganniu.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-gmail{background:url("http://static.bshare.cn/frame/images/logos/m2/gmail.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-gmw{background:url("http://static.bshare.cn/frame/images/logos/m2/gmw.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-gtranslate{background:url("http://static.bshare.cn/frame/images/logos/m2/gtranslate.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-hemidemi{background:url("http://static.bshare.cn/frame/images/logos/m2/hemidemi.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-hexunmb{background:url("http://static.bshare.cn/frame/images/logos/m2/hexunmb.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-huaban{background:url("http://static.bshare.cn/frame/images/logos/m2/huaban.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-ifengkb{background:url("http://static.bshare.cn/frame/images/logos/m2/ifengkb.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-ifengmb{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -130px;*display:inline;display:inline-block;}.bshare-custom .bshare-ifensi{background:url("http://static.bshare.cn/frame/images/logos/m2/ifensi.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-instapaper{background:url("http://static.bshare.cn/frame/images/logos/m2/instapaper.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-itieba{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -156px;*display:inline;display:inline-block;}.bshare-custom .bshare-joinwish{background:url("http://static.bshare.cn/frame/images/logos/m2/joinwish.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-kaixin001{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -182px;*display:inline;display:inline-block;}.bshare-custom .bshare-laodao{background:url("http://static.bshare.cn/frame/images/logos/m2/laodao.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-leihou{background:url("http://static.bshare.cn/frame/images/logos/m2/leihou.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-leshou{background:url("http://static.bshare.cn/frame/images/logos/m2/leshou.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-linkedin{background:url("http://static.bshare.cn/frame/images/logos/m2/linkedin.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-livespace{background:url("http://static.bshare.cn/frame/images/logos/m2/livespace.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-mala{background:url("http://static.bshare.cn/frame/images/logos/m2/mala.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-masar{background:url("http://static.bshare.cn/frame/images/logos/m2/masar.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-meilishuo{background:url("http://static.bshare.cn/frame/images/logos/m2/meilishuo.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-miliao{background:url("http://static.bshare.cn/frame/images/logos/m2/miliao.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-mister_wong{background:url("http://static.bshare.cn/frame/images/logos/m2/mister_wong.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-mogujie{background:url("http://static.bshare.cn/frame/images/logos/m2/mogujie.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-moptk{background:url("http://static.bshare.cn/frame/images/logos/m2/moptk.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-msn{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -208px;*display:inline;display:inline-block;}.bshare-custom .bshare-myshare{background:url("http://static.bshare.cn/frame/images/logos/m2/myshare.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-myspace{background:url("http://static.bshare.cn/frame/images/logos/m2/myspace.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-neteasemb{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -234px;*display:inline;display:inline-block;}.bshare-custom .bshare-netvibes{background:url("http://static.bshare.cn/frame/images/logos/m2/netvibes.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-peoplemb{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -260px;*display:inline;display:inline-block;}.bshare-custom .bshare-pinterest{background:url("http://static.bshare.cn/frame/images/logos/m2/pinterest.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-poco{background:url("http://static.bshare.cn/frame/images/logos/m2/poco.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-printer{background:url("http://static.bshare.cn/frame/images/logos/m2/printer.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-printf{background:url("http://static.bshare.cn/frame/images/logos/m2/printf.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-qqmb{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -286px;*display:inline;display:inline-block;}.bshare-custom .bshare-qqshuqian{background:url("http://static.bshare.cn/frame/images/logos/m2/qqshuqian.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-qqxiaoyou{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -312px;*display:inline;display:inline-block;}.bshare-custom .bshare-qzone{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -338px;*display:inline;display:inline-block;}.bshare-custom .bshare-readitlater{background:url("http://static.bshare.cn/frame/images/logos/m2/readitlater.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-reddit{background:url("http://static.bshare.cn/frame/images/logos/m2/reddit.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-redmb{background:url("http://static.bshare.cn/frame/images/logos/m2/redmb.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-renjian{background:url("http://static.bshare.cn/frame/images/logos/m2/renjian.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-renmaiku{background:url("http://static.bshare.cn/frame/images/logos/m2/renmaiku.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-renren{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -364px;*display:inline;display:inline-block;}.bshare-custom .bshare-shouji{background:url("http://static.bshare.cn/frame/images/logos/m2/shouji.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-sinaminiblog{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -390px;*display:inline;display:inline-block;}.bshare-custom .bshare-sinaqing{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -416px;*display:inline;display:inline-block;}.bshare-custom .bshare-sinavivi{background:url("http://static.bshare.cn/frame/images/logos/m2/sinavivi.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-sohubai{background:url("http://static.bshare.cn/frame/images/logos/m2/sohubai.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-sohuminiblog{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -442px;*display:inline;display:inline-block;}.bshare-custom .bshare-southmb{background:url("http://static.bshare.cn/frame/images/logos/m2/southmb.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-stumbleupon{background:url("http://static.bshare.cn/frame/images/logos/m2/stumbleupon.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-szone{background:url("http://static.bshare.cn/frame/images/logos/m2/szone.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-taojianghu{background:url("http://static.bshare.cn/frame/images/logos/m2/taojianghu.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-tianya{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -468px;*display:inline;display:inline-block;}.bshare-custom .bshare-tongxue{background:url("http://static.bshare.cn/frame/images/logos/m2/tongxue.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-tuita{background:url("http://static.bshare.cn/frame/images/logos/m2/tuita.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-tumblr{background:url("http://static.bshare.cn/frame/images/logos/m2/tumblr.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-twitter{background:url("http://static.bshare.cn/frame/images/logos/m2/sprite/top_logos_sprite.gif") no-repeat 0 -494px;*display:inline;display:inline-block;}.bshare-custom .bshare-ushi{background:url("http://static.bshare.cn/frame/images/logos/m2/ushi.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-waakee{background:url("http://static.bshare.cn/frame/images/logos/m2/waakee.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-wealink{background:url("http://static.bshare.cn/frame/images/logos/m2/wealink.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-woshao{background:url("http://static.bshare.cn/frame/images/logos/m2/woshao.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-xianguo{background:url("http://static.bshare.cn/frame/images/logos/m2/xianguo.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-xiaomeisns{background:url("http://static.bshare.cn/frame/images/logos/m2/xiaomeisns.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-xinminmb{background:url("http://static.bshare.cn/frame/images/logos/m2/xinminmb.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-xyweibo{background:url("http://static.bshare.cn/frame/images/logos/m2/xyweibo.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-yaolanmb{background:url("http://static.bshare.cn/frame/images/logos/m2/yaolanmb.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-yijee{background:url("http://static.bshare.cn/frame/images/logos/m2/yijee.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-youdao{background:url("http://static.bshare.cn/frame/images/logos/m2/youdao.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-zjol{background:url("http://static.bshare.cn/frame/images/logos/m2/zjol.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-xinhuamb{background:url("http://static.bshare.cn/frame/images/logos/m2/xinhuamb.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-szmb{background:url("http://static.bshare.cn/frame/images/logos/m2/szmb.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-changshamb{background:url("http://static.bshare.cn/frame/images/logos/m2/changshamb.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-hefeimb{background:url("http://static.bshare.cn/frame/images/logos/m2/hefeimb.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-wansha{background:url("http://static.bshare.cn/frame/images/logos/m2/wansha.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-189share{background:url("http://static.bshare.cn/frame/images/logos/m2/189share.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-diandian{background:url("http://static.bshare.cn/frame/images/logos/m2/diandian.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-tianji{background:url("http://static.bshare.cn/frame/images/logos/m2/tianji.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-jipin{background:url("http://static.bshare.cn/frame/images/logos/m2/jipin.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-chezhumb{background:url("http://static.bshare.cn/frame/images/logos/m2/chezhumb.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-gplus{background:url("http://static.bshare.cn/frame/images/logos/m2/gplus.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-yidongweibo{background:url("http://static.bshare.cn/frame/images/logos/m2/yidongweibo.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-youdaonote{background:url("http://static.bshare.cn/frame/images/logos/m2/youdaonote.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-jschina{background:url("http://static.bshare.cn/frame/images/logos/m2/jschina.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-mingdao{background:url("http://static.bshare.cn/frame/images/logos/m2/mingdao.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-jxcn{background:url("http://static.bshare.cn/frame/images/logos/m2/jxcn.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-qileke{background:url("http://static.bshare.cn/frame/images/logos/m2/qileke.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-sohukan{background:url("http://static.bshare.cn/frame/images/logos/m2/sohukan.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-maikunote{background:url("http://static.bshare.cn/frame/images/logos/m2/maikunote.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-lezhimark{background:url("http://static.bshare.cn/frame/images/logos/m2/lezhimark.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-189mail{background:url("http://static.bshare.cn/frame/images/logos/m2/189mail.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-wo{background:url("http://static.bshare.cn/frame/images/logos/m2/wo.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-gmweibo{background:url("http://static.bshare.cn/frame/images/logos/m2/gmweibo.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-jianweibo{background:url("http://static.bshare.cn/frame/images/logos/m2/jianweibo.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-qingbiji{background:url("http://static.bshare.cn/frame/images/logos/m2/qingbiji.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-duankou{background:url("http://static.bshare.cn/frame/images/logos/m2/duankou.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-qqim{background:url("http://static.bshare.cn/frame/images/logos/m2/qqim.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-kdweibo{background:url("http://static.bshare.cn/frame/images/logos/m2/kdweibo.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-xueqiu{background:url("http://static.bshare.cn/frame/images/logos/m2/xueqiu.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom .bshare-weixin{background:url("http://static.bshare.cn/frame/images/logos/m2/weixin.gif") no-repeat;*display:inline;display:inline-block;}.bshare-custom #bshare-more-icon,.bshare-custom .bshare-more-icon{background:url("http://static.bshare.cn/frame/images/logos/m2/more.gif") no-repeat;padding-left:27px;}.bshare-custom .bshare-share-count{width:45px;padding:0 0 0 2px;vertical-align:bottom;background:transparent url(http://static.bshare.cn/frame/images/counter_box_24.gif) no-repeat;height:24px;color:#444;line-height:24px !important;text-align:center;font:bold 12px Arial,宋体,sans-serif;*display:inline;display:inline-block;zoom:1;_padding-top:6px;}</style><script src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/bshareS887.js" type="text/javascript" charset="utf-8"></script><style type="text/css">a.bsSiteLink{text-decoration:none;color:#666;}a.bsSiteLink:hover{text-decoration:underline;}a.bshareDiv{overflow:hidden;height:16px;line-height:18px;font-size:14px;color:#333;padding-left:0;}a.bshareDiv:hover{text-decoration:none;}div.bsTitle{padding:0 8px;border-bottom:1px solid #e8e8e8;color:#666;background:#f2f2f2;text-align:left;}div.buzzButton{cursor:pointer;}div.bsRlogo,div.bsRlogoSel{width:68px;float:left;margin:0;padding:2px 0;}div.bsRlogo a,div.bsRlogoSel a{float:left;}div.bsLogo,div.bsLogoSel{float:left;width:111px;text-align:left;height:auto;padding:2px 4px;margin:2px 0;white-space:nowrap;overflow:hidden;}div.bsLogoSel,div.bsRlogoSel{border:1px solid #ddd;background:#f1f1f1;}div.bsLogo,div.bsRlogo{border:1px solid #fff;background:#fff;}div.bsLogo a,div.bsLogoSel a{display:block;height:16px;line-height:16px;padding:0 0 0 24px;text-decoration:none;float:left;overflow:hidden;}div.bsLogoSel a,div.bsRlogoSel a{color:#000;border:none;}div.bsLogo a,div.bsRlogo a{color:#666;border:none;}div.bsLogoLink{width:121px;overflow:hidden;background:#FFF;float:left;margin:3px 0;}#bsPanel{position:absolute;z-index:100000000;font-size:12px;width:258px;background:url(http://static.bshare.cn/frame/images/background-opaque-dark.png);padding:6px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}div.bsClear{clear:both;height:0;line-height:0;font-size:0;overflow:hidden;}div.bsPopupAwd{background: url(http://static.bshare.cn/frame/images//bshare_box_sprite2.gif) no-repeat top left;background-position:0 -624px;width:18px;padding-left:3px;text-align:center;float:left;margin-left:2px;height:15px;font-size:12px;color:#fff;overflow:hidden;}div.bsRlogo .bsPopupAwd,div.bsRlogoSel .bsPopupAwd{float:left;margin:5px 0 0 -14px;}</style><script src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/bshare_view" type="text/javascript" charset="utf-8"></script><style type="text/css">a.bsSiteLink{text-decoration:none;color:#666;}a.bsSiteLink:hover{text-decoration:underline;}a.bshareDiv{overflow:hidden;height:16px;line-height:18px;font-size:14px;color:#333;padding-left:0;}a.bshareDiv:hover{text-decoration:none;}div.bsTitle{padding:0 8px;border-bottom:1px solid #e8e8e8;color:#666;background:#f2f2f2;text-align:left;}div.buzzButton{cursor:pointer;}div.bsRlogo,div.bsRlogoSel{width:68px;float:left;margin:0;padding:2px 0;}div.bsRlogo a,div.bsRlogoSel a{float:left;}div.bsLogo,div.bsLogoSel{float:left;width:111px;text-align:left;height:auto;padding:2px 4px;margin:2px 0;white-space:nowrap;overflow:hidden;}div.bsLogoSel,div.bsRlogoSel{border:1px solid #ddd;background:#f1f1f1;}div.bsLogo,div.bsRlogo{border:1px solid #fff;background:#fff;}div.bsLogo a,div.bsLogoSel a{display:block;height:16px;line-height:16px;padding:0 0 0 24px;text-decoration:none;float:left;overflow:hidden;}div.bsLogoSel a,div.bsRlogoSel a{color:#000;border:none;}div.bsLogo a,div.bsRlogo a{color:#666;border:none;}div.bsLogoLink{width:121px;overflow:hidden;background:#FFF;float:left;margin:3px 0;}#bsPanel{position:absolute;z-index:100000000;font-size:12px;width:258px;background:url(http://static.bshare.cn/frame/images/background-opaque-dark.png);padding:6px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}div.bsClear{clear:both;height:0;line-height:0;font-size:0;overflow:hidden;}div.bsPopupAwd{background: url(http://static.bshare.cn/frame/images//bshare_box_sprite2.gif) no-repeat top left;background-position:0 -624px;width:18px;padding-left:3px;text-align:center;float:left;margin-left:2px;height:15px;font-size:12px;color:#fff;overflow:hidden;}div.bsRlogo .bsPopupAwd,div.bsRlogoSel .bsPopupAwd{float:left;margin:5px 0 0 -14px;}</style></head>
+
+<body>
+<div class="TopBox">
+	<div class="TopBox_Box">
+		<div class="ALinkBox">
+			<a href="http://www.it165.net/">次元立方网</a>
+			<a href="http://www.it165.net/news/">IT资讯</a>
+			<a href="http://www.it165.net/pro/">编程</a>
+			<a href="http://www.it165.net/database/">数据库</a>
+			<a href="http://www.it165.net/safe/">安全</a>
+			<a href="http://www.it165.net/design/">设计</a>
+			<a href="http://www.it165.net/design/">网页</a>
+			<a href="http://www.it165.net/os/">系统</a>
+			<a href="http://www.it165.net/admin/">服务器</a>
+			<a href="http://www.it165.net/network/">组网</a>
+			<a href="http://www.it165.net/embed/">嵌入式</a>
+			<a href="http://www.it165.net/edu/">基础</a>
+			<a href="http://www.it165.net/qq/">QQ</a>
+		</div>
+		<div class="ALoginBox">
+			
+		</div>
+	</div>
+	<div class="ulBox">
+	</div>
+</div>
+<div class="Body">
+<div class="TBox">
+						<div class="box_LSS">
+				<div class="LogoBox"><a href="http://www.it165.net/pro/"><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/Pro_Logo.gif" width="217" height="51"></a></div>
+				<div class="RSS"><a href="http://www.it165.net/index.php?m=content&amp;c=rss&amp;rssid=145"><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/rss.png" width="12" height="12">RSS</a></div>
+				<div style="padding:15px 0px 0px 0px;height:60px;float:right;width:640px"><script type="text/javascript">BAIDU_CLB_fillSlot("1173173");</script><div id="BAIDU_SSP__wrapper_1173173_0"></div><script charset="utf-8" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/zcvm(4)"></script><script type="text/javascript">
+    /*640*60*/
+    var cpro_id = "u2477974";
+</script>
+<script src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/c.js" type="text/javascript"></script><div id="BAIDU_SSP__wrapper_u2477974_0"><iframe id="iframeu2477974_0" name="iframeu2477974_0" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/zcvm.html" width="640" height="60" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:640px;height:60px" allowtransparency="true"></iframe></div></div>
+			</div>
+			<div class="Cate_Navigation">
+				<h3><a class="index" href="http://www.it165.net/pro/">编程大巴</a></h3>
+				<h3><a href="http://www.it165.net/pro/pnews/">开发资讯</a></h3>
+				<h3><a href="http://www.it165.net/pro/new.html">开发文档</a></h3>
+				<h3><a href="http://www.it165.net/pro/posid.html">文档推荐</a></h3>
+				<h3><a href="http://www.it165.net/Pro/shouce/">在线手册</a></h3>
+			</div>
+	</div><div class="BodyV">
+		<div class="RBoxV">
+			<div class="RLineNO"></div>
+			<div style="width:300px;height:260px"><div class="advs300"><script type="text/javascript">BAIDU_CLB_fillSlot("1173151");</script><div id="BAIDU_SSP__wrapper_1173151_0"></div><script charset="utf-8" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/zcvm(5)"></script><script type="text/javascript">
+    /*300*250*/
+    var cpro_id = "u2477961";
+</script>
+<script src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/c.js" type="text/javascript"></script><div id="BAIDU_SSP__wrapper_u2477961_0"><iframe id="iframeu2477961_0" name="iframeu2477961_0" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/zcvm(8).html" width="300" height="250" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:300px;height:250px" allowtransparency="true"></iframe></div></div></div>
+						<div class="hotbox">
+																<ul class="hotPP">
+					<li class="titLink"><h3><a target="_blank" title="Android Studio关于SVN的相关配置简介" href="http://www.it165.net/pro/html/201404/11412.html">Android Studio关于SVN的相关配</a></h3></li>
+					<li class="APic"><a target="_blank" title="Android Studio关于SVN的相关配置简介" href="http://www.it165.net/pro/html/201404/11412.html"><img alt="Android Studio关于SVN的相关配置简介" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/nopic.gif" width="111" height="70"></a></li>
+					<li class="Desc">AndroidStudio的SVN安装和使用方法与我以前用的其他I... <a target="_blank" title="Android Studio关于SVN的相关配置简介" href="http://www.it165.net/pro/html/201404/11412.html">详细</a></li>
+				</ul>
+				<ul class="HList">
+																	<li><a target="_blank" title="Android关于PagerAdapter的使用方法的总结" href="http://www.it165.net/pro/html/201403/11289.html">Android关于PagerAdapter的使用方法的总结</a></li>
+																	<li><a target="_blank" title="AndroidStudio配置SVN以及使用代码管理" href="http://www.it165.net/pro/html/201508/51801.html">AndroidStudio配置SVN以及使用代码管理</a></li>
+																	<li><a target="_blank" title="AccessibilityService辅助类用法（Android中的另类钩子）" href="http://www.it165.net/pro/html/201507/48358.html">AccessibilityService辅助类用法（Android中</a></li>
+																	<li><a target="_blank" title="Android属性动画PropertyAnimation系列一之ObjectAnimator" href="http://www.it165.net/pro/html/201505/41670.html">Android属性动画PropertyAnimation系列一之O</a></li>
+																</ul>
+			</div>
+						<div class="Newsbox">
+				<ul class="RstabTitle">
+					<li id="hits2" class="checked" onmousemove="Tab(&#39;hits&#39;,2,2,&#39;check&#39;,&#39;checked&#39;)"><h3>今日排行</h3></li>
+					<li id="hits1" class="check" onmousemove="Tab(&#39;hits&#39;,1,2,&#39;check&#39;,&#39;checked&#39;)"><h3>周排行</h3></li>
+					<li id="hits0" class="check" onmousemove="Tab(&#39;hits&#39;,0,2,&#39;check&#39;,&#39;checked&#39;)"><h3>月排行</h3></li>
+				</ul>
+				<ul class="PNList" id="hits22">
+															<li><a target="_blank" title="Android分享 ShareSDK微信分享详解" href="http://www.it165.net/pro/html/201508/50793.html">Android分享 ShareSDK微信分享详解</a></li>
+										<li><a target="_blank" title="AndroidGPS获取当前经纬度坐标" href="http://www.it165.net/pro/html/201410/23686.html">AndroidGPS获取当前经纬度坐标</a></li>
+										<li><a target="_blank" title="Android学习之RecyclerView带刺的玫瑰" href="http://www.it165.net/pro/html/201506/45295.html">Android学习之RecyclerView带刺的玫瑰</a></li>
+										<li><a target="_blank" title="Android属性动画完全解析(下) Interpolator和ViewPropertyAnimator的用法" href="http://www.it165.net/pro/html/201506/42870.html">Android属性动画完全解析(下) Interpo...</a></li>
+										<li><a target="_blank" title="RecyclerView添加头部和尾部布局" href="http://www.it165.net/pro/html/201507/48065.html">RecyclerView添加头部和尾部布局</a></li>
+										<li><a target="_blank" title="Android开源：数据库ORM框架GreenDao学习心得及使用总结" href="http://www.it165.net/pro/html/201401/9026.html">Android开源：数据库ORM框架GreenDao学...</a></li>
+										<li><a target="_blank" title="Android布局RelativeLayout(相对布局)详解" href="http://www.it165.net/pro/html/201403/10610.html">Android布局RelativeLayout(相对布局)详解</a></li>
+										<li><a target="_blank" title="Android开发：使用ViewDragHelper实现抽屉拉伸效果" href="http://www.it165.net/pro/html/201507/45817.html">Android开发：使用ViewDragHelper实现抽...</a></li>
+										<li><a target="_blank" title="Android笔记Fragment与Activity之间传递数据" href="http://www.it165.net/pro/html/201406/15619.html">Android笔记Fragment与Activity之间传递...</a></li>
+										<li><a target="_blank" title="smali语法总结" href="http://www.it165.net/pro/html/201411/26637.html">smali语法总结</a></li>
+														</ul>
+				<ul class="PNList" id="hits11" style="display:none">
+															<li><a target="_blank" title="Android Studio关于SVN的相关配置简介" href="http://www.it165.net/pro/html/201404/11412.html">Android Studio关于SVN的相关配置简介</a></li>
+										<li><a target="_blank" title="AndroidStudio配置SVN以及使用代码管理" href="http://www.it165.net/pro/html/201508/51801.html">AndroidStudio配置SVN以及使用代码管理</a></li>
+										<li><a target="_blank" title="Android关于PagerAdapter的使用方法的总结" href="http://www.it165.net/pro/html/201403/11289.html">Android关于PagerAdapter的使用方法的总结</a></li>
+										<li><a target="_blank" title="Android属性动画PropertyAnimation系列一之ObjectAnimator" href="http://www.it165.net/pro/html/201505/41670.html">Android属性动画PropertyAnimation系列...</a></li>
+										<li><a target="_blank" title="AccessibilityService辅助类用法（Android中的另类钩子）" href="http://www.it165.net/pro/html/201507/48358.html">AccessibilityService辅助类用法（Andr...</a></li>
+										<li><a target="_blank" title="AndroidGPS获取当前经纬度坐标" href="http://www.it165.net/pro/html/201410/23686.html">AndroidGPS获取当前经纬度坐标</a></li>
+										<li><a target="_blank" title="AndroidRecyclerView的基本使用" href="http://www.it165.net/pro/html/201506/45019.html">AndroidRecyclerView的基本使用</a></li>
+										<li><a target="_blank" title="RecyclerView添加头部和尾部布局" href="http://www.it165.net/pro/html/201507/48065.html">RecyclerView添加头部和尾部布局</a></li>
+										<li><a target="_blank" title="Android学习之RecyclerView带刺的玫瑰" href="http://www.it165.net/pro/html/201506/45295.html">Android学习之RecyclerView带刺的玫瑰</a></li>
+										<li><a target="_blank" title="Android_.9.PNG图片的制作及使用" href="http://www.it165.net/pro/html/201501/31325.html">Android_.9.PNG图片的制作及使用</a></li>
+														</ul>
+				<ul class="PNList" id="hits00" style="display:none">
+															<li><a target="_blank" title="Android Studio关于SVN的相关配置简介" href="http://www.it165.net/pro/html/201404/11412.html">Android Studio关于SVN的相关配置简介</a></li>
+										<li><a target="_blank" title="AndroidStudio配置SVN以及使用代码管理" href="http://www.it165.net/pro/html/201508/51801.html">AndroidStudio配置SVN以及使用代码管理</a></li>
+										<li><a target="_blank" title="Android关于PagerAdapter的使用方法的总结" href="http://www.it165.net/pro/html/201403/11289.html">Android关于PagerAdapter的使用方法的总结</a></li>
+										<li><a target="_blank" title="Android关于Activity的跳转和finish时切换页面动画实现" href="http://www.it165.net/pro/html/201501/31234.html">Android关于Activity的跳转和finish时切...</a></li>
+										<li><a target="_blank" title="Android中EditView输入电话号码（3+4+4格式）" href="http://www.it165.net/pro/html/201404/12374.html">Android中EditView输入电话号码（3+4+4...</a></li>
+										<li><a target="_blank" title="Android中TextView 添加ClickableSpan后点击选中文字背景问题" href="http://www.it165.net/pro/html/201501/33021.html">Android中TextView 添加ClickableSpan...</a></li>
+										<li><a target="_blank" title="Android为ViewPager增加切换动画自定义ViewPager" href="http://www.it165.net/pro/html/201503/36103.html">Android为ViewPager增加切换动画自定义...</a></li>
+										<li><a target="_blank" title="AccessibilityService辅助类用法（Android中的另类钩子）" href="http://www.it165.net/pro/html/201507/48358.html">AccessibilityService辅助类用法（Andr...</a></li>
+										<li><a target="_blank" title="Android_.9.PNG图片的制作及使用" href="http://www.it165.net/pro/html/201501/31325.html">Android_.9.PNG图片的制作及使用</a></li>
+										<li><a target="_blank" title="Android属性动画PropertyAnimation系列一之ObjectAnimator" href="http://www.it165.net/pro/html/201505/41670.html">Android属性动画PropertyAnimation系列...</a></li>
+														</ul>
+
+			</div>
+						<div class="Newsbox">
+				<ul class="RstabTitle">
+					<li class="checked"><h3>最新文章</h3></li>
+				</ul>
+				<ul class="TList">
+															<li><a target="_blank" title="C#多线程之旅(1)介绍和基本概念" href="http://www.it165.net/pro/html/201601/59341.html">C#多线程之旅(1)介绍和基本概念</a></li>
+										<li><a target="_blank" title="Middleware的艺术" href="http://www.it165.net/pro/html/201601/59340.html">Middleware的艺术</a></li>
+										<li><a target="_blank" title="程序猿的技术博客Android客户端自己挖的坑 还得自己填" href="http://www.it165.net/pro/html/201601/59339.html">程序猿的技术博客Android客户端自己挖的...</a></li>
+										<li><a target="_blank" title="JavaScript中的函数：闭包 this 高阶函数" href="http://www.it165.net/pro/html/201601/59338.html">JavaScript中的函数：闭包 this 高阶函数</a></li>
+										<li><a target="_blank" title="数据结构记录 排序" href="http://www.it165.net/pro/html/201601/59337.html">数据结构记录 排序</a></li>
+										<li><a target="_blank" title="java使用Executor（执行器）管理线程" href="http://www.it165.net/pro/html/201601/59336.html">java使用Executor（执行器）管理线程</a></li>
+										<li><a target="_blank" title="自定义轮播图 自定义集合控件的实现" href="http://www.it165.net/pro/html/201601/59335.html">自定义轮播图 自定义集合控件的实现</a></li>
+										<li><a target="_blank" title="深入分析JavaWebItem41 邮件的发送与接收理" href="http://www.it165.net/pro/html/201601/59334.html">深入分析JavaWebItem41 邮件的发送与接收理</a></li>
+										<li><a target="_blank" title="深入分析JavaWebItem42 JavaMail建邮件和发送邮件" href="http://www.it165.net/pro/html/201601/59333.html">深入分析JavaWebItem42 JavaMail建邮件...</a></li>
+										<li><a target="_blank" title="AndroidMVP的尝试" href="http://www.it165.net/pro/html/201601/59332.html">AndroidMVP的尝试</a></li>
+														</ul>
+			</div>
+			<div class="RLine"></div>
+			<div style="width:300px;"><div class="advs300"><script type="text/javascript">BAIDU_CLB_fillSlot("1173151");</script><div id="BAIDU_SSP__wrapper_1173151_1"></div><script charset="utf-8" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/zcvm(6)"></script><script type="text/javascript">
+    /*300*250*/
+    var cpro_id = "u2477961";
+</script>
+<script src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/c.js" type="text/javascript"></script><div id="BAIDU_SSP__wrapper_u2477961_1"><iframe id="iframeu2477961_1" name="iframeu2477961_1" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/zcvm(9).html" width="300" height="250" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:300px;height:250px" allowtransparency="true"></iframe></div></div></div>
+						<div class="Newsbox">
+				<ul class="RstabTitle">
+					<li class="checked"><h3>编程下载</h3></li>
+				</ul>
+				<ul class="TList">
+															<li><a target="_blank" title="Android UI效果实现 滑动模糊渐变效果实现" href="http://www.it165.net/down/html/201407/1613.html">Android UI效果实现 滑动模糊渐变效果实现</a></li>
+										<li><a target="_blank" title="Android学习自定义Dialog" href="http://www.it165.net/down/html/201407/1612.html">Android学习自定义Dialog</a></li>
+										<li><a target="_blank" title="Xamarin.Android通知详解" href="http://www.it165.net/down/html/201407/1611.html">Xamarin.Android通知详解</a></li>
+										<li><a target="_blank" title="Android动态改变布局" href="http://www.it165.net/down/html/201407/1610.html">Android动态改变布局</a></li>
+										<li><a target="_blank" title="android实现emoji输入" href="http://www.it165.net/down/html/201407/1609.html">android实现emoji输入</a></li>
+										<li><a target="_blank" title="Android Spinner AutoCompleteTextView" href="http://www.it165.net/down/html/201407/1608.html">Android Spinner AutoCompleteTextView</a></li>
+										<li><a target="_blank" title="Android中Eclipse开发工具的安装和Android的SDK和ADT的安装" href="http://www.it165.net/down/html/201407/1607.html">Android中Eclipse开发工具的安装和Andr...</a></li>
+										<li><a target="_blank" title="c构造函数" href="http://www.it165.net/down/html/201406/1606.html">c构造函数</a></li>
+										<li><a target="_blank" title="Android开发学习 sharedpreference的使用" href="http://www.it165.net/down/html/201405/1605.html">Android开发学习 sharedpreference的使用</a></li>
+										<li><a target="_blank" title="Android新浪微博客户端（七）ListView中的图片异步加载、缓存" href="http://www.it165.net/down/html/201405/1604.html">Android新浪微博客户端（七）ListView中...</a></li>
+														</ul>
+			</div>
+						
+			<div class="Newsbox">
+				<ul class="RstabTitle">
+					<li class="checked"><h3>热门专题</h3></li>
+				</ul>
+				<div class="rBox">
+													<ul class="PPList">
+						<li class="APic"><a target="_blank" href="http://www.it165.net/special/iOSCocos2d/"><img alt="李华明iOS-Cocos2d游戏开发专题" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/thumb_80_80_20121214102450157.jpg" width="80" height="80"></a></li>
+						<li class="titLink"><h3><a target="_blank" href="http://www.it165.net/special/iOSCocos2d/">李华明iOS-Cocos2d游戏开发</a></h3></li>
+						<li class="Desc">本教程为 李华明 编著的iOS-Cocos2d游戏开发系列教程：教程涵盖关于i...... <a target="_blank" href="http://www.it165.net/special/iOSCocos2d/">详细</a></li>
+					</ul>
+									<ul class="PPList">
+						<li class="APic"><a target="_blank" href="http://www.it165.net/special/Directx/"><img alt="Directx11 游戏编程入门教程" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/thumb_80_80_20120411103408469.jpg" width="80" height="80"></a></li>
+						<li class="titLink"><h3><a target="_blank" href="http://www.it165.net/special/Directx/">Directx11 游戏编程入门教程</a></h3></li>
+						<li class="Desc">专题主要学习DirectX的初级编程入门学习，对Directx11的入门及初学者有...... <a target="_blank" href="http://www.it165.net/special/Directx/">详细</a></li>
+					</ul>
+									<ul class="PPList">
+						<li class="APic"><a target="_blank" href="http://www.it165.net/pro/special/javascript/"><img alt="Javascript 面向对象编程" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/thumb_80_80_20111217103814404.jpg" width="80" height="80"></a></li>
+						<li class="titLink"><h3><a target="_blank" href="http://www.it165.net/pro/special/javascript/">Javascript 面向对象编程</a></h3></li>
+						<li class="Desc">"面向对象的JavaScript"这一说法多少有些冗余，因为JavaScript 语言本...... <a target="_blank" href="http://www.it165.net/pro/special/javascript/">详细</a></li>
+					</ul>
+												</div>
+			</div>
+			<div style="width:300px"><div style="width:300px;;height:250px"><script type="text/javascript">BAIDU_CLB_fillSlot("1173151");</script><div id="BAIDU_SSP__wrapper_1173151_2"></div><script charset="utf-8" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/zcvm(7)"></script><script type="text/javascript">
+    /*300*250*/
+    var cpro_id = "u2477961";
+</script>
+<script src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/c.js" type="text/javascript"></script><div id="BAIDU_SSP__wrapper_u2477961_2"><iframe id="iframeu2477961_2" name="iframeu2477961_2" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/zcvm(10).html" width="300" height="250" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:300px;height:250px" allowtransparency="true"></iframe></div></div></div>
+		</div>
+		<div class="LBoxV">
+			<ul class="Posion">
+				<li class="PosionLi"><a href="http://www.it165.net/">首页</a><span> &gt; </span><a href="http://www.it165.net/Pro/">编程大巴</a> &gt; <a href="http://www.it165.net/Pro/pryd/">移动开发</a> &gt; <a href="http://www.it165.net/pro/ydad/">Android</a> &gt;  正文</li>
+				<div class="showSearch">
+					<div class="keys"><input id="q" name="q" type="text"></div>
+					<div class="button"><input id="s" name="Submit1" type="submit" value=" "></div>
+				</div>
+				<li class="CatNameLi">
+				<span><a href="http://www.it165.net/pro/">编程大巴</a></span> <em><a href="http://www.it165.net/pro">http://www.it165.net/pro</a></em></li>
+			</ul>
+			<div class="ArticleBox">
+				<div class="sTitleboxs">
+					<h1>AndroidStudio配置SVN以及使用代码管理</h1>
+					<div class="sInfo">作者：&nbsp;&nbsp;发布日期：2015-08-21 22:04:06</div>
+					<div class="uinfo"><a class="Comment" href="http://www.it165.net/pro/html/201508/51801.html#comment_iframe">我来说两句(<span id="comment">0</span>)</a><a class="ts" href="http://www.it165.net/index.php?m=formguide&amp;c=index&amp;a=show&amp;formid=27"><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/tousu.jpg" width="80" height="25"></a></div>
+				</div>
+			</div>
+			<div class="tag">
+				<div class="share"><div class="bshare-custom"><div class="bsPromo bsPromo2"></div><a title="闁告帒妫旈棅鈺呭礆閻ф瓐缂佸本妞藉Λ锟&#65533;" class="bshare-qzone" href="javascript:;"></a><a title="闁告帒妫旈棅鈺呭礆閻楀牊鐓�婵炴惌浜滄禍鏇㈠础閿燂拷" class="bshare-sinaminiblog" href="javascript:;"></a><a title="闁告帒妫旈棅鈺呭礆妫颁焦鐪藉ù婊嗘缂嶏拷" class="bshare-renren" href="javascript:;"></a><a title="闁告帒妫旈棅鈺呭礆閹峰苯鎮╅悹渚囧灠娴滄洟宕￠敓锟&#65533;" class="bshare-qqmb" href="javascript:;"></a><a title="闁告帒妫旈棅鈺呭礆閹峰瞼婀搁柣鈽呮嫹" class="bshare-douban" href="javascript:;"></a><a title="闁哄洦娼欓ˇ鍧楃嵁閸愭彃閰&#65533;" class="bshare-more bshare-more-icon" href="javascript:;"></a><span class="BSHARE_COUNT bshare-share-count" style="float: none;">6</span></div><script type="text/javascript" charset="utf-8" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/buttonLite.js"></script><script type="text/javascript" charset="utf-8" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/bshareC2.js"></script></div>
+				<div class="tagbox"><strong>Tag标签：</strong><a target="_blank" href="http://s.it165.net/?t=13&amp;q=%B4%FA%C2%EB">代码</a>&nbsp;&nbsp;</div>
+			</div>
+			<ul class="Content">
+				<li id="ArticleBox">
+				一、<a href="http://www.it165.net/pro/ydad/" target="_blank" class="keylink">Android</a> Studio配置SVN<br>
+<blockquote>
+	<a href="http://www.it165.net/pro/ydad/" target="_blank" class="keylink">Android</a> Studio关联配置SVN很简单，在Settings里面，找到Version Control-&gt;Subversion；在这个页面的控制面板中的General中将Use command line client打勾勾选上，然后浏览本地的SVN安装目录，选到"svn.exe"即可；<br>
+	在Use command line client下面还有一个Use system default Subversion configuration directory，这个默认是勾选上上的，这个是svn相关配置信息的路径，保留默认路径就行，目前没有发现需要修改什么东西；以上操作如下图：<br>
+	<img alt="" class="origin_image zh-lightbox-thumb lazy" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821100406452.png" width="1038" style="width: 560px; height: 378px;"></blockquote>
+<br>
+二、Android Studio项目关联SVN资源库及添加忽略文件<br>
+<blockquote>
+	在Android Studio中新创建一个Android项目，成功后我们先来添加要忽略的文件；在Android Studio中添加忽略文件同Eclipse有所不同，在Eclipse上我们什么时候添加忽略文件都可以，但是在Android Studio中只有在未关联SVN之前添加忽略文件才有效（试了好多次才将忽略文件忽略成功啊！）。Android Studio添加忽略文件同样是在Settings-&gt;Version Control（跟版本控制有关的设置都在这个目录下）下的Ignored Files里，点击加号进行忽略文件的设置，Android Studio默认给出了三种忽略方式，供开发者进行选择：忽略指定的文件、忽略文件夹下所有文件和忽略符合匹配规则的文件；如图所示：<img alt="" class="origin_image zh-lightbox-thumb lazy" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821100406464.png" width="1038" style="width: 560px; height: 378px;"></blockquote>
+<blockquote>
+	点击右侧的“+”进行添加，“-”删除；Android Studio创建的Android项目一般需要忽略.idea文件夹、.gradle文件夹、所有的build文件夹、所有的.iml文件及local.properties文件。<br>
+	忽略完文件后，我们进行项目同SVN的关联，选择VCS-&gt;Import into Version Control-&gt;Share Project(Subversion)；这里说明一点，在Import into Version Control下有Import into Subversion和Share Project(Subversion）两个选项【在studio 1.3已经没有第二个选项了只有Share Project on GitHup】：第一个是直接将项目导入到SVN服务器上，但是这样做本地的项目同SVN服务器没有建立起关联，在导入后项目所有的文件都会变成红色，而且在要提交到SVN服务器时会提示项目不是SVN下的工作副本；第二个是将Android Studio当前项目同SVN服务器关联起来，但是并没有将项目导入到SVN服务器上，需要在完成建立连接后再次提交项目到SVN服务器。两种方式都可以实现将本地代码提交到SVN服务器的功能，但是步骤有所不同，先来完成第二种方式的项目同SVN的关联及代码提交，第一种貌似不正规，之后再说；下图既是第二种方式将本地项目同SVN进行关联的：<img alt="" class="origin_image zh-lightbox-thumb lazy" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821100406725.png" width="1071" style="width: 560px; height: 277.2px;"></blockquote>
+<blockquote>
+	之后会弹出选择要分享的SVN地址及其他选项，如下图：<img alt="" class="origin_image zh-lightbox-thumb lazy" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821100407139.png" width="479" style="height: 560px; width: 400.358px;"></blockquote>
+<blockquote>
+	在Define share target下选择第二个可以再trunk下创建你当前项目的文件夹，相应的第一个选项是直接将整个文件都放到trunk文件夹下，第三个在项目文件夹下有创建了一个trunk文件夹，因此建议使用第二中方式；选择完成后点击Share就可以了，会弹出让你选择SVN工作副本的格式化版本（jdk版本），如下图：<img alt="" class="origin_image zh-lightbox-thumb lazy" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821100407300.png" width="812" style="width: 560px; height: 261.333px;"></blockquote>
+<blockquote>
+	建议选择1.8format，我之前选择了其他的试了一下，发现项目总会报出一下错误，原因暂时未发现，就先这样选择吧；点击OK等待一会就能创建本地项目同SVN服务器的关联了；成功后悔自动刷新本地的项目，待项目里的内容变成绿色的即表示已经成功了，如下图所示：<img alt="" class="origin_image zh-lightbox-thumb lazy" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821100407864.png" width="978" style="width: 560px; height: 274.4px;"></blockquote>
+<blockquote>
+	到目前为止只是将项目同SVN服务器建立了联系，并没有将代码提交到SVN服务器上去；如何提交呢，其实很简单，只需点击SVN相关操作按钮里的commit就行了（上图SVN相关操作按钮左起第二个按钮）；<img alt="" class="origin_image zh-lightbox-thumb lazy" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821100407509.png" width="1173" style="width: 560px; height: 499.333px;"></blockquote>
+<blockquote>
+	点击Commit后Android Studio会先对当前代码进代码分析，如果有错误或者警告会弹出如下的框，如果有错误冲突等需要解决后再提交，如果是警告可以忽略（同Eclipse相同）；第一次将整个代码提交到SVN服务器时时间有可能很长，请耐心等待，之后再创建项目时就不会这么慢了。<img alt="" class="content_image lazy" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821100407781.png" width="316" style="width: 316px; height: 187px;"></blockquote>
+<blockquote>
+	成功后我们就完成了新建项目同SVN的关联及导入项目到SVN服务器上了。<br>
+	<p>关于第一种方式，在将本地代码导入到SVN服务器后将本地代码删除，然后从SVN服务器上将之前提交的代码更新下来，这样一来也可以同SVN建立关联正常进行开发；第一种方式和第二种方式的区别就在于：第一种是将代码先提交到SVN服务器上，然后再从SVN服务器上更新下来（本地项目同SVN服务器建立联系）；第二种是先同SVN服务器监理联系，然后将代码提交到SVN服务器上去。建议使用第二种方式进行新项目的SVN关联。</p>
+	<p>&nbsp;</p>
+	<p>在我的studio1.3版本里面没有share project（subvision的）只能选择直接导入项目到服务器：</p>
+	<p><img alt="" src="http://www.it165.net/pro/html/201508/51801.html" style="display: none;"><img alt="加载中..." title="图片加载中..." src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/s_nopic.gif"></p>
+	<p>添加服务器仓库：导入项目到服务器一路next就可以啦！导入成功后本地项目就好和服务器关联起来：</p>
+	<p>稍微修改下布局看看是否关联测试下：</p>
+	<p><img alt="" src="http://www.it165.net/pro/html/201508/51801.html" style="display: none;"><img alt="加载中..." title="图片加载中..." src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/s_nopic.gif"><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112001360.png" style="width: 560px; height: 320px;"></p>
+	<p><img alt="" src="http://www.it165.net/pro/html/201508/51801.html" style="display: none;"><img alt="加载中..." title="图片加载中..." src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/s_nopic.gif"><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112001361.png" style="width: 317px; height: 346px;"><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112003362.png" style="width: 560px; height: 391.691px;"></p>
+	<p>&nbsp;</p>
+	<p>到Commit Changes 这里有几个选项需要了解的:</p>
+	<p>&nbsp;</p>
+	<p>Auto-update after commit :<strong>自动升级后提交</strong></p>
+	<p><strong>keep files locked</strong><strong> :把文件锁上，我想这应该就只能你修改其他开发人不能修改不了的功能</strong></p>
+	<p><strong>在你提交之前：before commit</strong></p>
+	<p><strong>Reformat code</strong><strong>:<strong>重新格式化代码</strong></strong></p>
+	<p><strong>Rearrange code:重新整理代码</strong></p>
+	<p><strong>Optimize imports：优化导入</strong></p>
+	<p><strong>Perform code analysis：执行代码分析[ 默认选择]</strong></p>
+	<p><strong>Check TODO(show all)：检测需要修改的代码[显示所有默认选择]</strong></p>
+	<p><strong>clean up: 清除所有</strong></p>
+	<p><strong>Update copyright:更新版权</strong></p>
+	<p><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112004363.jpg" style="width: 560px; height: 467.31px;"></p>
+</blockquote>
+<p>具体看情况选择功能点：比如不想其他人修改这些代码可以选择<strong>keep files locked </strong></p>
+<p><strong>在Commit Message 添加修改信息</strong></p>
+<p><strong><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112004364.png" style="width: 453px; height: 260px;"></strong></p>
+<p>修改成功：</p>
+<p><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112004365.png" style="width: 483px; height: 25px;"></p>
+<p>在commit 按钮下面还有一个是create patch这个选项试一下其作用：</p>
+<p><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112005366.png" style="width: 560px; height: 333.846px;"></p>
+<p>应该明白是创建一个补丁文件主要的作用就是可以查看修改的地方：</p>
+<p><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112005367.png" style="display: inline; width: 560px; height: 437.674px;"></p>
+三、Android Studio SVN代码冲突的解决<br>
+<blockquote>
+	关于代码冲突解决的问题，首先要感谢一下知友ShinChven的回答建议。在使用SVN更新服务器上的代码时，有时会弹出代码冲突的对话框，问你是否进行合并，并提供了三种合并方案：accept yours(使用你的)、accept theirs(使用别人的)和merge(合并)；<br>
+	<img alt="" class="origin_image zh-lightbox-thumb lazy" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821100408350.png" width="610" style="width: 560px; height: 492.8px;"><br>
+	<br>
+	前两个都是进行的覆盖操作，就不多做解释了；当你选择merge合并时，会弹出代码合并对照窗口，一共有三个屏，左右两侧时你和服务器不同的代码并高亮显示不同的部分，带有箭头和叉号，通过点击箭头将两边冲突的代码添加到中间的合并区域中去，点击叉号则辨识放弃那一段代码，待所有冲突处理完成后merge就成功了。
+	<p><img alt="" class="origin_image zh-lightbox-thumb lazy" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821100408615.png" width="640" style="display: inline; width: 560px; height: 439.6px;"></p>
+</blockquote>
+<br>
+当然在使用过程中肯定会遇到很多的问题上面的东西也是参考其他大神的，自己也添加了几点区别：到时候遇到问题再继续研究下。<br>
+继续完善：
+<h3>Checkout SVN上的项目</h3>
+<p>选择subversion</p>
+<p><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112005368.png" style="display: inline; width: 516px; height: 476px;"></p>
+<p>&nbsp;</p>
+<h3>导入项目到SVN服务器，</h3>
+<p>Import into 选择subversion</p>
+<p><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112005369.png" style="display: inline; width: 560px; height: 253.514px;"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>点击 <img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112005370.png" style="width: 27px; height: 32px;">添加服务地址例如</p>
+<p><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112007371.png" style="width: 340px; height: 432px;"></p>
+<p><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112008372.png" style="display: inline; width: 440px; height: 173px;"></p>
+<p>&nbsp;</p>
+<h3>浏览SVN服务器上的项目文件夹</h3>
+<p><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112009373.png" style="display: inline; width: 560px; height: 438.842px;"></p>
+<p>SVN仓库会显示文件列表</p>
+<p><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112010374.png" style="display: inline; width: 560px; height: 243.782px;"></p>
+<p>&nbsp;</p>
+<h3>其他说明</h3>
+<p><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112012377.png" style="display: inline; height: 560px; width: 475.804px;"></p>
+<p>&nbsp;</p>
+<p>单文件 签入当文件，右键subversion Add</p>
+<p>文件红色：表示文件没有添加到服务器</p>
+<p>绿色：表示没有更新新的修改到服务器</p>
+<p>普通黑色：表示和服务器同步</p>
+<h4>文件夹颜色说明</h4>
+<p><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112012379.jpg" style="display: inline; width: 104px; height: 145px;"></p>
+<p>参考 ：http://blog.csdn.net/niu_hao/article/details/6774471</p>
+<p>黄色感叹号(有冲突): --这是有冲突了，冲突就是说你对某个文件进行了修改，别人也对这个文件进行了修改，别人抢在你提交之前先提交了，这时你再提交就会被提示发生冲突，而不 允许你提交，防止你的提交覆盖了别人的修改。要解决冲突，如果你确认你的修改是无效的，则用TSVN还原你的修改就行了；如果认为你的修改是正确的，别人 的提交是无效的，那么用TSVN先标记为“解决冲突”，然后就可以提交了；如果你认为你的修改和别人的修改都有一部分是有效的，那么你就把别人的修改手动 合并到你的修改中，然后使用TSVN标注为“解决冲突”，然后就可以提交了。进入文件夹，寻找有黄色感叹号的文件，这些文件就是发生冲突的地方，根据实际 情况处理冲突 米字号(有本地修改代码)： --这是说明你有未提交的本地代码。 问好(新加入的资源): --这说明该文件是项目中新增文件资源，新增资源可以是文件、图片、代码等。</p>
+<p>红色感叹号(本地代码与库没有保持一致)： --这说明本地代码跟库上没有保持一致，如果用户想修复，可以将带红色感叹号图标文件删除，直接update即可。 灰色向右箭头(本地修改过) --本地代码没有及时上库。 蓝色向左箭头(SVN上修改过) --记得更新代码后修改，提交前跟svn对比习惯。 灰色向右且中间有个加号的箭头(本地比SVN上多出的文件) --修改完记得跟svn保持一致 蓝色向左且中间有个加号的箭头(SVN上比本地多出的文件) --删除该文件后，再次更新，将svn上文件全部更新下来。 灰色向右且中间有个减号的箭头(本地删除了,而SVN上未删除的文件) --也就是说你删除确认后，一定要记得上库，跟svn保持一致 蓝色向左且中间有个减号的箭头(SVN上删除了,而本地未删除的文件) --比对svn库上代码，确定需要删除后，更新svn(删除无用代码)。 红色双向箭头(SVN上修改过,本地也修改过的文件 ) --这个表示本地和svn上都修改过，最好就是把本地修改合并到svn，修改代码前最后先更新。</p>
+<p>&nbsp;</p>
+<p>文件状态说明:</p>
+<p><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112013381.png" style="display: inline; width: 560px; height: 346.094px;"></p>
+<p>&nbsp;</p>
+<p>单个文件签入签出操作：右键subversion</p>
+<p>Add,添加到服务器</p>
+<p>Commit：提交</p>
+<p>Update：更新，获取新版本</p>
+<p>Integrate:合并</p>
+<p>注意：SVN和VSS不同签入前如果文件被其他人修改需要比较版本如何其他修改有效需要合并签入</p>
+<p><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112013383.png" style="display: inline; height: 560px; width: 521.991px;"></p>
+<p>整个项目更新提交：Commit ，Update</p>
+<p><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112016392.png" style="display: inline; width: 560px; height: 128.198px;"></p>
+<p>&nbsp;</p>
+<p>不知道是啥原因如果刚刚开始选择share project(subvision)的话，好像在选择commit的时候很慢，始终上传不了绿色的部分代码：</p>
+<p>所以我直接在本地：commit到服务器里面的</p>
+<p><img alt="" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20150821112016394.png" style="display: inline; width: 560px; height: 136.974px;"></p>
+<p>&nbsp;</p>				</li>
+				<script type="text/javascript">
+					<!--
+					$(function(){
+					  $('#ArticleBox img').LoadImage(true, 560, 560,'http://www.it165.net/statics/images/s_nopic.gif');    
+					})
+					//-->
+					</script>
+			</ul>
+			<div class="aboutlbox">
+				<h3>延伸阅读：</h3>
+				<ul>
+									 					 					<li>1、<a href="http://www.it165.net/pro/html/201108/468.html">android 代码混淆总结</a></li>
+										<li>2、<a href="http://www.it165.net/pro/html/201109/624.html">Android开发之编程中15个很有用的代码片段</a></li>
+										<li>3、<a href="http://www.it165.net/pro/html/201109/660.html">Android 实现语音识别的完整代码</a></li>
+										<li>4、<a href="http://www.it165.net/pro/html/201109/734.html">Android源代码目录结构</a></li>
+										<li>5、<a href="http://www.it165.net/pro/html/201303/5221.html">Android中显示网络图片及查看页面源代码</a></li>
+										<li>6、<a href="http://www.it165.net/pro/html/201306/6175.html">Android源代码调试环境搭建</a></li>
+										<li>7、<a href="http://www.it165.net/pro/html/201310/7432.html">Android应用程序中实用的代码框架</a></li>
+										<li>8、<a href="http://www.it165.net/pro/html/201311/7810.html">Android应用程序中实用的代码框架(二)</a></li>
+																		</ul>
+			</div>
+			<div class="callback pa10">
+				<div id="backindexs">
+					<h3><a href="http://www.it165.net/">返回到首页</a></h3>
+					<h3><a href="http://www.it165.net/pro/">返回到编程大巴</a></h3>
+				</div>
+			</div>	
+						<div class="Upbox pa10">
+											<ul class="WPBul">
+					<li class="pic"><a target="_blank" href="http://www.it165.net/pro/ActiveX/Win32/index.html" title="Win32"><img alt="Win32" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20130505102215623.jpg" width="90" height="60"></a></li>
+					<li class="ptext"><a target="_blank" href="http://www.it165.net/pro/ActiveX/Win32/index.html" title="Win32">Win32</a></li>
+				</ul>
+								<ul class="WPBul">
+					<li class="pic"><a target="_blank" href="http://www.it165.net/pro/ActiveX/OpenGL/index.html" title="OpenGL"><img alt="OpenGL" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20130505102149168.jpg" width="90" height="60"></a></li>
+					<li class="ptext"><a target="_blank" href="http://www.it165.net/pro/ActiveX/OpenGL/index.html" title="OpenGL">OpenGL</a></li>
+				</ul>
+								<ul class="WPBul">
+					<li class="pic"><a target="_blank" href="http://www.it165.net/pro/ActiveX/MVC/index.html" title="ASP.NET MVC"><img alt="ASP.NET MVC" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20130505102124182.jpg" width="90" height="60"></a></li>
+					<li class="ptext"><a target="_blank" href="http://www.it165.net/pro/ActiveX/MVC/index.html" title="ASP.NET MVC">ASP.NET MVC</a></li>
+				</ul>
+								<ul class="WPBul">
+					<li class="pic"><a target="_blank" href="http://www.it165.net/pro/ActiveX/cocos2d-x/index.html" title="cocos2d-x"><img alt="cocos2d-x" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20130505102055110.jpg" width="90" height="60"></a></li>
+					<li class="ptext"><a target="_blank" href="http://www.it165.net/pro/ActiveX/cocos2d-x/index.html" title="cocos2d-x">cocos2d-x</a></li>
+				</ul>
+								<ul class="WPBul">
+					<li class="pic"><a target="_blank" href="http://www.it165.net/pro/ActiveX/WCF/index.html" title="WCF"><img alt="WCF" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20130505102027533.jpg" width="90" height="60"></a></li>
+					<li class="ptext"><a target="_blank" href="http://www.it165.net/pro/ActiveX/WCF/index.html" title="WCF">WCF</a></li>
+				</ul>
+								<ul class="WPBul">
+					<li class="pic"><a target="_blank" href="http://www.it165.net/pro/ActiveX/Linq/index.html" title="Linq"><img alt="Linq" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20130505101959536.jpg" width="90" height="60"></a></li>
+					<li class="ptext"><a target="_blank" href="http://www.it165.net/pro/ActiveX/Linq/index.html" title="Linq">Linq</a></li>
+				</ul>
+								<ul class="WPBul">
+					<li class="pic"><a target="_blank" href="http://www.it165.net/pro/ActiveX/Android/index.html" title="Android"><img alt="Android" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20130505101919704.jpg" width="90" height="60"></a></li>
+					<li class="ptext"><a target="_blank" href="http://www.it165.net/pro/ActiveX/Android/index.html" title="Android">Android</a></li>
+				</ul>
+								<ul class="WPBul">
+					<li class="pic"><a target="_blank" href="http://www.it165.net/pro/ActiveX/QT/index.html" title="QT"><img alt="QT" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20130505101848333.jpg" width="90" height="60"></a></li>
+					<li class="ptext"><a target="_blank" href="http://www.it165.net/pro/ActiveX/QT/index.html" title="QT">QT</a></li>
+				</ul>
+								<ul class="WPBul">
+					<li class="pic"><a target="_blank" href="http://www.it165.net/pro/ActiveX/MFC/index.html" title="MFC"><img alt="MFC" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20130505101817843.jpg" width="90" height="60"></a></li>
+					<li class="ptext"><a target="_blank" href="http://www.it165.net/pro/ActiveX/MFC/index.html" title="MFC">MFC</a></li>
+				</ul>
+								<ul class="WPBul">
+					<li class="pic"><a target="_blank" href="http://www.it165.net/pro/ActiveX/JQuery/index.html" title="JQuery"><img alt="JQuery" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/20130505101746875.jpg" width="90" height="60"></a></li>
+					<li class="ptext"><a target="_blank" href="http://www.it165.net/pro/ActiveX/JQuery/index.html" title="JQuery">JQuery</a></li>
+				</ul>
+										</div>
+			<div class="ArtLine"></div>
+			<div class="callback" style="padding:10px 20px 10px 20px">
+				<!--兼容版，可保证页面完全兼容-->
+<div id="SOHUCS" sid="51801"></div>
+<script>
+  (function(){
+    var appid = 'cyrljYvoL',
+    conf = 'prod_2c3485f27b3b0d5d138546ad112483d2';
+    var doc = document,
+    s = doc.createElement('script'),
+    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+    s.type = 'text/javascript';
+    s.charset = 'utf-8';
+    s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+    h.insertBefore(s,h.firstChild);
+  })()
+</script>
+			</div>
+		</div>
+		
+</div><div class="FootBox">
+			<div class="Foot">
+					<a target="_blank" href="http://www.it165.net/about/index.html">About IT165</a> -
+					<a target="_blank" href="http://www.it165.net/about/gg.html">广告服务</a> -
+					<a target="_blank" href="http://www.it165.net/about/ys.html">隐私声明</a> -
+					<a target="_blank" href="http://www.it165.net/about/bq.html">版权申明</a> -
+					<a target="_blank" href="http://www.it165.net/about/disclaimers.html">免责条款</a> -
+					<a target="_blank" href="http://www.it165.net/about/map.html">网站地图</a> -
+					<a target="_blank" href="http://www.it165.net/about/tg.html">网友投稿</a> -
+					<a target="_blank" href="http://www.it165.net/about/lxwm.html">联系方式</a>
+					<br>
+					本站内容来自于互联网,仅供用于网络技术学习,学习中请遵循相关法律法规<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F5f4298ca86516e3d7b6ad825f8ef6905' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/h.js" type="text/javascript"></script>
+			</div>	
+		</div><table class="BodyTable">
+	
+	
+		
+
+<script language="JavaScript" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/api.php"></script>
+
+
+
+</table></div><div id="bsBox" class="bsBox"><div class="bsClose">X</div><div class="bsTop"><div class="bsReturn">选择其他平台 &gt;&gt;</div><span style="margin-left:15px;">分享到</span><span class="bsPlatName"></span></div><div class="bsFrameDiv"><iframe class="bShareFrame" name="bsFrame819" frameborder="0" scrolling="no" allowtransparency="true" src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/saved_resource.html"></iframe></div><div id="bsMorePanel" style="display: none;"></div></div><div id="ads"></div><div id="bsPanelHolder"><div id="bsPanel" style="display:none;"><div class="bsTitle"><a style="float:left;height:20px;line-height:20px;font-weight:bold;" class="bsSiteLink" target="_blank" href="http://www.bshare.cn/intro">分享到</a><a class="bsSiteLink" style="cursor:pointer;float:right;height:20px;line-height:20px;font-weight:bold;" onclick="document.getElementById(&#39;bsPanel&#39;).style.display=&#39;none&#39;;">X</a><div class="bsClear"></div></div><div class="bsClear"></div><div style="padding-left:8px;background:#fff;*height:244px;"><div style="height:47px;border-bottom:1px #ccc solid;padding:4px 0 4px 16px;margin-right:8px;_padding-left:12px;"><div class="bsRlogo" onmouseover="javascript:this.className=&#39;bsRlogoSel&#39;" onmouseout="javascript:this.className=&#39;bsRlogo&#39;"><a href="javascript:;" onclick="javascript:bShare.share(event,&#39;qqmb&#39;);return false;" style="text-decoration:none;line-height:120%;"><div style="cursor:pointer;width:24px;height:24px;margin:0 18px 2px;background:url(http://static.bshare.cn/frame/images//logos/m2/qqmb.gif) no-repeat;"></div><div style="cursor:pointer;text-align:center;width:60px;height:16px !important;overflow:hidden;color:inherit;white-space:nowrap;line-height:120% !important">腾讯微博</div></a></div><div class="bsRlogo" onmouseover="javascript:this.className=&#39;bsRlogoSel&#39;" onmouseout="javascript:this.className=&#39;bsRlogo&#39;"><a href="javascript:;" onclick="javascript:bShare.share(event,&#39;bsharesync&#39;);return false;" style="text-decoration:none;line-height:120%;"><div style="cursor:pointer;width:24px;height:24px;margin:0 18px 2px;background:url(http://static.bshare.cn/frame/images//logos/m2/bsharesync.gif) no-repeat;"></div><div style="cursor:pointer;text-align:center;width:60px;height:16px !important;overflow:hidden;color:inherit;white-space:nowrap;line-height:120% !important">一键通</div></a></div><div class="bsRlogo" onmouseover="javascript:this.className=&#39;bsRlogoSel&#39;" onmouseout="javascript:this.className=&#39;bsRlogo&#39;"><a href="javascript:;" onclick="javascript:bShare.share(event,&#39;sinaminiblog&#39;);return false;" style="text-decoration:none;line-height:120%;"><div style="cursor:pointer;width:24px;height:24px;margin:0 18px 2px;background:url(http://static.bshare.cn/frame/images//logos/m2/sinaminiblog.gif) no-repeat;"></div><div style="cursor:pointer;text-align:center;width:60px;height:16px !important;overflow:hidden;color:inherit;white-space:nowrap;line-height:120% !important">新浪微博</div></a></div></div><div class="bsLogoLink"><div class="bsLogo" onmouseover="javascript:this.className=&#39;bsLogoSel&#39;" onmouseout="javascript:this.className=&#39;bsLogo&#39;"><a href="javascript:;" title="QQ空间" onclick="javascript:bShare.share(event,&#39;qzone&#39;);return false;" style="background:url(http://static.bshare.cn/frame/images//slogos_sprite8.png) no-repeat 0 -1566px;">QQ空间</a></div><div class="bsLogo" onmouseover="javascript:this.className=&#39;bsLogoSel&#39;" onmouseout="javascript:this.className=&#39;bsLogo&#39;"><a href="javascript:;" title="搜狐微博" onclick="javascript:bShare.share(event,&#39;sohuminiblog&#39;);return false;" style="background:url(http://static.bshare.cn/frame/images//slogos_sprite8.png) no-repeat 0 -1800px;">搜狐微博</a></div><div class="bsLogo" onmouseover="javascript:this.className=&#39;bsLogoSel&#39;" onmouseout="javascript:this.className=&#39;bsLogo&#39;"><a href="javascript:;" title="新华微博" onclick="javascript:bShare.share(event,&#39;xinhuamb&#39;);return false;" style="color:red;background:url(http://static.bshare.cn/frame/images//logos/s4/xinhuamb.png) no-repeat;">新华微博</a></div><div class="bsLogo" onmouseover="javascript:this.className=&#39;bsLogoSel&#39;" onmouseout="javascript:this.className=&#39;bsLogo&#39;"><a href="javascript:;" title="手机" onclick="javascript:bShare.share(event,&#39;shouji&#39;);return false;" style="background:url(http://static.bshare.cn/frame/images//slogos_sprite8.png) no-repeat 0 -1710px;">手机</a></div><div class="bsLogo" onmouseover="javascript:this.className=&#39;bsLogoSel&#39;" onmouseout="javascript:this.className=&#39;bsLogo&#39;"><a href="javascript:;" title="网易微博" onclick="javascript:bShare.share(event,&#39;neteasemb&#39;);return false;" style="background:url(http://static.bshare.cn/frame/images//slogos_sprite8.png) no-repeat 0 -1332px;">网易微博</a></div><div class="bsLogo" onmouseover="javascript:this.className=&#39;bsLogoSel&#39;" onmouseout="javascript:this.className=&#39;bsLogo&#39;"><a href="javascript:;" title="开心网" onclick="javascript:bShare.share(event,&#39;kaixin001&#39;);return false;" style="background:url(http://static.bshare.cn/frame/images//slogos_sprite8.png) no-repeat 0 -1008px;">开心网</a></div><div class="bsLogo" onmouseover="javascript:this.className=&#39;bsLogoSel&#39;" onmouseout="javascript:this.className=&#39;bsLogo&#39;"><a href="javascript:;" title="豆瓣网" onclick="javascript:bShare.share(event,&#39;douban&#39;);return false;" style="background:url(http://static.bshare.cn/frame/images//slogos_sprite8.png) no-repeat 0 -540px;">豆瓣网</a></div></div><div class="bsLogoLink"><div class="bsLogo" onmouseover="javascript:this.className=&#39;bsLogoSel&#39;" onmouseout="javascript:this.className=&#39;bsLogo&#39;"><a href="javascript:;" title="手机快传" onclick="javascript:bShare.share(event,&#39;189share&#39;);return false;" style="background:url(http://static.bshare.cn/frame/images//logos/s4/189share.png) no-repeat;">手机快传</a></div><div class="bsLogo" onmouseover="javascript:this.className=&#39;bsLogoSel&#39;" onmouseout="javascript:this.className=&#39;bsLogo&#39;"><a href="javascript:;" title="人人网" onclick="javascript:bShare.share(event,&#39;renren&#39;);return false;" style="background:url(http://static.bshare.cn/frame/images//slogos_sprite8.png) no-repeat 0 -1674px;">人人网</a></div><div class="bsLogo" onmouseover="javascript:this.className=&#39;bsLogoSel&#39;" onmouseout="javascript:this.className=&#39;bsLogo&#39;"><a href="javascript:;" title="天涯" onclick="javascript:bShare.share(event,&#39;tianya&#39;);return false;" style="background:url(http://static.bshare.cn/frame/images//slogos_sprite8.png) no-repeat 0 -1890px;">天涯</a></div><div class="bsLogo" onmouseover="javascript:this.className=&#39;bsLogoSel&#39;" onmouseout="javascript:this.className=&#39;bsLogo&#39;"><a href="javascript:;" title="凤凰微博" onclick="javascript:bShare.share(event,&#39;ifengmb&#39;);return false;" style="background:url(http://static.bshare.cn/frame/images//slogos_sprite8.png) no-repeat 0 -918px;">凤凰微博</a></div><div class="bsLogo" onmouseover="javascript:this.className=&#39;bsLogoSel&#39;" onmouseout="javascript:this.className=&#39;bsLogo&#39;"><a href="javascript:;" title="朋友网" onclick="javascript:bShare.share(event,&#39;qqxiaoyou&#39;);return false;" style="background:url(http://static.bshare.cn/frame/images//slogos_sprite8.png) no-repeat 0 -1548px;">朋友网</a></div><div class="bsLogo" onmouseover="javascript:this.className=&#39;bsLogoSel&#39;" onmouseout="javascript:this.className=&#39;bsLogo&#39;"><a href="javascript:;" title="微信" onclick="javascript:bShare.share(event,&#39;weixin&#39;);return false;" style="background:url(http://static.bshare.cn/frame/images//logos/s4/weixin.png) no-repeat;">微信</a></div><div class="bsLogo" onmouseover="javascript:this.className=&#39;bsLogoSel&#39;" onmouseout="javascript:this.className=&#39;bsLogo&#39;"><a href="javascript:;" title="QQ好友" onclick="javascript:bShare.share(event,&#39;qqim&#39;);return false;" style="background:url(http://static.bshare.cn/frame/images//logos/s4/qqim.png) no-repeat;">QQ好友</a></div></div><div class="bsClear"></div></div><div style="height:20px;line-height:20px;padding:0 8px;border-top:1px solid #e8e8e8;color:#666;background:#f2f2f2;"><div class="buzzButton" style="float:left;">更多平台... <font style="font-weight:normal;">(133)</font></div><div id="bsPower" style="float:right;text-align:right;overflow:hidden;height:100%;"><a class="bsSiteLink" style="font-size:10px;vertical-align:text-bottom;line-height:24px;cursor:pointer;" href="http://www.bshare.cn/" target="_blank"><span style="font-size:10px;vertical-align:text-bottom;"><span style="color:#f60;">b</span>Share</span></a></div></div></div></div><iframe src="./AndroidStudio配置SVN以及使用代码管理 - Android - 次元立方网 - 电脑知识与技术互动交流平台_files/cm.html" style="display: none;"></iframe></body></html>

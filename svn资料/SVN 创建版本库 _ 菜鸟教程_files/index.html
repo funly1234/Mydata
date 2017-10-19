@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://s0.2mdn.net/6219955/1494956040784/160x600/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+	<meta name="鈥渁d.size鈥&#65533;" content="鈥渨idth=160,height=600鈥&#65533;">
+	<title>BUSA_China_IOT_Roadtrips_2017_160x600</title>
+	<link rel="stylesheet" href="./style(1).css">
+	<script src="./TweenMax.min.js"></script>
+	<script src="./EasePack.min.js"></script>
+	<script src="./CSSPlugin.min.js"></script>
+	<script type="text/javascript">
+		var clickTag = "http://www.google.com";
+	</script>
+<script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script></head>
+<body style="zoom: 1;">
+	<div id="container">
+		<div id="ad">
+			<div id="banner">
+				<div id="endframe">
+					<div id="t4"></div>
+					<div id="logos"></div>
+				</div>
+
+				<div id="cta_container">
+					<div id="cta_box"></div>
+					<div id="cta_txt"></div>
+					<div id="cta_arr"></div>
+				</div>
+
+				<div id="loc_03" style="transform: matrix3d(1.02187, 5.57346e-06, 0, 0, -5.57346e-06, 1.02187, 0, 0, 0, 0, 1, 0, -0.0625, -6.5625, 0, 1);"></div>
+				<div id="t3"></div>
+				<div id="loc_02" style="transform: matrix3d(1.4, 0.000244346, 0, 0, -0.000244346, 1.4, 0, 0, 0, 0, 1, 0, 27, 5, 0, 1); opacity: 0;"></div>
+				<div id="t2" style="opacity: 0;"></div>
+				<div id="loc_01" style="transform: matrix3d(1.5, 0.000261799, 0, 0, -0.000261799, 1.5, 0, 0, 0, 0, 1, 0, 0, -56, 0, 1); opacity: 0;"></div>
+				<div id="t1" style="opacity: 0;"></div>
+
+				<div id="overlay" style="opacity: 0;"></div>
+				<div id="hotspot" onclick="window.open(window.clickTag)"></div>
+			</div>
+		</div>
+	</div>
+	<script src="./jquery.min(1).js"></script>
+	<script src="./actions.js"></script>
+
+</body></html>

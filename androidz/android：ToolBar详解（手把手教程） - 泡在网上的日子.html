@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK"><script src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/ca-pub-8583773779396897.js"></script><script src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/shares.php" charset="utf-8"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>android：ToolBar详解（手把手教程） - 泡在网上的日子</title>
+<meta name="keywords" content="ToolBar">
+<meta name="description" content="这篇文章因为是台湾人写的，语言风格很别致。本文在原文的基础上做了一些微调（主要是繁体字的问题）。 今年(2014) 的 google i/o 发表令多数人为之一亮的 material design，而 google 也从「google i/o 2014」 开始，大家也陆陆续续地看到其更新的 android">
+<link href="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/new.css" rel="stylesheet" type="text/css">
+<script language="javascript" type="text/javascript" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/jquery-1.7.1.min.js"></script>
+<link href="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/tranquil-heart.min.css" rel="stylesheet">
+<script language="javascript" type="text/javascript" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myajax.js"></script>
+<script language="javascript" type="text/javascript">
+	function CheckLogin(){
+	    var taget_obj = document.getElementById('login_info');
+	    myajax = new MyAjax(taget_obj,false,false,'','','');
+	    myajax.SendGet2("/member/ajax_loginsta.php");
+	    DedeXHTTP = null;
+	}
+	function checkSubmit(){
+		if(document.feedback.msg.value!='') document.feedback.submit();
+		else alert("评论内容不能为空！");
+	}		
+
+	function postBadGood(ftype,fid)
+	{
+		var taget_obj = document.getElementById(ftype+fid);
+		var saveid = GetCookie('badgoodid');
+		if(saveid != null)
+		{
+			var saveids = saveid.split(',');
+			var hasid = false;
+			saveid = '';
+			j = 1;
+			for(i=saveids.length-1;i>=0;i--)
+			{
+				if(saveids[i]==fid && hasid) continue;
+				else {
+					if(saveids[i]==fid && !hasid) hasid = true;
+					saveid += (saveid=='' ? saveids[i] : ','+saveids[i]);
+					j++;
+					if(j==10 && hasid) break;
+					if(j==9 && !hasid) break;
+				}
+			}
+			if(hasid) { alert('您刚才已表决过了喔！'); return false;}
+			else saveid += ','+fid;
+			SetCookie('badgoodid',saveid,1);
+		}
+		else
+		{
+			SetCookie('badgoodid',fid,1);
+		}
+		myajax = new MyAjax(taget_obj,false,false,'','','');
+		myajax.SendGet2("/plus/feedback.php?aid="+fid+"&action="+ftype+"&fid="+fid);
+	}
+	function postStow(aid)
+	{
+		var taget_obj = document.getElementById('newdigg');
+ 
+		myajax = new MyAjax(taget_obj,false,false,'','','');
+		myajax.SendGet2("/plus/stow.php?aid="+aid);
+	}
+	function postDigg(ftype,aid)
+	{
+		var taget_obj = document.getElementById('newdigg');
+		var saveid = GetCookie('diggid');
+		if(saveid != null)
+		{
+			var saveids = saveid.split(',');
+			var hasid = false;
+			saveid = '';
+			j = 1;
+			for(i=saveids.length-1;i>=0;i--)
+			{
+				if(saveids[i]==aid && hasid) continue;
+				else {
+					if(saveids[i]==aid && !hasid) hasid = true;
+					saveid += (saveid=='' ? saveids[i] : ','+saveids[i]);
+					j++;
+					if(j==20 && hasid) break;
+					if(j==19 && !hasid) break;
+				}
+			}
+			if(hasid) { alert("您已经顶过该帖，请不要重复顶帖 ！"); return; }
+			else saveid += ','+aid;
+			SetCookie('diggid',saveid,1);
+		}
+		else
+		{
+			SetCookie('diggid',aid,1);
+		}
+		myajax = new MyAjax(taget_obj,false,false,'','','');
+		var url = "/plus/digg_ajax.php?action="+ftype+"&id="+aid;
+		myajax.SendGet2(url);
+	}
+	function getDigg(aid)
+	{
+		var taget_obj = document.getElementById('newdigg');
+		myajax = new MyAjax(taget_obj,false,false,'','','');
+		myajax.SendGet2("/plus/digg_ajax.php?id="+aid);
+		DedeXHTTP = null;
+	} 
+	function getcollectionuser(aid)
+	{
+		var taget_obj = document.getElementById('collection-users-list');
+		myajax = new MyAjax(taget_obj,false,false,'','','');
+		myajax.SendGet2("/plus/collection_user_ajax.php?id="+aid);
+		DedeXHTTP = null;
+	} 	
+	jQuery(document).ready(function($) {
+		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+	    prettyPrint();
+	
+	    //注意最后的@me必须要加两重引号，不然js语法会出错
+	    var htmlstr =  ' <p>来源  <a href="http://blog.mosil.biz/2014/10/android-toolbar/" target="_blank">http://blog.mosil.biz/2014/10/android-toolbar/</a> </p>';
+	    $(".arc_body").prepend(htmlstr); 
+	});
+			
+</script>
+
+<link rel="prefetch" href="https://securepubads.g.doubleclick.net/static/3p_cookie.html"></head>
+<body><link href="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/jiathis_counter.css" rel="stylesheet" type="text/css"><link href="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/jiathis_share.css" rel="stylesheet" type="text/css"><iframe frameborder="0" style="position: absolute; display: none; opacity: 0;"></iframe><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; top: 50%; left: 50%; overflow: auto;"></div><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; overflow: auto;"></div><iframe frameborder="0" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/jiathis_utility.html" style="display: none;"></iframe>
+
+<div class="header">  
+	<div class="headercon container clearfix">
+        <div class="row">
+            <div class="col-md-12">
+            	<!-- 导航部分 -->
+                <a class="logo-t" href="http://www.jcodecraeer.com/"><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/logo.png">泡在网上的日子</a>
+                <ul class="nav-ul">
+                	<li id="nav-index"><a href="http://www.jcodecraeer.com/">首页</a></li>
+                    <li id="nav-code"><a href="http://www.jcodecraeer.com/plus/list.php?tid=31">代码</a></li>
+                    <li id="nav-feed"><a class="" href="http://www.jcodecraeer.com/plus/freelist.php?lid=12">话题</a></li>
+                    <li id="nav-ask"><a class="" href="http://www.jcodecraeer.com/hao">导航</a></li>
+                    <li id="nav-ask"><a class="" href="http://www.jcodecraeer.com/ask">问答</a></li>
+                    <li><a href="http://www.jcodecraeer.com/about.html" class="">关于</a></li>
+
+                </ul>
+                <!-- 导航部分 end -->
+                
+                <!-- 搜索-下拉 -->
+                <div class="header_right">
+                    <a href="http://www.jcodecraeer.com/appdown.html" class="lg_app">APP</a>
+                	<div class="search_start">
+                         <div class="search_cont">
+                            <form action="http://www.jcodecraeer.com/plus/search.php" method="get">
+                            	<input type="hidden" name="kwtype" value="0">
+                                <input type="text" name="q" class="in_search" autocomplete="off" value="搜索">
+                                <input type="submit" class="in_submit">
+        						<span class="glyphicon glyphicon-search icon-search"></span>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- 消息下拉 -->
+                    <div class="header_right_msg z">  
+                        <!-- 登录 -->
+                        <div class="right_login" id="login_info">
+                            <a class="l" href="http://www.jcodecraeer.com/member/login.php">登录</a>
+                            <a href="http://www.jcodecraeer.com/member/reg_new.php">注册</a>
+                        </div>
+                        <!-- 登录 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">CheckLogin();</script>
+<script language="javascript" type="text/javascript">
+  $(function(){
+	
+	$(".in_search").click(function(){
+		$(".search_cont").addClass('ser').animate({
+			width:200,
+		},200);
+		if($(this).val() == '搜索'){
+			$(".in_search").val('');
+		}
+	})
+	$(".in_search").blur(function(){
+		if($(this).val() !== ''){
+			return false;
+		}
+		$(".search_cont").removeClass('ser').animate({
+			width:90,
+		},200);
+		$(".in_search").val('搜索');
+	});
+	
+});
+</script>
+
+
+<div class="container main">
+	<div class="row">	
+	    <div class="text-center mgt20">	
+			<script src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/fuckblok.php" language="javascript"></script><script async="" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/adsbygoogle.js"></script>
+<!-- 超大横幅 -->
+<ins class="adsbygoogle" style="display:inline-block;width:970px;height:250px" data-ad-client="ca-pub-8583773779396897" data-ad-slot="3361054319" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:970px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:970px;background-color:transparent;"><iframe width="970" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:970px;height:250px;"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+		</div>
+	</div>
+	<div class="row">	
+        <div class="col-md-9">
+			<div class="arc_position">
+				  <a href="http://www.jcodecraeer.com/">首页</a>&nbsp;&#8250;&nbsp;<a href="http://www.jcodecraeer.com/plus/list.php?tid=16">安卓开发</a>&nbsp;&#8250;&nbsp;<a href="http://www.jcodecraeer.com/plus/list.php?tid=18">android开发</a>
+			</div>	
+					
+            <div class="articlecon clearfix">
+				<h1 class="title">android：ToolBar详解（手把手教程）</h1>
+			
+				<div class="subinfo clearfix">              
+					<span>泡在网上的日子 / 文</span>
+					<span> 发表于2014-11-18 12:49</span>   
+					<span>第<script src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/count.php" type="text/javascript" language="javascript"></script>342093次阅读
+					</span>
+					<span class="tags" id="arc_tags">                            
+						<a href="http://www.jcodecraeer.com/tags.php?/ToolBar/" class="tag">ToolBar</a>
+					 </span>
+				</div>
+				<!-- JiaThis Button BEGIN -->
+				<div class="jiathis_style" style=" height:30px; width:180px; margin:auto;text-align:center;">
+					<a class="jiathis_button_qzone" title="分享到QQ空间"><span class="jiathis_txt jtico jtico_qzone"></span></a>
+					<a class="jiathis_button_tsina" title="分享到微博"><span class="jiathis_txt jtico jtico_tsina"></span></a>
+					<a class="jiathis_button_tqq" title="分享到腾讯微博"><span class="jiathis_txt jtico jtico_tqq"></span></a>
+					<a class="jiathis_button_weixin" title="分享到微信"><span class="jiathis_txt jtico jtico_weixin"></span></a>
+					<a class="jiathis_button_renren" title="分享到人人网"><span class="jiathis_txt jtico jtico_renren"></span></a>
+					<a class="jiathis_button_xiaoyou" title="分享到朋友网"><span class="jiathis_txt jtico jtico_xiaoyou"></span></a>
+					<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+					<a class="jiathis_counter_style"><span class="jiathis_button_expanded jiathis_counter jiathis_bubble_style" id="jiathis_counter_22" title="累计分享97次">97</span></a>
+				</div>
+				<script type="text/javascript" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/jia.js" charset="utf-8"></script><script type="text/javascript" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/plugin.client.js" charset="utf-8"></script>
+				<!-- JiaThis Button END -->
+             
+				<div class="arc_body"> <p>来源  <a href="http://blog.mosil.biz/2014/10/android-toolbar/" target="_blank">http://blog.mosil.biz/2014/10/android-toolbar/</a> </p> 
+					 <p style="margin-top:10px">
+						<script src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/fuckblok(1).php" language="javascript"></script><strong>编辑推荐：</strong><a href="https://juejin.im/">稀土掘金</a>，这是一个针对技术开发者的一个应用，你可以在掘金上获取最新最优质的技术干货，不仅仅是Android知识、前端、后端以至于产品和设计都有涉猎，想成为全栈工程师的朋友不要错过！
+					</p>
+					 <p>这篇文章因为是台湾人写的，语言风格很别致。本文在原文的基础上做了一些微调（主要是繁体字的问题）。<br></p><p>今年(2014) 的 google i/o 发表令多数人为之一亮的 material design，而 google 也从「google i/o 2014」 开始，大家也陆陆续续地看到其更新的 android app 皆套用了这个设计介面。当然，这个设计介面著实让大家感到惊艳外，更让 android 开发者开始担心未来 app 的界面处理了。<br><br>不过，所幸有着之前 actionbar 的经验后，android 也很快地在 support library 里面提供了相对应的 api 给开发者使用，本篇就为各位介绍 – toolbar，这是用来取代过去 actionbar 的控件，而现在于 material design 中也对之有一个统一名称：app bar，在未来的 android app 中，就以 toolbar 这个元件来实作之。</p><p><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/14162834651417.png" title="Screenshot_2014-10-24-22-08-20-168x300.png"></p><h2>1. 概述</h2><p>Android 3.0 &nbsp;Android 推了 ActionBar 这个控件，而到了2013 年 Google 开始大力地推动所谓的 android style，想要逐渐改善过去 android 纷乱的界面设计，希望让终端使用者尽可能在 android 手机有个一致的操作体验。ActionBar 过去最多人使用的两大套件就是 ActionBarSherlock 以及官方提供在 support library v 7 里的 AppCompat。<br><br>既然会有本篇跟各位介绍的 Toolbar，也意味着<span style="color:#ff0000;">官方在某些程度上认为 ActionBar 限制了 android app 的开发与设计的弹性</span>，而在 material design 也对之做了名称的定义：App bar。接下来将为各位分成几个阶段进行说明，如何在 android app 中用 toolbar 这个控件来做出一个基本的 app bar 喽。</p><p>本篇所使用到的程序请到 <a title="Android-Mosil-Sample-Toolbar" href="https://github.com/mosil/Android-Mosil-Sample-Toolbar" target="_blank">Github</a> 取得。</p><h2 id="basic">2. 基础套用</h2><p>这个阶段从 toolbar_demo_checkpoint0 开始，分成下列三个部份：<br><br>风格 (style)<br>界面 (layout)<br>程序 (java)</p><h3>2.1 风格(style)</h3><p>风格要调整的地方有二</p><p>一在 res/values/styles.xml中<br></p><p>二在 /res/values-v21/styles.xml中</p><p>为了之后设定方便，我们先在 res/values/styles.xml 里增加一个名为 AppTheme.Base 的风格</p><pre class="brush:js;toolbar:false; prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="tag">&lt;style</span><span class="pln">&nbsp;</span><span class="atn">name</span><span class="pun">=</span><span class="atv">"AppTheme.Base"</span><span class="pln">&nbsp;</span><span class="atn">parent</span><span class="pun">=</span><span class="atv">"Theme.AppCompat"</span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;</span><span class="tag">&lt;item</span><span class="pln">&nbsp;</span><span class="atn">name</span><span class="pun">=</span><span class="atv">"windowActionBar"</span><span class="tag">&gt;</span><span class="pln">false</span><span class="tag">&lt;/item&gt;</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;</span><span class="tag">&lt;item</span><span class="pln">&nbsp;</span><span class="atn">name</span><span class="pun">=</span><span class="atv">"android:windowNoTitle"</span><span class="tag">&gt;</span><span class="pln">true</span><span class="tag">&lt;/item&gt;</span></li><li class="L3"><span class="tag">&lt;/style&gt;</span></li></ol></pre><p>因为此范例只使用 Toolbar，所以我们要将让原本的 ActionBar 隐藏起来，然后将原本 AppTheme 的 parent 属性 改为上面的AppTheme.Base，代码如下：</p><pre class="brush:js;toolbar:false; prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="tag">&lt;resources&gt;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;</span><span class="com">&lt;!--&nbsp;Base&nbsp;application&nbsp;theme.&nbsp;--&gt;</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;</span><span class="tag">&lt;style</span><span class="pln">&nbsp;</span><span class="atn">name</span><span class="pun">=</span><span class="atv">"AppTheme"</span><span class="pln">&nbsp;</span><span class="atn">parent</span><span class="pun">=</span><span class="atv">"AppTheme.Base"</span><span class="tag">&gt;</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;</span><span class="tag">&lt;/style&gt;</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;</span><span class="tag">&lt;style</span><span class="pln">&nbsp;</span><span class="atn">name</span><span class="pun">=</span><span class="atv">"AppTheme.Base"</span><span class="pln">&nbsp;</span><span class="atn">parent</span><span class="pun">=</span><span class="atv">"Theme.AppCompat"</span><span class="tag">&gt;</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;item</span><span class="pln">&nbsp;</span><span class="atn">name</span><span class="pun">=</span><span class="atv">"windowActionBar"</span><span class="tag">&gt;</span><span class="pln">false</span><span class="tag">&lt;/item&gt;</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;del&gt;&lt;item</span><span class="pln">&nbsp;</span><span class="atn">name</span><span class="pun">=</span><span class="atv">"android:windowNoTitle"</span><span class="tag">&gt;</span><span class="pln">true</span><span class="tag">&lt;/item&gt;&lt;/del&gt;</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="com">&lt;!--&nbsp;使用&nbsp;API&nbsp;Level&nbsp;22&nbsp;編譯的話，要拿掉前綴字&nbsp;--&gt;</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;item</span><span class="pln">&nbsp;</span><span class="atn">name</span><span class="pun">=</span><span class="atv">"windowNoTitle"</span><span class="tag">&gt;</span><span class="pln">true</span><span class="tag">&lt;/item&gt;</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;</span><span class="tag">&lt;/style&gt;</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="tag">&lt;/resources&gt;</span></li></ol></pre><p>再来调整Android 5.0的style： &nbsp;/res/values-v21/styles.xml，也将其 parent 属性改为 &nbsp;AppTheme.Base：</p><pre class="brush:js;toolbar:false; prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">xml&nbsp;version</span><span class="pun">=</span><span class="str">"1.0"</span><span class="pln">&nbsp;encoding</span><span class="pun">=</span><span class="str">"utf-8"</span><span class="pun">?&gt;</span></li><li class="L1"><span class="tag">&lt;resources&gt;</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;style</span><span class="pln">&nbsp;</span><span class="atn">name</span><span class="pun">=</span><span class="atv">"AppTheme"</span><span class="pln">&nbsp;</span><span class="atn">parent</span><span class="pun">=</span><span class="atv">"AppTheme.Base"</span><span class="tag">&gt;</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;/style&gt;</span></li><li class="L4"><span class="tag">&lt;/resources&gt;</span></li></ol></pre><p><br></p><h3>2.2 &nbsp;界面(Layout)</h3><p>在 activity_main.xml 里面添加 Toolbar 控件：</p><pre class="brush:js;toolbar:false; prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="tag">&lt;android.support.v7.widget.Toolbar</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/toolbar"</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"?attr/actionBarSize"</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"match_parent"</span><span class="pln">&nbsp;</span><span class="tag">&gt;</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="tag">&lt;/android.support.v7.widget.Toolbar&gt;</span></li></ol></pre><p>请记得用 support v7 里的 toolbar，不然然只有 API Level 21 也就是 Android 5.0 以上的版本才能使用。</p><p>这里需注意，要将 RelatvieLayout 里的四个方向的padding 属性去掉，并记得将原本的 Hello World 设为 layout_below="@+id/toolbar" ，否则会看到像下面这样的错误画面。</p><p><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/14162844682218.png" title="Screenshot_2014-10-24-17-19-45-300x103.png"></p><h3>2.3 程序 (Java)</h3><p>在 MainActivity.java 中加入 Toolbar 的声明：</p><pre class="brush:js;toolbar:false; prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="typ">Toolbar</span><span class="pln">&nbsp;toolbar&nbsp;</span><span class="pun">=</span><span class="pln">&nbsp;</span><span class="pun">(</span><span class="typ">Toolbar</span><span class="pun">)</span><span class="pln">&nbsp;findViewById</span><span class="pun">(</span><span class="pln">R</span><span class="pun">.</span><span class="pln">id</span><span class="pun">.</span><span class="pln">toolbar</span><span class="pun">);</span></li><li class="L1"><span class="pln">setSupportActionBar</span><span class="pun">(</span><span class="pln">toolbar</span><span class="pun">);</span></li></ol></pre><p>声明后，再将之用 setSupportActionBar 设定，Toolbar即能取代原本的 actionbar 了，此阶段完成画面如下：</p><p><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/14162846136933.png" title="Screenshot_2014-10-24-17-43-08-168x300.png"></p><p>完整代码见：<a title="checok point 1" href="https://github.com/mosil/Android-Mosil-Sample-Toolbar/tree/master/toolbar_demo_checkpoint1" target="_blank">toolbar_demo_checkpoint1</a></p><p><br></p><h2 id="color">3. 自定义颜色(Customization color)</h2><p>这个阶段将从 <a title="checok point 1" href="https://github.com/mosil/Android-Mosil-Sample-Toolbar/tree/master/toolbar_demo_checkpoint1" target="_blank">toolbar_demo_checkpoint1</a> 接着往下进行：</p><p><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/14162849281137.png" title="Toolbar-theme-and-background-168x300.png"><br></p><p>上图是将本阶段要完成的结果画面做了标示，结合下面的描述希望大家能明白。<br></p><ol class=" list-paddingleft-2"><li><p>colorPrimaryDark（状态栏底色）：在风格 (styles) 或是主题 (themes) 里进行设定。</p></li><li><p>App bar 底色<br></p><p>这个设定分为二，若你的 android app 仍是使用 actionbar ，则直接在风格 (styles) 或是主题 (themes) 里进行设定 colorPrimary 参数即可；<br>可若是采用 toolbar 的话，则要在界面 (layout) 里面设定 toolbar 控件的 background 属性。<br></p></li><li><p>navigationBarColor（导航栏底色）：</p></li></ol><p>仅能在 API v21 也就是 Android 5 以后的版本中使用， 因此要将之设定在 res/values-v21/styles.xml 里面。</p><ol class=" list-paddingleft-2"><li><p>主视窗底色：windowBackground</p></li></ol><p>也因此在这个阶段，我们需要设定的地方有三，一是 style中(res/values/styles.xml)</p><pre class="brush:js;toolbar:false; prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="tag">&lt;style</span><span class="pln">&nbsp;</span><span class="atn">name</span><span class="pun">=</span><span class="atv">"AppTheme.Base"</span><span class="pln">&nbsp;</span><span class="atn">parent</span><span class="pun">=</span><span class="atv">"Theme.AppCompat"</span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;</span><span class="tag">&lt;item</span><span class="pln">&nbsp;</span><span class="atn">name</span><span class="pun">=</span><span class="atv">"windowActionBar"</span><span class="tag">&gt;</span><span class="pln">false</span><span class="tag">&lt;/item&gt;</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;</span><span class="tag">&lt;item</span><span class="pln">&nbsp;</span><span class="atn">name</span><span class="pun">=</span><span class="atv">"android:windowNoTitle"</span><span class="tag">&gt;</span><span class="pln">true</span><span class="tag">&lt;/item&gt;</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;</span><span class="com">&lt;!--&nbsp;Actionbar&nbsp;color&nbsp;--&gt;</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;</span><span class="tag">&lt;item</span><span class="pln">&nbsp;</span><span class="atn">name</span><span class="pun">=</span><span class="atv">"colorPrimary"</span><span class="tag">&gt;</span><span class="pln">@color/accent_material_dark</span><span class="tag">&lt;/item&gt;</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;</span><span class="com">&lt;!--Status&nbsp;bar&nbsp;color--&gt;</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;</span><span class="tag">&lt;item</span><span class="pln">&nbsp;</span><span class="atn">name</span><span class="pun">=</span><span class="atv">"colorPrimaryDark"</span><span class="tag">&gt;</span><span class="pln">@color/accent_material_light</span><span class="tag">&lt;/item&gt;</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;</span><span class="com">&lt;!--Window&nbsp;color--&gt;</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;</span><span class="tag">&lt;item</span><span class="pln">&nbsp;</span><span class="atn">name</span><span class="pun">=</span><span class="atv">"android:windowBackground"</span><span class="tag">&gt;</span><span class="pln">@color/dim_foreground_material_dark</span><span class="tag">&lt;/item&gt;</span></li><li class="L9"><span class="tag">&lt;/style&gt;</span></li></ol></pre><p>再来是 v21 的style中 (res/values-v21/styles.xml)</p><pre class="brush:js;toolbar:false; prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="tag">&lt;style</span><span class="pln">&nbsp;</span><span class="atn">name</span><span class="pun">=</span><span class="atv">"AppTheme"</span><span class="pln">&nbsp;</span><span class="atn">parent</span><span class="pun">=</span><span class="atv">"AppTheme.Base"</span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;</span><span class="com">&lt;!--Navigation&nbsp;bar&nbsp;color--&gt;</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;</span><span class="tag">&lt;item</span><span class="pln">&nbsp;</span><span class="atn">name</span><span class="pun">=</span><span class="atv">"android:navigationBarColor"</span><span class="tag">&gt;</span><span class="pln">@color/accent_material_light</span><span class="tag">&lt;/item&gt;</span></li><li class="L3"><span class="tag">&lt;/style&gt;</span></li></ol></pre><p>最后，就是为了本篇的主角 – Toolbar 的 background 进行设定。</p><pre class="brush:js;toolbar:false; prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="tag">&lt;android.support.v7.widget.Toolbar</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/toolbar"</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"?attr/actionBarSize"</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"match_parent"</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;</span><span class="atn">android:background</span><span class="pun">=</span><span class="atv">"?attr/colorPrimary"</span><span class="pln">&nbsp;</span><span class="tag">&gt;</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="tag">&lt;/android.support.v7.widget.Toolbar&gt;</span></li></ol></pre><p><br></p><p>在本范例中，toolbar 是设定来在 activity_main.xml，对其设定 background 属性： android:background="?attr/colorPrimary" ，这样就可以使之延用 Actionbar 的颜色设定喽。<br><br>最后，再来看一下结果画面。</p><p><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/14162856831120.png" title="Toolbar-Component-Click-168x300.png"></p><p>完整代码见： <a title="checok point 2" href="https://github.com/mosil/Android-Mosil-Sample-Toolbar/tree/master/toolbar_demo_checkpoint2" target="_blank">toolbar_demo_checkpoint2</a></p><h2 id="component">4. 控件 (component)</h2><p>本阶段将从 <a title="checok point 2" href="https://github.com/mosil/Android-Mosil-Sample-Toolbar/tree/master/toolbar_demo_checkpoint2" target="_blank">toolbar_demo_checkpoint2</a> 接续，在还未于 &lt;android.support.v7.widget.Toolbar/&gt; &nbsp;标签中，自行添加元件的 toolbar 有几个大家常用的元素可以使用，请先见下图：</p><p><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/1416285884351.png" title="Toolbar-Component-300x160.png"></p><p><br></p><p>大抵来说，预设常用的几个元素就如图中所示，接着就依序来说明之：<br></p><ol class=" list-paddingleft-2"><li><p>setNavigationIcon<br>即设定 up button 的图标，因为 Material 的介面，在 Toolbar这里的 up button样式也就有別于过去的 ActionBar 哦。</p></li></ol><ol class=" list-paddingleft-2"><li><p>setLogo<br>APP 的图标。</p></li><li><p>setTitle<br>主标题。</p></li><li><p>setSubtitle<br>副标题。</p></li><li><p>setOnMenuItemClickListener<br>设定菜单各按鈕的动作。</p></li></ol><p>先来看看菜单外的代码，在 MainActivity.java 中：</p><pre class="brush:js;toolbar:false; prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="typ">Toolbar</span><span class="pln">&nbsp;toolbar&nbsp;</span><span class="pun">=</span><span class="pln">&nbsp;</span><span class="pun">(</span><span class="typ">Toolbar</span><span class="pun">)</span><span class="pln">&nbsp;findViewById</span><span class="pun">(</span><span class="pln">R</span><span class="pun">.</span><span class="pln">id</span><span class="pun">.</span><span class="pln">toolbar</span><span class="pun">);</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="com">//&nbsp;App&nbsp;Logo</span></li><li class="L3"><span class="pln">toolbar</span><span class="pun">.</span><span class="pln">setLogo</span><span class="pun">(</span><span class="pln">R</span><span class="pun">.</span><span class="pln">drawable</span><span class="pun">.</span><span class="pln">ic_launcher</span><span class="pun">);</span></li><li class="L4"><span class="com">//&nbsp;Title</span></li><li class="L5"><span class="pln">toolbar</span><span class="pun">.</span><span class="pln">setTitle</span><span class="pun">(</span><span class="str">"My&nbsp;Title"</span><span class="pun">);</span></li><li class="L6"><span class="com">//&nbsp;Sub&nbsp;Title</span></li><li class="L7"><span class="pln">toolbar</span><span class="pun">.</span><span class="pln">setSubtitle</span><span class="pun">(</span><span class="str">"Sub&nbsp;title"</span><span class="pun">);</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pln">setSupportActionBar</span><span class="pun">(</span><span class="pln">toolbar</span><span class="pun">);</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="com">//&nbsp;Navigation&nbsp;Icon&nbsp;要設定在&nbsp;setSupoortActionBar&nbsp;才有作用</span></li><li class="L2"><span class="com">//&nbsp;否則會出現&nbsp;back&nbsp;button</span></li><li class="L3"><span class="pln">toolbar</span><span class="pun">.</span><span class="pln">setNavigationIcon</span><span class="pun">(</span><span class="pln">R</span><span class="pun">.</span><span class="pln">drawable</span><span class="pun">.</span><span class="pln">ab_android</span><span class="pun">);</span></li></ol></pre><p>这边要留意的是<span id="crayon-546ac2ff2ebaa195844583" class="crayon-syntax crayon-syntax-inline  crayon-theme-github crayon-theme-github-inline crayon-font-monaco" style="font-size:12px !important;line-height:15px !important;font-size:12px !important;"><span class="crayon-pre crayon-code" style="font-size:12px !important;line-height:15px !important;font-size:12px !important;-moz-tab-size:4;-o-tab-size:4;-webkit-tab-size:4;tab-size:4;">setNavigationIcon</span></span>需要放在 <span id="crayon-546ac2ff2ebb3248258968" class="crayon-syntax crayon-syntax-inline  crayon-theme-github crayon-theme-github-inline crayon-font-monaco" style="font-size:12px !important;line-height:15px !important;font-size:12px !important;"><span class="crayon-pre crayon-code" style="font-size:12px !important;line-height:15px !important;font-size:12px !important;-moz-tab-size:4;-o-tab-size:4;-webkit-tab-size:4;tab-size:4;">setSupportActionBar</span></span>之后才会生效。</p><p>菜单部分，需要先在res/menu/menu_main.xml左定义：</p><pre class="brush:js;toolbar:false; prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="tag">&lt;menu</span><span class="pln">&nbsp;</span><span class="atn">xmlns:android</span><span class="pun">=</span><span class="atv">"http://schemas.android.com/apk/res/android"</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">xmlns:app</span><span class="pun">=</span><span class="atv">"http://schemas.android.com/apk/res-auto"</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">xmlns:tools</span><span class="pun">=</span><span class="atv">"http://schemas.android.com/tools"</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">tools:context</span><span class="pun">=</span><span class="atv">".MainActivity"</span><span class="tag">&gt;</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;</span><span class="tag">&lt;item</span><span class="pln">&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/action_edit"</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:title</span><span class="pun">=</span><span class="atv">"@string/action_edit"</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:orderInCategory</span><span class="pun">=</span><span class="atv">"80"</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:icon</span><span class="pun">=</span><span class="atv">"@drawable/ab_edit"</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:showAsAction</span><span class="pun">=</span><span class="atv">"ifRoom"</span><span class="pln">&nbsp;</span><span class="tag">/&gt;</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;</span><span class="tag">&lt;item</span><span class="pln">&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/action_share"</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:title</span><span class="pun">=</span><span class="atv">"@string/action_edit"</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:orderInCategory</span><span class="pun">=</span><span class="atv">"90"</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:icon</span><span class="pun">=</span><span class="atv">"@drawable/ab_share"</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:showAsAction</span><span class="pun">=</span><span class="atv">"ifRoom"</span><span class="pln">&nbsp;</span><span class="tag">/&gt;</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;</span><span class="tag">&lt;item</span><span class="pln">&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/action_settings"</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:title</span><span class="pun">=</span><span class="atv">"@string/action_settings"</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:orderInCategory</span><span class="pun">=</span><span class="atv">"100"</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:showAsAction</span><span class="pun">=</span><span class="atv">"never"</span><span class="tag">/&gt;</span></li><li class="L1"><span class="tag">&lt;/menu&gt;</span></li></ol></pre><p>再回到MainActivity.java 中加入OnMenuItemClickListener 的监听者：<br></p><pre class="brush:js;toolbar:false; prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="kwd">private</span><span class="pln">&nbsp;</span><span class="typ">Toolbar</span><span class="pun">.</span><span class="typ">OnMenuItemClickListener</span><span class="pln">&nbsp;onMenuItemClick&nbsp;</span><span class="pun">=</span><span class="pln">&nbsp;</span><span class="kwd">new</span><span class="pln">&nbsp;</span><span class="typ">Toolbar</span><span class="pun">.</span><span class="typ">OnMenuItemClickListener</span><span class="pun">()</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;</span><span class="lit">@Override</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;</span><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="kwd">boolean</span><span class="pln">&nbsp;onMenuItemClick</span><span class="pun">(</span><span class="typ">MenuItem</span><span class="pln">&nbsp;menuItem</span><span class="pun">)</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="typ">String</span><span class="pln">&nbsp;msg&nbsp;</span><span class="pun">=</span><span class="pln">&nbsp;</span><span class="str">""</span><span class="pun">;</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">switch</span><span class="pln">&nbsp;</span><span class="pun">(</span><span class="pln">menuItem</span><span class="pun">.</span><span class="pln">getItemId</span><span class="pun">())</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">case</span><span class="pln">&nbsp;R</span><span class="pun">.</span><span class="pln">id</span><span class="pun">.</span><span class="pln">action_edit</span><span class="pun">:</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg&nbsp;</span><span class="pun">+=</span><span class="pln">&nbsp;</span><span class="str">"Click&nbsp;edit"</span><span class="pun">;</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">break</span><span class="pun">;</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">case</span><span class="pln">&nbsp;R</span><span class="pun">.</span><span class="pln">id</span><span class="pun">.</span><span class="pln">action_share</span><span class="pun">:</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg&nbsp;</span><span class="pun">+=</span><span class="pln">&nbsp;</span><span class="str">"Click&nbsp;share"</span><span class="pun">;</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">break</span><span class="pun">;</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">case</span><span class="pln">&nbsp;R</span><span class="pun">.</span><span class="pln">id</span><span class="pun">.</span><span class="pln">action_settings</span><span class="pun">:</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg&nbsp;</span><span class="pun">+=</span><span class="pln">&nbsp;</span><span class="str">"Click&nbsp;setting"</span><span class="pun">;</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">break</span><span class="pun">;</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">if</span><span class="pun">(!</span><span class="pln">msg</span><span class="pun">.</span><span class="pln">equals</span><span class="pun">(</span><span class="str">""</span><span class="pun">))</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="typ">Toast</span><span class="pun">.</span><span class="pln">makeText</span><span class="pun">(</span><span class="typ">MainActivity</span><span class="pun">.</span><span class="kwd">this</span><span class="pun">,</span><span class="pln">&nbsp;msg</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="typ">Toast</span><span class="pun">.</span><span class="pln">LENGTH_SHORT</span><span class="pun">).</span><span class="pln">show</span><span class="pun">();</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">return</span><span class="pln">&nbsp;</span><span class="kwd">true</span><span class="pun">;</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L1"><span class="pun">};</span></li></ol></pre><p>将onMenuItemClick监听者设置给toolbar</p><pre class="brush:js;toolbar:false; prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="pln">setSupportActionBar</span><span class="pun">(</span><span class="pln">toolbar</span><span class="pun">);</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pun">...</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="com">//&nbsp;Menu&nbsp;item&nbsp;click&nbsp;的監聽事件一樣要設定在&nbsp;setSupportActionBar&nbsp;才有作用</span></li><li class="L5"><span class="pln">toolbar</span><span class="pun">.</span><span class="pln">setOnMenuItemClickListener</span><span class="pun">(</span><span class="pln">onMenuItemClick</span><span class="pun">);</span></li></ol></pre><p>和 setNavigationIcon 一样，需要將之设定在 setSupportActionBar 之后才有作用。执行上面的代码便会得到下面的界面。</p><p><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/14162860447819.png" title="Toolbar-Component-Click是-168x300.png"></p><p>完完整程序见：<a title="checok point 3" href="https://github.com/mosil/Android-Mosil-Sample-Toolbar/tree/master/toolbar_demo_checkpoint3" target="_blank">toolbar_demo_checkpoint3<br></a></p><h2>5. 总结<br></h2><p>在这样的架构设计下，ToolBar直接成了Layout中可以控制的东西，相对于过去的actionbar来说，设计与可操控性大幅提升。</p><p>本文上面的解释中用到的完成代码：toolbar demo check point 0 ~ 4，请到<a title="Android-Mosil-Sample-Toolbar" href="https://github.com/mosil/Android-Mosil-Sample-Toolbar" target="_blank">Github</a> 取得。</p><p>最后再附上一个界面上常用的属性说明图：<br></p><p><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/14162861629057.png" title="Component-Theme1-168x300.png"></p><p>这里按照图中从上到下的顺序做个简单的说明：</p><ul class=" list-paddingleft-2"><li><p>colorPrimaryDark</p><p><br></p></li><ul style="list-style-type: square;" class=" list-paddingleft-2"><li><p>状态栏背景色。</p></li><li><p>在 style 的属性中设置。</p></li></ul><li><p>textColorPrimary</p><p><br></p></li><ul style="list-style-type: square;" class=" list-paddingleft-2"><li><p>App bar 上的标题与更多菜单中的文字颜色。</p></li><li><p>在 style 的属性中设置。</p></li></ul><li><p>App bar 的背景色</p><p><br></p></li><ul style="list-style-type: square;" class=" list-paddingleft-2"><li><p>Actionbar 的背景色设定在 style 中的 colorPrimary。</p></li><li><p>Toolbar 的背景色在layout文件中设置background属性。</p></li></ul><li><p>colorAccent</p><p><br></p></li><ul style="list-style-type: square;" class=" list-paddingleft-2"><li><p>各控制元件(如：check box、switch 或是 radoi) 被勾选 (checked) 或是选定 (selected) 的颜色。</p></li><li><p>在 style 的属性中设置。</p></li></ul><li><p>colorControlNormal</p><p><br></p></li><ul style="list-style-type: square;" class=" list-paddingleft-2"><li><p>各控制元件的预设颜色。</p></li><li><p>在 style 的属性中设置</p></li></ul><li><p>windowBackground</p><p><br></p></li><ul style="list-style-type: square;" class=" list-paddingleft-2"><li><p>App 的背景色。</p></li><li><p>在 style 的属性中设置</p></li></ul><li><p>navigationBarColor</p><p><br></p></li><ul style="list-style-type: square;" class=" list-paddingleft-2"><li><p>导航栏的背景色，但只能用在 API Level 21 (Android 5) 以上的版本</p></li><li><p>在 style 的属性中设置</p></li></ul><p><br></p></ul><p>最后需要注意的是：<span style="color: rgb(255, 0, 0);">使用material主题的时候，必须设定targetSdkVersion = 21，否则界面看起来是模糊的 &nbsp; &nbsp; </span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+				</div>
+			 
+				<div class="pageActive clearfix" id="newdigg"><a href="javascript:void(0)" class="pageActive-item" onclick="postStow(2006)"><span><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/collection.png"></span>收藏(143)</a>
+			<a href="javascript:void(0)" class="pageActive-item" onclick="postDigg(&#39;good&#39;,2006)"> <span><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/approve.png"></span>赞(462)</a>
+			<a href="javascript:void(0)" class="pageActive-item" onclick="postDigg(&#39;bad&#39;,2006)"> <span><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/disapprove.png"></span>踩(48)</a>
+          							
+				</div>				
+				<div id="collection-users-list" class="mgt60"><div class="sub-title">他们收藏了这篇文章</div><ul class="users-list clearfix"><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B4%D4%E5%D0%D2%A3"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index.php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=xwc010"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface.jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=stefory"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(1).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=longzekai"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(2).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=fancychendong"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(3).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%BB%B5%D0%A1%BB%A2"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(4).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=jianghejie"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface.png">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%C3%CE%A1%A2%B6%C0%D5%E5"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(5).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%D0%A1%E0%87%D7%D3"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(6).png">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=zealot"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(1).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=fayou147"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(7).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=starlight"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(2).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=sosukes"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(8).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=guoguangchao"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(3).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Erosin"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(4).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%C2%DC%B2%B7%BA%FA"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(9).png">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=mnb123jhg"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(10).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=LeevinLi"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(11).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%C9%F2%C4%AC"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface.gif">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=huangchaoxc"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(5).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=ITHTT"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(6).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%C8%FD%C9%FA%C3%F7%C0%ED"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(7).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=suppender"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(8).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=SilverLining"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(9).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=taul"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(12).png">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=NightfuryN"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(13).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=tzizi5566"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(10).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=benio"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(11).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Jaye"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(14).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=xh14408931"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(12).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=ted.wu"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(13).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=WALL.E"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(15).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%CF%AA%B7%E7"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(14).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=shiyan"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(15).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=530198309@qq.com"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(16).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=ayalamih"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(16).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=CharryLi"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(17).png">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=zhangan"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(17).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=abnndy"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(18).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=vamayoumo"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(19).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=android.liyinghao"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(20).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=xiaoyaosheng"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(21).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=robertzhang"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(18).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B7%C9%B1%BC%B5%C4%D0%A1%C2%ED"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(22).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%CE%DE%D0%C4"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(23).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%BA%DE%D7%D4%BC%BA%B2%BB%C4%DC%D0%A1%C7%E5%D0%C2"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(19).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%CF%F6%D4%C6"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(20).png">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Aislli"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(24).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=wkwkwkwkwk"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(25).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=liu"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(26).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%CB%C4%D2%AF"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(21).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B3%BE%CA%C0%C1%F7%C0%CB%B9%B7"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(27).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=summerpxy"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(22).png">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=ipop"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(28).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=lzzz"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(29).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Fmer-Linp"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(30).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=layman"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface.jpeg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=cxc"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(23).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Mear"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(24).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=kacuha"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(25).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=H2O"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(26).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=phoenix086"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(31).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B1%B4%B1%B4%CF%C2%D1%A9%C1%CB"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(32).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Jinson"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(33).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%BB%E1%C6%AE%B5%C4%D6%D6%D7%D3"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(34).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=805380422@qq.com"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(27).png">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=taohf1992"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(35).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=jaker"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(28).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=fcdream"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(36).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=mike77546"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(37).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=hkp3162858"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(38).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%A1%A2%B6%AB%BE%A9%B2%BB%CC%AB%C8%C8"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(29).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=alvince"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(30).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Bys"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(39).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=super%C4%CF%D7%D0"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(40).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B2%BC%C2%B3%C2%ED"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(41).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=JALLV"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(42).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=zhangqi1024"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(31).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=pull2car"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(32).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%D3%C4%B7%B4%D8%BC%C5%D1%DA%A4"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(43).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%BD%F8%BB%F7%B5%C4%C2%EB%C5%A9"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(44).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=SG%B0%D7%D1%EE"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(33).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%C1%D6%B2%BB%B6%AE"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(45).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=artzok"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(46).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=GuokeSuren"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(47).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=MN0223"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(48).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=qq920020062"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(49).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=sandman"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(34).jpeg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Mr.jiang"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(50).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%D6%D3%C8%AA"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(51).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=tinyfight"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(35).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%D0%C7%B9%E2"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(52).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=649466050"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(53).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=yangxinshou"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(54).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=jacob"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(55).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%BC%C5%C4%AF%B2%BB%B5%E3%D1%CC"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(36).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B1%CA%BC%E2%CF%C2%B5%C4%C8%D5%D7%D3"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(37).png">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=kanonfeng"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(56).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B3%CC%D0%F2%D4%B1%B5%C4%D7%D4%CE%D2%D0%DE%D1%F8"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(57).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Suncher"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(38).png">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%D3%F0%C3%AB%B4%F3%C8%CB"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(58).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Springwu"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(59).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Jerry%D8%BCxu"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(39).png">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=WSJ-Geek"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(60).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B4%FE%D6%BB%C2%EC%D2%CF%C8%A5%C9%A2%B2%BD"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(40).png">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=sendtion"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(41).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=speedy"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(42).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=siulunghsu"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(61).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=w415677099"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(62).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%BA%CE%CB%D5"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(63).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=wang7382"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(43).png">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=15501126866"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(64).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Jiang"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(65).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%D1%F4%C0%A4"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(66).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=CaiZhiHao"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(44).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=KingSu"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(67).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=gwf559"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(45).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B1%F9%B5%E3k"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(68).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=ADark"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(46).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B2%DF%C2%ED%D0%A5%CE%F7%B7%E7"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(69).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%D0%A1%C1%F9"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(70).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B3%C2%B4%F3%D0%DC%C3%A8"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(71).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=fanz123"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(72).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Akoasm%D8%BC%BB%C3%CC%FD"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(47).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=MQL"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(73).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=wangfuxiang"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(74).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%D7%EE%B4%BF%D5%E6%B5%C4%BB%D8%D2%E4cg"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(48).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=1960176680"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(75).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=13671822674"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(76).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=gavinZYX"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(49).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=lzf1759891062"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(77).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=zjcnof"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(78).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=lunaludu"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(79).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Avalonmashiro"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(80).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B2%C9%BE%D5%B6%AB%C0%E9%CF%C2"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(81).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=qqduxingzhe"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(50).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B0%A2%CE%F7up"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(82).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Josh"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(83).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=siyanzi"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(51).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Bysky"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(52).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=vigiles"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(53).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%C2%DE%BC%AD"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(84).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%D3%F0%D8%BC"> <img class="avatar" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(85).php">  </a></li></ul>
+				</div>			
+				<div class="related_arc">
+					<div class="sub-title">相关文章</div>
+					<div class="rearc_list clearfix">
+						<ul>   
+						<li>
+							 <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1123/2050.html" target="_blank">Android – Toolbar 上的 Navigation Drawer</a>  <span class="pull-right"> 2015-07-10 </span></li>
+<li>
+							 <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0319/2618.html" target="_blank">在列表滚动的时候显示或者隐藏Toolbar（第二部分）</a>  <span class="pull-right"> 2015-03-21 </span></li>
+<li>
+							 <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/0312/7667.html" target="_blank">ToolBar使用心得(如何改变item的位置)</a>  <span class="pull-right"> 2017-03-12 </span></li>
+<li>
+							 <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/0507/7923.html" target="_blank">我一行代码都不写实现Toolbar!你却还在封装BaseActivity?</a>  <span class="pull-right"> 2017-05-07 </span></li>
+<li>
+							 <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0303/2522.html" target="_blank">使用Toolbar + DrawerLayout快速实现高大上菜单侧滑</a>  <span class="pull-right"> 2015-03-03 </span></li>
+<li>
+							 <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0430/2814.html" target="_blank">Android 5.x Theme 与 ToolBar 实战</a>  <span class="pull-right"> 2015-04-30 </span></li>
+<li>
+							 <a href="http://www.jcodecraeer.com/a/anzhuokaifa/2017/0317/7694.html" target="_blank">Toolbar+DrawerLayout+NavigationView使用心得</a>  <span class="pull-right"> 2017-03-17 </span></li>
+<li>
+							 <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1107/1925.html" target="_blank">android Toolbar控件</a>  <span class="pull-right"> 2014-12-08 </span></li>
+<li>
+							 <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0317/2612.html" target="_blank">在列表滚动的时候显示或者隐藏Toolbar（第一部分）</a>  <span class="pull-right"> 2015-03-18 </span></li>
+<li>
+							 <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0507/2844.html" target="_blank">MaterialDesign文字缩放并入Toolbar效果的一种实现</a>  <span class="pull-right"> 2015-05-07 </span></li>
+
+						    
+						</ul>
+			   
+					</div>  						
+				</div>	
+				<ul>				 
+					<li style="margin-top:10px"><script src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/fuckblok(2).php" language="javascript"></script></li>			
+				</ul>										
+            </div>				
+             
+            <div style="width:680px;"></div> 
+			<div class="pre_next">
+            	<div class="row"> 
+                	 <div class="col-md-6">
+					<div class="div_button">上一篇：<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2005.html">Android Studio SDK 更新方法</a> <div>通常情况下，下载Android SDK需要连接谷歌的服务器进行下载，由于国内水深火热的网络，速度基本为0.好在国内也有一个更新的镜像地址。本文章介绍如何在不翻墙的情况下，使用国内镜像地址，更新android sdk. 设置host 首先在etc/hosts中设置hosts，需要管理员</div></div>
+					</div>
+					 <div class="col-md-6">
+					<div class="div_button">下一篇：<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1119/2015.html">修正开源项目TableFixHeaders滑动不流畅的问题</a> <div>修正开源项目TableFixHeaders滑动不流畅的问题，有需要的朋友可以参考下。TableFixHeaders项目介绍： http://jcodecraeer.com/a/opensource/2014/1113/1970.html 最近因为项目的原因，使用了TableFixHeaders来处理表格数据，却遇到了左右，上下滑动时，不够</div></div>
+					</div>
+                </div>
+            </div>
+            <div class="dede_comment_post">
+				
+<div class="comments_body">
+	<form action="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#" method="post" name="feedback" onsubmit="return false;">
+		<input type="hidden" name="dopost" value="send">
+		<input type="hidden" name="comtype" value="comments">
+		<input type="hidden" name="arcauthor" value="1 ">
+		<input type="hidden" name="aid" value="2006">
+		<input type="hidden" name="fid" id="feedbackfid" value="0">
+		<div class="post_box clearfix">
+            <textarea cols="60" name="msg" id="cm_content" rows="5" class="ipt-txt"></textarea>	
+            <div class="post_act">
+            	<button type="button clearfix" onclick="PostComment()">发表评论</button>
+            </div>
+		</div>
+		
+		
+    </form>	
+</div>
+
+
+<!-- //评论表单区结束 -->
+<!-- //评论内容区 -->
+<a name="commettop"></a>
+
+<div id="commetcontentNew">
+
+</div>
+<div id="commetcontent">		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/member/index.php?uid=axuan2015" class="plpic"><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(86).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/member/index.php?uid=axuan2015">axuan2015</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2017-09-16</span>
+					</div>
+					<div class="post_content">
+						招聘Android 开发大神3名 薪资20-30k 有意私聊 qq:2767356582&nbsp;&nbsp;微信alienware_2015					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb6722"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#goodfb6722" onclick="postBadGood(&#39;goodfb&#39;,6722);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>0 </span>
+							<span class="action-item" id="badfb6722"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#badfb6722" onclick="postBadGood(&#39;badfb&#39;,6722);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(6722,6722,"quote");"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_6722"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/member/index.php?uid=%D1%E0%B3%AF" class="plpic"><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(87).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/member/index.php?uid=%D1%E0%B3%AF">燕朝</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2017-06-01</span>
+					</div>
+					<div class="post_content">
+						mark					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb6435"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#goodfb6435" onclick="postBadGood(&#39;goodfb&#39;,6435);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>0 </span>
+							<span class="action-item" id="badfb6435"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#badfb6435" onclick="postBadGood(&#39;badfb&#39;,6435);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(6435,6435,"quote");"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_6435"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/member/index.php?uid=jianghejie" class="plpic"><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface.png" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/member/index.php?uid=jianghejie">泡在网上的日子</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2017-05-05</span>
+					</div>
+					<div class="post_content">
+						<div class="decmt-box"><div class="decmt-ti&lt;x&gt;tle"><span class="username">仁人义士 的原帖：</span></div><div class="decmt-content">toolbar 里面的返回箭头&nbsp;&nbsp;能在往左边挪吗&nbsp;&nbsp;&nbsp;&nbsp;怎样挪？</div></div>如果用的是setSupportActionBar这种方式就没法挪动					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb6377"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#goodfb6377" onclick="postBadGood(&#39;goodfb&#39;,6377);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>0 </span>
+							<span class="action-item" id="badfb6377"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#badfb6377" onclick="postBadGood(&#39;badfb&#39;,6377);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(6377,6377,"quote");"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_6377"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/member/index.php?uid=%C8%CA%C8%CB%D2%E5%CA%BF" class="plpic"><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(88).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/member/index.php?uid=%C8%CA%C8%CB%D2%E5%CA%BF">仁人义士</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2017-05-04</span>
+					</div>
+					<div class="post_content">
+						toolbar 里面的返回箭头&nbsp;&nbsp;能在往左边挪吗&nbsp;&nbsp;&nbsp;&nbsp;怎样挪？					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb6375"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#goodfb6375" onclick="postBadGood(&#39;goodfb&#39;,6375);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>0 </span>
+							<span class="action-item" id="badfb6375"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#badfb6375" onclick="postBadGood(&#39;badfb&#39;,6375);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(6375,6375,"quote");"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_6375"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/member/index.php?uid=%D2%B9%B0%EB%C8%FD%BF%C3%CA%F7" class="plpic"><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(89).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/member/index.php?uid=%D2%B9%B0%EB%C8%FD%BF%C3%CA%F7">夜半三棵树</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2016-10-18</span>
+					</div>
+					<div class="post_content">
+						谢谢楼主，写的太好了看完后终于会结合toolbar和menu使用了。不过关于菜单那块，还需要在onCreateOptionsMenu()里导入，希望博主能补充下。					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb5919"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#goodfb5919" onclick="postBadGood(&#39;goodfb&#39;,5919);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>8 </span>
+							<span class="action-item" id="badfb5919"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#badfb5919" onclick="postBadGood(&#39;badfb&#39;,5919);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(5919,5919,"quote");"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_5919"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#" class="plpic"><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(90).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#">网友27.190.23.59</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2016-05-08</span>
+					</div>
+					<div class="post_content">
+						不错，支持一下					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb5125"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#goodfb5125" onclick="postBadGood(&#39;goodfb&#39;,5125);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>2 </span>
+							<span class="action-item" id="badfb5125"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#badfb5125" onclick="postBadGood(&#39;badfb&#39;,5125);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(5125,5125,"quote");"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_5125"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#" class="plpic"><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(90).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#">网友23.105.218.162</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2016-03-07</span>
+					</div>
+					<div class="post_content">
+						shit啊					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb4494"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#goodfb4494" onclick="postBadGood(&#39;goodfb&#39;,4494);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>1 </span>
+							<span class="action-item" id="badfb4494"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#badfb4494" onclick="postBadGood(&#39;badfb&#39;,4494);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>24 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(4494,4494,"quote");"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_4494"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#" class="plpic"><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(90).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#">网友116.231.169.65</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2016-03-02</span>
+					</div>
+					<div class="post_content">
+						<div class="decmt-box"><div class="decmt-ti&lt;x&gt;tle"><span class="username">robertzhang 的原帖：</span></div><div class="decmt-content"><div class="decmt-box"><div class="decmt-ti&lt;x&gt;tle"><span class="username">网友116.228.212.218 的原帖：</span></div><div class="decmt-content">这个toolbar可以在5.0以下用吗?我现在的项目用到了这个toolbar然后现在文件在5.0以下就打不开了.</div></div>引入新的V7包就可以用</div></div>多余引入包不久是这个作用么？					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb4448"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#goodfb4448" onclick="postBadGood(&#39;goodfb&#39;,4448);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>1 </span>
+							<span class="action-item" id="badfb4448"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#badfb4448" onclick="postBadGood(&#39;badfb&#39;,4448);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>10 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(4448,4448,"quote");"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_4448"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/member/index.php?uid=robertzhang" class="plpic"><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/myface(18).jpg" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/member/index.php?uid=robertzhang">robertzhang</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2016-01-14</span>
+					</div>
+					<div class="post_content">
+						<div class="decmt-box"><div class="decmt-ti&lt;x&gt;tle"><span class="username">网友116.228.212.218 的原帖：</span></div><div class="decmt-content">这个toolbar可以在5.0以下用吗?我现在的项目用到了这个toolbar然后现在文件在5.0以下就打不开了.</div></div>引入新的V7包就可以用					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb4112"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#goodfb4112" onclick="postBadGood(&#39;goodfb&#39;,4112);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>0 </span>
+							<span class="action-item" id="badfb4112"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#badfb4112" onclick="postBadGood(&#39;badfb&#39;,4112);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>11 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(4112,4112,"quote");"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_4112"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#" class="plpic"><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/index(90).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#">网友116.228.212.218</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2015-12-28</span>
+					</div>
+					<div class="post_content">
+						这个toolbar可以在5.0以下用吗?我现在的项目用到了这个toolbar然后现在文件在5.0以下就打不开了.					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb3967"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#goodfb3967" onclick="postBadGood(&#39;goodfb&#39;,3967);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>0 </span>
+							<span class="action-item" id="badfb3967"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#badfb3967" onclick="postBadGood(&#39;badfb&#39;,3967);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>7 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(3967,3967,"quote");"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_3967"></div>
+		</div>
+
+<div id="commetpages"><span>总: 3 页/23 条评论</span> <strong>1</strong> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#commettop" onclick="LoadCommets(2);">2</a> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#commettop" onclick="LoadCommets(3);">3</a> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2006.html#commettop" onclick="LoadCommets(2);">下一页</a> </div>
+</div>
+<!--
+//由于评论载入时使用异步传输，因此必须在最后一步加载（DIGG和评论框须放在评论内容前面）
+//如果一定需要提前的把myajax.SendGet改为myajax.SendGet2，但可能会引起页面阻滞
+-->
+<script language="javascript">
+function LoadCommets(page)
+{
+		var taget_obj = document.getElementById('commetcontent');
+		var waithtml = "<div style='line-height:50px'><img src='/images/loadinglit.gif' />评论加载中...</div>";
+		var myajax = new MyAjax(taget_obj, true, true, '', 'x', waithtml);
+		myajax.SendGet2("/plus/feedback_ajax.php?dopost=getlist&aid=2006&page="+page);
+		DedeXHTTP = null;
+}
+function updatetag(){
+	var tags = $DE("tags").value;
+	var nfeedbacktype = 'feedback';
+	var taget_obj = $DE('tag_response');
+	var myajax = new MyAjax(taget_obj, false, true, '', '', "...");
+	myajax.sendlang = 'gb2312';
+	myajax.AddKeyN('dopost', 'send');
+	myajax.AddKeyN('id', '2006');
+	myajax.AddKeyN('tags', tags);
+	myajax.SendPost2('/action/update_tags.php');	
+}
+function PostComment()
+{
+		var f = document.feedback;
+		var msg = $DE("cm_content").value;
+		var nface = '6';
+		var nfeedbacktype = 'feedback';
+		var nvalidate = '';
+		var nnotuser = '';
+		var nusername = '';
+		var npwd = '';
+		var taget_obj = $DE('commetcontentNew');
+		var waithtml = "<div style='line-height:30px'><img src='/images/loadinglit.gif' />正在发送中...</div>";
+		if(msg=='')
+		{
+			alert("评论内容不能为空！");
+			return;
+		}
+		if(f.validate)
+		{
+			if(f.validate.value=='') {
+				alert("请填写验证码！");
+				return;
+			}
+			else {
+				nvalidate = f.validate.value;
+			}
+		}
+		if(msg.length > 500)
+		{
+			alert("你的评论是不是太长了？请填写500字以内的评论。");
+			return;
+		}
+		if(f.feedbacktype) {
+			for(var i=0; i < f.feedbacktype.length; i++)
+				if(f.feedbacktype[i].checked) nfeedbacktype = f.feedbacktype[i].value;
+		}
+		/*
+		if(f.face) {
+			for(var j=0; j < f.face.length; j++)
+				if(f.face[j].checked) nface = f.face[j].value;
+		}
+		*/
+
+		
+		var myajax = new MyAjax(taget_obj, false, true, '', '', waithtml);
+		myajax.sendlang = 'gb2312';
+		myajax.AddKeyN('dopost', 'send');
+		myajax.AddKeyN('aid', '2006');
+		myajax.AddKeyN('fid', f.fid.value);
+		myajax.AddKeyN('face', nface);
+		myajax.AddKeyN('feedbacktype', nfeedbacktype);
+		myajax.AddKeyN('validate', nvalidate);
+		myajax.AddKeyN('notuser', nnotuser);
+		myajax.AddKeyN('username', nusername);
+		myajax.AddKeyN('pwd', npwd);
+		myajax.AddKeyN('msg', msg);
+		myajax.AddKeyN('arcauthor', f.arcauthor.value);
+
+		myajax.SendPost2('/plus/feedback_ajax.php');
+		//msg = '';
+		CKEDITOR.instances.msg.setData('');
+		//taget_obj.removeAttribute('id');
+		f.fid.value = 0;
+		if(f.validate)
+		{
+			if($DE('validateimg')) $DE('validateimg').src = "/include/vdimgck.php?"+f.validate.value;
+			f.validate.value = '';
+		}
+		
+}
+function quoteCommet(fid)
+{
+	    document.feedback.fid.value = fid;
+}
+  
+function ajaxFeedback(aid, fid, type)
+{
+	var taget_obj = $DE('ajaxfeedback_'+fid);
+	if(taget_obj.innerHTML == '')
+	{
+		var myajax = new MyAjax(taget_obj, true, true, '', 'x');
+		myajax.SendGet2("/plus/feedback.php?aid="+aid+"&fid="+fid+"&action=quote&type=ajax");
+		eval('var result = typeof CKEDITOR.instances.msg_'+fid);
+		if(result != 'undefined')
+		{
+			// 删除实例
+			eval('var edit = CKEDITOR.instances.msg_'+fid);
+			CKEDITOR.remove(edit);
+		}
+		CKEDITOR.replace(document.getElementById('msg_'+fid) , CKEDITOR.instances.msg.config);
+		scroll(0, taget_obj.offsetTop - 120);
+		var formname = 'f = document.ajaxfeedback_'+fid;
+		eval(formname);
+		if(f.validate)
+		{
+			if($DE('vdimg_'+fid)) $DE('vdimg_'+fid).src = "/include/vdimgck.php?"+f.validate.value;
+			f.validate.value = '';
+		}
+		
+		DedeXHTTP = null;
+	}else{
+		taget_obj.innerHTML = '';
+	}
+}
+
+function postBadGood(ftype,fid)
+{
+	var taget_obj = document.getElementById(ftype+fid);
+	var saveid = GetCookie('badgoodid');
+	if(saveid != null)
+	{
+		var saveids = saveid.split(',');
+		var hasid = false;
+		saveid = '';
+		j = 1;
+		for(i=saveids.length-1;i>=0;i--)
+		{
+			if(saveids[i]==fid && hasid) continue;
+			else {
+				if(saveids[i]==fid && !hasid) hasid = true;
+				saveid += (saveid=='' ? saveids[i] : ','+saveids[i]);
+				j++;
+				if(j==10 && hasid) break;
+				if(j==9 && !hasid) break;
+			}
+		}
+		if(hasid) { alert('您刚才已表决过了喔！'); return false;}
+		else saveid += ','+fid;
+		SetCookie('badgoodid',saveid,1);
+	}
+	else
+	{
+		SetCookie('badgoodid',fid,1);
+	}
+	myajax = new MyAjax(taget_obj,false,false,'','','');
+	myajax.SendGet2("/plus/feedback.php?aid="+fid+"&action="+ftype+"&fid="+fid);
+}
+
+function ajaxQuotePost(fid)
+{
+	var formname = 'f = document.ajaxfeedback_'+fid;
+	eval(formname);
+	//var f = document.formname;
+	//var f = f[0];
+	var nvalidate = '';
+	var nnotuser = '';
+	var nusername = '';
+	var npwd = '';
+	var taget_obj = $DE('commetcontentNew');
+	var waithtml = "<div style='line-height:30px'><img src='/images/loadinglit.gif' />正在发送中...</div>";
+	eval('var msg = $DE("msg_'+fid+'").value');
+	if(f.validate)
+	{
+		if(f.validate.value=='') {
+			alert("请填写验证码！");
+			return;
+		}
+		else {
+			nvalidate = f.validate.value;
+		}
+	}
+	var myajax = new MyAjax(taget_obj, false, true, '', '', waithtml);
+	
+
+	
+	myajax.sendlang = 'gb2312';
+	myajax.AddKeyN('dopost', 'send');
+	myajax.AddKeyN('aid', '2006');
+	myajax.AddKeyN('fid', f.fid.value);
+	myajax.AddKeyN('type', 'ajax');
+	myajax.AddKeyN('comtype', f.comtype.value);
+	myajax.AddKeyN('isconfirm','yes');
+	
+	myajax.AddKeyN('typeid', f.typeid.value);
+	myajax.AddKeyN('quotemsg', f.quotemsg.value);
+	myajax.AddKeyN('validate', nvalidate);
+	myajax.AddKeyN('notuser', nnotuser);
+	myajax.AddKeyN('username', nusername);
+	myajax.AddKeyN('pwd', npwd);
+	myajax.AddKeyN('msg', msg);
+	myajax.SendPost2('/plus/feedback_ajax.php');
+	//alert(f.quotemsg.value);
+	if($DE('ajaxfeedback_'+fid).innerHTML != null)
+	{
+		$DE('ajaxfeedback_'+fid).innerHTML = '';
+	}
+	scroll(0, taget_obj.offsetTop);
+}
+LoadCommets(1);
+</script>
+<!-- //评论内容区结束 -->
+
+ 			</div>  
+ 
+                                   
+        </div>  
+        <!-- end  of  content -->
+
+        <div class="col-md-3">  
+ 
+			<div class="sub-title">推荐文章</div>
+			<ul class="sidearticle_c clearfix">                     
+				<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/1217/3782.html" target="_blank">InstaMaterial：正确处理RecyclerView动画</a></li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0629/4397.html" target="_blank">Android一款UI体验好于NumberPicker的自定义控件NumberPickerVie</a></li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0328/4094.html" target="_blank">Android View绘制13问13答</a></li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1121/2029.html" target="_blank">使用ShareActionProvider分享数据</a></li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0506/2841.html" target="_blank">InstaMaterial 概念设计(第八部分) - 拍照功能</a></li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0616/3047.html" target="_blank">你说你看到了沉浸模式，你可能只是见到鬼了</a></li>
+
+			</ul>				 
+		            
+
+			<div class="sub-title">赞助商</div>
+			 
+                                                               
+            <div style="height: 255px;"></div><div id="floatbox" style="top: 0px; position: fixed; width: 263px;">  
+				<script src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/fuckblok(3).php" language="javascript"></script><script async="" src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/adsbygoogle.js"></script>
+<!-- 250x250 -->
+<ins class="adsbygoogle" style="display:inline-block;width:250px;height:250px" data-ad-client="ca-pub-8583773779396897" data-ad-slot="3660827512" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:250px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:250px;background-color:transparent;"><iframe width="250" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:250px;height:250px;"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>	
+         	</div>
+            
+        </div>        
+    
+        <div style="clear:both;"></div>
+	</div> 	
+</div> 
+<script src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/jcodecraeer.js"></script>
+<!-- 返回顶部 -->
+<div id="gotop" style="display: block;"></div>
+
+<script type="text/javascript">
+	backTop=function (btnId){
+		var btn=document.getElementById(btnId);
+		var d=document.documentElement;
+		var b=document.body;
+		window.onscroll=set;
+		btn.onclick=function (){
+			btn.style.display="none";
+			window.onscroll=null;
+			this.timer=setInterval(function(){
+				d.scrollTop-=Math.ceil((d.scrollTop+b.scrollTop)*0.1);
+				b.scrollTop-=Math.ceil((d.scrollTop+b.scrollTop)*0.1);
+				if((d.scrollTop+b.scrollTop)==0) clearInterval(btn.timer,window.onscroll=set);
+			},10);
+		};
+		function set(){
+			btn.style.display=(d.scrollTop+b.scrollTop>100)?'block':"none";
+		}
+	};
+	backTop('gotop');
+	
+	(new SidebarFollow()).init({
+		element: jQuery('#floatbox'),
+		distanceToTop: 0
+	});	
+	
+</script>
+
+
+<!-- 返回顶部END -->
+<style>
+#gotop {
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEMAAAANAgMAAACP9jv8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlMAQObYZgAAAGhJREFUeF49zsEJwCAMBdBvoRfvWaJTOEIPZp+O4lEyZcn/RIl+SMJDAG2gTlfc7+k8H8Pm6cRiuFfjip3RphXUV4ghJIaQjVZQoCfkLDI7C7kgiAuRDK+YvJwLQnBPhovRw7ER5of3DyPbFp8RB9axAAAAAElFTkSuQmCC") no-repeat scroll 18px 21px #000000;
+    bottom: 200px;
+    cursor: pointer;
+    display: block;
+    height: 60px;
+    opacity: 0.5;
+    overflow: hidden;
+    transition: opacity 0.3s ease-in 0s, opacity 0.3s ease-out 0s;
+     right: 10px;
+    position: fixed;
+    top: auto;
+    width: 60px;
+    z-index: 999;
+}
+</style>
+<div class="footer">
+	<div class="container">	
+		<div class="row clearfix">
+			<div class="col-md-12">
+				<div class="copyright z">
+					<p>Copyright  2011 - 2016 jcodecraeer.com All Rights Reversed.</p>
+					<p>蜀ICP备12021840号-1</p>
+					<p>本站文章用于学习交流</p>
+				</div>
+				<div class="footer-nav y">
+					<ul class="clearfix">
+						<li><script src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/fuckblok(4).php" language="javascript"></script>本站CDN／存储服务由又拍云<a href="https://console.upyun.com/register/?invite=H1NEyK4L-&utm_source=Referral&utm_medium=jcode&utm_content=dex"><img src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/又拍云 LOGO (1).png" width="150"></a>提供</li>
+					</ul>					
+					<ul class="clearfix">
+						<li><a href="http://weibo.com/u/2711441293" target="_blank">新浪微博</a></li>
+						<li>qq群一161644793</li>
+						<li>qq群二98711210</li> 
+					</ul>
+					<ul class="clearfix">
+						<li><a href="http://www.jcodecraeer.com/sitemap/" target="_blank">网站地图</a></li>	
+						<li>				
+						<script type="text/javascript">
+						var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+						document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F2f2ac530df20294f718580cea710780e' type='text/javascript'%3E%3C/script%3E"));
+						</script><script src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/h.js" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=2f2ac530df20294f718580cea710780e" target="_blank">网站统计</a> 
+						</li>	 
+					</ul>			
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>
+
+<script src="./android：ToolBar详解（手把手教程） - 泡在网上的日子_files/prettify.js"></script>
+
+
+</body></html>

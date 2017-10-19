@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://www.cnblogs.com/why168888/p/5592017.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园_files/bundle-CodingLife.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园_files/bundle-CodingLife-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/why168888/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/why168888/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/why168888/wlwmanifest.xml">
+<script async="" src="./使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园_files/analytics.js"></script><script type="text/javascript" src="./使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园_files/encoder.js"></script><script async="" src="./使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园_files/analytics.js"></script><script src="./使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'why168888', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/why168888/"><img id="blogLogo" src="./使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/why168888/">Edwin</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/why168888/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/Edwin05">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/why168888/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/why168888/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 96&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 7</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/why168888/p/5592017.html">使用AndroidStudio进行NDK开发简单配置</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><h2><span style="font-family: tahoma, arial, helvetica, sans-serif;">1. 准备工作</span></h2>
+<p><span style="font-family: tahoma, arial, helvetica, sans-serif;">在实际写代码之前，首先我们还是需要做一些准备工作：</span></p>
+<ol>
+<li><span style="font-family: tahoma, arial, helvetica, sans-serif;">下载<span class="post-tags">NDK开发包：<span style="color: #ff0000;"><a title="Android NDK | Android Developers" href="http://developer.android.com/tools/sdk/ndk/index.html" target="_blank"><span style="color: #ff0000;">Android官方下载页面</span></a></span></span></span></li>
+<li><span style="font-family: tahoma, arial, helvetica, sans-serif;">配置系统环境变量</span></li>
+</ol>
+<p><span style="font-family: tahoma, arial, helvetica, sans-serif;">下载好<span class="post-tags">NDK开发包之后，直接解压到任意目录，然后需要配置一下系统环境变量，之所以要配置环境变量，是为了方便使用命令<span class="post-tags">ndk-build脚本进行<span class="post-tags">NDK编译。配置参考如下：</span></span></span></span></p>
+<ul>
+<li><span style="font-family: tahoma, arial, helvetica, sans-serif;">Windows系统配置</span>
+<ul>
+<li>
+<p>环境变量 PATH 下追加 ：D:\ProgramFile\android-ndk-r11c-windows-x86_64;</p>
+</li>
+</ul>
+</li>
+<li><span style="font-family: tahoma, arial, helvetica, sans-serif;">MacOS系统配置</span>
+<ul>
+<li>
+<p>在mac系统下打开终端，输入：<br>&gt;touch .bash_profile<br>&gt;open -e .bash_profile<br>这样会弹出一个“.bash_profile”文件.</p>
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p>export ANDROID_HOME=/Users/edwin/Library/Android/sdk/<br>export PATH=${PATH}:${ANDROID_HOME}ndk-bundle</p>
+
+
+
+
+
+
+</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+</li>
+
+
+
+
+
+
+
+
+</ul>
+<h2><span style="font-family: tahoma, arial, helvetica, sans-serif;">2. 项目配置</span></h2>
+<p><span style="font-family: tahoma, arial, helvetica, sans-serif;">使用<span style="color: #ff00ff;">AndroidStudio</span>开发前我们也要做点额外工作，我们需要在项目根目录下<span style="color: #ff00ff;">local.properties</span>中添加编译<span style="color: #ff00ff;">NDK</span>的路径：<span style="background-color: #fff6ee;">ndk.dir=/Users/liangqi/android-ndk</span></span></p>
+<ul>
+<li><span style="font-family: tahoma, arial, helvetica, sans-serif; font-size: 16px;">创建Android.mk</span>
+<ul>
+<li><span style="font-family: tahoma, arial, helvetica, sans-serif; font-size: 16px;"><span style="font-family: tahoma, arial, helvetica, sans-serif; font-size: 16px;">　　</span></span>
+<p>Android.mk文件用来指定源码编译的配置信息，例如工作目录，编译模块的名称，参与编译的文件等，大致内容如下：</p>
+<div class="cnblogs_code">
+<pre><span style="font-size: 14px;">LOCAL_PATH := $(call my-dir)
+include $(CLEAR_VARS)
+LOCAL_MODULE := hello_jni
+LOCAL_SRC_FILES := hello_jni.c
+include $(BUILD_SHARED_LIBRARY)</span></pre>
+</div>
+<ol>
+<li>LOCAL_PATH：设置工作目录，而my-dir则会返回Android.mk文件所在的目录。</li>
+<li>CLEAR——VARS：清除几乎所有以LOCAL——PATH开头的变量（不包括LOCAL_PATH）。</li>
+<li>LOCAL_MODULE：用来设置模块的名称。</li>
+<li>LOCAL_SRC_FILES：用来指定参与模块编译的C/C++源文件名。</li>
+<li>BUILD_SHARED_LIBRARY：作用是指定生成的静态库或者共享库在运行时依赖的共享库模块列表。</li>
+</ol></li>
+</ul>
+</li>
+<li><span style="font-family: tahoma, arial, helvetica, sans-serif; font-size: 16px;">创建Application.mk</span>
+<ul>
+<li><span style="font-family: tahoma, arial, helvetica, sans-serif; font-size: 16px;"><span style="font-family: tahoma, arial, helvetica, sans-serif; font-size: 16px;">　　</span></span>
+<p>这个文件用来配置编译平台相关内容，我们最常用的估计只是APP_ABI字段，它用来指定我们需要基于哪些CPU架构的.so文件，当然你可以配置多个平台：</p>
+<div class="cnblogs_code">
+<pre>APP_ABI := armeabi armeabi-v7a x86 mips</pre>
+</div>
+<p>&nbsp;</p>
+</li>
+</ul>
+</li>
+<li><span style="font-family: tahoma, arial, helvetica, sans-serif; font-size: 16px;">使用gradle脚本</span>
+<ul>
+<li><span style="font-family: tahoma, arial, helvetica, sans-serif; font-size: 16px;"><span style="font-family: tahoma, arial, helvetica, sans-serif; font-size: 16px;">　　</span></span>
+<p>当然该机器做的事我们还是尽量让机器来做，因此，接下来我打算使用build.gradle来添加一些配置，让Gradle自动帮我完成编译工作，这简直就是爽歪歪啦！</p>
+<p>使用gradle,你再也不用手动添加Android.mk和Application.mk文件，一切在build.gradle文件中就都能搞定，在这里我们直接贴出build.gradle中ndk相关的配置：</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 14px;">android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.edwin.xxxx"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        ndk{
+            moduleName "forkApp" <span style="color: #008000;">//生成的so名字</span>
+            ldLibs "log" <span style="color: #008000;">//Log打印</span>
+            abiFilters "armeabi", "armeabi-v7a", "x86"    <span style="color: #008000;">//输出指定三种abi体系结构下的so库。目前可有可无。</span>
+        }
+        ..................... 
+        .....................
+        .....................
+    }
+}  </span> &nbsp;</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+</li>
+</ul>
+</li>
+</ul>
+<p><span style="font-family: tahoma, arial, helvetica, sans-serif;">&nbsp;</span></p>
+<h2><span style="font-family: tahoma, arial, helvetica, sans-serif;">3. 补充一些Android调用C代码的东西（举例说明）</span></h2>
+<p><span style="font-family: tahoma, arial, helvetica, sans-serif; color: #ff00ff;">干货！干货！干货！</span></p>
+<p><span style="font-size: 16px; font-family: tahoma, arial, helvetica, sans-serif;">监听APP是否被卸载，遗憾的是此方法在API19以后才能使用，哎！</span></p>
+<p><span style="font-family: tahoma, arial, helvetica, sans-serif;"><span style="font-size: 16px; line-height: 24px;">这段代码的原理你需要了解一下fork炸弹（fork bomb）</span></span></p>
+<ol>
+<li><span style="font-family: tahoma, arial, helvetica, sans-serif;"><span style="font-size: 16px; line-height: 24px;">在计算机领域中是一种利用系统调用fork（或其他等效的方式）进行的服务阻断攻击；</span></span></li>
+<li><span style="font-family: tahoma, arial, helvetica, sans-serif;"><span style="font-size: 16px; line-height: 24px;">与病毒与蠕虫不同的是，fork炸弹没有传染性，而且fork炸弹会使有进程/程序限制的系统无法开起新工作阶段，对于不限制进程数的系统则使之停止回应；</span></span></li>
+<li><span style="font-family: tahoma, arial, helvetica, sans-serif;"><span style="font-size: 16px; line-height: 24px;">以fork炸弹为代表的自我复制程序有时亦被称为wabbit。</span></span></li>
+</ol>
+<p><span style="font-family: tahoma, arial, helvetica, sans-serif;">&nbsp;</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="font-family: tahoma, arial, helvetica, sans-serif;">#include &lt;jni.h&gt;<span style="color: #000000;">
+#include </span>&lt;stdio.h&gt;<span style="color: #000000;">
+#include </span>&lt;unistd.h&gt;<span style="color: #000000;">
+#include </span>&lt;android/log.h&gt;
+
+<span style="color: #0000ff;">#define</span> LOG_TAG "Edwin" 
+<span style="color: #0000ff;">#define</span> LOGD(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)<span style="color: #000000;">
+
+JNIEXPORT </span><span style="color: #0000ff;">void</span><span style="color: #000000;"> JNICALL
+
+</span><span style="color: #008000;">/*</span><span style="color: #008000;">*
+ * 监听软件是否被卸载
+ * 1.弹出浏览器;
+ * 2.或者删除SD卡数据.  这个目录APP卸载系统不会自动删除/storage/sdcard/自定义名称文件夹/
+ *
+ </span><span style="color: #008000;">*/</span><span style="color: #000000;">
+Java_com_edwin_uninstallapp_MainActivity_uninstallListener(JNIEnv </span>*<span style="color: #000000;">env, jobject instance) {
+    </span><span style="color: #0000ff;">int</span> code =<span style="color: #000000;"> fork();
+    </span><span style="color: #0000ff;">if</span> (code &gt; <span style="color: #800080;">0</span><span style="color: #000000;">) {
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">父进程</span>
+        LOGD(<span style="color: #800000;">"</span><span style="color: #800000;">parent--&gt;code=%d\n</span><span style="color: #800000;">"</span><span style="color: #000000;">, code);
+    } </span><span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span> (code == <span style="color: #800080;">0</span><span style="color: #000000;">) {
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">子进程</span>
+        LOGD(<span style="color: #800000;">"</span><span style="color: #800000;">children--&gt;code=%d\n</span><span style="color: #800000;">"</span><span style="color: #000000;">, code);
+        </span><span style="color: #0000ff;">int</span> stop = <span style="color: #800080;">1</span><span style="color: #000000;">;
+
+        </span><span style="color: #0000ff;">while</span><span style="color: #000000;"> (stop) {
+            </span><span style="color: #008000;">//</span><span style="color: #008000;">每隔1秒钟判断应用目录是否存在</span>
+            sleep(<span style="color: #800080;">1</span><span style="color: #000000;">);
+            FILE </span>*file = fopen(<span style="color: #800000;">"</span><span style="color: #800000;">/data/data/com.edwin.uninstallapp</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">r</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+            </span><span style="color: #0000ff;">if</span> (file ==<span style="color: #000000;"> NULL) {
+
+                LOGD(</span><span style="color: #800000;">"</span><span style="color: #800000;">uninstall--&gt;code=%d\n</span><span style="color: #800000;">"</span><span style="color: #000000;">, code);
+                </span><span style="color: #008000;">//</span><span style="color: #008000;">TODO 通过Linux命令启动浏览器问卷调查...删除文件等等操作</span>
+                execlp(<span style="color: #800000;">"</span><span style="color: #800000;">am</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">am</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">start</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">-a</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">android.intent.action.VIEW</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">-d</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+                       </span><span style="color: #800000;">"</span><span style="color: #800000;">http://wuhaoyou.com/wp/</span><span style="color: #800000;">"</span><span style="color: #000000;">, NULL);
+                stop </span>= <span style="color: #800080;">0</span><span style="color: #000000;">;</span><span style="color: #000000;">
+            }
+        }
+    } </span><span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">其它</span>
+        LOGD(<span style="color: #800000;">"</span><span style="color: #800000;">error--&gt;code=%d\n</span><span style="color: #800000;">"</span><span style="color: #000000;">, code);
+    }
+
+}</span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-family: tahoma, arial, helvetica, sans-serif;">&nbsp;</span></p>
+<p><span style="font-family: tahoma, arial, helvetica, sans-serif;">&nbsp;</span></p>
+<p><span style="font-family: tahoma, arial, helvetica, sans-serif;">&nbsp;</span></p></div><div id="MySignature" style="display: block;">磨刀不误砍柴工</div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/why168888/category/735363.html" target="_blank">Android</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5592017,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;c373d63b-c870-e411-b908-9dcfd8948a71&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/why168888/" target="_blank"><img src="./使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园_files/20160520140954.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/why168888/">Edwin05</a><br>
+            <a href="http://home.cnblogs.com/u/why168888/followees">关注 - 7</a><br>
+            <a href="http://home.cnblogs.com/u/why168888/followers">粉丝 - 9</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;c373d63b-c870-e411-b908-9dcfd8948a71&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5592017,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">2</span>
+    </div>
+    <div class="buryit" onclick="votePost(5592017,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/why168888/p/5590902.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/why168888/p/5590902.html" title="发布于2016-06-16 14:30">Android Frameworks层介绍</a><br><a href="http://www.cnblogs.com/why168888/p/5597214.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/why168888/p/5597214.html" title="发布于2016-06-19 22:53">Android AsyncTask 源码解析</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-06-16 20:22</span> <a href="http://www.cnblogs.com/why168888/">Edwin05</a> 阅读(<span id="post_view_count">12168</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5592017" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/why168888/p/5592017.html#" onclick="AddToWz(5592017);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=205738,cb_entryId=5592017,cb_blogApp=currentBlogApp,cb_blogUserGuid='c373d63b-c870-e411-b908-9dcfd8948a71',cb_entryCreatedDate='2016/6/16 20:22:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/why168888/p/5592017.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/why168888/p/5592017.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://www.jiguang.cn/devservice?bky" target="_blank">【推荐】极光开发者服务平台，五大功能一站集齐</a><br><a href="https://dnspod.cloud.tencent.com/act/seckill?fromSource=gwzcw.410370.410370.410370" target="_blank">【推荐】腾讯云域名+云解析 限时折扣抓紧抢购</a><br><a href="http://click.aliyun.com/m/18488/" target="_blank">【推荐】阿里云“全民云计算”优惠升级</a><br><a href="https://cloud.tencent.com/developer/labs?fromSource=gwzcw.330910.330910.330910" target="_blank">【推荐】一小时搭建人工智能应用，让技术更容易入门</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://cn.udacity.com/mlnd/?utm_source=cnblogs&amp;utm_medium=banner&amp;utm_campaign=MLND06" target="_blank"><img width="300" height="250" src="./使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园_files/24442-20170816053533459-1918329004.png" alt="Udacity08.15 - 08.22"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/576750/" target="_blank">20TB 5330元！西数发布史上最大容量外置硬盘</a><br> ·  <a href="http://news.cnblogs.com/n/576749/" target="_blank">299元！魅蓝EP52运动蓝牙耳机发布：8小时持久/防汗</a><br> ·  <a href="http://news.cnblogs.com/n/576748/" target="_blank">网易云音乐再被腾讯起诉 涉侵权200多首华语歌曲</a><br> ·  <a href="http://news.cnblogs.com/n/576747/" target="_blank">专访微软全球执行副总裁沈向洋：人工智能靠IQ和EQ</a><br> ·  <a href="http://news.cnblogs.com/n/576744/" target="_blank">前程序员因操纵彩票中奖号码被判25年徒刑</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice?source=bky&amp;hmsr=%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank"><img width="468" height="60" src="./使用AndroidStudio进行NDK开发简单配置 - Edwin05 - 博客园_files/24442-20170727100914671-839522651.gif" alt="极光0801"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/575829/" target="_blank">做到这一点，你也可以成为优秀的程序员</a><br> ·  <a href="http://kb.cnblogs.com/page/566880/" target="_blank">写给立志做码农的大学生</a><br> ·  <a href="http://kb.cnblogs.com/page/569057/" target="_blank">架构腐化之谜</a><br> ·  <a href="http://kb.cnblogs.com/page/572854/" target="_blank">学会思考，而不只是编程</a><br> ·  <a href="http://kb.cnblogs.com/page/574767/" target="_blank">编写Shell脚本的最佳实践</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news">GitHub:<a href="https://github.com/why168">https://github.com/why168</a><br>
+博客迁移:<a href="https://why168.github.io/">https://why168.github.io/</a><br>
+Android技术交流大群：554610222<br><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/why168888/">Edwin05</a><br>园龄：<a href="http://home.cnblogs.com/u/why168888/" title="入园时间：2014-11-20">2年9个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/why168888/followers/">9</a><br>关注：<a href="http://home.cnblogs.com/u/why168888/followees/">7</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;c373d63b-c870-e411-b908-9dcfd8948a71&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/07/01&#39;);return false;">&lt;</a></td><td align="center">2017年8月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/09/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td class="CalWeekendDay" align="center">5</td></tr><tr><td class="CalWeekendDay" align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td class="CalWeekendDay" align="center">12</td></tr><tr><td class="CalWeekendDay" align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td class="CalWeekendDay" align="center">19</td></tr><tr><td class="CalWeekendDay" align="center">20</td><td align="center">21</td><td align="center">22</td><td class="CalTodayDay" align="center">23</td><td align="center">24</td><td align="center">25</td><td class="CalWeekendDay" align="center">26</td></tr><tr><td class="CalWeekendDay" align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td></tr><tr><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/why168888/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/why168888/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/why168888/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/why168888/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/why168888/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/why168888/category/735363.html">Android(30)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/why168888/category/658373.html">C#(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/why168888/category/658375.html">C语言(18)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/why168888/category/735364.html">IOS</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/why168888/category/658371.html">JAVA(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/why168888/category/659117.html">Javascript</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/why168888/category/895368.html">Linux(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/why168888/category/893428.html">PHP(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/why168888/category/869624.html">Python(19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/why168888/category/658374.html">SQL(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/why168888/category/658372.html">Xcode(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/why168888/category/658377.html">其他(5)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/why168888/archive/2017/04.html">2017年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/why168888/archive/2017/03.html">2017年3月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/why168888/archive/2017/02.html">2017年2月 (22)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/why168888/archive/2017/01.html">2017年1月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/why168888/archive/2016/12.html">2016年12月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/why168888/archive/2016/11.html">2016年11月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/why168888/archive/2016/10.html">2016年10月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/why168888/archive/2016/09.html">2016年9月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/why168888/archive/2016/08.html">2016年8月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/why168888/archive/2016/07.html">2016年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/why168888/archive/2016/06.html">2016年6月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/why168888/archive/2016/05.html">2016年5月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/why168888/archive/2015/03.html">2015年3月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/why168888/archive/2015/02.html">2015年2月 (25)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/why168888/archive/2014/11.html">2014年11月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	25243
+	</li>
+	<li class="liRank">
+		排名 -	12642
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/why168888/p/6270772.html#3602517">1. Re:JAVA 代码开发规范</a></li>
+        <li class="recent_comment_body">@王小波的博客引用顶...</li>
+        <li class="recent_comment_author">--TEL瑞少</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/why168888/p/6270772.html#3601284">2. Re:JAVA 代码开发规范</a></li>
+        <li class="recent_comment_body">顶</li>
+        <li class="recent_comment_author">--王小波的博客</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/why168888/p/6085264.html#3561391">3. Re:【转载】不是人人都懂的学习要点</a></li>
+        <li class="recent_comment_body">hao !</li>
+        <li class="recent_comment_author">--王景颐</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/why168888/p/6057280.html#3556601">4. Re:不同JDK下执行相同的代码</a></li>
+        <li class="recent_comment_body">没有main方法..你执行个毛线啊...</li>
+        <li class="recent_comment_author">--码魂</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/why168888/p/5951304.html#3529645">5. Re:Mac版PhpStorm之XAMPP整合apache服务器配置</a></li>
+        <li class="recent_comment_body">@骑着小猪来编程环境问题吧，我的没有502问题。...</li>
+        <li class="recent_comment_author">--Edwin05</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/why168888/p/5925756.html">1. Android Gradle Build Error:Some file crunching failed, see logs for details解决办法(21705)</a></li><li><a href="http://www.cnblogs.com/why168888/p/5592017.html">2. 使用AndroidStudio进行NDK开发简单配置(12169)</a></li><li><a href="http://www.cnblogs.com/why168888/p/5978381.html">3. Android Studio 运行出现 Error:Execution failed for task ':app:transformResourcesWithMergeJavaResForDebug'.(4442)</a></li><li><a href="http://www.cnblogs.com/why168888/p/5648993.html">4. Android App监听软键盘按键的三种方式与改变软键盘右下角确定键样式(4162)</a></li><li><a href="http://www.cnblogs.com/why168888/p/5729485.html">5. Android Studio 打包签名发布New Key Store(3843)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/why168888/p/5951304.html">1. Mac版PhpStorm之XAMPP整合apache服务器配置(2)</a></li><li><a href="http://www.cnblogs.com/why168888/p/6270772.html">2. JAVA 代码开发规范(2)</a></li><li><a href="http://www.cnblogs.com/why168888/p/6085264.html">3. 【转载】不是人人都懂的学习要点(1)</a></li><li><a href="http://www.cnblogs.com/why168888/p/6057280.html">4. 不同JDK下执行相同的代码(1)</a></li><li><a href="http://www.cnblogs.com/why168888/p/5506764.html">5. Android draw9patch 图片制作与使用(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/why168888/p/5925756.html">1. Android Gradle Build Error:Some file crunching failed, see logs for details解决办法(4)</a></li><li><a href="http://www.cnblogs.com/why168888/p/6057334.html">2. 【转载】10 个实用技巧，让 Finder 带你飞(2)</a></li><li><a href="http://www.cnblogs.com/why168888/p/5648993.html">3. Android App监听软键盘按键的三种方式与改变软键盘右下角确定键样式(2)</a></li><li><a href="http://www.cnblogs.com/why168888/p/5592017.html">4. 使用AndroidStudio进行NDK开发简单配置(2)</a></li><li><a href="http://www.cnblogs.com/why168888/p/5512704.html">5. Android Activity生命周期详讲(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 Edwin05
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<!--Google 统计-->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92521574-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!--PageEndHtml Block End-->
+
+
+</body></html>

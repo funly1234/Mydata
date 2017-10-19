@@ -1,0 +1,1 @@
+Android Studio创建的Android项目一般需要忽略.idea文件夹、.gradle文件夹、所有的build文件夹、所有的.iml文件及local.properties文件。

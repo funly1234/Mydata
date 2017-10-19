@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://www.cnblogs.com/songmeng/p/4389446.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./SVN在Android Studio中的配置 - AndroidSolo - 博客园_files/4389446"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SVN在Android Studio中的配置 - AndroidSolo - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./SVN在Android Studio中的配置 - AndroidSolo - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./SVN在Android Studio中的配置 - AndroidSolo - 博客园_files/bundle-AnotherEon001.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./SVN在Android Studio中的配置 - AndroidSolo - 博客园_files/bundle-AnotherEon001-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/songmeng/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/songmeng/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/songmeng/wlwmanifest.xml">
+<script async="" src="./SVN在Android Studio中的配置 - AndroidSolo - 博客园_files/analytics.js"></script><script src="./SVN在Android Studio中的配置 - AndroidSolo - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'songmeng', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./SVN在Android Studio中的配置 - AndroidSolo - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<div id="wrapper">
+<div id="header">
+
+<div id="top">
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/songmeng/">山有木兮</a></h1>
+<div id="subtitle">山有木兮木有枝</div>
+</div>
+<div id="sub"><div id="blog_stats">
+<div class="BlogStats">随笔 - 16, 文章 - 14, 评论 - 12, 引用 - 0</div>
+</div></div>
+
+
+
+</div>
+<div id="main_container">
+<div id="main_content">
+<div id="content">
+	
+<div id="post_detail">
+	<div class="post">
+		<h2>
+			<a id="cb_post_title_url" href="http://www.cnblogs.com/songmeng/p/4389446.html">SVN在Android Studio中的配置</a>
+		</h2>
+		<div class="postbody">
+		<div id="cnblogs_post_body"><p>&nbsp;</p>
+<p id="ArticleBox">&nbsp; &nbsp; &nbsp; 在AndroidStudio中开发版本控制，除了Git就是SVN，和Eclipse不同Android Studio没有提供单独的插件，只能和SVN客户端关联使用，和Eclipse安装有很大区别，下面介绍个在AndroidStudio中SVN的安装和配置方法。</p>
+<h3>一、SVN的安装</h3>
+<p>&nbsp; &nbsp; &nbsp; Eclipse都是直接安装插件就可以了，AndroidStudio不行，只能通过关联SVN客户端，需要特别注意的是安装SVN时必须安装command line 功能，只有安装带有 command line 功能的 SVN 客户端，AndroidStudio才能使用。安装SVN时需要用户自定义选择 command line ，默认是不会自动安装的，如下图：</p>
+<p><img src="./SVN在Android Studio中的配置 - AndroidSolo - 博客园_files/031041327955765.jpg" alt=""></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;需要选择安装&nbsp;command line &nbsp;功能</p>
+<p><img src="./SVN在Android Studio中的配置 - AndroidSolo - 博客园_files/031041565922461.jpg" alt=""></p>
+<h3>二、AndroidStudio中的配置</h3>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; SVN安装完成后，打开 AndroidStudio &nbsp;中的 setting 配置面板，找到Version Control--》SubVersion如下图：</p>
+<p><img src="./SVN在Android Studio中的配置 - AndroidSolo - 博客园_files/031047347326224.jpg" alt="" style="width: 609px;"></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;配置SVN的路径，Use Command Line Client 选择浏览到你本地安装 TortoiseSVN 的 svn.exe 文件路径，如下图：</p>
+<p><img src="./SVN在Android Studio中的配置 - AndroidSolo - 博客园_files/031049356077662.jpg" alt="" style="width: 609px;"></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;需要注意输入框最右侧有个浏览的按钮，有可能显示不出来</p>
+<p><img src="./SVN在Android Studio中的配置 - AndroidSolo - 博客园_files/031052284518391.jpg" alt="" style="width: 609px;"><img src="./SVN在Android Studio中的配置 - AndroidSolo - 博客园_files/031052418109109.jpg" alt="" style="width: 609px;"></p>
+<p>&nbsp;</p>
+<h3>三、 SubVersion的简单使用</h3>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 顶部菜单中 CVS项中有个 Import into Version Control，点击就可以使用SVN了</p>
+<p><img src="./SVN在Android Studio中的配置 - AndroidSolo - 博客园_files/031056442952831.jpg" alt="" style="width: 609px;"></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/songmeng/category/595325.html" target="_blank">开发环境与工具相关</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(4389446,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;b42e89b8-4160-e211-aa8f-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./SVN在Android Studio中的配置 - AndroidSolo - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./SVN在Android Studio中的配置 - AndroidSolo - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/songmeng/" target="_blank"><img src="./SVN在Android Studio中的配置 - AndroidSolo - 博客园_files/20130423142055.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/songmeng/">AndroidSolo</a><br>
+            <a href="http://home.cnblogs.com/u/songmeng/followees">关注 - 3</a><br>
+            <a href="http://home.cnblogs.com/u/songmeng/followers">粉丝 - 5</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;b42e89b8-4160-e211-aa8f-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(4389446,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">1</span>
+    </div>
+    <div class="buryit" onclick="votePost(4389446,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/songmeng/p/4271791.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/songmeng/p/4271791.html" title="发布于2015-02-04 10:45">Android静态变量使用陷阱</a><br><a href="http://www.cnblogs.com/songmeng/p/4606961.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/songmeng/p/4606961.html" title="发布于2015-06-29 10:43">ViewPager顶部标题控件PagerSlidingTabStrip</a><br></div>
+</div>
+
+
+		</div>
+		<p class="postfoot">
+			posted on <span id="post-date">2015-04-03 10:59</span> <a href="http://www.cnblogs.com/songmeng/">AndroidSolo</a> 阅读(<span id="post_view_count">40867</span>) 评论(<span id="post_comment_count">2</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=4389446" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/songmeng/p/4389446.html#" onclick="AddToWz(4389446);return false;">收藏</a>
+		</p>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=148948,cb_entryId=4389446,cb_blogApp=currentBlogApp,cb_blogUserGuid='b42e89b8-4160-e211-aa8f-842b2b196315',cb_entryCreatedDate='2015/4/3 10:59:00';loadViewCount(cb_entryId);</script>
+	
+	</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<a name="评论"></a>
+<div id="comments">
+<h3>评论</h3>
+	
+	
+			<div class="post">
+				<h2>
+					<a href="http://www.cnblogs.com/songmeng/p/4389446.html#3606126" class="layer">#1楼</a><a name="3606126" id="comment_anchor_3606126"></a>
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</h2>
+				<div id="comment_body_3606126" class="blog_comment_body">用到了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3606126,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3606126,&#39;Bury&#39;,this)">反对(0)</a></div>
+				<div class="postfoot">
+					 <span class="comment_date">2017-01-18 16:03</span> | <a id="a_comment_author_3606126" href="http://www.cnblogs.com/daxin/" target="_blank">大新博客</a> <a href="http://msg.cnblogs.com/send/%E5%A4%A7%E6%96%B0%E5%8D%9A%E5%AE%A2" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+				</div>
+			</div>
+		
+			<div class="post">
+				<h2>
+					<a href="http://www.cnblogs.com/songmeng/p/4389446.html#3670229" class="layer">#2楼</a><a name="3670229" id="comment_anchor_3670229"></a><span id="comment-maxId" style="display:none;">3670229</span><span id="comment-maxDate" style="display:none;">2017/4/17 16:49:19</span>
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</h2>
+				<div id="comment_body_3670229" class="blog_comment_body">厉害了，我这就是因为没有安装command line</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3670229,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3670229,&#39;Bury&#39;,this)">反对(0)</a></div>
+				<div class="postfoot">
+					 <span class="comment_date">2017-04-17 16:49</span> | <a id="a_comment_author_3670229" href="http://home.cnblogs.com/u/1148512/" target="_blank">YouCii</a> <a href="http://msg.cnblogs.com/send/YouCii" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+				</div>
+			</div>
+		
+</div>
+<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/songmeng/p/4389446.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/songmeng/p/4389446.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/576240/" target="_blank">新方法可高效实现活体组织3D打印</a><br> ·  <a href="http://news.cnblogs.com/n/576239/" target="_blank">京东和苏宁，约架回到了线下</a><br> ·  <a href="http://news.cnblogs.com/n/576238/" target="_blank">百度、阿里巴巴、腾讯、京东将认购90亿股联通A股</a><br> ·  <a href="http://news.cnblogs.com/n/576237/" target="_blank">索尼Xperia XZ1真机上手</a><br> ·  <a href="http://news.cnblogs.com/n/576234/" target="_blank">摩拜“扫码开锁”涉嫌侵权案开庭 当庭上演“解码风云”</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/575829/" target="_blank">做到这一点，你也可以成为优秀的程序员</a><br> ·  <a href="http://kb.cnblogs.com/page/566880/" target="_blank">写给立志做码农的大学生</a><br> ·  <a href="http://kb.cnblogs.com/page/569057/" target="_blank">架构腐化之谜</a><br> ·  <a href="http://kb.cnblogs.com/page/572854/" target="_blank">学会思考，而不只是编程</a><br> ·  <a href="http://kb.cnblogs.com/page/574767/" target="_blank">编写Shell脚本的最佳实践</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+</div>
+</div>
+<div id="leftmenu">
+
+
+<h3>导航</h3>
+<ul>
+<li>
+<a id="blog_nav_sitehome" href="http://www.cnblogs.com/">博客园</a></li>
+<li>
+<a id="blog_nav_myhome" class="two_words" href="http://www.cnblogs.com/songmeng/">首页</a></li>
+<li>
+<a id="blog_nav_newpost" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li>
+</li>
+<li>
+<a id="blog_nav_rss" class="two_words" href="http://www.cnblogs.com/songmeng/rss">订阅</a>
+<a id="blog_nav_rss_image" href="http://www.cnblogs.com/songmeng/rss"><img src="./SVN在Android Studio中的配置 - AndroidSolo - 博客园_files/xml.gif" alt="订阅"></a>
+</li>
+<li>
+<a id="blog_nav_admin" class="two_words" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+
+<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+<meta name="vs_showGrid" content="False">
+
+<h3>公告</h3>
+<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/songmeng/">AndroidSolo</a><br>园龄：<a href="http://home.cnblogs.com/u/songmeng/" title="入园时间：2013-01-17">4年6个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/songmeng/followers/">5</a><br>关注：<a href="http://home.cnblogs.com/u/songmeng/followees/">3</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;b42e89b8-4160-e211-aa8f-842b2b196315&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+
+<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/songmeng/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/songmeng/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/songmeng/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/songmeng/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/songmeng/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<h3 class="catListTitle">我的标签</h3>
+<div id="MyTag">
+<ul>
+<li><a href="http://www.cnblogs.com/songmeng/tag/adt/">adt</a>(1)</li><li><a href="http://www.cnblogs.com/songmeng/tag/android/">android</a>(1)</li><li><a href="http://www.cnblogs.com/songmeng/tag/android%E5%BC%80%E5%8F%91/">android开发</a>(1)</li><li><a href="http://www.cnblogs.com/songmeng/tag/android%E5%BA%93/">android库</a>(1)</li><li><a href="http://www.cnblogs.com/songmeng/tag/android%E6%A1%86%E6%9E%B6/">android框架</a>(1)</li><li><a href="http://www.cnblogs.com/songmeng/tag/DDMS%20files%20not%20found%3A%20tools%5Chprof-conv.exe/">DDMS files not found: tools\hprof-conv.exe</a>(1)</li><li><a href="http://www.cnblogs.com/songmeng/tag/PagerSlidingTabStrip/">PagerSlidingTabStrip</a>(1)</li><li><a href="http://www.cnblogs.com/songmeng/tag/SDK/">SDK</a>(1)</li><li><a href="http://www.cnblogs.com/songmeng/tag/sqlite/">sqlite</a>(1)</li><li><a href="http://www.cnblogs.com/songmeng/tag/svn/">svn</a>(1)</li><li><a href="http://www.cnblogs.com/songmeng/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+		<h3>随笔分类</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/songmeng/category/478600.html">Android技术相关(11)</a></li>
+			
+				<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/songmeng/category/595325.html">开发环境与工具相关(5)</a></li>
+			
+				<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/songmeng/category/596019.html">随记</a></li>
+			
+				</ul>
+			
+	
+		<h3>随笔档案</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/songmeng/archive/2015/06.html">2015年6月 (1)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/songmeng/archive/2015/04.html">2015年4月 (1)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/songmeng/archive/2015/02.html">2015年2月 (1)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/songmeng/archive/2014/11.html">2014年11月 (1)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/songmeng/archive/2014/10.html">2014年10月 (2)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/songmeng/archive/2014/09.html">2014年9月 (1)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/songmeng/archive/2014/07.html">2014年7月 (4)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/songmeng/archive/2014/06.html">2014年6月 (2)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/songmeng/archive/2014/04.html">2014年4月 (1)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/songmeng/archive/2013/09.html">2013年9月 (1)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/songmeng/archive/2013/05.html">2013年5月 (1)</a></li>
+			
+				</ul>
+			
+	
+		<h3>文章分类</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/songmeng/category/487302.html">Android开发(2)</a></li>
+			
+				<li><a id="CatList_LinkList_2_Link_1" href="http://www.cnblogs.com/songmeng/category/606390.html">JavaWeb相关(6)</a></li>
+			
+				</ul>
+			
+	
+		<h3>文章档案</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_3_Link_0" href="http://www.cnblogs.com/songmeng/archives/2014/11.html" rel="nofollow">2014年11月 (3)</a></li>
+			
+				<li><a id="CatList_LinkList_3_Link_1" href="http://www.cnblogs.com/songmeng/archives/2014/09.html" rel="nofollow">2014年9月 (2)</a></li>
+			
+				<li><a id="CatList_LinkList_3_Link_2" href="http://www.cnblogs.com/songmeng/archives/2014/08.html" rel="nofollow">2014年8月 (3)</a></li>
+			
+				<li><a id="CatList_LinkList_3_Link_3" href="http://www.cnblogs.com/songmeng/archives/2014/07.html" rel="nofollow">2014年7月 (1)</a></li>
+			
+				<li><a id="CatList_LinkList_3_Link_4" href="http://www.cnblogs.com/songmeng/archives/2013/06.html" rel="nofollow">2013年6月 (1)</a></li>
+			
+				</ul>
+			
+	</div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/songmeng/p/4389446.html">1. SVN在Android Studio中的配置(40866)</a></li><li><a href="http://www.cnblogs.com/songmeng/p/DDMS.html">2. DDMS files not found: tools\hprof-conv.exe(9129)</a></li><li><a href="http://www.cnblogs.com/songmeng/p/4606961.html">3. ViewPager顶部标题控件PagerSlidingTabStrip(5484)</a></li><li><a href="http://www.cnblogs.com/songmeng/p/4110203.html">4. Android Studio安装及主题字体配置(3432)</a></li><li><a href="http://www.cnblogs.com/songmeng/p/3992126.html">5. Android软键盘弹出时布局问题(2990)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/songmeng/p/3301369.html">1. zXing使用小结(5)</a></li><li><a href="http://www.cnblogs.com/songmeng/p/4110203.html">2. Android Studio安装及主题字体配置(4)</a></li><li><a href="http://www.cnblogs.com/songmeng/p/4389446.html">3. SVN在Android Studio中的配置(2)</a></li><li><a href="http://www.cnblogs.com/songmeng/p/3868807.html">4. Android SDK及ADT更新访问问题的解决办法(1)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/songmeng/p/3868807.html">1. Android SDK及ADT更新访问问题的解决办法(2)</a></li><li><a href="http://www.cnblogs.com/songmeng/p/4389446.html">2. SVN在Android Studio中的配置(1)</a></li><li><a href="http://www.cnblogs.com/songmeng/p/3301369.html">3. zXing使用小结(1)</a></li><li><a href="http://www.cnblogs.com/songmeng/p/4110203.html">4. Android Studio安装及主题字体配置(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+
+</div>
+</div>
+<div class="clear"></div>
+<div id="footer">
+
+<p id="footer">
+	Powered by: 
+	<br>
+	
+	<a id="Footer1_Hyperlink3" name="Hyperlink1" href="http://www.cnblogs.com/" style="font-family:Verdana;font-size:12px;">博客园</a>
+	<br>
+	Copyright © AndroidSolo
+</p>
+</div>
+</div>
+
+
+
+</body></html>

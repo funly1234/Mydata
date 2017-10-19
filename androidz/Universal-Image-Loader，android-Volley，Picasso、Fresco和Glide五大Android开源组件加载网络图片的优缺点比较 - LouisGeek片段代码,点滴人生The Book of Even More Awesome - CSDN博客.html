@@ -1,0 +1,1398 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0055)http://blog.csdn.net/richiezhu/article/details/46968569 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+            <link rel="canonical" href="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客.html"> 
+
+   
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://blog.csdn.net/richiezhu/article/details/46968569#">
+
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848"> 
+       
+    <title>Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome
+        - CSDN博客</title>
+    
+    <meta name="description" content="在android中的加载网络图片是一件十分令人头疼的事情，在网上有着许多关于加载网络图片的开源库，可以让我们十分方便的加载网络图片。在这里我主要介绍一下我自己在使用Volley, Picasso, Universal-Imageloader的一些使用的感悟。以及最基本的用法介绍。1.android-Volley给ImageView设置图片源// im">
+
+    <meta name="keywords" content="网络,开源,图片">
+
+   
+    <script src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/hm.js"></script><script src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/blog_static_head.min.js" type="text/javascript"></script>
+
+    
+        <!--new top-->
+       
+       
+        <!--new top-->
+    
+      <!-- ad begin -->
+         
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/style.css">
+
+    
+
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/RichieZhu/rss/list">
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/blue.css">
+ 
+
+
+
+    <link href="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/csdn_public_blog_detail.min.css" type="text/css" rel="stylesheet">
+     
+         <link rel="stylesheet" href="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/csdn_blog_detail.min.css">
+
+  
+
+
+    <!-- 请置于所有广告位代码之前 --> 
+            <script src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/ds.js"></script>
+
+<script src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/share.js"></script><script src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/wxLogin.js"></script><link type="text/css" rel="stylesheet" href="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/style(1).css"><link rel="stylesheet" type="text/css" href="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/style(2).css"><script src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/logger.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link href="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/bdsstyle.css" rel="stylesheet" type="text/css"><link rel="stylesheet" href="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/share_style0_16.css"></head><style type="text/css" id="91415953678"></style>
+
+
+<body><div id="MathJax_Message" style="display: none;"></div><iframe frameborder="0" style="display: none;"></iframe><div class="csdn-toolbar csdn-toolbar-skin-black ">        <div class="container row center-block ">          <div class="col-md-3 pull-left logo clearfix"><a href="http://www.csdn.net/?ref=toolbar" title="CSDN首页" target="_blank" class="icon"></a><a title="频道首页" href="http://blog.csdn.net/?ref=toolbar_logo" class="img blog-icon"></a></div>          <div class="pull-right login-wrap unlogin">            <ul class="btns">              <li class="loginlink"><a href="https://passport.csdn.net/account/login?ref=toolbar" target="_top">登录&nbsp;</a>|<a target="_top" href="http://passport.csdn.net/account/mobileregister?ref=toolbar&action=mobileRegister">&nbsp;注册</a></li>              <li class="search">                <div class="icon on-search-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <form action="http://so.csdn.net/search" id="toolbar_search" method="get" target="_blank">                      <input type="hidden" value="toolbar" name="ref" accesskey="2">                      <div class="border">                        <input placeholder="搜索" type="text" value="" name="q" accesskey="2"><span class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li class="favor">                <div class="icon on-favor-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div style="display:none;" class="favor-success"><span class="msg">收藏成功</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <div style="display:none;" class="favor-failed"><span class="icon-danger-lg"></span><span class="msg">收藏失败，请重新收藏</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <form role="form" class="form-horizontal favor-form">                      <div class="form-group">                        <div class="clearfix">                          <label for="input-title" class="col-sm-2 control-label"><span class="red_txt">*</span>标题</label>                          <div class="col-sm-10">                            <input id="inputTitle" type="text" placeholder="" class="title form-control">                          </div>                        </div>                        <div class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div class="form-group" style="display:none;">                        <label for="input-url" class="col-sm-2 control-label">网址</label>                        <div class="col-sm-10">                          <input id="input-url" type="text" placeholder="" class="url form-control">                        </div>                      </div>                      <div class="form-group">                        <label for="input-tag" class="col-sm-2 tag control-label">标签</label>                        <div class="col-sm-10">                          <input id="input-tag" type="text" class="form-control tag">                        </div>                      </div>                      <div class="form-group">                        <label for="input-description" class="description col-sm-2 control-label">位置</label>                        <div class="col-sm-10">                          <div class="my_lib_box">                            个人主页&nbsp;-&nbsp;<a href="http://my.csdn.net/" target="_blank">我的知识</a>                          </div>                          <div class="checkbox">                            <div class="pull-left">                              <label>                                <input type="checkbox" name="share" class="save_lib_map" checked="checked">同时保存至：                              </label>                            </div>                            <div class="pull-left">                              <div class="dropdown">                                <button id="toolbar_sele_map" type="button">                                  选择知识图谱                                  <i class="fa fa-chevron-down"></i>                                </button>                                <div class="top_arr"></div>                                <div class="outside">                                  <ul class="dropdown-menu" id="toolbar_Design_knowledge"><li>选择知识图谱</li></ul>                                </div>                              </div>                            </div>                            <div class="pull-left new_txt">                              <a href="http://lib.csdn.net/my/create/structure" target="_blank">新建？</a>                            </div>                          </div>                        </div>                      </div>                      <div class="form-group">                        <div class="col-sm-offset-2 col-sm-10 ft">                          <div class="col-sm-4 pull-left" style="display:none">                            <div class="checkbox">                              <label>                                <input type="checkbox" name="share" checked="checked" class="share">公开                              </label>                            </div>                          </div>                          <div class="col-sm-8 pull-right favor-btns">                            <button type="button" class="cancel btn btn-default">取消</button>                            <button type="submit" class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li class="notify">                <div style="display:none" class="number"></div>                <div style="display:none" class="icon-hasnotes-sm"></div>                <div id="header_notice_num"></div>                <div class="icon on-notify-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div id="note1" class="csdn_note">                      <div class="box"></div>                    <iframe src="about:block" frameborder="0" allowtransparency="true" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li class="ugc">                <div class="icon on-ugc-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <dl>                      <dt><a href="http://geek.csdn.net/news/expert?ref=toolbar" target="_blank" class="p-news clearfix" style="display:none;"><em class="icon"></em><span>分享资讯</span></a></dt>                      <dt style="border: none;"><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-doc clearfix"><em class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a href="http://bbs.csdn.net/topics/new?ref=toolbar" target="_blank" class="p-ask clearfix"><em class="icon"></em><span>提问题</span></a></dt>                      <dt><a href="http://write.blog.csdn.net/postedit?ref=toolbar" target="_blank" class="p-blog clearfix"><em class="icon"></em><span>写博客</span></a></dt>                      <dt><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-src clearfix"><em class="icon"></em><span>传资源</span></a></dt>                      <dt><a href="https://code.csdn.net/projects/new?ref=toolbar" target="_blank" class="c-obj clearfix"><em class="icon"></em><span>创建项目</span></a></dt>                      <dt><a href="https://code.csdn.net/snippets/new?ref=toolbar" target="_blank" class="c-code clearfix"><em class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li class="profile">                <div class="icon on-profile-icon"><img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/100x100.jpg" class="curr-icon-img">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div class="bd">                      <dl class="clearfix">                        <dt class="pull-left img"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="avatar"><img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/100x100.jpg"></a></dt>                        <dd class="info" style="border: none;"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="nickname"></a><a class="set-nick" href="https://passport.csdn.net/account/profile">设置昵称<span class="write-icon"></span></a><span class="dec"><a class="fill-dec" href="http://my.csdn.net/" target="_blank">编辑自我介绍，让更多人了解你<span class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div class="ft clearfix"><a target="_blank" href="http://my.csdn.net/my/account/changepwd?ref=toolbar" class="pull-left"><span class="icon-cog"></span>帐号设置</a><a href="https://passport.csdn.net/account/logout?ref=toolbar" target="_top" class="pull-left" style="margin-left:132px; width:18px; height:27px; white-space:nowrap; overflow:hidden;"><span class="icon-signout"></span><span class="out">退出</span></a></div>                  </div>                </div>              </li>              <li class="apps">                <div id="chasnew123" class="hasnew" style="display: none;"></div>                <div id="cappsarea123" class="icon on-apps-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a href="http://blog.csdn.net/?ref=toolbar" target="_blank">博客</a></dd>                      <dd> <a href="http://bbs.csdn.net/?ref=toolbar" target="_blank">论坛</a></dd>                      <dd> <a href="http://download.csdn.net/?ref=toolbar" target="_blank">下载</a></dd>                      <dd> <a href="http://lib.csdn.net/?ref=toolbar" target="_blank">知识库</a></dd>                      <dd><a href="http://ask.csdn.net/?ref=toolbar" target="_blank">技术问答</a></dd>                      <dd><a href="http://geek.csdn.net/?ref=toolbar" target="_blank">极客头条</a></dd>                      <dd style="display:none"> <a href="http://hero.csdn.net/?ref=toolbar" target="_blank">英雄会</a></dd>                    </dl>                  </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd style="display:none"> <a href="http://job.csdn.net/?ref=toolbar" target="_blank">JOB<img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="http://edu.csdn.net/?ref=toolbar" target="_blank">学院<img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="https://code.csdn.net/?ref=toolbar" target="_blank">CODE</a></dd>                      <dd> <a href="http://huiyi.csdn.net/?ref=toolbar" target="_blank">活动</a></dd>                      <dd> <a href="http://www.csto.com/?ref=toolbar" target="_blank">CSTO</a></dd>                      <dd> <a href="http://mall.csdn.net/?ref=toolbar" target="_blank">C币兑换<img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                    </dl>                  </div>                  <div class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a href="http://cto.csdn.net/?ref=toolbar" target="_blank">CTO俱乐部</a></dd>                      <dd> <a href="http://student.csdn.net/?ref=toolbar" target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     
+        <div class="tracking-ad" data-view="true" data-mod="ad_popu_72" data-mtp="62" data-order="40" data-con="ad_content_2072">
+                     <script id="popuLayer_js_q" src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/popuLayer.js" defer="defer" type="text/javascript"></script>
+                <div id="layerd" style="position: fixed;bottom:0px;right:0px;line-height:0px;z-index:1000">
+    	                <div class="J_close layer_close" style="display:;background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">关闭</div><!-- 广告占位容器 --><div id="cpro_u2895327"></div></div>
+                <script>  document.getElementById("popuLayer_js_q").onload = function () { var styObjd = styObj = { width: "300px", "height": parseInt(250) + 28 }; window.CSDN.Layer.PopuLayer("#layerd", { storageName: "layerd", styleObj: styObjd, total: 50, expoire: 1000 * 60 }); }</script><!-- 投放代码 --><script type="text/javascript">                    /*服务器频道首页置顶Banner960*90，创建于2014-7-3*/    (window.cproArray = window.cproArray || []).push({ id: "u2895327" });  </script>  <script src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/c.js" type="text/javascript"></script>
+     
+        </div>
+
+    <!-- 广告位开始 -->
+        
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/html.js" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/richiezhu">LouisGeek片段代码,点滴人生The Book of Even More Awesome</a></h2>
+            <h3>真正的幸福不是做惊天动地的事,而是懂得发现生命中的小美好,过自己想要的生活—生命中最美好的事物都是免费的</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/richiezhu?viewmode=contents"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_mulu&#39;])">
+                    <img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/richiezhu?viewmode=list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_zhaiyao&#39;])">
+                    <img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/richiezhu/rss/list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])">
+                    <img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "RichieZhu";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/richiezhu";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod="popu_3"> 
+
+
+<a href="http://blog.csdn.net/epubit17/article/details/76811996" target="_blank">
+<font color="red"><strong>赠书 | 异步2周年,技术图书免费选</strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://blog.csdn.net/broadview2006/article/details/77312555" target="_blank">
+<font color="blue"><strong>每周荐书：渗透测试、K8s、架构（评论送书）</strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://gitee.com/enterprises?csdn-sq" target="_blank">
+<font color="red"><strong>项目管理+代码托管+文档协作，开发更流畅</strong></font></a>
+
+</div>                        </div>
+
+                        
+
+
+
+  
+
+
+
+
+
+
+<script type="text/javascript" src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/category.js"></script>
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+      var isBole = false; 
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=Universal-Image-Loader%ef%bc%8candroid-Volley%ef%bc%8cPicasso%e3%80%81Fresco%e5%92%8cGlide%e4%ba%94%e5%a4%a7Android%e5%bc%80%e6%ba%90%e7%bb%84%e4%bb%b6%e5%8a%a0%e8%bd%bd%e7%bd%91%e7%bb%9c%e5%9b%be%e7%89%87%e7%9a%84%e4%bc%98%e7%bc%ba%e7%82%b9%e6%af%94%e8%be%83&u=http://blog.csdn.net/richiezhu/article/details/46968569"
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+    <h1>
+        <span class="link_title"><a href="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客.html">
+        Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较        
+           
+        </a>
+        </span>
+
+         
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_l">
+            <span class="link_categories">
+            标签：
+              <a href="http://www.csdn.net/tag/%e7%bd%91%e7%bb%9c" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">网络</a><a href="http://www.csdn.net/tag/%e5%bc%80%e6%ba%90" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">开源</a><a href="http://www.csdn.net/tag/%e5%9b%be%e7%89%87" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">图片</a><a href="http://www.csdn.net/tag/android" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">android</a><a href="http://www.csdn.net/tag/%e5%9b%be%e7%89%87%e5%8a%a0%e8%bd%bd%e6%a1%86%e6%9e%b6" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">图片加载框架</a>
+            </span>
+        </div>
+        <div class="article_r">
+            <span class="link_postdate">2015-07-20 15:11</span>
+            <span class="link_view" title="阅读次数">27470人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="http://blog.csdn.net/richiezhu/article/details/46968569#comments" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_pinglun&#39;])">评论</a>(5)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;Universal-Image-Loader%ef%bc%8candroid-Volley%ef%bc%8cPicasso%e3%80%81Fresco%e5%92%8cGlide%e4%ba%94%e5%a4%a7Android%e5%bc%80%e6%ba%90%e7%bb%84%e4%bb%b6%e5%8a%a0%e8%bd%bd%e7%bd%91%e7%bb%9c%e5%9b%be%e7%89%87%e7%9a%84%e4%bc%98%e7%bc%ba%e7%82%b9%e6%af%94%e8%be%83&#39;,&#39;46968569&#39;);return false;" title="收藏" target="_blank">收藏</a></span>
+             <span class="link_report"> <a href="http://blog.csdn.net/richiezhu/article/details/46968569#report" onclick="javascript:report(46968569,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label onclick="GetCategoryArticles(&#39;1189411&#39;,&#39;RichieZhu&#39;,&#39;top&#39;,&#39;46968569&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">android<em>（152）</em></span>
+                      <img class="arrow-down" src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/RichieZhu/article/category/1189411" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_1189411">                            
+                            </ul>
+                        </div>
+                    </label>                    
+                    <label onclick="GetCategoryArticles(&#39;5642447&#39;,&#39;RichieZhu&#39;,&#39;top&#39;,&#39;46968569&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">开源项目<em>（4）</em></span>
+                      <img class="arrow-down" src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/RichieZhu/article/category/5642447" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_5642447">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+        <div class="bog_copyright">         
+            <p class="copyright_p">版权声明：本文为【LouisGeek】原创文章，转载请注明出处！</p>
+        </div>
+
+  
+
+  
+  
+     
+
+
+<div style="clear:both"></div><div style="border:solid 1px #ccc; background:#eee; float:left; min-width:200px;padding:4px 10px;"><p style="text-align:right;margin:0;"><span style="float:left;">目录<a href="http://blog.csdn.net/richiezhu/article/details/46968569#" title="系统根据文章中H1到H6标签自动生成文章目录">(?)</a></span><a href="http://blog.csdn.net/richiezhu/article/details/46968569#" onclick="javascript:return openct(this);" title="展开">[+]</a></p><ol style="display:none;margin-left:14px;padding-left:14px;line-height:160%;"><li><a href="http://blog.csdn.net/richiezhu/article/details/46968569#t0">
+4Fresco</a></li><li><a href="http://blog.csdn.net/richiezhu/article/details/46968569#t1">
+关于 Fresco</a></li><li><a href="http://blog.csdn.net/richiezhu/article/details/46968569#t2">
+特性</a></li><ol><li><a href="http://blog.csdn.net/richiezhu/article/details/46968569#t3">
+内存管理</a></li><li><a href="http://blog.csdn.net/richiezhu/article/details/46968569#t4">
+图片的渐进式呈现</a></li><li><a href="http://blog.csdn.net/richiezhu/article/details/46968569#t5">
+Gif图和WebP格式</a></li><ol><li><a href="http://blog.csdn.net/richiezhu/article/details/46968569#t6">
+图像的呈现</a></li></ol><li><a href="http://blog.csdn.net/richiezhu/article/details/46968569#t7">
+图像的加载</a></li><li><a href="http://blog.csdn.net/richiezhu/article/details/46968569#t8">PS还有一个glide的框架</a></li><li><a href="http://blog.csdn.net/richiezhu/article/details/46968569#t9">
+总结
+</a></li></ol></ol></div><div style="clear:both"></div><div id="article_content" class="article_content tracking-ad" data-mod="popu_307" data-dsm="post">
+
+<span style="color:rgb(68,68,68); font-family:&#39;Microsoft Yahei&#39;,Tahoma,Simsun; font-size:14px; line-height:21px">在android中的加载网络图片是一件十分令人头疼的事情，在网上有着许多关于加载网络图片的开源库，可以让我们十分方便的加载网络图片。在这里我主要介绍一下我自己在使用Volley, Picasso, Universal-Imageloader的一些使用的感悟。以及最基本的用法介绍。</span><br style="word-wrap:break-word; color:rgb(68,68,68); font-family:&#39;Microsoft Yahei&#39;,Tahoma,Simsun; font-size:14px; line-height:21px">
+<span style="color:rgb(68,68,68); font-family:&#39;Microsoft Yahei&#39;,Tahoma,Simsun; font-size:14px; line-height:21px">1.android-Volley</span><br style="word-wrap:break-word; color:rgb(68,68,68); font-family:&#39;Microsoft Yahei&#39;,Tahoma,Simsun; font-size:14px; line-height:21px">
+<ul style="word-wrap:break-word; margin:0px 0px 0px 14px; padding:0px; color:rgb(68,68,68); font-family:&#39;Microsoft Yahei&#39;,Tahoma,Simsun; font-size:14px; line-height:21px">
+<li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px; list-style:disc">
+给ImageView设置图片源<br style="word-wrap:break-word">
+</li></ul>
+<br style="word-wrap:break-word; color:rgb(68,68,68); font-family:&#39;Microsoft Yahei&#39;,Tahoma,Simsun; font-size:14px; line-height:21px">
+<blockquote style="word-wrap:break-word; color:rgb(68,68,68); font-family:&#39;Microsoft Yahei&#39;,Tahoma,Simsun; font-size:14px; line-height:21px">
+<div class="blockcode" style="word-wrap:break-word; overflow:hidden; margin:10px 0px; padding:10px 0px 5px 10px; color:rgb(102,102,102); zoom:1; border:1px solid rgb(204,204,204)">
+<div id="code_e3V" style="word-wrap:break-word">
+<ol style="word-wrap:break-word; margin:0px 0px 0px 10px!important; padding:0px!important">
+<li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px 0px 0px 10px; list-style-type:decimal-leading-zero; font-family:Monaco,Consolas,&#39;Lucida Console&#39;,&#39;Courier New&#39;,serif; font-size:12px; line-height:1.8em">
+// imageView是一个ImageView实例&nbsp;&nbsp;<br style="word-wrap:break-word">
+</li><li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px 0px 0px 10px; list-style-type:decimal-leading-zero; font-family:Monaco,Consolas,&#39;Lucida Console&#39;,&#39;Courier New&#39;,serif; font-size:12px; line-height:1.8em">
+// ImageLoader.getImageListener的第二个参数是默认的图片resource id&nbsp;&nbsp;<br style="word-wrap:break-word">
+</li><li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px 0px 0px 10px; list-style-type:decimal-leading-zero; font-family:Monaco,Consolas,&#39;Lucida Console&#39;,&#39;Courier New&#39;,serif; font-size:12px; line-height:1.8em">
+// 第三个参数是请求失败时候的资源id，可以指定为0&nbsp;&nbsp;<br style="word-wrap:break-word">
+</li><li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px 0px 0px 10px; list-style-type:decimal-leading-zero; font-family:Monaco,Consolas,&#39;Lucida Console&#39;,&#39;Courier New&#39;,serif; font-size:12px; line-height:1.8em">
+ImageListener listener = ImageLoader.getImageListener(imageView, android.R.drawable.ic_menu_rotate, android.R.drawable.ic_delete);&nbsp;&nbsp;<br style="word-wrap:break-word">
+</li><li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px 0px 0px 10px; list-style-type:decimal-leading-zero; font-family:Monaco,Consolas,&#39;Lucida Console&#39;,&#39;Courier New&#39;,serif; font-size:12px; line-height:1.8em">
+mImageLoader.get(url, listener);&nbsp;&nbsp;</li></ol>
+</div>
+<span style="word-wrap:break-word; margin-left:43px; font-size:12px; color:rgb(51,102,153)!important">复制代码</span></div>
+<br style="word-wrap:break-word">
+<br style="word-wrap:break-word">
+<ul style="word-wrap:break-word; margin:0px 0px 0px 14px; padding:0px">
+<li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px; list-style:disc">
+使用NetworkImageView<br style="word-wrap:break-word">
+</li></ul>
+&nbsp; &nbsp; Volley提供了一个新的控件NetworkImageView来代替传统的ImageView，这个控件的图片属性可以通过<br style="word-wrap:break-word">
+<div class="blockcode" style="word-wrap:break-word; overflow:hidden; margin:10px 0px; padding:10px 0px 5px 10px; color:rgb(102,102,102); zoom:1; border:1px solid rgb(204,204,204)">
+<div id="code_r59" style="word-wrap:break-word">
+<ol style="word-wrap:break-word; margin:0px 0px 0px 10px!important; padding:0px!important">
+<li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px 0px 0px 10px; list-style-type:decimal-leading-zero; font-family:Monaco,Consolas,&#39;Lucida Console&#39;,&#39;Courier New&#39;,serif; font-size:12px; line-height:1.8em">
+mImageView.setImageUrl(url, imageLoader)</li></ol>
+</div>
+<span style="word-wrap:break-word; margin-left:43px; font-size:12px; color:rgb(51,102,153)!important">复制代码</span></div>
+<span style="color:#555555; word-wrap:break-word">来设定。而且，这个控件在被从父控件detach的时候，会自动取消网络请求的，即完全不用我们担心相关网络请求的生命周期问题。</span>
+<div class="blockcode" style="word-wrap:break-word; overflow:hidden; margin:10px 0px; padding:10px 0px 5px 10px; color:rgb(102,102,102); zoom:1; border:1px solid rgb(204,204,204)">
+<div id="code_q11" style="word-wrap:break-word">
+<ol style="word-wrap:break-word; margin:0px 0px 0px 10px!important; padding:0px!important">
+<li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px 0px 0px 10px; list-style-type:decimal-leading-zero; font-family:Monaco,Consolas,&#39;Lucida Console&#39;,&#39;Courier New&#39;,serif; font-size:12px; line-height:1.8em">
+mImageLoader = new ImageLoader(mRequestQueue, new BitmapLruCache());&nbsp;&nbsp;<br style="word-wrap:break-word">
+</li><li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px 0px 0px 10px; list-style-type:decimal-leading-zero; font-family:Monaco,Consolas,&#39;Lucida Console&#39;,&#39;Courier New&#39;,serif; font-size:12px; line-height:1.8em">
+.... ...&nbsp;&nbsp;<br style="word-wrap:break-word">
+</li><li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px 0px 0px 10px; list-style-type:decimal-leading-zero; font-family:Monaco,Consolas,&#39;Lucida Console&#39;,&#39;Courier New&#39;,serif; font-size:12px; line-height:1.8em">
+<br style="word-wrap:break-word">
+</li><li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px 0px 0px 10px; list-style-type:decimal-leading-zero; font-family:Monaco,Consolas,&#39;Lucida Console&#39;,&#39;Courier New&#39;,serif; font-size:12px; line-height:1.8em">
+if(holder.imageRequest != null) {&nbsp;&nbsp;<br style="word-wrap:break-word">
+</li><li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px 0px 0px 10px; list-style-type:decimal-leading-zero; font-family:Monaco,Consolas,&#39;Lucida Console&#39;,&#39;Courier New&#39;,serif; font-size:12px; line-height:1.8em">
+&nbsp; &nbsp;holder.imageRequest.cancel();&nbsp;&nbsp;<br style="word-wrap:break-word">
+</li><li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px 0px 0px 10px; list-style-type:decimal-leading-zero; font-family:Monaco,Consolas,&#39;Lucida Console&#39;,&#39;Courier New&#39;,serif; font-size:12px; line-height:1.8em">
+}&nbsp;&nbsp;<br style="word-wrap:break-word">
+</li><li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px 0px 0px 10px; list-style-type:decimal-leading-zero; font-family:Monaco,Consolas,&#39;Lucida Console&#39;,&#39;Courier New&#39;,serif; font-size:12px; line-height:1.8em">
+holder.imageRequest = mImageLoader.get(BASE_UR + item.image_url, holder.imageView, R.drawable.loading, R.drawable.error);&nbsp;&nbsp;<br style="word-wrap:break-word">
+</li><li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px 0px 0px 10px; list-style-type:decimal-leading-zero; font-family:Monaco,Consolas,&#39;Lucida Console&#39;,&#39;Courier New&#39;,serif; font-size:12px; line-height:1.8em">
+</li></ol>
+</div>
+<span style="word-wrap:break-word; margin-left:43px; font-size:12px; color:rgb(51,102,153)!important">复制代码</span></div>
+<br style="word-wrap:break-word">
+<span style="color:darkorange; word-wrap:break-word">总结：如果你的工程项目，是一个比较小的项目，或者要求不是很高的项目，处理比较简单的可以使用这个库，这个库是Google 2013 I/O 发布的一个开源库。使用这个库在图片的处理上，没有提供任何的图片处理的操作，个人感觉这个库主要在网络数据连接上比较好，在图片处理上还是不够完善，强大。</span><br style="word-wrap:break-word">
+<br style="word-wrap:break-word">
+<br style="word-wrap:break-word">
+2.Picasso<br style="word-wrap:break-word">
+Picasso加载网络图片的使用很简单，只需要一行代码就可以搞定。<br style="word-wrap:break-word">
+<div class="blockcode" style="word-wrap:break-word; overflow:hidden; margin:10px 0px; padding:10px 0px 5px 10px; color:rgb(102,102,102); zoom:1; border:1px solid rgb(204,204,204)">
+<div id="code_lMn" style="word-wrap:break-word">
+<ol style="word-wrap:break-word; margin:0px 0px 0px 10px!important; padding:0px!important">
+<li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px 0px 0px 10px; list-style-type:decimal-leading-zero; font-family:Monaco,Consolas,&#39;Lucida Console&#39;,&#39;Courier New&#39;,serif; font-size:12px; line-height:1.8em">
+Picasso.with(context) .load(url).resize(50, 50).centerCrop().into(imageView)<br style="word-wrap:break-word">
+</li><li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px 0px 0px 10px; list-style-type:decimal-leading-zero; font-family:Monaco,Consolas,&#39;Lucida Console&#39;,&#39;Courier New&#39;,serif; font-size:12px; line-height:1.8em">
+</li></ol>
+</div>
+<span style="word-wrap:break-word; margin-left:43px; font-size:12px; color:rgb(51,102,153)!important">复制代码</span></div>
+<br style="word-wrap:break-word">
+<br style="word-wrap:break-word">
+Picasso有如下特性：<br style="word-wrap:break-word">
+<ul style="word-wrap:break-word; margin:0px 0px 0px 14px; padding:0px">
+<li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px; list-style:disc">
+处理Adapter中的 ImageView 回收和取消已经回收ImageView的下载进程</li><li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px; list-style:disc">
+使用最少的内存完成复杂的图片转换，比如把下载的图片转换为圆角等</li><li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px; list-style:disc">
+自动添加磁盘和内存缓存<br style="word-wrap:break-word">
+</li></ul>
+<br style="word-wrap:break-word">
+<span style="color:darkorange; word-wrap:break-word">总结：如果你的项目里面，对于图片有一些具体的要求的话，建议使用这个库，但是这个库当你需要对图片作一些具体的操作比如加载圆角矩形图片、裁剪图片为圆形时，需要你自己写一些操作，如果基础不够好的会感觉很困难。还有就是这个库我们只能看到结果，无法关心图片的下载过程。</span><br style="word-wrap:break-word">
+</blockquote>
+<blockquote style="word-wrap:break-word; font-family:&#39;Microsoft Yahei&#39;,Tahoma,Simsun; line-height:21px">
+<br style="word-wrap:break-word">
+<span style="color:black; font-size:14px; word-wrap:break-word">3.Universal-ImageLoader</span><br style="word-wrap:break-word">
+<br style="word-wrap:break-word">
+<ul style="color:rgb(68,68,68); font-size:14px; word-wrap:break-word; margin:0px 0px 0px 14px; padding:0px">
+<li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px; list-style:disc">
+<span style="word-wrap:break-word">先要配置ImageLoaderConfiguration这个类实现全局ImageLoader的实现情况。</span><span style="word-wrap:break-word">可以选择在Application中初始化设置该类。</span></li><li style="word-wrap:break-word; margin:0px 0px 0px 2em; padding:0px; list-style:disc">
+<span style="word-wrap:break-word; font-size:18px">使用ImageLoader进行图片加载的时候，先要实例化ImageLoader</span><br style="word-wrap:break-word">
+</li></ul>
+<span style="color:rgb(68,68,68); font-size:18px; word-wrap:break-word"><br style="word-wrap:break-word">
+</span><br style="word-wrap:break-word">
+<p style="color:rgb(68,68,68); font-size:14px"><span style="word-wrap:break-word; font-size:18px"><span style="font-size:12px; word-wrap:break-word"><span style="color:darkorange; word-wrap:break-word">总结：这个库有着对加载网络图片的吵详细配置。可以根据个人的喜欢，进行一些配置等等。并且可以实现图片下载过程的监听。且可以支持图片下载完成后，显示圆形或者圆角矩形的图片。</span></span></span></p>
+<p style="color:rgb(68,68,68); font-size:14px"><br>
+</p>
+<p></p>
+<h1 style="color:rgb(68,68,68); padding:0px; margin:0px 0px 0.2em; line-height:1.4em; position:relative; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; background-color:rgb(253,253,251)"><a name="t0" target="_blank"></a>
+4.Fresco</h1>
+<div>
+<h1 style="color:rgb(68,68,68); padding:0px; margin:0px 0px 0.2em; line-height:1.4em; position:relative; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; background-color:rgb(253,253,251)"><a name="t1" target="_blank"></a>
+关于 Fresco</h1>
+<div><span style="font-family:Helvetica,Tahoma,Arial,sans-serif; font-size:14px; line-height:24px"><span style="color:#ff0000">Facebook最近推出了一款用于Android应用中展示图片的强大图片库Fresco，它能够从网络、本地存储和本地资源中加载图片。而且，为了节省数据和CPU，它拥有三级缓存。</span></span><br>
+</div>
+<div style="color:rgb(255,140,0)"><span style="color:rgb(51,51,51); font-family:Helvetica,Tahoma,Arial,sans-serif; font-size:14px; line-height:24px"><br>
+</span></div>
+<p style="color:rgb(68,68,68); padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:1em; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:14px; line-height:22px; background-color:rgb(253,253,251)">
+Fresco 是一个强大的图片加载组件。</p>
+<p style="color:rgb(68,68,68); padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:1em; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:14px; line-height:22px; background-color:rgb(253,253,251)">
+Fresco 中设计有一个叫做&nbsp;<span style="padding:0px; margin:0px">image pipeline</span>&nbsp;的模块。它负责从网络，从本地文件系统，本地资源加载图片。为了最大限度节省空间和CPU时间，它含有3级缓存设计（2级内存，1级文件）。</p>
+<p style="color:rgb(68,68,68); padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:1em; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:14px; line-height:22px; background-color:rgb(253,253,251)">
+Fresco 中设计有一个叫做&nbsp;<span style="padding:0px; margin:0px">Drawees</span>&nbsp;模块，方便地显示loading图，当图片不再显示在屏幕上时，及时地释放内存和空间占用。</p>
+<p style="color:rgb(68,68,68); padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:1em; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:14px; line-height:22px; background-color:rgb(253,253,251)">
+Fresco 支持 Android2.3(API level 9) 及其以上系统。</p>
+<h1 style="color:rgb(68,68,68); padding:0px; margin:1.3em 0px 0.2em; line-height:1.4em; position:relative; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; background-color:rgb(253,253,251)"><a name="t2" target="_blank"></a>
+特性</h1>
+<h2 style="color:rgb(68,68,68); padding:0px; margin:1.3em 0px 0.2em; font-weight:normal; line-height:1.4em; position:relative; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; background-color:rgb(253,253,251)"><a name="t3" target="_blank"></a>
+内存管理<a target="_blank" id="" class="hashref" style="padding:0px; margin:0px; color:rgb(204,46,57); position:absolute; top:-60px; left:0px"></a><a target="_blank" class="hash" href="http://fresco-cn.org/#" style="padding:0px; margin:0px 0px 0px 3px; text-decoration:none; color:rgb(204,46,57); visibility:hidden"></a></h2>
+<p style="color:rgb(68,68,68); padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:1em; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:14px; line-height:22px; background-color:rgb(253,253,251)">
+解压后的图片，即<a href="http://lib.csdn.net/base/15" class="replace_word" title="Android知识库" target="_blank" style="color:#df3434; font-weight:bold;">Android</a>中的<code style="padding:0px 2px 0px 4px; margin:0px; letter-spacing:0.02em">Bitmap</code>，占用大量的内存。大的内存占用势必引发更加频繁的GC。在5.0以下，GC将会显著地引发界面卡顿。</p>
+<p style="color:rgb(68,68,68); padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:1em; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:14px; line-height:22px; background-color:rgb(253,253,251)">
+在5.0以下系统，Fresco将图片放到一个特别的内存区域。当然，在图片不显示的时候，占用的内存会自动被释放。这会使得APP更加流畅，减少因图片内存占用而引发的OOM。</p>
+<p style="color:rgb(68,68,68); padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:1em; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:14px; line-height:22px; background-color:rgb(253,253,251)">
+Fresco 在低端机器上表现一样出色，你再也不用因图片内存占用而思前想后。</p>
+<h2 style="color:rgb(68,68,68); padding:0px; margin:1.3em 0px 0.2em; font-weight:normal; line-height:1.4em; position:relative; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; background-color:rgb(253,253,251)"><a name="t4" target="_blank"></a>
+图片的渐进式呈现<a target="_blank" id="" class="hashref" style="padding:0px; margin:0px; color:rgb(204,46,57); position:absolute; top:-60px; left:0px"></a><a target="_blank" class="hash" href="http://fresco-cn.org/#" style="padding:0px; margin:0px 0px 0px 3px; text-decoration:none; color:rgb(204,46,57); visibility:hidden"></a></h2>
+<p style="color:rgb(68,68,68); padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:1em; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:14px; line-height:22px; background-color:rgb(253,253,251)">
+渐进式的JPEG图片格式已经流行数年了，渐进式图片格式先呈现大致的图片轮廓，然后随着图片下载的继续，呈现逐渐清晰的图片，这对于移动设备，尤其是慢网络有极大的利好，可带来更好的用户体验。</p>
+<p style="color:rgb(68,68,68); padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:1em; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:14px; line-height:22px; background-color:rgb(253,253,251)">
+Android 本身的图片库不支持此格式，但是Fresco支持。使用时，和往常一样，仅仅需要提供一个图片的URI即可，剩下的事情，Fresco会处理。</p>
+<h2 style="color:rgb(68,68,68); padding:0px; margin:1.3em 0px 0.2em; font-weight:normal; line-height:1.4em; position:relative; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; background-color:rgb(253,253,251)"><a name="t5" target="_blank"></a>
+Gif图和WebP格式<a target="_blank" id="gif-webp" class="hashref" style="padding:0px; margin:0px; color:rgb(204,46,57); position:absolute; top:-60px; left:0px"></a><a target="_blank" class="hash" href="http://fresco-cn.org/#gif-webp" style="padding:0px; margin:0px 0px 0px 3px; text-decoration:none; color:rgb(204,46,57); visibility:hidden"></a></h2>
+<p style="color:rgb(68,68,68); padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:1em; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:14px; line-height:22px; background-color:rgb(253,253,251)">
+是的，支持加载Gif图，支持WebP格式。</p>
+<h3 style="color:rgb(68,68,68); padding:0px; margin:1.3em 0px 0.2em; font-weight:normal; line-height:1.4em; position:relative; font-size:1.3em; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; background-color:rgb(253,253,251)"><a name="t6" target="_blank"></a>
+图像的呈现<a target="_blank" id="" class="hashref" style="padding:0px; margin:0px; color:rgb(204,46,57); position:absolute; top:-60px; left:0px"></a><a target="_blank" class="hash" href="http://fresco-cn.org/#" style="padding:0px; margin:0px 0px 0px 3px; text-decoration:none; color:rgb(204,46,57); visibility:hidden"></a></h3>
+<p style="color:rgb(68,68,68); padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:1em; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:14px; line-height:22px; background-color:rgb(253,253,251)">
+Fresco 的 Drawees 设计，带来一些有用的特性：</p>
+<ul style="color:rgb(68,68,68); padding:0px 0px 0px 1em; margin:0px 0px 1em 1em; list-style-position:outside; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:14px; line-height:22px; background-color:rgb(253,253,251)">
+<li style="padding:0px; margin:0px 0px 0.5em">自定义居中焦点(对人脸等图片显示非常有帮助)</li><li style="padding:0px; margin:0px 0px 0.5em">圆角图，当然圆圈也行。</li><li style="padding:0px; margin:0px 0px 0.5em">下载失败之后，点击重现下载</li><li style="padding:0px; margin:0px 0px 0.5em">自定义占位图，自定义overlay, 或者进度条</li><li style="padding:0px; margin:0px 0px 0.5em">指定用户按压时的overlay</li></ul>
+<h2 style="color:rgb(68,68,68); padding:0px; margin:1.3em 0px 0.2em; font-weight:normal; line-height:1.4em; position:relative; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; background-color:rgb(253,253,251)"><a name="t7" target="_blank"></a>
+图像的加载<a target="_blank" id="" class="hashref" style="padding:0px; margin:0px; color:rgb(204,46,57); position:absolute; top:-60px; left:0px"></a><a target="_blank" class="hash" href="http://fresco-cn.org/#" style="padding:0px; margin:0px 0px 0px 3px; text-decoration:none; color:rgb(204,46,57); visibility:hidden"></a></h2>
+<p style="color:rgb(68,68,68); padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:1em; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:14px; line-height:22px; background-color:rgb(253,253,251)">
+Fresco 的 image pipeline 设计，允许用户在多方面控制图片的加载：</p>
+<ul style="color:rgb(68,68,68); padding:0px 0px 0px 1em; margin:0px 0px 1em 1em; list-style-position:outside; font-family:proxima-nova,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:14px; line-height:22px; background-color:rgb(253,253,251)">
+<li style="padding:0px; margin:0px 0px 0.5em">为同一个图片指定不同的远程路径，或者使用已经存在本地缓存中的图片</li><li style="padding:0px; margin:0px 0px 0.5em">先显示一个低解析度的图片，等高清图下载完之后再显示高清图</li><li style="padding:0px; margin:0px 0px 0.5em">加载完成回调通知</li><li style="padding:0px; margin:0px 0px 0.5em">对于本地图，如有EXIF缩略图，在大图加载完成之前，可先显示缩略图</li><li style="padding:0px; margin:0px 0px 0.5em">缩放或者旋转图片</li><li style="padding:0px; margin:0px 0px 0.5em">处理已下载的图片</li><li style="padding:0px; margin:0px 0px 0.5em">WebP 支持</li></ul>
+<h2><a name="t8" target="_blank"></a><span style="color:#ff6666"><strong>PS:还有一个glide的框架</strong></span></h2>
+</div>
+<div>
+<p style="margin-top:0px; margin-bottom:0.75em; font-size:16px; line-height:27.2000007629395px; text-indent:1em; color:rgb(51,51,51); font-family:&#39;Helvetica Neue&#39;,Helvetica,Tahoma,Arial,STXihei,&#39;Microsoft YaHei&#39;,微软雅黑,sans-serif; background-color:rgb(254,254,254)">
+<a target="_blank" href="https://github.com/bumptech/glide" rel="nofollow,noindex" style="">Glide</a>&nbsp;是一个高效、开源、 Android设备上的媒体管理框架，它遵循BSD、MIT以及Apache 2.0协议发布。Glide具有获取、解码和展示视频剧照、图片、动画等功能，它还有灵活的API，这些API使开发者能够将Glide应用在几乎任何网络协议栈里。创建Glide的主要目的有两个，一个是实现平滑的图片列表滚动效果，另一个是支持远程图片的获取、大小调整和展示。近日，Glide
+ 3.0发布，现已提供&nbsp;<a target="_blank" href="https://github.com/bumptech/glide/releases" rel="nofollow,noindex" style="">jar包下载</a>&nbsp;，同时还支持使用Gradle以及Maven进行构建。该版本包括很多值得关注的新功能，如支持Gif 动画和视频剧照解码、智能的暂停和重新开始请求、支持缩略图等，具体新增功能如下如下：</p>
+<ul style="padding:0px; margin:0px 0px 0.75em 25px; list-style-type:none; font-size:16px; line-height:27.2000007629395px; color:rgb(51,51,51); font-family:&#39;Helvetica Neue&#39;,Helvetica,Tahoma,Arial,STXihei,&#39;Microsoft YaHei&#39;,微软雅黑,sans-serif; background-color:rgb(254,254,254)">
+<li style="line-height:1.7em; list-style-type:disc"><strong>GIF&nbsp;动画的解码</strong>&nbsp;：通过调用Glide.with(context).load(“图片路径“)方法，GIF动画图片可以自动显示为动画效果。如果想有更多的控制，还可以使用Glide.with(context).load(“图片路径“).asBitmap()方法加载静态图片，使用Glide.with(context).load(“图片路径“).asGif()方法加载动画图片</li><li style="line-height:1.7em; list-style-type:disc"><strong>本地视频剧照的解码：</strong>&nbsp;通过调用Glide.with(context).load(“图片路径“)方法，Glide能够支持Android设备中的所有视频剧照的加载和展示</li><li style="line-height:1.7em; list-style-type:disc"><strong>缩略图的支持：</strong>&nbsp;为了减少在同一个view组件里同时加载多张图片的时间，可以调用Glide.with(context).load(“图片路径“).thumbnail(“缩略比例“).into(“view组件“)方法加载一个缩略图，还可以控制thumbnail()中的参数的大小，以控制显示不同比例大小的缩略图</li><li style="line-height:1.7em; list-style-type:disc"><strong>Activity&nbsp;生命周期的集成：</strong>&nbsp;当Activity暂停和重启时，Glide能够做到智能的暂停和重新开始请求，并且当Android设备的连接状态变化时，所有失败的请求能够自动重新请求</li><li style="line-height:1.7em; list-style-type:disc"><strong>转码的支持：</strong>&nbsp;Glide的toBytes() 和transcode() 两个方法可以用来获取、解码和变换背景图片，并且transcode() 方法还能够改变图片的样式</li><li style="line-height:1.7em; list-style-type:disc"><strong>动画的支持：</strong>&nbsp;新增支持图片的淡入淡出动画效果（调用crossFade()方法）和查看动画的属性的功能</li><li style="line-height:1.7em; list-style-type:disc"><strong>OkHttp&nbsp;和Volley&nbsp;的支持：</strong>&nbsp;默认选择HttpUrlConnection作为网络协议栈，还可以选择OkHttp和Volley作为网络协议栈</li><li style="line-height:1.7em; list-style-type:disc"><strong>其他功能：</strong>&nbsp;如在图片加载过程中，使用Drawables对象作为占位符、图片请求的优化、图片的宽度和高度可重新设定、缩略图和原图的缓存等功能</li></ul>
+<p style="margin-top:0px; margin-bottom:0.75em; font-size:16px; line-height:27.2000007629395px; text-indent:1em; color:rgb(51,51,51); font-family:&#39;Helvetica Neue&#39;,Helvetica,Tahoma,Arial,STXihei,&#39;Microsoft YaHei&#39;,微软雅黑,sans-serif; background-color:rgb(254,254,254)">
+另外，请大家注意，除了以上新引入的功能外，还具有Glide 2.x系列版本的所有功能，如背景图片的加载、内存和磁盘间的高效缓存、使用位图和资源池提高加载性能， 更多Glide3.0相关信息请登陆GitHub上的&nbsp;<a target="_blank" href="https://github.com/bumptech/glide/wiki" rel="nofollow,noindex" style="">Wiki页面</a>&nbsp;查看。</p>
+2015年10月14日16:26:20</div>
+<div>引用网友 <a target="_blank" class="author-name blue-link" href="http://www.jianshu.com/users/36b23cb5edb5" style="color:rgb(64,148,199); text-decoration:none; margin:0px 5px; font-family:&#39;lucida grande&#39;,&#39;lucida sans unicode&#39;,lucida,helvetica,&#39;Hiragino Sans GB&#39;,&#39;Microsoft YaHei&#39;,&#39;WenQuanYi Micro Hei&#39;,sans-serif; line-height:20px">
+倾城_之泪&nbsp;</a><span style="color:rgb(153,153,153)">的理解：</span></div>
+<div><br>
+</div>
+<div>
+<p style="margin-top:0px; margin-bottom:25px; text-align:justify; word-break:break-word; color:rgb(47,47,47); font-family:&#39;lucida grande&#39;,&#39;lucida sans unicode&#39;,lucida,helvetica,&#39;Hiragino Sans GB&#39;,&#39;Microsoft YaHei&#39;,&#39;WenQuanYi Micro Hei&#39;,sans-serif; font-size:16px; line-height:27.2000007629395px">
+<strong>Universal Image Loader</strong>：一个强大的图片加载库，包含各种各样的配置，最老牌，使用也最广泛。</p>
+<p style="margin-top:0px; margin-bottom:25px; text-align:justify; word-break:break-word; color:rgb(47,47,47); font-family:&#39;lucida grande&#39;,&#39;lucida sans unicode&#39;,lucida,helvetica,&#39;Hiragino Sans GB&#39;,&#39;Microsoft YaHei&#39;,&#39;WenQuanYi Micro Hei&#39;,sans-serif; font-size:16px; line-height:27.2000007629395px">
+<strong>Picasso</strong>: Square出品，必属精品。和OkHttp搭配起来更配呦！</p>
+<p style="margin-top:0px; margin-bottom:25px; text-align:justify; word-break:break-word; color:rgb(47,47,47); font-family:&#39;lucida grande&#39;,&#39;lucida sans unicode&#39;,lucida,helvetica,&#39;Hiragino Sans GB&#39;,&#39;Microsoft YaHei&#39;,&#39;WenQuanYi Micro Hei&#39;,sans-serif; font-size:16px; line-height:27.2000007629395px">
+<strong>Volley ImageLoader</strong>：Google官方出品，可惜不能加载本地图片~</p>
+<p style="margin-top:0px; margin-bottom:25px; text-align:justify; word-break:break-word; color:rgb(47,47,47); font-family:&#39;lucida grande&#39;,&#39;lucida sans unicode&#39;,lucida,helvetica,&#39;Hiragino Sans GB&#39;,&#39;Microsoft YaHei&#39;,&#39;WenQuanYi Micro Hei&#39;,sans-serif; font-size:16px; line-height:27.2000007629395px">
+<strong>Fresco</strong>：Facebook出的，天生骄傲！不是一般的强大。</p>
+<p style="margin-top:0px; margin-bottom:25px; text-align:justify; word-break:break-word; color:rgb(47,47,47); font-family:&#39;lucida grande&#39;,&#39;lucida sans unicode&#39;,lucida,helvetica,&#39;Hiragino Sans GB&#39;,&#39;Microsoft YaHei&#39;,&#39;WenQuanYi Micro Hei&#39;,sans-serif; font-size:16px; line-height:27.2000007629395px">
+<strong>Glide</strong>：Google推荐的图片加载库，专注于流畅的滚动。</p>
+<p style="margin-top:0px; margin-bottom:25px; text-align:justify; word-break:break-word; color:rgb(47,47,47); font-family:&#39;lucida grande&#39;,&#39;lucida sans unicode&#39;,lucida,helvetica,&#39;Hiragino Sans GB&#39;,&#39;Microsoft YaHei&#39;,&#39;WenQuanYi Micro Hei&#39;,sans-serif; font-size:16px; line-height:27.2000007629395px">
+<br>
+</p>
+<p style="margin-top:0px; margin-bottom:25px; text-align:justify; word-break:break-word; font-family:&#39;lucida grande&#39;,&#39;lucida sans unicode&#39;,lucida,helvetica,&#39;Hiragino Sans GB&#39;,&#39;Microsoft YaHei&#39;,&#39;WenQuanYi Micro Hei&#39;,sans-serif; font-size:16px; line-height:27.2000007629395px">
+<span style="color:rgb(47,47,47)">还有就是转载下</span><span style="color:#006600">泡在网上的日子</span><span style="color:#2f2f2f">文章总结：</span></p>
+<p style="margin-top:0px; margin-bottom:25px; text-align:justify; word-break:break-word; color:rgb(47,47,47); font-family:&#39;lucida grande&#39;,&#39;lucida sans unicode&#39;,lucida,helvetica,&#39;Hiragino Sans GB&#39;,&#39;Microsoft YaHei&#39;,&#39;WenQuanYi Micro Hei&#39;,sans-serif; font-size:16px; line-height:27.2000007629395px">
+</p>
+<h2 style="border:0px; margin:0px; padding:0px; font-size:1.2em; color:rgb(51,51,51); font-family:&#39;Helvetica,Tahoma,Arial,sans-serif&#39;; text-align:justify"><a name="t9" target="_blank"></a>
+<span class="section-heading" style="border:0px; margin:0px; padding:0px">总结<br style="">
+</span></h2>
+<p></p>
+<p style="border:0px; margin-top:8px; margin-bottom:8px; padding-top:0px; padding-bottom:0px; line-height:22px; color:rgb(51,51,51); font-family:&#39;Helvetica,Tahoma,Arial,sans-serif&#39;; font-size:14px; text-align:justify">
+Glide和Picasso都是非常完美的库。Glide加载图像以及磁盘缓存的方式都要优于Picasso，速度更快，并且Glide更有利于减少OutOfMemoryError的发生，GIF动画是Glide的杀手锏。不过Picasso的图片质量更高。你更喜欢哪个呢？</p>
+<p style="border:0px; margin-top:8px; margin-bottom:8px; padding-top:0px; padding-bottom:0px; line-height:22px; color:rgb(51,51,51); font-family:&#39;Helvetica,Tahoma,Arial,sans-serif&#39;; font-size:14px; text-align:justify">
+虽然我使用了很长时间的Picasso，但是我得承认现在我更喜欢Glide。我的建议是使用Glide，但是将Bitmap格式换成 ARGB_8888、让Glide缓存同时缓存全尺寸和改变尺寸两种。</p>
+<br>
+<br>
+</div>
+<p></p>
+</blockquote>
+<blockquote><span style="font-size:18px"><span style="font-size:12px"><span style="color:darkorange"></span></span></span></blockquote>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad bdshare-button-style0-16" style="float: right;" data-mod="popu_172" data-bd-bind="1503026625912">
+<a href="http://blog.csdn.net/richiezhu/article/details/46968569#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important" target="_blank"></a>
+<a href="http://blog.csdn.net/richiezhu/article/details/46968569#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background-position:0 -52px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/richiezhu/article/details/46968569#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background-position:0 -104px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/richiezhu/article/details/46968569#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" style="background-position:0 -260px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/richiezhu/article/details/46968569#" class="bds_renren" data-cmd="renren" title="分享到人人网" style="background-position:0 -208px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/richiezhu/article/details/46968569#" class="bds_weixin" data-cmd="weixin" title="分享到微信" style="background-position:0 -1612px !important" target="_blank"></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   
+
+<!--172.16.140.13-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/bds_s_v2.js"></script>
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+
+
+ 
+
+
+        <div id="digg" articleid="46968569">
+            <dl id="btnDigg" class="digg digg_disable" onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>25</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable" onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" target="_blank">&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" target="_blank">&nbsp;</a></div>
+    <script type="text/javascript">
+        function btndigga() {
+            $(".tracking-ad[data-mod='popu_222'] a").click();
+        }
+        function btnburya() {
+            $(".tracking-ad[data-mod='popu_223'] a").click();
+        }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;]);location.href=&#39;http://blog.csdn.net/RichieZhu/article/details/46854247&#39;;">上一篇</span><a href="http://blog.csdn.net/RichieZhu/article/details/46854247" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;])">android-pulltorefresh   下拉加载中使用gif动图</a></li>
+                <li class="next_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;http://blog.csdn.net/RichieZhu/article/details/46983019&#39;;">下一篇</span><a href="http://blog.csdn.net/RichieZhu/article/details/46983019" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;])">ActionBarActivity  xml设置无标题 出现 java.lang.illegalStateException : you need to use a theme.appCompat</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+            <div class="similar_article">
+                    <h4></h4>
+                    <div class="similar_c" style="margin:20px 0px 0px 0px">
+                        <div class="similar_c_t">
+                          &nbsp;&nbsp;相关文章推荐
+                        </div>
+                   
+                        <div class="similar_wrap tracking-ad" data-mod="popu_36" style="max-height:250px">                       
+                            <ul class="similar_list fl">    
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/hong_geek/article/details/49849339" title="Android图片加载框架比较----Glide,Picasso,Fresco" strategy="BlogCommendFromBaidu" target="_blank">Android图片加载框架比较----Glide,Picasso,Fresco</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/huiyiCourse/series_detail/52?utm_source=blog7" title="【直播】计算机视觉原理及实战—屈教授" strategy="undefined" target="_blank">【直播】计算机视觉原理及实战—屈教授</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/yishifu/article/details/52326676" title="Fresco 与 Picasso 、Glide 的比较" strategy="BlogCommendFromBaidu" target="_blank">Fresco 与 Picasso 、Glide 的比较</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/course/detail/3921?utm_source=blog7" title="【套餐】深度学习入门视频课程—唐宇迪" strategy="undefined" target="_blank">【套餐】深度学习入门视频课程—唐宇迪</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/u012342082/article/details/49950535" title="Android图片加载框架：ImageLoader,Volley,Picasso,Glide,Fresco" strategy="BlogCommendFromBaidu" target="_blank">Android图片加载框架：ImageLoader,Volley,Picasso,Glide,Fresco</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/course/detail/1203?utm_source=blog7" title="【套餐】Hadoop生态系统零基础入门--侯勇蛟" strategy="undefined" target="_blank">【套餐】Hadoop生态系统零基础入门--侯勇蛟</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/LiuyiFirstTime/article/details/52301260" title="Picasso, ImageLoader, Fresco, Glide 优劣" strategy="BlogCommendFromBaidu" target="_blank">Picasso, ImageLoader, Fresco, Glide 优劣</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/course/detail/797?utm_source=blog7" title="【套餐】嵌入式Linux C编程基础--朱有鹏" strategy="undefined" target="_blank">【套餐】嵌入式Linux C编程基础--朱有鹏</a>
+                                   </li>
+                            </ul>
+                              <ul class="similar_list fr">      
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/kimyo8337373/article/details/46889733" title="Android Glide图片加载框架详解" strategy="BlogCommendFromBaidu" target="_blank">Android Glide图片加载框架详解</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/course/detail/546?utm_source=blog7" title="【套餐】2017软考系统集成项目——任铄" strategy="undefined" target="_blank">【套餐】2017软考系统集成项目——任铄</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/u013134722/article/details/56676078" title="安卓几种图片加载框架的比较" strategy="BlogCommendFromBaidu" target="_blank">安卓几种图片加载框架的比较</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/course/detail/2658?utm_source=blog7" title="【套餐】Android 5.x顶级视频课程——李宁" strategy="undefined" target="_blank">【套餐】Android 5.x顶级视频课程——李宁</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/sinyu890807/article/details/17482165" title="Android Volley完全解析(二)，使用Volley加载网络图片" strategy="BlogCommendFromBaidu" target="_blank">Android Volley完全解析(二)，使用Volley加载网络图片</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/hewence1/article/details/39989715" title="网络图片加载（Universal_Image_Loader,Volley）" strategy="BlogCommendFromBaidu" target="_blank">网络图片加载（Universal_Image_Loader,Volley）</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/lll1204019292/article/details/52350517" title="View的源码分析(绘制流程以及刷新机制)" strategy="BlogCommendFromBaidu" target="_blank">View的源码分析(绘制流程以及刷新机制)</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/susr154/article/details/52879868" title="Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较" strategy="BlogCommendFromCsdn" target="_blank">Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较</a>
+                                   </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>   
+      
+</div>
+
+    <div>
+        
+
+        <script type="text/javascript">
+            /*博客内容页下方Banner1-728*90，创建于2016-12-13*/
+            var cpro_id = "u2843949";
+        </script>
+        <script type="text/javascript" src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/c.js"></script>
+
+     </div>
+
+<div id="suggest">
+
+</div>
+         <script language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/RichieZhu/svc/GetSuggestContent/46968569",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+
+            
+                                    
+            
+                                    
+
+        <!-- 广告位开始 -->
+        <!-- 广告位结束 -->
+
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list"><dl class="comment_item comment_topic" id="comment_item_6172602"><dt class="comment_head" floor="5">5楼 <span class="user"><a class="username" href="http://blog.csdn.net/fei874" target="_blank">fei874</a> <span class="ptime">2016-08-04 13:50发表</span>  <a href="http://blog.csdn.net/richiezhu/article/details/46968569#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6172602" username="fei874"> <a href="http://blog.csdn.net/richiezhu/article/details/46968569#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/richiezhu/article/details/46968569#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/fei874" target="_blank"><img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/3_fei874.jpg" width="40" height="40"></a></dd><dd class="comment_body">用了一次Glide，感觉这个最好用了，功能强大配置简单</dd></dl><dl class="comment_item comment_topic" id="comment_item_5984440"><dt class="comment_head" floor="4">4楼 <span class="user"><a class="username" href="http://blog.csdn.net/u011579401" target="_blank">nixige</a> <span class="ptime">2016-04-15 10:53发表</span>  <a href="http://blog.csdn.net/richiezhu/article/details/46968569#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5984440" username="u011579401"> <a href="http://blog.csdn.net/richiezhu/article/details/46968569#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/richiezhu/article/details/46968569#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u011579401" target="_blank"><img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/3_u011579401.jpg" width="40" height="40"></a></dd><dd class="comment_body">ImageLoader 可以加载本地图片</dd></dl><dl class="comment_item comment_topic" id="comment_item_5840446"><dt class="comment_head" floor="3">3楼 <span class="user"><a class="username" href="http://blog.csdn.net/u010406539" target="_blank">王小妖1989</a> <span class="ptime">2016-01-13 14:24发表</span>  <a href="http://blog.csdn.net/richiezhu/article/details/46968569#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5840446" username="u010406539"> <a href="http://blog.csdn.net/richiezhu/article/details/46968569#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/richiezhu/article/details/46968569#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u010406539" target="_blank"><img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/3_u010406539.jpg" width="40" height="40"></a></dd><dd class="comment_body">之前一直在用xutils，但是在加载本地大图片时有异常，正在学习其他的图片加载库，给Glide和本文作者赞一个！！！</dd></dl><dl class="comment_item comment_topic" id="comment_item_5840444"><dt class="comment_head" floor="2">2楼 <span class="user"><a class="username" href="http://blog.csdn.net/u010406539" target="_blank">王小妖1989</a> <span class="ptime">2016-01-13 14:23发表</span>  <a href="http://blog.csdn.net/richiezhu/article/details/46968569#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5840444" username="u010406539"> <a href="http://blog.csdn.net/richiezhu/article/details/46968569#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/richiezhu/article/details/46968569#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u010406539" target="_blank"><img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/3_u010406539.jpg" width="40" height="40"></a></dd><dd class="comment_body">之前一直在用xutils，但是在加载本地大图片时有异常，正在学习其他的图片加载库，给Glide和本文作者赞一个！！！</dd></dl><dl class="comment_item comment_topic" id="comment_item_5713055"><dt class="comment_head" floor="1">1楼 <span class="user"><a class="username" href="http://blog.csdn.net/RichieZhu" target="_blank">路易斯-睿齐</a> <span class="ptime">2015-12-11 15:11发表</span>  <a href="http://blog.csdn.net/richiezhu/article/details/46968569#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5713055" username="RichieZhu"> <a href="http://blog.csdn.net/richiezhu/article/details/46968569#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/richiezhu/article/details/46968569#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/RichieZhu" target="_blank"><img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/3_richiezhu.jpg" width="40" height="40"></a></dd><dd class="comment_body">Glide最好用</dd></dl><div class="clear"></div></div>
+    <div id="comment_bar" style="display: none;">
+    </div>
+    <div id="comment_form"><div class="guest_link">您还没有登录,请<a href="javascript:void(0);" onclick="javascript:loginbox();">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Frichiezhu%2Farticle%2Fdetails%2F46968569">[注册]</a></div></div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '46968569';
+    var commentscount = 5;
+    var islock = false
+</script>
+
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top" style="bottom:60px;">
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop" style="display: none;" title="返回顶部" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_huidaodingbu&#39;])">         
+         <img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){        
+        
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+    var articletitle='Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较';
+
+</script>
+
+
+
+
+
+
+
+
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/RichieZhu" target="_blank">
+    <img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/1_richiezhu.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/RichieZhu" class="user_name" target="_blank">路易斯-睿齐</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter" title="[发私信]" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=RichieZhu&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+                                            <a target="_blank">
+                                                    <img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="2">
+                                            </a>
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>259459次</span></li>
+    <li>积分：<span>4594</span> </li>    
+    <li>等级： <span style="position:relative;display:inline-block;z-index:1">
+            <img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/blog5.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：4594 </div>
+        </span>  </li>
+    <li>排名：<span>第6354名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>213篇</span></li>
+    <li>转载：<span>57篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>60条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search csdn-tracking-statistics" target="_blank" data-mod="popu_306">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+   
+    $(function () {
+        $("#btnSubmit").unbind("click");
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {           
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            if ($("#inputSearch").val() == "") {               
+                alert("请录入搜索关键词！");                         
+                return false;
+            }
+            //var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";           
+            var url = "https://www.baidu.com/s?wd=" + encodeURIComponent($("#inputSearch").val()) + "%20site%3Ablog.csdn.net"
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="http://blog.csdn.net/RichieZhu/article/category/1189411" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android</a><span>(153)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/RichieZhu/article/category/1189412" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">java/j2ee/jsp/javaweb/javaee</a><span>(51)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/RichieZhu/article/category/1189417" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">iphone/ios/object-c/swift</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/RichieZhu/article/category/1254452" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">c#/asp.net/asp.net mvc/razor</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/RichieZhu/article/category/3148753" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">html/css/javascript/xml/json</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/RichieZhu/article/category/1189425" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">sql</a><span>(9)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/RichieZhu/article/category/1189414" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">c/c++</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/RichieZhu/article/category/5698035" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">综合知识</a><span>(15)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/RichieZhu/article/category/5642447" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">开源项目</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/RichieZhu/article/category/6070030" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">设计模式</a><span>(12)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/RichieZhu/article/category/5698033" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">系统设备</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/RichieZhu/article/category/6112490" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">跨平台</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/RichieZhu/article/category/6113419" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">学习教程</a><span>(2)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list"><li><a href="http://blog.csdn.net/RichieZhu/article/month/2017/05">2017年05月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2017/02">2017年02月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2016/12">2016年12月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2016/11">2016年11月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2016/10">2016年10月</a><span>(13)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/RichieZhu/article/month/2016/09">2016年09月</a><span>(23)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2016/08">2016年08月</a><span>(40)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2016/07">2016年07月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2016/06">2016年06月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2016/05">2016年05月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2016/04">2016年04月</a><span>(15)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2016/03">2016年03月</a><span>(27)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2016/02">2016年02月</a><span>(19)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2016/01">2016年01月</a><span>(32)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2015/12">2015年12月</a><span>(11)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2015/11">2015年11月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2015/10">2015年10月</a><span>(10)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2015/09">2015年09月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2015/08">2015年08月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2015/07">2015年07月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2015/06">2015年06月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2015/04">2015年04月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2014/09">2014年09月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2014/08">2014年08月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2014/04">2014年04月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2014/03">2014年03月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2013/06">2013年06月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2013/05">2013年05月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2013/01">2013年01月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2012/11">2012年11月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2012/10">2012年10月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2012/09">2012年09月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2012/08">2012年08月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/RichieZhu/article/month/2012/07">2012年07月</a><span>(12)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+</ul>
+</div>
+<div id="hotarticls" class="panel tracking-ad" data-mod="popu_340">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客.html" title="Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较" target="_blank">Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较</a><span>(27467)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/richiezhu/article/details/39278483" title="ContentProvier使用时：java.lang.SecurityException: Permission Denial:XXX解决办法" target="_blank">ContentProvier使用时：java.lang.SecurityException: Permission Denial:XXX解决办法</a><span>(9313)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/richiezhu/article/details/50553500" title="genymotion下载不了虚拟机（模拟器）文件？用ova文件离线安装" target="_blank">genymotion下载不了虚拟机（模拟器）文件？用ova文件离线安装</a><span>(7999)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/richiezhu/article/details/23330473" title="未能写入输出文件“c:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temp\App_global.asax.lra4cdoj.dll&#39; -- &#39;拒绝访问" target="_blank">未能写入输出文件“c:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temp\App_global.asax.lra4cdoj.dll' -- '拒绝访问</a><span>(5462)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/richiezhu/article/details/49299515" title="java.lang.NoSuchMethodError: No static method hasOnClickListeners(Landroid/view/View;)Z in class Lan" target="_blank">java.lang.NoSuchMethodError: No static method hasOnClickListeners(Landroid/view/View;)Z in class Lan</a><span>(3925)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/richiezhu/article/details/8095515" title="org.hibernate.TransactionException: JDBC rollback failed错误解决方法" target="_blank">org.hibernate.TransactionException: JDBC rollback failed错误解决方法</a><span>(3748)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/richiezhu/article/details/52816619" title="手机网页调用手机QQ    QQ在线客服" target="_blank">手机网页调用手机QQ    QQ在线客服</a><span>(3515)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/richiezhu/article/details/52711268" title="android 读取json字符串文件遇到的一个坑，记录下  W/art: Suspending all threads took: xx.xxx ms" target="_blank">android 读取json字符串文件遇到的一个坑，记录下  W/art: Suspending all threads took: xx.xxx ms</a><span>(3433)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/richiezhu/article/details/50966690" title="Android TabLayout、ViewPager实现顶部和底部Tab导航 点击滑动切换Tab页面" target="_blank">Android TabLayout、ViewPager实现顶部和底部Tab导航 点击滑动切换Tab页面</a><span>(3380)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/richiezhu/article/details/50996200" title="Binary XML file line #8: Error inflating class android.support.design.widget.NavigationView" target="_blank">Binary XML file line #8: Error inflating class android.support.design.widget.NavigationView</a><span>(3124)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel tracking-ad" data-mod="popu_341">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/richiezhu/article/details/50603457" title="AndFix实现动态热修复Demo" target="_blank">AndFix实现动态热修复Demo</a><span>(7)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/richiezhu/article/details/50966690" title="Android TabLayout、ViewPager实现顶部和底部Tab导航 点击滑动切换Tab页面" target="_blank">Android TabLayout、ViewPager实现顶部和底部Tab导航 点击滑动切换Tab页面</a><span>(7)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/richiezhu/article/details/50553500" title="genymotion下载不了虚拟机（模拟器）文件？用ova文件离线安装" target="_blank">genymotion下载不了虚拟机（模拟器）文件？用ova文件离线安装</a><span>(5)</span>
+</li>
+<li>
+<a href="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客.html" title="Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较" target="_blank">Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较</a><span>(5)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/richiezhu/article/details/50766328" title="Cordova 加载自定义url后跳转继续在本页面中加载" target="_blank">Cordova 加载自定义url后跳转继续在本页面中加载</a><span>(4)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/richiezhu/article/details/52506569" title="RecyclerView 添加head view头部 和foot view尾部、设置水平horizontal时左侧布局和右侧布局" target="_blank">RecyclerView 添加head view头部 和foot view尾部、设置水平horizontal时左侧布局和右侧布局</a><span>(3)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/richiezhu/article/details/51090312" title="Android ListView StickyListHeaders使用Demo" target="_blank">Android ListView StickyListHeaders使用Demo</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/richiezhu/article/details/48625663" title="Universal-Image-Loader 图片来源于drawable改动   Scheme.DRAWABLE.wrap(&quot;R.drawable.img&quot;)报错" target="_blank">Universal-Image-Loader 图片来源于drawable改动   Scheme.DRAWABLE.wrap("R.drawable.img")报错</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/richiezhu/article/details/45312769" title="常用xml格式和json格式对比，可相互之间转换" target="_blank">常用xml格式和json格式对比，可相互之间转换</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/richiezhu/article/details/39278483" title="ContentProvier使用时：java.lang.SecurityException: Permission Denial:XXX解决办法" target="_blank">ContentProvier使用时：java.lang.SecurityException: Permission Denial:XXX解决办法</a><span>(2)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/blogdevteam/article/details/76092129" target="_blank">* CSDN日报20170725——《新的开始，从研究生到入职亚马逊》</a></li>
+<li><a href="http://blog.csdn.net/javazejian/article/details/75043422" target="_blank">* 深入剖析基于并发AQS的重入锁(ReetrantLock)及其Condition实现原理</a></li>
+<li><a href="http://blog.csdn.net/jiangwei0910410003/article/details/75512732" target="_blank">* Android版本的"Wannacry"文件加密病毒样本分析(附带锁机)</a></li>
+<li><a href="http://blog.csdn.net/mindfloating/article/details/75948781" target="_blank">* 工作与生活真的可以平衡吗？</a></li>
+<li><a href="http://blog.csdn.net/poem_qianmo/article/details/75943714" target="_blank">* 《Real-Time Rendering 3rd》 提炼总结——高级着色：BRDF及相关技术</a></li>
+<li><a href="http://blog.csdn.net/dog250/article/details/75735806" target="_blank">* 《三体》读后思考-泰勒展开/维度打击/黑暗森林</a></li>
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="http://blog.csdn.net/richiezhu/article/details/51090312#comments">Android ListView StickyListHeaders使用Demo</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/z3896823" class="user_name">hbdxzyb</a>:
+恩，经过验证，是我想多了，这个库无法对传进去的 List&amp;lt;Object&amp;gt;排序，只能根据 ...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/richiezhu/article/details/51090312#comments">Android ListView StickyListHeaders使用Demo</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/z3896823" class="user_name">hbdxzyb</a>:
+@Override    public long getHeaderId(int position)...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/richiezhu/article/details/52239049#comments">Android子控件超出父控件的范围被覆盖问题</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/wocanimanimazhale" class="user_name">yf1994</a>:
+我在popUpWindow中使用怎么不行啊
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/richiezhu/article/details/52577711#comments">Android 通过蒲公英pgyer的接口 Service 实现带进度下载App 通知栏显示 在线更新 自动更新Demo</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/RichieZhu" class="user_name">路易斯-睿齐</a>:
+@u013084755:demo实现的是会重新下载。
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/richiezhu/article/details/52577711#comments">Android 通过蒲公英pgyer的接口 Service 实现带进度下载App 通知栏显示 在线更新 自动更新Demo</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u013084755" class="user_name">好饼哥</a>:
+大佬,我有一个疑问,就是我在打开app的时候用了SimpleCheckUpdateTool.upda...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/richiezhu/article/details/51969101#comments">Attempt to invoke virtual method 'int android.view.View.getImportantForAccessibility()'解决方案</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/RichieZhu" class="user_name">路易斯-睿齐</a>:
+@Average77:意识就是  不要反回 null 。。。
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/richiezhu/article/details/51969101#comments">Attempt to invoke virtual method 'int android.view.View.getImportantForAccessibility()'解决方案</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/Average77" class="user_name">Average77</a>:
+你好,解决了吗亲
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/richiezhu/article/details/50996200#comments">Binary XML file line #8: Error inflating class android.support.design.widget.NavigationView</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/HeiLingHang" class="user_name">HeiLingHang</a>:
+解决了,谢谢楼主,困了我一下午了;
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/richiezhu/article/details/50848307#comments">Android仿网易上下双导航简单实现</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/micaaa" class="user_name">BluesGlory</a>:
+无法运行
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/richiezhu/article/details/52506569#comments">RecyclerView 添加head view头部 和foot view尾部、设置水平horizontal时左侧布局和右侧布局</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/hotxuan" class="user_name">hotxuan</a>:
+能给我一份横向加头尾 代码吗？378128469@qq.com谢谢适配器用的是什么
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+
+                   <!-- 广告位开始 -->                    <!-- 广告位结束 -->
+                   <div class="tracking-ad" data-view="true" data-mtp="63" data-order="40" data-con="ad_content_1260" style="width: 200px; height: 500px;">
+                         <div id="nav_show_top_stop" style="width: 200px; height: 500px; z-index: 1000; position: fixed; top: 0px;"><div id="cpro_u2734128"></div>
+                             <div id="cpro_u3031287"></div></div>
+                   </div>
+                <script type="text/javascript">
+                    setTimeout(function () {
+                        var naviga_offsetTop = 0;
+                        function naviga_stay_top() { var scrollTop = jQuery(document).scrollTop(); if (scrollTop > naviga_offsetTop) { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": "0px" }); } else { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": naviga_offsetTop - scrollTop + "px" }); } }
+                        function onload_function() { naviga_offsetTop = jQuery("#nav_show_top_stop").position().top; jQuery(window).bind("scroll", naviga_stay_top); jQuery(window).bind("mousewheel", naviga_stay_top); jQuery(document).bind("scroll", naviga_stay_top); jQuery(document).bind("mousewheel", naviga_stay_top); } jQuery(document).ready(onload_function);
+
+                    }, 200);
+                </script>                    
+<script type="text/javascript">(window.cproArray = window.cproArray || []).push({ id: "u2734128" });  </script> 
+                    <script src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/c.js" type="text/javascript"></script> 
+                   <script type="text/javascript">
+                       /*PC端-博客内容页左侧Button2-200*200-2017/7/10*/
+                       (window.cproArray = window.cproArray || []).push({ id: "u3031287" });
+</script>
+<script type="text/javascript" src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/c.js"></script>
+
+           </div>   
+
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/login.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div>
+      <!--new top-->
+    
+
+     
+
+   
+   
+     <!--new top-->
+   
+   
+
+    
+    
+    
+   
+
+   
+
+
+       <script type="text/javascript" src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/MathJax.js"></script>
+          <script type="text/javascript">
+              //$(function () {
+              //    setTimeout(function () {
+              //        var searchtitletags = articletitle + ',' + $("#tags").html();
+              //        searchService({
+              //            index: 'blog',
+              //            query: searchtitletags,
+              //            from: 5,
+              //            size: 5,
+              //            appendTo: '#res',
+              //            url: 'recommend',
+              //            his: 2,
+              //            client: "blog_cf_enhance",
+              //            tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+              //        });
+              //    }, 1000);
+              //});
+
+         </script>
+    
+    <script src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/csdn_blog_detail.min.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/pub_footer_2014.css"><div class="pub_fo"><div id="pub_footerall" class="pub_footer_new"><dl><dt></dt> <dd class="foot_sub_menu"><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a><span>|</span><a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a><span>|</span><a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a><span>|</span><a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a><span>|</span><a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a><span>|</span><a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a><span>|</span><a href="mailto:webmaster@csdn.net">问题报告</a><span>|</span><a target="_blank" href="http://www.csdn.net/friendlink.html">合作伙伴</a><span>|</span><a href="http://bbs.csdn.net/forums/Service" target="_blank">论坛反馈</a></dd><dd class="foot_contact"><a href="javascript:void(0);" target="_blank" class="qq">网站客服</a><a href="http://wpa.qq.com/msgrd?v=3&uin=2251809102&site=qq&menu=yes" target="_blank" class="qq">杂志客服</a><a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a><a href="mailto:webmaster@csdn.net" class="email" title="联系邮箱">webmaster@csdn.net</a><span class="phone" title="服务热线">400-660-0108</span><span class="interval">|</span><span>北京创新乐知信息技术有限公司 版权所有</span><span class="interval">|</span><span>江苏知之为计算机有限公司</span><span class="interval">|</span><span>江苏乐知网络技术有限公司</span></dd><dd class="foot_copyright"><span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span><span class="interval">|</span><span>Copyright © 1999-2017, CSDN.NET, All Rights Reserved&nbsp;</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div></div><div id="note1" class="csdn_note" style="display:none; position:absolute; z-index:9999; width:440px">  <span class="notice_top_arrow"><span class="inner"></span></span>  <div class="box"></div></div><div class="csdn_notice_tip" style="display:none; position:absolute; z-index:9990; width:170px">  <iframe src="about:blank" frameborder="0" scrolling="no" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div class="tip_text">您有<strong>0</strong>条新通知</div>  <a href="javascript:void 0" class="close2"></a></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/notify.js"></script><input type="hidden" id="aa_g_data_ids">
+        
+    <script type="text/javascript" src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/csdn_public_blog_detail.min.js"></script>
+
+    <script type="text/javascript" src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/showblogmedal.ashx"></script>
+
+     
+    
+
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334" src="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/52b5334.js"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+    
+    
+        
+     
+
+    
+          
+    <div class="pop_CA_cover" style="display:none"></div>
+    <div class="pop pop_CA" style="display:none">
+          <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon" id="fapancle" onclick="$(&#39;.pop_CA&#39;).hide();$(&#39;.pop_CA_cover&#39;).hide();"></span>
+          </div>
+          <iframe src="" id="fa" frameborder="0" width="100%" height="360" scrolling="no"></iframe>
+    </div>
+
+
+        <script type="text/javascript">
+
+            $(function () {
+                var fromjs = $("#fromjs");
+                if (fromjs.length > 0) {
+                    $("#fromjs .markdown_views pre").addClass("prettyprint");
+                    prettyPrint();
+
+                    $('pre.prettyprint code').each(function () {
+                        var lines = $(this).text().split('\n').length;
+                        var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                        $(this).addClass('has-numbering').parent().append($numbering);
+                        for (i = 1; i <= lines; i++) {
+                            $numbering.append($('<li/>').text(i));
+                        };
+                        $numbering.fadeIn(1700);
+                    });
+
+                    $('.pre-numbering li').css("color", "#999");
+                }
+            });
+
+            $(".markdown_views a[target!='_blank']").attr("target", "_blank");
+
+            //$(".toc a[target='_blank']").attr("target", "");
+
+            setTimeout(function () {
+                $(".toc a[target='_blank']").attr("target", "");
+            }, 500);
+
+        </script>
+
+
+   
+<div id="mask_code"></div><div class="gist_edit"><div class="save_snippets clearfix"><div class="tit"><h3>保存代码片</h3><span>整理和分享保存的代码片，请访问<a href="https://code.csdn.net/snippets_manage" target="_blank">代码笔记</a></span></div><div class="con_form"><ul class="gist_edit_list clearfix"><li><span class="red">*</span><span class="txt">标题</span><input id="form_title" class="form-input" placeholder="Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较" type="text"></li><li><span class="red">*</span><span class="txt">描述</span><textarea id="form-textarea" class="form-textarea" placeholder="Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较： http://blog.csdn.net/richiezhu/article/details/46968569"></textarea></li><li><span class="red">&nbsp;</span><span class="txt">标签</span><div id="divSearchTags"><span class="label blog_tag"><span>网络</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>开源</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>图片</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>android</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>图片加载框架</span><a title="Removing tag" href="javascript:;">x</a></span><input id="insertTag" class="insertTag" placeholder="请输入标签，按Enter生成(最多5项)" type="text" value="" name="insertTag" maxlength="21" style="color: rgb(51, 51, 51);"><input id="OrganTag" class="OrganTag" type="hidden" name="OrganTag" value="网络,开源,图片,android,图片加载框架,"><input id="OldOrganTag" class="OldOrganTag" type="hidden" name="OldOrganTag" value=""><input type="hidden" name="txtSearchTags"></div></li></ul></div><div class="bottom-bar"><a href="javascript:;" class="btn-submit btn-cancel">取消</a><span class="tracking-ad" data-mod="popu_250"><a class="btn-submit btn-confirm" href="javascript:;" target="_blank">确定</a></span></div></div></div><link rel="stylesheet" type="text/css" media="screen" href="./Universal-Image-Loader，android-Volley，Picasso、Fresco和Glide五大Android开源组件加载网络图片的优缺点比较 - LouisGeek片段代码,点滴人生The Book of Even More Awesome - CSDN博客_files/ask_float_fonts_css-6b30a53970eb5c3a2a045e3df585b475.css"><div data-mod="popu_64" class="csdn-tracking-statistics" chg-blk="0"><a id="com-quick-QRcode" class="QRcodebg1" title="扫描二维码" style="top:127px"><span class="closeQR"></span></a><a id="com-quick-reply" title="快速回复" style="top:261px"></a><a id="com-quick-collect" title="我要收藏" style="top:299px"></a><a id="com-d-top-a" style="top: 337px; display: inline;" title="返回顶部" onclick=""></a></div><div class="pop_edit ask_second comm_ask_second"><h3>提问</h3><span class="ask_float_span">您的问题将会被发布在“<a class="ask_float_channel" href="http://ask.csdn.net/" target="_blank" style="cursor:pointer">技术问答</a>”频道</span><a href="http://blog.csdn.net/richiezhu/article/details/46968569#" nodetype="close" class="close">×</a><div class="context"><div class="err_div"><span class="err_ico"></span><span class="err_txt">该问题已存在，请勿重复提问</span></div><div class="input_div"><input id="askInputSecond" type="text" style="font-size:14px;" placeholder="问题标题"></div><div class="cm_box"><div class="cm_dialog"></div> <div class="pop_cm cm_add_link"><input type="text" placeholder="链接内容" id="af_cm_link_txt"><input type="text" placeholder="链接地址" id="af_cm_link_url"><input type="text" placeholder="链接提示" id="af_cm_link_tit"><div class="text-right"><span class="btn btn-default btn-sm" id="add_link_btn">插入链接</span> </div> </div><div class="pop_cm cm_add_img"><div class="nav-tabs"><a class="img_tab active" href="http://blog.csdn.net/richiezhu/article/details/46968569#tab_upload">本地上传</a><a class="img_tab" href="http://blog.csdn.net/richiezhu/article/details/46968569#tab_weburl">网络图片</a></div><div class="tab_panel active" id="tab_upload"><div class="set_img"></div></div><div class="tab_panel" id="tab_weburl"><input type="text" placeholder="图片地址" id="af_cm_img_url"><input type="text" placeholder="图片说明" id="af_cm_img_alt"><div class="text-right"><span class="btn btn-default btn-sm" id="add_img_btn">插入图片</span> </div></div> </div></div> <textarea id="editor_all" rows="8" style="display: none;"></textarea><div class="editor-toolbar"><i class="separator">|</i><a class="icon-headline" title="标题一（Ctrl+Alt+1）"></a><a class="icon-heading" title="标题二（Ctrl+Alt+2）"></a><a class="icon-bold" title="粗体（Ctrl+B）"></a><a class="icon-italic" title="斜体（Ctrl+I）"></a><i class="separator">|</i><a class="icon-quote-left" title="引用（Ctrl+’）"></a><a class="icon-code" title="插入代码片（Ctrl+,）"></a><a class="icon-list-ul" title="无序列表（Ctrl+L）"></a><a class="icon-list-ol" title="有序列表（Ctrl+Alt+L）"></a><i class="separator">|</i><a class="icon-link" title="添加链接（Ctrl+K）"></a><a class="icon-picture" title="添加图片（Ctrl+Alt+I）"></a><i class="separator">|</i><a class="icon-reply" title="撤退（Ctrl+Z）"></a><a class="icon-share-alt" title="前进（Ctrl+Shift+Z）"></a><i class="separator">|</i><a class="icon-info" href="http://ask.csdn.net/pages/markdown" target="_blank" title="markdown语法参考"></a><a class="icon-preview" title="预览"></a><i class="separator">|</i></div><div class="CodeMirror cm-s-paper CodeMirror-focused"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar"><div style="height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="min-width: 33px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>&nbsp;<span style="display: inline-block; width: 1px; margin-right: -1px;">&nbsp;</span></pre></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code"></div><div class="CodeMirror-cursor">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters" style="display: none;"></div></div></div><div class="editor-statusbar"><span class="lines">0</span><span class="words">0</span><span class="cursor">0:0</span></div><div class="div_tags clearfix"><div id="divSearchTags" class="tags_con"><input type="text"></div><input type="hidden" name="txtSearchTags"></div><div id="ask2_tagRecomm_div" class="drt_tagRecomm tracking-ad" data-mod="popu_73"><span class="drt_tit">推荐标签：</span></div></div><div class="success"><div class="left_area"><input id="chk_cb" type="checkbox"><span class="wyxs">我要悬赏</span><input id="cb_num" class="cb_num" readonly="true"><span class="phib_rii"><span> 币</span></span></div><a href="http://blog.csdn.net/richiezhu/article/details/46968569#" nodetype="cancel" class="cancel">取消</a><a href="http://blog.csdn.net/richiezhu/article/details/46968569#" nodetype="ok" class="ok">发布</a></div></div><div id="common_ask_div_sc" class="searchContainer"><div class="sTitle">可能存在类似的问题：</div><div class="sFooter"><a class="sFirstNewAsk">我想提一个新问题</a></div></div><div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" type="text" value="" id="focus_retriever" readonly="true"></div><div id="tag-suggest-pop">
+  <div class="relative">
+    <div class="close"></div>
+    <div class="content"></div>
+  </div>
+</div></body></html>

@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://www.cnblogs.com/tianzhijiexian/p/4161811.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>详细解读DialogFragment - developer_Kale - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./详细解读DialogFragment - developer_Kale - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./详细解读DialogFragment - developer_Kale - 博客园_files/bundle-CodingLife.css">
+<link type="text/css" rel="stylesheet" href="./详细解读DialogFragment - developer_Kale - 博客园_files/191655.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./详细解读DialogFragment - developer_Kale - 博客园_files/bundle-CodingLife-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/tianzhijiexian/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/tianzhijiexian/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/tianzhijiexian/wlwmanifest.xml">
+<script async="" src="./详细解读DialogFragment - developer_Kale - 博客园_files/analytics.js"></script><script type="text/javascript" src="./详细解读DialogFragment - developer_Kale - 博客园_files/encoder.js"></script><script src="./详细解读DialogFragment - developer_Kale - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'tianzhijiexian', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./详细解读DialogFragment - developer_Kale - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head><style type="text/css" id="686767118522"></style>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/tianzhijiexian/"><img id="blogLogo" src="./详细解读DialogFragment - developer_Kale - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/tianzhijiexian/">Developer_Kale</a></h1>
+<h2>因为疯狂所以专注，因为专注所以疯狂！</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/tianzhijiexian/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/developer_Kale">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/tianzhijiexian/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/tianzhijiexian/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 378&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 141</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="./详细解读DialogFragment - developer_Kale - 博客园_files/详细解读DialogFragment - developer_Kale - 博客园.html">详细解读DialogFragment</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/132119407433428.png" alt="" width="305" height="542"></p>
+<p><span style="font-size: 18px;">相信看这篇文章的人都应该知道android中的Dialog了吧，如果对于Dialog还不是很了解可以看我之前的一篇详解文章：</span></p>
+<p><span style="font-size: 18px;">Dialog详解：<a href="http://www.cnblogs.com/tianzhijiexian/p/3867731.html" target="_blank"><span style="color: #800080;">http://www.cnblogs.com/tianzhijiexian/p/3867731.html</span></a></span></p>
+<p><span style="font-size: 18px; color: #000000;">随着Fragment这个类的引入，Google官方推荐大家使用DialogFragment来代替传统的Dialog，那么是不是说我们之前学习的Dialog知识都没有用处了呢？非也，新的fragment是来方便大家更好的管理和重用Dialog，之前的知识其实都是可以拿来就用的，仅仅需要少许的改变。</span></p>
+<p>&nbsp;</p>
+<p><strong><span style="font-size: 18pt; color: #ff9900;">一、Dialog和DialogFragment的区别和优劣</span></strong></p>
+<p><span style="font-size: 18px; color: #000000;">新来的DialogFragment让dialog也变成了碎片，相比之前来说应该做了很多优化和处理，对于程序员来看对话框现在更加具体了，就是一个activity上的一个fragment，我们也可以用fragment的知识来管理对话框了。</span></p>
+<p><span style="font-size: 18px; color: #000000;">我们看看之前是怎么运用对话框对象的</span></p>
+<div class="cnblogs_code">
+<pre>　　AlertDialog dialog = <span style="color: #0000ff;">new</span> AlertDialog.Builder(<span style="color: #0000ff;">this</span><span style="color: #000000;">)
+        .setTitle(</span>"Dialog"<span style="color: #000000;">)
+        .setMessage(</span>"thisis a dialog"<span style="color: #000000;">)
+        .show();</span></pre>
+</div>
+<p><span style="font-size: 18px;"><span style="color: #000000;">如果</span><span style="line-height: 1.5;">这个时候屏幕方向发生变化，就会导致Activity重建，然后之前显示的对话框就不见了。查看log可以发现这个错误：</span></span></p>
+<p align="left"><span style="font-size: 18px; color: #ff0000;">04-1917:30:06.999: E/WindowManager(14495): Activitycom.example.androidtest.MainActivity has leaked windowcom.android.internal.policy.impl.PhoneWindow$DecorView{42ca3c18 V.E.....R....... 0,0-1026,414} that was originally added here</span></p>
+<p><span style="font-size: 18px; color: #000000;">当然我们也可以无视这个错误，因为程序不会因此崩溃（看来android本身就已经预料到这种情况了）。</span></p>
+<p><span style="font-size: 18px; color: #000000;">如果我们想要在旋转屏幕的时候也能保证这个对话框显示就需要做一定的处理了，在activity要销毁前设立一个标志，看这时对话框是否是显示状态，如果是那么activity在下次建立时直接显示对话框。</span></p>
+<p><span style="font-size: 18px; color: #000000;">在onSaveInstanceState中</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">@Override
+    </span><span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onSaveInstanceState(Bundle outState) {
+        </span><span style="color: #0000ff;">super</span><span style="color: #000000;">.onSaveInstanceState(outState);
+        </span><span style="color: #0000ff;">if</span> (dialog != <span style="color: #0000ff;">null</span> &amp;&amp;<span style="color: #000000;"> dialog.isShowing()) {
+            outState.putBoolean(</span>"DIALOG_SHOWN", <span style="color: #0000ff;">true</span><span style="color: #000000;">);
+        }
+    }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 18px;">在onCreat中</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">@Override
+    </span><span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onCreate(Bundle savedInstanceState) {
+        </span><span style="color: #0000ff;">super</span><span style="color: #000000;">.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        
+        </span><span style="color: #0000ff;">if</span> (savedInstanceState != <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+            </span><span style="color: #0000ff;">boolean</span> isShown = savedInstanceState.getBoolean("DIALOG_SHOWN"<span style="color: #000000;">);
+            </span><span style="color: #0000ff;">if</span><span style="color: #000000;"> (isShown) {
+                AlertDialog dialog </span>= <span style="color: #0000ff;">new</span> AlertDialog.Builder(<span style="color: #0000ff;">this</span>).setTitle("Dialog"<span style="color: #000000;">)
+                        .setMessage(</span>"thisis a dialog"<span style="color: #000000;">).show();
+            }
+        }
+    ……
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 18px; color: #000000;">使用DialogFragment来管理对话框就不会有这种问题了，代码也少了很多的逻辑处理。当你旋转屏幕的时候，fragmentManager会自定管理DialogFragment的生命周期，如果当前已经显示在屏幕上了，那么旋转屏幕后夜会自动显示，下面就是在屏幕旋转时的log输出。</span></p>
+<p align="left"><span style="color: #008080;">4-1917:45:41.289: D/==========(16156): MyDialogFragment : onAttach</span></p>
+<p align="left"><span style="color: #008080;">04-1917:45:41.299: D/==========(16156): MyDialogFragment : onCreate</span></p>
+<p align="left"><span style="color: #008080;">04-1917:45:41.299: D/==========(16156): MyDialogFragment : onCreateView</span></p>
+<p align="left"><span style="color: #008080;">04-1917:45:41.309: D/==========(16156): MyDialogFragment : onStart</span></p>
+<p align="left"><span style="color: #008080;">04-1917:45:50.619: D/==========(16156): MyDialogFragment : onStop</span></p>
+<p align="left"><span style="color: #008080;">04-1917:45:50.619: D/==========(16156): third activity on destroy</span></p>
+<p align="left"><span style="color: #008080;">04-1917:45:50.619:D/==========(16156): MyDialogFragment : onDestroyView</span></p>
+<p align="left"><span style="color: #008080;">04-1917:45:50.619: D/==========(16156): MyDialogFragment : onDetach</span></p>
+<p align="left"><span style="color: #008080;">04-1917:45:50.639: D/==========(16156): MyDialogFragment : onAttach</span></p>
+<p align="left"><span style="color: #008080;">04-1917:45:50.639: D/==========(16156): MyDialogFragment : onCreate</span></p>
+<p align="left"><span style="color: #008080;">04-1917:45:50.659: D/==========(16156): MyDialogFragment : onCreateView</span></p>
+<p align="left"><span style="color: #008080;">04-1917:45:50.659: D/==========(16156): MyDialogFragment : onStart</span></p>
+<p><span style="font-size: 18px; color: #000000;">Ok，当然你可以不以为然，你说我的应用就是竖着用的，旋转屏幕毕竟是小概率事件，谁会开着对话框旋转来旋转去啊。那么相信下面的好处你一定不能否定吧。</span></p>
+<p><span style="font-size: 18px; color: #000000;">我们之前用Dialog的时候，在activity中必须要建立这个对象，而且一般我们都是需要给它放监听器的，比如下面的代码：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">    @Override
+    </span><span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onCreate(Bundle savedInstanceState) {
+        </span><span style="color: #0000ff;">super</span><span style="color: #000000;">.onCreate(savedInstanceState);
+        setContentView(R.layout.guid_main);</span><span style="color: #0000ff;">new</span> AlertDialog.Builder(GuideActivity.<span style="color: #0000ff;">this</span>).setTitle("用户申明"<span style="color: #000000;">)
+        .setMessage(getResources().getString(R.string.statement))
+        .setPositiveButton(</span>"我同意", <span style="color: #0000ff;">new</span><span style="color: #000000;"> positiveListener())
+        .setNegativeButton(</span>"不同意", <span style="color: #0000ff;">new</span><span style="color: #000000;"> negativeListener())
+        .setCancelable(</span><span style="color: #0000ff;">false</span><span style="color: #000000;">)
+        .show();
+    }</span><span style="color: #0000ff;">private</span> <span style="color: #0000ff;">class</span> positiveListener <span style="color: #0000ff;">implements</span><span style="color: #000000;"> DialogInterface.OnClickListener {
+        @Override
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> onClick(DialogInterface dialog, <span style="color: #0000ff;">int</span><span style="color: #000000;"> which) {
+            prefs.setIsFirstTime(</span><span style="color: #0000ff;">false</span><span style="color: #000000;">);
+        }
+    }
+    
+    </span><span style="color: #0000ff;">private</span> <span style="color: #0000ff;">class</span> negativeListener <span style="color: #0000ff;">implements</span><span style="color: #000000;"> DialogInterface.OnClickListener {
+        @Override
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> onClick(DialogInterface dialog, <span style="color: #0000ff;">int</span><span style="color: #000000;"> which) {
+            Util.virtualHome(GuideActivity.</span><span style="color: #0000ff;">this</span><span style="color: #000000;">);
+        }
+    }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px; color: #000000;">你会发现这么长的代码很破坏activity中的逻辑性，有木有！！！在activity中我们处理的各种控件的显示和逻辑，但对于dialog这种不属于activity并且建立和处理逻辑都自成一体的东西，我们为什么要在activity中建立呢？而且为了方便重用，我们在实际过程中基本都会建立一个dialog的工具类来做处理，所以为什么不用DialogFragment来实现呢？如果通过它来实现，我们就能很方便的进行管理对话框。</span></p>
+<p><span style="font-size: 18px; color: #000000;">此外，</span><span style="font-size: 18px;">当旋转屏幕和按下后退键时可以更好的管理其声明周期，它和Fragment有着基本一致的声明周期。且DialogFragment也允许开发者把Dialog作为内嵌的组件进行重用，类似Fragment（可以在大屏幕和小屏幕显示出不同的效果）。有可能我们在大屏幕上就不需要弹出一个对话框了，直接内嵌在activity界面中显示即可。这点也很赞！</span></p>
+<p>&nbsp;</p>
+<p><strong><span style="font-size: 18pt; color: #ff9900;">二、DialogFragment的最简单用法</span></strong></p>
+<p><span style="font-size: 18px; color: #000000;">使用DialogFragment很简单，甚至比用Fragment还简单，因为在api中已经实现了fragment切换对象了。</span></p>
+<p><span style="font-size: 18px; color: #000000;">1.建立一个fragment对象</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">package</span><span style="color: #000000;"> com.kale.dialogfragmenttest;
+
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.app.DialogFragment;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.os.Bundle;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.LayoutInflater;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.View;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.ViewGroup;
+
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> MyDialogFragment <span style="color: #0000ff;">extends</span><span style="color: #000000;"> DialogFragment{
+
+    @Override
+    </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        System.out.println(</span>"tag = "+<span style="color: #000000;">getTag()); // tag which is from acitivity which started this fragment
+</span>
+        <span style="color: #0000ff;">return</span> inflater.inflate(R.layout.dialog, <span style="color: #0000ff;">null</span><span style="color: #000000;">);
+    }
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 18px;">我们建立了一个fragment，让他继承了DialogFragment，在onCreatView中通过布局文件建立了一个view，这和fragment完全一致。</span></p>
+<p><strong><span style="font-size: 18px; color: #000000;">布局文件如下：</span></strong></p>
+<p><span style="font-size: 18px; color: #000000;"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/131912169937885.jpg" alt=""></span></p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;7227782e-06a5-4d91-91d2-3a527847134d&#39;)"><img id="code_img_closed_7227782e-06a5-4d91-91d2-3a527847134d" class="code_img_closed" src="./详细解读DialogFragment - developer_Kale - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_7227782e-06a5-4d91-91d2-3a527847134d" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;7227782e-06a5-4d91-91d2-3a527847134d&#39;,event)" src="./详细解读DialogFragment - developer_Kale - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_7227782e-06a5-4d91-91d2-3a527847134d" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff;">?&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">LinearLayout </span><span style="color: #ff0000;">xmlns:android</span><span style="color: #0000ff;">="http://schemas.android.com/apk/res/android"</span><span style="color: #ff0000;">
+    android:layout_width</span><span style="color: #0000ff;">="match_parent"</span><span style="color: #ff0000;">
+    android:layout_height</span><span style="color: #0000ff;">="match_parent"</span><span style="color: #ff0000;">
+    android:orientation</span><span style="color: #0000ff;">="vertical"</span><span style="color: #ff0000;"> 
+    android:padding</span><span style="color: #0000ff;">="16dp"</span><span style="color: #0000ff;">&gt;</span>
+
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">TextView
+        </span><span style="color: #ff0000;">android:id</span><span style="color: #0000ff;">="@+id/textView1"</span><span style="color: #ff0000;">
+        android:layout_width</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+        android:layout_height</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+        android:text</span><span style="color: #0000ff;">="Large Text"</span><span style="color: #ff0000;">
+        android:textAppearance</span><span style="color: #0000ff;">="?android:attr/textAppearanceLarge"</span> <span style="color: #0000ff;">/&gt;</span>
+
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">EditText
+        </span><span style="color: #ff0000;">android:layout_marginTop</span><span style="color: #0000ff;">="10dp"</span><span style="color: #ff0000;">
+        android:id</span><span style="color: #0000ff;">="@+id/editText1"</span><span style="color: #ff0000;">
+        android:layout_width</span><span style="color: #0000ff;">="match_parent"</span><span style="color: #ff0000;">
+        android:layout_height</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+        android:ems</span><span style="color: #0000ff;">="10"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">requestFocus </span><span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">EditText</span><span style="color: #0000ff;">&gt;</span>
+
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">Button
+        </span><span style="color: #ff0000;">android:id</span><span style="color: #0000ff;">="@+id/button1"</span><span style="color: #ff0000;">
+        android:layout_marginTop</span><span style="color: #0000ff;">="10dp"</span><span style="color: #ff0000;">
+        android:layout_gravity</span><span style="color: #0000ff;">="center_horizontal"</span><span style="color: #ff0000;">
+        android:layout_width</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+        android:layout_height</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+        android:text</span><span style="color: #0000ff;">="Button"</span> <span style="color: #0000ff;">/&gt;</span>
+
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">LinearLayout</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px; color: #000000;">2.在activity中启用这个dialog</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">    @Override
+    </span><span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onCreate(Bundle savedInstanceState) {
+        </span><span style="color: #0000ff;">super</span><span style="color: #000000;">.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> DialogFragmentTest()
+        .show(getFragmentManager(), </span>"dialog_fragment"<span style="color: #000000;">);
+    }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 18px;">很像Dialog吧，也是支持链式编程的。这里面的参数：① 一个fragmentManager，在低版本中用getSupport来获取；② 一个tag（String）通过这个tag可以告诉fragment是谁启动了它，当然这仅仅是这个tag的一种使用方式啦。在fragment中可以通过getTag()方法来获取这个tag</span></p>
+<p><span style="color: #0000ff;"><span style="font-size: 18px;">这里多说一句，在一年前我还一直说要兼容要兼容，不兼容的demo是很不负责任的，但是现在来看，低版本的用户真的很少很少了，而且这些低版本的用户已经不能是我们的主流用户了，所以在2014年末，我可以负责任的说，可以不用兼容2.x的系统了。我之前写过很多兼容的文章，actionbar啊，对话框的兼容啊，但现在都变得无所谓了，其实任何事物的发展都是如此。很多之前很重要的技术，在新的发展中已经慢慢变得无足轻重了，但我们之前为之付出的东西却不是无价值的。一个原因是为自己之前的工作找到价值，一种是在那段时光中我们慢慢体会到了很多东西，这些东西就是我们的阅历也是一种谈资。</span></span></p>
+<p><span style="font-size: 18px; color: #000000;">好，闲话少叙，下面是运行效果：</span></p>
+<p><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/131922197904177.png" alt="" width="363" height="646"></p>
+<p><span style="font-size: 18px; color: #000000;">有人会说，上面的那个空白的title好丑，我想去掉。当然可以，这就是fragment的好处，用这个方法：</span></p>
+<p><span style="font-size: 18px; color: #000000;">getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);<br></span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> MyDialogFragment <span style="color: #0000ff;">extends</span><span style="color: #000000;"> DialogFragment{
+
+    @Override
+    </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        System.out.println(</span>"tag = "+<span style="color: #000000;">getTag());
+      <strong><span style="color: #0000ff;">  getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
+        </span></strong></span><span style="color: #0000ff;">return</span> inflater.inflate(R.layout.dialog, <span style="color: #0000ff;">null</span><span style="color: #000000;">);
+    }
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px; color: #000000;">现在它变成了这个样子：</span></p>
+<p><span style="font-size: 18px; color: #000000;"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/131924126509589.png" alt="" width="388" height="689"></span></p>
+<p><span style="font-size: 18px; color: #000000;">所以你可以看到，任何改变都是要付出代价的，如果你还是像之前一样用match_parent来制定控件的宽度，那么就是这种结果。可以说那个title栏就是一个房梁，支撑着对话框的宽度，没了它就只能自适应了。解决办法就是自定义控件的宽度，写个几百dp啥的，没任何技术难度。</span></p>
+<p><span style="color: #ff0000;"><strong><span style="font-size: 18px;">注意：</span></strong></span></p>
+<p><span style="font-size: 18px; color: #000000;">如果你的DialogFragment是Activity的内部类，必须将DialogFragment定义为静态的。否则会报错！！！</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>    <span style="color: #0000ff;">public</span> <span style="color: #ff0000;"><strong>static</strong></span> <span style="color: #0000ff;">class</span> DialogFragmentTest <span style="color: #0000ff;">extends</span><span style="color: #000000;"> DialogFragment {
+
+        @Override
+        </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> View onCreateView(LayoutInflater inflater, ViewGroup container,
+                Bundle savedInstanceState) {
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> TODO 自动生成的方法存根</span>
+            <span style="color: #0000ff;">return</span> inflater.inflate(R.layout.dialog, <span style="color: #0000ff;">null</span><span style="color: #000000;">);
+        }
+    }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 18pt;"><strong><span style="color: #ff9900;">三、DialogFragment启动、终止过程分析</span></strong></span></p>
+<p><span style="font-size: 18px; color: #000000;">之前说了，我们没有像fragment那样建立一个fragment加载对象进行fragment的加载，也没有commit，但却能使用dialogFragment对象，这是为什么呢？</span></p>
+<p><span style="font-size: 18px; color: #000000;">我们先来回顾下fragment是怎么使用的。</span></p>
+<p><span style="font-size: 18px; color: #000000;">① 建立FragmentManager对象，用来管理fragment</span></p>
+<p><span style="font-size: 18px; color: #000000;">② 建立fragmentTransaction对象，用来添加和fragment</span></p>
+<p><span style="font-size: 18px; line-height: 27px;">③ 提交fragment切换（commit）</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>　　　　FragmentManager fragmentManager =<span style="color: #000000;"> getSupportFragmentManager();
+        FragmentTransaction ft </span>=<span style="color: #000000;"> fragmentManager.beginTransaction();  
+    
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.add(R.id.container_fragment, </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> MyFragment())
+        .commit();</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 18px;">替换fragment的方法</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">　　getSupportFragmentManager().beginTransaction().
+        replace(R.id.container_fragment02, fragment)
+        .addToBackStack(</span><span style="color: #0000ff;">null</span><span style="color: #000000;">)
+        .commit();</span></pre>
+</div>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px; color: #000000;">现在，我们通过源码来分析下DialogFragment的启动方式</span></p>
+<p><span style="font-size: 18px; color: #000000;">我们在使用它的时候没有去用fragmentTransaction对象，也没有执行add，也没有执行commit，仅仅提供了一个fragmentManager，那么它是怎么被添加的呢？我们知道这个对话框是用show方法显示的，那么就来看看这个方法吧。</span></p>
+<p><strong><span style="font-size: 18px; color: #000000;">DialogFragment源码：</span></strong></p>
+<p><strong><span style="font-size: 18px; color: #000000;">1. show()</span></strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>    <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> show(FragmentManager manager, String tag){
+        mDismissed </span>= <span style="color: #0000ff;">false</span><span style="color: #000000;">; 
+        mShownByMe </span>= <span style="color: #0000ff;">true</span><span style="color: #000000;">; 
+        FragmentTransaction ft </span>=<span style="color: #000000;"> manager.beginTransaction(); // creat a fragmentTransaction
+        ft.add(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">, tag); // add fragment with tag
+        ft.commit(); 
+    } <br></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 18px;">真相大白，api自动给你实现了一个fragment切换的对象，而且在show的时候就已经add了fragment，所以没有任何问题~</span></p>
+<p><span style="font-size: 18px; line-height: 27px;">在add方法中没有提供容器的id，所以表示是加载到当前activity中的，在添加后也的确调用了commit方法</span></p>
+<p><strong><span style="font-size: 18px; line-height: 27px;">2. show()的另一种形式</span></strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>    <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> show(FragmentTransaction transaction, String tag) {
+        mDismissed </span>= <span style="color: #0000ff;">false</span><span style="color: #000000;">; 
+        mShownByMe </span>= <span style="color: #0000ff;">true</span><span style="color: #000000;">; 
+        transaction.add(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">, tag); 
+        mViewDestroyed </span>= <span style="color: #0000ff;">false</span><span style="color: #000000;">; 
+        mBackStackId </span>=<span style="color: #000000;"> transaction.commit();
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> mBackStackId; 
+    }  </span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 18px;">上面的show方法传入的是一个fragmentTransaction对象，这个也很容易理解。我们之前传入fragmentManager对象的目的就是生成这个fragmentTransaction对象，这回我们可以在传入一个已经配置好的fragmentTransaction对象，大大增加了可定制性。所以api的制订也是大神们心血的结晶啊。</span></p>
+<p><strong><span style="font-size: 18px;">3.dimiss()</span></strong></p>
+<p><span style="font-size: 18px;">源码：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>** 
+ *<span style="color: #000000;"> Dismiss the fragment and its dialog.  If the fragment was added to the 
+ </span>* back stack, all back stack state up to and including <span style="color: #0000ff;">this</span><span style="color: #000000;"> entry will 
+ </span>* be popped.  Otherwise, a <span style="color: #0000ff;">new</span><span style="color: #000000;"> transaction will be committed to remove 
+ </span>*<span style="color: #000000;"> the fragment. 
+ </span>*/  
+<span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> dismiss() {  
+    dismissInternal(</span><span style="color: #0000ff;">false</span><span style="color: #000000;">);  
+}  
+  
+</span><span style="color: #0000ff;">void</span> dismissInternal(<span style="color: #0000ff;">boolean</span><span style="color: #000000;"> allowStateLoss) {  
+    </span><span style="color: #0000ff;">if</span><span style="color: #000000;"> (mDismissed) {  
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;">;  
+    }  
+    mDismissed </span>= <span style="color: #0000ff;">true</span><span style="color: #000000;">;  
+    mShownByMe </span>= <span style="color: #0000ff;">false</span><span style="color: #000000;">;  
+    </span><span style="color: #0000ff;">if</span> (mDialog != <span style="color: #0000ff;">null</span><span style="color: #000000;">) {  
+        mDialog.dismiss();  
+        mDialog </span>= <span style="color: #0000ff;">null</span><span style="color: #000000;">;  
+    }  
+    mViewDestroyed </span>= <span style="color: #0000ff;">true</span><span style="color: #000000;">;  
+    </span><span style="color: #0000ff;">if</span> (mBackStackId &gt;= 0<span style="color: #000000;">) {  
+        getFragmentManager().popBackStack(mBackStackId,  
+                FragmentManager.POP_BACK_STACK_INCLUSIVE);  
+        mBackStackId </span>= -1<span style="color: #000000;">;  
+    } </span><span style="color: #0000ff;">else</span><span style="color: #000000;"> {  
+        FragmentTransaction ft </span>=<span style="color: #000000;"> getFragmentManager().beginTransaction();  
+        ft.remove(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">);   
+        </span><span style="color: #0000ff;">if</span><span style="color: #000000;"> (allowStateLoss) {  
+            ft.commitAllowingStateLoss();  
+        } </span><span style="color: #0000ff;">else</span><span style="color: #000000;"> {  
+            ft.commit();  
+        }  
+    }  
+}  </span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 18px;">我们知道了如果一个DialogFragment关闭的时候会检查堆栈里面有没有其他的对象，如果有就pop出来，如果没有就直接remove和commit。也就是说：如果back stack堆栈有该Dialog，将其pop出来，否则ft.remove(this); ft.commit();。估计pop的操作也包含ft.remove()和ft.commit()。调用dismiss()会触发onDismiss()回调函数。</span></p>
+<p><span style="font-size: 18px;">跟踪状态，如下：</span></p>
+<p><span style="font-size: 18px;"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/132029278538173.jpg" alt=""></span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 18pt;"><strong><span style="color: #ff9900;">四、通过onCreateView()来建立对话框布局</span></strong></span></p>
+<p><span style="font-size: 18px; color: #000000;">上面的例子中我们已经在onCreateView()建立的对话框布局，这时fragment中建立布局的传统写法，很适合用于自定义的对话框，我们可以修改任何的东西，包括对话框的style。上面的例子中我们已经干掉了对话框上面title的区域，而我们也没发现可以设置标题的方法，感觉上面那个标题栏就是个标题党，毫无意义（之后会说到这块区域的用处）。</span></p>
+<p><span style="font-size: 18px; color: #000000;">我们在onCreat中可以设置对话框的风格和各种属性，但是千万别设置关于view的东西，因为这时候对话框还没建立呢，有关于view的东西在onCreatView中去设置吧，这里我简单设置了一个button的点击事件——关闭对话框</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> MyDialogFragment <span style="color: #0000ff;">extends</span><span style="color: #000000;"> DialogFragment{
+
+    @Override 
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onCreate(Bundle savedInstanceState) {  
+        </span><span style="color: #0000ff;">super</span><span style="color: #000000;">.onCreate(savedInstanceState); 
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">如果setCancelable()中参数为true，若点击dialog覆盖不到的activity的空白或者按返回键，
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">则进行cancel，状态检测依次onCancel()和onDismiss()。如参数为false，则按空白处或返回键无反应。缺省为true </span>
+        setCancelable(<span style="color: #0000ff;">true</span><span style="color: #000000;">); 
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">可以设置dialog的显示风格
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">setStyle(style,theme);  </span>
+<span style="color: #000000;">    }  
+    
+    @Override
+    </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);</span>
+        View rootView = inflater.inflate(R.layout.dialog, <span style="color: #0000ff;">null</span><span style="color: #000000;">);
+        Button btn </span>=<span style="color: #000000;"> (Button)rootView.findViewById(R.id.button);
+        btn.setOnClickListener(</span><span style="color: #0000ff;">new</span><span style="color: #000000;"> OnClickListener() {
+            
+            @Override
+            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onClick(View v) {
+                </span><span style="color: #008000;">//</span><span style="color: #008000;"> TODO 自动生成的方法存根</span>
+<span style="color: #000000;">                dismiss();
+            }
+        });
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> rootView;
+    }
+
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><span style="color: #3366ff;"><strong><span style="font-size: 18px;">补充：实现信息保存</span></strong></span></p>
+<p><span style="font-size: 18px; color: #000000;">在activity横竖屏切换的时候，dialog现在可以自动重建了，如果你在editText中输入了信息，在重建的时候会不会保留之前的呢？在4.2和4.4中对话框人性化的自定保存了之前输入的内容，我们无须手动处理。但如果你测试的手机被奇葩的定制了，那就乖乖的保存数据吧。</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> MyDialogFragment <span style="color: #0000ff;">extends</span><span style="color: #000000;"> DialogFragment {
+
+    EditText editText;
+
+    @Override
+    </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        View rootView </span>= inflater.inflate(R.layout.dialog, <span style="color: #0000ff;">null</span><span style="color: #000000;">);
+</span><span style="color: #000000;">
+        editText </span>=<span style="color: #000000;"> (EditText) rootView.findViewById(R.id.editText);
+        </span><span style="color: #0000ff;">if</span> (savedInstanceState != <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+            CharSequence text </span>=<span style="color: #000000;"> savedInstanceState.getCharSequence(</span>"input data"<span style="color: #000000;">);
+            editText.setText(text </span>== <span style="color: #0000ff;">null</span> ? ""<span style="color: #000000;"> : text);
+        }
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> rootView;
+    }
+
+    @Override
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onSaveInstanceState(Bundle outState) {
+        outState.putCharSequence(</span>"input data"<span style="color: #000000;">, editText.getText());
+        </span><span style="color: #0000ff;">super</span><span style="color: #000000;">.onSaveInstanceState(outState);
+    }
+
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 18pt;"><strong><span style="color: #ff9900;">五、通过onCreateDialog()来快捷的建立对话框</span></strong></span></p>
+<p><span style="font-size: 18px; color: #000000;">我们上面建立的对话框都是用自定义布局的，难道我们之前学过的dialog知识都没用了么？我们如果没自定义对话框的需求，怎么办？就没有一种快一点的方式来建立对话框么？快用onCreatDialog吧！！！这个回调方法是DialogFragment独有的，通过它返回的是一个Dialog对象，这个对象就会被显示到屏幕上。千万别同时使用onCreatView和onCreatDialog方法，他们仅仅是为了完成同样一个目的的两条路而已。</span></p>
+<p><strong><span style="font-size: 18px; color: #3366ff;">PS：从生命周期的顺序而言，先执行onCreateDialog()，后执行onCreateView()</span></strong></p>
+<p><span style="font-size: 18px; color: #000000;">我在onCreatDialog建立一个警告对话框的builder，通过这个builder的create()方法来生成一个AlertDialog对象，因为AlertDialog是Dialog的子类，所以可以直接返回给Dialog。这里可以用其他不同对话框的builder，代码类似，只不过就是通过builder的creat()方法返回的是不同的对象而已。builder模式也是蛮巧妙的~</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> MyDialogFragment <span style="color: #0000ff;">extends</span> DialogFragment <span style="color: #0000ff;">implements</span><span style="color: #000000;"> android.content.DialogInterface.OnClickListener{
+    
+    @Override
+    </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> Dialog onCreateDialog(Bundle savedInstanceState) {
+        Builder builder </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> AlertDialog.Builder(getActivity());
+        builder.setTitle(</span>"用户申明"<span style="color: #000000;">)
+            .setMessage(getResources().getString(R.string.hello_world))
+            .setPositiveButton(</span>"我同意", <span style="color: #0000ff;">this</span><span style="color: #000000;">)
+            .setNegativeButton(</span>"不同意", <span style="color: #0000ff;">this</span><span style="color: #000000;">)
+            .setCancelable(</span><span style="color: #0000ff;">false</span><span style="color: #000000;">);
+            //.show(); // show cann't be use here
+        
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> builder.create();
+    }
+
+    @Override
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> onClick(DialogInterface dialog, <span style="color: #0000ff;">int</span><span style="color: #000000;"> which) {
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> TODO 自动生成的方法存根</span><span style="color: #000000;">
+    }
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px; color: #000000;"><strong>显示效果：</strong><br></span></p>
+<p><span style="font-size: 18px; color: #000000;"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/132019329316286.png" alt="" width="378" height="672"></span></p>
+<p><span style="font-size: 18px; color: #000000;">看到了么，这里的标题栏终于有用了，原来那个标题栏是为了给我们在这里用的啊~</span></p>
+<p><span style="color: #ff0000;"><strong><span style="font-size: 18px;">注意：</span></strong></span></p>
+<p><span style="font-size: 18px; color: #000000;">① 因为这里创建的是一个dialog，所以用的onclickListener自然是对话框中的listener了。</span></p>
+<p><span style="font-size: 18px; color: #000000;">② 千万别在构建对话框对象的时候顺手写了show()方法，我们现在是在fragment中初始化一个对话框，真正让他显示的时候是在activity中用这个dialogFragment对象显示的。如果这里写了show方法不会报错，但是会出现两个对话框！</span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px; color: #000000;">那么，我们能不能在这里自定义对话框呢？当然可以啦，本身Dialog.builder就提供了自定义view的方法，和之前用Dialog一样自定义下viwe就搞定了。</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;"> @Override  
+    </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> Dialog onCreateDialog(Bundle savedInstanceState)  
+    {  
+        AlertDialog.Builder builder </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> AlertDialog.Builder(getActivity());  
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> Get the layout inflater  </span>
+        LayoutInflater inflater =<span style="color: #000000;"> getActivity().getLayoutInflater();  
+        View view </span>= inflater.inflate(R.layout.fragment_login_dialog, <span style="color: #0000ff;">null</span><span style="color: #000000;">);  
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> Inflate and set the layout for the dialog  
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> Pass null as the parent view because its going in the dialog layout  </span>
+<span style="color: #000000;">        builder.setView(view)  // set your own view
+                </span><span style="color: #008000;">//</span><span style="color: #008000;"> Add action buttons  </span>
+                .setPositiveButton("Sign in"<span style="color: #000000;">,  
+                        </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> DialogInterface.OnClickListener()  
+                        {  
+                            @Override  
+                            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> onClick(DialogInterface dialog, <span style="color: #0000ff;">int</span><span style="color: #000000;"> id)  
+                            {  
+                            }  
+                        }).setNegativeButton(</span>"Cancel", <span style="color: #0000ff;">null</span><span style="color: #000000;">);  
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> builder.create();  
+    }  </span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px; color: #000000;">这里贴下我在另一篇文章的自定义对话框view的代码片段：</span></p>
+<p><span style="font-size: 18px; color: #000000;">详细看这里：<span style="color: #800080;"><span style="color: #800080;"><a href="http://www.cnblogs.com/tianzhijiexian/p/3867731.html" target="_blank">http://www.cnblogs.com/tianzhijiexian/p/3867731.html</a></span></span></span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 自定义视图对话框
+     * 
+     * </span><span style="color: #808080;">@param</span><span style="color: #008000;"> title
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> viewDialog(String title) {
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> LayoutInflater是用来找layout文件夹下的xml布局文件，并且实例化</span>
+        LayoutInflater factory =<span style="color: #000000;"> LayoutInflater.from(mContext);
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 把activity_login中的控件定义在View中</span>
+        View view = factory.inflate(R.layout.dialog_layout, <span style="color: #0000ff;">null</span><span style="color: #000000;">);
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 将LoginActivity中的控件显示在对话框中
+
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 获取用户输入的“用户名”，“密码”
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 注意：view.findViewById很重要，因为上面factory.inflate(R.layout.activity_login,
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> null)将页面布局赋值给了view了</span>
+        TextView titleTv =<span style="color: #000000;"> (TextView) view
+                .findViewById(R.id.dialog_textView_id);
+        titleTv.setText(title);
+        Button btn </span>=<span style="color: #000000;"> (Button) view.findViewById(R.id.dialog_logout_button_id);
+        btn.setOnClickListener(</span><span style="color: #0000ff;">new</span><span style="color: #000000;"> View.OnClickListener() {
+            @Override
+            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onClick(View arg0) {
+                showToast(</span>"按下自定义视图的按钮了~"<span style="color: #000000;">);
+            }
+        });
+
+        builder
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 设定显示的View</span>
+<span style="color: #000000;">        .setView(view);
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 设置dialog是否为模态，false表示模态，true表示非模态
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> ab.setCancelable(false);
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 对话框的创建、显示,这里显示的位置是在屏幕的最下面，但是很不推荐这个种做法，因为距底部有一段空隙</span>
+        AlertDialog dialog =<span style="color: #000000;"> builder.create();
+        Window window </span>=<span style="color: #000000;"> dialog.getWindow();
+        window.setGravity(Gravity.BOTTOM); </span><span style="color: #008000;">//</span><span style="color: #008000;"> 此处可以设置dialog显示的位置</span>
+        window.setWindowAnimations(R.style.myAnimationstyle); <span style="color: #008000;">//</span><span style="color: #008000;"> 添加动画</span>
+<span style="color: #000000;">        dialog.show();
+    }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 18pt;"><strong><span style="color: #ff9900;">六、DialogFragment与Activity之前进行通信</span></strong></span></p>
+<p><span style="font-size: 18px; color: #000000;">思路很简单，就是定义一个传输数据的接口，强制activity实现这个接口，在fragment需要传递数据的时候去调用这个接口的方法，activity就能在这个方法中得到相应的数据了。这点在之前的fragment传递数据中已经介绍过了，可以参考这篇文章：</span></p>
+<p><a href="http://www.cnblogs.com/tianzhijiexian/p/3888330.html" target="_blank"><span style="font-size: 18px; color: #800080;">http://www.cnblogs.com/tianzhijiexian/p/3888330.html</span></a></p>
+<p><span style="font-size: 18px; color: #000000;">在真正项目中，fragment的编写并不需要了解activity的各类方法，好的编程风格是将fragment所涉及的方法以接口的方式封装起来，我在此写一个例子来说明一下。</span></p>
+<p><span style="font-size: 18px; color: #000000;">1. 写一个接口——DataCallback</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">package</span><span style="color: #000000;"> com.kale.dialogfragmenttest;
+
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">interface</span><span style="color: #000000;"> DataCallback {
+
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> getData(String data);
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px; color: #000000;">2.activity实现这个接口</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> MainActivity <span style="color: #0000ff;">extends</span> Activity <span style="color: #0000ff;">implements</span><span style="color: #000000;"> DataCallback{
+
+    @Override
+    </span><span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onCreate(Bundle savedInstanceState) {
+        </span><span style="color: #0000ff;">super</span><span style="color: #000000;">.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> MyDialogFragment()
+        .show(getFragmentManager(), </span>"dialog_fragment"<span style="color: #000000;">);
+    }
+
+    @Override
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> getData(String data) {
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> TODO 自动生成的方法存根</span>
+        System.out.println("data = "+<span style="color: #000000;"> data);
+    }
+
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px; color: #000000;">3.在DialogFragment中使用这个接口，并且用instanceof来看启动它的activity是否实现了这个接口，如果没实现就抛出异常。这样我们就能保证在大型项目中不会出现忘记实现这个接口的问题了。</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.app.Activity;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.app.AlertDialog;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.app.AlertDialog.Builder;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.app.Dialog;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.app.DialogFragment;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.content.DialogInterface;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.os.Bundle;
+
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> MyDialogFragment <span style="color: #0000ff;">extends</span> DialogFragment <span style="color: #0000ff;">implements</span><span style="color: #000000;">
+        android.content.DialogInterface.OnClickListener {
+
+    @Override
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onAttach(Activity activity) {
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> onAttach()是合适的早期阶段进行检查MyActivity是否真的实现了接口。
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 采用接口的方式，dialog无需详细了解MyActivity，只需了解其所需的接口函数，这是真正项目中应采用的方式。</span>
+        <span style="color: #0000ff;">if</span> (!(activity <span style="color: #0000ff;">instanceof</span><span style="color: #000000;"> DataCallback)) {
+            </span><span style="color: #0000ff;">throw</span> <span style="color: #0000ff;">new</span> IllegalStateException("fragment所在的Activity必须实现Callbacks接口"<span style="color: #000000;">);
+        }
+        </span><span style="color: #0000ff;">super</span><span style="color: #000000;">.onAttach(activity);
+    }
+
+    @Override
+    </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> Dialog onCreateDialog(Bundle savedInstanceState) {
+        Builder builder </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> AlertDialog.Builder(getActivity());
+        builder.setTitle(</span>"用户申明"<span style="color: #000000;">)
+                .setMessage(getResources().getString(R.string.hello_world))
+                .setPositiveButton(</span>"我同意", <span style="color: #0000ff;">this</span>).setNegativeButton("不同意", <span style="color: #0000ff;">this</span><span style="color: #000000;">)
+                .setCancelable(</span><span style="color: #0000ff;">false</span><span style="color: #000000;">);
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> show();</span>
+
+        <span style="color: #0000ff;">return</span><span style="color: #000000;"> builder.create();
+    }
+
+    @Override
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> onClick(DialogInterface dialog, <span style="color: #0000ff;">int</span><span style="color: #000000;"> which) {
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> TODO 自动生成的方法存根</span>
+        DataCallback callback =<span style="color: #000000;"> (DataCallback) getActivity();
+        callback.getData(</span>"test"<span style="color: #000000;">);
+    }
+
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px; color: #000000;">此外fragment也可以通过fragment管理器，通过tag，获取其他fragment实例，从而进行fragment之间的通信。当然从编程思想的角度看，fragment之间的过多进行交叉调用，不利于程序的管控。</span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 18pt;"><strong><span style="color: #ff9900;">七、用DialogFragment实现再次弹窗</span></strong></span></p>
+<p><span style="font-size: 18px; color: #000000;">有时候我们可能有这样的需求，点击对话框中的一个按钮后又弹出一个对话框，这个该怎么做呢？首先在点击事件中将这个对话框在屏幕上移除，然后把这个fragment压栈，最后建立一个新的dialogFragment对象，show出来。我们虽然让这个fragment在屏幕上消失，但还是可以通过fragment管理器到回退栈中找到它。</span></p>
+<p><strong><span style="font-size: 18px; color: #000000;">二次弹窗的代码：</span></strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>　　　　　FragmentTransaction ft =<span style="color: #000000;"> getFragmentManager().beginTransaction();
+
+        </span><span style="color: #008000;">/*</span><span style="color: #008000;">
+         * 如果不执行remove()，对话框即不会进入onDismiss()状态。会被显示在新的对话框下方，是可见的。
+         * 主要考虑美观的问题，如果下面的对话框大于上面的对话框就很难看了。 对于Dialog，container为0或者null。
+         </span><span style="color: #008000;">*/</span><span style="color: #000000;">
+        ft.remove(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">);
+        </span><span style="color: #008000;">/*</span><span style="color: #008000;">
+         * 将当前的PromptDialogFragment加入到回退堆栈，当用户按返回键，或者通过按帮助框的Close按钮dismiss帮助框是，
+         * 重新显示提示框。 对于back stack的处理，系统具有一定的智能。例如：执行两次addToStackStack()，实际不会重复压栈。
+         * 有例如：注释掉remove()语句，即提示框不消失，而是在帮助框的下面。
+         * 但是在实验中发现是否有addToBackStack()都不会结果有影响，系统能够分析到对象存在，不需要压栈。没有去查源代码，
+         * 猜测通过mBackStackId比对来进行智能处理。
+         </span><span style="color: #008000;">*/</span><span style="color: #000000;">
+        ft.addToBackStack(</span><span style="color: #0000ff;">null</span><span style="color: #000000;">);
+        
+        </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> OhterDialogFragment()
+        .show(getFragmentManager(), </span>"dialog_fragment");</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><strong><span style="font-size: 18pt; color: #ff9900;">八、利用Fragment的特性，为不同屏幕做适配</span></strong></p>
+<p><span style="font-size: 18px; color: #000000;">如果我们想在大屏幕上显示对话框，而小屏幕中直接把对话框的内容放在activity中显示呢？</span></p>
+<p><span style="font-size: 18px; color: #000000;">其实也很简单，本身这个dialogFragment就是一个fragment，所以完全有fragment的特性，你可以用fragmentTranscation将其放到任何布局中，你也可以用show()方法把它当作dialog显示出来。接下来就剩下一个问题了，判断屏幕大小。</span></p>
+<p><span style="font-size: 18px; color: #000000;">在默认的values下新建一个bools.xml</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff;">?&gt;</span>  
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">resources</span><span style="color: #0000ff;">&gt;</span>  
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">bool </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="large_layout"</span><span style="color: #0000ff;">&gt;</span>false<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">bool</span><span style="color: #0000ff;">&gt;</span>  
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">resources</span><span style="color: #0000ff;">&gt;</span>  </pre>
+</div>
+<p><span style="font-size: 18px;">然后，在res下新建一个values-large，在values-large下再新建一个bools.xml，通过加载不同的value就能知道是大屏还是小屏幕啦</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff;">?&gt;</span>  
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">resources</span><span style="color: #0000ff;">&gt;</span>  
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">bool </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="large_layout"</span><span style="color: #0000ff;">&gt;</span>true<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">bool</span><span style="color: #0000ff;">&gt;</span>  
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">resources</span><span style="color: #0000ff;">&gt;</span>  </pre>
+</div>
+<p><span style="font-size: 18px; color: #000000;">在代码中进行判断</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> showDialogInDifferentScreen(View view)  
+    {  
+        FragmentManager fragmentManager </span>=<span style="color: #000000;"> getFragmentManager();  
+        EditNameDialogFragment newFragment </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> EditNameDialogFragment();  
+  
+        </span><span style="color: #0000ff;">boolean</span> mIsLargeLayout =<span style="color: #000000;"> getResources().getBoolean(R.bool.large_layout) ;  
+        Log.e(</span>"TAG", mIsLargeLayout+""<span style="color: #000000;">);  
+        </span><span style="color: #0000ff;">if</span><span style="color: #000000;"> (mIsLargeLayout ) {  
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> The device is using a large layout, so show the fragment as a  
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> dialog  </span>
+            newFragment.show(fragmentManager, "dialog"<span style="color: #000000;">);  
+        } </span><span style="color: #0000ff;">else</span><span style="color: #000000;"> {  
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> The device is smaller, so show the fragment fullscreen  </span>
+            FragmentTransaction transaction =<span style="color: #000000;"> fragmentManager.beginTransaction();  
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> For a little polish, specify a transition animation  </span>
+<span style="color: #000000;">            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);  
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> To make it fullscreen, use the 'content' root view as the  
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> container</span><span style="color: #008000;"> for the fragment, which is always the root view for the activity  </span>
+<span style="color: #000000;">            transaction.replace(R.id.id_ly, newFragment).commit();  
+        }  
+    }  </span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px; color: #000000;">参考自：</span></p>
+<p><span style="font-size: 18px; color: #000000;">http://blog.csdn.net/huangyabin001/article/details/30053835</span></p>
+<p><span style="font-size: 18px; color: #000000;">http://blog.csdn.net/lmj623565791/article/details/37815413</span></p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/tianzhijiexian/category/654016.html" target="_blank">Dialog</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(4161811,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;39e71692-ea0c-e411-8d02-90b11c0b17d6&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/tianzhijiexian/" target="_blank"><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/20140717134855.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/tianzhijiexian/">developer_Kale</a><br>
+            <a href="http://home.cnblogs.com/u/tianzhijiexian/followees">关注 - 0</a><br>
+            <a href="http://home.cnblogs.com/u/tianzhijiexian/followers">粉丝 - 140</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;39e71692-ea0c-e411-8d02-90b11c0b17d6&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(4161811,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">3</span>
+    </div>
+    <div class="buryit" onclick="votePost(4161811,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/tianzhijiexian/p/4157889.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/tianzhijiexian/p/4157889.html" title="发布于2014-12-11 16:23">ViewHolder的标准写法</a><br><a href="http://www.cnblogs.com/tianzhijiexian/p/4161883.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/tianzhijiexian/p/4161883.html" title="发布于2014-12-13 21:31">Android 判断是否能真正上网</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2014-12-13 20:33</span> <a href="http://www.cnblogs.com/tianzhijiexian/">developer_Kale</a> 阅读(<span id="post_view_count">10082</span>) 评论(<span id="post_comment_count">2</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=4161811" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/tianzhijiexian/p/4161811.html#" onclick="AddToWz(4161811);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=191655,cb_entryId=4161811,cb_blogApp=currentBlogApp,cb_blogUserGuid='39e71692-ea0c-e411-8d02-90b11c0b17d6',cb_entryCreatedDate='2014/12/13 20:33:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/tianzhijiexian/p/4161811.html#3468068" class="layer">#1楼</a><a name="3468068" id="comment_anchor_3468068"></a>  <span class="comment_date">2016-07-11 22:47</span> <a id="a_comment_author_3468068" href="http://home.cnblogs.com/u/990845/" target="_blank">打发的开发来看</a> <a href="http://msg.cnblogs.com/send/%E6%89%93%E5%8F%91%E7%9A%84%E5%BC%80%E5%8F%91%E6%9D%A5%E7%9C%8B" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3468068" class="blog_comment_body">大神，请问关于二次弹框的问题，是在activity中再弹一个还是在我自定义的dialogfragment中弹呢？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3468068,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3468068,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/tianzhijiexian/p/4161811.html#3468071" class="layer">#2楼</a><a name="3468071" id="comment_anchor_3468071"></a><span id="comment-maxId" style="display:none;">3468071</span><span id="comment-maxDate" style="display:none;">2016/7/11 22:49:09</span>  <span class="comment_date">2016-07-11 22:49</span> <a id="a_comment_author_3468071" href="http://home.cnblogs.com/u/990845/" target="_blank">打发的开发来看</a> <a href="http://msg.cnblogs.com/send/%E6%89%93%E5%8F%91%E7%9A%84%E5%BC%80%E5%8F%91%E6%9D%A5%E7%9C%8B" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3468071" class="blog_comment_body">额，怎么提交了，还没说完，看你代码获取fragmentmanager，判断是在activity，可是我需要二次弹的框，在消失掉二次弹框的时候，再显示第一个框。不知道能不能实现呢</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3468071,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3468071,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/tianzhijiexian/p/4161811.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/tianzhijiexian/p/4161811.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://www.jiguang.cn/devservice?bky" target="_blank">【推荐】极光开发者服务平台，五大功能一站集齐</a><br><a href="https://dnspod.cloud.tencent.com/act/seckill?fromSource=gwzcw.410370.410370.410370" target="_blank">【推荐】腾讯云域名+云解析 限时折扣抓紧抢购</a><br><a href="http://click.aliyun.com/m/18488/" target="_blank">【推荐】阿里云“全民云计算”优惠升级</a><br><a href="https://cloud.tencent.com/developer/labs?fromSource=gwzcw.330910.330910.330910" target="_blank">【推荐】一小时搭建人工智能应用，让技术更容易入门</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://click.aliyun.com/m/26126/" target="_blank"><img width="300" height="250" src="./详细解读DialogFragment - developer_Kale - 博客园_files/24442-20170718132533661-166801094.jpg" alt="阿里云0718"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/577198/" target="_blank">《行尸走肉》也做AR手游，在大街上“杀丧尸”是什么感觉？</a><br> ·  <a href="http://news.cnblogs.com/n/577197/" target="_blank">计算机之父图灵的148份文件在曼彻斯特大学旧文件柜中被发现</a><br> ·  <a href="http://news.cnblogs.com/n/577196/" target="_blank">Windows 10周年更新迎神秘累积更新：还是没有更新日志</a><br> ·  <a href="http://news.cnblogs.com/n/577195/" target="_blank">OpenSSL团队成员将于9月拜访中国：经过上海/深圳/北京三地</a><br> ·  <a href="http://news.cnblogs.com/n/577194/" target="_blank">Uber新CEO致老东家公开信：与你们共事是我的荣幸</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice?source=bky&hmsr=%E5%8D%9A%E5%AE%A2%E5%9B%AD&hmpl=&hmcu=&hmkw=&hmci=" target="_blank"><img width="468" height="60" src="./详细解读DialogFragment - developer_Kale - 博客园_files/24442-20170727100914671-839522651.gif" alt="极光0801"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/575829/" target="_blank">做到这一点，你也可以成为优秀的程序员</a><br> ·  <a href="http://kb.cnblogs.com/page/566880/" target="_blank">写给立志做码农的大学生</a><br> ·  <a href="http://kb.cnblogs.com/page/569057/" target="_blank">架构腐化之谜</a><br> ·  <a href="http://kb.cnblogs.com/page/572854/" target="_blank">学会思考，而不只是编程</a><br> ·  <a href="http://kb.cnblogs.com/page/574767/" target="_blank">编写Shell脚本的最佳实践</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div><img src="./详细解读DialogFragment - developer_Kale - 博客园_files/292018114419518.png" alt=""></div><p>&nbsp;</p><strong style="font-size: 14.3999996185303px; line-height: 1.5; color: #000080;"><a href="http://android.cordovachina.cn/index.html" style="font-size: 14.3999996185303px; line-height: 1.5;"><span style="color: #000080; font-size: 10pt;">Api文档</span></a></strong><p><a href="https://www.zybuluo.com/"><strong style="color: #000080; font-size: 10pt;">作业部落</strong></a></p><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/tianzhijiexian/">developer_Kale</a><br>园龄：<a href="http://home.cnblogs.com/u/tianzhijiexian/" title="入园时间：2014-07-16">3年1个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/tianzhijiexian/followers/">140</a><br>关注：<a href="http://home.cnblogs.com/u/tianzhijiexian/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;39e71692-ea0c-e411-8d02-90b11c0b17d6&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/tianzhijiexian/tag/test/">test</a>(1)</li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/tianzhijiexian/category/653989.html">■shape | selector | layer-list(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/tianzhijiexian/category/595992.html">★Install | Error | Setting(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/tianzhijiexian/category/660688.html">♠Paint | Canvas | Path(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/tianzhijiexian/category/653987.html">ActionBar(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/tianzhijiexian/category/653983.html">Activity(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/tianzhijiexian/category/653986.html">Adapter(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/tianzhijiexian/category/689057.html">Android Studio(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/tianzhijiexian/category/653988.html">Animation(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/tianzhijiexian/category/653999.html">AsyncTask | Loader(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/tianzhijiexian/category/654126.html">Attribute(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/tianzhijiexian/category/654077.html">Bitmap(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/tianzhijiexian/category/653991.html">BroadcastReceiver(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/tianzhijiexian/category/654002.html">Button(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/tianzhijiexian/category/654021.html">Cache | Optimiz(31)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/tianzhijiexian/category/654011.html">CheckBox(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/tianzhijiexian/category/689049.html">color | theme(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/tianzhijiexian/category/653993.html">DB | Prefs(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/tianzhijiexian/category/672210.html">Design Pattern(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/tianzhijiexian/category/654016.html">Dialog(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/tianzhijiexian/category/689056.html">Eclipse(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/tianzhijiexian/category/654013.html">EditText(17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/tianzhijiexian/category/653995.html">File | IO(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/tianzhijiexian/category/653985.html">Fragment(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/tianzhijiexian/category/674666.html">Git(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/tianzhijiexian/category/688691.html">Gradle(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/tianzhijiexian/category/653997.html">GridLayout(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/tianzhijiexian/category/653996.html">GridView(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_27" href="http://www.cnblogs.com/tianzhijiexian/category/653998.html">Handler(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_28" href="http://www.cnblogs.com/tianzhijiexian/category/596198.html">ImageView(24)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_29" href="http://www.cnblogs.com/tianzhijiexian/category/653984.html">Intent(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_30" href="http://www.cnblogs.com/tianzhijiexian/category/654060.html">Java(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_31" href="http://www.cnblogs.com/tianzhijiexian/category/654003.html">Layout(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_32" href="http://www.cnblogs.com/tianzhijiexian/category/654005.html">ListView(20)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_33" href="http://www.cnblogs.com/tianzhijiexian/category/653994.html">Net | Http | Wifi(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_34" href="http://www.cnblogs.com/tianzhijiexian/category/654015.html">Notification(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_35" href="http://www.cnblogs.com/tianzhijiexian/category/598658.html">Other Skills(39)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_36" href="http://www.cnblogs.com/tianzhijiexian/category/654004.html">OtherView(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_37" href="http://www.cnblogs.com/tianzhijiexian/category/654109.html">PopupWindow(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_38" href="http://www.cnblogs.com/tianzhijiexian/category/654008.html">ProgressBar(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_39" href="http://www.cnblogs.com/tianzhijiexian/category/654076.html">ScrollView(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_40" href="http://www.cnblogs.com/tianzhijiexian/category/654009.html">SeekBar(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_41" href="http://www.cnblogs.com/tianzhijiexian/category/654123.html">Selector(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_42" href="http://www.cnblogs.com/tianzhijiexian/category/653992.html">Service(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_43" href="http://www.cnblogs.com/tianzhijiexian/category/654133.html">Software(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_44" href="http://www.cnblogs.com/tianzhijiexian/category/654006.html">Spinner(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_45" href="http://www.cnblogs.com/tianzhijiexian/category/654010.html">Switch(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_46" href="http://www.cnblogs.com/tianzhijiexian/category/654059.html">TableLayout</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_47" href="http://www.cnblogs.com/tianzhijiexian/category/654012.html">TextView(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_48" href="http://www.cnblogs.com/tianzhijiexian/category/654000.html">Thread</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_49" href="http://www.cnblogs.com/tianzhijiexian/category/654014.html">Toast(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_50" href="http://www.cnblogs.com/tianzhijiexian/category/654040.html">ViewPager(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_51" href="http://www.cnblogs.com/tianzhijiexian/category/654065.html">WebView(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_52" href="http://www.cnblogs.com/tianzhijiexian/category/689012.html">WindowUtil(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_53" href="http://www.cnblogs.com/tianzhijiexian/category/653990.html">Xml | Html | Json(4)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/10.html">2015年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/09.html">2015年9月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/08.html">2015年8月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/07.html">2015年7月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/06.html">2015年6月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/05.html">2015年5月 (17)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/04.html">2015年4月 (23)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/03.html">2015年3月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/02.html">2015年2月 (30)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/01.html">2015年1月 (43)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/tianzhijiexian/archive/2014/12.html">2014年12月 (22)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/tianzhijiexian/archive/2014/11.html">2014年11月 (23)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/tianzhijiexian/archive/2014/10.html">2014年10月 (32)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/tianzhijiexian/archive/2014/09.html">2014年9月 (26)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/tianzhijiexian/archive/2014/08.html">2014年8月 (28)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/tianzhijiexian/archive/2014/07.html">2014年7月 (102)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/tianzhijiexian/p/4127695.html#3730577">1. Re:判断当前屏幕是否是全屏+是否是竖屏</a></li>
+        <li class="recent_comment_body">我在onCreate（）方法中执行，失败，但是当onCreate中代码变多时，又是对的。或者到onResum()中，结果也是对的。</li>
+        <li class="recent_comment_author">--Mingyueyixi</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/tianzhijiexian/p/4047368.html#3690822">2. Re:DES、MD5、RSA加密算法</a></li>
+        <li class="recent_comment_body">md5加密的结果好像不对啊？</li>
+        <li class="recent_comment_author">--libran</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/tianzhijiexian/p/4248585.html#3674898">3. Re:修改博客园默认的代码字体大小</a></li>
+        <li class="recent_comment_body">很好，博客园的默认设置真的丑到反人类，谢谢指点。</li>
+        <li class="recent_comment_author">--Mazhaokeng</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/tianzhijiexian/p/4023802.html">1. 开源项目PullToRefresh详解（一）——PullToRefreshListView(36051)</a></li><li><a href="http://www.cnblogs.com/tianzhijiexian/p/4226675.html">2. 详细解读Android中的搜索框（三）—— SearchView(33433)</a></li><li><a href="http://www.cnblogs.com/tianzhijiexian/p/4469516.html">3. RecyclerView和ScrollView嵌套使用(31739)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/tianzhijiexian/p/4254110.html">1. 根据ImageView的大小来压缩Bitmap，避免OOM(19)</a></li><li><a href="http://www.cnblogs.com/tianzhijiexian/p/4505766.html">2. 巧用用layer-list做一个卡片背景(12)</a></li><li><a href="http://www.cnblogs.com/tianzhijiexian/p/4492773.html">3. 打造高仿QQ的友盟反馈界面（MVP模式）(10)</a></li></ul></div>
+</div>
+</div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 developer_Kale
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<!-- GoStats Simple HTML Based Code -->
+<a target="_blank" title="网站流量统计工具" href="http://gostats.cn/"><img alt="网站流量统计工具" src="./详细解读DialogFragment - developer_Kale - 博客园_files/counter.png" style="border-width:0"></a>
+<!-- End GoStats Simple HTML Based Code -->
+<!--PageEndHtml Block End-->
+
+
+</body></html>
