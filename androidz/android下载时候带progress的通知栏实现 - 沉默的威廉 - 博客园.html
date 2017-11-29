@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)https://www.cnblogs.com/dongqiSilent/articles/4896171.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/bundle-Autumn.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/bundle-Autumn-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/dongqiSilent/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/dongqiSilent/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/dongqiSilent/wlwmanifest.xml">
+<script async="" src="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/analytics.js"></script><script type="text/javascript" src="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/encoder.js"></script><script src="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'dongqiSilent', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<table id="blog_header" cellspacing="0" cellpadding="0" width="100%" border="0" class="banner" height="250" background="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/bg_banner.jpg">
+        <tbody><tr>
+            <td width="61">
+                &nbsp;
+            </td>
+            <td width="236" align="center">
+                
+<br><br><br><br><br><br><br>
+<div id="header">
+	<span>
+		<a id="Header1_HeaderTitle" href="http://www.cnblogs.com/dongqiSilent/">沉默的威廉</a><br><br>
+		一点点的努力，不卑不亢。
+	</span>
+</div>
+            </td>
+            <td style="padding-bottom: 30px" align="center" valign="bottom">
+                &nbsp;
+            </td>
+        </tr>
+</tbody></table>
+<table align="center" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tbody><tr>
+        <td width="60">
+            &nbsp;
+        </td>
+        <td id="sidebar" valign="top" s="">
+            <table align="center" width="100%" height="1400" cellspacing="0" cellpadding="5" border="0" bgcolor="white">
+                <tbody><tr>
+                    <td class="banner" valign="top" style="padding-top: 0px">
+                        
+                            
+<div class="news"><div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/dongqiSilent/">沉默的威廉</a><br>园龄：<a href="http://home.cnblogs.com/u/dongqiSilent/" title="入园时间：2013-09-07">4年2个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/dongqiSilent/followers/">2</a><br>关注：<a href="http://home.cnblogs.com/u/dongqiSilent/followees/">6</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;a7663b73-9617-e311-8d02-90b11c0b17d6&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script></div>
+
+                            <div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/dongqiSilent/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/dongqiSilent/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/dongqiSilent/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/dongqiSilent/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/dongqiSilent/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<h3 class="catListTitle">我的标签</h3>
+<div id="MyTag">
+<ul>
+<li><a href="http://www.cnblogs.com/dongqiSilent/tag/android%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%20%20%E7%BB%84%E5%90%88%E6%96%B9%E5%BC%8F/">android 自定义控件  组合方式</a>(1)</li><li><a href="http://www.cnblogs.com/dongqiSilent/tag/notification%20android%20%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD%20%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0%20xUtils/">notification android 多线程下载 断点续传 xUtils</a>(1)</li><li><a href="http://www.cnblogs.com/dongqiSilent/tag/%E7%9F%AD%E4%BF%A1%E5%9B%9E%E8%AF%9D%20android4.4/">短信回话 android4.4</a>(1)</li>
+</ul>
+</div></div><div id="sidebar_categories">
+		<h1 class="listtitle">随笔分类</h1>
+		
+				<ul class="list">
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_0" class="listitem" href="http://www.cnblogs.com/dongqiSilent/category/781497.html">android(2)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_1" class="listitem" href="http://www.cnblogs.com/dongqiSilent/category/784677.html">java学习(7)</a> </li>
+			
+				</ul>
+			
+	
+		<h1 class="listtitle">随笔档案</h1>
+		
+				<ul class="list">
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_0" class="listitem" href="http://www.cnblogs.com/dongqiSilent/archive/2016/12.html">2016年12月 (2)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_1" class="listitem" href="http://www.cnblogs.com/dongqiSilent/archive/2016/11.html">2016年11月 (1)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_2" class="listitem" href="http://www.cnblogs.com/dongqiSilent/archive/2016/07.html">2016年7月 (1)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_3" class="listitem" href="http://www.cnblogs.com/dongqiSilent/archive/2016/06.html">2016年6月 (5)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_4" class="listitem" href="http://www.cnblogs.com/dongqiSilent/archive/2016/05.html">2016年5月 (3)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_5" class="listitem" href="http://www.cnblogs.com/dongqiSilent/archive/2016/03.html">2016年3月 (3)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_6" class="listitem" href="http://www.cnblogs.com/dongqiSilent/archive/2016/02.html">2016年2月 (3)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_7" class="listitem" href="http://www.cnblogs.com/dongqiSilent/archive/2016/01.html">2016年1月 (6)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_8" class="listitem" href="http://www.cnblogs.com/dongqiSilent/archive/2014/10.html">2014年10月 (1)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_9" class="listitem" href="http://www.cnblogs.com/dongqiSilent/archive/2014/07.html">2014年7月 (1)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_10" class="listitem" href="http://www.cnblogs.com/dongqiSilent/archive/2014/04.html">2014年4月 (2)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_11" class="listitem" href="http://www.cnblogs.com/dongqiSilent/archive/2013/12.html">2013年12月 (1)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_12" class="listitem" href="http://www.cnblogs.com/dongqiSilent/archive/2013/11.html">2013年11月 (7)</a> </li>
+			
+				</ul>
+			
+	
+		<h1 class="listtitle">文章分类</h1>
+		
+				<ul class="list">
+			
+				<li class="listitem"><a id="CatList_LinkList_2_Link_0" class="listitem" href="http://www.cnblogs.com/dongqiSilent/category/781496.html">android学习(2)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_2_Link_1" class="listitem" href="http://www.cnblogs.com/dongqiSilent/category/784675.html">java学习(2)</a> </li>
+			
+				</ul>
+			
+	
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap" style="display: none;">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"></div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/dongqiSilent/p/3423318.html">1. 如何用java完成一个中文词频统计程序(987)</a></li><li><a href="http://www.cnblogs.com/dongqiSilent/p/3489678.html">2. 用Lucene4.5对中文文本建立索引(544)</a></li><li><a href="http://www.cnblogs.com/dongqiSilent/p/5179767.html">3. spring junit(350)</a></li><li><a href="http://www.cnblogs.com/dongqiSilent/p/5170324.html">4. Spring 定时执行任务(242)</a></li><li><a href="http://www.cnblogs.com/dongqiSilent/p/5179727.html">5. Spring 定时执行任务重复执行多次(212)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap" style="display: none;">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/dongqiSilent/p/3423318.html">1. 如何用java完成一个中文词频统计程序(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+                        
+                        <br>
+                        <center>
+                            Powered by <a href="http://www.cnblogs.com/">博客园</a>
+                        </center>
+                    </td>
+                </tr>
+            </tbody></table>
+        </td>
+        <td valign="top" style="padding: 0">
+            <table align="center" width="100%" height="1400" cellspacing="0" cellpadding="5" border="0" bgcolor="white" class="index">
+                <tbody><tr>
+                    <td class="banner" valign="top">
+                        <center>
+                            <a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a> <span id="sitehome_link_split">|</span> 
+<a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/dongqiSilent/">首页</a> <span id="bloghome_link_split">|</span> 
+<a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a> <span id="newpost_link_split">|</span> 
+<!--<a id="MyLinks1_NewArticleLink" class="menu" href="/EnterMyBlog.aspx?NewArticle=1">发新文章</a> | -->
+<a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E6%B2%89%E9%BB%98%E7%9A%84%E5%A8%81%E5%BB%89">联系</a> <span id="contact_link_split">|</span>  
+<a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/dongqiSilent/rss">订阅</a><a id="blog_nav_rss_image" href="http://www.cnblogs.com/dongqiSilent/rss"><img src="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/xml.gif" alt="订阅"></a> <span id="rss_link_split">|</span> 
+<a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a>
+
+                        </center>
+                        
+<div id="post_detail">
+<div class="block">
+	<h1 class="block_title"><a id="cb_post_title_url" href="http://www.cnblogs.com/dongqiSilent/articles/4896171.html">android下载时候带progress的通知栏实现</a></h1>
+	<div class="post">
+		<div class="postcontent">
+			<div id="cnblogs_post_body"><p>　　　下面是要实现的效果</p>
+<p><img src="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/565538-20151020211230708-991717571.png" alt="" width="255" height="416">&nbsp;<img src="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/565538-20151020211434942-886894801.png" alt="" width="290" height="473">。<img src="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/565538-20151020211142427-1180164907.png" alt="" width="286" height="471"></p>
+<p>　　　　　这个demo，主要实现的功能有：多线程上传，断点续传，&nbsp;Notification的使用。多线程下载的主要原理是，对要下载的文件进行分割，每个线程取一个独立的区域进行下载。</p>
+<p>　　　　　</p>
+<div class="cnblogs_code">
+<pre> URL url = <span style="color: #0000ff;">new</span><span style="color: #000000;"> URL(path);  
+ HttpURLConnection conn </span>=<span style="color: #000000;"> (HttpURLConnection)url.openConnection();  
+  conn.setRequestMethod(</span><span style="color: #800000;">"</span><span style="color: #800000;">GET</span><span style="color: #800000;">"</span><span style="color: #000000;">);  <br>//startIndex和endIndex表示当前需要下载的文件的开始和结束的字节
+ conn.setRequestProperty(</span><span style="color: #800000;">"</span><span style="color: #800000;">Range</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">bytes=</span><span style="color: #800000;">"</span>+startIndex+<span style="color: #800000;">""</span>+endIndex);  <br><br></pre>
+</div>
+<p>　　　　写入的时候是通过java的RandomAccessFile 类来获取写入的开始位置，获取了开始的位置后，由于已经对服务器的文件大小进行了分割，依次写入流文件即可。</p>
+<p>　　　　对于单线程情况下的断点续传，一般情况下是通过计算已经下载的文件的大小，然后从末尾处选择开始下载。多线程情况下，感觉应该是对于每个线程下的位置进行记录，然后从记录的位置开始下载。</p>
+<p>　　　　本文并没有从头到尾写一个这样的过程，android开源框架Xutils提供了这一整套的类库和方法，github地址是https://github.com/wyouflf/xUtils。使用该类库需要网络和读写SD卡的权限，</p>
+<pre>　　　　　　&lt;uses-permission android:name="android.permission.INTERNET" /&gt;<br>　　　　　　&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt;</pre>
+<p>下面呈现核心的代码。布局文件只有一个按钮没什么好说的。首先初始化这样一些变量：</p>
+<div class="cnblogs_code">
+<pre>    <span style="color: #0000ff;">int</span> id =<span style="color: #800080;">1</span><span style="color: #000000;">;
+    </span><span style="color: #0000ff;">private</span><span style="color: #000000;"> Button mButton;
+    </span><span style="color: #0000ff;">private</span><span style="color: #000000;">  NotificationManager mNotifyManager;
+    NotificationCompat.Builder mBuilder ;</span></pre>
+</div>
+<p>然后在onCreate方法中，对它们进行初始化。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre> mButton =<span style="color: #000000;"> (Button) findViewById(R.id.id_bt_startNotificationDownload);
+        mNotifyManager </span>=<span style="color: #000000;"> (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mBuilder </span>= <span style="color: #0000ff;">new</span> NotificationCompat.Builder(<span style="color: #0000ff;">this</span><span style="color: #000000;">);
+        mBuilder.setContentTitle(</span><span style="color: #800000;">"</span><span style="color: #800000;">内容下载</span><span style="color: #800000;">"</span>).setContentText(<span style="color: #800000;">"</span><span style="color: #800000;">下载中，请骚等</span><span style="color: #800000;">"</span>).setSmallIcon(R.drawable.notification);</pre>
+<pre>//点击按钮，开始下载<br>mButton.setOnClickListener(new View.OnClickListener() {<br>    @Override<br>    public void onClick(View v) {<br>        download("https://github.com/wyouflf/xCombine/archive/master.zip",<br>                "/sdcard/xCombine_master.zip");<br>    }<br>});</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>下面是使用Xutil的类库进行多线程下载的方法。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">private</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> download(String url, String filePath){
+        HttpUtils httpUtils </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> HttpUtils();
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">可以设置线程池的大小，下载充实的次数，超时时间等等。</span>
+        HttpHandler hanlder = httpUtils.configRequestThreadPoolSize(<span style="color: #800080;">5</span>).download(url, filePath, <span style="color: #0000ff;">true</span>, <span style="color: #0000ff;">true</span>, <span style="color: #0000ff;">new</span> RequestCallBack&lt;File&gt;<span style="color: #000000;">() {
+            @Override
+            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> onSuccess(ResponseInfo&lt;File&gt;<span style="color: #000000;"> responseInfo) {
+                </span><span style="color: #008000;">//</span><span style="color: #008000;">成功后将setProgress的两个变量设置为0，progress就会消失。setProgerss第三个参数的含义是，如果能确定进度条执行的时间，就传入true，否则是false，此处直接传入false即可。</span>
+                mBuilder.setProgress(<span style="color: #800080;">0</span>, <span style="color: #800080;">0</span>,<span style="color: #0000ff;">false</span>).setContentText(<span style="color: #800000;">"</span><span style="color: #800000;">已经下载完成</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+                mNotifyManager.notify(id, mBuilder.build());
+            }
+            @Override
+            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onFailure(HttpException e, String s) {
+                </span><span style="color: #008000;">//</span><span style="color: #008000;">失败后执行的方法</span>
+                Toast.makeText(MainActivity.<span style="color: #0000ff;">this</span>,<span style="color: #800000;">"</span><span style="color: #800000;">fali , try again</span><span style="color: #800000;">"</span><span style="color: #000000;">,Toast.LENGTH_LONG).show();
+            }
+            @Override
+            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onStart() {
+                </span><span style="color: #008000;">//</span><span style="color: #008000;">开始时候，初始化进度条</span>
+                mBuilder.setProgress(<span style="color: #800080;">100</span>, <span style="color: #800080;">0</span>,<span style="color: #0000ff;">false</span><span style="color: #000000;">);
+                mNotifyManager.notify(id, mBuilder.build());
+            }
+            @Override
+            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> onLoading(<span style="color: #0000ff;">long</span> total, <span style="color: #0000ff;">long</span><span style="color: #000000;"> current, boolean isUploading) {
+                </span><span style="color: #008000;">//</span><span style="color: #008000;">更新进度条</span>
+                <span style="color: #0000ff;">int</span> currentNum = (<span style="color: #0000ff;">int</span>) (<span style="color: #800080;">100</span>*current/<span style="color: #000000;">total);
+                mBuilder.setProgress(</span><span style="color: #800080;">100</span>, currentNum,<span style="color: #0000ff;">false</span><span style="color: #000000;">);
+                mNotifyManager.notify(id, mBuilder.build());
+            }
+        });
+
+    }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>　　　　</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/dongqiSilent/tag/notification%20android%20%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD%20%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0%20xUtils/">notification android 多线程下载 断点续传 xUtils</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(4896171,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;a7663b73-9617-e311-8d02-90b11c0b17d6&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/dongqiSilent/" target="_blank"><img src="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/20130907162919.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/dongqiSilent/">沉默的威廉</a><br>
+            <a href="http://home.cnblogs.com/u/dongqiSilent/followees">关注 - 6</a><br>
+            <a href="http://home.cnblogs.com/u/dongqiSilent/followers">粉丝 - 2</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;a7663b73-9617-e311-8d02-90b11c0b17d6&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(4896171,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(4896171,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/dongqiSilent/articles/4836702.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/dongqiSilent/articles/4836702.html" title="发布于2015-09-24 21:53">android  环境配置</a><br><a href="http://www.cnblogs.com/dongqiSilent/articles/5096521.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/dongqiSilent/articles/5096521.html" title="发布于2016-01-03 15:38">android4.4 无法删除短信回话的解决方案</a><br></div>
+</div>
+
+
+		</div>
+		<div class="itemdesc">
+			发表于 <span id="post-date">2015-10-20 21:38</span> <a href="http://www.cnblogs.com/dongqiSilent/">沉默的威廉</a> 阅读(<span id="post_view_count">1086</span>) 评论(<span id="post_comment_count">0</span>) &nbsp;<a href="https://i.cnblogs.com/EditArticles.aspx?postid=4896171" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/dongqiSilent/articles/4896171.html#" onclick="AddToWz(4896171);return false;">收藏</a>
+		</div>
+	</div>
+	<div class="seperator">&nbsp;</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=162759,cb_entryId=4896171,cb_blogApp=currentBlogApp,cb_blogUserGuid='a7663b73-9617-e311-8d02-90b11c0b17d6',cb_entryCreatedDate='2015/10/20 21:38:00';loadViewCount(cb_entryId);var cb_postType=2;</script>
+	
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/dongqiSilent/articles/4896171.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/dongqiSilent/articles/4896171.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="http://click.aliyun.com/m/33696/" target="_blank">【调查】有奖调研即刻参与，你竟然是酱紫程序猿！</a><br><a href="http://xc.hubwiz.com/course/592ee9b2b343f27b0ae1ba99?affid=cnblogs" target="_blank">【推荐】Vue.js 2.x 快速入门，大量高效实战示例</a><br><a href="https://cloud.tencent.com/act/campus?fromSource=gwzcw.613398.613398.613398" target="_blank">【活动】腾讯云 学生专属优惠套餐 多规格选择</a><br><a href="https://cloud.tencent.com/community/article/303682?fromSource=gwzcw.614532.614532.614532" target="_blank">【活动】释放技术的想象-解码腾讯云软件架构与应用</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://www.gcpowertools.com.cn/products/spreadservices/?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=Spreadbiaoge&amp;utm_campaign=community" target="_blank"><img width="300" height="250" src="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/24442-20171114102308171-1147697076.png" alt="葡萄城1114"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/582549/" target="_blank">小蓝单车融资不顺只是表象，高层决策失误才是病根</a><br> ·  <a href="http://news.cnblogs.com/n/582548/" target="_blank">传阿里又要搞事情：投100亿元进军企业智能市场？</a><br> ·  <a href="http://news.cnblogs.com/n/582547/" target="_blank">HTC发布了VR一体机和开放平台，但这能拯救局面惨淡的VR行业吗？</a><br> ·  <a href="http://news.cnblogs.com/n/582546/" target="_blank">高通拒绝与博通合体：接下来会怎样？</a><br> ·  <a href="http://news.cnblogs.com/n/582545/" target="_blank">滴滴美研新址占地36000平方英尺 将容纳数百位AI科学家</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/34771/" target="_blank"><img width="468" height="60" src="./android下载时候带progress的通知栏实现 - 沉默的威廉 - 博客园_files/24442-20171113120112796-634832761.jpg" alt="阿里云1113"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/563790/" target="_blank">关于编程，你的练习是不是有效的？</a><br> ·  <a href="http://kb.cnblogs.com/page/581467/" target="_blank">改善程序员生活质量的 3+10 习惯</a><br> ·  <a href="http://kb.cnblogs.com/page/568841/" target="_blank">NASA的10条代码编写原则</a><br> ·  <a href="http://kb.cnblogs.com/page/578502/" target="_blank">为什么你参加了那么多培训，却依然表现平平？</a><br> ·  <a href="http://kb.cnblogs.com/page/579832/" target="_blank">写给初学前端工程师的一封信</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+                    </div></td>
+                </tr>
+            </tbody></table>
+        </td>
+    </tr>
+</tbody></table>
+
+
+
+</body></html>

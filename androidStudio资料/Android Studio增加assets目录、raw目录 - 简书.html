@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.jianshu.com/p/5974fcf88170 -->
+<html><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+
+  <!-- Start of Baidu Transcode -->
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="MobileOptimized" content="width">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="mobile-agent" content="format=html5;url=http://www.jianshu.com/p/5974fcf88170">
+  <!-- End of Baidu Transcode -->
+
+    <meta name="description" content="assets与res/raw不同 assets目录是Android的一种特殊目录，用于放置APP所需的固定文件，且该文件被打包到APK中时，不会被编码到二进制文件。Android还存在一种放置在res下的raw目录，该目录与assets目录不同。注意点：1、 assets目录不会被映射到R中，因此，资源无法通过R.id方式获取，必须要通过AssetManager进行操作与获取；res/raw...">
+
+  <meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8">
+  <meta property="wb:webmaster" content="294ec9de89e7fadb">
+  <meta property="qc:admins" content="104102651453316562112116375">
+  <meta property="qc:admins" content="11635613706305617">
+  <meta property="qc:admins" content="1163561616621163056375">
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+  <meta http-equiv="mobile-agent" content="format=html5; url=http://www.jianshu.com/p/5974fcf88170">
+
+  <!-- Apple -->
+  <meta name="apple-mobile-web-app-title" content="简书">
+
+    <!--  Meta for Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=888237539, app-argument=jianshu://notes/5969863">
+  <!-- End -->
+
+  <!--  Meta for Twitter Card -->
+  <meta content="summary" property="twitter:card">
+  <meta content="@jianshucom" property="twitter:site">
+  <meta content="Android Studio增加assets目录、raw目录" property="twitter:title">
+  <meta content="assets与res/raw不同 assets目录是Android的一种特殊目录，用于放置APP所需的固定文件，且该文件被打包到APK中时，不会被编码到二进制文件。Android还存在一种放置在res下的raw目录，该目录与assets目录不同。注意点：1、 assets目录不会被映射到R中，因此，资源无法通过R.id方式获取，必须要通过AssetManager进行操作与获取；res/raw目录下的资源会被映射到R中，可以通过getResource()方法获取资源。2、 多级目录：assets下可以有多级目录，res/raw下不可以有多级目录。3、 编码（都不会被编码）：assets目录..." property="twitter:description">
+  <meta content="http://www.jianshu.com/p/5974fcf88170" property="twitter:url">
+  <!-- End -->
+
+  <!--  Meta for OpenGraph -->
+  <meta property="fb:app_id" content="865829053512461">
+  <meta property="og:site_name" content="简书">
+  <meta property="og:title" content="Android Studio增加assets目录、raw目录">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://www.jianshu.com/p/5974fcf88170">
+  <meta property="og:description" content="assets与res/raw不同 assets目录是Android的一种特殊目录，用于放置APP所需的固定文件，且该文件被打包到APK中时，不会被编码到二进制文件。Android还存在一种放置在...">
+  <!-- End -->
+
+  <!--  Meta for Facebook Applinks -->
+  <meta property="al:ios:url" content="jianshu://notes/5969863">
+  <meta property="al:ios:app_store_id" content="888237539">
+  <meta property="al:ios:app_name" content="简书">
+
+  <meta property="al:android:url" content="jianshu://notes/5969863">
+  <meta property="al:android:package" content="com.jianshu.haruki">
+  <meta property="al:android:app_name" content="简书">
+  <!-- End -->
+
+
+    <title>Android Studio增加assets目录、raw目录 - 简书</title>
+
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="/rgPeo4DALowvP7X1ulyBFe8J2jTb6BfgxKpuGu0Qj0Acy13orccNgejMYAt+i/C01zpIbDZq8nyXjjiPGt0Tw==">
+
+  <link rel="stylesheet" media="all" href="./Android Studio增加assets目录、raw目录 - 简书_files/web-b6ffb2ef57d077ea3cf8.css">
+  
+  <link rel="stylesheet" media="all" href="./Android Studio增加assets目录、raw目录 - 简书_files/entry-319cd8f71e179151094e.css">
+
+  <link href="http://cdn2.jianshu.io/assets/favicons/favicon-03411b154a430b85d807b4366489c21122fb983a38f3d7ca926f882e6367b13e.ico" rel="icon">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/57-a6f1f1ee62ace44f6dc2f6a08575abd3c3b163288881c78dd8d75247682a4b27.png" sizes="57x57">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/72-fb9834bcfce738fd7b9c5e31363e79443e09a81a8e931170b58bc815387c1562.png" sizes="72x72">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/76-49d88e539ff2489475d603994988d871219141ecaa0b1a7a9a1914f4fe3182d6.png" sizes="76x76">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/114-24252fe693524ed3a9d0905e49bff3cbd0228f25a320aa09053c2ebb4955de97.png" sizes="114x114">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/120-1bb7371f5e87f93ce780a5f1a05ff1b176828ee0d1d130e768575918a2e05834.png" sizes="120x120">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/152-bf209460fc1c17bfd3e2b84c8e758bc11ca3e570fd411c3bbd84149b97453b99.png" sizes="152x152">
+
+  <!-- Start of 访问统计 -->
+  <script src="./Android Studio增加assets目录、raw目录 - 简书_files/push.js"></script><script src="./Android Studio增加assets目录、raw目录 - 简书_files/hm.js"></script><script async="" src="./Android Studio增加assets目录、raw目录 - 简书_files/analytics.js"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35169517-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+  <!-- End of 访问统计 -->
+<style type="text/css">
+@charset "UTF-8";
+/*
+ * 变量
+*/
+.main {
+  position: relative;
+  margin: 0 auto;
+  padding: 0 0 30px 0;
+  width: 620px;
+}
+.main .title {
+    padding-left: 8px;
+    border-left: 3px solid #EA6F5A;
+    line-height: 1;
+    font-size: 15px;
+}
+.main .collection-settings {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    font-size: 13px;
+    color: #A0A0A0;
+}
+.main .collection-settings span {
+      padding-left: 4px;
+}
+.main .include-collection {
+    width: 100%;
+    padding-top: 20px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+.main .include-collection .item {
+      display: inline-block;
+      margin: 0 12px 12px 0;
+      min-height: 32px;
+      background-color: white;
+      border: 1px solid #DCDCDC;
+      border-radius: 4px;
+      vertical-align: top;
+      overflow: hidden;
+}
+.main .include-collection .item img {
+        width: 32px;
+        height: 32px;
+}
+.main .include-collection .item .name {
+        display: inline-block;
+        padding: 0 10px;
+        font-size: 14px;
+}
+.main .include-collection .add-collection-wrap {
+      margin: 0 12px 12px 0;
+}
+.main .include-collection .add-collection {
+      padding: 8px 12px;
+      font-size: 14px;
+      border: 1px solid #DCDCDC;
+      border-radius: 4px;
+}
+.main .include-collection .add-collection i {
+        margin-right: 4px;
+        color: #969696;
+}
+.main .recommend-note a {
+    position: relative;
+    margin: 20px 2px 0 0;
+    width: 200px;
+    height: 160px;
+    display: inline-block;
+}
+.main .recommend-note a:after {
+      content: "";
+      position: absolute;
+      width: 200px;
+      height: 160px;
+      border-radius: 0 0 4px 4px;
+      -webkit-box-shadow: inset 0px -80px 50px -22px rgba(0, 0, 0, 0.6);
+              box-shadow: inset 0px -80px 50px -22px rgba(0, 0, 0, 0.6);
+      top: 0;
+      left: 0;
+      z-index: 1;
+}
+.main .recommend-note .name {
+    position: absolute;
+    bottom: 40px;
+    left: 10px;
+    right: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #ffffff;
+    z-index: 2;
+}
+.main .recommend-note .author {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    z-index: 2;
+}
+.main .recommend-note .avatar {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+.main .recommend-note .avatar img {
+      border-radius: 50%;
+}
+.main .recommend-note .author-name {
+    font-size: 12px;
+    color: #ffffff;
+    display: inline-block;
+    vertical-align: -1px;
+}
+.main .show-more {
+    margin: 0 12px 12px 0;
+    font-size: 14px;
+    color: #A0A0A0;
+}
+</style><style type="text/css">
+@charset "UTF-8";
+/*
+ * 变量
+*/
+.pc-bind-phone-modal .modal-content, .pc-bind-phone-modal .modal-body {
+  overflow: visible;
+}
+.pc-bind-phone-modal .dropdown-menu {
+  max-height: 300px;
+  overflow: auto;
+}
+.pc-bind-phone-modal .dropdown-menu .tag {
+    background-color: #efefef;
+    color: #4A4A4A;
+    height: 28px;
+    line-height: 28px;
+    padding-left: 25px;
+    font-size: 12px;
+}
+.reader-night-mode .pc-bind-phone-modal .dropdown-menu .tag {
+  background-color: #2F2F2F;
+  color: #999999;
+}
+</style><style type="text/css">
+@charset "UTF-8";
+/*
+ * 变量
+*/
+.recommend-note {
+  margin-bottom: 20px;
+}
+.recommend-note .meta, .recommend-note .list {
+    width: 620px;
+    margin: 0 auto;
+}
+.recommend-note .meta .title {
+    padding-left: 8px;
+    border-left: 3px solid #EA6F5A;
+    line-height: 1;
+    font-size: 15px;
+}
+.recommend-note .meta .title .more {
+      float: right;
+      font-size: 14px;
+      color: #A0A0A0;
+}
+.recommend-note .list {
+    margin-top: 20px;
+}
+.recommend-note .list .note {
+      display: block;
+      margin-bottom: 25px;
+      padding: 0 0 25px 0;
+      border-bottom: 1px solid #DDDDDD;
+}
+.recommend-note .list .note:last-child {
+        margin-bottom: 0;
+        border: none;
+}
+.recommend-note .list .note.have-img {
+        min-height: 136px;
+}
+.recommend-note .list .note .cover {
+        float: right;
+        margin: -5px 0 0 15px;
+        width: 150px;
+        height: 120px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 6px;
+}
+.recommend-note .list .note .title {
+        display: inherit;
+        margin-bottom: 4px;
+        font-size: 18px;
+        line-height: 27px;
+        font-weight: bold;
+        color: #333333;
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+           text-overflow: ellipsis;
+        white-space: nowrap;
+}
+.recommend-note .list .note .title:hover {
+          text-decoration: underline;
+}
+.recommend-note .list .note .title:visited {
+          color: #999999;
+}
+.recommend-note .list .note .description {
+        margin-bottom: 12px;
+        font-size: 13px;
+        line-height: 23px;
+        color: #333333;
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+           text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+}
+.recommend-note .list .note .author .avatar {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-right: 3px;
+        border-radius: 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        vertical-align: middle;
+}
+.recommend-note .list .note .author .name {
+        font-size: 13px;
+        color: #333333;
+        vertical-align: middle;
+}
+</style></head>
+
+  <body lang="zh-CN" class="reader-black-font">
+    <!-- 全局顶部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="width-limit">
+    <!-- 左上方 Logo -->
+    <a class="logo" href="http://www.jianshu.com/"><img src="./Android Studio增加assets目录、raw目录 - 简书_files/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo"></a>
+
+    <!-- 右上角 -->
+      <!-- 未登录显示登录/注册/写文章 -->
+      <a class="btn write-btn" target="_blank" href="http://www.jianshu.com/writer#/">
+        <i class="iconfont ic-write"></i>写文章
+</a>      <a class="btn sign-up" href="http://www.jianshu.com/sign_up">注册</a>
+      <a class="btn log-in" href="http://www.jianshu.com/sign_in">登录</a>
+
+    <!-- 如果用户登录，显示下拉菜单 -->
+
+    <div class="style-mode"><a class="style-mode-btn"><i class="iconfont ic-navigation-mode"></i></a> <div class="popover-modal" style="left: 0px; display: none;"><div class="meta"><i class="iconfont ic-navigation-night"></i><span>夜间模式</span></div> <div class="switch day-night-group"><a class="switch-btn">开</a> <a class="switch-btn active">关</a></div> <hr> <div class="switch font-family-group"><a class="switch-btn font-song">宋体</a> <a class="switch-btn font-hei active">黑体</a></div> <div class="switch"><a class="switch-btn active">简</a> <a class="switch-btn">繁</a></div></div></div>
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+            <li class="">
+              <a href="http://www.jianshu.com/">
+                <span class="menu-text">首页</span><i class="iconfont ic-navigation-discover menu-icon"></i>
+</a>            </li>
+            <li class="">
+              <a class="app-download-btn" href="http://www.jianshu.com/apps"><span class="menu-text">下载App</span><i class="iconfont ic-navigation-download menu-icon"></i></a>
+            </li>
+          <li class="search">
+            <form target="_blank" action="http://www.jianshu.com/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+              <input type="text" name="q" id="q" value="" autocomplete="off" placeholder="搜索" class="search-input">
+              <a class="search-btn" href="javascript:void(null)"><i class="iconfont ic-search"></i></a>
+</form>          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    
+<div class="note">
+  <div class="post">
+    <div class="article">
+        <h1 class="title">Android Studio增加assets目录、raw目录</h1>
+
+        <!-- 作者区域 -->
+        <div class="author">
+          <a class="avatar" href="http://www.jianshu.com/u/ba85118e2023">
+            <img src="./Android Studio增加assets目录、raw目录 - 简书_files/10-e691107df16746d4a9f3fe9496fd1848.jpg" alt="96">
+</a>          <div class="info">
+            <span class="name"><a href="http://www.jianshu.com/u/ba85118e2023">heguorui</a></span>
+            <!-- 关注用户按钮 -->
+            <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+            <!-- 文章数据信息 -->
+            <div class="meta">
+              <!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+                <span class="publish-time">2016.09.24 17:59</span>
+              <span class="wordage">字数 601</span>
+            <span class="views-count">阅读 5886</span><span class="comments-count">评论 0</span><span class="likes-count">喜欢 11</span></div>
+          </div>
+          <!-- 如果是当前作者，加入编辑按钮 -->
+        </div>
+        <!-- -->
+
+        <!-- 文章内容 -->
+        <div data-note-content="" class="show-content">
+          <h1>assets与res/raw不同</h1>
+<p>assets目录是Android的一种特殊目录，用于放置APP所需的固定文件，且该文件被打包到APK中时，不会被编码到二进制文件。<br>Android还存在一种放置在res下的raw目录，该目录与assets目录不同。<br>注意点：<br>1、 assets目录不会被映射到R中，因此，资源无法通过R.id方式获取，必须要通过AssetManager进行操作与获取；res/raw目录下的资源会被映射到R中，可以通过getResource()方法获取资源。<br>2、 多级目录：assets下可以有多级目录，res/raw下不可以有多级目录。<br>3、 编码（都不会被编码）：assets目录下资源不会被二进制编码；res/raw应该也不会被编码。</p>
+<h1>Android Studio 添加assets目录的2种方法</h1>
+<p>main目录上右击：<br>1、 直接在src/main下新建assets目录：</p>
+<div class="image-package">
+<img src="./Android Studio增加assets目录、raw目录 - 简书_files/1708416-00d2d31d0d716210.png" data-original-src="http://upload-images.jianshu.io/upload_images/1708416-00d2d31d0d716210.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">Paste_Image.png</div>
+</div>
+<p>由于在工程创建时，在工程文件里已经添加了对应的资源目录说明：</p>
+<div class="image-package">
+<img src="./Android Studio增加assets目录、raw目录 - 简书_files/1708416-dc13d24c36846d44.png" data-original-src="http://upload-images.jianshu.io/upload_images/1708416-dc13d24c36846d44.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<img src="./Android Studio增加assets目录、raw目录 - 简书_files/1708416-676ca296625d329d.png" data-original-src="http://upload-images.jianshu.io/upload_images/1708416-676ca296625d329d.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">Paste_Image.png</div>
+</div>
+<p>所以，天然的资源目录。</p>
+<p>2、 通过向导添加：</p>
+<div class="image-package">
+<img src="./Android Studio增加assets目录、raw目录 - 简书_files/1708416-aff29c699134ad0a.png" data-original-src="http://upload-images.jianshu.io/upload_images/1708416-aff29c699134ad0a.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<img src="./Android Studio增加assets目录、raw目录 - 简书_files/1708416-91ea74e786664bdf.png" data-original-src="http://upload-images.jianshu.io/upload_images/1708416-91ea74e786664bdf.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">Paste_Image.png</div>
+</div><p><br>完成。</p>
+<h3>添加res/raw目录：</h3>
+<p>res右击：<br></p><div class="image-package">
+<img src="./Android Studio增加assets目录、raw目录 - 简书_files/1708416-7f1786f6fafa2939.png" data-original-src="http://upload-images.jianshu.io/upload_images/1708416-7f1786f6fafa2939.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<img src="./Android Studio增加assets目录、raw目录 - 简书_files/1708416-249cacf763d86a58.png" data-original-src="http://upload-images.jianshu.io/upload_images/1708416-249cacf763d86a58.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<img src="./Android Studio增加assets目录、raw目录 - 简书_files/1708416-2d461c906457292f.png" data-original-src="http://upload-images.jianshu.io/upload_images/1708416-2d461c906457292f.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<img src="./Android Studio增加assets目录、raw目录 - 简书_files/1708416-8f977a6157ecf83b.png" data-original-src="http://upload-images.jianshu.io/upload_images/1708416-8f977a6157ecf83b.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">Paste_Image.png</div>
+</div>
+<p>添加完成。</p>
+<h3>assets内资源使用方法</h3>
+<p>1、 资源使用</p>
+<pre class="hljs undefined"><code>AssetManager am = getAssets();  
+InputStream is = am.open("filename");</code></pre>
+<p>获取到输入流。</p>
+<p>2、 信息获取<br>通过<code>am.list(“”)</code>得到assets目录下的所有文件和子目录名称的数组，通过<code>am.list(SubFolderName)</code>，得到<code>assets/SubFolderName</code>下所有的文件和子目录名称的数组。<br>通过<code>am.openFd(fileName)</code>得到的<code>AssetFileDescriptor</code>对象来获得<code>fileName</code>文件的信息，例如长度等。<br>AssetFileDescriptor 能够完成对文件的其他一些操作，可以关注该类。</p>
+<p>AssetManager接口介绍：</p>
+<pre class="hljs undefined"><code>final String[] list(String path)  //返回指定路径下的所有文件及目录名
+
+final InputStream open(String fileName) //使用 ACCESS_STREAMING模式打开assets下的指定文件
+
+final InputStream open(String fileName, int accessMode) //使用显示的访问模式打开assets下的指定文件</code></pre>
+<p>简单应用：<br>1、结合WebView加载assets目录下的网页：<br>//加载assets/win8_Demo/目录下的index.html网页<br>webView.loadUrl("file:///android_asset/helloworld.html");<br>说明：可加载assets目录下的网页，css，js，图片等文件也会的加载。</p>
+<h3>res/raw资源使用</h3>
+<pre class="hljs undefined"><code>InputStream is = getResources().openRawResource(R.id.fileNameID) ;
+//R.id.fileNameID
+为需要访问的文件对应的资源ID</code></pre>
+<p>获取到输入流，即可使用。</p>
+<p>VideoView播放：<br><code>VideoView.setVideoUri(Uri.parse("android.resource://" + getpackageName() + "/" + R.raw.movie));</code></p>
+<blockquote><p>参考文档：<br><a href="http://www.cnblogs.com/spring87/p/4386043.html" target="_blank">http://www.cnblogs.com/spring87/p/4386043.html</a><br><a href="http://blog.sina.com.cn/s/blog_4c07065601012arn.html" target="_blank">http://blog.sina.com.cn/s/blog_4c07065601012arn.html</a><br><a href="http://www.cnblogs.com/lianghui66/p/3248636.html" target="_blank">http://www.cnblogs.com/lianghui66/p/3248636.html</a><br><a href="http://blog.csdn.net/fengyuzhengfan/article/details/38360017" target="_blank">http://blog.csdn.net/fengyuzhengfan/article/details/38360017</a></p></blockquote>
+
+        </div>
+        <!--  -->
+
+        <div class="show-foot">
+          <a class="notebook" href="http://www.jianshu.com/nb/3548474">
+            <i class="iconfont ic-search-notebook"></i>
+            <span>Android笔记</span>
+</a>          <div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+            © 著作权归作者所有
+          </div>
+          <div class="modal-wrap" data-report-note="">
+            <a id="report-modal">举报文章</a>
+          </div>
+        </div>
+    </div>
+
+    <!-- 文章底部作者信息 -->
+      <div class="follow-detail">
+        <div class="info">
+          <a class="avatar" href="http://www.jianshu.com/u/ba85118e2023">
+            <img src="./Android Studio增加assets目录、raw目录 - 简书_files/10-e691107df16746d4a9f3fe9496fd1848.jpg" alt="96">
+</a>          <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+          <a class="title" href="http://www.jianshu.com/u/ba85118e2023">heguorui</a>
+          
+        <p>写了 27068 字，被 101 人关注，获得了 169 个喜欢</p></div>
+          <div class="signature">程序猿，移动客户端开发。关注各类开发技术和思想。</div>
+      </div>
+
+      <div class="support-author"><p>如果觉得我的文章对您有用，请随意赞赏。您的支持将鼓励我继续创作！</p> <div class="btn btn-pay">赞赏支持</div> <!----> <!----> <!----></div>
+
+    <div class="meta-bottom">
+      <div class="like"><div class="btn like-group"><div class="btn-like"><a href="http://www.jianshu.com/sign_in?utm_source=desktop&amp;utm_medium=not-signed-in-like-button"><i class="iconfont ic-like"></i>喜欢</a></div> <div class="modal-wrap"><a>11</a></div></div> <!----></div>
+      <div class="share-group">
+        <a class="share-circle" data-action="weixin-share" data-toggle="tooltip" data-original-title="分享到微信">
+          <i class="iconfont ic-wechat"></i>
+        </a>
+        <a class="share-circle" data-action="weibo-share" data-toggle="tooltip" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/5969863/weibo/image_d2942d3c6ed8.jpg&#39;, &#39;推荐 heguorui 的文章《Android Studio增加assets目录、raw目录》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/5974fcf88170?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));" data-original-title="分享到微博">
+          <i class="iconfont ic-weibo"></i>
+        </a>
+          <a class="share-circle" data-toggle="tooltip" href="http://cwb.assets.jianshu.io/notes/images/5969863/weibo/image_d2942d3c6ed8.jpg" target="_blank" data-original-title="下载长微博图片">
+            <i class="iconfont ic-picture"></i>
+          </a>
+        <a class="share-circle more-share" tabindex="0" data-toggle="popover" data-placement="top" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="
+          &lt;ul class=&quot;share-list&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/5974fcf88170?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 heguorui 的文章《Android Studio增加assets目录、raw目录》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-zone&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/5974fcf88170?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 heguorui 的文章《Android Studio增加assets目录、raw目录》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-twitter&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/5974fcf88170?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-facebook&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/5974fcf88170?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-google&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/5974fcf88170?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;Android Studio增加assets目录、raw目录&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-douban&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        " data-original-title="" title="">更多分享</a>
+      </div>
+    </div>
+    <div><div id="comment-list" class="comment-list"><div><form class="new-comment"><a class="avatar"><img src="./Android Studio增加assets目录、raw目录 - 简书_files/avatar_default-78d4d1f68984cd6d4379508dd94b4210.png"></a> <div class="sign-container"><a href="http://www.jianshu.com/sign_in?utm_source=desktop&amp;utm_medium=not-signed-in-comment-form" class="btn btn-sign">登录</a> <span>后发表评论</span></div></form> <!----></div> <div id="normal-comment-list" class="normal-comment-list"><div><!----> <div><div class="top"><span>评论</span> <a class="close-btn" style="display: none;">关闭评论</a></div> <div class="no-comment"></div> <div class="text">
+            智慧如你，不想<a href="http://www.jianshu.com/sign_in?utm_source=desktop&amp;utm_medium=not-signed-in-nocomments-text">发表一点想法</a>咩~
+          </div></div> <!----> <div class="comments-placeholder" style="display: none;"><div class="author"><div class="avatar"></div> <div class="info"><div class="name"></div> <div class="meta"></div></div></div> <div class="text"></div> <div class="text animation-delay"></div> <div class="tool-group"><i class="iconfont ic-zan-active"></i><div class="zan"></div> <i class="iconfont ic-list-comments"></i><div class="zan"></div></div></div> </div></div> <!----> <div><!----></div></div></div>
+  </div>
+
+  <div class="side-tool"><ul><li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="回到顶部"><a class="function-button"><i class="iconfont ic-backtop"></i></a></li> <!----> <!----> <li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="分享文章"><a tabindex="0" role="button" data-toggle="popover" data-placement="left" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="&lt;ul class=&#39;share-list&#39;&gt;
+                &lt;li&gt;&lt;a class=&quot;weixin-share&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-weixin&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到微信&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/5969863/weibo/image_d2942d3c6ed8.jpg&#39;, &#39;推荐 heguorui 的文章《Android Studio增加assets目录、raw目录》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/5974fcf88170?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-weibo&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到微博&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;http://cwb.assets.jianshu.io/notes/images/5969863/weibo/image_d2942d3c6ed8.jpg&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-picture&quot;&gt;&lt;/i&gt;&lt;span&gt;下载长微博图片&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/5974fcf88170?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 heguorui 的文章《Android Studio增加assets目录、raw目录》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-zone&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/5974fcf88170?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 heguorui 的文章《Android Studio增加assets目录、raw目录》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-twitter&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/5974fcf88170?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-facebook&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/5974fcf88170?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-google&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/5974fcf88170?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;Android Studio增加assets目录、raw目录&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-douban&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;" data-original-title="" title="" class="function-button"><i class="iconfont ic-share"></i></a> <!----></li></ul></div>
+</div>
+<div class="note-bottom">
+  <div><div class="main"><div class="title">被以下专题收入，发现更多相似内容</div> <!----> <div class="include-collection"><!----> <a href="http://www.jianshu.com/c/12d681d5febd?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android Studio增加assets目录、raw目录 - 简书_files/android.jpg"><div class="name">Android知识</div></a><a href="http://www.jianshu.com/c/3fde3b545a35?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android Studio增加assets目录、raw目录 - 简书_files/android.graphics.Bitmap_3d178cba.jpeg"><div class="name">Android知识</div></a><a href="http://www.jianshu.com/c/ebee5dc587f1?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android Studio增加assets目录、raw目录 - 简书_files/android.graphics.Bitmap_48f7457.jpeg"><div class="name">android...</div></a><a href="http://www.jianshu.com/c/NEt52a?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android Studio增加assets目录、raw目录 - 简书_files/computer_guy.jpg"><div class="name">程序员</div></a><a href="http://www.jianshu.com/c/3sT4qY?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android Studio增加assets目录、raw目录 - 简书_files/今日看点.png"><div class="name">今日看点</div></a><a href="http://www.jianshu.com/c/285f6aa34d80?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android Studio增加assets目录、raw目录 - 简书_files/timg.jpg"><div class="name">Android...</div></a><a href="http://www.jianshu.com/c/bf685a113c6b?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android Studio增加assets目录、raw目录 - 简书_files/icons8-Android_OS-96.png"><div class="name">android知识点</div></a> <!----></div></div> <!----> <!----></div>
+  <div><div class="recommend-note"><div class="meta"><div class="title">
+        推荐阅读
+        <a target="_blank" href="http://www.jianshu.com/" class="more">
+           更多精彩内容<i class="iconfont ic-link"></i></a></div></div> <div class="list"><div class="note have-img"><a target="_blank" href="http://www.jianshu.com/p/a2036b20a52c?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="cover" style="background-image: url(&quot;//upload-images.jianshu.io/upload_images/1708416-c08e8d189acb96ce.png?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240&quot;);"></a> <a target="_blank" href="http://www.jianshu.com/p/a2036b20a52c?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">Android Studio 删除'com.android.support:appcompat-v7:XX.X.X'依赖</a> <p class="description">Android Studio在新建工程时，自动的继承自android.support.v7.app.AppCompatActivity，AppCompatActivity是v7包提供的向下兼容的Activity，一般不建议更改。刚刚建立的工程： 这几个地方，需要注意版本问题，否则刚刚建立就是错误的，一般compileSdkVersion第一个版本就可以了。补充下，targetSdkVersion也要注意版本不要超过最高版本，尤其是Build Platform Tool的版本。 如果希望删除，则需要做以下操作，完成删除： 删除build.gradle内相关内容： 修改你的Activity的...</p> <a target="_blank" href="http://www.jianshu.com/u/ba85118e2023?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;http://cdn2.jianshu.io/assets/default_avatar/10-e691107df16746d4a9f3fe9496fd1848.jpg&quot;);"></div> <span class="name">heguorui</span></a></div><div class="note have-img"><a target="_blank" href="http://www.jianshu.com/p/a0829b5e23ac?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="cover" style="background-image: url(&quot;//upload-images.jianshu.io/upload_images/1708416-1206c23803cca8ae.png?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240&quot;);"></a> <a target="_blank" href="http://www.jianshu.com/p/a0829b5e23ac?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">Intellij IDEA问题：@Override is not allowed when implementing interface method</a> <p class="description">JDK 6以下时，implement接口方法时，不能使用@Override 修改JDK Level：</p> <a target="_blank" href="http://www.jianshu.com/u/ba85118e2023?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;http://cdn2.jianshu.io/assets/default_avatar/10-e691107df16746d4a9f3fe9496fd1848.jpg&quot;);"></div> <span class="name">heguorui</span></a></div><div class="note"><!----> <a target="_blank" href="http://www.jianshu.com/p/27de765cdb28?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">简友常见问题汇总</a> <p class="description">请在评论区告知你是怎么知道简书的吧，我会给你的文章打赏哦，谢谢老铁了！以下是正文 大家好，我是简书的CEO简叔。欢迎加我微信：jianshuceo 简友会简信我问很多问题，现将常见问题整理如下： 问：我在这里能干什么？答：打开简书APP就可以阅读简友们的文章了，可以给文章点赞、评论。遇到喜欢的作者你可以关注他以获得他的最新内容更新。如果你是一个写作者，你也可以自己发布文章，将这里作为你的新博客。新世代体验的博客，你值得拥有。 除此之外，你还可以加入简书的各大兴趣社群。选择你感兴趣的专题，勾搭专题主编，与小伙伴们畅谈天地。 在此之前，请仔细阅读简书社区指导规则无论你是什么样的人，请文明礼貌...</p> <a target="_blank" href="http://www.jianshu.com/u/y3Dbcz?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;http://upload.jianshu.io/users/upload_avatars/4/21d526846127.png&quot;);"></div> <span class="name">简叔</span></a></div><div class="note have-img"><a target="_blank" href="http://www.jianshu.com/p/2288a2919541?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="cover" style="background-image: url(&quot;//upload-images.jianshu.io/upload_images/3459828-e159581fb61cfd2d.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240&quot;);"></a> <a target="_blank" href="http://www.jianshu.com/p/2288a2919541?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">请你不要平平淡淡的将就好吗？</a> <p class="description">说实话，我一点也不愿平平淡淡的就这么将就着过一辈子。 我不想才二十几岁就过着所谓平平淡淡的日子，我不想年纪轻轻就过着一眼望到底的生活。﻿ 我不想未来的我下午的时候依旧挣着晚饭的钱；我不想未来的我像菜市场的大妈为一两块的菜钱争吵半天。﻿ ﻿我也不想以后的我只会羡慕别人的成功，不想我的以后碌碌无为一事无成……﻿ 在一次分享会上，提问环节的时候突然有人问我：是什么信念让你一直不断的坚持下去？﻿ 那几秒钟我突然愣了一下，自己吧唧吧唧地能够连续分享一个多小时，却不知道该如何去回答一个只有十几个字的问题。其实，还是因为自己压根没想过为什么要坚持?﻿ ﻿后来，也不知道哪儿冒出来一句：我不愿平平淡淡的将...</p> <a target="_blank" href="http://www.jianshu.com/u/21a7a893f4b7?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;http://upload.jianshu.io/users/upload_avatars/3459828/6b84059d-06e2-40ce-b4cf-06f0573a9b0c.jpg&quot;);"></div> <span class="name">有备而来的路人甲</span></a></div><div class="note have-img"><a target="_blank" href="http://www.jianshu.com/p/e96ef07aa218?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="cover" style="background-image: url(&quot;//upload-images.jianshu.io/upload_images/1997529-89004010466e5fbf.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240&quot;);"></a> <a target="_blank" href="http://www.jianshu.com/p/e96ef07aa218?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">小时候缺的爱，再也补不回来了</a> <p class="description">1.﻿﻿﻿ 昨天晚上我刷朋友圈的时候，看到一个同学过生日。我立马发了个红包给她，祝她生日快乐。 同学很惊讶，一开始并没有领我的红包。因为我和她之间的关系，仅仅限于“见面打打招呼”。 她发了一个“害羞”的表情包，问我为什么要发红包给她。 因为今天你生日呀，生日领红包没关系的，我说。 她最终领了那个红包，而我，如释重负。 我没做什么亏心事，发红包也不是为了弥补什么。我只是一直都记得体测的时候，我800米跑得上气不接下气，差点要晕倒时，她递给了我一瓶水。 可能她早已经忘了这件事，但我一直记得。 像我这样的人，从来都没有办法坦然地接受别人的好，别人对我好，我总会觉得愧疚。受到一丁点儿的安慰和陪伴...</p> <a target="_blank" href="http://www.jianshu.com/u/7843794a7b97?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;http://upload.jianshu.io/users/upload_avatars/1997529/cbd2d805-92f7-4411-9f4a-449ccd311e06.jpg&quot;);"></div> <span class="name">然岁</span></a></div></div></div></div>
+</div>
+
+    <script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"windows","read_mode":"day","read_font":"font2","note_show":{"is_author":false,"is_following_author":false,"is_liked_note":false,"follow_state":0,"uuid":"aa2d3eca-85d0-4aaa-a8ef-199200a86d24"},"note":{"id":5969863,"slug":"5974fcf88170","user_id":1708416,"notebook_id":3548474,"commentable":true,"likes_count":11,"views_count":5886,"public_wordage":601,"comments_count":0,"total_rewards_count":0,"is_author":false,"author":{"nickname":"heguorui","total_wordage":27068,"followers_count":101,"total_likes_count":169}}}</script>
+    
+    <script src="./Android Studio增加assets目录、raw目录 - 简书_files/babel-polyfill-676833c6a4d68573b4c3.js" crossorigin="anonymous"></script>
+    <script src="./Android Studio增加assets目录、raw目录 - 简书_files/web-base-d5fa412fdd133f04b86a.js" crossorigin="anonymous"></script>
+<script src="./Android Studio增加assets目录、raw目录 - 简书_files/web-1c48854c54c1632a7d90.js" crossorigin="anonymous"></script>
+    
+    <script src="./Android Studio增加assets目录、raw目录 - 简书_files/entry-c3b9451e9ab725e4d0c3.js" crossorigin="anonymous"></script>
+    <script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+  
+
+<!----><!----></body></html>

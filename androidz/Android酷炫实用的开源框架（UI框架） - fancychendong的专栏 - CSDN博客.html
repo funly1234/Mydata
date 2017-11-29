@@ -1,0 +1,1383 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0059)http://blog.csdn.net/fancylovejava/article/details/45787729 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">          
+            <link rel="canonical" href="http://blog.csdn.net/fancylovejava/article/details/45787729"> 
+
+   
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://blog.csdn.net/fancylovejava/article/details/45787729#">
+
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848"> 
+       
+    <title>Android酷炫实用的开源框架（UI框架） - fancychendong的专栏
+        - CSDN博客</title>
+    
+    <meta name="description" content="Android酷炫实用的开源框架（UI框架）前言忙碌的工作终于可以停息一段时间了，最近突然有一个想法，就是自己写一个app，所以找了一些合适开源控件，这样更加省时，再此分享给大家，希望能对大家有帮助，此博文介绍的都是UI上面的框架，接下来会有其他的开源框架（如：HTTP框架、DB框架）。1.Side-Menu.Android分类侧滑菜单，Yalantis 出品。项目地址：https://gith">
+
+    <meta name="keywords" content="android">
+
+   
+    <script type="text/javascript" async="" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/pr.js"></script><script src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/hm.js"></script><script type="text/javascript" async="" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/uyswvswymvxxmmqswrxv.js"></script><script src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/blog_static_head.min.js" type="text/javascript"></script>
+
+    
+        <!--new top-->
+       
+       
+        <!--new top-->
+    
+      <!-- ad begin -->
+         
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/style.css">
+
+    
+
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/fancylovejava/rss/list">
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/default.css">
+ 
+
+
+
+    <link href="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/csdn_public_blog_detail.min.css" type="text/css" rel="stylesheet">
+     
+         <link rel="stylesheet" href="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/csdn_blog_detail.min.css">
+
+  
+
+
+    <!-- 请置于所有广告位代码之前 --> 
+            <script src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/ds.js"></script>
+
+<script src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/share.js"></script><link href="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/bdsstyle.css" rel="stylesheet" type="text/css"><script src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/wxLogin.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link type="text/css" rel="stylesheet" href="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/style(1).css"><script src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/logger.js"></script><link rel="stylesheet" href="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/share_style0_16.css"></head>
+
+
+<body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><div id="MathJax_Message" style="display: none;"></div><iframe frameborder="0" style="display: none;" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/saved_resource.html"></iframe><div class="csdn-toolbar csdn-toolbar-skin-black ">        <div class="container row center-block ">          <div class="col-md-3 pull-left logo clearfix"><a href="http://www.csdn.net/?ref=toolbar" title="CSDN首页" target="_blank" class="icon"></a><a title="频道首页" href="http://blog.csdn.net/?ref=toolbar_logo" class="img blog-icon"></a></div>          <div class="pull-right login-wrap unlogin">            <ul class="btns">              <li class="loginlink"><a href="https://passport.csdn.net/account/login?ref=toolbar" target="_top">登录&nbsp;</a>|<a target="_top" href="http://passport.csdn.net/account/mobileregister?ref=toolbar&amp;action=mobileRegister">&nbsp;注册</a></li>              <li class="search">                <div class="icon on-search-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <form action="http://so.csdn.net/search" id="toolbar_search" method="get" target="_blank">                      <input type="hidden" value="toolbar" name="ref" accesskey="2">                      <div class="border">                        <input placeholder="搜索" type="text" value="" name="q" accesskey="2"><span class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li class="favor">                <div class="icon on-favor-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div style="display:none;" class="favor-success"><span class="msg">收藏成功</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <div style="display:none;" class="favor-failed"><span class="icon-danger-lg"></span><span class="msg">收藏失败，请重新收藏</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <form role="form" class="form-horizontal favor-form">                      <div class="form-group">                        <div class="clearfix">                          <label for="input-title" class="col-sm-2 control-label"><span class="red_txt">*</span>标题</label>                          <div class="col-sm-10">                            <input id="inputTitle" type="text" placeholder="" class="title form-control">                          </div>                        </div>                        <div class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div class="form-group" style="display:none;">                        <label for="input-url" class="col-sm-2 control-label">网址</label>                        <div class="col-sm-10">                          <input id="input-url" type="text" placeholder="" class="url form-control">                        </div>                      </div>                      <div class="form-group">                        <label for="input-tag" class="col-sm-2 tag control-label">标签</label>                        <div class="col-sm-10">                          <input id="input-tag" type="text" class="form-control tag">                        </div>                      </div>                      <div class="form-group">                        <label for="input-description" class="description col-sm-2 control-label">位置</label>                        <div class="col-sm-10">                          <div class="my_lib_box">                            个人主页&nbsp;-&nbsp;<a href="http://my.csdn.net/" target="_blank">我的知识</a>                          </div>                          <div class="checkbox">                            <div class="pull-left">                              <label>                                <input type="checkbox" name="share" class="save_lib_map" checked="checked">同时保存至：                              </label>                            </div>                            <div class="pull-left">                              <div class="dropdown">                                <button id="toolbar_sele_map" type="button">                                  选择知识图谱                                  <i class="fa fa-chevron-down"></i>                                </button>                                <div class="top_arr"></div>                                <div class="outside">                                  <ul class="dropdown-menu" id="toolbar_Design_knowledge"><li>选择知识图谱</li></ul>                                </div>                              </div>                            </div>                            <div class="pull-left new_txt">                              <a href="http://lib.csdn.net/my/create/structure" target="_blank">新建？</a>                            </div>                          </div>                        </div>                      </div>                      <div class="form-group">                        <div class="col-sm-offset-2 col-sm-10 ft">                          <div class="col-sm-4 pull-left" style="display:none">                            <div class="checkbox">                              <label>                                <input type="checkbox" name="share" checked="checked" class="share">公开                              </label>                            </div>                          </div>                          <div class="col-sm-8 pull-right favor-btns">                            <button type="button" class="cancel btn btn-default">取消</button>                            <button type="submit" class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li class="notify">                <div style="display:none" class="number"></div>                <div style="display:none" class="icon-hasnotes-sm"></div>                <div id="header_notice_num"></div>                <div class="icon on-notify-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div id="note1" class="csdn_note">                      <div class="box"></div>                    <iframe src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/saved_resource(1).html" frameborder="0" allowtransparency="true" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li class="ugc">                <div class="icon on-ugc-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <dl>                      <dt><a href="http://geek.csdn.net/news/expert?ref=toolbar" target="_blank" class="p-news clearfix" style="display:none;"><em class="icon"></em><span>分享资讯</span></a></dt>                      <dt style="border: none;"><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-doc clearfix"><em class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a href="http://bbs.csdn.net/topics/new?ref=toolbar" target="_blank" class="p-ask clearfix"><em class="icon"></em><span>提问题</span></a></dt>                      <dt><a href="http://write.blog.csdn.net/postedit?ref=toolbar" target="_blank" class="p-blog clearfix"><em class="icon"></em><span>写博客</span></a></dt>                      <dt><a href="http://gitbook.cn/new/gitchat/activity?utm_source=csdnblog1" target="_blank" class="gitchat clearfix"><em class="icon"></em><span>发布Chat</span></a></dt>                      <dt><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-src clearfix"><em class="icon"></em><span>传资源</span></a></dt>                      <dt><a href="https://code.csdn.net/projects/new?ref=toolbar" target="_blank" class="c-obj clearfix"><em class="icon"></em><span>创建项目</span></a></dt>                      <dt><a href="https://code.csdn.net/snippets/new?ref=toolbar" target="_blank" class="c-code clearfix"><em class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li class="profile">                <div class="icon on-profile-icon"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/100x100.jpg" class="curr-icon-img">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div class="bd">                      <dl class="clearfix">                        <dt class="pull-left img"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="avatar"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/100x100.jpg"></a></dt>                        <dd class="info" style="border: none;"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="nickname"></a><a class="set-nick" href="https://passport.csdn.net/account/profile">设置昵称<span class="write-icon"></span></a><span class="dec"><a class="fill-dec" href="http://my.csdn.net/" target="_blank">编辑自我介绍，让更多人了解你<span class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div class="ft clearfix"><a target="_blank" href="http://my.csdn.net/my/account/changepwd?ref=toolbar" class="pull-left"><span class="icon-cog"></span>帐号设置</a><a href="https://passport.csdn.net/account/logout?ref=toolbar" target="_top" class="pull-left" style="margin-left:132px; width:18px; height:27px; white-space:nowrap; overflow:hidden;"><span class="icon-signout"></span><span class="out">退出</span></a></div>                  </div>                </div>              </li>              <li class="apps">                <div id="chasnew123" class="hasnew" style="display: none;"></div>                <div id="cappsarea123" class="icon on-apps-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a href="http://blog.csdn.net/?ref=toolbar" target="_blank">博客</a></dd>                      <dd> <a href="http://bbs.csdn.net/?ref=toolbar" target="_blank">论坛</a></dd>                      <dd> <a href="http://download.csdn.net/?ref=toolbar" target="_blank">下载</a></dd>                      <dd> <a href="http://lib.csdn.net/?ref=toolbar" target="_blank">知识库</a></dd>                      <dd><a href="http://ask.csdn.net/?ref=toolbar" target="_blank">技术问答</a></dd>                      <dd><a href="http://geek.csdn.net/?ref=toolbar" target="_blank">极客头条</a></dd>                      <dd style="display:none"> <a href="http://hero.csdn.net/?ref=toolbar" target="_blank">英雄会</a></dd>                    </dl>                  </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd style="display:none"> <a href="http://job.csdn.net/?ref=toolbar" target="_blank">JOB<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="http://edu.csdn.net/?ref=toolbar" target="_blank">学院<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="https://code.csdn.net/?ref=toolbar" target="_blank">CODE</a></dd>                      <dd> <a href="http://huiyi.csdn.net/?ref=toolbar" target="_blank">活动</a></dd>                      <dd> <a href="http://www.csto.com/?ref=toolbar" target="_blank">CSTO</a></dd>                      <dd> <a href="http://mall.csdn.net/?ref=toolbar" target="_blank">C币兑换<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                    </dl>                  </div>                  <div class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a href="http://cto.csdn.net/?ref=toolbar" target="_blank">CTO俱乐部</a></dd>                      <dd> <a href="http://student.csdn.net/?ref=toolbar" target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     
+        <div class="tracking-ad" data-view="true" data-mod="ad_popu_72" data-mtp="62" data-order="40" data-con="ad_content_2072">
+                     <script id="popuLayer_js_q" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/popuLayer.js" defer="defer" type="text/javascript"></script>
+                <div id="layerd" style="position: fixed; bottom: 0px; right: 0px; line-height: 0px; z-index: 1000; width: 300px; height: 278px;">
+    	                <div class="J_close layer_close" style="display:;background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">关闭</div><!-- 广告占位容器 -->
+                    <div id="cpro_u2895327">
+                        <!-- 投放代码 -->
+                        <script src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/ds.js"></script>
+                       <!-- 广告位：PC端-博客详情页右侧弹窗-300*250 -->
+                            <script>
+                                (function () {
+                                    var s = "_" + Math.random().toString(36).slice(2);
+                                    document.write('<div id="' + s + '"></div>');
+                                    (window.slotbydup = window.slotbydup || []).push({
+                                        id: '4740870',
+                                        container: s,
+                                        size: '300,250',
+                                        display: 'inlay-fix'
+                                    });
+                                })();
+                            </script><div id="_cx5q1pvah8gdwpkznmyqa1yvi"></div><script charset="utf-8" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/xcsm"></script><div id="_001yblqu5i6w4u4tlkcrmb1emi" style="width: 100%;"><iframe width="300" frameborder="0" height="250" scrolling="no" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/s.html"></iframe><div id="ympjklhp" style="width:0px;height:0px;"></div></div><script type="text/javascript" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/ojylrgbykmqybf.js"></script>
+                    </div></div>
+                <script>  document.getElementById("popuLayer_js_q").onload = function () {
+      var styObjd = styObj = { width: "300px", "height": parseInt(250) + 28 };
+      window.CSDN.Layer.PopuLayer("#layerd", { storageName: "layerd", styleObj: styObjd, total: 50, expoire: 1000 * 60 });
+  }</script>
+            
+     
+        </div>
+
+    <!-- 广告位开始 -->
+        
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/html.js" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/fancylovejava">fancychendong的专栏</a></h2>
+            <h3>努力，奋斗……</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/fancylovejava?viewmode=contents"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_mulu&#39;])">
+                    <img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/fancylovejava?viewmode=list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_zhaiyao&#39;])">
+                    <img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/fancylovejava/rss/list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])">
+                    <img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/ico_rss.gif">订阅</span></a></li>                   
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "fancylovejava";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/fancylovejava";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod="popu_3"> 
+
+
+<a href="http://blog.csdn.net/turingbooks/article/details/78475571" target="_blank">
+<font color="red"><strong>图灵赠书——程序员11月书单</strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://edu.csdn.net/topic/web1?utm_source=blog4" target="_blank">
+<font color="blue"><strong>【力荐】写给想成为前端工程师的同学们！</strong></font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a http:="" blog.csdn.net="" epubit17="" article="" details="" 78474448"="" target="_blank">
+<font color="blue"><strong>异步赠书:kafka/TensorFlow机器学习项目实战</strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://blog.csdn.net/broadview2006/article/details/78392859" target="_blank">
+<font color="red"><strong>每周荐书：高可用架构、解忧程序员、财富自由之路（评论送书）</strong></font></a>
+
+
+
+</div>                        </div>
+
+                        
+
+
+
+  
+
+
+
+
+
+
+<script type="text/javascript" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/category.js"></script>
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+      var isBole = false; 
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=Android%e9%85%b7%e7%82%ab%e5%ae%9e%e7%94%a8%e7%9a%84%e5%bc%80%e6%ba%90%e6%a1%86%e6%9e%b6%ef%bc%88UI%e6%a1%86%e6%9e%b6%ef%bc%89&u=http://blog.csdn.net/fancylovejava/article/details/45787729"
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Repost"></span>
+
+    <h1>
+        <span class="link_title"><a href="http://blog.csdn.net/fancylovejava/article/details/45787729">
+        Android酷炫实用的开源框架（UI框架）        
+           
+        </a>
+        </span>
+
+         
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_l">
+            <span class="link_categories">
+            标签：
+              <a href="http://www.csdn.net/tag/android" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">android</a>
+            </span>
+        </div>
+        <div class="article_r">
+            <span class="link_postdate">2015-05-17 11:39</span>
+            <span class="link_view" title="阅读次数">190795人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#comments" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_pinglun&#39;])">评论</a>(27)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;Android%e9%85%b7%e7%82%ab%e5%ae%9e%e7%94%a8%e7%9a%84%e5%bc%80%e6%ba%90%e6%a1%86%e6%9e%b6%ef%bc%88UI%e6%a1%86%e6%9e%b6%ef%bc%89&#39;,&#39;45787729&#39;);return false;" title="收藏" target="_blank">收藏</a></span>
+             <span class="link_report"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" onclick="javascript:report(45787729,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label onclick="GetCategoryArticles(&#39;1119184&#39;,&#39;fancylovejava&#39;,&#39;top&#39;,&#39;45787729&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">Android<em>（184）</em></span>
+                      <img class="arrow-down" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/fancylovejava/article/category/1119184" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_1119184">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+
+  
+
+  
+  
+     
+
+
+<div id="article_content" class="article_content tracking-ad" data-mod="popu_307" data-dsm="post">
+        <div class="markdown_views"><h3 id="android酷炫实用的开源框架ui框架">Android酷炫实用的开源框架（UI框架）</h3>
+
+<p><strong>前言</strong></p>
+
+<p>忙碌的工作终于可以停息一段时间了，最近突然有一个想法，就是自己写一个app，所以找了一些合适开源控件，这样更加省时，再此分享给大家，希望能对大家有帮助，此博文介绍的都是UI上面的框架，接下来会有其他的开源框架（如：HTTP框架、DB框架）。</p>
+
+<p><strong>1.Side-Menu.Android</strong><br>
+分类侧滑菜单，<a href="http://yalantis.com/" target="_blank">Yalantis</a> 出品。<br>
+项目地址：<a href="https://github.com/Yalantis/Side-Menu.Android" target="_blank">https://github.com/Yalantis/Side-Menu.Android</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1423213091_2192.gif-thumb.jpg" alt="image" title=""><br>
+<strong>2.Context-Menu.Android</strong><br>
+可以方便快速集成漂亮带有动画效果的上下文菜单，<a href="http://yalantis.com/" target="_blank">Yalantis</a>出品。<br>
+项目地址：<a href="https://github.com/Yalantis/Context-Menu.Android" target="_blank">https://github.com/Yalantis/Context-Menu.Android</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1423213164_4792.gif-thumb.jpg" alt="image" title=""><br>
+<strong>3.Pull-to-Refresh.Rentals-Android</strong><br>
+提供一个简单可以自定义的下拉刷新实现，Yalantis 出品。<br>
+项目地址：<a href="https://github.com/Yalantis/Pull-to-Refresh.Rentals-Android" target="_blank">https://github.com/Yalantis/Pull-to-Refresh.Rentals-Android</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1423211132_9821.gif-thumb.jpg" alt="image" title=""><br>
+<strong>4.Titanic</strong><br>
+可以显示水位上升下降的TextView<br>
+项目地址：<a href="https://github.com/RomainPiel/Titanic" target="_blank">https://github.com/RomainPiel/Titanic</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1423213775_1197.gif-thumb.jpg" alt="image" title=""><br>
+<strong>5.AndroidSwipeLayout</strong><br>
+滑动Layout，支持单个View，ListView，GridView<br>
+项目地址：<a href="https://github.com/daimajia/AndroidSwipeLayout" target="_blank">https://github.com/daimajia/AndroidSwipeLayout</a><br>
+Demo地址：<a href="https://github.com/daimajia/AndroidSwipeLayout/releases/download/v1.0.0/AndroidSwipeLayout-Demo-1.0.1-snapshot.apk" target="_blank">Download Demo</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1423460378_5762.gif-thumb.jpg" alt="image" title=""><br>
+<strong>6.Android Typeface Helper</strong><br>
+可以帮你轻松实现自定义字体的库<br>
+项目地址：<a href="https://github.com/norbsoft/android-typeface-helper" target="_blank">https://github.com/norbsoft/android-typeface-helper</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1423460828_5536.png" alt="image" title=""><br>
+<strong>7.android-lockpattern</strong><br>
+Android的图案密码解锁</p>
+
+<p>项目地址：<a href="https://code.google.com/p/android-lockpattern/" target="_blank">https://code.google.com/p/android-lockpattern/</a></p>
+
+<p>Demo地址：<a href="https://play.google.com/store/apps/details?id=group.pals.android.lib.ui.lockpattern.demo" target="_blank">https://play.google.com/store/apps/details?id=group.pals.android.lib.ui.lockpattern.demo</a></p>
+
+<p>文档介绍：<a href="https://code.google.com/p/android-lockpattern/wiki/QuickUse" target="_blank">https://code.google.com/p/android-lockpattern/wiki/QuickUse</a></p>
+
+<p>APP示例：Android开机的图案密码解锁，支付宝的密码解锁<br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1423462562_3964.gif-thumb.jpg" alt="image" title=""><br>
+<strong>8.ToggleButton</strong><br>
+状态切换的 Button，类似 iOS，用 View 实现<br>
+项目地址：<a href="https://github.com/zcweng/ToggleButton" target="_blank">https://github.com/zcweng/ToggleButton</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1423462956_6647.gif-thumb.jpg" alt="image" title=""><br>
+<strong>9.WilliamChart</strong><br>
+绘制图表的库，支持LineChartView、BarChartView和StackBarChartView三中图表类型，并且支持 Android 2.2及以上的系统。<br>
+项目地址：<a href="https://github.com/diogobernardino/WilliamChart" target="_blank">https://github.com/diogobernardino/WilliamChart</a><br>
+Demo地址：<a href="https://play.google.com/store/apps/details?id=com.db.williamchartdemo" target="_blank">https://play.google.com/store/apps/details?id=com.db.williamchartdemo</a><br>
+Demo项目：<a href="https://github.com/diogobernardino/WilliamChart/tree/master/sample" target="_blank">https://github.com/diogobernardino/WilliamChart/tree/master/sample</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1423464450_9931.gif-thumb.jpg" alt="image" title=""><br>
+<strong>10.实现滑动ViewPager渐变背景色</strong><br>
+项目地址：<a href="https://github.com/TaurusXi/GuideBackgroundColorAnimation" target="_blank">https://github.com/TaurusXi/GuideBackgroundColorAnimation</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1423465601_1022.gif-thumb.jpg" alt="image" title=""><br>
+<strong>11.Euclid</strong><br>
+用户简历界面，<a href="http://yalantis.com/" target="_blank">Yalantis</a> 出品。<br>
+项目地址：<a href="https://github.com/Yalantis/Euclid" target="_blank">https://github.com/Yalantis/Euclid</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1426920463_6161.gif" alt="image" title=""><br>
+<strong>12.<a href="https://github.com/frogermcs/InstaMaterial" target="_blank">InstaMaterial</a></strong><br>
+Instagram的一组Material 风格的概念设计</p>
+
+<p>项目地址：<a href="https://github.com/frogermcs/InstaMaterial" target="_blank">https://github.com/frogermcs/InstaMaterial</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1426920817_9915.gif-thumb.jpg" alt="image" title=""><br>
+<strong>13.<a href="https://github.com/chenupt/SpringIndicator" target="_blank">SpringIndicator</a></strong></p>
+
+<p>使用bezier实现粘连效果的页面指示</p>
+
+<p>项目地址：<a href="https://github.com/chenupt/SpringIndicator" target="_blank">https://github.com/chenupt/SpringIndicator</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1426921161_3650.gif-thumb.jpg" alt="image" title=""><br>
+<strong>14.<a href="https://github.com/chenupt/BezierDemo" target="_blank">BezierDemo</a></strong></p>
+
+<p>仿qq消息气泡拖拽消失的效果。</p>
+
+<p>项目地址：<a href="https://github.com/chenupt/BezierDemo" target="_blank">https://github.com/chenupt/BezierDemo</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1426921441_6496.gif-thumb.jpg" alt="image" title=""><br>
+<strong>15.<a href="https://github.com/alexvasilkov/FoldableLayout" target="_blank">FoldableLayout</a></strong></p>
+
+<p>折叠的信纸被打开一样的动画效果</p>
+
+<p>项目地址：<a href="https://github.com/alexvasilkov/FoldableLayout" target="_blank">https://github.com/alexvasilkov/FoldableLayout</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1426921698_2722.gif-thumb.jpg" alt="image" title=""><br>
+<strong>16.Taurus</strong><br>
+下拉刷新，Yalantis 出品。（是不是有点似曾相识呢？）<br>
+项目地址：<a href="https://github.com/Yalantis/Taurus" target="_blank">https://github.com/Yalantis/Taurus</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1426922054_1414.gif-thumb.jpg" alt="image" title=""><br>
+<strong>17.<a href="https://github.com/Quinny898/PersistentSearch" target="_blank">PersistentSearch</a></strong></p>
+
+<p>在点击搜索的时候控件在原有位置显示输入框。</p>
+
+<p>项目地址：<a href="https://github.com/Quinny898/PersistentSearch" target="_blank">https://github.com/Quinny898/PersistentSearch</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1426922209_2845.gif-thumb.jpg" alt="image" title=""><br>
+<strong>18.<a href="https://github.com/dmytrodanylyk/circular-progress-button" target="_blank">circular-progress-button</a></strong></p>
+
+<p><a href="https://github.com/dmytrodanylyk/circular-progress-button" target="_blank">带进度显示的Button</a></p>
+
+<p>项目地址： <a href="https://github.com/dmytrodanylyk/circular-progress-button" target="_blank">https://github.com/dmytrodanylyk/circular-progress-button</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1426922347_5739.gif-thumb.jpg" alt="image" title=""><br>
+<strong>19.<a href="https://github.com/flavienlaurent/discrollview" target="_blank">discrollview</a></strong></p>
+
+<p>当上下滚动的时候子元素会呈现不同动画效果的scrollView，网页上称之为：视差滚动</p>
+
+<p>项目地址： <a href="https://github.com/flavienlaurent/discrollview" target="_blank">https://github.com/flavienlaurent/discrollview</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1426922579_2121.gif-thumb.jpg" alt="image" title=""><br>
+<strong>20.<a href="https://github.com/pedant/sweet-alert-dialog" target="_blank">sweet-alert-dialog</a></strong></p>
+
+<p>一个带动画效果的自定义对话框样式</p>
+
+<p>项目地址：<a href="https://github.com/pedant/sweet-alert-dialog" target="_blank">https://github.com/pedant/sweet-alert-dialog</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1426922742_2528.gif-thumb.jpg" alt="image" title=""><br>
+<strong>21.<a href="https://github.com/futuresimple/android-floating-action-button" target="_blank">android-floating-action-button</a></strong></p>
+
+<p>Material Desig风格的浮动操作按钮</p>
+
+<p>项目地址：<a href="https://github.com/futuresimple/android-floating-action-button" target="_blank">https://github.com/futuresimple/android-floating-action-button</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1426922886_3445.gif-thumb.jpg" alt="image" title=""><br>
+<strong>22.<a href="https://github.com/blazsolar/android-collapse-calendar-view" target="_blank">android-collapse-calendar-view</a></strong></p>
+
+<p>可以在月视图与周视图之间切换的calendar控件</p>
+
+<p>项目地址：<a href="https://github.com/blazsolar/android-collapse-calendar-view" target="_blank">https://github.com/blazsolar/android-collapse-calendar-view</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1426922994_1960.gif-thumb.jpg" alt="image" title=""><br>
+<strong>23.<a href="https://github.com/daimajia/NumberProgressBar" target="_blank">NumberProgressBar</a></strong></p>
+
+<p>个简约性感的数字进度条</p>
+
+<p>项目地址：<a href="https://github.com/daimajia/NumberProgressBar" target="_blank">https://github.com/daimajia/NumberProgressBar</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1426923126_2788.gif-thumb.jpg" alt="image" title=""><br>
+<strong>24.<a href="https://github.com/rahatarmanahmed/CircularProgressView" target="_blank">CircularProgressView</a></strong></p>
+
+<p>CircularProgressView 是通过自定义view的方式实现的Material风格的加载提示控件，兼容任何版本。</p>
+
+<p>项目地址：<a href="https://github.com/rahatarmanahmed/CircularProgressView" target="_blank">https://github.com/rahatarmanahmed/CircularProgressView</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1426923297_9170.gif-thumb.jpg" alt="image" title=""><br>
+<strong>25.<a href="https://github.com/RemiKoutcherawy/OriSim3D-Android" target="_blank">OriSim3D-Android</a></strong></p>
+
+<p>opengl 实现了各种折纸效果，模拟了从一张纸折叠成一条船的整个过程</p>
+
+<p>项目地址： <a href="https://github.com/RemiKoutcherawy/OriSim3D-Android" target="_blank">https://github.com/RemiKoutcherawy/OriSim3D-Android</a><br>
+<img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1426923509_3249.gif-thumb.jpg" alt="image" title=""><br>
+转载请注明：<a href="http://www.androidchina.net/" target="_blank">Android开发中文站</a> » <a href="http://www.androidchina.net/1992.html" target="_blank">Android酷炫实用的开源框架（UI框架）</a></p></div>
+        <script type="text/javascript">
+            $(function () {
+                $('pre.prettyprint code').each(function () {
+                    var lines = $(this).text().split('\n').length;
+                    var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                    $(this).addClass('has-numbering').parent().append($numbering);
+                    for (i = 1; i <= lines; i++) {
+                        $numbering.append($('<li/>').text(i));
+                    };
+                    $numbering.fadeIn(1700);
+                });
+            });
+        </script>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad bdshare-button-style0-16" style="float: right;" data-mod="popu_172" data-bd-bind="1510212591018">
+<a href="http://blog.csdn.net/fancylovejava/article/details/45787729#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important" target="_blank"></a>
+<a href="http://blog.csdn.net/fancylovejava/article/details/45787729#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background-position:0 -52px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/fancylovejava/article/details/45787729#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background-position:0 -104px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/fancylovejava/article/details/45787729#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" style="background-position:0 -260px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/fancylovejava/article/details/45787729#" class="bds_renren" data-cmd="renren" title="分享到人人网" style="background-position:0 -208px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/fancylovejava/article/details/45787729#" class="bds_weixin" data-cmd="weixin" title="分享到微信" style="background-position:0 -1612px !important" target="_blank"></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   
+
+<!--172.16.140.13-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/bds_s_v2.js"></script>
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+
+
+ 
+
+
+        <div id="digg" articleid="45787729">
+            <dl id="btnDigg" class="digg digg_disable" onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>202</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable" onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>3</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" target="_blank">&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" target="_blank">&nbsp;</a></div>
+    <script type="text/javascript">
+        function btndigga() {
+            $(".tracking-ad[data-mod='popu_222'] a").click();
+        }
+        function btnburya() {
+            $(".tracking-ad[data-mod='popu_223'] a").click();
+        }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;]);location.href=&#39;http://blog.csdn.net/fancylovejava/article/details/45578677&#39;;">上一篇</span><a href="http://blog.csdn.net/fancylovejava/article/details/45578677" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;])">Android中通过广播方式调起第三方App</a></li>
+                <li class="next_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;http://blog.csdn.net/fancylovejava/article/details/45831167&#39;;">下一篇</span><a href="http://blog.csdn.net/fancylovejava/article/details/45831167" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;])">git命令学习</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+            <div class="similar_article">
+                    <h4></h4>
+                    <div class="similar_c" style="margin:20px 0px 0px 0px">
+                        <div class="similar_c_t">
+                          &nbsp;&nbsp;相关文章推荐
+                        </div>
+                   
+                        <div class="similar_wrap tracking-ad" data-mod="popu_36" style="max-height:250px">                       
+                            <ul class="similar_list fl">    
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/w6718189/article/details/52872807" title="android 圆形渐变进度条CircleProgressBar的开源框架" strategy="BlogCommendFromBaidu_0" target="_blank">android 圆形渐变进度条CircleProgressBar的开源框架</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/huiyiCourse/detail/596?utm_source=blog7" title="免费直播 神经网络的原理及结构设计--何宇健" strategy="undefined" target="_blank">免费直播 神经网络的原理及结构设计--何宇健</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/u013101864/article/details/51500136" title="Android-25种开源炫酷动画框架" strategy="BlogCommendFromBaidu_1" target="_blank">Android-25种开源炫酷动画框架</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/huiyiCourse/detail/602?utm_source=blog7" title="Apache Weex：移动研发的进阶之路--董岩" strategy="undefined" target="_blank">Apache Weex：移动研发的进阶之路--董岩</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/lmj623565791/article/details/38339817" title="Android 手把手教您自定义ViewGroup（一）" strategy="BlogCommendFromBaidu_2" target="_blank">Android 手把手教您自定义ViewGroup（一）</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/course/detail/6252?utm_source=blog7" title="C++ 百万并发网络通信引擎架构与实现" strategy="undefined" target="_blank">C++ 百万并发网络通信引擎架构与实现</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/u013278099/article/details/50612266" title="安卓6.0权限处理在项目中的实践" strategy="BlogCommendFromBaidu_3" target="_blank">安卓6.0权限处理在项目中的实践</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/course/detail/6271?utm_source=blog7" title="PHP入门到精通及项目实战" strategy="undefined" target="_blank">PHP入门到精通及项目实战</a>
+                                   </li>
+                            </ul>
+                              <ul class="similar_list fr">      
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/yywan1314520/article/details/51485857" title="最新android APP框架介绍" strategy="BlogCommendFromBaidu_4" target="_blank">最新android APP框架介绍</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/course/detail/6409?utm_source=blog7" title=" Kotlin基本语法到实战开发" strategy="undefined" target="_blank"> Kotlin基本语法到实战开发</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/diyangxia/article/details/51548858" title="Android基于Bmob第三方后台开发的App——足说" strategy="BlogCommendFromBaidu_5" target="_blank">Android基于Bmob第三方后台开发的App——足说</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/course/detail/2932?utm_source=blog7" title=" Android 实战开发 第三方SDK 讯飞语音SDK" strategy="undefined" target="_blank"> Android 实战开发 第三方SDK 讯飞语音SDK</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/jaycee110905/article/details/8960679" title="Android常用Demo及开源项目集锦" strategy="BlogCommendFromBaidu_6" target="_blank">Android常用Demo及开源项目集锦</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://download.csdn.net/download/wrgandroid/4884250" title="android 实现 DLNA 的代码以及思路" strategy="BlogCommendFromBaidu_7" target="_blank">android 实现 DLNA 的代码以及思路</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/yw1688/article/details/53731590" title="Android应用经典主界面框架之一:仿QQ (使用Fragment, 附源码)" strategy="BlogCommendFromBaidu_8" target="_blank">Android应用经典主界面框架之一:仿QQ (使用Fragment, 附源码)</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://download.csdn.net/download/chenxh/2" title="聊天机器人2002" strategy="BlogCommendFromBaidu_9" target="_blank">聊天机器人2002</a>
+                                   </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>   
+      
+</div>
+
+     <div>
+           
+
+       
+                           
+            <!-- 广告位：PC端-博客内容页-banner1-960*90 --> 
+           
+         <!-- 广告位：PC端-博客详情页底部banner-960*90 -->
+            <script>
+                (function() {
+                    var s = "_" + Math.random().toString(36).slice(2);
+                    document.write('<div id="' + s + '"></div>');
+                    (window.slotbydup=window.slotbydup || []).push({
+                        id: '4770928',
+                        container: s,
+                        size: '960,90',
+                        display: 'inlay-fix'
+                    });
+                })();
+            </script><div id="_hgtism7o82x5pxpl2xkjwz5mi"></div><script charset="utf-8" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/xcsm(1)"></script><div id="_7pip1lsamhqakd68f2qm4y4x6r" style="width: 100%;"><div id="qhlsyvxh"><div id="sgrioee" style="padding-left:0px;"><iframe width="960" frameborder="0" height="90" scrolling="no" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/s(1).html"></iframe><p style="display:none;padding-top:0px;"></p></div></div></div><script type="text/javascript" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/kfunnhoouimhnlou.js"></script>
+    </div>
+
+<div id="suggest">
+
+</div>
+         <script language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/fancylovejava/svc/GetSuggestContent/45787729",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+
+            
+                                    
+            
+                                    
+
+        <!-- 广告位开始 -->
+        <!-- 广告位结束 -->
+
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list"><dl class="comment_item comment_topic" id="comment_item_7274987"><dt class="comment_head" floor="21">21楼 <span class="user"><a class="username" href="http://blog.csdn.net/qq_21175323" target="_blank">qq_21175323</a> <span class="ptime">2017-10-21 11:52发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="7274987" username="qq_21175323"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_21175323" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_qq_21175323.jpg" width="40" height="40"></a></dd><dd class="comment_body">好棒！！</dd></dl><dl class="comment_item comment_topic" id="comment_item_6657538"><dt class="comment_head" floor="20">20楼 <span class="user"><a class="username" href="http://blog.csdn.net/m0_37636280" target="_blank">zxdm</a> <span class="ptime">2017-03-08 11:49发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6657538" username="m0_37636280"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/m0_37636280" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_m0_37636280.jpg" width="40" height="40"></a></dd><dd class="comment_body">good</dd></dl><dl class="comment_item comment_topic" id="comment_item_6653363"><dt class="comment_head" floor="19">19楼 <span class="user"><a class="username" href="http://blog.csdn.net/qq_35608482" target="_blank">一头迷茫的牛</a> <span class="ptime">2017-03-06 19:48发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6653363" username="qq_35608482"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_35608482" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_qq_35608482.jpg" width="40" height="40"></a></dd><dd class="comment_body">超级棒的的框架！！</dd></dl><dl class="comment_item comment_topic" id="comment_item_6591943"><dt class="comment_head" floor="18">18楼 <span class="user"><a class="username" href="http://blog.csdn.net/liuxiao673988904" target="_blank">ANDYZKB</a> <span class="ptime">2017-02-08 19:00发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6591943" username="liuxiao673988904"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/liuxiao673988904" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_liuxiao673988904.jpg" width="40" height="40"></a></dd><dd class="comment_body">真心的酷炫</dd></dl><dl class="comment_item comment_topic" id="comment_item_6558194"><dt class="comment_head" floor="17">17楼 <span class="user"><a class="username" href="http://blog.csdn.net/baidu_37356484" target="_blank">baidu_37356484</a> <span class="ptime">2017-01-17 10:41发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6558194" username="baidu_37356484"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/baidu_37356484" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_baidu_37356484.jpg" width="40" height="40"></a></dd><dd class="comment_body">感觉 如果学会这些 逼格都上了几个档次</dd></dl><dl class="comment_item comment_topic" id="comment_item_6542449"><dt class="comment_head" floor="16">16楼 <span class="user"><a class="username" href="http://blog.csdn.net/wb175208" target="_blank">wb175208</a> <span class="ptime">2017-01-09 14:25发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6542449" username="wb175208"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/wb175208" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_wb175208.jpg" width="40" height="40"></a></dd><dd class="comment_body">这个不错！</dd></dl><dl class="comment_item comment_topic" id="comment_item_6419296"><dt class="comment_head" floor="15">15楼 <span class="user"><a class="username" href="http://blog.csdn.net/u012532233" target="_blank">恋梦SevEn</a> <span class="ptime">2016-11-19 17:20发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6419296" username="u012532233"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u012532233" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_u012532233.jpg" width="40" height="40"></a></dd><dd class="comment_body">谢谢 转了</dd></dl><dl class="comment_item comment_topic" id="comment_item_6289152"><dt class="comment_head" floor="14">14楼 <span class="user"><a class="username" href="http://blog.csdn.net/zuoliangzhu" target="_blank">zuoliangzhu</a> <span class="ptime">2016-09-25 13:25发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6289152" username="zuoliangzhu"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/zuoliangzhu" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_zuoliangzhu.jpg" width="40" height="40"></a></dd><dd class="comment_body">http://www.see-source.com/androidwidget/list.html都有</dd></dl><dl class="comment_item comment_topic" id="comment_item_6143137"><dt class="comment_head" floor="13">13楼 <span class="user"><a class="username" href="http://blog.csdn.net/pzq915981048" target="_blank">青春季风暴</a> <span class="ptime">2016-07-24 19:21发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6143137" username="pzq915981048"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/pzq915981048" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_pzq915981048.jpg" width="40" height="40"></a></dd><dd class="comment_body">能不能发下源码，现在github上不去，用VPN也不行</dd></dl><dl class="comment_item comment_topic" id="comment_item_6128174"><dt class="comment_head" floor="12">12楼 <span class="user"><a class="username" href="http://blog.csdn.net/u013606974" target="_blank">小威少威</a> <span class="ptime">2016-07-14 11:26发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6128174" username="u013606974"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u013606974" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_u013606974.jpg" width="40" height="40"></a></dd><dd class="comment_body">自己封装的一个UI控件，欢迎关注：http://blog.csdn.net/u013606974/article/details/51900228</dd></dl><dl class="comment_item comment_topic" id="comment_item_6115841"><dt class="comment_head" floor="11">11楼 <span class="user"><a class="username" href="http://blog.csdn.net/sinat_26761191" target="_blank">sinat_26761191</a> <span class="ptime">2016-07-04 15:54发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6115841" username="sinat_26761191"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/sinat_26761191" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_sinat_26761191.jpg" width="40" height="40"></a></dd><dd class="comment_body">画面看起来都好柔和啊，太棒了，就是研究起来需要点时间，不过非常之得学习</dd><dl class="comment_item comment_reply" id="comment_item_6128181"><dt class="comment_head" floor="11">Re: <span class="user"><a class="username" href="http://blog.csdn.net/u013606974" target="_blank">小威少威</a> <span class="ptime">2016-07-14 11:27发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6128181" username="u013606974"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u013606974" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_u013606974.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复sinat_26761191：上面有readme，都有教程的，用着简单，不过要研究实现原理，还得看下源码。</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_6106216"><dt class="comment_head" floor="10">10楼 <span class="user"><a class="username" href="http://blog.csdn.net/qq_34452571" target="_blank">qq_34452571</a> <span class="ptime">2016-06-30 09:51发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6106216" username="qq_34452571"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_34452571" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_qq_34452571.jpg" width="40" height="40"></a></dd><dd class="comment_body">我想要第一个但是在链接那里找了好久都没找到在那里下载那个框架</dd></dl><dl class="comment_item comment_topic" id="comment_item_6098152"><dt class="comment_head" floor="9">9楼 <span class="user"><a class="username" href="http://blog.csdn.net/qq_16273063" target="_blank">ChilynnHuang</a> <span class="ptime">2016-06-27 17:01发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6098152" username="qq_16273063"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_16273063" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_qq_16273063.jpg" width="40" height="40"></a></dd><dd class="comment_body">很不错的效果，这种东西一向是逻辑容易实现起来难，顺便问下这模拟器是BS还是AS自带的</dd><dl class="comment_item comment_reply" id="comment_item_6106220"><dt class="comment_head" floor="9">Re: <span class="user"><a class="username" href="http://blog.csdn.net/qq_34452571" target="_blank">qq_34452571</a> <span class="ptime">2016-06-30 09:52发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6106220" username="qq_34452571"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_34452571" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_qq_34452571.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复ChilynnHuang：你有这些框架吗</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_6098147"><dt class="comment_head" floor="8">8楼 <span class="user"><a class="username" href="http://blog.csdn.net/qq_16273063" target="_blank">ChilynnHuang</a> <span class="ptime">2016-06-27 17:01发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6098147" username="qq_16273063"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_16273063" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_qq_16273063.jpg" width="40" height="40"></a></dd><dd class="comment_body">很不错的效果，这种东西一向是逻辑容易实现起来难，顺便问下这模拟器是BS还是AS自带的</dd></dl><dl class="comment_item comment_topic" id="comment_item_6098141"><dt class="comment_head" floor="7">7楼 <span class="user"><a class="username" href="http://blog.csdn.net/qq_16273063" target="_blank">ChilynnHuang</a> <span class="ptime">2016-06-27 17:00发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6098141" username="qq_16273063"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_16273063" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_qq_16273063.jpg" width="40" height="40"></a></dd><dd class="comment_body">很不错的效果，这种东西一向是逻辑容易实现起来难，顺便问下这模拟器是BS还是AS自带的？</dd></dl><dl class="comment_item comment_topic" id="comment_item_6047883"><dt class="comment_head" floor="6">6楼 <span class="user"><a class="username" href="http://blog.csdn.net/u012282322" target="_blank">夜月飞扬</a> <span class="ptime">2016-05-24 19:50发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6047883" username="u012282322"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u012282322" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_u012282322.jpg" width="40" height="40"></a></dd><dd class="comment_body">效果棒棒的，必须为楼主点个赞</dd></dl><dl class="comment_item comment_topic" id="comment_item_5972628"><dt class="comment_head" floor="5">5楼 <span class="user"><a class="username" href="http://blog.csdn.net/oLuoXiaoFeng" target="_blank">JayW-2016</a> <span class="ptime">2016-04-06 21:57发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5972628" username="oLuoXiaoFeng"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/oLuoXiaoFeng" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_oluoxiaofeng.jpg" width="40" height="40"></a></dd><dd class="comment_body">真的看着很不错，就是估计要研究研究了</dd></dl><dl class="comment_item comment_topic" id="comment_item_5967821"><dt class="comment_head" floor="4">4楼 <span class="user"><a class="username" href="http://blog.csdn.net/u012354475" target="_blank">和平world</a> <span class="ptime">2016-04-01 22:25发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5967821" username="u012354475"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u012354475" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_u012354475.jpg" width="40" height="40"></a></dd><dd class="comment_body">不错 不错</dd></dl><dl class="comment_item comment_topic" id="comment_item_5943177"><dt class="comment_head" floor="3">3楼 <span class="user"><a class="username" href="http://blog.csdn.net/qq_27499897" target="_blank">qq_27499897</a> <span class="ptime">2016-03-23 09:02发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5943177" username="qq_27499897"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_27499897" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_qq_27499897.jpg" width="40" height="40"></a></dd><dd class="comment_body">只能studio上用吗？eclipise 好像用不了</dd><dl class="comment_item comment_reply" id="comment_item_6712686"><dt class="comment_head" floor="3">Re: <span class="user"><a class="username" href="http://blog.csdn.net/htwhtw123" target="_blank">HeTingwei</a> <span class="ptime">2017-03-29 16:40发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6712686" username="htwhtw123"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/htwhtw123" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_htwhtw123.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复qq_27499897：github上面的基本都是用Androidstudio的吧</dd><dl class="comment_item comment_reply" id="comment_item_6886944"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/u010545595" target="_blank">教主_风清扬</a> <span class="ptime">2017-06-06 14:38发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6886944" username="u010545595"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u010545595" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_u010545595.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复HeTingwei：时隔一年的回复！！！</dd></dl></dl><dl class="comment_item comment_reply" id="comment_item_6106225"><dt class="comment_head" floor="3">Re: <span class="user"><a class="username" href="http://blog.csdn.net/qq_34452571" target="_blank">qq_34452571</a> <span class="ptime">2016-06-30 09:53发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6106225" username="qq_34452571"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_34452571" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_qq_34452571.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复qq_27499897：你下了？</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_5709689"><dt class="comment_head" floor="2">2楼 <span class="user"><a class="username" href="http://blog.csdn.net/keter527" target="_blank">keter527</a> <span class="ptime">2015-12-10 09:49发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5709689" username="keter527"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/keter527" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_keter527.jpg" width="40" height="40"></a></dd><dd class="comment_body">效果确实好棒。。不过研究很费时间</dd></dl><dl class="comment_item comment_topic" id="comment_item_5393739"><dt class="comment_head" floor="1">1楼 <span class="user"><a class="username" href="http://blog.csdn.net/a13570320979" target="_blank">Developmc</a> <span class="ptime">2015-09-06 18:37发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5393739" username="a13570320979"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/a13570320979" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_a13570320979.jpg" width="40" height="40"></a></dd><dd class="comment_body">如果有讲解如何实现就更好了</dd><dl class="comment_item comment_reply" id="comment_item_5583659"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/u012970471" target="_blank">风卷云飞会天黑</a> <span class="ptime">2015-11-01 23:38发表</span>  <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5583659" username="u012970471"> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u012970471" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/3_u012970471.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复Developmc：确实，好多不知道怎么用，得研究半天。里面的依赖库好多。</dd></dl></dl><div class="clear"></div></div>
+    <div id="comment_bar" style="display: none;">
+    </div>
+    <div id="comment_form"><div class="guest_link">您还没有登录,请<a href="javascript:void(0);" onclick="javascript:loginbox();">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Ffancylovejava%2Farticle%2Fdetails%2F45787729">[注册]</a></div></div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '45787729';
+    var commentscount = 27;
+    var islock = false
+</script>
+
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top" style="bottom:60px;">
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop" style="display: none;" title="返回顶部" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_huidaodingbu&#39;])">         
+         <img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){        
+        
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+    var articletitle='Android酷炫实用的开源框架（UI框架）';
+
+</script>
+
+
+
+
+
+
+
+
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/fancylovejava" target="_blank">
+    <img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/1_fancylovejava.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/fancylovejava" class="user_name" target="_blank">fancylovejava</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter" title="[发私信]" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=fancylovejava&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+                                            <a target="_blank">
+                                                    <img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="2">
+                                            </a>
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>2433746次</span></li>
+    <li>积分：<span>15757</span> </li>    
+    <li>等级： <span style="position:relative;display:inline-block;z-index:1">
+            <img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/blog7.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：15757 </div>
+        </span>  </li>
+    <li>排名：<span>第748名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>180篇</span></li>
+    <li>转载：<span>140篇</span></li>
+    <li>译文：<span>4篇</span></li>
+    <li>评论：<span>377条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search csdn-tracking-statistics" target="_blank" data-mod="popu_306">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+   
+    $(function () {
+        $("#btnSubmit").unbind("click");
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {           
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            if ($("#inputSearch").val() == "") {               
+                alert("请录入搜索关键词！");                         
+                return false;
+            }
+            //var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";           
+            var url = "https://www.baidu.com/s?wd=" + encodeURIComponent($("#inputSearch").val()) + "%20site%3Ablog.csdn.net"
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="http://blog.csdn.net/fancylovejava/article/category/1096139" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">小小心得体会</a><span>(38)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/fancylovejava/article/category/1119181" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">javaweb</a><span>(18)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/fancylovejava/article/category/1119184" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android</a><span>(185)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/fancylovejava/article/category/1119187" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">hibernate</a><span>(9)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/fancylovejava/article/category/1119202" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">myeclipse的使用小技巧</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/fancylovejava/article/category/1119209" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">java</a><span>(37)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/fancylovejava/article/category/1120194" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">spring</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/fancylovejava/article/category/1131540" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">错误总结</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/fancylovejava/article/category/1133720" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">struts2</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/fancylovejava/article/category/1200598" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">springMVC</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/fancylovejava/article/category/1279050" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">网摘</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/fancylovejava/article/category/2249173" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">每天36氪</a><span>(17)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/fancylovejava/article/category/2548619" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">python</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/fancylovejava/article/category/2778483" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Mac电脑</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/fancylovejava/article/category/2810069" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Lua学习</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/fancylovejava/article/category/2922643" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">IOS</a><span>(1)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list"><li><a href="http://blog.csdn.net/fancylovejava/article/month/2016/06">2016年06月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2016/03">2016年03月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2015/12">2015年12月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2015/11">2015年11月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2015/10">2015年10月</a><span>(5)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/fancylovejava/article/month/2015/09">2015年09月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2015/08">2015年08月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2015/07">2015年07月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2015/06">2015年06月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2015/05">2015年05月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2015/04">2015年04月</a><span>(14)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2015/03">2015年03月</a><span>(8)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2015/02">2015年02月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2015/01">2015年01月</a><span>(9)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2014/12">2014年12月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2014/11">2014年11月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2014/10">2014年10月</a><span>(8)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2014/09">2014年09月</a><span>(18)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2014/08">2014年08月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2014/07">2014年07月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2014/06">2014年06月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2014/05">2014年05月</a><span>(25)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2014/04">2014年04月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2014/03">2014年03月</a><span>(8)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2014/02">2014年02月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2014/01">2014年01月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2013/12">2013年12月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2013/11">2013年11月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2013/10">2013年10月</a><span>(19)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2013/09">2013年09月</a><span>(9)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2013/08">2013年08月</a><span>(10)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2013/07">2013年07月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2013/06">2013年06月</a><span>(11)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2013/03">2013年03月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2013/02">2013年02月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2013/01">2013年01月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2012/12">2012年12月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2012/11">2012年11月</a><span>(8)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2012/10">2012年10月</a><span>(18)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2012/09">2012年09月</a><span>(14)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2012/08">2012年08月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2012/07">2012年07月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2012/06">2012年06月</a><span>(11)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2012/05">2012年05月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/fancylovejava/article/month/2012/04">2012年04月</a><span>(21)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+</ul>
+</div>
+<div id="hotarticls" class="panel tracking-ad" data-mod="popu_340">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/45787729" title="Android酷炫实用的开源框架（UI框架）" target="_blank">Android酷炫实用的开源框架（UI框架）</a><span>(190656)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/44747759" title="Google推荐的图片加载库Glide介绍" target="_blank">Google推荐的图片加载库Glide介绍</a><span>(182714)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/39140373" title="在mac上搭建python环境" target="_blank">在mac上搭建python环境</a><span>(128798)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/7438660" title="@GeneratedValue" target="_blank">@GeneratedValue</a><span>(100691)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/26102635" title="真正的中国天气api接口xml，json（求加精） ..." target="_blank">真正的中国天气api接口xml，json（求加精） ...</a><span>(85671)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/21617553" title="Android自定义对话框(Dialog)位置,大小" target="_blank">Android自定义对话框(Dialog)位置,大小</a><span>(80454)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/44218511" title="引用android-support-v7-appcompat库文件出错的问题" target="_blank">引用android-support-v7-appcompat库文件出错的问题</a><span>(65573)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/7700683" title="编码中的setCharacterEncoding 理解" target="_blank">编码中的setCharacterEncoding 理解</a><span>(39546)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/7681056" title="JAVA 关于图片上传的代码" target="_blank">JAVA 关于图片上传的代码</a><span>(38260)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/7684891" title="jsp中img显示本地图片" target="_blank">jsp中img显示本地图片</a><span>(38190)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel tracking-ad" data-mod="popu_341">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/26102635" title="真正的中国天气api接口xml，json（求加精） ..." target="_blank">真正的中国天气api接口xml，json（求加精） ...</a><span>(84)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/45787729" title="Android酷炫实用的开源框架（UI框架）" target="_blank">Android酷炫实用的开源框架（UI框架）</a><span>(27)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/44747759" title="Google推荐的图片加载库Glide介绍" target="_blank">Google推荐的图片加载库Glide介绍</a><span>(21)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/18706421" title="使用textview显示html里面的图文混排效果，并且图片可点击索引到" target="_blank">使用textview显示html里面的图文混排效果，并且图片可点击索引到</a><span>(20)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/46713445" title="GreenDAO数据库版本升级" target="_blank">GreenDAO数据库版本升级</a><span>(11)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/19124695" title="android textview设置字体的行距" target="_blank">android textview设置字体的行距</a><span>(10)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/7438660" title="@GeneratedValue" target="_blank">@GeneratedValue</a><span>(10)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/21617553" title="Android自定义对话框(Dialog)位置,大小" target="_blank">Android自定义对话框(Dialog)位置,大小</a><span>(9)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/38558761" title="使用android.support.v8.renderscript制作的特效" target="_blank">使用android.support.v8.renderscript制作的特效</a><span>(8)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/fancylovejava/article/details/44218511" title="引用android-support-v7-appcompat库文件出错的问题" target="_blank">引用android-support-v7-appcompat库文件出错的问题</a><span>(7)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li>
+<a href="http://blog.csdn.net/blogdevteam/article/details/78287539" target="_blank">* CSDN邀请您来GitChat赚钱啦！</a></li>
+
+<li>
+<a href="http://blog.csdn.net/gitchat/article/details/78410081" target="_blank">* 改做人工智能之前，90%的人都没能给自己定位</a></li>
+
+<li>
+<a href="http://blog.csdn.net/gitchat/article/details/78410095" target="_blank">*   想入行 AI，别让那些技术培训坑了你...</a></li>
+
+<li>
+<a href="http://blog.csdn.net/gitchat/article/details/78431273" target="_blank">* 大型技术组织 DevOps 转型经验总结</a></li>
+
+<li>
+<a href="http://blog.csdn.net/gitchat/article/details/78410108" target="_blank">*  两款敏捷工具，治好你碎片化交付硬伤</a></li>
+
+
+<li>
+<a href="http://blog.csdn.net/gitchat/article/details/78410087" target="_blank">* 低学历又如何？这样的程序员照样可以逆袭</a></li>
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="http://blog.csdn.net/fancylovejava/article/details/8121434#comments">“回调地址”全攻略</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/p_ython" class="user_name">A_小青年</a>:
+请问你看完之后，所理解的回调地址的意思是？我打文中的连接都已经过期了，看不了了。
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/fancylovejava/article/details/26102635#comments">真正的中国天气api接口xml，json（求加精） ...</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/gongbiao4965" class="user_name">雪断月</a>:
+6666666666666666
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/fancylovejava/article/details/26102635#comments">真正的中国天气api接口xml，json（求加精） ...</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_35216426" class="user_name">qq_35216426</a>:
+无缝钢管
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/fancylovejava/article/details/39140373#comments">在mac上搭建python环境</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/weixin_40771691" class="user_name">weixin_40771691</a>:
+终端里输入pip,找不到命令，请问怎么解决
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#comments">Android酷炫实用的开源框架（UI框架）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_21175323" class="user_name">qq_21175323</a>:
+好棒！！
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#comments">真正的中国天气api接口xml，json（求加精） ...</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u013284706" class="user_name">Tony-Chen_</a>:
+真好用，先谢谢
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/fancylovejava/article/details/45787729#comments">真正的中国天气api接口xml，json（求加精） ...</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/kof_sdu" class="user_name">kof_sdu</a>:
+多谢楼主的分享
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/fancylovejava/article/details/7684891#comments">jsp中img显示本地图片</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/yoghurtLiyl" class="user_name">yoghurtLiyl</a>:
+&amp;lt;bean:write name=&amp;#39;cameraOperateForm&amp;#39; pr...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/fancylovejava/article/details/45148325#comments">Android开发中高效的数据结构用SparseArray代替HashMap</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/cysion1989" class="user_name">CysionLiu</a>:
+ArrayMap不是为了取代HashMap.其它扩展数据结构类似，本意是某些场合的以时间换空间.
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/fancylovejava/article/details/45396245#comments">手写CrashHandler实现UncaughtExceptionHandler拦截android异常</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/wangwei708846696" class="user_name">我叫菜鸡</a>:
+在RuntimeInit.java中commonInit方法中会有Thread.setDefault...
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+
+                   <div class="tracking-ad" data-view="true" data-mod="ad_popu_189" data-mtp="63" data-order="40" data-con="ad_content_1259" style="width: 250px; height: 500px;">
+                        <div id="nav_show_top_stop" style="width: 250px; height: 500px; z-index: 1000; position: fixed; top: 0px;"><div id="cpro_u2734133">
+                             <!-- 投放代码 -->
+                             
+                            <!-- 请置于所有广告位代码之前 -->
+                            <script src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/ds.js"></script>
+
+                            <!-- 广告位：PC端-博客详情页-左侧button1-250*250 -->
+                                    <script>
+                                        (function () {
+                                            var s = "_" + Math.random().toString(36).slice(2);
+                                            document.write('<div id="' + s + '"></div>');
+                                            (window.slotbydup = window.slotbydup || []).push({
+                                                id: '4740887',
+                                                container: s,
+                                                size: '250,250',
+                                                display: 'inlay-fix'
+                                            });
+                                        })();
+                                    </script><div id="_2ewzaaz4ggt9st38o2xs10pb9"></div><script charset="utf-8" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/xcsm(2)"></script><div id="_s8kly1ghce28z0ugsflx1dcxr" style=""><div><div id="kgcsfawnth"><iframe width="250" frameborder="0" height="250" scrolling="no" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/s(2).html"></iframe></div></div></div><script type="text/javascript" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/bwlxosfoozdec.js"></script>
+
+                                                                                                    </div>
+                            <div id="cpro_u3031286">
+                                 <!-- 投放代码 -->
+                               
+                                <!-- 请置于所有广告位代码之前 -->
+                                <script src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/ds.js"></script>
+
+                                <!-- 广告位：PC端-博客详情页-左侧Button2-250*250 -->
+                                <script>
+                                    (function () {
+                                        var s = "_" + Math.random().toString(36).slice(2);
+                                        document.write('<div id="' + s + '"></div>');
+                                        (window.slotbydup = window.slotbydup || []).push({
+                                            id: '4740890',
+                                            container: s,
+                                            size: '250,250',
+                                            display: 'inlay-fix'
+                                        });
+                                    })();
+                                </script><div id="_31cyrp6o4p4pfnhw1qiulbx1or"></div><script charset="utf-8" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/xcsm(3)"></script><div id="_uraouzj2f7z3ehwcf99roogvi" style="width: 100%;"><div id="axmnleheyu"><div style="padding-right:0px;"><iframe width="250" frameborder="0" height="250" scrolling="no" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/s(3).html"></iframe></div></div></div><script type="text/javascript" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/bwocoflyvzdec.js"></script>
+
+
+
+                            </div></div>
+                   </div>
+                    <script>
+
+                        setTimeout(function () {
+                            var naviga_offsetTop = 0; function naviga_stay_top() {
+                                var scrollTop = jQuery(document).scrollTop();
+                                if (scrollTop > naviga_offsetTop) {
+                                    jQuery("#nav_show_top_stop").css({ "position": "fixed" });
+                                    jQuery("#nav_show_top_stop").css({ "top": "0px" });
+                                } else { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": naviga_offsetTop - scrollTop + "px" }); }
+                            }
+                            function onload_function() {
+                                naviga_offsetTop = jQuery("#nav_show_top_stop").position().top;
+                                jQuery(window).bind("scroll", naviga_stay_top); jQuery(window).bind("mousewheel", naviga_stay_top);
+                                jQuery(document).bind("scroll", naviga_stay_top); jQuery(document).bind("mousewheel", naviga_stay_top);
+                            } jQuery(document).ready(onload_function);
+                        }, 200);
+
+                    </script>
+
+           </div>   
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/login.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div>
+     
+
+
+       <script type="text/javascript" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/MathJax.js"></script>   
+    
+    <script src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/csdn_blog_detail.min.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/pub_footer_2014.css"><div class="pub_fo"><div id="pub_footerall" class="pub_footer_new"><dl><dt></dt> <dd class="foot_sub_menu"><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a><span>|</span><a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a><span>|</span><a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a><span>|</span><a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a><span>|</span><a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a><span>|</span><a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a><span>|</span><a href="mailto:webmaster@csdn.net">问题报告</a><span>|</span><a target="_blank" href="http://www.csdn.net/friendlink.html">合作伙伴</a><span>|</span><a href="http://bbs.csdn.net/forums/Service" target="_blank">论坛反馈</a></dd><dd class="foot_contact"><a href="javascript:void(0);" target="_blank" class="qq">网站客服</a><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2251809102&amp;site=qq&amp;menu=yes" target="_blank" class="qq">杂志客服</a><a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a><a href="mailto:webmaster@csdn.net" class="email" title="联系邮箱">webmaster@csdn.net</a><span class="phone" title="服务热线">400-660-0108</span><span class="interval">|</span><span>北京创新乐知信息技术有限公司 版权所有</span><span class="interval">|</span><span>江苏知之为计算机有限公司</span><span class="interval">|</span><span>江苏乐知网络技术有限公司</span></dd><dd class="foot_copyright"><span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span><span class="interval">|</span><span>Copyright © 1999-2017, CSDN.NET, All Rights Reserved&nbsp;</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div></div><div id="note1" class="csdn_note" style="display:none; position:absolute; z-index:9999; width:440px">  <span class="notice_top_arrow"><span class="inner"></span></span>  <div class="box"></div></div><div class="csdn_notice_tip" style="display:none; position:absolute; z-index:9990; width:170px">  <iframe src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/saved_resource(2).html" frameborder="0" scrolling="no" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div class="tip_text">您有<strong>0</strong>条新通知</div>  <a href="javascript:void 0" class="close2"></a></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/notify.js"></script><input type="hidden" id="aa_g_data_ids">
+        
+    <script type="text/javascript" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/csdn_public_blog_detail.min.js"></script>
+
+    <script type="text/javascript" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/showblogmedal.ashx"></script>
+
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334" src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/52b5334.js"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   <div><iframe src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/skip.html" style="width: 1px; height: 1px; position: absolute; visibility: hidden;"></iframe></div></div>
+          
+    <div class="pop_CA_cover" style="display:none"></div>
+    <div class="pop pop_CA" style="display:none">
+          <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon" id="fapancle" onclick="$(&#39;.pop_CA&#39;).hide();$(&#39;.pop_CA_cover&#39;).hide();"></span>
+          </div>
+          <iframe src="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/saved_resource(3).html" id="fa" frameborder="0" width="100%" height="360" scrolling="no"></iframe>
+    </div>
+
+
+        <script type="text/javascript">
+
+            $(function () {
+                var fromjs = $("#fromjs");
+                if (fromjs.length > 0) {
+                    $("#fromjs .markdown_views pre").addClass("prettyprint");
+                    prettyPrint();
+
+                    $('pre.prettyprint code').each(function () {
+                        var lines = $(this).text().split('\n').length;
+                        var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                        $(this).addClass('has-numbering').parent().append($numbering);
+                        for (i = 1; i <= lines; i++) {
+                            $numbering.append($('<li/>').text(i));
+                        };
+                        $numbering.fadeIn(1700);
+                    });
+
+                    $('.pre-numbering li').css("color", "#999");
+                }
+            });
+
+            $(".markdown_views a[target!='_blank']").attr("target", "_blank");
+
+            //$(".toc a[target='_blank']").attr("target", "");
+
+            setTimeout(function () {
+                $(".toc a[target='_blank']").attr("target", "");
+            }, 500);
+
+        </script>
+
+
+   
+<link rel="stylesheet" type="text/css" media="screen" href="./Android酷炫实用的开源框架（UI框架） - fancychendong的专栏 - CSDN博客_files/ask_float_fonts_css-6b30a53970eb5c3a2a045e3df585b475.css"><div data-mod="popu_64" class="csdn-tracking-statistics" chg-blk="0"><a id="com-quick-QRcode" class="QRcodebg1" title="扫描二维码" style="top:248px"><span class="closeQR"></span></a><a id="com-quick-reply" title="快速回复" style="top:382px"></a><a id="com-quick-collect" title="我要收藏" style="top:420px"></a><a id="com-d-top-a" style="top: 458px; display: inline;" title="返回顶部" onclick=""></a></div><div class="pop_edit ask_second comm_ask_second"><h3>提问</h3><span class="ask_float_span">您的问题将会被发布在“<a class="ask_float_channel" href="http://ask.csdn.net/" target="_blank" style="cursor:pointer">技术问答</a>”频道</span><a href="http://blog.csdn.net/fancylovejava/article/details/45787729#" nodetype="close" class="close">×</a><div class="context"><div class="err_div"><span class="err_ico"></span><span class="err_txt">该问题已存在，请勿重复提问</span></div><div class="input_div"><input id="askInputSecond" type="text" style="font-size:14px;" placeholder="问题标题"></div><div class="cm_box"><div class="cm_dialog"></div> <div class="pop_cm cm_add_link"><input type="text" placeholder="链接内容" id="af_cm_link_txt"><input type="text" placeholder="链接地址" id="af_cm_link_url"><input type="text" placeholder="链接提示" id="af_cm_link_tit"><div class="text-right"><span class="btn btn-default btn-sm" id="add_link_btn">插入链接</span> </div> </div><div class="pop_cm cm_add_img"><div class="nav-tabs"><a class="img_tab active" href="http://blog.csdn.net/fancylovejava/article/details/45787729#tab_upload">本地上传</a><a class="img_tab" href="http://blog.csdn.net/fancylovejava/article/details/45787729#tab_weburl">网络图片</a></div><div class="tab_panel active" id="tab_upload"><div class="set_img"></div></div><div class="tab_panel" id="tab_weburl"><input type="text" placeholder="图片地址" id="af_cm_img_url"><input type="text" placeholder="图片说明" id="af_cm_img_alt"><div class="text-right"><span class="btn btn-default btn-sm" id="add_img_btn">插入图片</span> </div></div> </div></div> <textarea id="editor_all" rows="8" style="display: none;"></textarea><div class="editor-toolbar"><i class="separator">|</i><a class="icon-headline" title="标题一（Ctrl+Alt+1）"></a><a class="icon-heading" title="标题二（Ctrl+Alt+2）"></a><a class="icon-bold" title="粗体（Ctrl+B）"></a><a class="icon-italic" title="斜体（Ctrl+I）"></a><i class="separator">|</i><a class="icon-quote-left" title="引用（Ctrl+’）"></a><a class="icon-code" title="插入代码片（Ctrl+,）"></a><a class="icon-list-ul" title="无序列表（Ctrl+L）"></a><a class="icon-list-ol" title="有序列表（Ctrl+Alt+L）"></a><i class="separator">|</i><a class="icon-link" title="添加链接（Ctrl+K）"></a><a class="icon-picture" title="添加图片（Ctrl+Alt+I）"></a><i class="separator">|</i><a class="icon-reply" title="撤退（Ctrl+Z）"></a><a class="icon-share-alt" title="前进（Ctrl+Shift+Z）"></a><i class="separator">|</i><a class="icon-info" href="http://ask.csdn.net/pages/markdown" target="_blank" title="markdown语法参考"></a><a class="icon-preview" title="预览"></a><i class="separator">|</i></div><div class="CodeMirror cm-s-paper CodeMirror-focused"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar"><div style="height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="min-width: 33px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>&nbsp;<span style="display: inline-block; width: 1px; margin-right: -1px;">&nbsp;</span></pre></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code"></div><div class="CodeMirror-cursor">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters" style="display: none;"></div></div></div><div class="editor-statusbar"><span class="lines">0</span><span class="words">0</span><span class="cursor">0:0</span></div><div class="div_tags clearfix"><div id="divSearchTags" class="tags_con"><input type="text"></div><input type="hidden" name="txtSearchTags"></div><div id="ask2_tagRecomm_div" class="drt_tagRecomm tracking-ad" data-mod="popu_73"><span class="drt_tit">推荐标签：</span></div></div><div class="success"><div class="left_area"><input id="chk_cb" type="checkbox"><span class="wyxs">我要悬赏</span><input id="cb_num" class="cb_num" readonly="true"><span class="phib_rii"><span> 币</span></span></div><a href="http://blog.csdn.net/fancylovejava/article/details/45787729#" nodetype="cancel" class="cancel">取消</a><a href="http://blog.csdn.net/fancylovejava/article/details/45787729#" nodetype="ok" class="ok">发布</a></div></div><div id="common_ask_div_sc" class="searchContainer"><div class="sTitle">可能存在类似的问题：</div><div class="sFooter"><a class="sFirstNewAsk">我想提一个新问题</a></div></div><div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" type="text" value="" id="focus_retriever" readonly="true"></div></body></html>

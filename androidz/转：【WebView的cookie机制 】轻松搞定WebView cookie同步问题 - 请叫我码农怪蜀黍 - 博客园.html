@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://www.cnblogs.com/wangfeng520/p/6861979.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="same-origin">
+<title>转：【WebView的cookie机制 】轻松搞定WebView cookie同步问题 - 请叫我码农怪蜀黍 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./转：【WebView的cookie机制 】轻松搞定WebView cookie同步问题 - 请叫我码农怪蜀黍 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./转：【WebView的cookie机制 】轻松搞定WebView cookie同步问题 - 请叫我码农怪蜀黍 - 博客园_files/bundle-Banlieue13.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./转：【WebView的cookie机制 】轻松搞定WebView cookie同步问题 - 请叫我码农怪蜀黍 - 博客园_files/bundle-Banlieue13-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/wangfeng520/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/wangfeng520/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/wangfeng520/wlwmanifest.xml">
+<script async="" src="./转：【WebView的cookie机制 】轻松搞定WebView cookie同步问题 - 请叫我码农怪蜀黍 - 博客园_files/analytics.js"></script><script src="./转：【WebView的cookie机制 】轻松搞定WebView cookie同步问题 - 请叫我码农怪蜀黍 - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'wangfeng520', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./转：【WebView的cookie机制 】轻松搞定WebView cookie同步问题 - 请叫我码农怪蜀黍 - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/wangfeng520/"><img id="blogLogo" src="./转：【WebView的cookie机制 】轻松搞定WebView cookie同步问题 - 请叫我码农怪蜀黍 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/wangfeng520/">请叫我码农怪蜀黍</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="navigator">
+			
+<ul id="navList">
+	<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/wangfeng520/">首页</a></li>
+	<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E8%AF%B7%E5%8F%AB%E6%88%91%E7%A0%81%E5%86%9C%E6%80%AA%E8%9C%80%E9%BB%8D">联系</a></li>
+	<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+	<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/wangfeng520/rss">订阅</a>
+	<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/wangfeng520/rss"><img src="./转：【WebView的cookie机制 】轻松搞定WebView cookie同步问题 - 请叫我码农怪蜀黍 - 博客园_files/xml.gif" alt="订阅"></a></li>
+</ul>
+
+
+			<div class="blogStats">
+				
+				<div id="blog_stats">
+<!--done-->
+随笔- 202&nbsp;
+文章- 0&nbsp;
+评论- 23&nbsp;
+</div>
+				
+			</div><!--end: blogStats -->
+		</div><!--end: navigator 博客导航栏 -->
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/wangfeng520/p/6861979.html">转：【WebView的cookie机制 】轻松搞定WebView cookie同步问题</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>原文链接：http://blog.csdn.net/fengyuzhengfan/article/details/51517622</p>
+<p>在进行APP+H5混合开发的时候，一些功能是用native方法实现的,如登陆，一些功能是用H5实现的。所以往往需要将在native方法登陆的状态同步到H5中避免再次登陆。这种情况在<a class="replace_word" title="Android知识库" href="http://lib.csdn.net/base/android" target="_blank">Android</a>开发中比较常见，因为Android不会自动同步cookie到WebView。做<a class="replace_word" title="iOS知识库" href="http://lib.csdn.net/base/ios" target="_blank">iOS</a>开发则不用担心这个问题，因为iOS内部已经实现了cookie同步。本文将会介绍两种cookie同步的方式，并重点分析WebView的cookie机制。在开始之前先讲一下基于session的登录验证。&nbsp;<br><strong>基于session的登录验证：</strong>&nbsp;<br>基于session的登录验证，会在程序请求接口的时候判断服务器端是否有当前会话的session，如果没有则被认为没有登录。客户端没有session这一概念，但有cookie与其对应。每一个session都有一个session id作为唯一标识。在登录成功后服务器会在请求头中返回cookie，cookie包含着这次登录会话的session id，在接下来的请求中只需要将登陆返回的cookie设置到请求头中便可以通过验证。</p>
+<h3 id="方式一客户端将cookie传给h5"><a name="t0"></a>方式一：客户端将cookie传给H5</h3>
+<h4 id="如何做"><a name="t1"></a>如何做：</h4>
+<ul>
+<li>客户端：将登陆时从服务器取得的cookie传给html。</li>
+<li>html：ajax从参数中取出客户端传来的cookie，ajax发请求时将客户端传来cookie设置到请求头中。</li>
+
+</ul>
+<p><strong>ajax修改cookie的方式</strong></p>
+<pre name="code" class="prettyprint"><code class="language-jquery hljs javascript has-numbering">$.ajax({
+   headers: {<span class="hljs-string">'Cookie' : document.cookie },
+   url: <span class="hljs-string">"sub.domain.com",
+   success: <span class="hljs-function"><span class="hljs-keyword">function<span class="hljs-params">(){}
+})</span></span></span></span></span></code></pre>
+<ul class="pre-numbering">
+<li>1</li>
+<li>2</li>
+<li>3</li>
+<li>4</li>
+<li>5</li>
+</ul>
+<ul class="pre-numbering">
+<li>1</li>
+<li>2</li>
+<li>3</li>
+<li>4</li>
+<li>5</li>
+</ul>
+<h4 id="缺点"><a name="t2"></a>缺点：</h4>
+<ol>
+<li>兼容性差，多数浏览器为了安全起见，都做了禁止修改请求中的cookie的限制。比如iOS的WebView会拦截ajax修改的cookie。</li>
+<li>繁琐，每次请求都需要拼接cookie作为参数，比较繁琐。</li>
+</ol>
+<h3 id="方式二将cookie同步到webview推荐"><a name="t3"></a>方式二：将cookie同步到WebView(推荐)</h3>
+<h4 id="原理分析"><a name="t4"></a>原理分析：</h4>
+<p><strong>WebView的cookie机制</strong></p>
+<p>WebView是基于webkit内核的UI控件，相当于一个浏览器客户端。它会在本地维护每次会话的cookie(保存在data/data/package_name/app_WebView/Cookies.db)。&nbsp;<br>如图：&nbsp;<br><img title="" src="./转：【WebView的cookie机制 】轻松搞定WebView cookie同步问题 - 请叫我码农怪蜀黍 - 博客园_files/20160527161307114" alt="查看APP cookie">&nbsp;<br>当WebView加载URL的时候,WebView会从本地读取该URL对应的cookie，并携带该cookie与服务器进行通信。&nbsp;<br>WebView通过android.webkit.<a href="https://developer.android.com/reference/android/webkit/CookieManager.html" target="_blank">CookieManager</a>类来维护cookie。<a href="https://developer.android.com/reference/android/webkit/CookieManager.html" target="_blank">CookieManager</a>是WebView的cookie管理类。</p>
+<h4 id="如何做-1"><a name="t5"></a>如何做：</h4>
+<p>下面我们就通过CookieManager将cookie同步到WebView中。&nbsp;<br>之前同步cookie需要用到CookieSyncManager类，现在这个类已经被deprecated。如今WebView已经可以在需要的时候自动同步cookie了，所以不再需要创建CookieSyncManager类的对象来进行强制性的同步cookie了。现在只需要获得 CookieManager的对象将cookie设置进去就可以了。</p>
+<p><strong>第一步：登录时从服务器的返回头中取出cookie</strong>&nbsp;<br>根据Http请求的客户端不同，取cookie的方式也不同，我就不一一罗列了，需要的网友可以自行Google，以HttpURLcollection为例：&nbsp;<br><code>String cookieStr = conn.getHeaderField("Set-Cookie");</code>&nbsp;<br><strong>第二步：将cookie同步到WebView中</strong></p>
+<pre name="code" class="prettyprint"><code class="language-java hljs  has-numbering"><span class="hljs-javadoc">/**
+ * 将cookie同步到WebView
+ *<span class="hljs-javadoctag"> @param url WebView要加载的url
+ *<span class="hljs-javadoctag"> @param cookie 要同步的cookie
+ *<span class="hljs-javadoctag"> @return true 同步cookie成功，false同步cookie失败
+ *<span class="hljs-javadoctag"> @Author JPH
+ */
+<span class="hljs-keyword">public <span class="hljs-keyword">static <span class="hljs-keyword">boolean <span class="hljs-title">syncCookie(String url,String cookie) {
+    <span class="hljs-keyword">if (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.LOLLIPOP) {
+        CookieSyncManager.createInstance(context);
+    }
+    CookieManager cookieManager = CookieManager.getInstance();
+    cookieManager.setCookie(url, cookie);<span class="hljs-comment">//如果没有特殊需求，这里只需要将session id以"key=value"形式作为cookie即可
+    String newCookie = cookieManager.getCookie(url);
+    <span class="hljs-keyword">return TextUtils.isEmpty(newCookie)?<span class="hljs-keyword">false:<span class="hljs-keyword">true;
+}</span></span></span></span></span></span></span></span></span></span></span></span></span></span></code></pre>
+<ul class="pre-numbering">
+<li>1</li>
+<li>2</li>
+<li>3</li>
+<li>4</li>
+<li>5</li>
+<li>6</li>
+<li>7</li>
+<li>8</li>
+<li>9</li>
+<li>10</li>
+<li>11</li>
+<li>12</li>
+<li>13</li>
+<li>14</li>
+<li>15</li>
+<li>16</li>
+</ul>
+<ul class="pre-numbering">
+<li>1</li>
+<li>2</li>
+<li>3</li>
+<li>4</li>
+<li>5</li>
+<li>6</li>
+<li>7</li>
+<li>8</li>
+<li>9</li>
+<li>10</li>
+<li>11</li>
+<li>12</li>
+<li>13</li>
+<li>14</li>
+<li>15</li>
+<li>16</li>
+</ul>
+<p>如图：&nbsp;<br><img title="" src="./转：【WebView的cookie机制 】轻松搞定WebView cookie同步问题 - 请叫我码农怪蜀黍 - 博客园_files/20160527161243168" alt="同步cookie"></p>
+<p>如果设置成功，通过<code>cookieManager.getCookie(url)</code>方法就可取得刚才设置的cookie，如果两次设置cookie的url相同，则CookieManager会将上一次设置的cookie覆盖，已达到更新的效果。&nbsp;<br>下面我们查看一下Cookie<a class="replace_word" title="MySQL知识库" href="http://lib.csdn.net/base/mysql" target="_blank">数据库</a>中发生的变化。&nbsp;<br>如图：&nbsp;<br><img title="" src="./转：【WebView的cookie机制 】轻松搞定WebView cookie同步问题 - 请叫我码农怪蜀黍 - 博客园_files/20160527161223066" alt="查看WebView cookie">&nbsp;<br><strong>提示：</strong>&nbsp;<br>1. 同步cookie要在WebView加载url之前，否则WebView无法获得相应的cookie，也就无法通过验证。&nbsp;<br>2. 每次登录成功后都需要调用”syncCookie”方法将cookie同步到WebView中，同时也达到了更新WebView的cookie。如果登录后没有及时将cookie同步到WebView可能导致WebView拿的是旧的session id和服务器进行通信。</p>
+<h4 id="优点"><a name="t6"></a>优点：</h4>
+<ol><ol>
+<li>方便，只需要在登陆后将cookie同步到WebView即可，省去了每次请求都需要设置一次的繁琐。</li>
+<li>兼容性好，因为是系统原生支持的，所以兼容性自然比方式一要好，不存在cookie被拦截的问题。</li>
+
+</ol></ol></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6861979,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;a2f0d7c8-2d93-e511-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./转：【WebView的cookie机制 】轻松搞定WebView cookie同步问题 - 请叫我码农怪蜀黍 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./转：【WebView的cookie机制 】轻松搞定WebView cookie同步问题 - 请叫我码农怪蜀黍 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/wangfeng520/" target="_blank"><img src="./转：【WebView的cookie机制 】轻松搞定WebView cookie同步问题 - 请叫我码农怪蜀黍 - 博客园_files/20151125125016.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/wangfeng520/">请叫我码农怪蜀黍</a><br>
+            <a href="http://home.cnblogs.com/u/wangfeng520/followees">关注 - 0</a><br>
+            <a href="http://home.cnblogs.com/u/wangfeng520/followers">粉丝 - 11</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;a2f0d7c8-2d93-e511-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6861979,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(6861979,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/wangfeng520/p/6845589.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/wangfeng520/p/6845589.html" title="发布于2017-05-12 14:59">Android中Sqlite数据库多线程并发问题</a><br><a href="http://www.cnblogs.com/wangfeng520/p/6934451.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/wangfeng520/p/6934451.html" title="发布于2017-06-02 17:43">Android APK代码混淆与资源混淆详解,你确定不看?</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2017-05-16 16:17</span> <a href="http://www.cnblogs.com/wangfeng520/">请叫我码农怪蜀黍</a> 阅读(<span id="post_view_count">2496</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6861979" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/wangfeng520/p/6861979.html#" onclick="AddToWz(6861979);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=255679,cb_entryId=6861979,cb_blogApp=currentBlogApp,cb_blogUserGuid='a2f0d7c8-2d93-e511-9fc1-ac853d9f53cc',cb_entryCreatedDate='2017/5/16 16:17:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/wangfeng520/p/6861979.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/wangfeng520/p/6861979.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://news.cnblogs.com/n/582971/" target="_blank">【新闻】H3 BPM体验平台全面上线</a><br><a href="http://www.hubwiz.com/course/?type=Vue.js&amp;affid=cnblogs" target="_blank">【推荐】Vue.js 2.x 快速入门，大量高效实战示例</a><br><a href="https://cloud.tencent.com/solution/la?fromSource=gwzcw.628319.628319.628319" target="_blank">【推荐】搭建微信小程序，新用户体验3元起</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://www.gcpowertools.com.cn/products/spreadjs/?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=SpreadJS&amp;utm_campaign=community" target="_blank"><img width="300" height="250" src="./转：【WebView的cookie机制 】轻松搞定WebView cookie同步问题 - 请叫我码农怪蜀黍 - 博客园_files/24442-20171031213013029-1265843211.jpg" alt="葡萄城1101"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/583463/" target="_blank">微软Office应用程序现已面向Chromebook推出</a><br> ·  <a href="http://news.cnblogs.com/n/583462/" target="_blank">砍单、滞销、裁员，Pro 7让魅族的这个冬天格外冷</a><br> ·  <a href="http://news.cnblogs.com/n/583461/" target="_blank">任正非：苹果改变世界 感谢苹果成就今天的华为</a><br> ·  <a href="http://news.cnblogs.com/n/583460/" target="_blank">传A站已被关停 网站已三天无法登录</a><br> ·  <a href="http://news.cnblogs.com/n/583459/" target="_blank">共享单车不当收取或不退还用户押金，可能会定啥罪？</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/34771/" target="_blank"><img width="468" height="60" src="./转：【WebView的cookie机制 】轻松搞定WebView cookie同步问题 - 请叫我码农怪蜀黍 - 博客园_files/24442-20171113120112796-634832761.jpg" alt="阿里云1113"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br> ·  <a href="http://kb.cnblogs.com/page/563790/" target="_blank">关于编程，你的练习是不是有效的？</a><br> ·  <a href="http://kb.cnblogs.com/page/581467/" target="_blank">改善程序员生活质量的 3+10 习惯</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/wangfeng520/">请叫我码农怪蜀黍</a><br>园龄：<a href="http://home.cnblogs.com/u/wangfeng520/" title="入园时间：2015-11-25">2年</a><br>粉丝：<a href="http://home.cnblogs.com/u/wangfeng520/followers/">11</a><br>关注：<a href="http://home.cnblogs.com/u/wangfeng520/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;a2f0d7c8-2d93-e511-9fc1-ac853d9f53cc&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/10/01&#39;);return false;">&lt;</a></td><td align="center">2017年11月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/12/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center"><a href="http://www.cnblogs.com/wangfeng520/archive/2017/11/02.html"><u>2</u></a></td><td align="center">3</td><td class="CalWeekendDay" align="center">4</td></tr><tr><td class="CalWeekendDay" align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center"><a href="http://www.cnblogs.com/wangfeng520/archive/2017/11/10.html"><u>10</u></a></td><td class="CalWeekendDay" align="center">11</td></tr><tr><td class="CalWeekendDay" align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td class="CalWeekendDay" align="center">18</td></tr><tr><td class="CalWeekendDay" align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td class="CalWeekendDay" align="center">25</td></tr><tr><td class="CalWeekendDay" align="center">26</td><td class="CalTodayDay" align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td></tr><tr><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/wangfeng520/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/wangfeng520/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/wangfeng520/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/wangfeng520/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/wangfeng520/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="https://www.cnblogs.com/wangfeng520/p/6861979.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/wangfeng520/archive/2017/11.html">2017年11月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/wangfeng520/archive/2017/10.html">2017年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/wangfeng520/archive/2017/07.html">2017年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/wangfeng520/archive/2017/06.html">2017年6月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/wangfeng520/archive/2017/05.html">2017年5月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/wangfeng520/archive/2017/04.html">2017年4月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/wangfeng520/archive/2017/03.html">2017年3月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/wangfeng520/archive/2017/02.html">2017年2月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/wangfeng520/archive/2017/01.html">2017年1月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/wangfeng520/archive/2016/12.html">2016年12月 (17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/wangfeng520/archive/2016/11.html">2016年11月 (22)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/wangfeng520/archive/2016/10.html">2016年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/wangfeng520/archive/2016/09.html">2016年9月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/wangfeng520/archive/2016/08.html">2016年8月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/wangfeng520/archive/2016/07.html">2016年7月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/wangfeng520/archive/2016/06.html">2016年6月 (27)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/wangfeng520/archive/2016/05.html">2016年5月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/wangfeng520/archive/2016/04.html">2016年4月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/wangfeng520/archive/2016/03.html">2016年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/wangfeng520/archive/2016/02.html">2016年2月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/wangfeng520/archive/2016/01.html">2016年1月 (21)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/wangfeng520/archive/2015/12.html">2015年12月 (27)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/wangfeng520/archive/2015/11.html">2015年11月 (10)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangfeng520/p/5367949.html#3835718">1. Re:ArcGIS for Android地图控件的5大常见操作</a></li>
+        <li class="recent_comment_body">您好VoidsetExtent(Geometry geometry, int padding)将地图放大到指定的geometry以便geometry适应地图的boundpadding的量纲是多少？谢谢......</li>
+        <li class="recent_comment_author">--咸鱼翻身</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangfeng520/p/5892125.html#3832345">2. Re:Chrome浏览器之 Postman 安装</a></li>
+        <li class="recent_comment_body">@ZErica我也是...</li>
+        <li class="recent_comment_author">--叶苏</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangfeng520/p/5655767.html#3812741">3. Re:【Android】achartengine的柱状图和饼状图的使用</a></li>
+        <li class="recent_comment_body">你好，我想问下那个折现 和左下角的比例图可以调吗，我想比例图用圆形的</li>
+        <li class="recent_comment_author">--adping</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangfeng520/p/5664528.html#3768729">4. Re:MPAndroidChart饼图属性及相关设置</a></li>
+        <li class="recent_comment_body">有相关demo吗？谢谢</li>
+        <li class="recent_comment_author">--yuezuoju</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangfeng520/p/5664528.html#3752261">5. Re:MPAndroidChart饼图属性及相关设置</a></li>
+        <li class="recent_comment_body">mLegend.setFormSize();  应该是比例块的大小吧<br>mLegend.setTextSize();   才是比例块字体大小</li>
+        <li class="recent_comment_author">--鱼小七</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/wangfeng520/p/6119531.html">1. Android开发各类常见错误解决方案(15245)</a></li><li><a href="http://www.cnblogs.com/wangfeng520/p/5457277.html">2. 从数据库得到的结果集存放到List集合中(12608)</a></li><li><a href="http://www.cnblogs.com/wangfeng520/p/5984077.html">3. 笑谈Android图表-MPAndroidChart(10801)</a></li><li><a href="http://www.cnblogs.com/wangfeng520/p/5741822.html">4. Android 通过Java代码生成创建界面。动态生成View，动态设置View属性。addRules详解(8124)</a></li><li><a href="http://www.cnblogs.com/wangfeng520/p/5892125.html">5. Chrome浏览器之 Postman 安装(8000)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/wangfeng520/p/5892125.html">1. Chrome浏览器之 Postman 安装(6)</a></li><li><a href="http://www.cnblogs.com/wangfeng520/p/5664528.html">2. MPAndroidChart饼图属性及相关设置(3)</a></li><li><a href="http://www.cnblogs.com/wangfeng520/p/5590644.html">3. android应用程序如何调用支付宝接口(3)</a></li><li><a href="http://www.cnblogs.com/wangfeng520/p/5367949.html">4. ArcGIS for Android地图控件的5大常见操作(2)</a></li><li><a href="http://www.cnblogs.com/wangfeng520/p/5984077.html">5. 笑谈Android图表-MPAndroidChart(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/wangfeng520/p/6119531.html">1. Android开发各类常见错误解决方案(2)</a></li><li><a href="http://www.cnblogs.com/wangfeng520/p/5984077.html">2. 笑谈Android图表-MPAndroidChart(1)</a></li><li><a href="http://www.cnblogs.com/wangfeng520/p/5892125.html">3. Chrome浏览器之 Postman 安装(1)</a></li><li><a href="http://www.cnblogs.com/wangfeng520/p/5063273.html">4. android—获取网络数据(1)</a></li><li><a href="http://www.cnblogs.com/wangfeng520/p/5680908.html">5. Android开发之ViewPager+ActionBar+Fragment实现响应式可滑动Tab(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 请叫我码农怪蜀黍
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

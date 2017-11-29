@@ -1,0 +1,2567 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)https://github.com/vondear/RxTools -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+  <link rel="dns-prefetch" href="https://assets-cdn.github.com/">
+  <link rel="dns-prefetch" href="https://avatars0.githubusercontent.com/">
+  <link rel="dns-prefetch" href="https://avatars1.githubusercontent.com/">
+  <link rel="dns-prefetch" href="https://avatars2.githubusercontent.com/">
+  <link rel="dns-prefetch" href="https://avatars3.githubusercontent.com/">
+  <link rel="dns-prefetch" href="https://github-cloud.s3.amazonaws.com/">
+  <link rel="dns-prefetch" href="https://user-images.githubusercontent.com/">
+
+
+
+  <link crossorigin="anonymous" href="./v_files/frameworks-d7137690e30123bade38abb082ac79f36cc7a105ff92e602405f53b725465cab.css" integrity="sha256-1xN2kOMBI7reOKuwgqx582zHoQX/kuYCQF9TtyVGXKs=" media="all" rel="stylesheet">
+  <link crossorigin="anonymous" href="./v_files/github-3a370730cbf90ad09e7fb03d49456f089278c3e276b58c6ebd14468c4c15fc1f.css" integrity="sha256-OjcHMMv5CtCef7A9SUVvCJJ4w+J2tYxuvRRGjEwV/B8=" media="all" rel="stylesheet">
+  
+  
+  
+  
+
+  <meta name="viewport" content="width=device-width">
+  
+  <title>vondear/RxTools: Android开发人员不得不收集的工具类集合 | 支付宝支付 | 微信支付（统一下单） | 微信分享 | 一键集成UCrop选择圆形头像 | 一键集成二维码和条形码的扫描与生成 | 常用Dialog | WebView的封装可播放视频 | 仿斗鱼滑动验证码 | Toast封装 | 震动 | GPS | Location定位 | 压缩与加密 | 图片缩放 | Exif 图片添加地理位置信息（经纬度） | 蛛网等级 | 颜色选择器 | 编译运行一下说不定会找到惊喜</title>
+  <link rel="search" type="application/opensearchdescription+xml" href="https://github.com/opensearch.xml" title="GitHub">
+  <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+  <meta property="fb:app_id" content="1401488693436528">
+
+    
+    <meta content="https://avatars3.githubusercontent.com/u/17683613?s=400&amp;v=4" property="og:image"><meta content="GitHub" property="og:site_name"><meta content="object" property="og:type"><meta content="vondear/RxTools" property="og:title"><meta content="https://github.com/vondear/RxTools" property="og:url"><meta content="RxTools - Android开发人员不得不收集的工具类集合 | 支付宝支付 | 微信支付（统一下单） | 微信分享 | 一键集成UCrop选择圆形头像 | 一键集成二维码和条形码的扫描与生成 | 常用Dialog | WebView的封装可播放视频 | 仿斗鱼滑动验证码 | Toast封装 | 震动 | GPS | Location定位 | 压缩与加密 | 图片缩放 | Exif 图片..." property="og:description">
+
+  <link rel="assets" href="https://assets-cdn.github.com/">
+  <link rel="web-socket" href="wss://live.github.com/_sockets/VjI6MjE0MDY1MjYyOjA4MzFkYmU3YTg1NTlhZmI3MDUyZWExYTNiOTA2YTBhZDBmZWUxNWUxYTYwYTVmYmM3ZWQ3OGY3NWU1N2QzMmU=--9cdd0c4365905551cbb82c9694557bc71bfe34d2">
+  <meta name="pjax-timeout" content="1000">
+  <link rel="sudo-modal" href="https://github.com/sessions/sudo_modal">
+  <meta name="request-id" content="B238:2AA1C:ADB1E6:100B653:5A04098E" data-pjax-transient="">
+  
+
+  <meta name="selected-link" value="repo_source" data-pjax-transient="">
+
+  <meta name="google-site-verification" content="KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU">
+<meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
+    <meta name="google-analytics" content="UA-3769691-2">
+
+<meta content="collector.githubapp.com" name="octolytics-host"><meta content="github" name="octolytics-app-id"><meta content="https://collector.githubapp.com/github-external/browser_event" name="octolytics-event-url"><meta content="B238:2AA1C:ADB1E6:100B653:5A04098E" name="octolytics-dimension-request_id"><meta content="sea" name="octolytics-dimension-region_edge"><meta content="iad" name="octolytics-dimension-region_render"><meta content="31031311" name="octolytics-actor-id"><meta content="funly1234" name="octolytics-actor-login"><meta content="b14a4d88080b028301b99a8eeefbd74ea9b7e9effa9a2d90af4994c05af68d63" name="octolytics-actor-hash">
+<meta content="/&lt;user-name&gt;/&lt;repo-name&gt;" data-pjax-transient="true" name="analytics-location">
+
+
+
+
+  <meta class="js-ga-set" name="dimension1" content="Logged In">
+
+
+  
+
+      <meta name="hostname" content="github.com">
+  <meta name="user-login" content="funly1234">
+
+      <meta name="expected-hostname" content="github.com">
+    <meta name="js-proxy-site-detection-payload" content="YTk5MDhlYjdmNTkzMTQ1Njc3Y2JkNDU2NjZhOGE4NzEwMTQzNTE2MjkwNzUzNjIwNDM3MjM1MjQ3N2FkYWNjMXx7InJlbW90ZV9hZGRyZXNzIjoiMTE2LjIyOC4yMjkuNzQiLCJyZXF1ZXN0X2lkIjoiQjIzODoyQUExQzpBREIxRTY6MTAwQjY1Mzo1QTA0MDk4RSIsInRpbWVzdGFtcCI6MTUxMDIxNDAzMCwiaG9zdCI6ImdpdGh1Yi5jb20ifQ==">
+
+    <meta name="enabled-features" content="UNIVERSE_BANNER,FREE_TRIALS">
+
+  <meta name="html-safe-nonce" content="4ce731431838984b0dc650e9301e0aa26a821c82">
+
+  <meta http-equiv="x-pjax-version" content="6720dcc130255be703ab2821d0e08da3">
+  
+
+      <link href="https://github.com/vondear/RxTools/commits/master.atom" rel="alternate" title="Recent Commits to RxTools:master" type="application/atom+xml">
+
+  <meta name="description" content="RxTools - Android开发人员不得不收集的工具类集合 | 支付宝支付 | 微信支付（统一下单） | 微信分享 | 一键集成UCrop选择圆形头像 | 一键集成二维码和条形码的扫描与生成 | 常用Dialog | WebView的封装可播放视频 | 仿斗鱼滑动验证码 | Toast封装 | 震动 | GPS | Location定位 | 压缩与加密 | 图片缩放 | Exif 图片添加地理位置信息（经纬度） | 蛛网等级 | 颜色选择器 | 编译运行一下说不定会找到惊喜">
+  <meta name="go-import" content="github.com/vondear/RxTools git https://github.com/vondear/RxTools.git">
+
+  <meta content="17683613" name="octolytics-dimension-user_id"><meta content="vondear" name="octolytics-dimension-user_login"><meta content="69093112" name="octolytics-dimension-repository_id"><meta content="vondear/RxTools" name="octolytics-dimension-repository_nwo"><meta content="true" name="octolytics-dimension-repository_public"><meta content="false" name="octolytics-dimension-repository_is_fork"><meta content="69093112" name="octolytics-dimension-repository_network_root_id"><meta content="vondear/RxTools" name="octolytics-dimension-repository_network_root_nwo"><meta content="false" name="octolytics-dimension-repository_explore_github_marketplace_ci_cta_shown">
+
+
+    <link rel="canonical" href="https://github.com/vondear/RxTools" data-pjax-transient="">
+
+
+  <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+
+  <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+
+  <link rel="mask-icon" href="https://assets-cdn.github.com/pinned-octocat.svg" color="#000000">
+  <link rel="icon" type="image/x-icon" class="js-site-favicon" href="https://assets-cdn.github.com/favicon.ico">
+
+<meta name="theme-color" content="#1e2327">
+
+
+  <meta name="u2f-support" content="true">
+
+  </head>
+
+  <body class="logged-in env-production intent-mouse">
+    
+
+  <div class="position-relative js-header-wrapper ">
+    <a href="https://github.com/vondear/RxTools#start-of-content" tabindex="1" class="bg-black text-white p-3 show-on-focus js-skip-to-content">Skip to content</a>
+    <div id="js-pjax-loader-bar" class="pjax-loader-bar"><div class="progress"></div></div>
+
+    
+    
+    
+
+
+
+        
+<header class="Header  f5" role="banner">
+  <div class="d-flex px-3 flex-justify-between container-lg">
+    <div class="d-flex flex-justify-between">
+      <a class="header-logo-invertocat" href="https://github.com/" data-hotkey="g d" aria-label="Homepage" data-ga-click="Header, go to dashboard, icon:logo">
+  <svg aria-hidden="true" class="octicon octicon-mark-github" height="32" version="1.1" viewBox="0 0 16 16" width="32"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+</a>
+
+
+    </div>
+
+    <div class="HeaderMenu d-flex flex-justify-between flex-auto">
+      <div class="d-flex">
+            <div class="">
+              <div class="header-search scoped-search site-scoped-search js-site-search" role="search">
+  <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/vondear/RxTools/search" class="js-site-search-form" data-scoped-search-url="/vondear/RxTools/search" data-unscoped-search-url="/search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+    <label class="form-control header-search-wrapper js-chromeless-input-container">
+        <a href="https://github.com/vondear/RxTools" class="header-search-scope no-underline">This repository</a>
+      <input type="text" class="form-control header-search-input js-site-search-focus js-site-search-field is-clearable" data-hotkey="s" name="q" value="" placeholder="Search" aria-label="Search this repository" data-unscoped-placeholder="Search GitHub" data-scoped-placeholder="Search" autocapitalize="off">
+        <input type="hidden" class="js-site-search-type-field" name="type">
+    </label>
+</form></div>
+
+            </div>
+
+          <ul class="d-flex pl-2 flex-items-center text-bold list-style-none" role="navigation">
+            <li>
+              <a href="https://github.com/pulls" aria-label="Pull requests you created" class="js-selected-navigation-item HeaderNavlink px-2" data-ga-click="Header, click, Nav menu - item:pulls context:user" data-hotkey="g p" data-selected-links="/pulls /pulls/assigned /pulls/mentioned /pulls">
+                Pull requests
+</a>            </li>
+            <li>
+              <a href="https://github.com/issues" aria-label="Issues you created" class="js-selected-navigation-item HeaderNavlink px-2" data-ga-click="Header, click, Nav menu - item:issues context:user" data-hotkey="g i" data-selected-links="/issues /issues/assigned /issues/mentioned /issues">
+                Issues
+</a>            </li>
+                <li>
+                  <a href="https://github.com/marketplace" class="js-selected-navigation-item HeaderNavlink px-2" data-ga-click="Header, click, Nav menu - item:marketplace context:user" data-selected-links=" /marketplace">
+                    Marketplace
+</a>                </li>
+            <li>
+              <a href="https://github.com/explore" class="js-selected-navigation-item HeaderNavlink px-2" data-ga-click="Header, click, Nav menu - item:explore" data-selected-links="/explore /trending /trending/developers /integrations /integrations/feature/code /integrations/feature/collaborate /integrations/feature/ship showcases showcases_search showcases_landing /explore">
+                Explore
+</a>            </li>
+          </ul>
+      </div>
+
+      <div class="d-flex">
+        
+<ul class="user-nav d-flex flex-items-center list-style-none" id="user-links">
+  <li class="dropdown js-menu-container js-header-notifications">
+    <span class="d-inline-block  px-2">
+      
+
+    </span>
+  </li>
+
+  <li class="dropdown js-menu-container">
+    <details class="dropdown-details js-dropdown-details d-flex px-2 flex-items-center">
+      <summary class="HeaderNavlink" aria-label="Create new…" data-ga-click="Header, create new, icon:add">
+        <svg aria-hidden="true" class="octicon octicon-plus float-left mr-1 mt-1" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 9H7v5H5V9H0V7h5V2h2v5h5z"></path></svg>
+        <span class="dropdown-caret mt-1"></span>
+      </summary>
+
+      <ul class="dropdown-menu dropdown-menu-sw">
+        
+<a class="dropdown-item" href="https://github.com/new" data-ga-click="Header, create new repository">
+  New repository
+</a>
+
+  <a class="dropdown-item" href="https://github.com/new/import" data-ga-click="Header, import a repository">
+    Import repository
+  </a>
+
+<a class="dropdown-item" href="https://gist.github.com/" data-ga-click="Header, create new gist">
+  New gist
+</a>
+
+  <a class="dropdown-item" href="https://github.com/organizations/new" data-ga-click="Header, create new organization">
+    New organization
+  </a>
+
+
+
+  <div class="dropdown-divider"></div>
+  <div class="dropdown-header">
+    <span title="vondear/RxTools">This repository</span>
+  </div>
+    <a class="dropdown-item" href="https://github.com/vondear/RxTools/issues/new" data-ga-click="Header, create new issue">
+      New issue
+    </a>
+
+      </ul>
+    </details>
+  </li>
+
+  <li class="dropdown js-menu-container">
+
+    <details class="dropdown-details js-dropdown-details d-flex pl-2 flex-items-center">
+      <summary class="HeaderNavlink name mt-1" aria-label="View profile and more" data-ga-click="Header, show menu, icon:avatar">
+        <img alt="@funly1234" class="avatar float-left mr-1" src="./v_files/31031311" height="20" width="20">
+        <span class="dropdown-caret"></span>
+      </summary>
+
+      <ul class="dropdown-menu dropdown-menu-sw">
+        <li class="dropdown-header header-nav-current-user css-truncate">
+          Signed in as <strong class="css-truncate-target">funly1234</strong>
+        </li>
+
+        <li class="dropdown-divider"></li>
+
+        <li><a class="dropdown-item" href="https://github.com/funly1234" data-ga-click="Header, go to profile, text:your profile">
+          Your profile
+        </a></li>
+        <li><a class="dropdown-item" href="https://github.com/funly1234?tab=stars" data-ga-click="Header, go to starred repos, text:your stars">
+          Your stars
+        </a></li>
+          <li><a class="dropdown-item" href="https://gist.github.com/" data-ga-click="Header, your gists, text:your gists">Your Gists</a></li>
+
+        <li class="dropdown-divider"></li>
+
+        <li><a class="dropdown-item" href="https://help.github.com/" data-ga-click="Header, go to help, text:help">
+          Help
+        </a></li>
+
+        <li><a class="dropdown-item" href="https://github.com/settings/profile" data-ga-click="Header, go to settings, icon:settings">
+          Settings
+        </a></li>
+
+        <li><!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/logout" class="logout-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="o/9Vnky15yR0o09TxALcLck+WsJh43u5qhJM1k9pRKzwJqSLuF2CRsnwypp2y+UY30QSMc5Ux64DX4FzEQ1xIA=="></div>
+          <button type="submit" class="dropdown-item dropdown-signout" data-ga-click="Header, sign out, icon:logout">
+            Sign out
+          </button>
+        </form></li>
+      </ul>
+    </details>
+  </li>
+</ul>
+
+
+        <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/logout" class="sr-only right-0" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="brMdOdptKTn225XXmrWeDO/dPz6lEjenYacyI6TMkEM9auwsLoVMW0uIEB4ofKc5+ad3zQqli7DI6v+G+qilzw=="></div>
+          <button type="submit" class="dropdown-item dropdown-signout" data-ga-click="Header, sign out, icon:logout">
+            Sign out
+          </button>
+</form>      </div>
+    </div>
+  </div>
+</header>
+
+
+      
+
+  </div>
+
+  <div id="start-of-content" class="show-on-focus"></div>
+
+    <div id="js-flash-container">
+</div>
+
+
+
+  <div role="main">
+        <div itemscope="" itemtype="http://schema.org/SoftwareSourceCode">
+    <div id="js-repo-pjax-container" data-pjax-container="">
+      
+
+
+
+
+    <div class="pagehead repohead instapaper_ignore readability-menu experiment-repo-nav ">
+      <div class="repohead-details-container clearfix container ">
+
+        <ul class="pagehead-actions">
+  <li>
+        <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/notifications/subscribe" class="js-social-container" data-autosubmit="true" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="52GKG+Lz+09NTHKzEP5l77+gDM9gnSGweAdMh5ED9kAIVJL8rONFgZ4wgg2scKmOW3ynLPc2cII4TZl7SgtbaA=="></div>      <input class="form-control" id="repository_id" name="repository_id" type="hidden" value="69093112">
+
+        <div class="select-menu js-menu-container js-select-menu">
+          <a href="https://github.com/vondear/RxTools/subscription" class="btn btn-sm btn-with-count select-menu-button js-menu-target" role="button" aria-haspopup="true" aria-expanded="false" aria-label="Toggle repository notifications menu" data-ga-click="Repository, click Watch settings, action:files#disambiguate">
+            <span class="js-select-button">
+                <svg aria-hidden="true" class="octicon octicon-eye" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path></svg>
+                Watch
+            </span>
+          </a>
+            <a class="social-count js-social-count" href="https://github.com/vondear/RxTools/watchers" aria-label="151 users are watching this repository">
+              151
+            </a>
+
+        <div class="select-menu-modal-holder">
+          <div class="select-menu-modal subscription-menu-modal js-menu-content">
+            <div class="select-menu-header js-navigation-enable" tabindex="-1">
+              <svg aria-label="Close" class="octicon octicon-x js-menu-close" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+              <span class="select-menu-title">Notifications</span>
+            </div>
+
+              <div class="select-menu-list js-navigation-container" role="menu">
+
+                <div class="select-menu-item js-navigation-item selected" role="menuitem" tabindex="0">
+                  <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+                  <div class="select-menu-item-text">
+                    <input checked="checked" id="do_included" name="do" type="radio" value="included">
+                    <span class="select-menu-item-heading">Not watching</span>
+                    <span class="description">Be notified when participating or @mentioned.</span>
+                    <span class="js-select-button-text hidden-select-button-text">
+                      <svg aria-hidden="true" class="octicon octicon-eye" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path></svg>
+                      Watch
+                    </span>
+                  </div>
+                </div>
+
+                <div class="select-menu-item js-navigation-item " role="menuitem" tabindex="0">
+                  <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+                  <div class="select-menu-item-text">
+                    <input id="do_subscribed" name="do" type="radio" value="subscribed">
+                    <span class="select-menu-item-heading">Watching</span>
+                    <span class="description">Be notified of all conversations.</span>
+                    <span class="js-select-button-text hidden-select-button-text">
+                      <svg aria-hidden="true" class="octicon octicon-eye" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path></svg>
+                        Unwatch
+                    </span>
+                  </div>
+                </div>
+
+                <div class="select-menu-item js-navigation-item " role="menuitem" tabindex="0">
+                  <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+                  <div class="select-menu-item-text">
+                    <input id="do_ignore" name="do" type="radio" value="ignore">
+                    <span class="select-menu-item-heading">Ignoring</span>
+                    <span class="description">Never be notified.</span>
+                    <span class="js-select-button-text hidden-select-button-text">
+                      <svg aria-hidden="true" class="octicon octicon-mute" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M8 2.81v10.38c0 .67-.81 1-1.28.53L3 10H1c-.55 0-1-.45-1-1V7c0-.55.45-1 1-1h2l3.72-3.72C7.19 1.81 8 2.14 8 2.81zm7.53 3.22l-1.06-1.06-1.97 1.97-1.97-1.97-1.06 1.06L11.44 8 9.47 9.97l1.06 1.06 1.97-1.97 1.97 1.97 1.06-1.06L13.56 8l1.97-1.97z"></path></svg>
+                        Stop ignoring
+                    </span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+</form>
+  </li>
+
+  <li>
+    
+  <div class="js-toggler-container js-social-container starring-container ">
+    <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/vondear/RxTools/unstar" class="starred js-social-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="CyY7nQL0ybxHAhN1O+NNIrzDiOfNd7mAMY5cl6u9JEg/5mzbfk3fvPwm+cpjn3TtLgD/FmBXZHh9NfpDs3y53w=="></div>
+      <input type="hidden" name="context" value="repository">
+      <button type="submit" class="btn btn-sm btn-with-count js-toggler-target" aria-label="Unstar this repository" title="Unstar vondear/RxTools" data-ga-click="Repository, click unstar button, action:files#disambiguate; text:Unstar">
+        <svg aria-hidden="true" class="octicon octicon-star" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74z"></path></svg>
+        Unstar
+      </button>
+        <a class="social-count js-social-count" href="https://github.com/vondear/RxTools/stargazers" aria-label="3348 users starred this repository">
+          3,348
+        </a>
+</form>
+    <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/vondear/RxTools/star" class="unstarred js-social-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="d4JS6rAAh0qvfJD5Je9xHsGIsqk87p6TF8IWON84DjRxjS30k7+FDK9qmSQUFWBZYwhKo2tZDLXUeYn1X7emKA=="></div>
+      <input type="hidden" name="context" value="repository">
+      <button type="submit" class="btn btn-sm btn-with-count js-toggler-target" aria-label="Star this repository" title="Star vondear/RxTools" data-ga-click="Repository, click star button, action:files#disambiguate; text:Star">
+        <svg aria-hidden="true" class="octicon octicon-star" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74z"></path></svg>
+        Star
+      </button>
+        <a class="social-count js-social-count" href="https://github.com/vondear/RxTools/stargazers" aria-label="3348 users starred this repository">
+          3,348
+        </a>
+</form>  </div>
+
+  </li>
+
+  <li>
+          <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/vondear/RxTools/fork" class="btn-with-count" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="6kXwzF8zcnoBHO3xH3YvRGXDuxiP8c3fuARbtLehyOvNgQGWxOLn3MLUuWKXvBE8OPjVYb1bqtojYg6ZXqYlFQ=="></div>
+            <button type="submit" class="btn btn-sm btn-with-count" data-ga-click="Repository, show fork modal, action:files#disambiguate; text:Fork" title="Fork your own copy of vondear/RxTools to your account" aria-label="Fork your own copy of vondear/RxTools to your account">
+              <svg aria-hidden="true" class="octicon octicon-repo-forked" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path fill-rule="evenodd" d="M8 1a1.993 1.993 0 0 0-1 3.72V6L5 8 3 6V4.72A1.993 1.993 0 0 0 2 1a1.993 1.993 0 0 0-1 3.72V6.5l3 3v1.78A1.993 1.993 0 0 0 5 15a1.993 1.993 0 0 0 1-3.72V9.5l3-3V4.72A1.993 1.993 0 0 0 8 1zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3 10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3-10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+              Fork
+            </button>
+</form>
+    <a href="https://github.com/vondear/RxTools/network" class="social-count" aria-label="808 users forked this repository">
+      808
+    </a>
+  </li>
+</ul>
+
+        <h1 class="public ">
+  <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"></path></svg>
+  <span class="author" itemprop="author"><a href="https://github.com/vondear" class="url fn" rel="author">vondear</a></span><!--
+--><span class="path-divider">/</span><!--
+--><strong itemprop="name"><a href="https://github.com/vondear/RxTools" data-pjax="#js-repo-pjax-container">RxTools</a></strong>
+
+</h1>
+
+      </div>
+      
+<nav class="reponav js-repo-nav js-sidenav-container-pjax container" itemscope="" itemtype="http://schema.org/BreadcrumbList" role="navigation" data-pjax="#js-repo-pjax-container">
+
+  <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a href="https://github.com/vondear/RxTools" class="js-selected-navigation-item selected reponav-item" data-hotkey="g c" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches repo_packages /vondear/RxTools" itemprop="url">
+      <svg aria-hidden="true" class="octicon octicon-code" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"></path></svg>
+      <span itemprop="name">Code</span>
+      <meta itemprop="position" content="1">
+</a>  </span>
+
+    <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+      <a href="https://github.com/vondear/RxTools/issues" class="js-selected-navigation-item reponav-item" data-hotkey="g i" data-selected-links="repo_issues repo_labels repo_milestones /vondear/RxTools/issues" itemprop="url">
+        <svg aria-hidden="true" class="octicon octicon-issue-opened" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+        <span itemprop="name">Issues</span>
+        <span class="Counter">17</span>
+        <meta itemprop="position" content="2">
+</a>    </span>
+
+  <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a href="https://github.com/vondear/RxTools/pulls" class="js-selected-navigation-item reponav-item" data-hotkey="g p" data-selected-links="repo_pulls /vondear/RxTools/pulls" itemprop="url">
+      <svg aria-hidden="true" class="octicon octicon-git-pull-request" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M11 11.28V5c-.03-.78-.34-1.47-.94-2.06C9.46 2.35 8.78 2.03 8 2H7V0L4 3l3 3V4h1c.27.02.48.11.69.31.21.2.3.42.31.69v6.28A1.993 1.993 0 0 0 10 15a1.993 1.993 0 0 0 1-3.72zm-1 2.92c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zM4 3c0-1.11-.89-2-2-2a1.993 1.993 0 0 0-1 3.72v6.56A1.993 1.993 0 0 0 2 15a1.993 1.993 0 0 0 1-3.72V4.72c.59-.34 1-.98 1-1.72zm-.8 10c0 .66-.55 1.2-1.2 1.2-.65 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+      <span itemprop="name">Pull requests</span>
+      <span class="Counter">1</span>
+      <meta itemprop="position" content="3">
+</a>  </span>
+
+    <a href="https://github.com/vondear/RxTools/projects" class="js-selected-navigation-item reponav-item" data-hotkey="g b" data-selected-links="repo_projects new_repo_project repo_project /vondear/RxTools/projects">
+      <svg aria-hidden="true" class="octicon octicon-project" height="16" version="1.1" viewBox="0 0 15 16" width="15"><path fill-rule="evenodd" d="M10 12h3V2h-3v10zm-4-2h3V2H6v8zm-4 4h3V2H2v12zm-1 1h13V1H1v14zM14 0H1a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1z"></path></svg>
+      Projects
+      <span class="Counter">0</span>
+</a>
+    <a href="https://github.com/vondear/RxTools/wiki" class="js-selected-navigation-item reponav-item" data-hotkey="g w" data-selected-links="repo_wiki /vondear/RxTools/wiki">
+      <svg aria-hidden="true" class="octicon octicon-book" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M3 5h4v1H3V5zm0 3h4V7H3v1zm0 2h4V9H3v1zm11-5h-4v1h4V5zm0 2h-4v1h4V7zm0 2h-4v1h4V9zm2-6v9c0 .55-.45 1-1 1H9.5l-1 1-1-1H2c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h5.5l1 1 1-1H15c.55 0 1 .45 1 1zm-8 .5L7.5 3H2v9h6V3.5zm7-.5H9.5l-.5.5V12h6V3z"></path></svg>
+      Wiki
+</a>
+
+  <a href="https://github.com/vondear/RxTools/pulse" class="js-selected-navigation-item reponav-item" data-selected-links="repo_graphs repo_contributors dependency_graph pulse /vondear/RxTools/pulse">
+    <svg aria-hidden="true" class="octicon octicon-graph" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M16 14v1H0V0h1v14h15zM5 13H3V8h2v5zm4 0H7V3h2v10zm4 0h-2V6h2v7z"></path></svg>
+    Insights
+</a>
+
+</nav>
+
+
+    </div>
+
+<div class="container new-discussion-timeline experiment-repo-nav">
+  <div class="repository-content">
+
+    
+  
+
+  <div class="js-repo-meta-container">
+  <div class="repository-meta mb-0  js-repo-meta-edit js-details-container ">
+    <div class="repository-meta-content col-11 mb-1">
+          <span class="col-11 text-gray-dark mr-2" itemprop="about">
+            Android开发人员不得不收集的工具类集合 | 支付宝支付 | 微信支付（统一下单） | 微信分享 | 一键集成UCrop选择圆形头像 | 一键集成二维码和条形码的扫描与生成 | 常用Dialog | WebView的封装可播放视频 | 仿斗鱼滑动验证码 | Toast封装 | 震动 | GPS | Location定位 | 压缩与加密 | 图片缩放 | Exif 图片添加地理位置信息（经纬度） | 蛛网等级 | 颜色选择器 | 编译运行一下说不定会找到惊喜
+          </span>
+    </div>
+
+  </div>
+
+    <div class="mb-3 repository-topics-container js-repository-topics-container js-details-container">
+      <div id="topics-list-container" data-url="/vondear/RxTools/settings/topics">
+          <div class="list-topics-container f6 mt-1">
+      <a href="https://github.com/topics/dialog" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:dialog">
+        dialog
+      </a>
+      <a href="https://github.com/topics/progressbar" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:progressbar">
+        progressbar
+      </a>
+      <a href="https://github.com/topics/toast" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:toast">
+        toast
+      </a>
+      <a href="https://github.com/topics/seat" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:seat">
+        seat
+      </a>
+      <a href="https://github.com/topics/shoppingview" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:shoppingview">
+        shoppingview
+      </a>
+      <a href="https://github.com/topics/likeview" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:likeview">
+        likeview
+      </a>
+      <a href="https://github.com/topics/java" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:java">
+        java
+      </a>
+      <a href="https://github.com/topics/tools" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:tools">
+        tools
+      </a>
+      <a href="https://github.com/topics/utils" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:utils">
+        utils
+      </a>
+      <a href="https://github.com/topics/qrcode" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:qrcode">
+        qrcode
+      </a>
+      <a href="https://github.com/topics/barcode" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:barcode">
+        barcode
+      </a>
+      <a href="https://github.com/topics/sidebar" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:sidebar">
+        sidebar
+      </a>
+      <a href="https://github.com/topics/netspeed" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:netspeed">
+        netspeed
+      </a>
+      <a href="https://github.com/topics/alipay" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:alipay">
+        alipay
+      </a>
+      <a href="https://github.com/topics/wxpay" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:wxpay">
+        wxpay
+      </a>
+      <a href="https://github.com/topics/wechatpay" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:wechatpay">
+        wechatpay
+      </a>
+      <a href="https://github.com/topics/share" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:share">
+        share
+      </a>
+  </div>
+
+
+      </div>
+
+    </div>
+</div>
+
+
+
+  <div class="overall-summary overall-summary-bottomless">
+    <div class="stats-switcher-viewport js-stats-switcher-viewport">
+      <div class="stats-switcher-wrapper">
+      <ul class="numbers-summary">
+        <li class="commits">
+          <a data-pjax="" href="https://github.com/vondear/RxTools/commits/master">
+              <svg aria-hidden="true" class="octicon octicon-history" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M8 13H6V6h5v2H8v5zM7 1C4.81 1 2.87 2.02 1.59 3.59L0 2v4h4L2.5 4.5C3.55 3.17 5.17 2.3 7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-.34.03-.67.09-1H.08C.03 7.33 0 7.66 0 8c0 3.86 3.14 7 7 7s7-3.14 7-7-3.14-7-7-7z"></path></svg>
+              <span class="num text-emphasized">
+                393
+              </span>
+              commits
+          </a>
+        </li>
+        <li>
+          <a data-pjax="" href="https://github.com/vondear/RxTools/branches">
+            <svg aria-hidden="true" class="octicon octicon-git-branch" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path fill-rule="evenodd" d="M10 5c0-1.11-.89-2-2-2a1.993 1.993 0 0 0-1 3.72v.3c-.02.52-.23.98-.63 1.38-.4.4-.86.61-1.38.63-.83.02-1.48.16-2 .45V4.72a1.993 1.993 0 0 0-1-3.72C.88 1 0 1.89 0 3a2 2 0 0 0 1 1.72v6.56c-.59.35-1 .99-1 1.72 0 1.11.89 2 2 2 1.11 0 2-.89 2-2 0-.53-.2-1-.53-1.36.09-.06.48-.41.59-.47.25-.11.56-.17.94-.17 1.05-.05 1.95-.45 2.75-1.25S8.95 7.77 9 6.73h-.02C9.59 6.37 10 5.73 10 5zM2 1.8c.66 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2C1.35 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2zm0 12.41c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm6-8c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+            <span class="num text-emphasized">
+              1
+            </span>
+            branch
+          </a>
+        </li>
+
+        <li>
+          <a href="https://github.com/vondear/RxTools/releases">
+            <svg aria-hidden="true" class="octicon octicon-tag" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7.73 1.73C7.26 1.26 6.62 1 5.96 1H3.5C2.13 1 1 2.13 1 3.5v2.47c0 .66.27 1.3.73 1.77l6.06 6.06c.39.39 1.02.39 1.41 0l4.59-4.59a.996.996 0 0 0 0-1.41L7.73 1.73zM2.38 7.09c-.31-.3-.47-.7-.47-1.13V3.5c0-.88.72-1.59 1.59-1.59h2.47c.42 0 .83.16 1.13.47l6.14 6.13-4.73 4.73-6.13-6.15zM3.01 3h2v2H3V3h.01z"></path></svg>
+            <span class="num text-emphasized">
+              103
+            </span>
+            releases
+          </a>
+        </li>
+
+        <li>
+            <a href="https://github.com/vondear/RxTools/graphs/contributors">
+  <svg aria-hidden="true" class="octicon octicon-organization" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M16 12.999c0 .439-.45 1-1 1H7.995c-.539 0-.994-.447-.995-.999H1c-.54 0-1-.561-1-1 0-2.634 3-4 3-4s.229-.409 0-1c-.841-.621-1.058-.59-1-3 .058-2.419 1.367-3 2.5-3s2.442.58 2.5 3c.058 2.41-.159 2.379-1 3-.229.59 0 1 0 1s1.549.711 2.42 2.088C9.196 9.369 10 8.999 10 8.999s.229-.409 0-1c-.841-.62-1.058-.59-1-3 .058-2.419 1.367-3 2.5-3s2.437.581 2.495 3c.059 2.41-.158 2.38-1 3-.229.59 0 1 0 1s3.005 1.366 3.005 4"></path></svg>
+    <span class="num text-emphasized">
+      1
+    </span>
+    contributor
+</a>
+
+        </li>
+          <li>
+            <a href="https://github.com/vondear/RxTools/blob/master/LICENSE">
+              <svg aria-hidden="true" class="octicon octicon-law" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 4c-.83 0-1.5-.67-1.5-1.5S6.17 1 7 1s1.5.67 1.5 1.5S7.83 4 7 4zm7 6c0 1.11-.89 2-2 2h-1c-1.11 0-2-.89-2-2l2-4h-1c-.55 0-1-.45-1-1H8v8c.42 0 1 .45 1 1h1c.42 0 1 .45 1 1H3c0-.55.58-1 1-1h1c0-.55.58-1 1-1h.03L6 5H5c0 .55-.45 1-1 1H3l2 4c0 1.11-.89 2-2 2H2c-1.11 0-2-.89-2-2l2-4H1V5h3c0-.55.45-1 1-1h4c.55 0 1 .45 1 1h3v1h-1l2 4zM2.5 7L1 10h3L2.5 7zM13 10l-1.5-3-1.5 3h3z"></path></svg>
+                Apache-2.0
+            </a>
+          </li>
+      </ul>
+
+        <div class="repository-lang-stats">
+          <ol class="repository-lang-stats-numbers">
+            <li>
+                <a href="https://github.com/vondear/RxTools/search?l=java" data-ga-click="Repository, language stats search click, location:repo overview">
+                  <span class="color-block language-color" style="background-color:#b07219;"></span>
+                  <span class="lang">Java</span>
+                  <span class="percent">100.0%</span>
+                </a>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="repository-lang-stats-graph js-toggle-lang-stats" title="Click for language details" data-ga-click="Repository, language bar stats toggle, location:repo overview">
+      <span class="language-color" aria-label="Java 100.0%" style="width:100.0%; background-color:#b07219;" itemprop="keywords">Java</span>
+    </div>
+
+
+    
+
+  <div class="file-navigation in-mid-page">
+
+    <details class="get-repo-select-menu js-menu-container float-right position-relative dropdown-details" open="">
+  <summary class="btn btn-sm btn-primary">
+    Clone or download
+    <span class="dropdown-caret"></span>
+  </summary>
+  <div class="position-relative">
+    <div class="get-repo-modal dropdown-menu dropdown-menu-sw pb-0 js-toggler-container ">
+      <div class="clone-options https-clone-options">
+          <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/users/set_protocol?protocol_selector=ssh&amp;protocol_type=clone" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="klIkNjo3eUd2nmSHuX9+m+jNC6blOvCeCrcsIPsTov3NJASpSMy/vODA5E9ufQUnlDBR9DOeWkWoUgu3WuRU/A=="></div><button class="btn-link btn-change-protocol js-toggler-target float-right" type="submit">Use SSH</button></form>
+
+        <h4 class="mb-1">
+          Clone with HTTPS
+          <a class="muted-link" href="https://help.github.com/articles/which-remote-url-should-i-use" target="_blank" title="Which remote URL should I use?">
+            <svg aria-hidden="true" class="octicon octicon-question" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M6 10h2v2H6v-2zm4-3.5C10 8.64 8 9 8 9H6c0-.55.45-1 1-1h.5c.28 0 .5-.22.5-.5v-1c0-.28-.22-.5-.5-.5h-1c-.28 0-.5.22-.5.5V7H4c0-1.5 1.5-3 3-3s3 1 3 2.5zM7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7z"></path></svg>
+          </a>
+        </h4>
+        <p class="mb-2 get-repo-decription-text">
+          Use Git or checkout with SVN using the web URL.
+        </p>
+
+        <div class="input-group js-zeroclipboard-container">
+  <input type="text" class="form-control input-monospace input-sm js-zeroclipboard-target js-url-field" value="https://github.com/vondear/RxTools.git" aria-label="Clone this repository at https://github.com/vondear/RxTools.git" readonly="">
+  <div class="input-group-button">
+    <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><svg aria-hidden="true" class="octicon octicon-clippy" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M2 13h4v1H2v-1zm5-6H2v1h5V7zm2 3V8l-3 3 3 3v-2h5v-2H9zM4.5 9H2v1h2.5V9zM2 12h2.5v-1H2v1zm9 1h1v2c-.02.28-.11.52-.3.7-.19.18-.42.28-.7.3H1c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h3c0-1.11.89-2 2-2 1.11 0 2 .89 2 2h3c.55 0 1 .45 1 1v5h-1V6H1v9h10v-2zM2 5h8c0-.55-.45-1-1-1H8c-.55 0-1-.45-1-1s-.45-1-1-1-1 .45-1 1-.45 1-1 1H3c-.55 0-1 .45-1 1z"></path></svg></button>
+  </div>
+</div>
+
+      </div>
+
+        <div class="clone-options ssh-clone-options">
+          <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/users/set_protocol?protocol_selector=https&amp;protocol_type=clone" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="jFsWu3hacV3q+4KaIMdx+Eaq/zdEaLEFTmYBvlNTPLjTLTYkCqG3pnylAlL3xQpEOlelZZLMG97sgyYp8qTKuQ=="></div><button class="btn-link btn-change-protocol js-toggler-target float-right" type="submit">Use HTTPS</button></form>
+
+            <h4 class="mb-1">
+              Clone with SSH
+              <a class="muted-link" href="https://help.github.com/articles/which-remote-url-should-i-use" target="_blank" title="Which remote URL should I use?">
+                <svg aria-hidden="true" class="octicon octicon-question" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M6 10h2v2H6v-2zm4-3.5C10 8.64 8 9 8 9H6c0-.55.45-1 1-1h.5c.28 0 .5-.22.5-.5v-1c0-.28-.22-.5-.5-.5h-1c-.28 0-.5.22-.5.5V7H4c0-1.5 1.5-3 3-3s3 1 3 2.5zM7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7z"></path></svg>
+              </a>
+            </h4>
+            <p class="mb-2 get-repo-decription-text">
+              Use an SSH key and passphrase from account.
+            </p>
+
+            <div class="input-group js-zeroclipboard-container">
+  <input type="text" class="form-control input-monospace input-sm js-zeroclipboard-target js-url-field" value="git@github.com:vondear/RxTools.git" aria-label="Clone this repository at git@github.com:vondear/RxTools.git" readonly="">
+  <div class="input-group-button">
+    <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><svg aria-hidden="true" class="octicon octicon-clippy" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M2 13h4v1H2v-1zm5-6H2v1h5V7zm2 3V8l-3 3 3 3v-2h5v-2H9zM4.5 9H2v1h2.5V9zM2 12h2.5v-1H2v1zm9 1h1v2c-.02.28-.11.52-.3.7-.19.18-.42.28-.7.3H1c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h3c0-1.11.89-2 2-2 1.11 0 2 .89 2 2h3c.55 0 1 .45 1 1v5h-1V6H1v9h10v-2zM2 5h8c0-.55-.45-1-1-1H8c-.55 0-1-.45-1-1s-.45-1-1-1-1 .45-1 1-.45 1-1 1H3c-.55 0-1 .45-1 1z"></path></svg></button>
+  </div>
+</div>
+
+        </div>
+      <div class="mt-2">
+          <a href="https://desktop.github.com/" class="btn btn-outline get-repo-btn tooltipped tooltipped-s tooltipped-multiline" aria-label="Clone vondear/RxTools to your computer and use it in GitHub Desktop.">
+    Open in Desktop
+  </a>
+
+<a href="https://github.com/vondear/RxTools/archive/master.zip" class="btn btn-outline get-repo-btn
+" rel="nofollow" data-ga-click="Repository, download zip, location:repo overview">
+  Download ZIP
+</a>
+
+      </div>
+    </div>
+  </div>
+</details>
+
+
+  <div class="BtnGroup float-right">
+      
+  <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/vondear/RxTools/new/master" class="BtnGroup-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="nDh5uAE5JjxM0+8hu136dHQQS/pVsffOMgBUwficp1n8xZL3BQscdvrirgOlCzAHJ4vriQZmBqWLZUSVMQMEHg=="></div>
+    <button class="btn btn-sm BtnGroup-item" type="submit" data-disable-with="Creating file…">
+      Create new file
+    </button>
+</form>
+
+      
+  <a href="https://github.com/vondear/RxTools/upload/master" class="btn btn-sm BtnGroup-item">
+    Upload files
+  </a>
+
+
+    <a href="https://github.com/vondear/RxTools/find/master" class="btn btn-sm empty-icon float-right BtnGroup-item" data-pjax="" data-hotkey="t" data-ga-click="Repository, find file, location:repo overview">
+      Find file
+    </a>
+  </div>
+
+  
+<div class="select-menu branch-select-menu js-menu-container js-select-menu float-left">
+  <button class=" btn btn-sm select-menu-button js-menu-target css-truncate" data-hotkey="w" type="button" aria-label="Switch branches or tags" aria-expanded="false" aria-haspopup="true">
+      <i>Branch:</i>
+      <span class="js-select-button css-truncate-target">master</span>
+  </button>
+
+  <div class="select-menu-modal-holder js-menu-content js-navigation-container" data-pjax="">
+
+    <div class="select-menu-modal">
+      <div class="select-menu-header">
+        <svg aria-label="Close" class="octicon octicon-x js-menu-close" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+        <span class="select-menu-title">Switch branches/tags</span>
+      </div>
+
+      <div class="select-menu-filters">
+        <div class="select-menu-text-filter">
+          <input type="text" aria-label="Filter branches/tags" id="context-commitish-filter-field" class="form-control js-filterable-field js-navigation-enable" placeholder="Filter branches/tags">
+        </div>
+        <div class="select-menu-tabs">
+          <ul>
+            <li class="select-menu-tab">
+              <a href="https://github.com/vondear/RxTools#" data-tab-filter="branches" data-filter-placeholder="Filter branches/tags" class="js-select-menu-tab" role="tab">Branches</a>
+            </li>
+            <li class="select-menu-tab">
+              <a href="https://github.com/vondear/RxTools#" data-tab-filter="tags" data-filter-placeholder="Find a tag…" class="js-select-menu-tab" role="tab">Tags</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="branches" role="menu">
+
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <a class="select-menu-item js-navigation-item js-navigation-open selected" href="https://github.com/vondear/RxTools/tree/master" data-name="master" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target js-select-menu-filter-text">
+                master
+              </span>
+            </a>
+        </div>
+
+          <div class="select-menu-no-results">Nothing to show</div>
+      </div>
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="tags">
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.6.4" data-name="v1.7.6.4" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.6.4">
+                v1.7.6.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.6.3" data-name="v1.7.6.3" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.6.3">
+                v1.7.6.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.6.2" data-name="v1.7.6.2" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.6.2">
+                v1.7.6.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.6.1" data-name="v1.7.6.1" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.6.1">
+                v1.7.6.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.6" data-name="v1.7.6" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.6">
+                v1.7.6
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.5.9" data-name="v1.7.5.9" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.5.9">
+                v1.7.5.9
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.5.8" data-name="v1.7.5.8" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.5.8">
+                v1.7.5.8
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.5.7" data-name="v1.7.5.7" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.5.7">
+                v1.7.5.7
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.5.6" data-name="v1.7.5.6" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.5.6">
+                v1.7.5.6
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.5.5" data-name="v1.7.5.5" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.5.5">
+                v1.7.5.5
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.5.4" data-name="v1.7.5.4" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.5.4">
+                v1.7.5.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.5.3" data-name="v1.7.5.3" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.5.3">
+                v1.7.5.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.5.2" data-name="v1.7.5.2" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.5.2">
+                v1.7.5.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.5.1" data-name="v1.7.5.1" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.5.1">
+                v1.7.5.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.5" data-name="v1.7.5" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.5">
+                v1.7.5
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.4" data-name="v1.7.4" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.4">
+                v1.7.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.3.9" data-name="v1.7.3.9" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.3.9">
+                v1.7.3.9
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.3.8" data-name="v1.7.3.8" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.3.8">
+                v1.7.3.8
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.3.7" data-name="v1.7.3.7" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.3.7">
+                v1.7.3.7
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.3.6" data-name="v1.7.3.6" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.3.6">
+                v1.7.3.6
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.3.5" data-name="v1.7.3.5" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.3.5">
+                v1.7.3.5
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.3.4" data-name="v1.7.3.4" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.3.4">
+                v1.7.3.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.3.3" data-name="v1.7.3.3" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.3.3">
+                v1.7.3.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.3.2" data-name="v1.7.3.2" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.3.2">
+                v1.7.3.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.3.1" data-name="v1.7.3.1" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.3.1">
+                v1.7.3.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.3" data-name="v1.7.3" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.3">
+                v1.7.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.2.1" data-name="v1.7.2.1" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.2.1">
+                v1.7.2.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.2" data-name="v1.7.2" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.2">
+                v1.7.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.1.2" data-name="v1.7.1.2" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.1.2">
+                v1.7.1.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.1.1" data-name="v1.7.1.1" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.1.1">
+                v1.7.1.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.1" data-name="v1.7.1" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.1">
+                v1.7.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.7.0" data-name="v1.7.0" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.7.0">
+                v1.7.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.9" data-name="v1.6.9" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.9">
+                v1.6.9
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.8" data-name="v1.6.8" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.8">
+                v1.6.8
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.7.3" data-name="v1.6.7.3" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.7.3">
+                v1.6.7.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.7.2" data-name="v1.6.7.2" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.7.2">
+                v1.6.7.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.7.1" data-name="v1.6.7.1" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.7.1">
+                v1.6.7.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.7" data-name="v1.6.7" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.7">
+                v1.6.7
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.6.9" data-name="v1.6.6.9" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.6.9">
+                v1.6.6.9
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.6.8" data-name="v1.6.6.8" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.6.8">
+                v1.6.6.8
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.6.7" data-name="v1.6.6.7" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.6.7">
+                v1.6.6.7
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.6.6" data-name="v1.6.6.6" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.6.6">
+                v1.6.6.6
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.6.5" data-name="v1.6.6.5" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.6.5">
+                v1.6.6.5
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.6.4" data-name="v1.6.6.4" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.6.4">
+                v1.6.6.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.6.3" data-name="v1.6.6.3" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.6.3">
+                v1.6.6.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.6.2" data-name="v1.6.6.2" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.6.2">
+                v1.6.6.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.6.1" data-name="v1.6.6.1" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.6.1">
+                v1.6.6.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.6" data-name="v1.6.6" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.6">
+                v1.6.6
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.5" data-name="v1.6.5" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.5">
+                v1.6.5
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.4" data-name="v1.6.4" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.4">
+                v1.6.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.3.3" data-name="v1.6.3.3" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.3.3">
+                v1.6.3.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.3.2" data-name="v1.6.3.2" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.3.2">
+                v1.6.3.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.3.1" data-name="v1.6.3.1" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.3.1">
+                v1.6.3.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.3" data-name="v1.6.3" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.3">
+                v1.6.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.2" data-name="v1.6.2" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.2">
+                v1.6.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.1" data-name="v1.6.1" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.1">
+                v1.6.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.6.0" data-name="v1.6.0" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.6.0">
+                v1.6.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.5.9" data-name="v1.5.9" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.5.9">
+                v1.5.9
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.5.8" data-name="v1.5.8" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.5.8">
+                v1.5.8
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.5.7" data-name="v1.5.7" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.5.7">
+                v1.5.7
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.5.6" data-name="v1.5.6" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.5.6">
+                v1.5.6
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.5.5" data-name="v1.5.5" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.5.5">
+                v1.5.5
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.5.4" data-name="v1.5.4" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.5.4">
+                v1.5.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.5.3" data-name="v1.5.3" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.5.3">
+                v1.5.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.5.2" data-name="v1.5.2" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.5.2">
+                v1.5.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.5.1" data-name="v1.5.1" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.5.1">
+                v1.5.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.5.0" data-name="v1.5.0" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.5.0">
+                v1.5.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.4.9" data-name="v1.4.9" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.4.9">
+                v1.4.9
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.4.8" data-name="v1.4.8" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.4.8">
+                v1.4.8
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.4.7.1" data-name="v1.4.7.1" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.4.7.1">
+                v1.4.7.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.4.7" data-name="v1.4.7" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.4.7">
+                v1.4.7
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.4.6" data-name="v1.4.6" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.4.6">
+                v1.4.6
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.4.5" data-name="v1.4.5" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.4.5">
+                v1.4.5
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.4.4" data-name="v1.4.4" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.4.4">
+                v1.4.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.4.3" data-name="v1.4.3" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.4.3">
+                v1.4.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.4.2" data-name="v1.4.2" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.4.2">
+                v1.4.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.4.1" data-name="v1.4.1" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.4.1">
+                v1.4.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.4.0" data-name="v1.4.0" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.4.0">
+                v1.4.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.3.9" data-name="v1.3.9" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.9">
+                v1.3.9
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.3.8" data-name="v1.3.8" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.8">
+                v1.3.8
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.3.7" data-name="v1.3.7" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.7">
+                v1.3.7
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.3.6" data-name="v1.3.6" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.6">
+                v1.3.6
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.3.5" data-name="v1.3.5" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.5">
+                v1.3.5
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.3.4" data-name="v1.3.4" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.4">
+                v1.3.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.3.3" data-name="v1.3.3" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.3">
+                v1.3.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.3.2" data-name="v1.3.2" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.2">
+                v1.3.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.3.1" data-name="v1.3.1" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.1">
+                v1.3.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.3.0" data-name="v1.3.0" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.0">
+                v1.3.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.2.9" data-name="v1.2.9" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.2.9">
+                v1.2.9
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.2.8" data-name="v1.2.8" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.2.8">
+                v1.2.8
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.2.7" data-name="v1.2.7" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.2.7">
+                v1.2.7
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.2.6" data-name="v1.2.6" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.2.6">
+                v1.2.6
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.2.3" data-name="v1.2.3" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.2.3">
+                v1.2.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.2.2" data-name="v1.2.2" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.2.2">
+                v1.2.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.2.1" data-name="v1.2.1" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.2.1">
+                v1.2.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.2.0" data-name="v1.2.0" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.2.0">
+                v1.2.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.1.3" data-name="v1.1.3" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.1.3">
+                v1.1.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.1.2" data-name="v1.1.2" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.1.2">
+                v1.1.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.1.1" data-name="v1.1.1" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.1.1">
+                v1.1.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/vondear/RxTools/tree/v1.1" data-name="v1.1" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.1">
+                v1.1
+              </span>
+            </a>
+        </div>
+
+        <div class="select-menu-no-results">Nothing to show</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+        <a href="https://github.com/vondear/RxTools/pull/new/master" class="btn btn-sm new-pull-request-btn" data-pjax="" data-ga-click="Repository, new pull request, location:repo overview">
+          New pull request
+        </a>
+
+  <div class="breadcrumb">
+    
+  </div>
+</div>
+
+
+  
+
+
+  <div class="commit-tease js-details-container Details">
+    <span class="float-right">
+      Latest commit
+      <a class="commit-tease-sha" href="https://github.com/vondear/RxTools/commit/8b8bc49569424d6ddf64ac827caa48eb936edce8" data-pjax="">
+        8b8bc49
+      </a>
+      <span itemprop="dateModified"><relative-time datetime="2017-11-02T08:51:47Z" title="2017年11月2日 GMT+8 下午4:51">7 days ago</relative-time></span>
+    </span>
+
+
+      <span class="commit-author-section">
+          <a href="https://github.com/vondear" class="d-inline-block">
+            <img src="./v_files/17683613" width="20" height="20" class="avatar avatar-small" alt="@vondear">
+          </a>
+        
+  <a href="https://github.com/vondear" class="user-mention">vondear</a>
+
+      </span>
+
+      <a href="https://github.com/vondear/RxTools/commit/8b8bc49569424d6ddf64ac827caa48eb936edce8" class="message" data-pjax="true" title="更新配置">更新配置</a>
+
+
+  </div>
+
+
+
+<div class="file-wrap">
+
+  <a href="https://github.com/vondear/RxTools/tree/8b8bc49569424d6ddf64ac827caa48eb936edce8" class="d-none js-permalink-shortcut" data-hotkey="y">Permalink</a>
+
+  <table class="files js-navigation-container js-active-navigation-container" data-pjax="">
+
+
+    <tbody>
+      <tr class="warning include-fragment-error">
+        <td class="icon"><svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path></svg></td>
+        <td class="content" colspan="3">Failed to load latest commit information.</td>
+      </tr>
+
+        <tr class="js-navigation-item navigation-focus">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-directory" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./v_files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/vondear/RxTools/tree/master/.idea" class="js-navigation-open" id="95b55b1e3a304f4e340394a679893575-9687bc1c590df58e4df2026616dfee010a1e03ba" title=".idea">.idea</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/vondear/RxTools/commit/ea4067e8132d97be76d9b36806462373203d52f1" class="message" data-pjax="true" title="更新配置">更新配置</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-11-02T08:47:41Z" title="2017年11月2日 GMT+8 下午4:47">7 days ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-directory" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./v_files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/vondear/RxTools/tree/master/RxTools-library" class="js-navigation-open" id="fc0cc61f768c8f72f6ab1717dd9c16c3-a2586288fa2b42ac2b60f5ab972c32027afaa686" title="RxTools-library">RxTools-library</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/vondear/RxTools/commit/8b8bc49569424d6ddf64ac827caa48eb936edce8" class="message" data-pjax="true" title="更新配置">更新配置</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-11-02T08:51:47Z" title="2017年11月2日 GMT+8 下午4:51">7 days ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-directory" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./v_files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/vondear/RxTools/tree/master/app" class="js-navigation-open" id="d2a57dc1d883fd21fb9951699df71cc7-d02f809984bd4907559c9e40529f7c7a4eb55ce7" title="app">app</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/vondear/RxTools/commit/5064bbf890853e8faf70ada5c599828c542eb87c" class="message" data-pjax="true" title="更新配置">更新配置</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-11-02T08:48:35Z" title="2017年11月2日 GMT+8 下午4:48">7 days ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-directory" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./v_files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/vondear/RxTools/tree/master/gradle/wrapper" class="js-navigation-open" id="04f339d50ad8be9d7500be3f70cd5d57-e68fd599beed101f51715faf98e00209043210f5" title="This path skips through empty directories"><span class="simplified-path">gradle/</span>wrapper</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/vondear/RxTools/commit/ea4067e8132d97be76d9b36806462373203d52f1" class="message" data-pjax="true" title="更新配置">更新配置</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-11-02T08:47:41Z" title="2017年11月2日 GMT+8 下午4:47">7 days ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-directory" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./v_files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/vondear/RxTools/tree/master/screenshot" class="js-navigation-open" id="62c92ba585f74ecdbef4c4498a438984-5219da99f55826ad39b394ae9671d5cd04de11f5" title="screenshot">screenshot</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/vondear/RxTools/commit/b97dfd572183684d210906dbab43022e6a13bfdb" class="message" data-pjax="true" title="更新ReadMe">更新ReadMe</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-09T01:49:54Z" title="2017年10月9日 GMT+8 上午9:49">a month ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./v_files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/vondear/RxTools/blob/master/.gitignore" class="js-navigation-open" id="a084b794bc0759e7a6b77810e01874f2-39fb081a42a86ccf8f9cf99dbccc8bdf7c828bce" title=".gitignore">.gitignore</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/vondear/RxTools/commit/eaa2f51a50b267cf1c7e7a4329b38addac90ee05" class="message" data-pjax="true" title="文件目录完善
+
+文件目录完善">文件目录完善</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2016-10-05T22:22:07Z" title="2016年10月6日 GMT+8 上午6:22">a year ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./v_files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/vondear/RxTools/blob/master/LICENSE" class="js-navigation-open" id="9879d6db96fd29134fc802214163b95a-8dada3edaf50dbc082c9a125058f25def75e625a" itemprop="license" title="LICENSE">LICENSE</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/vondear/RxTools/commit/35ff6f4659f070de54f66212a6dde309c0541f27" class="message" data-pjax="true" title="Create LICENSE">Create LICENSE</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-09-30T03:26:14Z" title="2017年9月30日 GMT+8 上午11:26">a month ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./v_files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/vondear/RxTools/blob/master/README.md" class="js-navigation-open" id="04c6e90faac2675aa89e2176d2eec7d8-e4e89cdc9483a15cbe9c0e253b80d9addd00a6d5" title="README.md">README.md</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/vondear/RxTools/commit/443e41ac76f2bd6f656f2242f307a4e52d9c68f0" class="message" data-pjax="true" title="更新ReadMe">更新ReadMe</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-12T10:07:48Z" title="2017年10月12日 GMT+8 下午6:07">28 days ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./v_files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/vondear/RxTools/blob/master/RxTools.apk" class="js-navigation-open" id="6434155e24bb102a9226f925456a8905-9baa0eb885169f874dc758462c30fe96ae3c0330" title="RxTools.apk">RxTools.apk</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/vondear/RxTools/commit/739f1055f5f0c6421e8a809ccdf93abb9cdff746" class="message" data-pjax="true" title="更新安装包">更新安装包</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-09-27T09:38:51Z" title="2017年9月27日 GMT+8 下午5:38">a month ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./v_files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/vondear/RxTools/blob/master/build.gradle" class="js-navigation-open" id="c197962302397baf3a4cc36463dce5ea-a914e892d8e923032b7a2205cff094c4f85193a8" title="build.gradle">build.gradle</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/vondear/RxTools/commit/ea4067e8132d97be76d9b36806462373203d52f1" class="message" data-pjax="true" title="更新配置">更新配置</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-11-02T08:47:41Z" title="2017年11月2日 GMT+8 下午4:47">7 days ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./v_files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/vondear/RxTools/blob/master/gradle.properties" class="js-navigation-open" id="503f218d646c10f484fdc9d6315bf2e3-aac7c9b4614ccfde6c721f24994cf30885a791d0" title="gradle.properties">gradle.properties</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/vondear/RxTools/commit/eaa2f51a50b267cf1c7e7a4329b38addac90ee05" class="message" data-pjax="true" title="文件目录完善
+
+文件目录完善">文件目录完善</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2016-10-05T22:22:07Z" title="2016年10月6日 GMT+8 上午6:22">a year ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./v_files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/vondear/RxTools/blob/master/gradlew" class="js-navigation-open" id="36ffbd2ea7085cf19547193a7faf30c8-9d82f78915133e1c35a6ea51252590fb38efac2f" title="gradlew">gradlew</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/vondear/RxTools/commit/eaa2f51a50b267cf1c7e7a4329b38addac90ee05" class="message" data-pjax="true" title="文件目录完善
+
+文件目录完善">文件目录完善</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2016-10-05T22:22:07Z" title="2016年10月6日 GMT+8 上午6:22">a year ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./v_files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/vondear/RxTools/blob/master/gradlew.bat" class="js-navigation-open" id="c9b677a57d25a366595a35b2230d0502-8a0b282aa6885fb573c106b3551f7275c5f17e8e" title="gradlew.bat">gradlew.bat</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/vondear/RxTools/commit/eaa2f51a50b267cf1c7e7a4329b38addac90ee05" class="message" data-pjax="true" title="文件目录完善
+
+文件目录完善">文件目录完善</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2016-10-05T22:22:07Z" title="2016年10月6日 GMT+8 上午6:22">a year ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./v_files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/vondear/RxTools/blob/master/miku.png" class="js-navigation-open" id="055f95cd3cdb6982c4f088233b677474-ba246834ed055241f081ae51a3ac4d5fbbce9965" title="miku.png">miku.png</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/vondear/RxTools/commit/4baa83e7be8ae63d37dd4debba07d2811789cc4d" class="message" data-pjax="true" title="update 资源
+
+update 资源">update 资源</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2016-10-26T09:20:36Z" title="2016年10月26日 GMT+8 下午5:20">a year ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./v_files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/vondear/RxTools/blob/master/qrcode_apk.png" class="js-navigation-open" id="251bdc368936e82a1c461938e098cf86-5cbd0478ed29d04e5086c630daf3469e0c5c3a81" title="qrcode_apk.png">qrcode_apk.png</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/vondear/RxTools/commit/5b58bbaf3a52f390595ca6ba726a1df17919841e" class="message" data-pjax="true" title="更新二维码">更新二维码</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-05-06T06:08:47Z" title="2017年5月6日 GMT+8 下午2:08">6 months ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./v_files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/vondear/RxTools/blob/master/settings.gradle" class="js-navigation-open" id="88b7c47e47b8ee65263b6784b86fa0a7-434f1747f6ee857d5f0a18105f1d8cfef3890779" title="settings.gradle">settings.gradle</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/vondear/RxTools/commit/dce6055b0534224f1751b9bb8f41a92d2d79b10e" class="message" data-pjax="true" title="添加支付宝支付工具">添加支付宝支付工具</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-04-19T05:42:21Z" title="2017年4月19日 GMT+8 下午1:42">7 months ago</time-ago></span>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+
+  <div id="readme" class="readme boxed-group clearfix announce instapaper_body md">
+    <h3>
+      <svg aria-hidden="true" class="octicon octicon-book" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M3 5h4v1H3V5zm0 3h4V7H3v1zm0 2h4V9H3v1zm11-5h-4v1h4V5zm0 2h-4v1h4V7zm0 2h-4v1h4V9zm2-6v9c0 .55-.45 1-1 1H9.5l-1 1-1-1H2c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h5.5l1 1 1-1H15c.55 0 1 .45 1 1zm-8 .5L7.5 3H2v9h6V3.5zm7-.5H9.5l-.5.5V12h6V3z"></path></svg>
+      README.md
+    </h3>
+
+      <article class="markdown-body entry-content" itemprop="text"><h1><a href="https://github.com/vondear/RxTools#rxtools-------" aria-hidden="true" class="anchor" id="user-content-rxtools-------"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RxTools <a href="https://developer.android.com/index.html"><img src="./v_files/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f706c6174666f726d2d616e64726f69642d627269676874677265656e2e737667" alt="" data-canonical-src="https://img.shields.io/badge/platform-android-brightgreen.svg" style="max-width:100%;"></a>  <a href="https://android-arsenal.com/api?level=14"><img src="./v_files/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4150492d31342532422d626c75652e7376673f7374796c653d666c6174" alt="API" data-canonical-src="https://img.shields.io/badge/API-14%2B-blue.svg?style=flat" style="max-width:100%;"></a>  <a href="https://jitpack.io/#vondear/RxTools"><img src="./v_files/68747470733a2f2f6a69747061636b2e696f2f762f766f6e646561722f5278546f6f6c732e737667" alt="RxTools" data-canonical-src="https://jitpack.io/v/vondear/RxTools.svg" style="max-width:100%;"></a>  <a href="https://github.com/jiangzehui/polygonsview"><img src="./v_files/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f477261646c652d322e332e332d627269676874677265656e2e737667" alt="Twitter" data-canonical-src="https://img.shields.io/badge/Gradle-2.3.3-brightgreen.svg" style="max-width:100%;"></a></h1>
+<p><a href="./v_files/miku.png" target="_blank"><img src="./v_files/miku.png" alt="image" style="max-width:100%;"></a></p>
+<pre><code>工欲善其事必先利其器！
+Android开发过程经常需要用到各式各样的工具类，虽然大部分只需谷歌/百度一下就能找到；
+但是有时候急需使用却苦苦搜寻不到，于是整理了自己平常用到的工具类，以便以后的使用。
+</code></pre>
+<h2><a href="https://github.com/vondear/RxTools#如何使用它" aria-hidden="true" class="anchor" id="user-content-如何使用它"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>如何使用它</h2>
+<blockquote>
+<p>Step 1.先在 build.gradle(Project:XXXX) 的 repositories 添加::</p>
+</blockquote>
+<pre><code>allprojects {
+	repositories {
+		...
+		maven { url "https://jitpack.io" }
+	}
+}
+</code></pre>
+<blockquote>
+<p>Step 2. 然后在 build.gradle(Module:app) 的 dependencies 添加:</p>
+</blockquote>
+<pre><code>dependencies {
+       compile 'com.github.vondear:RxTools:v1.7.6'//请替换成上方 JitPack 最新的版本号
+}
+
+使用方法: 
+    在Application中初始化 RxTool.init(this);
+</code></pre>
+<h2><a href="https://github.com/vondear/RxTools#近期更新日志" aria-hidden="true" class="anchor" id="user-content-近期更新日志"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>近期更新日志</h2>
+<pre><code>v1.7.6.2 版本                : 更新RxCrashTool工具类
+v1.7.6.1 版本                : 完善若干工具类
+v1.7.6   版本                : 新增旋转引擎控件，修复已知BUG
+v1.7.5.9 版本                : 新增颜色选择控件
+v1.7.5.8 版本                : 新增蛛网等级控件
+v1.7.5.7 版本                : 完善RxImageTool，RxCrashTool工具类
+v1.7.5.6 版本                : 更新RxDialog衍生类
+v1.7.5.5 版本                : 整体调整，将工具类后缀Utils改成Tool
+v1.7.5.4 版本                : 移除Zbar包，更新Zxing包，优化若干工具类
+</code></pre>
+<h2><a href="https://github.com/vondear/RxTools#自定义控件介绍" aria-hidden="true" class="anchor" id="user-content-自定义控件介绍"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>自定义控件介绍</h2>
+<pre><code>RxAutoImageView             : ImageView实现自动左右移动效果
+RxBarCode                   : 条形码控件
+RxCaptcha                   : 验证码控件
+RxCardStackView             : 银行卡组叠加效果
+RxCobwebView                : 蛛网等级控件
+RxHeartLayout               : 直播爱心点赞控件
+RxNetSpeedView              : 显示当前网速控件
+RxPopupView                 : 自定义PopupWindow控件
+RxProgressBar               : 自定义进度条
+RxQRCode                    : 二维码控件
+RxRoundProgress             : 实现弧形进度条
+RxRulerWheelView            : 刻度横向滚动控件
+RxRunTextView               : TextView实现跑马灯效果
+RxScaleImageView            : 图片缩放控件
+RxSeatAirplane              : 飞机票选座控件
+RxSeatMovie                 : 电影院选座控件
+RxShineButton               : 点赞按钮
+RxShoppingView              : 商品数量加减控件
+RxSwipeCaptcha              : 滑块验证码控件(仿斗鱼验证码)
+RxTextAutoZoom              : 文字根据布局大小自动缩放效果
+RxTextViewVertical          : 单行文字上下滚动
+RxTextViewVerticalMore      : 多行文字上下滚动
+RxTitle                     : 自定义标题控件
+RxToast                     : Toast的封装
+</code></pre>
+<h2><a href="https://github.com/vondear/RxTools#dialog的封装rxdialog" aria-hidden="true" class="anchor" id="user-content-dialog的封装rxdialog"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dialog的封装（RxDialog）</h2>
+<pre><code>skipTools                   : 隐藏头部导航栏状态栏
+setFullScreen               : 文字根据布局大小自动缩放效果
+setFullScreenWidth          : 设置宽度match_parent
+setFullScreenHeight         : 设置高度为match_parent
+setOnWhole                  : 设置成全局Dialog
+</code></pre>
+<h2><a href="https://github.com/vondear/RxTools#activity的封装" aria-hidden="true" class="anchor" id="user-content-activity的封装"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Activity的封装</h2>
+<pre><code>ActivityBase                : 封装了FragmentActivity与Context成员参数
+ActivityBaseLocation        : 封装了定位操作的Activity
+ActivityCodeTool            : 封装了生成二维码与条形码的Activity
+ActivityScanerCode          : 封装了扫描二维码与条形码的Activity
+ActivityWebView             : 封装了可播放视频、获取网页标题并可根据内容自动适应大小WebView的Activity
+</code></pre>
+<h2><a href="https://github.com/vondear/RxTools#demo介绍" aria-hidden="true" class="anchor" id="user-content-demo介绍"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Demo介绍</h2>
+<pre><code>RxPhotoTool操作UCrop裁剪图片
+</code></pre>
+<p><a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_1.jpg" target="_blank"><img src="./v_files/screenshot_1.jpg" width="32%" style="max-width:100%;"></a> <a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_8.jpg" target="_blank"><img src="./v_files/screenshot_8.jpg" width="32%" style="max-width:100%;"></a> <a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_9.jpg" target="_blank"><img src="./v_files/screenshot_9.jpg" width="32%" style="max-width:100%;"></a></p>
+<pre><code>二维码与条形码的扫描与生成
+</code></pre>
+<p><a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_2.jpg" target="_blank"><img src="./v_files/screenshot_2.jpg" width="32%" style="max-width:100%;"></a>  <a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_3.jpg" target="_blank"><img src="./v_files/screenshot_3.jpg" width="32%" style="max-width:100%;"></a> <a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_10.jpg" target="_blank"><img src="./v_files/screenshot_10.jpg" width="32%" style="max-width:100%;"></a></p>
+<pre><code>常用的Dialog展示
+</code></pre>
+<p><a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_5.png" target="_blank"><img src="./v_files/screenshot_5.png" width="32%" style="max-width:100%;"></a> <a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_6.png" target="_blank"><img src="./v_files/screenshot_6.png" width="32%" style="max-width:100%;"></a> <a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_7.png" target="_blank"><img src="./v_files/screenshot_7.png" width="32%" style="max-width:100%;"></a></p>
+<p><a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_11.png" target="_blank"><img src="./v_files/screenshot_11.png" width="32%" style="max-width:100%;"></a> <a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_12.png" target="_blank"><img src="./v_files/screenshot_12.png" width="32%" style="max-width:100%;"></a> <a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_13.png" target="_blank"><img src="./v_files/screenshot_13.png" width="32%" style="max-width:100%;"></a></p>
+<pre><code>其他功能展示
+</code></pre>
+<p><a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_14.png" target="_blank"><img src="./v_files/screenshot_14.png" width="32%" style="max-width:100%;"></a> <a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_15.png" target="_blank"><img src="./v_files/screenshot_15.png" width="32%" style="max-width:100%;"></a> <a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_18.png" target="_blank"><img src="./v_files/screenshot_18.png" width="32%" style="max-width:100%;"></a></p>
+<p><a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_16.png" target="_blank"><img src="./v_files/screenshot_16.png" width="32%" style="max-width:100%;"></a> <a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_17.png" target="_blank"><img src="./v_files/screenshot_17.png" width="32%" style="max-width:100%;"></a> <a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_22.png" target="_blank"><img src="./v_files/screenshot_22.png" width="32%" style="max-width:100%;"></a></p>
+<p><a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_19.png" target="_blank"><img src="./v_files/screenshot_19.png" width="32%" style="max-width:100%;"></a> <a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_20.png" target="_blank"><img src="./v_files/screenshot_20.png" width="32%" style="max-width:100%;"></a> <a href="https://github.com/vondear/RxTools/blob/master/screenshot/screenshot_21.png" target="_blank"><img src="./v_files/screenshot_21.png" width="32%" style="max-width:100%;"></a></p>
+<h2><a href="https://github.com/vondear/RxTools#功能模块介绍" aria-hidden="true" class="anchor" id="user-content-功能模块介绍"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>功能模块介绍</h2>
+<blockquote>
+<p>常用功能 -&gt; RxTool.java</p>
+</blockquote>
+<pre><code>hideKeyboard                : 点击隐藏软键盘
+countDown                   : 倒计时(获取验证码倒计时)
+showToast                   : 封装了Toast的方法
+fixListViewHeight           : 手动计算出listView的高度，但是不再具有滚动效果
+createQRImage               : 生成二维码
+drawLinecode                : 生成条形码
+Md5                         : 生成MD5加密32位字符串
+delayToDo                   : 延时操作
+isFastClick                 : 是否快速点击
+setEdTwoDecimal             : EditText 首位小数点自动加零，最多两位小数
+setEditNumberPrefix         : EditText 前缀自动补零
+</code></pre>
+<blockquote>
+<p>Activity相关 -&gt;RxActivityTool</p>
+</blockquote>
+<pre><code>addActivity                 : 添加Activity 到栈
+currentActivity             : 获取当前的Activity（堆栈中最后一个压入的)
+finishActivity              : 结束当前Activity（堆栈中最后一个压入的）
+finishAllActivity           : 结束所有的Activity
+AppExit                     : 退出当前APP
+getActivityStack            : 获取Activity栈
+
+单个Activity操作
+isExistActivity             : 判断是否存在指定Activity
+launchActivity              : 打开指定的Activity
+skipActivity                : 跳转到指定Activity
+skipActivityAndFinish       : 跳转到指定Activity并关闭当前Activity
+skipActivityAndFinishAll    : 跳转后Finish之前所有的Activity
+skipActivityForResult       : activityForResult封装
+getLauncherActivity         : 获取launcher activity
+</code></pre>
+<blockquote>
+<p>动画相关 -&gt;RxAnimationTool</p>
+</blockquote>
+<pre><code>animationColorGradient      : 颜色渐变动画
+cardFilpAnimation           : 卡片翻转动画
+zoomIn                      : 缩小动画
+zoomOut                     : 放大动画
+</code></pre>
+<blockquote>
+<p>应用相关 -&gt;RxAppTool</p>
+</blockquote>
+<pre><code>InstallAPK                  : 安装APK
+installApp                  : 安装App（支持7.0）
+installAppSilent            : 静默安装App
+uninstallApp                : 卸载App
+uninstallAppSilent          : 静默卸载App
+isAppRoot                   : 判断App是否有root权限
+launchApp                   : 打开App
+getAppPackageName           : 获取App包名
+getAppDetailsSettings       : 获取App具体设置
+getAppName                  : 获取App名称
+getAppIcon                  : 获取App图标
+getAppPath                  : 获取App路径
+getAppVersionName           : 获取App版本号
+getAppVersionCode           : 获取App版本码
+isSystemApp                 : 判断App是否是系统应用
+isAppDebug                  : 判断App是否是Debug版本
+getAppSignature             : 获取App签名
+getAppSignatureSHA1         : 获取应用签名的的SHA1值
+isInstallApp                : 判断App是否安装
+getAppInfo                  : 获取当前App信息
+getBean                     : 得到AppInfo的Bean
+getAllAppsInfo              : 获取所有已安装App信息
+isAppBackground             : 判断当前App处于前台还是后台
+</code></pre>
+<blockquote>
+<p>状态栏相关 -&gt; RxBarTool.java</p>
+</blockquote>
+<pre><code>setTransparentStatusBar     : 设置透明状态栏(api大于19方可使用)
+hideStatusBar               : 隐藏状态栏
+noTitle                     : 隐藏Title
+FLAG_FULLSCREEN             : 设置全屏
+getStatusBarHeight          : 获取状态栏高度
+isStatusBarExists           : 判断状态栏是否存在
+getActionBarHeight          : 获取ActionBar高度
+showNotificationBar         : 显示通知栏
+hideNotificationBar         : 隐藏通知栏
+invokePanels                : 反射唤醒通知栏
+</code></pre>
+<blockquote>
+<p>广播工具类 -&gt;RxBroadcastTool</p>
+</blockquote>
+<pre><code>BroadcastReceiverNetWork    : 监听网络状态改变的广播
+initRegisterReceiverNetWork : 注册监听网络状态的广播
+</code></pre>
+<blockquote>
+<p>摄像机相关 -&gt; RxCameraTool.java</p>
+</blockquote>
+<pre><code>openFlashLight              : 打开闪光灯
+closeFlashLight             : 关闭闪光灯
+</code></pre>
+<blockquote>
+<p>剪贴板相关 -&gt; RxClipboardTool.java</p>
+</blockquote>
+<pre><code>copyText                    : 复制文本到剪贴板
+getText                     : 获取剪贴板的文本
+copyUri                     : 复制uri到剪贴板
+getUri                      : 获取剪贴板的uri
+copyIntent                  : 复制意图到剪贴板
+getIntent                   : 获取剪贴板的意图
+</code></pre>
+<blockquote>
+<p>常量相关 -&gt; RxConstTool.java</p>
+</blockquote>
+<pre><code>存储相关常量
+BYTE                        : Byte与Byte的倍数
+KB                          : KB与Byte的倍数
+MB                          : MB与Byte的倍数
+GB                          : GB与Byte的倍数
+
+时间相关常量
+MSEC                        : 毫秒与毫秒的倍数
+SEC                         : 秒与毫秒的倍数
+MIN                         : 分与毫秒的倍数
+HOUR                        : 时与毫秒的倍数
+DAY                         : 天与毫秒的倍数
+
+正则相关常量
+REGEX_MOBILE_SIMPLE         : 手机号（简单）
+REGEX_MOBILE_EXACT          : 手机号（精确）
+REGEX_TEL                   : 电话号码
+REGEX_IDCARD15              : 身份证号码15位
+REGEX_IDCARD18              : 身份证号码18位
+REGEX_EMAIL                 : 邮箱
+REGEX_URL                   : URL
+REGEX_CHZ                   : 汉字
+REGEX_USERNAME              : 用户名，取值范围为a-z,A-Z,0-9,"_",汉字，不能以"_"结尾,用户名必须是6-20位
+REGEX_DATE                  : yyyy-MM-dd格式的日期校验，已考虑平闰年
+REGEX_IP                    : IP地址
+</code></pre>
+<blockquote>
+<p>数据处理相关 -&gt; RxDataTool.java</p>
+</blockquote>
+<pre><code>数据的判断
+isNullString                : 判断字符串是否为空 为空即true
+isEmpty                     : 判断对象是否为空 为空即true
+isInteger                   : 判断字符串是否是整数
+isDouble                    : 判断字符串是否是浮点数
+isNumber                    : 判断字符串是否是数字
+getAstro                    : 根据日期判断星座
+
+数据的转换
+stringToInt                 : 字符串转换成整数 ,转换失败将会 return 0;
+stringToLong                : 字符串转换成long ,转换失败将会 return 0;
+stringToDouble              : 字符串转换成double ,转换失败将会 return 0;
+simpleDateFormat            : 将date转换成format格式的日期
+Date2Timestamp              :  将日期字符串 按照 指定的格式 转换成 DATE
+getDate                     : 时间戳  转换成 指定格式的日期
+string2Timestamp            : 将 yyyy年MM月dd日 转换成 时间戳
+getCurrentDateTime          : 获取当前日期时间 / 得到今天的日期
+getYestoryDate              : 得到昨天的日期
+formatTime                  : 视频时间 转换成 "mm:ss"
+formatSeconds               : "mm:ss" 转换成 视频时间
+getDaysByYearMonth          : 根据年 月 获取对应的月份 天数
+StringToInputStream         : 字符串转InputStream
+upperFirstLetter            : 首字母大写
+lowerFirstLetter            : 首字母小写
+reverse                     : 反转字符串
+toDBC                       : 转化为半角字符
+toSBC                       : 转化为全角字符
+oneCn2ASCII                 : 单个汉字转成ASCII码
+oneCn2PY                    : 单个汉字转成拼音
+getPYFirstLetter            : 获得第一个汉字首字母
+cn2PY                       : 中文转拼音
+bytes2HexString             : byteArr转hexString
+hexString2Bytes             : hexString转byteArr
+hex2Dec                     : hexChar转int
+chars2Bytes                 : charArr转byteArr
+bytes2Chars                 : byteArr转charArr
+byte2Size                   : 字节数转以unit为单位的size
+size2Byte                   : 以unit为单位的size转字节数
+byte2FitSize                : 字节数转合适大小
+input2OutputStream          : inputStream转outputStream
+output2InputStream          : outputStream转inputStream
+inputStream2Bytes           : inputStream转byteArr
+bytes2InputStream           : byteArr转inputStream
+outputStream2Bytes          : outputStream转byteArr
+bytes2OutputStream          : outputStream转byteArr
+inputStream2String          : inputStream转string按编码
+string2InputStream          : string转inputStream按编码
+outputStream2String         : outputStream转string按编码
+string2OutputStream         : string转outputStream按编码
+</code></pre>
+<blockquote>
+<p>设备工具类 -&gt; RxDeviceTool.java</p>
+</blockquote>
+<pre><code>屏幕相关
+getScreenHeight             : 得到屏幕的高
+getScreenWidth              : 得到屏幕的宽
+getScreenWidths             : 得到设备屏幕的宽度
+getScreenHeights            : 得到设备屏幕的高度
+getScreenDensity            : 得到设备的密度
+
+setLandscape                : 设置屏幕为横屏
+setPortrait                 : 设置屏幕为竖屏
+isLandscape                 : 判断是否横屏
+isPortrait                  : 判断是否竖屏
+getScreenRotation           : 获取屏幕旋转角度
+captureWithStatusBar        : 获取当前屏幕截图，包含状态栏
+captureWithoutStatusBar     : 获取当前屏幕截图，不包含状态栏
+getDisplayMetrics           : 获取DisplayMetrics对象
+isScreenLock                : 判断是否锁屏
+
+硬件信息相关
+getUniqueSerialNumber       : 获取手机唯一标识序列号
+getIMEI                     : 获取设备的IMEI
+getIMSI                     : 获取设备的IMSI
+getDeviceSoftwareVersion    : 获取设备的软件版本号
+getLine1Number              : 获取手机号
+getNetworkCountryIso        : 获取ISO标准的国家码，即国际长途区号
+getNetworkOperator          : 获取设备的 MCC + MNC
+getNetworkOperatorName      : 获取(当前已注册的用户)的名字
+getNetworkType              : 获取当前使用的网络类型
+getPhoneType                : 获取手机类型
+getSimCountryIso            : 获取SIM卡的国家码
+getSimOperator              : 获取SIM卡提供的移动国家码和移动网络码.5或6位的十进制数字
+getSimOperatorName          : 获取服务商名称
+getSimSerialNumber          : 获取SIM卡的序列号
+getSimState                 : 获取SIM的状态信息
+getSubscriberId             : 获取唯一的用户ID
+getVoiceMailNumber          : 获取语音邮件号码
+getAndroid_id               : 获取ANDROID ID
+getBuildBrandModel          : 获取设备型号，如MI2SC
+getBuildBrand               : 获取设备品牌名称
+getBuildMANUFACTURER        : 获取设备厂商，如Xiaomi
+getSerialNumber             : 获取序列号
+getAppVersionNo             : 获取App版本号
+getAppVersionName           : 获取App版本名称
+checkPermission             : 检查权限
+getDeviceInfo               : 获取设备信息
+ThroughArray                : 遍历LOG输出HashMap
+getMacAddress               : 获取设备MAC地址
+
+手机操作相关
+isPhone                     : 判断设备是否是手机
+getPhoneStatus              : 获取手机状态信息
+dial                        : 跳至填充好phoneNumber的拨号界面
+callPhone                   : 拨打电话
+sendSms                     : 发送短信
+getAllContactInfo           : 获取手机联系人
+getContantNum               : 打开手机联系人界面点击联系人后便获取该号码
+getAllSMS                   : 获取手机短信并保存到xml中
+</code></pre>
+<blockquote>
+<p>编码解码相关工具类 -&gt; RxEncodeTool.java</p>
+</blockquote>
+<pre><code>urlEncode                   : URL编码
+urlDecode                   : URL解码
+base64Encode                : Base64编码
+base64Encode2String         : Base64编码
+base64Decode                : Base64解码
+base64UrlSafeEncode         : Base64URL安全编码
+htmlEncode                  : Html编码
+htmlDecode                  : Html解码
+</code></pre>
+<blockquote>
+<p>加密解密相关的工具类 -&gt; RxEncryptTool.java</p>
+</blockquote>
+<pre><code>哈希加密相关
+encryptMD2ToString          : MD2加密
+encryptMD2                  : MD2加密
+encryptMD5ToString          : MD5加密
+encryptMD5                  : MD5加密
+encryptMD5File2String       : MD5加密文件
+encryptMD5File              : MD5加密文件
+encryptSHA1ToString         : SHA1加密
+encryptSHA1                 : SHA1加密
+encryptSHA224ToString       : SHA224加密
+encryptSHA224               : SHA224加密
+encryptSHA256ToString       : SHA256加密
+encryptSHA256               : SHA256加密
+encryptSHA384ToString       : SHA384加密
+encryptSHA384               : SHA384加密
+encryptSHA512ToString       : SHA512加密
+encryptSHA512               : SHA512加密
+encryptAlgorithm            : 对data进行algorithm算法加密
+
+DES加密相关
+DESTemplet                  : DES加密
+encryptDES                  : DES加密
+encryptDES2Base64           : DES加密后转为Base64编码
+encryptDES2HexString        : DES加密后转为16进制
+decryptBase64DES            : DES解密Base64编码密文
+decryptHexStringDES         : DES解密16进制密文
+decryptDES                  : DES解密
+
+3DES加密相关
+encrypt3DES2Base64          : 3DES加密后转为Base64编码
+encrypt3DES2HexString       : 3DES加密后转为16进制
+encrypt3DES                 : 3DES加密
+decryptBase64_3DES          : 3DES解密Base64编码密文
+decryptHexString3DES        : 3DES解密16进制密文
+decrypt3DES                 : 3DES解密
+
+AES加密相关
+encryptAES2Base64           : AES加密后转为Base64编码
+encryptAES2HexString        : AES加密后转为16进制
+encryptAES                  : AES加密
+decryptBase64AES            : AES解密Base64编码密文
+decryptHexStringAES         : AES解密16进制密文
+decryptAES                  : AES解密
+</code></pre>
+<blockquote>
+<p>图片信息操作相关 -&gt; RxExifTool.java</p>
+</blockquote>
+<pre><code>writeLatLonIntoJpeg         : 将经纬度信息写入JPEG图片文件里
+</code></pre>
+<blockquote>
+<p>文件操作相关 -&gt; RxFileTool.java</p>
+</blockquote>
+<pre><code>SD卡操作
+getRootPath                 : 得到SD卡根目录
+getCecheFolder              : 获取本应用图片缓存目录
+isSDCardEnable              : 判断SD卡是否打开
+getSDCardPath               : 获取SD卡路径
+getDataPath                 : 获取SD卡Data路径
+getFreeSpace                : 获取SD卡剩余空间
+sdCardIsAvailable           : SD卡是否可用
+
+fileExists                  : 文件或者文件夹是否存在
+delAllFile                  : 删除指定文件夹下所有文件, 不保留文件夹.
+copy                        : 文件复制(文件路径)
+copyFile                    : 复制文件(文件/InputStream流)
+copyFolder                  : 复制整个文件夹内
+renameFile                  : 重命名文件
+getSDCardAvailaleSize       : 获取磁盘可用空间
+getDirSize                  : 获取某个目录可用大小
+getFileAllSize              : 获取文件或者文件夹大小
+initFile                    : 创建一个文件
+initDirectory               : 创建一个文件夹
+saveFile                    : 保存InputStream流到文件
+saveFileUTF8                : 用UTF8保存一个文件
+getFileUTF8                 : 用UTF8读取一个文件
+getFileIntent               : 得到一个文件Intent
+getDiskCacheDir             : 获取缓存目录
+getDiskFileDir              : 获取缓存视频文件目录
+mergeFiles                  : 多个文件拼接合并
+getNativeM3u                : 将在线的m3u8替换成本地的m3u8
+write                       : 将字符串 保存成 文件
+TextToFile                  : 传入文件名以及字符串, 将字符串信息保存到文件中
+GetAllFileName              : 获取 搜索的路径 下的 所有 后缀 的文件
+readFileByLines             : 以行为单位读取文件，常用于读面向行的格式化文件
+getFileByPath               : 根据文件路径获取文件
+isFileExists                : 判断文件是否存在
+isDir                       : 判断是否是目录
+isFile                      : 判断是否是文件
+createOrExistsDir           : 判断目录是否存在，不存在则判断是否创建成功
+createOrExistsFile          : 判断文件是否存在，不存在则判断是否创建成功
+createFileByDeleteOldFile   : 判断文件是否存在，存在则在创建之前删除
+copyOrMoveDir               : 复制或移动目录
+copyOrMoveFile              : 复制或移动文件
+copyDir                     : 复制目录
+copyFile                    : 复制文件
+moveDir                     : 移动目录
+moveFile                    : 移动文件
+deleteDir                   : 删除目录
+deleteFile                  : 删除文件
+listFilesInDir              : 获取目录下所有文件
+listFilesInDirWithFilter    : 获取目录下所有后缀名为suffix的文件
+searchFileInDir             : 获取目录下指定文件名的文件包括子目录
+writeFileFromIS             : 将输入流写入文件
+writeFileFromString         : 将字符串写入文件
+readFile2List               : 指定编码按行读取文件到List
+readFile2String             : 指定编码按行读取文件到字符串中
+readFile2Bytes              : 指定编码按行读取文件到字符数组中
+getFileCharsetSimple        : 简单获取文件编码格式
+getFileLines                : 获取文件行数
+getFileSize                 : 获取文件大小
+getFileMD5                  : 获取文件的MD5校验码
+closeIO                     : 关闭IO
+getDirName                  : 获取全路径中的最长目录
+getFileName                 : 获取全路径中的文件名
+getFileNameNoExtension      : 获取全路径中的不带拓展名的文件名
+getFileExtension            : 获取全路径中的文件拓展名
+
+清除数据
+cleanInternalCache          : 清除内部缓存
+cleanInternalFiles          : 清除内部文件
+cleanInternalDbs            : 清除内部数据库
+cleanInternalDbByName       : 根据名称清除数据库
+cleanInternalSP             : 清除内部SP
+cleanExternalCache          : 清除外部缓存
+cleanCustomCache            : 清除自定义目录下的文件
+</code></pre>
+<blockquote>
+<p>Fragment操作相关 -&gt; RxFragmentTool.java</p>
+</blockquote>
+<pre><code>showFragment                : 显示当前Fragment
+</code></pre>
+<blockquote>
+<p>图像操作相关 -&gt; RxImageTool.java</p>
+</blockquote>
+<pre><code>单位转换
+dp2px                       : dp转px
+dip2px                      : dip转px
+px2dp                       : px转dp
+px2dip                      : px转dip
+sp2px                       : sp转px
+px2sp                       : px转sp
+
+图片处理相关
+bitmap2Bytes                : bitmap转byteArr
+bytes2Bitmap                : byteArr转bitmap
+drawable2Bitmap             : drawable转bitmap
+bitmap2Drawable             : bitmap转drawable
+drawable2Bytes              : drawable转byteArr
+bytes2Drawable              : byteArr转drawable
+calculateInSampleSize       : 计算采样大小
+getBitmap                   : 从文件/InputStream流/resId中获取bitmap
+scale                       : 缩放图片
+clip                        : 裁剪图片
+skew                        : 倾斜图片
+rotate                      : 旋转图片
+getRotateDegree             : 获取图片旋转角度
+toRound                     : 转为圆形图片
+toRoundCorner               : 转为圆角图片
+fastBlur                    : 快速模糊
+renderScriptBlur            : renderScript模糊图片(API大于17)
+stackBlur                   : stack模糊图片
+addFrame                    : 添加颜色边框
+addReflection               : 添加倒影
+addTextWatermark            : 添加文字水印
+addImageWatermark           : 添加图片水印
+toAlpha                     : 转为alpha位图
+toGray                      : 转为灰度图片
+save                        : 保存图片
+isImage                     : 根据文件名判断文件是否为图片
+getImageType                : 获取图片类型
+
+图片压缩有关
+compressByScale             : 按缩放压缩
+compressByQuality           : 按质量压缩
+compressBySampleSize        : 按采样大小压缩
+
+GetLocalOrNetBitmap         : 得到本地或者网络上的bitmap
+getColorByInt               : 将16进制的颜色转化成10进制
+FilpAnimation               : 界面翻转动画
+</code></pre>
+<blockquote>
+<p>Intent相关 -&gt; RxIntentTool.java</p>
+</blockquote>
+<pre><code>getInstallAppIntent         : 获取安装App(支持7.0)的意图
+getUninstallAppIntent       : 获取卸载App的意图
+getLaunchAppItent           : 获取打开App的意图
+getAppInfoIntent            : 获取App信息的意图
+getShareInfoIntent          : 获取App信息分享的意图
+getIntentByPackageName      : 根据包名获取意图
+getComponentNameIntent      : 获取其他应用的Intent
+</code></pre>
+<blockquote>
+<p>键盘相关 -&gt; RxKeyboardTool.java</p>
+</blockquote>
+<pre><code>hideSoftInput               : 动态隐藏软键盘
+showSoftInput               : 动态显示软键盘
+toggleSoftInput             : 切换键盘显示与否状态
+</code></pre>
+<blockquote>
+<p>定位相关 -&gt; RxLocationTool.java</p>
+</blockquote>
+<pre><code>isGpsEnabled                : 判断Gps是否可用
+isLocationEnabled           : 判断定位是否可用
+openGpsSettings             : 打开Gps设置界面
+registerLocation            : 注册Location
+unRegisterLocation          : 注销Location
+getAddress                  : 根据经纬度获取地理位置
+getCountryName              : 根据经纬度获取所在国家
+getLocality                 : 根据经纬度获取所在地
+getStreet                   : 根据经纬度获取所在街道
+gpsToDegree                 : GPS坐标 转换成 角度(例如 113.202222 转换成 113°12′8″)
+GPS84ToGCJ02                : 国际 GPS84 坐标系 转换成 [国测局坐标系] 火星坐标系 (GCJ-02)
+GCJ02ToGPS84                : [国测局坐标系] 火星坐标系 (GCJ-02) 转换成 国际 GPS84 坐标系
+GCJ02ToBD09                 : 火星坐标系 (GCJ-02) 转换成 百度坐标系 (BD-09)
+BD09ToGCJ02                 : 百度坐标系 (BD-09) 转换成 火星坐标系 (GCJ-02)
+BD09ToGPS84                 : 百度坐标系 (BD-09) 转换成 国际 GPS84 坐标系
+outOfChina                  : 判断经纬度是否在中国范围内
+</code></pre>
+<blockquote>
+<p>网络相关 -&gt; RxNetTool.java</p>
+</blockquote>
+<pre><code>ping                        : 判断是否有外网连接
+isWifiEnabled               : 判断WIFI是否打开
+is3rd                       : 判断是否为3G网络
+isWifi                      : 判断网络连接方式是否为WIFI
+isNetworkAvailable          : 判断网络连接是否可用
+isGpsEnabled                : GPS是否打开
+getNetWork                  : 获取当前网络状态
+openWirelessSettings        : 打开网络设置界面
+getActiveNetworkInfo        : 获取活动网络信息
+isAvailable                 : 判断网络是否可用
+isConnected                 : 判断网络是否连接
+is4G                        : 判断网络是否是4G
+isWifiConnected             : 判断wifi是否连接状态
+getNetworkOperatorName      : 获取移动网络运营商名称
+getPhoneType                : 获取移动终端类型
+getNetWorkType              : 获取当前的网络类型
+getNetWorkTypeName          : 获取当前的网络类型名称
+</code></pre>
+<blockquote>
+<p>权限请求操作工具类 -&gt; RxPermissionsTool.java</p>
+</blockquote>
+<pre><code>addPermission               : 添加权限
+initPermission              : 请求权限
+</code></pre>
+<blockquote>
+<p>图片获取相关 -&gt; RxPhotoTool.java</p>
+</blockquote>
+<pre><code>openCameraImage             : 调用系统相机
+openLocalImage              : 调用系统相册
+cropImage                   : 裁剪图片
+createImagePathUri          : 创建一条图片地址uri,用于保存拍照后的照片
+getRealFilePath             : 获取图片uri的真实文件地址
+</code></pre>
+<blockquote>
+<p>拍照相关 -&gt; RxPictureTool.java</p>
+</blockquote>
+<pre><code>getOpenCameraIntent         : 获取打开照程序界面的Intent
+getImagePickerIntent        : 获取[跳转至相册选择界面,并跳转至裁剪界面，可以指定是否缩放裁剪区域]的Intent
+getCameraIntent             : 获取[跳转至相册选择界面,并跳转至裁剪界面，默认可缩放裁剪区域]的Intent
+getCropImageIntent          : 获取[跳转至裁剪界面]的Intent
+getChoosedImage             : 获得选中相册的图片
+getChoosedImagePath         : 获得选中相册的图片路径
+getTakePictureFile          : 获取拍照之后的照片文件（JPG格式）
+</code></pre>
+<blockquote>
+<p>进程相关 -&gt; RxProcessTool.java</p>
+</blockquote>
+<pre><code>getForegroundProcessName    : 获取前台线程包名
+getAllBackgroundProcesses   : 获取后台服务进程
+killAllBackgroundProcesses  : 杀死所有后台服务进程
+killBackgroundProcesses     : 杀死后台服务进程
+</code></pre>
+<blockquote>
+<p>正则判断相关 -&gt; RxRegTool.java</p>
+</blockquote>
+<pre><code>正则判断
+isMobile                    : 判断是否为真实手机号
+isMobileSimple              : 验证手机号（简单）
+isMobileExact               : 验证手机号（精确）
+isTel                       : 验证电话号码
+isBankCard                  : 验证银卡卡号
+validateIdCard              : 15位和18位身份证号码的正则表达式 身份证验证
+isIDCard15                  : 验证身份证号码15位
+isIDCard18                  : 验证身份证号码18位
+isEmail                     : 验证邮箱
+isURL                       : 验证URL
+isChz                       : 验证汉字
+isUsername                  : 验证用户名
+isDate                      : 验证yyyy-MM-dd格式的日期校验，已考虑平闰年
+isIP                        : 验证IP地址
+isMatch                     : string是否匹配regex
+stringFormat                : String.Format方法的封装
+
+hideMobilePhone             : 隐藏手机中间4位号码
+formatCard                  : 格式化银行卡 隐藏中间8位号码
+formatCardEndFour           : 获取银行卡后四位
+format2Decimals             : 将字符串格式化为带两位小数的字符串
+</code></pre>
+<blockquote>
+<p>Service相关 -&gt; RxServiceTool.java</p>
+</blockquote>
+<pre><code>isRunningService            : 获取服务是否开启
+</code></pre>
+<blockquote>
+<p>Shell相关 -&gt; RxShellTool.java</p>
+</blockquote>
+<pre><code>isRoot                      : 判断设备是否root
+execCmd                     : 是否是在root下执行命令
+</code></pre>
+<blockquote>
+<p>SharedPreferences相关 -&gt; RxSPTool.java</p>
+</blockquote>
+<pre><code>putContent                  : 单条方式存入SharedPreferences
+getContent                  : 获取标记为tag的值
+putJSONCache                : 存放JSON缓存数据
+readJSONCache               : 读取JSON缓存数据
+clearPreference             : 清除指定的信息(若为null 则删除name下所有的键值)
+</code></pre>
+<blockquote>
+<p>线程池相关工具类 -&gt; RxThreadPoolTool.java</p>
+</blockquote>
+<pre><code>RxThreadPoolTool            : ThreadPoolTool构造函数
+execute                     : 在未来某个时间执行给定的命令(链表)
+shutDown                    : 待以前提交的任务执行完毕后关闭线程池
+shutDownNow                 : 试图停止所有正在执行的活动任务
+isShutDown                  : 判断线程池是否已关闭
+isTerminated                : 关闭线程池后判断所有任务是否都已完成
+awaitTermination            : 请求关闭、发生超时或者当前线程中断
+submit                      : 提交一个Runnable任务用于执行
+invokeAll                   : 执行给定的任务
+invokeAny                   : 执行给定的任务
+schedule                    : 延迟执行Runnable命令
+scheduleWithFixedRate       : 延迟并循环执行命令
+scheduleWithFixedDelay      : 延迟并以固定休息时间循环执行命令
+</code></pre>
+<blockquote>
+<p>时间相关 -&gt; RxTimeTool.java</p>
+</blockquote>
+<pre><code>milliseconds2String         : 将时间戳转为时间字符串
+string2Milliseconds         : 将时间字符串转为时间戳
+string2Date                 : 将时间字符串转为Date类型
+date2String                 : 将Date类型转为时间字符串
+date2Milliseconds           : 将Date类型转为时间戳
+milliseconds2Date           : 将时间戳转为Date类型
+milliseconds2Unit           : 毫秒时间戳单位转换
+getIntervalTime             : 获取两个时间差
+getCurTimeMills             : 获取当前时间戳
+getCurTimeString            : 获取当前时间字符串
+getCurTimeDate              : 获取当前时间
+getIntervalByNow            : 获取与当前时间的差
+isLeapYear                  : 判断闰年
+</code></pre>
+<blockquote>
+<p>压缩相关 -&gt; RxZipTool.java</p>
+</blockquote>
+<pre><code>zipFiles                    : 批量压缩文件
+zipFile                     : 压缩文件
+unzipFiles                  : 批量解压文件
+unzipFile                   : 解压文件
+unzipFileByKeyword          : 解压带有关键字的文件
+getFilesPath                : 获取压缩文件中的文件路径链表
+getComments                 : 获取压缩文件中的注释链表
+getEntries                  : 获取压缩文件中的文件对象
+</code></pre>
+<h2><a href="https://github.com/vondear/RxTools#支付工具类" aria-hidden="true" class="anchor" id="user-content-支付工具类"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>支付工具类</h2>
+<h3><a href="https://github.com/vondear/RxTools#支付宝支付" aria-hidden="true" class="anchor" id="user-content-支付宝支付"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>支付宝支付:</h3>
+<pre><code>    AliPayTools.aliPay(mContext,
+        APP_ID,//支付宝分配的APP_ID
+        isRSA2,//是否是 RSA2 加密
+        RSA_PRIVATE,// RSA 或 RSA2 字符串
+        new AliPayModel(order_id,//订单ID (唯一)
+                        money,//价格
+                        name,//商品名称
+                        detail),//商品描述详情 (用于显示在 支付宝 的交易记录里)
+        new onRequestListener() {
+            @Override
+            public void onSuccess(String s) {RxToast.success("支付成功");}
+                                                                                        
+            @Override
+            public void onError(String s) {RxToast.error("支付失败");
+        }
+    });
+</code></pre>
+<h3><a href="https://github.com/vondear/RxTools#微信支付" aria-hidden="true" class="anchor" id="user-content-微信支付"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>微信支付:</h3>
+<blockquote>
+<p>第一种情景: 支付操作全部在APP端完成(包括统一下单接口) 即支付过程无后台参与</p>
+</blockquote>
+<pre><code>    WechatPayTools.wechatPayUnifyOrder(mContext,
+        WX_APP_ID, //微信分配的APP_ID
+        WX_PARTNER_ID, //微信分配的 PARTNER_ID (商户ID)
+        WX_PRIVATE_KEY, //微信分配的 PRIVATE_KEY (私钥)
+        new WechatModel(order_id, //订单ID (唯一)
+                        money, //价格
+                        name, //商品名称
+                        detail), //商品描述详情
+        new onRequestListener() {
+            @Override
+            public void onSuccess(String s) {}
+
+            @Override
+            public void onError(String s) {}
+    });
+</code></pre>
+<blockquote>
+<p>第二种情景: 从后台获取到 prepayid（预支付订单ID） 之后,在App端进行支付操作</p>
+</blockquote>
+<pre><code>    wechatPayApp(mContext,
+        app_id, //微信分配的APP_ID
+        partner_id, //微信分配的 PARTNER_ID (商户ID)
+        wx_private_key, //微信分配的 PRIVATE_KEY (私钥)
+        prepay_id, //订单ID (唯一)
+        new onRequestListener() {
+            @Override
+            public void onSuccess(String s) {}
+
+            @Override
+            public void onError(String s) {}
+    });
+</code></pre>
+<h3><a href="https://github.com/vondear/RxTools#微信分享" aria-hidden="true" class="anchor" id="user-content-微信分享"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>微信分享:</h3>
+<blockquote>
+<p>分享网页</p>
+</blockquote>
+<pre><code>    WechatShareTools.init(mContext, WX_APP_ID);//初始化
+    
+    String url = "https://github.com/vondear/RxTools";//网页链接        
+    
+    String description = "工欲善其事必先利其器！";//描述       
+    
+    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);//获取Bitmap
+    byte[] bitmapByte = RxImageTool.bitmap2Bytes(bitmap, Bitmap.CompressFormat.PNG);//将 Bitmap 转换成 byte[]
+    
+    mWechatShareModel = new WechatShareModel(url, "APP名称", description, bitmapByte);
+    
+    //Friend 分享微信好友,Zone 分享微信朋友圈,Favorites 分享微信收藏
+    WechatShareTools.shareURL(mWechatShareModel, WechatShareTools.SharePlace.Friend);//分享操作
+</code></pre>
+<h2><a href="https://github.com/vondear/RxTools#apk文件" aria-hidden="true" class="anchor" id="user-content-apk文件"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>APK文件</h2>
+<p>扫描二维码 或者 点击二维码 下载</p>
+<p><a href="https://github.com/vondear/RxTools/raw/master/RxTools.apk"><img src="./v_files/qrcode_apk.png" alt="RxTools" style="max-width:100%;"></a></p>
+<h4><a href="https://github.com/vondear/RxTools#闲聊群-435644020" aria-hidden="true" class="anchor" id="user-content-闲聊群-435644020"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>闲聊群 435644020</h4>
+</article>
+  </div>
+
+
+  </div>
+  <div class="modal-backdrop js-touch-events"></div>
+</div>
+
+    </div>
+  </div>
+
+  </div>
+
+      
+<div class="footer container-lg px-3" role="contentinfo">
+  <div class="position-relative d-flex flex-justify-between py-6 mt-6 f6 text-gray border-top border-gray-light ">
+    <ul class="list-style-none d-flex flex-wrap ">
+      <li class="mr-3">© 2017 <span title="0.22248s from unicorn-614099906-7x24d">GitHub</span>, Inc.</li>
+        <li class="mr-3"><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
+        <li class="mr-3"><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
+        <li class="mr-3"><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+        <li class="mr-3"><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+        <li><a href="https://help.github.com/" data-ga-click="Footer, go to help, text:help">Help</a></li>
+    </ul>
+
+    <a href="https://github.com/" aria-label="Homepage" class="footer-octicon" title="GitHub">
+      <svg aria-hidden="true" class="octicon octicon-mark-github" height="24" version="1.1" viewBox="0 0 16 16" width="24"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+</a>
+    <ul class="list-style-none d-flex flex-wrap ">
+        <li class="mr-3"><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact GitHub</a></li>
+      <li class="mr-3"><a href="https://developer.github.com/" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li class="mr-3"><a href="https://training.github.com/" data-ga-click="Footer, go to training, text:training">Training</a></li>
+      <li class="mr-3"><a href="https://shop.github.com/" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+        <li class="mr-3"><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
+
+    </ul>
+  </div>
+</div>
+
+
+
+  <div id="ajax-error-message" class="ajax-error-message flash flash-error">
+    <svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path></svg>
+    <button type="button" class="flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
+      <svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+    </button>
+    You can't perform that action at this time.
+  </div>
+
+
+    
+    <script crossorigin="anonymous" integrity="sha256-aYJ/d+JXxuLuXIFrxdvLB5E+We56kLV9j47KbyM1G7Y=" src="./v_files/frameworks-69827f77e257c6e2ee5c816bc5dbcb07913e59ee7a90b57d8f8eca6f23351bb6.js"></script>
+    
+    <script async="async" crossorigin="anonymous" integrity="sha256-fpiFyAQXz5MlwdmOAAWrrZX/Q//e6ay3mfZXgN2/MRs=" src="./v_files/github-7e9885c80417cf9325c1d98e0005abad95ff43ffdee9acb799f65780ddbf311b.js"></script>
+    
+    
+    
+    
+  <div class="js-stale-session-flash stale-session-flash flash flash-warn flash-banner d-none">
+    <svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path></svg>
+    <span class="signed-in-tab-flash">You signed in with another tab or window. <a href="https://github.com/vondear/RxTools">Reload</a> to refresh your session.</span>
+    <span class="signed-out-tab-flash">You signed out in another tab or window. <a href="https://github.com/vondear/RxTools">Reload</a> to refresh your session.</span>
+  </div>
+  <div class="facebox" id="facebox" style="display:none;">
+  <div class="facebox-popup">
+    <div class="facebox-content" role="dialog" aria-labelledby="facebox-header" aria-describedby="facebox-description">
+    </div>
+    <button type="button" class="facebox-close js-facebox-close" aria-label="Close modal">
+      <svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+    </button>
+  </div>
+</div>
+
+
+  
+
+
+</body></html>

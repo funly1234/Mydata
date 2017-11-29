@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://www.cnblogs.com/gavanwanggw/p/7093105.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/bundle-marvin2-green.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/bundle-marvin2-green-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/gavanwanggw/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/gavanwanggw/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/gavanwanggw/wlwmanifest.xml">
+<script async="" src="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/analytics.js"></script><script src="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'gavanwanggw', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<div id="top">
+
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/gavanwanggw/">gavanwanggw</a></h1>
+<p id="tagline"></p>
+</div>
+<div id="leftmenu">
+
+	
+<h3>导航</h3>
+<ul>
+	<li>
+		<a id="blog_nav_sitehome" href="http://www.cnblogs.com/">博客园</a>
+	</li><li><a id="blog_nav_myhome" href="http://www.cnblogs.com/gavanwanggw/">首页</a></li>
+	<li><a id="blog_nav_newpost" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li>
+		<a id="blog_nav_contact" accesskey="9" rel="nofollow" href="https://msg.cnblogs.com/send/gavanwanggw">联系</a>
+	</li><li>
+		<a id="blog_nav_rss" href="http://www.cnblogs.com/gavanwanggw/rss">订阅</a><a id="blog_nav_rss_image" href="http://www.cnblogs.com/gavanwanggw/rss"><img src="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/xml.gif" alt="订阅"></a>
+	</li><li>
+		<a id="blog_nav_admin" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+
+	<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+	
+	
+	<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/gavanwanggw/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_recentposts" class="sidebar-block">
+<h3 class="catListTitle">最新随笔</h3>
+<div class="RecentComment" id="RecentPosts">
+<ul style="word-break:break-all">
+<li><a href="http://www.cnblogs.com/gavanwanggw/p/7403981.html">1. T-SQL注意事项（1）——SET NOCOUNT ON的去与留</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/p/7403719.html">2. Tomcat 部署多个项目出现错误</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/p/7403565.html">3. 十进制小数和二进制小数之间的转换</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/p/7403241.html">4. sed 替换多个空格为一个</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/p/7402846.html">5. HDU  1022.Train Problem I【栈的应用】【8月19】</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/p/7402674.html">6. CodeForces - 344E Read Time (模拟题 + 二分法)</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/p/7401568.html">7. android学习十二（android的Content Provider(内容提供器)的使用）</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/p/7401423.html">8. SQLServer Always On FCI 脑裂及可疑状态修复</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/p/7401137.html">9. Android 蓝牙开发</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/p/7400785.html">10. Android Studio使用Lint进行代码检查</a></li>
+</ul>
+</div>
+</div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories"></div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/gavanwanggw/p/7191403.html#3753354">1. Re:编程之美 之 让CPU占用率听你指挥</a></li>
+        <li class="recent_comment_body">来一个优美的曲线吧!</li>
+        <li class="recent_comment_author">--SoftwareTeacher</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/gavanwanggw/p/7117127.html#3747352">2. Re:我们的一个已投产项目的高可用数据库实战 - mongo 副本集的搭建具体过程</a></li>
+        <li class="recent_comment_body">mark</li>
+        <li class="recent_comment_author">--禅道</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/gavanwanggw/p/6992377.html#3731523">3. Re:生成CPU使用率 sin 曲线  控制cpu使用率 编程之美</a></li>
+        <li class="recent_comment_body">既然喜欢编程之美，不妨看看构建之法  <a href="http://www.cnblogs.com/gavanwanggw/p/7093105.html" target="_blank"></a></li>
+        <li class="recent_comment_author">--SoftwareTeacher</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/gavanwanggw/p/6745008.html#3681294">4. Re:[moses笔记]编译含有nplm的moses解码器</a></li>
+        <li class="recent_comment_body">做实验　需要用到这个　也一样boost 确定没有问题　编译总是出现<br>/usr/bin/ld: 找不到 -lnplm　　这个错误　请问博主遇到过吗</li>
+        <li class="recent_comment_author">--sheng111222</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/gavanwanggw/p/6743774.html">1. MFC中获取各个窗口之间的句柄或者指针对象的方法(1694)</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/p/6730169.html">2. Android  混淆打包不混淆第三方jar包(1071)</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/p/7019898.html">3. C/C++获取本地时间常见方法(903)</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/p/6721384.html">4. ARP协议具体解释之Gratuitous ARP（免费ARP）(890)</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/p/7048121.html">5. 制作自己的特色PE----Mr.Zhang(610)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/gavanwanggw/p/6745008.html">1. [moses笔记]编译含有nplm的moses解码器(1)</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/p/6992377.html">2. 生成CPU使用率 sin 曲线  控制cpu使用率 编程之美(1)</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/p/7191403.html">3. 编程之美 之 让CPU占用率听你指挥(1)</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/p/7117127.html">4. 我们的一个已投产项目的高可用数据库实战 - mongo 副本集的搭建具体过程(1)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/gavanwanggw/p/7019898.html">1. C/C++获取本地时间常见方法(1)</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/p/7235965.html">2. Django开发微信公众平台(1)</a></li><li><a href="http://www.cnblogs.com/gavanwanggw/p/7117127.html">3. 我们的一个已投产项目的高可用数据库实战 - mongo 副本集的搭建具体过程(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+
+</div>
+<div id="main">
+	
+<div id="post_detail">
+	<div class="post">
+		<h2>
+			<a id="cb_post_title_url" href="http://www.cnblogs.com/gavanwanggw/p/7093105.html">eclipse转Android studio遇到的那些坑</a>
+		</h2>
+		<div id="cnblogs_post_body"><div id="article_content" class="article_content tracking-ad" data-mod="popu_307" data-dsm="post">
+
+<div><span style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif"><span style="color: rgb(34,34,34)">&nbsp; &nbsp; &nbsp; &nbsp;公司项目有导入10多个libray，还有涉及ndk，转</span></span>Android studio时碰到不少问题。前后大概花费5个工作日，中间各种奇葩bug，各种编译出错，非常多还有没错误提示。一度想过放弃，如不是没有选择，可能真要放弃了。最后成功转型还是非常值得的。现记录下遇到的问题，给有须要的人。</div>
+<div><span style="color: rgb(34,34,34); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px">1.</span></div>
+<div><span style="color: rgb(34,34,34); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px"><img src="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/20160325163726650" alt=""><br>
+</span></div>
+<div><img alt="" style="height: auto"></div>
+<div>解决：</div>
+<div><span style="color: rgb(34,34,34); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px">在manifest里面，某个activity下多写了一句intent-filter，里面没有内容，删了之后就没错误了。<p></p><p></p></span></div>
+<div><br>
+</div>
+<div>2.</div>
+<div><img src="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/20160325163716404" alt=""><br>
+</div>
+<div>错误例如以下：</div>
+<div><img alt="" style="height: auto"></div>
+<div>解决：</div>
+<div>
+<h3 style="border: 0px; margin: 0px; padding: 0px; font-size: 1.1em; color: rgb(51,51,51); font-family: &quot;lucida grande&quot;, &quot;lucida sans unicode&quot;, lucida, helvetica, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif">
+<span style="border: 0px; margin: 0px; padding: 0px"><span style="border: 0px; margin: 0px; padding: 0px; font-size: 14px">使用NDK时。NDK not configured</span></span></h3>
+<blockquote style="border: none; margin: 0px 0px 0px 40px; padding: 0px; color: rgb(0,102,0); font-size: 14px; background-color: rgb(244,245,247); font-family: &quot;lucida grande&quot;, &quot;lucida sans unicode&quot;, lucida, helvetica, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif">
+<span style="border: 0px; margin: 0px; padding: 0px; white-space: pre"><a target="_blank" href="http://stackoverflow.com/questions/20674650/how-to-configure-ndk-with-android-gradle-plugin-0-7">http://stackoverflow.com/questions/20674650/how-to-configure-ndk-with-android-gradle-plugin-0-7</a></span><br>
+在NDK libproject下的 build.gradle中加入</blockquote>
+<div style="border: 0px; margin: 0px; padding: 0px; color: rgb(51,51,51); font-family: &quot;lucida grande&quot;, &quot;lucida sans unicode&quot;, lucida, helvetica, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px">
+<div style="border: 0px; padding: 0px; width: 847.5px; margin: 1em 0px !important; position: relative !important; overflow: auto !important; font-size: 1em !important">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-spacing: 0px; border: 1px rgb(51,51,51); font-family: verdana, arial, sans-serif; font-size: 11px; width: 830px; margin: 0px !important; padding: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; min-height: inherit !important">
+<tbody>
+<tr style="border: 0px !important; margin: 0px !important; padding: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-family: Consolas, &quot;Bitstream Vera Sans Mono&quot;, &quot;Courier New&quot;, Courier, monospace !important; font-size: 1em !important; min-height: inherit !important">
+<td style="padding: 8px; border: 1px solid rgb(51,51,51); width: 5.783132530120482%; margin: 0px !important; font-size: 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; font-family: Consolas, &quot;Bitstream Vera Sans Mono&quot;, &quot;Courier New&quot;, Courier, monospace !important; min-height: inherit !important; color: rgb(175,175,175) !important">
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+1</div>
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+2</div>
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+3</div>
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+4</div>
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+5</div>
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+6</div>
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+7</div>
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+8</div>
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+9</div>
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+10</div>
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+11</div>
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+12</div>
+</td>
+<td style="padding: 8px; border: 1px solid rgb(51,51,51); width: 94.09638554216868%; margin: 0px !important; font-size: 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; font-family: Consolas, &quot;Bitstream Vera Sans Mono&quot;, &quot;Courier New&quot;, Courier, monospace !important; min-height: inherit !important">
+<div style="border: 0px !important; margin: 0px !important; padding: 0px !important; width: auto !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: relative !important; right: auto !important; top: auto !important; vertical-align: baseline !important; font-size: 1em !important; min-height: inherit !important">
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">productFlavors
+ {</code></div>
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">arm
+ {</code></div>
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">ndk
+ {</code></div>
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">abiFilters</code><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important; color: blue !important">"armeabi"</code><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">,</code><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important; color: blue !important">"armeabi-v7a"</code></div>
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">}</code></div>
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">}</code></div>
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">x86
+ {</code></div>
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">ndk
+ {</code></div>
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">abiFilter</code><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important; color: blue !important">"x86"</code></div>
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">}</code></div>
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">}</code></div>
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">}</code></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p style="border: 0px; margin-top: 0px; margin-bottom: 22px; padding-top: 0px; padding-bottom: 0px; color: rgb(51,51,51); font-family: &quot;lucida grande&quot;, &quot;lucida sans unicode&quot;, lucida, helvetica, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px">
+或者</p>
+<div style="border: 0px; margin: 0px; padding: 0px; font-size: 14px">
+<div style="border: 0px; padding: 0px; width: 847.5px; margin: 1em 0px !important; position: relative !important; overflow: auto !important; font-size: 1em !important">
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-spacing: 0px; border: 1px rgb(51,51,51); font-size: 11px; width: 830px; margin: 0px !important; padding: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; min-height: inherit !important">
+<tbody>
+<tr style="border: 0px !important; margin: 0px !important; padding: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important">
+<td style="padding: 8px; border: 1px solid rgb(51,51,51); width: 5.0602409638554215%; margin: 0px !important; font-size: 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; font-family: Consolas, &quot;Bitstream Vera Sans Mono&quot;, &quot;Courier New&quot;, Courier, monospace !important; min-height: inherit !important; color: rgb(175,175,175) !important">
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+1</div>
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+2</div>
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+3</div>
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+4</div>
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+5</div>
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+6</div>
+<div style="border-width: 0px 3px 0px 0px !important; border-right-style: solid !important; border-right-color: rgb(108,226,108) !important; margin: 0px !important; padding: 0px 0.5em 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; text-align: right !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+7</div>
+</td>
+<td style="padding: 8px; border: 1px solid rgb(51,51,51); width: 94.81927710843372%; margin: 0px !important; font-size: 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; min-height: inherit !important">
+<div style="border: 0px !important; margin: 0px !important; padding: 0px !important; width: auto !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: relative !important; right: auto !important; top: auto !important; vertical-align: baseline !important; font-size: 1em !important; min-height: inherit !important">
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-family: Consolas, &quot;Bitstream Vera Sans Mono&quot;, &quot;Courier New&quot;, Courier, monospace !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">buildTypes
+ {</code></div>
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-family: Consolas, &quot;Bitstream Vera Sans Mono&quot;, &quot;Courier New&quot;, Courier, monospace !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<span style="color: rgb(51,51,51)"><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code></span><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">debug
+ {</code></div>
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-family: Consolas, &quot;Bitstream Vera Sans Mono&quot;, &quot;Courier New&quot;, Courier, monospace !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<span style="color: rgb(51,51,51)"><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code></span><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">ndk
+ {</code></div>
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-family: Consolas, &quot;Bitstream Vera Sans Mono&quot;, &quot;Courier New&quot;, Courier, monospace !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<span style="color: rgb(51,51,51)"><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code></span><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">abiFilters</code><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important; color: blue !important">"armeabi"</code><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">,</code><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important; color: blue !important">"armeabi-v7a"</code></div>
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-family: Consolas, &quot;Bitstream Vera Sans Mono&quot;, &quot;Courier New&quot;, Courier, monospace !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<span style="color: rgb(51,51,51)"><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code></span><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">}</code></div>
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-family: Consolas, &quot;Bitstream Vera Sans Mono&quot;, &quot;Courier New&quot;, Courier, monospace !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<span style="color: rgb(51,51,51)"><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code></span><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">}</code></div>
+<div style="border: 0px !important; margin: 0px !important; padding: 0px 1em !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; font-size: 1em !important; min-height: inherit !important; white-space: pre !important">
+<div><span style="font-family: Consolas, &quot;Bitstream Vera Sans Mono&quot;, &quot;Courier New&quot;, Courier, monospace"><span style="color: rgb(51,51,51)"><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">&nbsp;</code></span><code style="font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; margin: 0px; padding: 0.2em 0px; border: 0px !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; outline: 0px !important; overflow: visible !important; position: static !important; right: auto !important; top: auto !important; vertical-align: baseline !important; width: auto !important; min-height: inherit !important">}</code></span></div>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div><br>
+</div>
+<div>3.</div>
+<div><img src="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/20160325163742837" alt=""><br>
+</div>
+<div><img alt="" style="height: auto"></div>
+<div>
+<p style="margin-top: 0px; margin-bottom: 1em; padding-top: 0px; padding-bottom: 0px; border: 0px; font-size: 15px; clear: both; color: rgb(34,36,38); font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif">
+File &gt; Settings &gt; Build, Execution, Deployment &gt; Compiler</p>
+<div style="margin: 0px 0px 1em; padding: 0px; border: 0px; clear: both; color: rgb(34,36,38); font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px">
+and see "Command-line-options" and check if anything is give. (In your case -x). If so remove it and click Apply and Ok. Now restart your android studio and try building</div>
+</div>
+<div>解决：</div>
+<div>配置错误把这里的配置删掉</div>
+<div><img alt="" style="height: auto"></div>
+<div><img src="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/20160325163832588" alt=""><br>
+</div>
+<div>4.</div>
+<div>&gt; com.android.build.api.transform.TransformException: java.lang.RuntimeException: com.android.ide.common.process.ProcessException: java.util.concurrent.ExecutionException: com.android.ide.common.process.ProcessException: org.gradle.process.internal.ExecException:
+ Process 'command 'C:\Program Files\Java\jdk1.7.0_51\bin\java.exe'' finished with non-zero exit value 1</div>
+<div>解决：</div>
+<div>
+<p style="margin-top: 0px; margin-bottom: 1.1em; padding-top: 0px; padding-bottom: 0px; color: rgb(85,85,85); font-family: &quot;microsoft yahei&quot;; font-size: 14px">
+电脑配置可能不够用，所以開始不断尝试改动占用内存相关的东西。并最终取得了进展。关键代码是build.gradle中的：</p>
+<div style="margin: 0px 0px 1.1em; padding: 5px 5px 5px 60px; position: relative">
+<code style="display: block; padding: 0px; background-color: transparent; color: inherit; font-family: &quot;Source Code Pro&quot;, monospace; font-size: undefined">dexOptions&nbsp;{<br>
+&nbsp; &nbsp; javaMaxHeapSize&nbsp;<span style="color: rgb(0,136,0)">"xx"</span></code>
+<div><span style="font-size: 14px"><span style="font-family: &quot;Source Code Pro&quot;, monospace">}</span></span></div>
+</div>
+<div style="margin: 0px 0px 1.1em; padding: 0px">
+<div><span style="font-size: 14px"><span style="font-family: &quot;microsoft yahei&quot;"><span style="color: rgb(85,85,85)">xx为合理的内存大小（如4g）。假设你也遇到了这样的问题，最好还是试试~</span></span></span></div>
+<div><span style="font-size: 14px"><span style="font-family: &quot;microsoft yahei&quot;"><span style="color: rgb(85,85,85)"><br>
+</span></span></span></div>
+<div>5.</div>
+<div>Error:(24, 1) A problem occurred evaluating root project 'MyApplication2'.</div>
+</div>
+</div>
+<div>&gt; Could not find method dexOptions() for arguments [build_6h7x2ds382w4ozyuts7q05l4x$_run_closure3@2e96270a] on root project 'MyApplication2'.</div>
+<div>解决：</div>
+<div>不能写成一行</div>
+<div><code style="display: block; padding: 0px; background-color: transparent; color: inherit; font-family: &quot;Source Code Pro&quot;, monospace; font-size: undefined">dexOptions&nbsp;{&nbsp;javaMaxHeapSize&nbsp;<span style="color: rgb(0,136,0)">"xx"</span>&nbsp;}</code></div>
+<div><br>
+</div>
+<div>6.</div>
+<div><img src="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/20160325163906495" alt=""><br>
+</div>
+<div><img alt="" style="height: auto"></div>
+<div><br>
+</div>
+<div>7.</div>
+<div><img src="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/20160325163947934" alt=""><br>
+</div>
+<div><img alt="" style="height: auto"></div>
+<div>解决：</div>
+<div>改成相相应的版本&nbsp;<span style="font-family: Arial; font-size: 18px; color: #010101"><span style="font-size: 15pt; background: #2b2b2b">compile</span></span><span style="font-family: Arial; font-size: 18px; color: #6A8759"><span style="font-size: 15pt; background: #2b2b2b">'com.android.support:appcompat-v7:19.+'</span></span></div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div>8.</div>
+<div>Error:Error: File path too long on Windows, keep below 240 characters : C:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\unspecified\res\drawable-xhdpi-v4\battle_navigation_button_signout_default.png</div>
+<div>解决：</div>
+<div>把文件甲路径缩短</div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div>9.</div>
+<div>Error:Execution&nbsp;failed&nbsp;for&nbsp;task&nbsp;':wonderDroid:processDebugAndroidTestManifest'.<br>
+&gt;&nbsp;java.lang.RuntimeException:&nbsp;Manifest&nbsp;merger&nbsp;failed&nbsp;:&nbsp;Attribute&nbsp;application@theme&nbsp;value=(@style/Theme.Sherlock)&nbsp;from&nbsp;[debug]&nbsp;AndroidManifest.xml:22:9-46<br>
+is&nbsp;also&nbsp;present&nbsp;at&nbsp;[branch_20151216_1.5.0_01_copy:emuUtils:unspecified]&nbsp;AndroidManifest.xml:15:9-40&nbsp;value=(@style/AppTheme).</div>
+<div>Suggestion:&nbsp;add&nbsp;'tools:replace="android:theme"'&nbsp;to&nbsp;&lt;application&gt;&nbsp;element&nbsp;at&nbsp;manifestMerger3943799027194821591.xml:7:5-9:19&nbsp;to&nbsp;override.</div>
+<div><br>
+</div>
+<div>解决方式：</div>
+<div><span style="color: rgb(85,85,85); font-family: &quot;microsoft yahei&quot;; font-size: 14px">在Manifest.xml的application标签下加入tools:replace="android:icon, android:theme"（多个属性用,隔开，而且记住在manifest根标签上加入xmlns:tools="http://schemas.android.com/tools"，否则会找不到namespace哦）</span></div>
+<div><span style="font-size: 14px"><span style="font-family: &quot;microsoft yahei&quot;"><span style="color: rgb(85,85,85)">參考：</span></span></span><a target="_blank" href="http://blog.csdn.net/codezjx/article/details/38669939"></a><a target="_blank" href="http://blog.csdn.net/codezjx/article/details/38669939">http://blog.csdn.net/codezjx/article/details/38669939</a></div>
+<div><br>
+</div>
+<div>Suggestion: add 'tools:replace="android:theme"' to &lt;activity&gt; element at AndroidManifest.xml:1120:9-1128:20 to override.</div>
+<div>这个错误就是&lt;activity&gt;合并时冲突了。和<span style="color: rgb(85,85,85); font-family: &quot;microsoft yahei&quot;; font-size: 14px">application一样，依据冲突提示加入就可以，如：</span></div>
+<div align="left" style="background: #2b2b2b"><span style="font-family: Arial; font-size: 18px; color: #E8BF6A"><span style="font-size: 15pt">&lt;activity<br>
+&nbsp;&nbsp;&nbsp;</span></span> <span style="font-family: Arial; font-size: 18px; color: #9876AA">
+<span style="font-size: 15pt">tools</span></span> <span style="font-family: Arial; font-size: 18px; color: #BABABA">
+<span style="font-size: 15pt">:replace=</span></span><span style="font-family: Arial; font-size: 18px; color: #6A8759"><span style="font-size: 15pt">"android:configChanges"<br>
+&nbsp;&nbsp;&nbsp;</span></span> <span style="font-family: Arial; font-size: 18px; color: #9876AA">
+<span style="font-size: 15pt">android</span></span> <span style="font-family: Arial; font-size: 18px; color: #BABABA">
+<span style="font-size: 15pt">:name=</span></span><span style="font-family: Arial; font-size: 18px; color: #6A8759"><span style="font-size: 15pt">"xxxxx"<br>
+&nbsp;&nbsp;&nbsp;</span></span> <span style="font-family: Arial; font-size: 18px; color: #9876AA">
+<span style="font-size: 15pt">android</span></span><span style="font-family: Arial; font-size: 18px; color: #BABABA"><span style="font-size: 15pt">:configChanges=</span></span><span style="font-family: Arial; font-size: 18px; color: #6A8759"><span style="font-size: 15pt">"mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale|uiMode|screenSize|smallestScreenSize"<br>
+&nbsp;&nbsp;&nbsp;</span></span> <span style="font-family: Arial; font-size: 18px; color: #9876AA">
+<span style="font-size: 15pt">android</span></span> <span style="font-family: Arial; font-size: 18px; color: #BABABA">
+<span style="font-size: 15pt">:label=</span></span><span style="font-family: Arial; font-size: 18px; color: #6A8759"><span style="font-size: 15pt">"@string/N64_Name"<br>
+&nbsp;&nbsp;&nbsp;</span></span> <span style="font-family: Arial; font-size: 18px; color: #9876AA">
+<span style="font-size: 15pt">android</span></span> <span style="font-family: Arial; font-size: 18px; color: #BABABA">
+<span style="font-size: 15pt">:process=</span></span><span style="font-family: Arial; font-size: 18px; color: #6A8759"><span style="font-size: 15pt">":game"<br>
+&nbsp;&nbsp;&nbsp;</span></span> <span style="font-family: Arial; font-size: 18px; color: #9876AA">
+<span style="font-size: 15pt">android</span></span> <span style="font-family: Arial; font-size: 18px; color: #BABABA">
+<span style="font-size: 15pt">:theme=</span></span><span style="font-family: Arial; font-size: 18px; color: #6A8759"><span style="font-size: 15pt">"@style/appTheme.Black"</span></span><span style="font-family: Arial; font-size: 18px; color: #E8BF6A"><span style="font-size: 15pt">&gt;</span></span></div>
+<div><span style="font-size: 15pt"><span style="font-family: Arial"><span style="background-color: rgb(43,43,43)"><span style="color: rgb(232,191,106)">&lt;/activity&gt;</span></span></span></span></div>
+<div><span style="font-size: 15pt"><span style="font-family: Arial"><span style="background-color: rgb(43,43,43)"><span style="color: rgb(232,191,106)"><br>
+</span></span></span></span></div>
+<div>10.</div>
+<div>AAPT err(Facade for 1813194376): libpng error: Not a PNG file</div>
+<div>Error:Execution failed for task ':xxxx:mergeDebugResources'.</div>
+<div>&gt; Some file crunching failed, see logs for details</div>
+<div>原因是jpg格式的图片后缀为png，AS校验严格，eclipse不校验</div>
+<div>使用美图工具将图片转为png图片</div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div>11.</div>
+<div>Error:Execution failed for task ':xxx:processDebugManifest'.</div>
+<div>&gt; F:\xxx\src\main\AndroidManifest.xml:329:9-335:20: Error: Invalid instruction 'targetApi', valid instructions are : REMOVE,REPLACE,STRICT</div>
+<div><br>
+</div>
+<div>解决：</div>
+<div align="left" style="background: #2b2b2b"><span style="font-family: Arial; font-size: 18px; color: #E8BF6A"><span style="font-size: 15pt">&lt;activity<br>
+&nbsp;&nbsp;&nbsp;</span></span> <span style="font-family: Arial; font-size: 18px; color: #9876AA">
+<span style="font-size: 15pt">android</span></span> <span style="font-family: Arial; font-size: 18px; color: #BABABA">
+<span style="font-size: 15pt">:name=</span></span><span style="font-family: Arial; font-size: 18px; color: #6A8759"><span style="font-size: 15pt">"xxxx"<br>
+&nbsp;&nbsp;&nbsp;</span></span> <span style="font-family: Arial; font-size: 18px; color: #9876AA">
+<span style="font-size: 15pt">android</span></span><span style="font-family: Arial; font-size: 18px; color: #BABABA"><span style="font-size: 15pt">:configChanges=</span></span><span style="font-family: Arial; font-size: 18px; color: #6A8759"><span style="font-size: 15pt">"mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale|uiMode|screenSize|smallestScreenSize"<br>
+&nbsp;&nbsp;&nbsp;</span></span> <span style="font-family: Arial; font-size: 18px; color: #9876AA">
+<span style="font-size: 15pt">android</span></span> <span style="font-family: Arial; font-size: 18px; color: #BABABA">
+<span style="font-size: 15pt">:label=</span></span><span style="font-family: Arial; font-size: 18px; color: #6A8759"><span style="font-size: 15pt">"@string/app_name"<br>
+&nbsp;&nbsp;&nbsp;</span></span> <span style="font-family: Arial; font-size: 18px; color: #9876AA">
+<span style="font-size: 15pt">android</span></span> <span style="font-family: Arial; font-size: 18px; color: #BABABA">
+<span style="font-size: 15pt">:theme=</span></span><span style="font-family: Arial; font-size: 18px; color: #6A8759"><span style="font-size: 15pt">"@android:style/Theme.Holo.Light.Dialog"<br>
+&nbsp;&nbsp;&nbsp;</span></span> <span style="font-family: Arial; font-size: 18px; color: #9876AA">
+<span style="font-size: 15pt">tools</span></span> <span style="font-family: Arial; font-size: 18px; color: #BABABA">
+<span style="font-size: 15pt">:targetApi=</span></span><span style="font-family: Arial; font-size: 18px; color: #6A8759"><span style="font-size: 15pt">"11"</span></span><span style="font-family: Arial; font-size: 18px; color: #E8BF6A"><span style="font-size: 15pt">&gt;</span></span></div>
+<div><span style="font-size: 15pt"><span style="font-family: Arial"><span style="background-color: rgb(43,43,43)"><span style="color: rgb(232,191,106)">&lt;/activity&gt;</span></span></span></span></div>
+<div><span style="color: rgb(214,214,214)"><span style="font-size: 15pt"><span style="font-family: Arial"><span style="background-color: rgb(43,43,43)">把Manifest中</span></span></span><span style="font-family: Arial; font-size: 18px"><span style="font-size: 15pt; background: #2b2b2b">tools</span></span><span style="font-family: Arial; font-size: 18px"><span style="font-size: 15pt; background: #2b2b2b">:targetApi=</span></span><span style="font-family: Arial; font-size: 18px"><span style="font-size: 15pt; background: #2b2b2b">"11"去掉</span></span></span></div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div>12.</div>
+<div><img src="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/20160325164016731" alt=""><br>
+</div>
+<div><img alt="" style="height: auto"></div>
+<div>把定义的接口类单独提出来，不要写在类里面，不然会以为循环继承</div>
+<div><br>
+</div>
+<div>13.</div>
+<div>Error:Execution failed for task ':xxxx:transformResourcesWithMergeJavaResForDebug'.</div>
+<div>&gt; com.android.build.api.transform.TransformException: com.android.builder.packaging.DuplicateFileException: Duplicate files copied in APK META-INF/maven/com.squareup.okio/okio/pom.xml</div>
+<div>&nbsp; &nbsp; File1: xxx\libs\com.umeng.message.lib_v2.3.0.jar</div>
+<div>&nbsp; &nbsp; File2: xxx\build\intermediates\exploded-aar\xxx\unspecified\jars\classes.jar</div>
+<div>友盟的sdk和其它jar冲突</div>
+<div>解决：</div>
+<div>1）添加配置（好像没用）</div>
+<div align="left" style="background: #2b2b2b"><span style="font-family: Arial; font-size: 18px; color: #010101"><span style="font-size: 15pt">packagingOptions {<br>
+&nbsp;&nbsp;&nbsp; exclude</span></span> <span style="font-family: Arial; font-size: 18px; color: #6A8759">
+<span style="font-size: 15pt">'META-INF/NOTICE'</span></span> <span style="font-family: Arial; font-size: 18px; color: #808080">
+<span style="font-size: 15pt">// will not include NOTICE file<br>
+&nbsp;&nbsp;&nbsp;</span></span> <span style="font-family: Arial; font-size: 18px; color: #A9B7C6">
+<span style="font-size: 15pt">exclude</span></span> <span style="font-family: Arial; font-size: 18px; color: #6A8759">
+<span style="font-size: 15pt">'META-INF/LICENSE'</span></span> <span style="font-family: Arial; font-size: 18px; color: #808080">
+<span style="font-size: 15pt">// will not include LICENSE file</span></span></div>
+<div><span style="font-family: Arial; font-size: 18px; color: #A9B7C6"><span style="font-size: 15pt; background: #2b2b2b">}</span></span></div>
+<div>2)更新友盟新的sdk</div>
+<div><br>
+</div>
+<div>Error:Execution failed for task ':xxx:transformResourcesWithMergeJavaResForDebug'.</div>
+<div>&gt; com.android.build.api.transform.TransformException: com.android.builder.packaging.DuplicateFileException: Duplicate files copied in APK META-INF/maven/com.squareup.okio/okio/pom.xml</div>
+<div>&nbsp; &nbsp; File1: C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.2.0\c0b52915a48fa91b1b94a28d4a2997bac5f524df\okio-1.2.0.jar</div>
+<div>&nbsp; &nbsp; File2: xxx\build\intermediates\exploded-aar\branch_20151216_1.5.0_01_copy\emuUtils\unspecified\jars\classes.jar</div>
+<div>解决：配置</div>
+<div align="left" style="background: #2b2b2b"><span style="font-family: Arial; font-size: 18px; color: #010101"><span style="font-size: 15pt">packagingOptions {</span></span></div>
+<div><span style="font-size: 15pt"><span style="font-family: Arial"><span style="background-color: rgb(43,43,43)"><span style="color: rgb(1,1,1)">&nbsp;</span></span></span></span><span style="font-family: Arial; font-size: 18px; color: #010101"><span style="font-size: 15pt; background: #2b2b2b">exclude</span></span><span style="font-family: Arial; font-size: 18px; color: #6A8759"><span style="font-size: 15pt; background: #2b2b2b">'META-INF/maven/com.squareup.okio/okio/pom.xml'</span></span></div>
+<div><span style="font-family: Arial; font-size: 18px; color: #A9B7C6"><span style="font-size: 15pt; background: #2b2b2b">exclude</span></span><span style="font-family: Arial; font-size: 18px; color: #6A8759"><span style="font-size: 15pt; background: #2b2b2b">'META-INF/maven/com.squareup.okio/okio/pom.properties'</span></span></div>
+<div><span style="font-family: Arial; font-size: 18px; color: #A9B7C6"><span style="font-size: 15pt; background: #2b2b2b">}</span></span></div>
+<div>友盟推送sdk使用了okio包，我的项目libray中也调用了。合并时冲突。<p></p><p>我友盟pushsdk中的okio包去掉。引用libray就可以。</p><p></p></div>
+<div><br>
+</div>
+<div>14.</div>
+<div>Error:Execution failed for task ':xxx:transformClassesWithDexForDebug'.</div>
+<div>&gt; com.android.build.api.transform.TransformException: com.android.ide.common.process.ProcessException: java.util.concurrent.ExecutionException: com.android.ide.common.process.ProcessException: org.gradle.process.internal.ExecException: Process 'command
+ 'C:\Program Files\Java\jdk1.8.0_73\bin\java.exe'' finished with non-zero exit value 2</div>
+<div>解决：</div>
+<div>主project和libray引用的包反复了,这个问题比較麻烦，因为项目中有10多个libray,要细致排插反复的jar。<p></p><p></p></div>
+<div><br>
+</div>
+<div>15.</div>
+<div>最终成功后，桌面出现多个图标</div>
+<div>解决：把每一个libray的配置MAIN删掉</div>
+<div align="left" style="background: #2b2b2b"><span style="font-family: Arial; font-size: 18px; color: #E8BF6A"><span style="font-size: 15pt">&lt;intent-filter&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp; &lt;action</span></span> <span style="font-family: Arial; font-size: 18px; color: #9876AA">
+<span style="font-size: 15pt">android</span></span> <span style="font-family: Arial; font-size: 18px; color: #BABABA">
+<span style="font-size: 15pt">:name=</span></span><span style="font-family: Arial; font-size: 18px; color: #6A8759"><span style="font-size: 15pt">"android.intent.action.MAIN"</span></span><span style="font-family: Arial; font-size: 18px; color: #E8BF6A"><span style="font-size: 15pt">/&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;category</span></span> <span style="font-family: Arial; font-size: 18px; color: #9876AA">
+<span style="font-size: 15pt">android</span></span> <span style="font-family: Arial; font-size: 18px; color: #BABABA">
+<span style="font-size: 15pt">:name=</span></span><span style="font-family: Arial; font-size: 18px; color: #6A8759"><span style="font-size: 15pt">"android.intent.category.LAUNCHER"</span></span><span style="font-family: Arial; font-size: 18px; color: #E8BF6A"><span style="font-size: 15pt">/&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></div>
+<div><span style="font-size: 15pt"><span style="font-family: Arial"><span style="background-color: rgb(43,43,43)"><span style="color: rgb(232,191,106)">&lt;/intent-filter&gt;</span></span></span></span></div>
+<div>16.</div>
+<div>打包时出现的错误</div>
+<div>Error:(2) Error: In Gradle projects, always use http://schemas.android.com/apk/res-auto for custom attributes [ResAuto]</div>
+<div>解决：</div>
+<div align="left" style="background: #2b2b2b"><span style="font-family: Arial; font-size: 18px; color: #E8BF6A"><span style="font-size: 15pt">&lt;ScrollView</span></span><span style="font-family: Arial; font-size: 18px; color: #BABABA"><span style="font-size: 15pt">xmlns:</span></span><span style="font-family: Arial; font-size: 18px; color: #9876AA"><span style="font-size: 15pt">app</span></span><span style="font-family: Arial; font-size: 18px; color: #BABABA"><span style="font-size: 15pt">=</span></span><span style="font-size: 15pt"><span style="font-family: Arial"><span style="color: rgb(106,135,89)">"http://schemas.android.com/apk/res/xx.xxx.xxx"</span></span></span></div>
+<div><span style="background-color: rgb(43,43,43)"><span style="font-size: 15pt"><span style="font-family: Arial"><span style="color: rgb(106,135,89)">&nbsp;&nbsp;&nbsp;</span><span style="font-family: Arial; font-size: 18px; color: #BABABA"><span style="font-size: 15pt">xmlns:</span></span></span></span><span style="font-family: Arial; font-size: 18px; color: #9876AA"><span style="font-size: 15pt">android</span></span><span style="font-family: Arial; font-size: 18px; color: #BABABA"><span style="font-size: 15pt">=</span></span><span style="font-family: Arial; font-size: 18px; color: #6A8759"><span style="font-size: 15pt">"http://schemas.android.com/apk/res/android"</span></span></span></div>
+<div><span style="font-family: Simsun; font-size: 14px">改为：</span></div>
+<div align="left" style="background: #2b2b2b"><span style="font-family: Arial; font-size: 18px; color: #E8BF6A"><span style="font-size: 15pt">&lt;ScrollView</span></span><span style="font-family: Arial; font-size: 18px; color: #BABABA"><span style="font-size: 15pt">xmlns:</span></span><span style="font-family: Arial; font-size: 18px; color: #9876AA"><span style="font-size: 15pt">app</span></span><span style="font-family: Arial; font-size: 18px; color: #BABABA"><span style="font-size: 15pt">=</span></span><span style="font-size: 15pt"><span style="font-family: Arial"><span style="color: rgb(106,135,89)">"http://schemas.android.com/apk/res-auto"</span></span></span></div>
+<div><span style="background-color: rgb(43,43,43)"><span style="font-size: 15pt"><span style="font-family: Arial"><span style="color: rgb(106,135,89)">&nbsp;&nbsp;&nbsp;</span><span style="font-family: Arial; font-size: 18px; color: #BABABA"><span style="font-size: 15pt">xmlns:</span></span></span></span><span style="font-family: Arial; font-size: 18px; color: #9876AA"><span style="font-size: 15pt">android</span></span><span style="font-family: Arial; font-size: 18px; color: #BABABA"><span style="font-size: 15pt">=</span></span><span style="font-family: Arial; font-size: 18px; color: #6A8759"><span style="font-size: 15pt">"http://schemas.android.com/apk/res/android"</span></span></span></div>
+<div><br>
+</div>
+   
+</div></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(7093105,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;8c5b61c8-c61d-e711-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/gavanwanggw/" target="_blank"><img src="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/gavanwanggw/">gavanwanggw</a><br>
+            <a href="http://home.cnblogs.com/u/gavanwanggw/followees">关注 - 0</a><br>
+            <a href="http://home.cnblogs.com/u/gavanwanggw/followers">粉丝 - 2</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;8c5b61c8-c61d-e711-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(7093105,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(7093105,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/gavanwanggw/p/7092798.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/gavanwanggw/p/7092798.html" title="发布于2017-06-29 09:42">spark transform系列__sortByKey</a><br><a href="http://www.cnblogs.com/gavanwanggw/p/7093736.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/gavanwanggw/p/7093736.html" title="发布于2017-06-29 12:03">第三方登录（一）</a><br></div>
+</div>
+
+
+		<p class="postfoot">
+			posted on <span id="post-date">2017-06-29 10:25</span> <a href="http://www.cnblogs.com/gavanwanggw/">gavanwanggw</a> 阅读(<span id="post_view_count">234</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=7093105" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/gavanwanggw/p/7093105.html#" onclick="AddToWz(7093105);return false;">收藏</a>
+		</p>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=347479,cb_entryId=7093105,cb_blogApp=currentBlogApp,cb_blogUserGuid='8c5b61c8-c61d-e711-9fc1-ac853d9f53cc',cb_entryCreatedDate='2017/6/29 10:25:00';loadViewCount(cb_entryId);</script>
+	
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/gavanwanggw/p/7093105.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/gavanwanggw/p/7093105.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://cloud.tencent.com/act/campus?fromSource=gwzcw.537249.537249.537249" target="_blank">【活动】腾讯云 【云+校园】套餐全新升级</a><br><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=AR&amp;utm_campaign=community" target="_blank">【推荐】报表开发有捷径：快速设计轻松集成，数据可视化和交互</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://forum.huaweicloud.com/forum.php?mod=viewthread&amp;tid=901&amp;utm_source=cnblogs&amp;utm_medium=MediaB&amp;utm_campaign=%E5%8D%8E%E4%B8%BA%E4%BA%91-10%E6%9C%88%E5%B9%BF%E5%91%8A%E6%8A%95%E6%94%BE&amp;utm_content=%E5%8D%9A%E5%AE%A2%E5%9B%AD%E5%86%85%E9%A1%B5C1%E7%9F%A9%E5%BD%A2&amp;utm_term=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E4%BA%91-1024%E8%AE%BA%E5%9D%9B%E6%B4%BB%E5%8A%A8" target="_blank"><img width="300" height="250" src="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/24442-20171015214114324-1153647777.jpg" alt="华为云1016C2"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/580605/" target="_blank">开源数据库公司MongoDB上市首日：股价飙涨34%</a><br> ·  <a href="http://news.cnblogs.com/n/580603/" target="_blank">前暴雪副总裁：品质源于细节 测试对游戏设计至关重要</a><br> ·  <a href="http://news.cnblogs.com/n/580601/" target="_blank">亚马逊将实体店开到了百货商场，套路跟京东之家有点像</a><br> ·  <a href="http://news.cnblogs.com/n/580602/" target="_blank">上海张江要建一个大型的公共园区，有好几个绿色大屋顶</a><br> ·  <a href="http://news.cnblogs.com/n/580597/" target="_blank">融资40亿美元后的美团会全面开战？王兴和王慧文认为你们思路太窄</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/22446/" target="_blank"><img width="468" height="60" src="./eclipse转Android studio遇到的那些坑 - gavanwanggw - 博客园_files/24442-20171001085719794-417760373.jpg" alt="阿里云1001"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/579480/" target="_blank">实用VPC虚拟私有云设计原则</a><br> ·  <a href="http://kb.cnblogs.com/page/576251/" target="_blank">如何阅读计算机科学类的书</a><br> ·  <a href="http://kb.cnblogs.com/page/578103/" target="_blank">Google 及其云智慧</a><br> ·  <a href="http://kb.cnblogs.com/page/575829/" target="_blank">做到这一点，你也可以成为优秀的程序员</a><br> ·  <a href="http://kb.cnblogs.com/page/566880/" target="_blank">写给立志做码农的大学生</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+</div>
+
+<p id="footer">
+	Powered by: 
+	<br>
+	
+	<a id="Footer1_Hyperlink3" name="Hyperlink1" href="http://www.cnblogs.com/" style="font-family:Verdana;font-size:12px;">博客园</a>
+	<br>
+	Copyright © gavanwanggw
+</p>
+
+
+</body></html>

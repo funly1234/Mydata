@@ -1,0 +1,2738 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://segmentfault.com/a/1190000004345545 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"><meta name="renderer" content="webkit"><meta property="qc:admins" content="15317273575564615446375"><meta property="og:image" content="https://static.segmentfault.com/v-59f836b1/global/img/touch-icon.png"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="alexaVerifyID" content="LkzCRJ7rPEUwt6fVey2vhxiw1vQ"><meta name="apple-itunes-app" content="app-id=958101793, app-argument="><title>OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault</title><meta name="description" content="okHttp3正式版刚发布了没几天，正好重构之前的代码，于是第一时间入坑了。对okHttp3的一些改变，会陆续写下来，这是第一篇Cookies管理及持久化。 Cookies管理 OkHttp的源码过于复杂，感兴趣的同学可以自行阅读，..."><meta name="keywords" content="cookie,android"><link rel="search" type="application/opensearchdescription+xml" href="https://segmentfault.com/opensearch.xml" title="SegmentFault"><link rel="shortcut icon" href="https://static.segmentfault.com/v-59f836b1/global/img/favicon.ico"><link rel="apple-touch-icon" href="https://static.segmentfault.com/v-59f836b1/global/img/touch-icon.png"><meta name="msapplication-TileColor" content="#009a61"><meta name="msapplication-square150x150logo" content="https://static.segmentfault.com/v-59f836b1/global/img/touch-icon.png"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新问题" href="https://segmentfault.com/feeds/questions"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新文章" href="https://segmentfault.com/feeds/blogs"><link rel="stylesheet" href="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/global.css"><link rel="stylesheet" href="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/blog.css"><link rel="stylesheet" href="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/responsive.css"><link rel="preload" href="https://adservice.google.co.jp/adsid/integrator.js?domain=segmentfault.com" as="script"><script src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/ca-pub-6330872677300335.js"></script><script type="text/javascript" src="https://adservice.google.co.jp/adsid/integrator.js?domain=segmentfault.com"></script><link rel="preload" href="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/integrator.js" as="script"><script type="text/javascript" src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/integrator.js"></script><link rel="prefetch" href="https://securepubads.g.doubleclick.net/static/3p_cookie.html"></head><body data-mod="blog" class="blog-post "><iframe src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/acookie.html" style="width: 0px; height: 0px; display: none;"></iframe><!--[if lt IE 9]><div class="alert alert-danger topframe" role="alert">你的浏览器实在<strong>太太太太太太旧了</strong>，放学别走，升级完浏览器再说 <a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div><![endif]--><img id="icon4weChat" style="height: 0;width: 0;" data-src="https://static.segmentfault.com/v-59f836b1/global/img/touch-icon-512.png"><div class="global-nav sf-header sf-header--index"><nav class="container nav"><div class="visible-xs header-response"><a href="https://segmentfault.com/search" style="display:block"><i class="fa fa-search" aria-hidden="true"></i></a><div class="sf-header__logo sf-header__logo--response"><h1><a href="https://segmentfault.com/" style="height:24px; background-size: auto 24px;"></a></h1></div><a href="https://segmentfault.com/user/login" class="pull-right login-btn"><i class="fa fa-user" aria-hidden="true"></i></a><div class="bottom-nav"><div class="opts"><a class="opts-group " href="https://segmentfault.com/questions"><i class="fa fa-comments" aria-hidden="true"></i><span>问答</span></a><a class="opts-group " href="https://segmentfault.com/news"><i class="fa fa-newspaper-o" aria-hidden="true"></i><span>头条</span></a><a class="opts-group active" href="https://segmentfault.com/blogs"><i class="fa fa-pencil-square" aria-hidden="true"></i><span>专栏</span></a><a class="opts-group " href="https://segmentfault.com/lives"><i class="fa fa-play-circle" aria-hidden="true"></i><span>讲堂</span></a><div class="opts-group"><div class="btn-group dropup"><i class="fa fa-bars dropdown hoverDropdown" data-toggle="dropdown" aria-hidden="true"><span>更多</span></i><ul class="dropdown-menu"><li><a href="https://segmentfault.com/jobs">职位</a></li><li><a href="https://segmentfault.com/events">活动</a></li><li><a href="https://segmentfault.com/tags">标签</a></li><li><a href="https://segmentfault.com/badges">徽章</a></li></ul></div></div></div></div></div><div class="row hidden-xs"><div class="col-sm-8 col-md-9 col-lg-9"><div class="sf-header__logo"><h1><a href="https://segmentfault.com/">SegmentFault</a></h1></div><div><ul class="menu list-inline pull-left hidden-xs"><li class="menu__item"><a href="https://segmentfault.com/questions" class="">问答</a></li><li class="menu__item"><a href="https://segmentfault.com/news" class="">头条</a></li><li class="menu__item"><a href="https://segmentfault.com/blogs" class="active-nav">专栏</a></li><li class="menu__item"><a href="https://segmentfault.com/lives" class="">讲堂</a></li><li class="menu__item menu__item--more dropdown"><a href="https://segmentfault.com/a/1190000004345545##" class="dropdown-toggle dropdownBtn" data-toggle="dropdown">
+                                        发现<i class="fa fa-caret-down" style="font-size: 14px;margin-left: 5px;" aria-hidden="true"></i></a><div class="dropdown-block hidden"><ul class="dropdown-content-menu"><li><a href="https://segmentfault.com/events">活动</a></li><li><a href="https://segmentfault.com/groups">技术圈<span class="notice notice-menu">hi</span></a></li><li><a href="https://segmentfault.com/jobs">找工作</a></li><li><a href="https://segmentfault.com/users">排行榜</a></li><li><a href="https://segmentfault.com/badges">徽章</a></li><li><a href="https://docs.segmentfault.com/" target="_blank">开发手册<i style="line-height: 20px;font-size: 12px;color: #F5A623;" class="ml10 fa fa-external-link-square"></i></a></li></ul></div></li><li class="menu__item visible-sm-inline-block"><a href="https://segmentfault.com/search"><span class="glyphicon glyphicon-search" style="vertical-align: middle;"></span></a></li></ul><form action="https://segmentfault.com/search" class="header-search  hidden-sm hidden-xs pull-right"><button class="btn btn-link"><span class="sr-only">搜索</span><span class="glyphicon glyphicon-search"></span></button><input id="searchBox" name="q" type="text" placeholder="搜索问题或关键字" class="form-control" value=""></form></div></div><div class="col-sm-4 col-md-3 col-lg-3 text-right"><ul class="opts list-inline hidden-xs"><li class="opts__item"><a href="https://segmentfault.com/user/login" class="SFLogin btn-signin" style="margin-bottom:2px;">立即登录</a><a href="https://segmentfault.com/user/login" class="SFLogin ml10 btn-signup" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Button&#39;, &#39;Click&#39;, &#39;Login&#39;]);">免费注册</a></li></ul></div></div></nav></div>
+    
+<input id="articleId" value="1190000004345545" class="hidden">
+<div class="wrap" data-blogid="1200000003023209">
+            <div id="loginBanner" class="hidden-sm hidden-xs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="title">在 SegmentFault，解决技术问题</h1>
+                <p class="desc">每个月，我们帮助 1000 万的开发者解决各种各样的技术问题。并助力他们在技术能力、职业生涯、影响力上获得提升。</p>
+                <p class="img-desc">一线的工程师、著名开源项目的作者们，都在这里：</p>
+                <img src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/logos@2x.png">
+            </div>
+            <div class="col-md-4 col-md-offset-2">
+                <form class="text-center register-form clearfix" action="https://segmentfault.com/api/user/phone/register">
+
+                    <div class="form-group form-name"> <!-- 用户名 -->
+                        <input type="text" class="form-control " name="name" placeholder="真实姓名或常用昵称">
+                    </div>
+
+                    <div class="form-group form-getCode"> <!-- 手机号及验证码 -->
+                        <input type="text" class="form-control" name="phone" placeholder="手机号（仅支持大陆手机号）">
+                        <div class="captchaInput mt10 mb10 hidden">
+                            <input type="text" class="form-control" name="cap" placeholder="请输入下方的验证码后，再点击获取验证码">
+                            <div class="mt10">
+                                <img data-src="/user/captcha?w=240&amp;h=50" class="captcha" width="240" height="50">
+                            </div>
+                        </div>
+                        <div class="input-group mt15">
+                            <input type="tel" class="form-control" name="code" placeholder="短信验证码" autocomplete="off">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default getCode mt0" style="width:96px;" type="button">获取验证码</button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-password"> <!-- 密码 -->
+                        <input type="password" class="form-control " name="password" placeholder="密码（不少于 6 位）" autocomplete="off">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary register-button pull-right" onclick="ga(&quot;send&quot;, &quot;event&quot;, &quot;join button&quot;, &quot;clicked&quot;, &quot;welcome board&quot;);">注册</button>
+
+                    <div class="hasid">
+                        已有账号？<a href="https://segmentfault.com/user/login" class="login_now" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Button&#39;, &#39;Click&#39;, &#39;Login&#39;]);">立即登录</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <i class="fa fa-times-circle" aria-hidden="true"></i>
+</div>        <div class="post-topheader custom-">
+        <div class="container">
+            <div class="block-for-right-border">
+                <div class="row">
+                    <div class="col-md-9 col-sm-8 col-xs-12">
+                        <div class="post-topheader__info" data-username="Akioss" data-userslug="akioss" data-useravatar="https://sfault-avatar.b0.upaiyun.com/450/136/450136037-56a8d5c0c3414_big64">
+
+                            <h1 class="h3 post-topheader__info--title" id="articleTitle" data-id="1190000004345545">
+                                <a href="https://segmentfault.com/a/1190000004345545"> OkHttp3之Cookies管理及持久化</a>
+                            </h1>
+
+                            <div class="content__tech blog-type-common blog-type-0-before">
+                                <ul class="taglist--inline inline-block article__title--tag mr10">
+                                                                            <li class="tagPopup mb5"><a class="tag" href="https://segmentfault.com/t/cookie/blogs" data-toggle="popover" data-img="https://sfault-avatar.b0.upaiyun.com/194/797/194797417-1040000000089629_huge256" data-placement="top" data-original-title="cookie" data-id="1040000000089629">cookie</a></li>
+                                                                            <li class="tagPopup mb5"><a class="tag" href="https://segmentfault.com/t/android/blogs" data-toggle="popover" data-img="https://sfault-avatar.b0.upaiyun.com/752/833/752833330-1040000000089658_huge256" data-placement="top" data-original-title="android" data-id="1040000000089658">android</a></li>
+                                                                    </ul>
+                                                                                                <div class="article__author">
+                                    <a href="https://segmentfault.com/u/akioss" class="mr5 "><strong>Akioss</strong></a>
+                                    2016年01月21日发布
+                                                                                                        </div>
+                            </div>
+
+                                                        <form class="form form__tech hidden" data-action="#">
+                                <span class="pull-right">
+                                    <button class="btn btn-default save-tags-btn" type="button">保存</button>
+                                </span>
+                                <div class="form-group" style="margin-right: 65px">
+                                    <label for="tags" class="sr-only">标签：至少1个，最多5个</label>
+                                    <input class="tagsInput form-control hidden" data-init="[{&quot;name&quot;:&quot;cookie&quot;,&quot;url&quot;:&quot;\/t\/cookie&quot;,&quot;id&quot;:&quot;1040000000089629&quot;,&quot;thumbnailUrl&quot;:&quot;https:\/\/sfault-avatar.b0.upaiyun.com\/194\/797\/194797417-1040000000089629_huge256&quot;},{&quot;name&quot;:&quot;android&quot;,&quot;url&quot;:&quot;\/t\/android&quot;,&quot;id&quot;:&quot;1040000000089658&quot;,&quot;thumbnailUrl&quot;:&quot;https:\/\/sfault-avatar.b0.upaiyun.com\/752\/833\/752833330-1040000000089658_huge256&quot;}]" name="tags" type="text" placeholder="标签，如：php 可使用逗号,分号;分隔" data-role="tagsinput"><div class="sf-typeHelper"><span class="sf-typeHelper-item  ">cookie<span data-role="remove">×</span></span><span class="sf-typeHelper-item  ">android<span data-role="remove">×</span></span><input type="text" data-role="sf_typeHelper-input" class="sf-typeHelper-input" placeholder="标签，如：php 可使用逗号,分号;分隔" style="width: 20em;"><ul class="sf-typeHelper-list dropdown-menu" style="display: none;"></ul></div>
+                                    <div role="tabpanel" class="techTags panel panel-default techTags-panel" data-tech="{&quot;\u5f00\u53d1\u8bed\u8a00&quot;:[{&quot;id&quot;:&quot;1040000000089436&quot;,&quot;name&quot;:&quot;javascript&quot;},{&quot;id&quot;:&quot;1040000000089387&quot;,&quot;name&quot;:&quot;php&quot;},{&quot;id&quot;:&quot;1040000000089434&quot;,&quot;name&quot;:&quot;css&quot;},{&quot;id&quot;:&quot;1040000000089571&quot;,&quot;name&quot;:&quot;html&quot;},{&quot;id&quot;:&quot;1040000000089449&quot;,&quot;name&quot;:&quot;java&quot;},{&quot;id&quot;:&quot;1040000000089534&quot;,&quot;name&quot;:&quot;python&quot;},{&quot;id&quot;:&quot;1040000000089409&quot;,&quot;name&quot;:&quot;html5&quot;},{&quot;id&quot;:&quot;1040000000089918&quot;,&quot;name&quot;:&quot;node.js&quot;},{&quot;id&quot;:&quot;1040000000089741&quot;,&quot;name&quot;:&quot;c++&quot;},{&quot;id&quot;:&quot;1040000000089457&quot;,&quot;name&quot;:&quot;c&quot;},{&quot;id&quot;:&quot;1040000000090209&quot;,&quot;name&quot;:&quot;objective-c&quot;},{&quot;id&quot;:&quot;1040000000090203&quot;,&quot;name&quot;:&quot;golang&quot;},{&quot;id&quot;:&quot;1040000000089669&quot;,&quot;name&quot;:&quot;shell&quot;},{&quot;id&quot;:&quot;1040000000531223&quot;,&quot;name&quot;:&quot;swift&quot;},{&quot;id&quot;:&quot;1040000000089581&quot;,&quot;name&quot;:&quot;c#&quot;},{&quot;id&quot;:&quot;1040000000089699&quot;,&quot;name&quot;:&quot;ruby&quot;},{&quot;id&quot;:&quot;1040000000089686&quot;,&quot;name&quot;:&quot;bash&quot;},{&quot;id&quot;:&quot;1040000000365394&quot;,&quot;name&quot;:&quot;typescript&quot;},{&quot;id&quot;:&quot;1040000000091262&quot;,&quot;name&quot;:&quot;sass&quot;},{&quot;id&quot;:&quot;1040000000090433&quot;,&quot;name&quot;:&quot;asp.net&quot;},{&quot;id&quot;:&quot;1040000000090600&quot;,&quot;name&quot;:&quot;less&quot;},{&quot;id&quot;:&quot;1040000000090208&quot;,&quot;name&quot;:&quot;lua&quot;},{&quot;id&quot;:&quot;1040000000090228&quot;,&quot;name&quot;:&quot;scala&quot;},{&quot;id&quot;:&quot;1040000000161068&quot;,&quot;name&quot;:&quot;coffeescript&quot;},{&quot;id&quot;:&quot;1040000000090194&quot;,&quot;name&quot;:&quot;actionscript&quot;},{&quot;id&quot;:&quot;1040000000090201&quot;,&quot;name&quot;:&quot;erlang&quot;},{&quot;id&quot;:&quot;1040000000089698&quot;,&quot;name&quot;:&quot;perl&quot;},{&quot;id&quot;:&quot;1040000000311191&quot;,&quot;name&quot;:&quot;rust&quot;}],&quot;\u5e73\u53f0\u6846\u67b6&quot;:[{&quot;id&quot;:&quot;1040000000196640&quot;,&quot;name&quot;:&quot;laravel&quot;},{&quot;id&quot;:&quot;1040000000125263&quot;,&quot;name&quot;:&quot;flask&quot;},{&quot;id&quot;:&quot;1040000000089564&quot;,&quot;name&quot;:&quot;django&quot;},{&quot;id&quot;:&quot;1040000000090103&quot;,&quot;name&quot;:&quot;spring&quot;},{&quot;id&quot;:&quot;1040000000166256&quot;,&quot;name&quot;:&quot;express&quot;},{&quot;id&quot;:&quot;1040000000089646&quot;,&quot;name&quot;:&quot;ruby-on-rails&quot;},{&quot;id&quot;:&quot;1040000000090398&quot;,&quot;name&quot;:&quot;yii&quot;},{&quot;id&quot;:&quot;1040000000116331&quot;,&quot;name&quot;:&quot;tornado&quot;},{&quot;id&quot;:&quot;1040000000622042&quot;,&quot;name&quot;:&quot;koa&quot;},{&quot;id&quot;:&quot;1040000000089638&quot;,&quot;name&quot;:&quot;struts&quot;}],&quot;\u670d\u52a1\u5668&quot;:[{&quot;id&quot;:&quot;1040000000089392&quot;,&quot;name&quot;:&quot;linux&quot;},{&quot;id&quot;:&quot;1040000000090145&quot;,&quot;name&quot;:&quot;nginx&quot;},{&quot;id&quot;:&quot;1040000000089761&quot;,&quot;name&quot;:&quot;apache&quot;},{&quot;id&quot;:&quot;1040000000366352&quot;,&quot;name&quot;:&quot;docker&quot;},{&quot;id&quot;:&quot;1040000000090245&quot;,&quot;name&quot;:&quot;ubuntu&quot;},{&quot;id&quot;:&quot;1040000000090249&quot;,&quot;name&quot;:&quot;centos&quot;},{&quot;id&quot;:&quot;1040000000090401&quot;,&quot;name&quot;:&quot;\u7f13\u5b58&quot;},{&quot;id&quot;:&quot;1040000000090117&quot;,&quot;name&quot;:&quot;tomcat&quot;},{&quot;id&quot;:&quot;1040000000090107&quot;,&quot;name&quot;:&quot;\u8d1f\u8f7d\u5747\u8861&quot;},{&quot;id&quot;:&quot;1040000000090646&quot;,&quot;name&quot;:&quot;unix&quot;},{&quot;id&quot;:&quot;1040000000089648&quot;,&quot;name&quot;:&quot;hadoop&quot;},{&quot;id&quot;:&quot;1040000000090609&quot;,&quot;name&quot;:&quot;windows-server&quot;}],&quot;\u6570\u636e\u5e93\u548c\u7f13\u5b58&quot;:[{&quot;id&quot;:&quot;1040000000089439&quot;,&quot;name&quot;:&quot;mysql&quot;},{&quot;id&quot;:&quot;1040000000090049&quot;,&quot;name&quot;:&quot;sql&quot;},{&quot;id&quot;:&quot;1040000000089431&quot;,&quot;name&quot;:&quot;redis&quot;},{&quot;id&quot;:&quot;1040000000089488&quot;,&quot;name&quot;:&quot;mongodb&quot;},{&quot;id&quot;:&quot;1040000000090701&quot;,&quot;name&quot;:&quot;oracle&quot;},{&quot;id&quot;:&quot;1040000000089432&quot;,&quot;name&quot;:&quot;nosql&quot;},{&quot;id&quot;:&quot;1040000000089873&quot;,&quot;name&quot;:&quot;memcached&quot;},{&quot;id&quot;:&quot;1040000000090424&quot;,&quot;name&quot;:&quot;sqlserver&quot;},{&quot;id&quot;:&quot;1040000000090354&quot;,&quot;name&quot;:&quot;sqlite&quot;},{&quot;id&quot;:&quot;1040000000090861&quot;,&quot;name&quot;:&quot;postgresql&quot;}],&quot;\u5f00\u53d1\u5de5\u5177&quot;:[{&quot;id&quot;:&quot;1040000000089459&quot;,&quot;name&quot;:&quot;git&quot;},{&quot;id&quot;:&quot;1040000000091226&quot;,&quot;name&quot;:&quot;github&quot;},{&quot;id&quot;:&quot;1040000000089467&quot;,&quot;name&quot;:&quot;vim&quot;},{&quot;id&quot;:&quot;1040000000089579&quot;,&quot;name&quot;:&quot;xcode&quot;},{&quot;id&quot;:&quot;1040000000126097&quot;,&quot;name&quot;:&quot;sublime-text&quot;},{&quot;id&quot;:&quot;1040000000089509&quot;,&quot;name&quot;:&quot;eclipse&quot;},{&quot;id&quot;:&quot;1040000002720957&quot;,&quot;name&quot;:&quot;visual-studio-code&quot;},{&quot;id&quot;:&quot;1040000000090560&quot;,&quot;name&quot;:&quot;intellij-idea&quot;},{&quot;id&quot;:&quot;1040000000090186&quot;,&quot;name&quot;:&quot;maven&quot;},{&quot;id&quot;:&quot;1040000000089447&quot;,&quot;name&quot;:&quot;svn&quot;},{&quot;id&quot;:&quot;1040000000090473&quot;,&quot;name&quot;:&quot;ide&quot;},{&quot;id&quot;:&quot;1040000000090524&quot;,&quot;name&quot;:&quot;atom&quot;},{&quot;id&quot;:&quot;1040000000090231&quot;,&quot;name&quot;:&quot;visual-studio&quot;},{&quot;id&quot;:&quot;1040000000090216&quot;,&quot;name&quot;:&quot;emacs&quot;},{&quot;id&quot;:&quot;1040000000183694&quot;,&quot;name&quot;:&quot;hg&quot;},{&quot;id&quot;:&quot;1040000000089663&quot;,&quot;name&quot;:&quot;textmate&quot;}],&quot;\u7cfb\u7edf\u8bbe\u5907&quot;:[{&quot;id&quot;:&quot;1040000000089658&quot;,&quot;name&quot;:&quot;android&quot;},{&quot;id&quot;:&quot;1040000000089442&quot;,&quot;name&quot;:&quot;ios&quot;},{&quot;id&quot;:&quot;1040000000089407&quot;,&quot;name&quot;:&quot;chrome&quot;},{&quot;id&quot;:&quot;1040000000089709&quot;,&quot;name&quot;:&quot;windows&quot;},{&quot;id&quot;:&quot;1040000000089498&quot;,&quot;name&quot;:&quot;iphone&quot;},{&quot;id&quot;:&quot;1040000000090217&quot;,&quot;name&quot;:&quot;firefox&quot;},{&quot;id&quot;:&quot;1040000000125504&quot;,&quot;name&quot;:&quot;internet-explorer&quot;},{&quot;id&quot;:&quot;1040000000089499&quot;,&quot;name&quot;:&quot;safari&quot;},{&quot;id&quot;:&quot;1040000000090638&quot;,&quot;name&quot;:&quot;ipad&quot;},{&quot;id&quot;:&quot;1040000000090218&quot;,&quot;name&quot;:&quot;opera&quot;},{&quot;id&quot;:&quot;1040000002871462&quot;,&quot;name&quot;:&quot;apple-watch&quot;}],&quot;\u5176\u5b83&quot;:[{&quot;id&quot;:&quot;1040000000089409&quot;,&quot;name&quot;:&quot;html5&quot;},{&quot;id&quot;:&quot;1040000002893277&quot;,&quot;name&quot;:&quot;react.js&quot;},{&quot;id&quot;:&quot;1040000000090137&quot;,&quot;name&quot;:&quot;\u641c\u7d22\u5f15\u64ce&quot;},{&quot;id&quot;:&quot;1040000000123810&quot;,&quot;name&quot;:&quot;virtualenv&quot;},{&quot;id&quot;:&quot;1040000000090316&quot;,&quot;name&quot;:&quot;lucene&quot;}]}" style="display: none;">
+    <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="https://segmentfault.com/a/1190000004345545#开发语言" aria-controls="type" role="tab" data-toggle="tab">开发语言</a>
+            </li>
+                    <li role="presentation" class=""><a href="https://segmentfault.com/a/1190000004345545#平台框架" aria-controls="type" role="tab" data-toggle="tab">平台框架</a>
+            </li>
+                    <li role="presentation" class=""><a href="https://segmentfault.com/a/1190000004345545#服务器" aria-controls="type" role="tab" data-toggle="tab">服务器</a>
+            </li>
+                    <li role="presentation" class=""><a href="https://segmentfault.com/a/1190000004345545#数据库和缓存" aria-controls="type" role="tab" data-toggle="tab">数据库和缓存</a>
+            </li>
+                    <li role="presentation" class=""><a href="https://segmentfault.com/a/1190000004345545#开发工具" aria-controls="type" role="tab" data-toggle="tab">开发工具</a>
+            </li>
+                    <li role="presentation" class=""><a href="https://segmentfault.com/a/1190000004345545#系统设备" aria-controls="type" role="tab" data-toggle="tab">系统设备</a>
+            </li>
+                    <li role="presentation" class=""><a href="https://segmentfault.com/a/1190000004345545#其它" aria-controls="type" role="tab" data-toggle="tab">其它</a>
+            </li>
+            </ul>
+    <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="开发语言">
+                <ul class="taglist--inline">
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089436&quot;,&quot;name&quot;:&quot;javascript&quot;}" href="javascript: void(0);">javascript</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089387&quot;,&quot;name&quot;:&quot;php&quot;}" href="javascript: void(0);">php</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089434&quot;,&quot;name&quot;:&quot;css&quot;}" href="javascript: void(0);">css</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089571&quot;,&quot;name&quot;:&quot;html&quot;}" href="javascript: void(0);">html</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089449&quot;,&quot;name&quot;:&quot;java&quot;}" href="javascript: void(0);">java</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089534&quot;,&quot;name&quot;:&quot;python&quot;}" href="javascript: void(0);">python</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089409&quot;,&quot;name&quot;:&quot;html5&quot;}" href="javascript: void(0);">html5</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089918&quot;,&quot;name&quot;:&quot;node.js&quot;}" href="javascript: void(0);">node.js</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089741&quot;,&quot;name&quot;:&quot;c++&quot;}" href="javascript: void(0);">c++</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089457&quot;,&quot;name&quot;:&quot;c&quot;}" href="javascript: void(0);">c</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090209&quot;,&quot;name&quot;:&quot;objective-c&quot;}" href="javascript: void(0);">objective-c</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090203&quot;,&quot;name&quot;:&quot;golang&quot;}" href="javascript: void(0);">golang</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089669&quot;,&quot;name&quot;:&quot;shell&quot;}" href="javascript: void(0);">shell</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000531223&quot;,&quot;name&quot;:&quot;swift&quot;}" href="javascript: void(0);">swift</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089581&quot;,&quot;name&quot;:&quot;c#&quot;}" href="javascript: void(0);">c#</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089699&quot;,&quot;name&quot;:&quot;ruby&quot;}" href="javascript: void(0);">ruby</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089686&quot;,&quot;name&quot;:&quot;bash&quot;}" href="javascript: void(0);">bash</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000365394&quot;,&quot;name&quot;:&quot;typescript&quot;}" href="javascript: void(0);">typescript</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000091262&quot;,&quot;name&quot;:&quot;sass&quot;}" href="javascript: void(0);">sass</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090433&quot;,&quot;name&quot;:&quot;asp.net&quot;}" href="javascript: void(0);">asp.net</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090600&quot;,&quot;name&quot;:&quot;less&quot;}" href="javascript: void(0);">less</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090208&quot;,&quot;name&quot;:&quot;lua&quot;}" href="javascript: void(0);">lua</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090228&quot;,&quot;name&quot;:&quot;scala&quot;}" href="javascript: void(0);">scala</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000161068&quot;,&quot;name&quot;:&quot;coffeescript&quot;}" href="javascript: void(0);">coffeescript</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090194&quot;,&quot;name&quot;:&quot;actionscript&quot;}" href="javascript: void(0);">actionscript</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090201&quot;,&quot;name&quot;:&quot;erlang&quot;}" href="javascript: void(0);">erlang</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089698&quot;,&quot;name&quot;:&quot;perl&quot;}" href="javascript: void(0);">perl</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000311191&quot;,&quot;name&quot;:&quot;rust&quot;}" href="javascript: void(0);">rust</a>
+                        </li>
+                                    </ul>
+            </div>
+                    <div role="tabpanel" class="tab-pane " id="平台框架">
+                <ul class="taglist--inline">
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000196640&quot;,&quot;name&quot;:&quot;laravel&quot;}" href="javascript: void(0);">laravel</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000125263&quot;,&quot;name&quot;:&quot;flask&quot;}" href="javascript: void(0);">flask</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089564&quot;,&quot;name&quot;:&quot;django&quot;}" href="javascript: void(0);">django</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090103&quot;,&quot;name&quot;:&quot;spring&quot;}" href="javascript: void(0);">spring</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000166256&quot;,&quot;name&quot;:&quot;express&quot;}" href="javascript: void(0);">express</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089646&quot;,&quot;name&quot;:&quot;ruby-on-rails&quot;}" href="javascript: void(0);">ruby-on-rails</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090398&quot;,&quot;name&quot;:&quot;yii&quot;}" href="javascript: void(0);">yii</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000116331&quot;,&quot;name&quot;:&quot;tornado&quot;}" href="javascript: void(0);">tornado</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000622042&quot;,&quot;name&quot;:&quot;koa&quot;}" href="javascript: void(0);">koa</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089638&quot;,&quot;name&quot;:&quot;struts&quot;}" href="javascript: void(0);">struts</a>
+                        </li>
+                                    </ul>
+            </div>
+                    <div role="tabpanel" class="tab-pane " id="服务器">
+                <ul class="taglist--inline">
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089392&quot;,&quot;name&quot;:&quot;linux&quot;}" href="javascript: void(0);">linux</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090145&quot;,&quot;name&quot;:&quot;nginx&quot;}" href="javascript: void(0);">nginx</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089761&quot;,&quot;name&quot;:&quot;apache&quot;}" href="javascript: void(0);">apache</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000366352&quot;,&quot;name&quot;:&quot;docker&quot;}" href="javascript: void(0);">docker</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090245&quot;,&quot;name&quot;:&quot;ubuntu&quot;}" href="javascript: void(0);">ubuntu</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090249&quot;,&quot;name&quot;:&quot;centos&quot;}" href="javascript: void(0);">centos</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090401&quot;,&quot;name&quot;:&quot;\u7f13\u5b58&quot;}" href="javascript: void(0);">缓存</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090117&quot;,&quot;name&quot;:&quot;tomcat&quot;}" href="javascript: void(0);">tomcat</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090107&quot;,&quot;name&quot;:&quot;\u8d1f\u8f7d\u5747\u8861&quot;}" href="javascript: void(0);">负载均衡</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090646&quot;,&quot;name&quot;:&quot;unix&quot;}" href="javascript: void(0);">unix</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089648&quot;,&quot;name&quot;:&quot;hadoop&quot;}" href="javascript: void(0);">hadoop</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090609&quot;,&quot;name&quot;:&quot;windows-server&quot;}" href="javascript: void(0);">windows-server</a>
+                        </li>
+                                    </ul>
+            </div>
+                    <div role="tabpanel" class="tab-pane " id="数据库和缓存">
+                <ul class="taglist--inline">
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089439&quot;,&quot;name&quot;:&quot;mysql&quot;}" href="javascript: void(0);">mysql</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090049&quot;,&quot;name&quot;:&quot;sql&quot;}" href="javascript: void(0);">sql</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089431&quot;,&quot;name&quot;:&quot;redis&quot;}" href="javascript: void(0);">redis</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089488&quot;,&quot;name&quot;:&quot;mongodb&quot;}" href="javascript: void(0);">mongodb</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090701&quot;,&quot;name&quot;:&quot;oracle&quot;}" href="javascript: void(0);">oracle</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089432&quot;,&quot;name&quot;:&quot;nosql&quot;}" href="javascript: void(0);">nosql</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089873&quot;,&quot;name&quot;:&quot;memcached&quot;}" href="javascript: void(0);">memcached</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090424&quot;,&quot;name&quot;:&quot;sqlserver&quot;}" href="javascript: void(0);">sqlserver</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090354&quot;,&quot;name&quot;:&quot;sqlite&quot;}" href="javascript: void(0);">sqlite</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090861&quot;,&quot;name&quot;:&quot;postgresql&quot;}" href="javascript: void(0);">postgresql</a>
+                        </li>
+                                    </ul>
+            </div>
+                    <div role="tabpanel" class="tab-pane " id="开发工具">
+                <ul class="taglist--inline">
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089459&quot;,&quot;name&quot;:&quot;git&quot;}" href="javascript: void(0);">git</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000091226&quot;,&quot;name&quot;:&quot;github&quot;}" href="javascript: void(0);">github</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089467&quot;,&quot;name&quot;:&quot;vim&quot;}" href="javascript: void(0);">vim</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089579&quot;,&quot;name&quot;:&quot;xcode&quot;}" href="javascript: void(0);">xcode</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000126097&quot;,&quot;name&quot;:&quot;sublime-text&quot;}" href="javascript: void(0);">sublime-text</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089509&quot;,&quot;name&quot;:&quot;eclipse&quot;}" href="javascript: void(0);">eclipse</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000002720957&quot;,&quot;name&quot;:&quot;visual-studio-code&quot;}" href="javascript: void(0);">visual-studio-code</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090560&quot;,&quot;name&quot;:&quot;intellij-idea&quot;}" href="javascript: void(0);">intellij-idea</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090186&quot;,&quot;name&quot;:&quot;maven&quot;}" href="javascript: void(0);">maven</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089447&quot;,&quot;name&quot;:&quot;svn&quot;}" href="javascript: void(0);">svn</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090473&quot;,&quot;name&quot;:&quot;ide&quot;}" href="javascript: void(0);">ide</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090524&quot;,&quot;name&quot;:&quot;atom&quot;}" href="javascript: void(0);">atom</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090231&quot;,&quot;name&quot;:&quot;visual-studio&quot;}" href="javascript: void(0);">visual-studio</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090216&quot;,&quot;name&quot;:&quot;emacs&quot;}" href="javascript: void(0);">emacs</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000183694&quot;,&quot;name&quot;:&quot;hg&quot;}" href="javascript: void(0);">hg</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089663&quot;,&quot;name&quot;:&quot;textmate&quot;}" href="javascript: void(0);">textmate</a>
+                        </li>
+                                    </ul>
+            </div>
+                    <div role="tabpanel" class="tab-pane " id="系统设备">
+                <ul class="taglist--inline">
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089658&quot;,&quot;name&quot;:&quot;android&quot;}" href="javascript: void(0);">android</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089442&quot;,&quot;name&quot;:&quot;ios&quot;}" href="javascript: void(0);">ios</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089407&quot;,&quot;name&quot;:&quot;chrome&quot;}" href="javascript: void(0);">chrome</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089709&quot;,&quot;name&quot;:&quot;windows&quot;}" href="javascript: void(0);">windows</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089498&quot;,&quot;name&quot;:&quot;iphone&quot;}" href="javascript: void(0);">iphone</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090217&quot;,&quot;name&quot;:&quot;firefox&quot;}" href="javascript: void(0);">firefox</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000125504&quot;,&quot;name&quot;:&quot;internet-explorer&quot;}" href="javascript: void(0);">internet-explorer</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089499&quot;,&quot;name&quot;:&quot;safari&quot;}" href="javascript: void(0);">safari</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090638&quot;,&quot;name&quot;:&quot;ipad&quot;}" href="javascript: void(0);">ipad</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090218&quot;,&quot;name&quot;:&quot;opera&quot;}" href="javascript: void(0);">opera</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000002871462&quot;,&quot;name&quot;:&quot;apple-watch&quot;}" href="javascript: void(0);">apple-watch</a>
+                        </li>
+                                    </ul>
+            </div>
+                    <div role="tabpanel" class="tab-pane " id="其它">
+                <ul class="taglist--inline">
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000089409&quot;,&quot;name&quot;:&quot;html5&quot;}" href="javascript: void(0);">html5</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000002893277&quot;,&quot;name&quot;:&quot;react.js&quot;}" href="javascript: void(0);">react.js</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090137&quot;,&quot;name&quot;:&quot;\u641c\u7d22\u5f15\u64ce&quot;}" href="javascript: void(0);">搜索引擎</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000123810&quot;,&quot;name&quot;:&quot;virtualenv&quot;}" href="javascript: void(0);">virtualenv</a>
+                        </li>
+                                            <li class="mb5">
+                            <a class="tag" data-tag="{&quot;id&quot;:&quot;1040000000090316&quot;,&quot;name&quot;:&quot;lucene&quot;}" href="javascript: void(0);">lucene</a>
+                        </li>
+                                    </ul>
+            </div>
+            </div>
+</div>
+
+                                </div>
+                               
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 hidden-xs">
+                        <ul class="post-topheader__side list-unstyled">
+                            <li>
+                                <button type="button" class="btn btn-success btn-sm " data-id="1190000004345545" id="sideLike"><span id="sideLikeText">赞</span>&nbsp;&nbsp;<span class="seprator">|</span>&nbsp;&nbsp;
+                                            <span id="sideLikeNum">3</span></button><button type="button" id="sideBookmark" class="btn btn-default btn-sm " data-id="1190000004345545" data-type="article"><span id="sideBookmarkText">收藏</span>&nbsp;&nbsp;<span class="seprator">|</span>&nbsp;&nbsp;<span id="sideBookmarkNum">35</span></button>                            </li>
+                            <li>
+                                <strong class="no-stress">16.1k</strong> 次浏览
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- end .post-topheader -->
+
+    <div class="container mt30">
+        <div class="row">
+            <div class="col-xs-12 col-md-9 main ">
+
+                
+                <div class="article fmt article__content" data-id="1190000004345545" data-license="cc">
+                    
+<blockquote><p>okHttp3正式版刚发布了没几天，正好重构之前的代码，于是第一时间入坑了。对okHttp3的一些改变，会陆续写下来，这是第一篇Cookies管理及持久化。</p></blockquote>
+<h2 id="articleHeader0">Cookies管理</h2>
+<p>OkHttp的源码过于复杂，感兴趣的同学可以自行阅读，这里只针对<code>HttpEngineer</code>类进行分析，从字面意思即可看出这个类负责http请求的request、response等等操作的处理，而cookies管理也是随着http请求的request、response来处理。</p>
+<h3 id="articleHeader1">3.0之前</h3>
+<p>先看networkRequest方法，在里面通过client.getCookieHandler()函数获得了CookieHandler对象，通过该对象拿到cookie并设置到请求头里，请求结束后取得响应后通过networkResponse.headers()函数将请求头获得传入receiveHeaders函数，并将取得的cookie存入getCookieHandler得到的一个CookieHandler对象中去</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="private Request networkRequest(Request request) throws IOException {
+  Request.Builder result = request.newBuilder();
+
+  //例行省略....
+
+  CookieHandler cookieHandler = client.getCookieHandler();
+  if (cookieHandler != null) {
+    // Capture the request headers added so far so that they can be offered to the CookieHandler.
+    // This is mostly to stay close to the RI; it is unlikely any of the headers above would
+    // affect cookie choice besides &quot;Host&quot;.
+    Map&lt;String, List&lt;String&gt;&gt; headers = OkHeaders.toMultimap(result.build().headers(), null);
+
+    Map&lt;String, List&lt;String&gt;&gt; cookies = cookieHandler.get(request.uri(), headers);
+
+    // Add any new cookies to the request.
+    OkHeaders.addCookies(result, cookies);
+  }
+
+  //例行省略....
+
+  return result.build();
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs dart"><code>private Request networkRequest(Request request) throws IOException {
+  Request.Builder result = request.newBuilder();
+
+  <span class="hljs-comment">//例行省略....</span>
+
+  CookieHandler cookieHandler = client.getCookieHandler();
+  <span class="hljs-keyword">if</span> (cookieHandler != <span class="hljs-keyword">null</span>) {
+    <span class="hljs-comment">// Capture the request headers added so far so that they can be offered to the CookieHandler.</span>
+    <span class="hljs-comment">// This is mostly to stay close to the RI; it is unlikely any of the headers above would</span>
+    <span class="hljs-comment">// affect cookie choice besides "Host".</span>
+    <span class="hljs-built_in">Map</span>&lt;<span class="hljs-built_in">String</span>, <span class="hljs-built_in">List</span>&lt;<span class="hljs-built_in">String</span>&gt;&gt; headers = OkHeaders.toMultimap(result.build().headers(), <span class="hljs-keyword">null</span>);
+
+    <span class="hljs-built_in">Map</span>&lt;<span class="hljs-built_in">String</span>, <span class="hljs-built_in">List</span>&lt;<span class="hljs-built_in">String</span>&gt;&gt; cookies = cookieHandler.<span class="hljs-keyword">get</span>(request.uri(), headers);
+
+    <span class="hljs-comment">// Add any new cookies to the request.</span>
+    OkHeaders.addCookies(result, cookies);
+  }
+
+  <span class="hljs-comment">//例行省略....</span>
+
+  <span class="hljs-keyword">return</span> result.build();
+}</code></pre>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="public void readResponse() throws IOException {
+  //例行省略....
+
+  receiveHeaders(networkResponse.headers());
+
+  //例行省略....
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs aspectj"><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">readResponse</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>{
+  <span class="hljs-comment">//例行省略....</span>
+
+  receiveHeaders(networkResponse.headers());
+
+  <span class="hljs-comment">//例行省略....</span>
+}</code></pre>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="public void receiveHeaders(Headers headers) throws IOException {
+  CookieHandler cookieHandler = client.getCookieHandler();
+  if (cookieHandler != null) {
+    cookieHandler.put(userRequest.uri(), OkHeaders.toMultimap(headers, null));
+  }
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs aspectj"><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">receiveHeaders</span><span class="hljs-params">(Headers headers)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+  CookieHandler cookieHandler = client.getCookieHandler();
+  <span class="hljs-keyword">if</span> (cookieHandler != <span class="hljs-keyword">null</span>) {
+    cookieHandler.put(userRequest.uri(), OkHeaders.toMultimap(headers, <span class="hljs-keyword">null</span>));
+  }
+}</code></pre>
+<p>CookieHandler对象是OkHttpClient类中的一个属性，传入了这个对象，那么OkHttp就会对cookie进行自动管理</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="private CookieHandler cookieHandler;
+public OkHttpClient setCookieHandler(CookieHandler cookieHandler) {
+  this.cookieHandler = cookieHandler;
+  return this;
+}
+
+public CookieHandler getCookieHandler() {
+  return cookieHandler;
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs kotlin"><code><span class="hljs-keyword">private</span> CookieHandler cookieHandler;
+<span class="hljs-keyword">public</span> OkHttpClient setCookieHandler(CookieHandler cookieHandler) {
+  <span class="hljs-keyword">this</span>.cookieHandler = cookieHandler;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+
+<span class="hljs-keyword">public</span> CookieHandler getCookieHandler() {
+  <span class="hljs-keyword">return</span> cookieHandler;
+}</code></pre>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="OkHttpClient client = new OkHttpClient();
+client.setCookieHandler(CookieHandler cookieHanlder);" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs axapta"><code>OkHttpClient <span class="hljs-keyword">client</span> = <span class="hljs-keyword">new</span> OkHttpClient();
+<span class="hljs-keyword">client</span>.setCookieHandler(CookieHandler cookieHanlder);</code></pre>
+<h3 id="articleHeader2">3.0之后</h3>
+<p>而在OkHttp3中，对cookie而言，新增了两个类<code>Cookiejar</code>、<code>Cookie</code>两个类，在了解这两个类之前，先去看一下<code>HttpEngine</code>关于cookie管理的变化</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="private Request networkRequest(Request request) throws IOException {
+    Request.Builder result = request.newBuilder();
+
+    //例行省略....
+    
+    List&lt;Cookie&gt; cookies = client.cookieJar().loadForRequest(request.url());
+    if (!cookies.isEmpty()) {
+      result.header(&quot;Cookie&quot;, cookieHeader(cookies));
+    }
+
+    //例行省略....
+
+    return result.build();
+  }" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs aspectj"><code><span class="hljs-keyword">private</span> <span class="hljs-function">Request <span class="hljs-title">networkRequest</span><span class="hljs-params">(Request request)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+    Request.Builder result = request.newBuilder();
+
+    <span class="hljs-comment">//例行省略....</span>
+    
+    List&lt;Cookie&gt; cookies = client.cookieJar().loadForRequest(request.url());
+    <span class="hljs-keyword">if</span> (!cookies.isEmpty()) {
+      result.header(<span class="hljs-string">"Cookie"</span>, cookieHeader(cookies));
+    }
+
+    <span class="hljs-comment">//例行省略....</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">return</span> result.<span class="hljs-title">build</span><span class="hljs-params">()</span></span>;
+  }</code></pre>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="private String cookieHeader(List&lt;Cookie&gt; cookies) {
+    StringBuilder cookieHeader = new StringBuilder();
+    for (int i = 0, size = cookies.size(); i &lt; size; i++) {
+      if (i &gt; 0) {
+        cookieHeader.append(&quot;; &quot;);
+      }
+      Cookie cookie = cookies.get(i);
+      cookieHeader.append(cookie.name()).append(&#39;=&#39;).append(cookie.value());
+    }
+    return cookieHeader.toString();
+  }" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs processing"><code><span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> cookieHeader(List&lt;Cookie&gt; cookies) {
+    StringBuilder cookieHeader = <span class="hljs-keyword">new</span> StringBuilder();
+    <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>, <span class="hljs-built_in">size</span> = cookies.<span class="hljs-built_in">size</span>(); i &lt; <span class="hljs-built_in">size</span>; i++) {
+      <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span>) {
+        cookieHeader.<span class="hljs-built_in">append</span>(<span class="hljs-string">"; "</span>);
+      }
+      Cookie cookie = cookies.<span class="hljs-built_in">get</span>(i);
+      cookieHeader.<span class="hljs-built_in">append</span>(cookie.name()).<span class="hljs-built_in">append</span>(<span class="hljs-string">'='</span>).<span class="hljs-built_in">append</span>(cookie.value());
+    }
+    <span class="hljs-keyword">return</span> cookieHeader.toString();
+  }</code></pre>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="public void receiveHeaders(Headers headers) throws IOException {
+    if (client.cookieJar() == CookieJar.NO_COOKIES) return;
+
+    List&lt;Cookie&gt; cookies = Cookie.parseAll(userRequest.url(), headers);
+    if (cookies.isEmpty()) return;
+
+    client.cookieJar().saveFromResponse(userRequest.url(), cookies);
+  }" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs aspectj"><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">receiveHeaders</span><span class="hljs-params">(Headers headers)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+    <span class="hljs-keyword">if</span> (client.cookieJar() == CookieJar.NO_COOKIES) <span class="hljs-keyword">return</span>;
+
+    List&lt;Cookie&gt; cookies = Cookie.parseAll(userRequest.url(), headers);
+    <span class="hljs-keyword">if</span> (cookies.isEmpty()) <span class="hljs-keyword">return</span>;
+
+    client.cookieJar().saveFromResponse(userRequest.url(), cookies);
+  }</code></pre>
+<p>通过以上几个关键方法，可以很明显的感觉到作者的意图了，为了更加自由定制化的cookie管理。其中<code>loadForRequest()</code>、<code>saveFromResponse()</code>这两个方法最为关键，分别是在发送时向request header中加入cookie，在接收时，读取response header中的cookie。现在再去看<code>Cookiejar</code>这个类，就很好理解了</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="public interface CookieJar {
+  /** A cookie jar that never accepts any cookies. */
+  CookieJar NO_COOKIES = new CookieJar() {
+    @Override public void saveFromResponse(HttpUrl url, List&lt;Cookie&gt; cookies) {
+    }
+
+    @Override public List&lt;Cookie&gt; loadForRequest(HttpUrl url) {
+      return Collections.emptyList();
+    }
+  };
+
+  /**
+   * Saves {@code cookies} from an HTTP response to this store according to this jar&#39;s policy.
+   *
+   * &lt;p&gt;Note that this method may be called a second time for a single HTTP response if the response
+   * includes a trailer. For this obscure HTTP feature, {@code cookies} contains only the trailer&#39;s
+   * cookies.
+   */
+  void saveFromResponse(HttpUrl url, List&lt;Cookie&gt; cookies);
+
+  /**
+   * Load cookies from the jar for an HTTP request to {@code url}. This method returns a possibly
+   * empty list of cookies for the network request.
+   *
+   * &lt;p&gt;Simple implementations will return the accepted cookies that have not yet expired and that
+   * {@linkplain Cookie#matches match} {@code url}.
+   */
+  List&lt;Cookie&gt; loadForRequest(HttpUrl url);
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs java"><code><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">CookieJar</span> </span>{
+  <span class="hljs-comment">/** A cookie jar that never accepts any cookies. */</span>
+  CookieJar NO_COOKIES = <span class="hljs-keyword">new</span> CookieJar() {
+    <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">saveFromResponse</span><span class="hljs-params">(HttpUrl url, List&lt;Cookie&gt; cookies)</span> </span>{
+    }
+
+    <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Cookie&gt; <span class="hljs-title">loadForRequest</span><span class="hljs-params">(HttpUrl url)</span> </span>{
+      <span class="hljs-keyword">return</span> Collections.emptyList();
+    }
+  };
+
+  <span class="hljs-comment">/**
+   * Saves {<span class="hljs-doctag">@code</span> cookies} from an HTTP response to this store according to this jar's policy.
+   *
+   * &lt;p&gt;Note that this method may be called a second time for a single HTTP response if the response
+   * includes a trailer. For this obscure HTTP feature, {<span class="hljs-doctag">@code</span> cookies} contains only the trailer's
+   * cookies.
+   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">saveFromResponse</span><span class="hljs-params">(HttpUrl url, List&lt;Cookie&gt; cookies)</span></span>;
+
+  <span class="hljs-comment">/**
+   * Load cookies from the jar for an HTTP request to {<span class="hljs-doctag">@code</span> url}. This method returns a possibly
+   * empty list of cookies for the network request.
+   *
+   * &lt;p&gt;Simple implementations will return the accepted cookies that have not yet expired and that
+   * {<span class="hljs-doctag">@linkplain</span> Cookie#matches match} {<span class="hljs-doctag">@code</span> url}.
+   */</span>
+  <span class="hljs-function">List&lt;Cookie&gt; <span class="hljs-title">loadForRequest</span><span class="hljs-params">(HttpUrl url)</span></span>;
+}</code></pre>
+<p>so!在OkHttpClient创建时，传入这个CookieJar的实现，就能完成对Cookie的自动管理了</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="OkHttpClient client = new OkHttpClient.Builder()
+    .cookieJar(new CookieJar() {
+        private final HashMap&lt;HttpUrl, List&lt;Cookie&gt;&gt; cookieStore = new HashMap&lt;&gt;();
+
+        @Override
+        public void saveFromResponse(HttpUrl url, List&lt;Cookie&gt; cookies) {
+            cookieStore.put(url.host(), cookies);
+        }
+
+        @Override
+        public List&lt;Cookie&gt; loadForRequest(HttpUrl url) {
+            List&lt;Cookie&gt; cookies = cookieStore.get(url.host());
+            return cookies != null ? cookies : new ArrayList&lt;Cookie&gt;();
+        }
+    })
+    .build();" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs dart"><code>OkHttpClient client = <span class="hljs-keyword">new</span> OkHttpClient.Builder()
+    .cookieJar(<span class="hljs-keyword">new</span> CookieJar() {
+        private <span class="hljs-keyword">final</span> HashMap&lt;HttpUrl, <span class="hljs-built_in">List</span>&lt;Cookie&gt;&gt; cookieStore = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+
+        <span class="hljs-meta">@Override</span>
+        public <span class="hljs-keyword">void</span> saveFromResponse(HttpUrl url, <span class="hljs-built_in">List</span>&lt;Cookie&gt; cookies) {
+            cookieStore.put(url.host(), cookies);
+        }
+
+        <span class="hljs-meta">@Override</span>
+        public <span class="hljs-built_in">List</span>&lt;Cookie&gt; loadForRequest(HttpUrl url) {
+            <span class="hljs-built_in">List</span>&lt;Cookie&gt; cookies = cookieStore.<span class="hljs-keyword">get</span>(url.host());
+            <span class="hljs-keyword">return</span> cookies != <span class="hljs-keyword">null</span> ? cookies : <span class="hljs-keyword">new</span> ArrayList&lt;Cookie&gt;();
+        }
+    })
+    .build();</code></pre>
+<h2 id="articleHeader3">Cookies持久化</h2>
+<p>对Cookies持久化的方案，与之前版本并无很大区别，还是参考<a href="http://loopj.com/android-async-http/" target="_blank">android-async-http</a>这个库，主要参考其中两个类:</p>
+<ul>
+<li><p><code>PersistentCookieStore</code></p></li>
+<li><p><code>SerializableHttpCookie</code><br>与之前版本的区别是要将对<code>java.net.HttpCookie</code>这个类的缓存处理换成对<code>okhttp3.Cookie</code>的处理，其他方面几乎一样。</p></li>
+</ul>
+<p>废话不多说了，直接上代码</p>
+<h3 id="articleHeader4">SerializableOkHttpCookies</h3>
+<p>主要做两件事：</p>
+<ul>
+<li><p>将Cookie对象输出为ObjectStream</p></li>
+<li><p>将ObjectStream序列化成Cookie对象</p></li>
+</ul>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="public class SerializableOkHttpCookies implements Serializable {
+
+    private transient final Cookie cookies;
+    private transient Cookie clientCookies;
+
+    public SerializableOkHttpCookies(Cookie cookies) {
+        this.cookies = cookies;
+    }
+
+    public Cookie getCookies() {
+        Cookie bestCookies = cookies;
+        if (clientCookies != null) {
+            bestCookies = clientCookies;
+        }
+        return bestCookies;
+    }
+
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.writeObject(cookies.name());
+        out.writeObject(cookies.value());
+        out.writeLong(cookies.expiresAt());
+        out.writeObject(cookies.domain());
+        out.writeObject(cookies.path());
+        out.writeBoolean(cookies.secure());
+        out.writeBoolean(cookies.httpOnly());
+        out.writeBoolean(cookies.hostOnly());
+        out.writeBoolean(cookies.persistent());
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        String name = (String) in.readObject();
+        String value = (String) in.readObject();
+        long expiresAt = in.readLong();
+        String domain = (String) in.readObject();
+        String path = (String) in.readObject();
+        boolean secure = in.readBoolean();
+        boolean httpOnly = in.readBoolean();
+        boolean hostOnly = in.readBoolean();
+        boolean persistent = in.readBoolean();
+        Cookie.Builder builder = new Cookie.Builder();
+        builder = builder.name(name);
+        builder = builder.value(value);
+        builder = builder.expiresAt(expiresAt);
+        builder = hostOnly ? builder.hostOnlyDomain(domain) : builder.domain(domain);
+        builder = builder.path(path);
+        builder = secure ? builder.secure() : builder;
+        builder = httpOnly ? builder.httpOnly() : builder;
+        clientCookies =builder.build();
+    }
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs mipsasm"><code>public class SerializableOkHttpCookies implements Serializable {
+
+    private transient final Cookie cookies<span class="hljs-comment">;</span>
+    private transient Cookie clientCookies<span class="hljs-comment">;</span>
+
+    public SerializableOkHttpCookies(Cookie cookies) {
+        this.cookies = cookies<span class="hljs-comment">;</span>
+    }
+
+    public Cookie getCookies() {
+        Cookie <span class="hljs-keyword">bestCookies </span>= cookies<span class="hljs-comment">;</span>
+        if (clientCookies != null) {
+            <span class="hljs-keyword">bestCookies </span>= clientCookies<span class="hljs-comment">;</span>
+        }
+        return <span class="hljs-keyword">bestCookies;
+</span>    }
+
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.writeObject(cookies.name())<span class="hljs-comment">;</span>
+        out.writeObject(cookies.value())<span class="hljs-comment">;</span>
+        out.writeLong(cookies.expiresAt())<span class="hljs-comment">;</span>
+        out.writeObject(cookies.domain())<span class="hljs-comment">;</span>
+        out.writeObject(cookies.path())<span class="hljs-comment">;</span>
+        out.writeBoolean(cookies.secure())<span class="hljs-comment">;</span>
+        out.writeBoolean(cookies.httpOnly())<span class="hljs-comment">;</span>
+        out.writeBoolean(cookies.hostOnly())<span class="hljs-comment">;</span>
+        out.writeBoolean(cookies.persistent())<span class="hljs-comment">;</span>
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        String name = (String) in.readObject()<span class="hljs-comment">;</span>
+        String value = (String) in.readObject()<span class="hljs-comment">;</span>
+        long expiresAt = in.readLong()<span class="hljs-comment">;</span>
+        String domain = (String) in.readObject()<span class="hljs-comment">;</span>
+        String path = (String) in.readObject()<span class="hljs-comment">;</span>
+        <span class="hljs-keyword">boolean </span>secure = in.readBoolean()<span class="hljs-comment">;</span>
+        <span class="hljs-keyword">boolean </span>httpOnly = in.readBoolean()<span class="hljs-comment">;</span>
+        <span class="hljs-keyword">boolean </span>hostOnly = in.readBoolean()<span class="hljs-comment">;</span>
+        <span class="hljs-keyword">boolean </span>persistent = in.readBoolean()<span class="hljs-comment">;</span>
+        Cookie.<span class="hljs-keyword">Builder </span><span class="hljs-keyword">builder </span>= new Cookie.<span class="hljs-keyword">Builder();
+</span>        <span class="hljs-keyword">builder </span>= <span class="hljs-keyword">builder.name(name);
+</span>        <span class="hljs-keyword">builder </span>= <span class="hljs-keyword">builder.value(value);
+</span>        <span class="hljs-keyword">builder </span>= <span class="hljs-keyword">builder.expiresAt(expiresAt);
+</span>        <span class="hljs-keyword">builder </span>= hostOnly ? <span class="hljs-keyword">builder.hostOnlyDomain(domain) </span>: <span class="hljs-keyword">builder.domain(domain);
+</span>        <span class="hljs-keyword">builder </span>= <span class="hljs-keyword">builder.path(path);
+</span>        <span class="hljs-keyword">builder </span>= secure ? <span class="hljs-keyword">builder.secure() </span>: <span class="hljs-keyword">builder;
+</span>        <span class="hljs-keyword">builder </span>= httpOnly ? <span class="hljs-keyword">builder.httpOnly() </span>: <span class="hljs-keyword">builder;
+</span>        clientCookies =<span class="hljs-keyword">builder.build();
+</span>    }
+}</code></pre>
+<h3 id="articleHeader5">PersistentCookieStore</h3>
+<p>根据一定的规则去缓存或者获取Cookie:</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="public class PersistentCookieStore {
+    private static final String LOG_TAG = &quot;PersistentCookieStore&quot;;
+    private static final String COOKIE_PREFS = &quot;Cookies_Prefs&quot;;
+
+    private final Map&lt;String, ConcurrentHashMap&lt;String, Cookie&gt;&gt; cookies;
+    private final SharedPreferences cookiePrefs;
+
+
+    public PersistentCookieStore(Context context) {
+        cookiePrefs = context.getSharedPreferences(COOKIE_PREFS, 0);
+        cookies = new HashMap&lt;&gt;();
+
+        //将持久化的cookies缓存到内存中 即map cookies
+        Map&lt;String, ?&gt; prefsMap = cookiePrefs.getAll();
+        for (Map.Entry&lt;String, ?&gt; entry : prefsMap.entrySet()) {
+            String[] cookieNames = TextUtils.split((String) entry.getValue(), &quot;,&quot;);
+            for (String name : cookieNames) {
+                String encodedCookie = cookiePrefs.getString(name, null);
+                if (encodedCookie != null) {
+                    Cookie decodedCookie = decodeCookie(encodedCookie);
+                    if (decodedCookie != null) {
+                        if (!cookies.containsKey(entry.getKey())) {
+                            cookies.put(entry.getKey(), new ConcurrentHashMap&lt;String, Cookie&gt;());
+                        }
+                        cookies.get(entry.getKey()).put(name, decodedCookie);
+                    }
+                }
+            }
+        }
+    }
+
+    protected String getCookieToken(Cookie cookie) {
+        return cookie.name() + &quot;@&quot; + cookie.domain();
+    }
+
+    public void add(HttpUrl url, Cookie cookie) {
+        String name = getCookieToken(cookie);
+
+        //将cookies缓存到内存中 如果缓存过期 就重置此cookie
+        if (!cookie.persistent()) {
+            if (!cookies.containsKey(url.host())) {
+                cookies.put(url.host(), new ConcurrentHashMap&lt;String, Cookie&gt;());
+            }
+            cookies.get(url.host()).put(name, cookie);
+        } else {
+            if (cookies.containsKey(url.host())) {
+                cookies.get(url.host()).remove(name);
+            }
+        }
+
+        //讲cookies持久化到本地
+        SharedPreferences.Editor prefsWriter = cookiePrefs.edit();
+        prefsWriter.putString(url.host(), TextUtils.join(&quot;,&quot;, cookies.get(url.host()).keySet()));
+        prefsWriter.putString(name, encodeCookie(new SerializableOkHttpCookies(cookie)));
+        prefsWriter.apply();
+    }
+
+    public List&lt;Cookie&gt; get(HttpUrl url) {
+        ArrayList&lt;Cookie&gt; ret = new ArrayList&lt;&gt;();
+        if (cookies.containsKey(url.host()))
+            ret.addAll(cookies.get(url.host()).values());
+        return ret;
+    }
+
+    public boolean removeAll() {
+        SharedPreferences.Editor prefsWriter = cookiePrefs.edit();
+        prefsWriter.clear();
+        prefsWriter.apply();
+        cookies.clear();
+        return true;
+    }
+
+    public boolean remove(HttpUrl url, Cookie cookie) {
+        String name = getCookieToken(cookie);
+
+        if (cookies.containsKey(url.host()) &amp;&amp; cookies.get(url.host()).containsKey(name)) {
+            cookies.get(url.host()).remove(name);
+
+            SharedPreferences.Editor prefsWriter = cookiePrefs.edit();
+            if (cookiePrefs.contains(name)) {
+                prefsWriter.remove(name);
+            }
+            prefsWriter.putString(url.host(), TextUtils.join(&quot;,&quot;, cookies.get(url.host()).keySet()));
+            prefsWriter.apply();
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public List&lt;Cookie&gt; getCookies() {
+        ArrayList&lt;Cookie&gt; ret = new ArrayList&lt;&gt;();
+        for (String key : cookies.keySet())
+            ret.addAll(cookies.get(key).values());
+
+        return ret;
+    }
+
+    /**
+     * cookies 序列化成 string
+     *
+     * @param cookie 要序列化的cookie
+     * @return 序列化之后的string
+     */
+    protected String encodeCookie(SerializableOkHttpCookies cookie) {
+        if (cookie == null)
+            return null;
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(os);
+            outputStream.writeObject(cookie);
+        } catch (IOException e) {
+            Log.d(LOG_TAG, &quot;IOException in encodeCookie&quot;, e);
+            return null;
+        }
+
+        return byteArrayToHexString(os.toByteArray());
+    }
+
+    /**
+     * 将字符串反序列化成cookies
+     *
+     * @param cookieString cookies string
+     * @return cookie object
+     */
+    protected Cookie decodeCookie(String cookieString) {
+        byte[] bytes = hexStringToByteArray(cookieString);
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
+        Cookie cookie = null;
+        try {
+            ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
+            cookie = ((SerializableOkHttpCookies) objectInputStream.readObject()).getCookies();
+        } catch (IOException e) {
+            Log.d(LOG_TAG, &quot;IOException in decodeCookie&quot;, e);
+        } catch (ClassNotFoundException e) {
+            Log.d(LOG_TAG, &quot;ClassNotFoundException in decodeCookie&quot;, e);
+        }
+
+        return cookie;
+    }
+
+    /**
+     * 二进制数组转十六进制字符串
+     *
+     * @param bytes byte array to be converted
+     * @return string containing hex values
+     */
+    protected String byteArrayToHexString(byte[] bytes) {
+        StringBuilder sb = new StringBuilder(bytes.length * 2);
+        for (byte element : bytes) {
+            int v = element &amp; 0xff;
+            if (v &lt; 16) {
+                sb.append(&#39;0&#39;);
+            }
+            sb.append(Integer.toHexString(v));
+        }
+        return sb.toString().toUpperCase(Locale.US);
+    }
+
+    /**
+     * 十六进制字符串转二进制数组
+     *
+     * @param hexString string of hex-encoded values
+     * @return decoded byte array
+     */
+    protected byte[] hexStringToByteArray(String hexString) {
+        int len = hexString.length();
+        byte[] data = new byte[len / 2];
+        for (int i = 0; i &lt; len; i += 2) {
+            data[i / 2] = (byte) ((Character.digit(hexString.charAt(i), 16) &lt;&lt; 4) + Character.digit(hexString.charAt(i + 1), 16));
+        }
+        return data;
+    }
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs processing"><code><span class="hljs-keyword">public</span> class PersistentCookieStore {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">String</span> LOG_TAG = <span class="hljs-string">"PersistentCookieStore"</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">String</span> COOKIE_PREFS = <span class="hljs-string">"Cookies_Prefs"</span>;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Map&lt;<span class="hljs-keyword">String</span>, ConcurrentHashMap&lt;<span class="hljs-keyword">String</span>, Cookie&gt;&gt; cookies;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> SharedPreferences cookiePrefs;
+
+
+    <span class="hljs-keyword">public</span> PersistentCookieStore(Context context) {
+        cookiePrefs = context.getSharedPreferences(COOKIE_PREFS, <span class="hljs-number">0</span>);
+        cookies = <span class="hljs-keyword">new</span> <span class="hljs-keyword">HashMap</span>&lt;&gt;();
+
+        <span class="hljs-comment">//将持久化的cookies缓存到内存中 即map cookies</span>
+        Map&lt;<span class="hljs-keyword">String</span>, ?&gt; prefsMap = cookiePrefs.getAll();
+        <span class="hljs-keyword">for</span> (Map.Entry&lt;<span class="hljs-keyword">String</span>, ?&gt; entry : prefsMap.entrySet()) {
+            <span class="hljs-keyword">String</span>[] cookieNames = TextUtils.<span class="hljs-built_in">split</span>((<span class="hljs-keyword">String</span>) entry.getValue(), <span class="hljs-string">","</span>);
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">String</span> name : cookieNames) {
+                <span class="hljs-keyword">String</span> encodedCookie = cookiePrefs.getString(name, <span class="hljs-keyword">null</span>);
+                <span class="hljs-keyword">if</span> (encodedCookie != <span class="hljs-keyword">null</span>) {
+                    Cookie decodedCookie = decodeCookie(encodedCookie);
+                    <span class="hljs-keyword">if</span> (decodedCookie != <span class="hljs-keyword">null</span>) {
+                        <span class="hljs-keyword">if</span> (!cookies.containsKey(entry.getKey())) {
+                            cookies.put(entry.getKey(), <span class="hljs-keyword">new</span> ConcurrentHashMap&lt;<span class="hljs-keyword">String</span>, Cookie&gt;());
+                        }
+                        cookies.<span class="hljs-built_in">get</span>(entry.getKey()).put(name, decodedCookie);
+                    }
+                }
+            }
+        }
+    }
+
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">String</span> getCookieToken(Cookie cookie) {
+        <span class="hljs-keyword">return</span> cookie.name() + <span class="hljs-string">"@"</span> + cookie.domain();
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-built_in">add</span>(HttpUrl url, Cookie cookie) {
+        <span class="hljs-keyword">String</span> name = getCookieToken(cookie);
+
+        <span class="hljs-comment">//将cookies缓存到内存中 如果缓存过期 就重置此cookie</span>
+        <span class="hljs-keyword">if</span> (!cookie.persistent()) {
+            <span class="hljs-keyword">if</span> (!cookies.containsKey(url.host())) {
+                cookies.put(url.host(), <span class="hljs-keyword">new</span> ConcurrentHashMap&lt;<span class="hljs-keyword">String</span>, Cookie&gt;());
+            }
+            cookies.<span class="hljs-built_in">get</span>(url.host()).put(name, cookie);
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">if</span> (cookies.containsKey(url.host())) {
+                cookies.<span class="hljs-built_in">get</span>(url.host()).remove(name);
+            }
+        }
+
+        <span class="hljs-comment">//讲cookies持久化到本地</span>
+        SharedPreferences.Editor prefsWriter = cookiePrefs.edit();
+        prefsWriter.putString(url.host(), TextUtils.<span class="hljs-built_in">join</span>(<span class="hljs-string">","</span>, cookies.<span class="hljs-built_in">get</span>(url.host()).keySet()));
+        prefsWriter.putString(name, encodeCookie(<span class="hljs-keyword">new</span> SerializableOkHttpCookies(cookie)));
+        prefsWriter.apply();
+    }
+
+    <span class="hljs-keyword">public</span> List&lt;Cookie&gt; <span class="hljs-built_in">get</span>(HttpUrl url) {
+        ArrayList&lt;Cookie&gt; ret = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        <span class="hljs-keyword">if</span> (cookies.containsKey(url.host()))
+            ret.addAll(cookies.<span class="hljs-built_in">get</span>(url.host()).values());
+        <span class="hljs-keyword">return</span> ret;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">boolean</span> removeAll() {
+        SharedPreferences.Editor prefsWriter = cookiePrefs.edit();
+        prefsWriter.<span class="hljs-built_in">clear</span>();
+        prefsWriter.apply();
+        cookies.<span class="hljs-built_in">clear</span>();
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">boolean</span> remove(HttpUrl url, Cookie cookie) {
+        <span class="hljs-keyword">String</span> name = getCookieToken(cookie);
+
+        <span class="hljs-keyword">if</span> (cookies.containsKey(url.host()) &amp;&amp; cookies.<span class="hljs-built_in">get</span>(url.host()).containsKey(name)) {
+            cookies.<span class="hljs-built_in">get</span>(url.host()).remove(name);
+
+            SharedPreferences.Editor prefsWriter = cookiePrefs.edit();
+            <span class="hljs-keyword">if</span> (cookiePrefs.contains(name)) {
+                prefsWriter.remove(name);
+            }
+            prefsWriter.putString(url.host(), TextUtils.<span class="hljs-built_in">join</span>(<span class="hljs-string">","</span>, cookies.<span class="hljs-built_in">get</span>(url.host()).keySet()));
+            prefsWriter.apply();
+
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+    }
+
+    <span class="hljs-keyword">public</span> List&lt;Cookie&gt; getCookies() {
+        ArrayList&lt;Cookie&gt; ret = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">String</span> <span class="hljs-built_in">key</span> : cookies.keySet())
+            ret.addAll(cookies.<span class="hljs-built_in">get</span>(<span class="hljs-built_in">key</span>).values());
+
+        <span class="hljs-keyword">return</span> ret;
+    }
+
+    <span class="hljs-comment">/**
+     * cookies 序列化成 string
+     *
+     * @param cookie 要序列化的cookie
+     * @return 序列化之后的string
+     */</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">String</span> encodeCookie(SerializableOkHttpCookies cookie) {
+        <span class="hljs-keyword">if</span> (cookie == <span class="hljs-keyword">null</span>)
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        ByteArrayOutputStream os = <span class="hljs-keyword">new</span> ByteArrayOutputStream();
+        <span class="hljs-keyword">try</span> {
+            ObjectOutputStream outputStream = <span class="hljs-keyword">new</span> ObjectOutputStream(os);
+            outputStream.writeObject(cookie);
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            Log.d(LOG_TAG, <span class="hljs-string">"IOException in encodeCookie"</span>, e);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+
+        <span class="hljs-keyword">return</span> byteArrayToHexString(os.toByteArray());
+    }
+
+    <span class="hljs-comment">/**
+     * 将字符串反序列化成cookies
+     *
+     * @param cookieString cookies string
+     * @return cookie object
+     */</span>
+    <span class="hljs-keyword">protected</span> Cookie decodeCookie(<span class="hljs-keyword">String</span> cookieString) {
+        <span class="hljs-built_in">byte</span>[] bytes = hexStringToByteArray(cookieString);
+        ByteArrayInputStream byteArrayInputStream = <span class="hljs-keyword">new</span> ByteArrayInputStream(bytes);
+        Cookie cookie = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">try</span> {
+            ObjectInputStream objectInputStream = <span class="hljs-keyword">new</span> ObjectInputStream(byteArrayInputStream);
+            cookie = ((SerializableOkHttpCookies) objectInputStream.readObject()).getCookies();
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            Log.d(LOG_TAG, <span class="hljs-string">"IOException in decodeCookie"</span>, e);
+        } <span class="hljs-keyword">catch</span> (ClassNotFoundException e) {
+            Log.d(LOG_TAG, <span class="hljs-string">"ClassNotFoundException in decodeCookie"</span>, e);
+        }
+
+        <span class="hljs-keyword">return</span> cookie;
+    }
+
+    <span class="hljs-comment">/**
+     * 二进制数组转十六进制字符串
+     *
+     * @param bytes byte array to be converted
+     * @return string containing hex values
+     */</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">String</span> byteArrayToHexString(<span class="hljs-built_in">byte</span>[] bytes) {
+        StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder(bytes.length * <span class="hljs-number">2</span>);
+        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">byte</span> element : bytes) {
+            <span class="hljs-built_in">int</span> v = element &amp; <span class="hljs-number">0xff</span>;
+            <span class="hljs-keyword">if</span> (v &lt; <span class="hljs-number">16</span>) {
+                sb.<span class="hljs-built_in">append</span>(<span class="hljs-string">'0'</span>);
+            }
+            sb.<span class="hljs-built_in">append</span>(Integer.toHexString(v));
+        }
+        <span class="hljs-keyword">return</span> sb.toString().toUpperCase(Locale.US);
+    }
+
+    <span class="hljs-comment">/**
+     * 十六进制字符串转二进制数组
+     *
+     * @param hexString string of hex-encoded values
+     * @return decoded byte array
+     */</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-built_in">byte</span>[] hexStringToByteArray(<span class="hljs-keyword">String</span> hexString) {
+        <span class="hljs-built_in">int</span> len = hexString.length();
+        <span class="hljs-built_in">byte</span>[] data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">byte</span>[len / <span class="hljs-number">2</span>];
+        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i += <span class="hljs-number">2</span>) {
+            data[i / <span class="hljs-number">2</span>] = (<span class="hljs-built_in">byte</span>) ((Character.digit(hexString.charAt(i), <span class="hljs-number">16</span>) &lt;&lt; <span class="hljs-number">4</span>) + Character.digit(hexString.charAt(i + <span class="hljs-number">1</span>), <span class="hljs-number">16</span>));
+        }
+        <span class="hljs-keyword">return</span> data;
+    }
+}</code></pre>
+<h2 id="articleHeader6">最终效果</h2>
+<p>完成对Cookie持久化之后，就可以对Cookiejar进行进一步修改了，最终效果：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="/**
+     * 自动管理Cookies
+     */
+    private class CookiesManager implements CookieJar {
+        private final PersistentCookieStore cookieStore = new PersistentCookieStore(getApplicationContext());
+
+        @Override
+        public void saveFromResponse(HttpUrl url, List&lt;Cookie&gt; cookies) {
+            if (cookies != null &amp;&amp; cookies.size() &gt; 0) {
+                for (Cookie item : cookies) {
+                    cookieStore.add(url, item);
+                }
+            }
+        }
+
+        @Override
+        public List&lt;Cookie&gt; loadForRequest(HttpUrl url) {
+            List&lt;Cookie&gt; cookies = cookieStore.get(url);
+            return cookies;
+        }
+    }" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs java"><code><span class="hljs-comment">/**
+     * 自动管理Cookies
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CookiesManager</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">CookieJar</span> </span>{
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> PersistentCookieStore cookieStore = <span class="hljs-keyword">new</span> PersistentCookieStore(getApplicationContext());
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">saveFromResponse</span><span class="hljs-params">(HttpUrl url, List&lt;Cookie&gt; cookies)</span> </span>{
+            <span class="hljs-keyword">if</span> (cookies != <span class="hljs-keyword">null</span> &amp;&amp; cookies.size() &gt; <span class="hljs-number">0</span>) {
+                <span class="hljs-keyword">for</span> (Cookie item : cookies) {
+                    cookieStore.add(url, item);
+                }
+            }
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Cookie&gt; <span class="hljs-title">loadForRequest</span><span class="hljs-params">(HttpUrl url)</span> </span>{
+            List&lt;Cookie&gt; cookies = cookieStore.get(url);
+            <span class="hljs-keyword">return</span> cookies;
+        }
+    }</code></pre>
+<h2 id="articleHeader7">Tips</h2>
+<p>在这样做之前，尝试了使用<code>Interceptor</code>和<code>NetWorkInterceptor</code>在Http请求request和response时，拦截响应链，加入对Cookie的管理。so！接下来可能会详细介绍下<code>Interceptor</code>这个非常酷的实现。</p>
+
+                </div>
+                                                
+                <div class="clearfix mt10">
+                    <ul class="article-operation list-inline pull-left"><li><a href="https://segmentfault.com/a/1190000004345545">2016年01月21日发布</a></li><li class="dropdown js__content-ops" data-module="article" data-id="1190000004345545" data-typetext="文章"><a href="javascript:void(0);" class="dropdown-toggle text-muted" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a><ul class="dropdown-menu dropdown-menu-left"><li><a href="https://segmentfault.com/a/1190000004345545#911" data-toggle="modal" data-target="#911" data-action="report">举报</a></li></ul></li></ul>
+                    <div class="pull-right">
+                        <div class="widget-share__full" data-text="OkHttp3之Cookies管理及持久化" data-url="https://segmentfault.com/a/1190000004345545" data-shorturl="http://sfau.lt/b5soDB"><div class="widget-share-network sharer-0" style="display: block;"><ul class="sn-inline"><li data-network="weibo"><a href="javascript:void(0);" class="entypo-weibo icon-sn-weibo share-1" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至新浪微博">新浪微博</a></li><li data-network="wechart"><a href="javascript:void(0);" class="entypo-wechart icon-sn-weixin share-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至微信">微信</a></li><li data-network="twitter"><a href="javascript:void(0);" class="entypo-twitter icon-sn-twitter share-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至 Twitter">Twitter</a></li><li data-network="facebook"><a href="javascript:void(0);" class="entypo-facebook icon-sn-facebook share-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至 Facebook">Facebook</a></li></ul></div><a type="button" class="btn btn-sm shareMore btn-sn-more" data-toggle="popover" data-placement="top" data-url="https://segmentfault.com/a/1190000004345545" data-shorturl="http://sfau.lt/b5soDB"><span class="icon-sn-dotted" data-original-title="" title=""></span><strong class="visible-xs-inline">•••</strong></a></div>
+
+
+                    </div>
+                </div>
+                <div class="mt10 text-center"><button type="button" id="mainLike" data-id="1190000004345545" class="btn btn-success btn-lg mr15 "><span id="mainLikeText">赞</span>&nbsp;&nbsp;<span class="seprator">|</span>&nbsp;&nbsp;
+                                <span id="mainLikeNum">3 </span></button><button type="button" id="mainBookmark" data-type="article" data-id="1190000004345545" class="btn btn-default btn-lg "><span id="mainBookmarkText">收藏</span>&nbsp;&nbsp;<span class="seprator">|</span>&nbsp;&nbsp;<span id="mainBookmarkNum">35</span></button></div>
+                                    <div class="recommend-post pt30 mt40 mb30 border-top">
+                        <div class="row">
+                            <div class="col-md-8">
+                                                                    <h4 class="mt0">你可能感兴趣的文章</h4>
+                                    <ul class="widget-links list-unstyled">
+                                                                                    <li class="widget-links__item">
+                                                <a href="https://segmentfault.com/a/1190000004150350" title="Android中WebView页面交互">Android中WebView页面交互</a>
+                                                <small class="text-muted">
+                                                    37 收藏，4.5k
+                                                    浏览
+                                                </small>
+                                            </li>
+                                                                                    <li class="widget-links__item">
+                                                <a href="https://segmentfault.com/a/1190000002877843" title="Android利用Cookie实现码源登录效果">Android利用Cookie实现码源登录效果</a>
+                                                <small class="text-muted">
+                                                    21 收藏，25.7k
+                                                    浏览
+                                                </small>
+                                            </li>
+                                                                                    <li class="widget-links__item">
+                                                <a href="https://segmentfault.com/a/1190000007747812" title="Android安全之Intent Scheme Url攻击">Android安全之Intent Scheme Url攻击</a>
+                                                <small class="text-muted">
+                                                    790
+                                                    浏览
+                                                </small>
+                                            </li>
+                                                                            </ul>
+                                                            </div>
+                            <div class="col-md-4">
+                                                            </div>
+                        </div>
+
+                    </div>
+                                <!-- <ul class="list-unstyled text-muted mt30">
+                                                        </ul> -->
+
+                <h2 class="h4 post-comment-title"></h2>
+                
+        <div class="comments--news comments--default comments--article 
+    " data-id="1190000004345545" data-user-id="" data-author-id="1030000002977792 " data-is-admin="null">
+                    <div class="mb10 clearfix">
+                <strong class="comments-stat pull-left mr10">18 条评论</strong>
+
+                                                    <div class="btn-group btn-group-xs pull-right comments-sort btn-group-menu" role="menu">
+                        <a href="javascript:;" class="btn btn-default active" data-sort="default">默认排序</a>
+                        <a href="javascript:;" class="btn btn-default" data-sort="desc">时间排序</a>
+                    </div>
+                            </div>
+                <div class="comments-container">
+                                <div class="comments-list">
+                <div class="comments-item" data-id="1050000004357083">
+            <div class="pull-left">
+                <a href="https://segmentfault.com/u/kyleada" target="_blank"><img class="avatar-32 " src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/user-64.png" alt=""></a>
+            </div>
+            <div class="comments-content">
+                <div class="comment-trigger">
+                    <div class="pull-right comment-option">
+                                                <a href="https://segmentfault.com/a/1190000004345545#911" class="ml10" data-toggle="modal" data-target="#911" data-action="report" data-action-text="举报" data-module="comment" data-id="1050000004357083" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>
+                                            </div>
+                    <strong><a target="_blank" href="https://segmentfault.com/u/kyleada">kyleada</a></strong>
+                    <span class="comments-isAuthor hide"></span>
+                    <span class="comments-date">  ·  2016年01月24日</span>
+                </div>
+
+                <div class="fmt mb10">
+<p>so!在OkHttpClient创建时，传入这个CookieJar的实现，就能完成对Cookie的自动管理了</p>
+<p>这里的处理办法是不行的，缺少对cookies的domain path比对，直接按照完整url附加到request上不对</p>
+</div>
+
+                <form action="https://segmentfault.com/api/comment/1050000004357083/edit">
+                    <div class="form-group">
+                        <textarea class="editTextarea mono form-control mb10 hidden" rows="1" name="text" style="height: 28px; overflow: hidden; word-wrap: break-word;">so!在OkHttpClient创建时，传入这个CookieJar的实现，就能完成对Cookie的自动管理了
+
+这里的处理办法是不行的，缺少对cookies的domain path比对，直接按照完整url附加到request上不对</textarea>
+                    </div>
+                </form>
+
+                <p class="comment-ops not-reply">
+                    <span class="comments-zan ">
+                        <i class="fa fa-thumbs-up mr4" aria-hidden="true"></i>
+                        <span class="comments-zan-text">赞</span>
+                        <span class="comments-zan-value"></span>
+                    </span>
+                    
+                    <span class="ml15 comments-reply-btn">回复</span>
+
+                    <span class="pull-right editBtns hidden">
+                      <button class="btn btn-link btn-xs cancel" type="button">取消</button>
+                      <button class="btn btn-primary btn-xs edit ml10" type="button">保存</button>
+                    </span>
+                </p>
+
+                <div class="reply-list reply-list--empty">
+
+                    
+                    <div class="reply-item reply-item--ops" data-obj="obj">
+                        <a class="reply-inner-btn" href="javascript:;">添加回复</a>
+                        
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+                <div class="comments-item" data-id="1050000004359439">
+            <div class="pull-left">
+                <a href="https://segmentfault.com/u/akioss" target="_blank"><img class="avatar-32 " src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/450136037-56a8d5c0c3414_big64" alt=""></a>
+            </div>
+            <div class="comments-content">
+                <div class="comment-trigger">
+                    <div class="pull-right comment-option">
+                                                <a href="https://segmentfault.com/a/1190000004345545#911" class="ml10" data-toggle="modal" data-target="#911" data-action="report" data-action-text="举报" data-module="comment" data-id="1050000004359439" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>
+                                            </div>
+                    <strong><a target="_blank" href="https://segmentfault.com/u/akioss">Akioss</a></strong>
+                    <span class="comments-isAuthor ">作者</span>
+                    <span class="comments-date">  ·  2016年01月25日</span>
+                </div>
+
+                <div class="fmt mb10"><p>是的，所以在下边持久化的时候对url进行了处理。谢谢指正！我修改一下这个地方。</p></div>
+
+                <form action="https://segmentfault.com/api/comment/1050000004359439/edit">
+                    <div class="form-group">
+                        <textarea class="editTextarea mono form-control mb10 hidden" rows="1" name="text" style="height: 28px; overflow: hidden; word-wrap: break-word;">是的，所以在下边持久化的时候对url进行了处理。谢谢指正！我修改一下这个地方。</textarea>
+                    </div>
+                </form>
+
+                <p class="comment-ops not-reply">
+                    <span class="comments-zan ">
+                        <i class="fa fa-thumbs-up mr4" aria-hidden="true"></i>
+                        <span class="comments-zan-text">赞</span>
+                        <span class="comments-zan-value"></span>
+                    </span>
+                    
+                    <span class="ml15 comments-reply-btn">回复</span>
+
+                    <span class="pull-right editBtns hidden">
+                      <button class="btn btn-link btn-xs cancel" type="button">取消</button>
+                      <button class="btn btn-primary btn-xs edit ml10" type="button">保存</button>
+                    </span>
+                </p>
+
+                <div class="reply-list reply-list--empty">
+
+                    
+                    <div class="reply-item reply-item--ops" data-obj="obj">
+                        <a class="reply-inner-btn" href="javascript:;">添加回复</a>
+                        
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+                <div class="comments-item" data-id="1050000004540809">
+            <div class="pull-left">
+                <a href="https://segmentfault.com/u/jobscolin" target="_blank"><img class="avatar-32 " src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/user-64.png" alt=""></a>
+            </div>
+            <div class="comments-content">
+                <div class="comment-trigger">
+                    <div class="pull-right comment-option">
+                                                <a href="https://segmentfault.com/a/1190000004345545#911" class="ml10" data-toggle="modal" data-target="#911" data-action="report" data-action-text="举报" data-module="comment" data-id="1050000004540809" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>
+                                            </div>
+                    <strong><a target="_blank" href="https://segmentfault.com/u/jobscolin">jobscolin</a></strong>
+                    <span class="comments-isAuthor hide"></span>
+                    <span class="comments-date">  ·  2016年03月04日</span>
+                </div>
+
+                <div class="fmt mb10">
+<p>我这里提示java.lang.NullPointerException: Attempt to invoke virtual method 'java.util.Set java.util.concurrent.ConcurrentHashMap.keySet()' on a null object reference</p>
+<p>下面这行代码有问题 怎么回事？<br>prefsWriter.putString(url.host(), TextUtils.join(",", cookies.get(url.host()).keySet()));</p>
+</div>
+
+                <form action="https://segmentfault.com/api/comment/1050000004540809/edit">
+                    <div class="form-group">
+                        <textarea class="editTextarea mono form-control mb10 hidden" rows="1" name="text" style="height: 28px; overflow: hidden; word-wrap: break-word;">我这里提示java.lang.NullPointerException: Attempt to invoke virtual method 'java.util.Set java.util.concurrent.ConcurrentHashMap.keySet()' on a null object reference
+
+下面这行代码有问题 怎么回事？
+prefsWriter.putString(url.host(), TextUtils.join(",", cookies.get(url.host()).keySet()));</textarea>
+                    </div>
+                </form>
+
+                <p class="comment-ops not-reply">
+                    <span class="comments-zan ">
+                        <i class="fa fa-thumbs-up mr4" aria-hidden="true"></i>
+                        <span class="comments-zan-text">赞</span>
+                        <span class="comments-zan-value"></span>
+                    </span>
+                    
+                    <span class="ml15 comments-reply-btn">回复</span>
+
+                    <span class="pull-right editBtns hidden">
+                      <button class="btn btn-link btn-xs cancel" type="button">取消</button>
+                      <button class="btn btn-primary btn-xs edit ml10" type="button">保存</button>
+                    </span>
+                </p>
+
+                <div class="reply-list reply-list--empty">
+
+                    
+                    <div class="reply-item reply-item--ops" data-obj="obj">
+                        <a class="reply-inner-btn" href="javascript:;">添加回复</a>
+                        
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+                <div class="comments-item" data-id="1050000004872382">
+            <div class="pull-left">
+                <a href="https://segmentfault.com/u/hackoooo" target="_blank"><img class="avatar-32 " src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/user-64.png" alt=""></a>
+            </div>
+            <div class="comments-content">
+                <div class="comment-trigger">
+                    <div class="pull-right comment-option">
+                                                <a href="https://segmentfault.com/a/1190000004345545#911" class="ml10" data-toggle="modal" data-target="#911" data-action="report" data-action-text="举报" data-module="comment" data-id="1050000004872382" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>
+                                            </div>
+                    <strong><a target="_blank" href="https://segmentfault.com/u/hackoooo">hackoooo</a></strong>
+                    <span class="comments-isAuthor hide"></span>
+                    <span class="comments-date">  ·  2016年04月05日</span>
+                </div>
+
+                <div class="fmt mb10">
+<p><a href="https://segmentfault.com/u/akioss">@Akioss</a> 少年，“//将cookies缓存到内存中 如果缓存过期 就重置此cookie</p>
+<pre><code>    if (!cookie.persistent()) {”   这里的判断你写反了吧？ 另外，在cookie反序列化里面，persistent字段你并没用到，希望尽快确认，谢谢！</code></pre>
+</div>
+
+                <form action="https://segmentfault.com/api/comment/1050000004872382/edit">
+                    <div class="form-group">
+                        <textarea class="editTextarea mono form-control mb10 hidden" rows="1" name="text" style="height: 28px; overflow: hidden; word-wrap: break-word;">@Akioss 少年，“//将cookies缓存到内存中 如果缓存过期 就重置此cookie
+        if (!cookie.persistent()) {”   这里的判断你写反了吧？ 另外，在cookie反序列化里面，persistent字段你并没用到，希望尽快确认，谢谢！</textarea>
+                    </div>
+                </form>
+
+                <p class="comment-ops not-reply">
+                    <span class="comments-zan ">
+                        <i class="fa fa-thumbs-up mr4" aria-hidden="true"></i>
+                        <span class="comments-zan-text">赞</span>
+                        <span class="comments-zan-value"></span>
+                    </span>
+                    
+                    <span class="ml15 comments-reply-btn">回复</span>
+
+                    <span class="pull-right editBtns hidden">
+                      <button class="btn btn-link btn-xs cancel" type="button">取消</button>
+                      <button class="btn btn-primary btn-xs edit ml10" type="button">保存</button>
+                    </span>
+                </p>
+
+                <div class="reply-list reply-list--empty">
+
+                    
+                    <div class="reply-item reply-item--ops" data-obj="obj">
+                        <a class="reply-inner-btn" href="javascript:;">添加回复</a>
+                        
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+                <div class="comments-item" data-id="1050000004872553">
+            <div class="pull-left">
+                <a href="https://segmentfault.com/u/akioss" target="_blank"><img class="avatar-32 " src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/450136037-56a8d5c0c3414_big64" alt=""></a>
+            </div>
+            <div class="comments-content">
+                <div class="comment-trigger">
+                    <div class="pull-right comment-option">
+                                                <a href="https://segmentfault.com/a/1190000004345545#911" class="ml10" data-toggle="modal" data-target="#911" data-action="report" data-action-text="举报" data-module="comment" data-id="1050000004872553" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>
+                                            </div>
+                    <strong><a target="_blank" href="https://segmentfault.com/u/akioss">Akioss</a></strong>
+                    <span class="comments-isAuthor ">作者</span>
+                    <span class="comments-date">  ·  2016年04月05日</span>
+                </div>
+
+                <div class="fmt mb10"><p><a href="https://github.com/square/okhttp/blob/master/okhttp/src/main/java/okhttp3/Cookie.java" target="_blank">OkHttp3 Cookies.java</a>兄弟看的好仔细，我当时写的时候也是感觉别扭，所以把这个源码看了一遍，关键行<code>line:61</code>：persistent 是受HttpHeader字段控制的，不受其他因素影响；<code>line:476</code>：persistent为true的情况。我仔细想了下，应该没写反，兄弟你琢磨琢磨，我抽空再研究研究。加班中......</p></div>
+
+                <form action="https://segmentfault.com/api/comment/1050000004872553/edit">
+                    <div class="form-group">
+                        <textarea class="editTextarea mono form-control mb10 hidden" rows="1" name="text" style="height: 28px; overflow: hidden; word-wrap: break-word;">[OkHttp3 Cookies.java](https://github.com/square/okhttp/blob/master/okhttp/src/main/java/okhttp3/Cookie.java)兄弟看的好仔细，我当时写的时候也是感觉别扭，所以把这个源码看了一遍，关键行`line:61`：persistent 是受HttpHeader字段控制的，不受其他因素影响；`line:476`：persistent为true的情况。我仔细想了下，应该没写反，兄弟你琢磨琢磨，我抽空再研究研究。加班中......</textarea>
+                    </div>
+                </form>
+
+                <p class="comment-ops not-reply">
+                    <span class="comments-zan ">
+                        <i class="fa fa-thumbs-up mr4" aria-hidden="true"></i>
+                        <span class="comments-zan-text">赞</span>
+                        <span class="comments-zan-value"></span>
+                    </span>
+                    
+                    <span class="ml15 comments-reply-btn">回复</span>
+
+                    <span class="pull-right editBtns hidden">
+                      <button class="btn btn-link btn-xs cancel" type="button">取消</button>
+                      <button class="btn btn-primary btn-xs edit ml10" type="button">保存</button>
+                    </span>
+                </p>
+
+                <div class="reply-list reply-list--empty">
+
+                    
+                    <div class="reply-item reply-item--ops" data-obj="obj">
+                        <a class="reply-inner-btn" href="javascript:;">添加回复</a>
+                        
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+                <div class="comments-item" data-id="1050000004872838">
+            <div class="pull-left">
+                <a href="https://segmentfault.com/u/hackoooo" target="_blank"><img class="avatar-32 " src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/user-64.png" alt=""></a>
+            </div>
+            <div class="comments-content">
+                <div class="comment-trigger">
+                    <div class="pull-right comment-option">
+                                                <a href="https://segmentfault.com/a/1190000004345545#911" class="ml10" data-toggle="modal" data-target="#911" data-action="report" data-action-text="举报" data-module="comment" data-id="1050000004872838" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>
+                                            </div>
+                    <strong><a target="_blank" href="https://segmentfault.com/u/hackoooo">hackoooo</a></strong>
+                    <span class="comments-isAuthor hide"></span>
+                    <span class="comments-date">  ·  2016年04月05日</span>
+                </div>
+
+                <div class="fmt mb10"><p>嗯，我看代码大部分参考的PersistentCookieStore，但是它在add的方法的这一步的判断，是判断是否过期，没过期的话就保存，过期的话就把原来已经保存过的cookie删掉。而你修改后的这里判断的是persistent看源码注释应该表示是否持久化，对源码我目前的理解就是如果服务端设置header里的max-age和expiredxx的字段，就是代表需要持久化，你看line:256和line:263 （这个感觉有点蛋疼，persistent()方法返回值的注释又是有些矛盾的），你仔细看看应该你的实现里的判断应该是反了</p></div>
+
+                <form action="https://segmentfault.com/api/comment/1050000004872838/edit">
+                    <div class="form-group">
+                        <textarea class="editTextarea mono form-control mb10 hidden" rows="1" name="text" style="height: 28px; overflow: hidden; word-wrap: break-word;">嗯，我看代码大部分参考的PersistentCookieStore，但是它在add的方法的这一步的判断，是判断是否过期，没过期的话就保存，过期的话就把原来已经保存过的cookie删掉。而你修改后的这里判断的是persistent看源码注释应该表示是否持久化，对源码我目前的理解就是如果服务端设置header里的max-age和expiredxx的字段，就是代表需要持久化，你看line:256和line:263 （这个感觉有点蛋疼，persistent()方法返回值的注释又是有些矛盾的），你仔细看看应该你的实现里的判断应该是反了</textarea>
+                    </div>
+                </form>
+
+                <p class="comment-ops not-reply">
+                    <span class="comments-zan ">
+                        <i class="fa fa-thumbs-up mr4" aria-hidden="true"></i>
+                        <span class="comments-zan-text">赞</span>
+                        <span class="comments-zan-value"></span>
+                    </span>
+                    
+                    <span class="ml15 comments-reply-btn">回复</span>
+
+                    <span class="pull-right editBtns hidden">
+                      <button class="btn btn-link btn-xs cancel" type="button">取消</button>
+                      <button class="btn btn-primary btn-xs edit ml10" type="button">保存</button>
+                    </span>
+                </p>
+
+                <div class="reply-list reply-list--empty">
+
+                    
+                    <div class="reply-item reply-item--ops" data-obj="obj">
+                        <a class="reply-inner-btn" href="javascript:;">添加回复</a>
+                        
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+                <div class="comments-item" data-id="1050000004873030">
+            <div class="pull-left">
+                <a href="https://segmentfault.com/u/hackoooo" target="_blank"><img class="avatar-32 " src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/user-64.png" alt=""></a>
+            </div>
+            <div class="comments-content">
+                <div class="comment-trigger">
+                    <div class="pull-right comment-option">
+                                                <a href="https://segmentfault.com/a/1190000004345545#911" class="ml10" data-toggle="modal" data-target="#911" data-action="report" data-action-text="举报" data-module="comment" data-id="1050000004873030" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>
+                                            </div>
+                    <strong><a target="_blank" href="https://segmentfault.com/u/hackoooo">hackoooo</a></strong>
+                    <span class="comments-isAuthor hide"></span>
+                    <span class="comments-date">  ·  2016年04月05日</span>
+                </div>
+
+                <div class="fmt mb10"><p>你可以看看expriedAt的注释，我之前的疑惑是这句“Returns true if this cookie expires at the end of the current session.”现在貌似明白了，如果你设置max-age或者expires，就代表要在current session结束的时候过期，这里的session应该跟服务端的session概念一致的，而不是代表这次请求或者其它东西，如果没有设置session的过期时间或者有效期，过期时间就是 9999年12月31日。</p></div>
+
+                <form action="https://segmentfault.com/api/comment/1050000004873030/edit">
+                    <div class="form-group">
+                        <textarea class="editTextarea mono form-control mb10 hidden" rows="1" name="text" style="height: 28px; overflow: hidden; word-wrap: break-word;">你可以看看expriedAt的注释，我之前的疑惑是这句“Returns true if this cookie expires at the end of the current session.”现在貌似明白了，如果你设置max-age或者expires，就代表要在current session结束的时候过期，这里的session应该跟服务端的session概念一致的，而不是代表这次请求或者其它东西，如果没有设置session的过期时间或者有效期，过期时间就是 9999年12月31日。</textarea>
+                    </div>
+                </form>
+
+                <p class="comment-ops not-reply">
+                    <span class="comments-zan ">
+                        <i class="fa fa-thumbs-up mr4" aria-hidden="true"></i>
+                        <span class="comments-zan-text">赞</span>
+                        <span class="comments-zan-value"></span>
+                    </span>
+                    
+                    <span class="ml15 comments-reply-btn">回复</span>
+
+                    <span class="pull-right editBtns hidden">
+                      <button class="btn btn-link btn-xs cancel" type="button">取消</button>
+                      <button class="btn btn-primary btn-xs edit ml10" type="button">保存</button>
+                    </span>
+                </p>
+
+                <div class="reply-list reply-list--empty">
+
+                    
+                    <div class="reply-item reply-item--ops" data-obj="obj">
+                        <a class="reply-inner-btn" href="javascript:;">添加回复</a>
+                        
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+                <div class="comments-item" data-id="1050000004874759">
+            <div class="pull-left">
+                <a href="https://segmentfault.com/u/hackoooo" target="_blank"><img class="avatar-32 " src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/user-64.png" alt=""></a>
+            </div>
+            <div class="comments-content">
+                <div class="comment-trigger">
+                    <div class="pull-right comment-option">
+                                                <a href="https://segmentfault.com/a/1190000004345545#911" class="ml10" data-toggle="modal" data-target="#911" data-action="report" data-action-text="举报" data-module="comment" data-id="1050000004874759" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>
+                                            </div>
+                    <strong><a target="_blank" href="https://segmentfault.com/u/hackoooo">hackoooo</a></strong>
+                    <span class="comments-isAuthor hide"></span>
+                    <span class="comments-date">  ·  2016年04月05日</span>
+                </div>
+
+                <div class="fmt mb10"><pre><code>    `boolean hasExpired = cookie.persistent()?((cookie.expiresAt()-System.currentTimeMillis())/1000&lt;0?true:false):false;
+    if (!hasExpired) {......`</code></pre></div>
+
+                <form action="https://segmentfault.com/api/comment/1050000004874759/edit">
+                    <div class="form-group">
+                        <textarea class="editTextarea mono form-control mb10 hidden" rows="1" name="text" style="height: 28px; overflow: hidden; word-wrap: break-word;">        `boolean hasExpired = cookie.persistent()?((cookie.expiresAt()-System.currentTimeMillis())/1000&lt;0?true:false):false;
+        if (!hasExpired) {......`</textarea>
+                    </div>
+                </form>
+
+                <p class="comment-ops not-reply">
+                    <span class="comments-zan ">
+                        <i class="fa fa-thumbs-up mr4" aria-hidden="true"></i>
+                        <span class="comments-zan-text">赞</span>
+                        <span class="comments-zan-value"></span>
+                    </span>
+                    
+                    <span class="ml15 comments-reply-btn">回复</span>
+
+                    <span class="pull-right editBtns hidden">
+                      <button class="btn btn-link btn-xs cancel" type="button">取消</button>
+                      <button class="btn btn-primary btn-xs edit ml10" type="button">保存</button>
+                    </span>
+                </p>
+
+                <div class="reply-list reply-list--empty">
+
+                    
+                    <div class="reply-item reply-item--ops" data-obj="obj">
+                        <a class="reply-inner-btn" href="javascript:;">添加回复</a>
+                        
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+                <div class="comments-item" data-id="1050000008627017">
+            <div class="pull-left">
+                <a href="https://segmentfault.com/u/musicode_582a7b06190f4" target="_blank"><img class="avatar-32 " src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/user-64.png" alt=""></a>
+            </div>
+            <div class="comments-content">
+                <div class="comment-trigger">
+                    <div class="pull-right comment-option">
+                                                <a href="https://segmentfault.com/a/1190000004345545#911" class="ml10" data-toggle="modal" data-target="#911" data-action="report" data-action-text="举报" data-module="comment" data-id="1050000008627017" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>
+                                            </div>
+                    <strong><a target="_blank" href="https://segmentfault.com/u/musicode_582a7b06190f4">MusiCode</a></strong>
+                    <span class="comments-isAuthor hide"></span>
+                    <span class="comments-date">  ·  3月9日</span>
+                </div>
+
+                <div class="fmt mb10"><p><a href="http://blog.csdn.net/sbsujjbcy/article/details/46895039" target="_blank">http://blog.csdn.net/sbsujjbc...</a></p></div>
+
+                <form action="https://segmentfault.com/api/comment/1050000008627017/edit">
+                    <div class="form-group">
+                        <textarea class="editTextarea mono form-control mb10 hidden" rows="1" name="text" style="height: 28px; overflow: hidden; word-wrap: break-word;">http://blog.csdn.net/sbsujjbcy/article/details/46895039</textarea>
+                    </div>
+                </form>
+
+                <p class="comment-ops not-reply">
+                    <span class="comments-zan ">
+                        <i class="fa fa-thumbs-up mr4" aria-hidden="true"></i>
+                        <span class="comments-zan-text">赞</span>
+                        <span class="comments-zan-value"></span>
+                    </span>
+                    
+                    <span class="ml15 comments-reply-btn">回复</span>
+
+                    <span class="pull-right editBtns hidden">
+                      <button class="btn btn-link btn-xs cancel" type="button">取消</button>
+                      <button class="btn btn-primary btn-xs edit ml10" type="button">保存</button>
+                    </span>
+                </p>
+
+                <div class="reply-list ">
+
+                    
+                        <div class="reply-item" data-id="1050000008627519">
+                            <span class="pull-left comment-ops " style="position:absolute;">
+                                <span class="mr20 comments-zan ">
+                                    <span class="comments-zan-value comment-showhide
+                                         islike0-10
+                                        ">
+                                        0
+                                    </span>
+                                    <i class="fa fa-thumbs-up comment-showhide ml5" aria-hidden="true"></i>
+                                </span>
+                            </span>
+
+                            <div class="reply-content-block">
+                                <div class="reply-content"><p>兄弟呀，我是被抄袭的啊！OkHTTP3是2016年发布的啊，文中例举的代码都是okhttp3的，那个时间明显不对啊。其实当时的时候就被抄袭过很多次，可怜我当时撸了几天源码，从此之后便只在工作笔记中写心得了。</p></div>
+                                <form action="https://segmentfault.com/api/comment/1050000008627519/edit">
+                                    <div class="form-group">
+                                        <textarea class="editTextarea mono form-control mb10 hidden" rows="1" name="text" style="height: 28px; overflow: hidden; word-wrap: break-word;">兄弟呀，我是被抄袭的啊！OkHTTP3是2016年发布的啊，文中例举的代码都是okhttp3的，那个时间明显不对啊。其实当时的时候就被抄袭过很多次，可怜我当时撸了几天源码，从此之后便只在工作笔记中写心得了。</textarea>
+                                    </div>
+                                </form>
+                                <div class="comment-func inline-block">
+                                    
+
+                                    <span class="pull-right commentTools ml15">
+                                                                                                                                                                <a href="https://segmentfault.com/a/1190000004345545#911" class="ml10" data-toggle="modal" data-target="#911" data-module="comment" data-id="1050000008627519" data-action="report" data-typetext="评论" data-placement="top" title="举报">
+                                            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+                                        </a>
+                                    </span>
+
+                                    <span class="comment-meta inline-block">
+                                        <span> — </span>
+                                        <a target="_blank" href="https://segmentfault.com/u/akioss">
+                                            <strong>Akioss</strong>
+                                        </a> 
+                                        <span class="comments-isAuthor ">
+                                            作者
+                                        </span> 
+                                        <span class="text-muted-plus">  ·  3月9日</span>
+                                                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="reply-item" data-id="1050000008627623">
+                            <span class="pull-left comment-ops " style="position:absolute;">
+                                <span class="mr20 comments-zan ">
+                                    <span class="comments-zan-value comment-showhide
+                                         islike0-10
+                                        ">
+                                        0
+                                    </span>
+                                    <i class="fa fa-thumbs-up comment-showhide ml5" aria-hidden="true"></i>
+                                </span>
+                            </span>
+
+                            <div class="reply-content-block">
+                                <div class="reply-content"><p>讽刺的是，这个抄袭者连我一贯的文笔风格都懒得改了</p></div>
+                                <form action="https://segmentfault.com/api/comment/1050000008627623/edit">
+                                    <div class="form-group">
+                                        <textarea class="editTextarea mono form-control mb10 hidden" rows="1" name="text" style="height: 28px; overflow: hidden; word-wrap: break-word;">讽刺的是，这个抄袭者连我一贯的文笔风格都懒得改了</textarea>
+                                    </div>
+                                </form>
+                                <div class="comment-func inline-block">
+                                    
+
+                                    <span class="pull-right commentTools ml15">
+                                                                                                                                                                <a href="https://segmentfault.com/a/1190000004345545#911" class="ml10" data-toggle="modal" data-target="#911" data-module="comment" data-id="1050000008627623" data-action="report" data-typetext="评论" data-placement="top" title="举报">
+                                            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+                                        </a>
+                                    </span>
+
+                                    <span class="comment-meta inline-block">
+                                        <span> — </span>
+                                        <a target="_blank" href="https://segmentfault.com/u/akioss">
+                                            <strong>Akioss</strong>
+                                        </a> 
+                                        <span class="comments-isAuthor ">
+                                            作者
+                                        </span> 
+                                        <span class="text-muted-plus">  ·  3月9日</span>
+                                                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="reply-item" data-id="1050000010461077">
+                            <span class="pull-left comment-ops " style="position:absolute;">
+                                <span class="mr20 comments-zan ">
+                                    <span class="comments-zan-value comment-showhide
+                                         islike0-10
+                                        ">
+                                        0
+                                    </span>
+                                    <i class="fa fa-thumbs-up comment-showhide ml5" aria-hidden="true"></i>
+                                </span>
+                            </span>
+
+                            <div class="reply-content-block">
+                                <div class="reply-content"><p>请问你是智障吗，看看你这个傻逼的发表时间，谁抄袭谁，这个世界简直了</p></div>
+                                <form action="https://segmentfault.com/api/comment/1050000010461077/edit">
+                                    <div class="form-group">
+                                        <textarea class="editTextarea mono form-control mb10 hidden" rows="1" name="text" style="height: 28px; overflow: hidden; word-wrap: break-word;">请问你是智障吗，看看你这个傻逼的发表时间，谁抄袭谁，这个世界简直了</textarea>
+                                    </div>
+                                </form>
+                                <div class="comment-func inline-block">
+                                    
+
+                                    <span class="pull-right commentTools ml15">
+                                                                                                                                                                <a href="https://segmentfault.com/a/1190000004345545#911" class="ml10" data-toggle="modal" data-target="#911" data-module="comment" data-id="1050000010461077" data-action="report" data-typetext="评论" data-placement="top" title="举报">
+                                            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+                                        </a>
+                                    </span>
+
+                                    <span class="comment-meta inline-block">
+                                        <span> — </span>
+                                        <a target="_blank" href="https://segmentfault.com/u/lizhangqu">
+                                            <strong>区长</strong>
+                                        </a> 
+                                        <span class="comments-isAuthor hide">
+                                            
+                                        </span> 
+                                        <span class="text-muted-plus">  ·  8月2日</span>
+                                                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    <div class="reply-item reply-item--ops" data-obj="obj">
+                        <a class="reply-inner-btn" href="javascript:;">添加回复</a>
+                                                <span class="reply-more"><span class="text-muted-plus-plus mr5 ml5">|</span>
+                        <a class="reply-more-btn" href="javascript:;">显示更多</a></span>
+                        
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+                <div class="comments-item" data-id="1050000008683543">
+            <div class="pull-left">
+                <a href="https://segmentfault.com/u/roushengxiyu" target="_blank"><img class="avatar-32 " src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/user-64.png" alt=""></a>
+            </div>
+            <div class="comments-content">
+                <div class="comment-trigger">
+                    <div class="pull-right comment-option">
+                                                <a href="https://segmentfault.com/a/1190000004345545#911" class="ml10" data-toggle="modal" data-target="#911" data-action="report" data-action-text="举报" data-module="comment" data-id="1050000008683543" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>
+                                            </div>
+                    <strong><a target="_blank" href="https://segmentfault.com/u/roushengxiyu">柔声细语</a></strong>
+                    <span class="comments-isAuthor hide"></span>
+                    <span class="comments-date">  ·  3月14日</span>
+                </div>
+
+                <div class="fmt mb10"><p>大神 我用了你的代码报错说getApplicationcontext 空指针异常 <br>有时候是getSharedPreferences(java.lang.String,int) on a null object reference 救命啊！</p></div>
+
+                <form action="https://segmentfault.com/api/comment/1050000008683543/edit">
+                    <div class="form-group">
+                        <textarea class="editTextarea mono form-control mb10 hidden" rows="1" name="text" style="height: 28px; overflow: hidden; word-wrap: break-word;">大神 我用了你的代码报错说getApplicationcontext 空指针异常 
+有时候是getSharedPreferences(java.lang.String,int) on a null object reference 救命啊！</textarea>
+                    </div>
+                </form>
+
+                <p class="comment-ops not-reply">
+                    <span class="comments-zan ">
+                        <i class="fa fa-thumbs-up mr4" aria-hidden="true"></i>
+                        <span class="comments-zan-text">赞</span>
+                        <span class="comments-zan-value"></span>
+                    </span>
+                    
+                    <span class="ml15 comments-reply-btn">回复</span>
+
+                    <span class="pull-right editBtns hidden">
+                      <button class="btn btn-link btn-xs cancel" type="button">取消</button>
+                      <button class="btn btn-primary btn-xs edit ml10" type="button">保存</button>
+                    </span>
+                </p>
+
+                <div class="reply-list ">
+
+                    
+                        <div class="reply-item" data-id="1050000008684229">
+                            <span class="pull-left comment-ops " style="position:absolute;">
+                                <span class="mr20 comments-zan ">
+                                    <span class="comments-zan-value comment-showhide
+                                         islike0-10
+                                        ">
+                                        0
+                                    </span>
+                                    <i class="fa fa-thumbs-up comment-showhide ml5" aria-hidden="true"></i>
+                                </span>
+                            </span>
+
+                            <div class="reply-content-block">
+                                <div class="reply-content"><p>getApplicationcontext只是代指的获取当前application的context，你可以在application里写一个静态方法获取当前applicationcontext</p></div>
+                                <form action="https://segmentfault.com/api/comment/1050000008684229/edit">
+                                    <div class="form-group">
+                                        <textarea class="editTextarea mono form-control mb10 hidden" rows="1" name="text" style="height: 28px; overflow: hidden; word-wrap: break-word;">getApplicationcontext只是代指的获取当前application的context，你可以在application里写一个静态方法获取当前applicationcontext</textarea>
+                                    </div>
+                                </form>
+                                <div class="comment-func inline-block">
+                                    
+
+                                    <span class="pull-right commentTools ml15">
+                                                                                                                                                                <a href="https://segmentfault.com/a/1190000004345545#911" class="ml10" data-toggle="modal" data-target="#911" data-module="comment" data-id="1050000008684229" data-action="report" data-typetext="评论" data-placement="top" title="举报">
+                                            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+                                        </a>
+                                    </span>
+
+                                    <span class="comment-meta inline-block">
+                                        <span> — </span>
+                                        <a target="_blank" href="https://segmentfault.com/u/akioss">
+                                            <strong>Akioss</strong>
+                                        </a> 
+                                        <span class="comments-isAuthor ">
+                                            作者
+                                        </span> 
+                                        <span class="text-muted-plus">  ·  3月14日</span>
+                                                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="reply-item" data-id="1050000008686100">
+                            <span class="pull-left comment-ops " style="position:absolute;">
+                                <span class="mr20 comments-zan ">
+                                    <span class="comments-zan-value comment-showhide
+                                         islike0-10
+                                        ">
+                                        0
+                                    </span>
+                                    <i class="fa fa-thumbs-up comment-showhide ml5" aria-hidden="true"></i>
+                                </span>
+                            </span>
+
+                            <div class="reply-content-block">
+                                <div class="reply-content"><p>大神 加我好友吧 504093361，我在application里写了一个Myapplication 获取全局context，之后就报错 java.lang.NullPointerException: Attempt to invoke virtual method 'java.util.Set java.util.concurrent.ConcurrentHashMap.keySet()' on a null object reference  要哭了！！！</p></div>
+                                <form action="https://segmentfault.com/api/comment/1050000008686100/edit">
+                                    <div class="form-group">
+                                        <textarea class="editTextarea mono form-control mb10 hidden" rows="1" name="text" style="height: 28px; overflow: hidden; word-wrap: break-word;">大神 加我好友吧 504093361，我在application里写了一个Myapplication 获取全局context，之后就报错 java.lang.NullPointerException: Attempt to invoke virtual method 'java.util.Set java.util.concurrent.ConcurrentHashMap.keySet()' on a null object reference  要哭了！！！</textarea>
+                                    </div>
+                                </form>
+                                <div class="comment-func inline-block">
+                                    
+
+                                    <span class="pull-right commentTools ml15">
+                                                                                                                                                                <a href="https://segmentfault.com/a/1190000004345545#911" class="ml10" data-toggle="modal" data-target="#911" data-module="comment" data-id="1050000008686100" data-action="report" data-typetext="评论" data-placement="top" title="举报">
+                                            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+                                        </a>
+                                    </span>
+
+                                    <span class="comment-meta inline-block">
+                                        <span> — </span>
+                                        <a target="_blank" href="https://segmentfault.com/u/roushengxiyu">
+                                            <strong>柔声细语</strong>
+                                        </a> 
+                                        <span class="comments-isAuthor hide">
+                                            
+                                        </span> 
+                                        <span class="text-muted-plus">  ·  3月14日</span>
+                                                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    <div class="reply-item reply-item--ops" data-obj="obj">
+                        <a class="reply-inner-btn" href="javascript:;">添加回复</a>
+                        
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+                <div class="comments-item" data-id="1050000010689703">
+            <div class="pull-left">
+                <a href="https://segmentfault.com/u/yicaodeguodu" target="_blank"><img class="avatar-32 " src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/user-64.png" alt=""></a>
+            </div>
+            <div class="comments-content">
+                <div class="comment-trigger">
+                    <div class="pull-right comment-option">
+                                                <a href="https://segmentfault.com/a/1190000004345545#911" class="ml10" data-toggle="modal" data-target="#911" data-action="report" data-action-text="举报" data-module="comment" data-id="1050000010689703" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>
+                                            </div>
+                    <strong><a target="_blank" href="https://segmentfault.com/u/yicaodeguodu">薰衣草的国度</a></strong>
+                    <span class="comments-isAuthor hide"></span>
+                    <span class="comments-date">  ·  8月16日</span>
+                </div>
+
+                <div class="fmt mb10"><p>您好，小白想问一个比较低级的问题····文章中3.0的通过.cookieJar就能管理cookie，后面持久化后，CookiesManager 该写在哪里呢？</p></div>
+
+                <form action="https://segmentfault.com/api/comment/1050000010689703/edit">
+                    <div class="form-group">
+                        <textarea class="editTextarea mono form-control mb10 hidden" rows="1" name="text" style="height: 28px; overflow: hidden; word-wrap: break-word;">您好，小白想问一个比较低级的问题····文章中3.0的通过.cookieJar就能管理cookie，后面持久化后，CookiesManager 该写在哪里呢？</textarea>
+                    </div>
+                </form>
+
+                <p class="comment-ops not-reply">
+                    <span class="comments-zan ">
+                        <i class="fa fa-thumbs-up mr4" aria-hidden="true"></i>
+                        <span class="comments-zan-text">赞</span>
+                        <span class="comments-zan-value"></span>
+                    </span>
+                    
+                    <span class="ml15 comments-reply-btn">回复</span>
+
+                    <span class="pull-right editBtns hidden">
+                      <button class="btn btn-link btn-xs cancel" type="button">取消</button>
+                      <button class="btn btn-primary btn-xs edit ml10" type="button">保存</button>
+                    </span>
+                </p>
+
+                <div class="reply-list reply-list--empty">
+
+                    
+                    <div class="reply-item reply-item--ops" data-obj="obj">
+                        <a class="reply-inner-btn" href="javascript:;">添加回复</a>
+                        
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+            </div>
+    <div class="comments-loading hide">载入中...</div>
+        <div class="comments-more hide"><a href="javascript:;">显示更多评论</a></div>
+    
+
+                                    <div class="comments-box">
+                <div class="pull-left">
+                    <img class="avatar-32 " src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/user-128.png" alt="">
+                </div>
+                <div class="comments-box-content">
+                    <form action="https://segmentfault.com/api/article/1190000004345545/comments/add">
+                        <div class="form-group mb0">
+                            <textarea name="text" rows="3" class="form-control" placeholder="文明社会，理性评论"></textarea>
+                            <div class="mt15 text-right">
+                                <button type="button" class="hide"></button>
+                                <button class=" btn btn-primary" type="button">发布评论</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+                                                        </div>
+    </div>
+
+
+                                    
+                
+            </div><!-- /.main -->
+
+
+            <div class="col-xs-12 col-md-3 side">
+                
+                <div class="widget-box widget_lives pt0" style="border-top: none" id="live-recommend-wrapper">
+                    <h2 class="widget-box__title">
+                        讲堂推荐
+                        <i class="fa fa-youtube-play fa-sm" aria-hidden="true"></i>
+                        <a href="https://segmentfault.com/lives" class="pull-right more">更多</a>
+                    </h2>
+                    <div id="live-recommend" class="mb20">
+                <a href="https://segmentfault.com/l/1500000010227865?utm_source=ad_ad">
+                    <img class="live-recommend-img" src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/360226338-59b7855e52d42" width="255" height="80">
+                </a>
+            </div>
+                </div>
+                
+                                <div id="mm_124884735_33830642_120592878" class="mb25"><div id="ac_wrap_mm_124884735_33830642_120592878" style="width:255px"><script async=""></script>
+<!-- 文章页右侧边栏方块 -->
+<ins class="adsbygoogle" style="display:inline-block;width:255px;height:213px" data-ad-client="ca-pub-6330872677300335" data-ad-slot="6800875204" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:213px;margin:0;padding:0;position:relative;visibility:visible;width:255px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:213px;margin:0;padding:0;position:relative;visibility:visible;width:255px;background-color:transparent;"><iframe width="255" height="213" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:255px;height:213px;" src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/saved_resource.html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script><script type="text/javascript"></script><script type="text/javascript"></script><script type="text/javascript"></script><script type="text/javascript"></script><script type="text/javascript"></script></div></div>
+                                <div id="mm_124884735_33830642_121788665" class="mb25"></div>
+                
+                <div class="widget-box widget-box--blog-info">
+                    <div class="blog__sidebar-author ">
+                                                    <button type="button" class="btn btn-sm btn-success follow-user ml10 pull-right" data-do="follow" data-type="user" data-id="1030000002977792">关注作者
+                            </button>
+                        
+                        <div class="article__widget--author">
+                            <a href="https://segmentfault.com/u/akioss">
+                                <img class="avatar-40" src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/450136037-56a8d5c0c3414_big64" alt="Akioss">
+                            </a>
+                            <a class="article__widget-author-name" href="https://segmentfault.com/u/akioss">
+                                <strong>Akioss</strong>
+                            </a>
+                            <p class="article__widget-author-text-muted mb0">
+                                <span>667 声望</span>
+
+                            </p>
+
+
+                        </div>
+
+
+                    </div>
+                                        <div class="blog__sidebar-blog-name">
+                        <p class="article__widget-author-text-muted mt15 mb5">发布于专栏</p>
+
+                        <h4 class="fz16"><a style="word-break: break-all;" href="https://segmentfault.com/blog/akioss_56cc32f493eec">Akioss Share</a></h4>
+                        <p class="article__widget-author-desc">分享才是进步的阶梯</p>
+
+                        <p>
+                            <span class="article__widget-author-text-muted">2 人关注</span>
+                            
+                                                                    <button type="button mb20" class="btn btn-sm btn-default follow-article pull-right" data-do="follow" data-type="blog" data-id="1200000003023209">关注专栏
+                                    </button>
+                                
+                                                    </p>
+
+                    </div>
+                    
+
+                </div>
+                
+                                
+                 
+                <div class="post-nav hidden-xs side-outline hidden-sm fixed" style="display: block; width: 255px; top: 0px;">
+                    <div class="panel panel-default widget-outline">
+                        <div class="panel-heading">目录</div>
+                        <div class="panel-body">
+                            <div class="nav-body" style="top: 0px;">
+                                <div class="highlight-title" style="display: block; top: 81px; height: 27px;"></div>
+                                <ul class="articleIndex"><li class=""><a href="https://segmentfault.com/a/1190000004345545#articleHeader0">Cookies管理</a></li><li style="list-style:none;"><ul><li class=""><a href="https://segmentfault.com/a/1190000004345545#articleHeader1">3.0之前</a></li><li class=""><a href="https://segmentfault.com/a/1190000004345545#articleHeader2">3.0之后</a></li></ul></li><li class="active"><a href="https://segmentfault.com/a/1190000004345545#articleHeader3">Cookies持久化</a></li><li style="list-style:none;"><ul><li class=""><a href="https://segmentfault.com/a/1190000004345545#articleHeader4">SerializableOkHttpCookies</a></li><li><a href="https://segmentfault.com/a/1190000004345545#articleHeader5">PersistentCookieStore</a></li></ul></li><li><a href="https://segmentfault.com/a/1190000004345545#articleHeader6">最终效果</a></li><li><a href="https://segmentfault.com/a/1190000004345545#articleHeader7">Tips</a></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.side -->
+        </div>
+    </div>
+</div>
+
+<div id="shareToWeiboModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">分享</h4>
+            </div>
+            <div class="modal-body">
+                <p class="sfModal-content">
+                    分享到微博？
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default dont-likeweibo" data-dismiss="modal">取消</button>
+                <a href="https://segmentfault.com/a/1190000004345545" id="shareLink" class="btn btn-primary done-btn" target="_blank" onclick="$(&#39;#shareToWeiboModal&#39;).modal(&#39;hide&#39;)">分享</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal widget-911" id="911" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button">
+          <span aria-hidden="true">×</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title"><span data-model="action"></span><span data-model="type"></span></h4>
+      </div>
+      <div class="modal-body">
+        <form id="reportForm">
+          <!-- 后台返回信息 -->
+          <p class="alert alert-warning" data-model="returnMsg"></p>
+          <div data-role="base">
+            <p>
+              <strong class="required">我要<span data-model="action"></span>该<span data-model="type"></span>，理由是：</strong>
+            </p>
+            <ul class="list-unstyled" data-model="list"></ul>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default pull-left" type="button" data-role="back" style="display:none">返回重选</button>
+                <button class="btn btn-default" data-dismiss="modal" type="button">取消</button>
+        <button class="btn btn-primary" data-role="submit" type="button">提交</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+<div class="container hidden-xs">
+    <div class="row">
+        <div class="col-md-9">
+            <div id="mm_124884735_33830642_143436142" style="padding:0 calc(50% - 364px)" class="mb20"><div id="ac_wrap_mm_124884735_33830642_143436142" style="width:728px"><script async=""></script>
+<!-- 底部广告位 -->
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6330872677300335" data-ad-slot="5598290435" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/saved_resource(1).html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script><script type="text/javascript"></script><script type="text/javascript"></script><script type="text/javascript"></script><script type="text/javascript"></script><script type="text/javascript"></script></div></div>
+        
+    </div>
+</div>
+
+
+
+<footer id="footer">
+    <div class="container">
+        <div class="row hidden-xs">
+            <dl class="col-sm-2 site-link">
+                <dt>网站相关</dt>
+                <dd><a href="https://segmentfault.com/about">关于我们</a></dd>
+                <dd><a href="https://segmentfault.com/tos">服务条款</a></dd>
+                <dd><a href="https://segmentfault.com/faq">帮助中心</a></dd>
+                <dd><a href="https://segmentfault.com/repu">声望与权限</a></dd>
+                <dd><a href="https://segmentfault.com/markdown">编辑器语法</a></dd>
+                <dd><a href="https://segmentfault.com/weekly">每周精选</a></dd>
+                                <dd><a href="https://segmentfault.com/community">社区服务中心</a></dd>
+            </dl>
+            <dl class="col-sm-2 site-link">
+                <dt>联系合作</dt>
+                <dd><a href="https://segmentfault.com/contact">联系我们</a></dd>
+                <dd><a href="https://segmentfault.com/hiring">加入我们</a></dd>
+                <dd><a href="https://segmentfault.com/link">合作伙伴</a></dd>
+                <dd><a href="https://segmentfault.com/press">媒体报道</a></dd>
+                <dd><a href="https://segmentfault.com/g/1570000009280187">建议反馈</a></dd>
+                                            </dl>
+            <dl class="col-sm-2 site-link">
+                <dt>常用链接</dt>
+                                                <dd><a href="https://chrome.google.com/webstore/detail/segmentfault-%E7%AC%94%E8%AE%B0/pjklfdmleagfaekibdccmhlhellefcfo" target="_blank">笔记插件: Chrome</a></dd>
+                                                                <dd><a href="https://addons.mozilla.org/zh-CN/firefox/addon/sf-note-ext/" target="_blank">笔记插件: Firefox</a></dd>
+                                                                <dd>订阅：<a href="https://segmentfault.com/feeds">问答</a> / <a href="https://segmentfault.com/feeds/blogs">文章</a></dd>
+                                                                <dd><a href="https://mirrors.segmentfault.com/" target="_blank">文档镜像</a></dd>
+                                                                <dd><a href="https://segmentfault.com/d-day" target="_blank">D-DAY 技术沙龙</a></dd>
+                                                                <dd><a href="https://segmentfault.com/hackathon" target="_blank">黑客马拉松 Hackathon</a></dd>
+                                                                <dd><a href="https://namebeta.com/" target="_blank">域名搜索注册</a></dd>
+                                                                <dd><a href="https://shop165859711.taobao.com/" target="_blank">周边店铺</a></dd>
+                                            </dl>
+            <dl class="col-sm-2 site-link">
+                <dt>社区日志</dt>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault" target="_blank">产品技术日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/community_admin" target="_blank">社区运营日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault_news" target="_blank">市场运营日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault_team" target="_blank">团队日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/interview" target="_blank">社区访谈</a></dd>
+                                <dd>
+                    <ul class="sn-inline">
+                        <li>
+                            <a class="entypo-wechart icon-sn-weixin weixin-popover-qrcode" data-toggle="popover" data-placement="top" data-content="" data-original-title="" title="">微信</a>
+                        </li>
+                        <li>
+                            <a href="http://weibo.com/segmentfault" target="_blank" class="entypo-weibo icon-sn-weibo">新浪微博</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/SegmentFault" target="_blank" class="entypo-facebook icon-sn-github">Github</a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/segment_fault" target="_blank" class="entypo-twitter icon-sn-twitter">Twitter</a>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl class="col-sm-4 site-link" id="license">
+                <dt>内容许可</dt>
+                <dd>除特别说明外，用户内容均采用 <a rel="license" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a> 进行许可
+                </dd>
+                <dd>本站由 <a target="_blank" href="https://www.upyun.com/?utm_source=segmentfault&amp;utm_medium=link&amp;utm_campaign=upyun&amp;md=segmentfault">又拍云</a> 提供 CDN 存储服务
+                </dd>
+                <dd>
+                    <a href="https://segmentfault.com/app"><img src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/appQrcode.png" class="app-qrcode"></a>
+                    <div class="app-download-desc">
+                        <p>手机扫一扫</p>
+                        <p>下载官方 App</p>
+                    </div>
+                    
+                </dd>
+            </dl>
+            <div>
+            </div>
+        </div>
+        <div class="copyright">
+            Copyright © 2011-2017 SegmentFault. 当前呈现版本 17.06.16<br>
+            <a href="http://www.miibeian.gov.cn/" rel="nofollow">浙ICP备 15005796号-2</a> &nbsp;
+            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602002000" rel="nofollow">浙公网安备 33010602002000号</a>
+            <span class="ml5">杭州堆栈科技有限公司版权所有</span>
+        </div>
+        <p class="text-center">
+            <a class="js__view--selector hidden-sm hidden-md hidden-lg" data-action="mobile" href="javascript:;">移动版</a>
+            <a class="js__view--selector hidden-sm hidden-md hidden-lg" data-action="desktop" href="javascript:;">桌面版</a>
+        </p>
+    </div>
+</footer>
+
+<div id="fixedTools" class="hidden-xs hidden-sm">
+    <a id="backtop" class="border-bottom" href="https://segmentfault.com/a/1190000004345545#">回顶部</a>
+</div>
+
+<script src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/hm.js"></script><script async="" src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/analytics.js"></script><script id="loginModal" type="text/template">
+    <div class="row bg-white login-modal">
+        <div class="col-md-4 col-sm-12 col-md-push-7 login-wrap">
+            <h1 class="h4 text-muted login-title">用户登录</h1>
+            <form action="/api/user/login" method="POST" role="form" class="mt30">
+                <div class="form-group">
+                    <label for="username" class="control-label">手机号 或 Email</label>
+                    <input type="text" class="form-control" name="username" required placeholder="11 位手机号 或 Email"
+                           autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">密码</label><span class="pull-right"><a
+                                href="/user/forgot">忘记密码</a></span>
+                    <input type="password" class="form-control" name="password" required placeholder="密码">
+                </div>
+                <div class="form-group clearfix">
+                    <div class="checkbox pull-left">
+                        <label><input name="remember" type="checkbox" value="1" checked> 记住登录状态</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right pl20 pr20"
+                            onclick='ga("send", "event", "email login button", "clicked", "login modal");'>登录
+                    </button>
+                </div>
+            </form>
+            <p class="h4 text-muted visible-xs-block h4">快速登录</p>
+            <div class="widget-login mt30">
+                <p class="text-muted mt5 mr10 pull-left hidden-xs">快速登录</p>
+                <a href="/user/oauth/google" class=""
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "google"});'><span
+                            class="icon-sn-google"></span> <strong class="visible-xs-inline">Google 账号</strong></a>
+                <a href="/user/oauth/github" class=""
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "github"});");'><span
+                            class="icon-sn-github"></span> <strong class="visible-xs-inline">Github 账号</strong></a>
+                <a href="/user/oauth/weibo" class=""
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "weibo"});'><span
+                            class="icon-sn-weibo"></span> <strong class="visible-xs-inline">新浪微博账号</strong></a>
+                <a href="/user/oauth/qq" class=""
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                            class="icon-sn-qq"></span> <strong class="visible-xs-inline">QQ 账号</strong></a>
+                <a href="/user/oauth/weixin" class=""
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                            class="icon-sn-weixin"></span> <strong class="visible-xs-inline">微信账号</strong></a>
+                <a href="/user/oauth/linkedin" class=""
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "linkedin"});'><span
+                            class="icon-sn-linkedin"></span> <strong class="visible-xs-inline">LinkedIn 账号</strong></a>
+                <span id="loginShowMore" style="cursor: pointer" class="mb5"><span class="icon-sn-dotted"></span><strong
+                            class="visible-xs-inline">•••</strong></span>
+                <a href="/user/oauth/twitter" class=" hidden"
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "twitter"});'><span
+                            class="icon-sn-twitter"></span> <strong class="visible-xs-inline">Twitter 账号</strong></a>
+                <a href="/user/oauth/facebook" class=" hidden"
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "facebook"});'><span
+                            class="icon-sn-facebook"></span> <strong class="visible-xs-inline">Facebook 账号</strong></a>
+                <a href="/user/oauth/douban" class=" hidden"
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "douban"});'><span
+                            class="icon-sn-douban"></span> <strong class="visible-xs-inline">豆瓣账号</strong></a>
+            </div>
+        </div>
+        <div class="login-vline hidden-xs hidden-sm"></div>
+        <div class="col-md-4 col-md-pull-3 col-sm-12 login-wrap">
+            <h1 class="h4 text-muted login-title">注册新账号</h1>
+            <form action="/api/user/phone/register" method="POST" role="form" class="mt30">
+                <div class="form-group">
+                    <label for="name" class="control-label">名字</label>
+                    <input type="text" class="form-control" name="name" required placeholder="真实姓名或常用昵称">
+                </div>
+
+
+                <div class="form-group js-register-switch-box">
+                    <div class="mb10">
+                        <label class="radio-inline">
+                            <input type="radio" name="register_type" value="phone" checked> 用手机号注册
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="register_type" value="mail"> 用 Email 注册
+                        </label>
+                    </div>
+                    <div class="js-register-switch-content">
+                        <input type="phone" class="form-control mb15" name="phone" required placeholder="仅支持大陆手机号"
+                               autocomplete="off">
+                        <div class="captchaInput mb10 hidden">
+                            <label class="required control-label mt5">验证码</label>
+                            <input type="text" class="form-control" name="cap" placeholder="请输入下方的验证码后，再点击获取验证码">
+                            <div class="mt10 ">
+                                <a id="loginReloadCaptcha" href="javascript:void(0)">
+                                <img data-src="/user/captcha?w=240&h=50" class="captcha" width="240" height="50"/></a>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input name="code" type="text" class="form-control js-user-login__phone-code-value" placeholder="短信验证码">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default js-user-login__phone-vaild-btn" style="width:96px;" type="button">
+                                获取验证码</button>
+                            </span>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="password" class="control-label">密码</label>
+                    <input type="password" class="form-control" name="password" required placeholder="不少于 6 位">
+                </div>
+                <div class="form-group" style="display:none;">
+                    <label class="required control-label">验证码</label>
+                    <input type="text" class="form-control" id="captcha" name="captcha" placeholder="请输入下方的验证码">
+                    <div class="mt10"><a id="loginReloadCaptcha" href="javascript:void(0)"><img
+                                    src="/user/captcha?w=240&h=50" class="captcha" width="240" height="50"/></a>
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <div class="checkbox pull-left">
+                        同意并接受<a href="/tos" target="_blank">《服务条款》</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary pl20 pr20 pull-right"
+                            onclick='ga("send", "event", "email register button", "clicked", "login modal");'>注册
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center text-muted mt30">
+    </div>
+</script>
+<script id="bindPhoneModal" type="text/template">
+    <div class="bg-white bindphone-model">
+        <div class="alert alert-warning" role="alert">
+            为了保证账号安全，请先绑定手机
+        </div>
+        <div>
+            <form class="form-horizontal form__bindphone-apply" style="background-color:#fff;padding:0;">
+                <div class="form-group ">
+                    <label for="phoneNumber" class="col-sm-3 control-label required" >手机号码</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control bindphone--phone" id="phoneNumber" name="phone" placeholder="仅只支持大陆手机号">
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+                <div class="form-group">
+                    <label for="authCode" class="col-sm-3 control-label required">验证码</label>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control bindphone--code" name="code" placeholder="短信验证码">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default user-bind__phone-vaild-btn" type="button">获取验证码</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</script>
+
+
+
+<script>
+    (function (w) {
+        w.SF = {
+            staticUrl: "https://static.segmentfault.com/v-59f836b1"
+        };
+        w.SF.token = (function () {
+    var _dLdP6A = //'bk'
+'b'+'v'//'v'
++//'Q'
+'c'+'1'//'m82'
++''///*'4w0'*/'4w0'
++//'pJp'
+'pJp'+'313'//'Vo'
++//'Q'
+'Q'+//'m56'
+'47'+//'3mk'
+'3mk'+'f15'//'pNb'
++'3'//'ySA'
++'7'//'pJk'
++'ade'//'Ey'
++'470'//'nJ'
++//'t'
+'t'+//'RX'
+'cd5'+//'U'
+'U'+'y'//'y'
++'502'//'u'
++'374'//'7'
++'e9c'//'aXc'
++'f'//'w'
+, _V9oJnc3 = [[1,2],[3,6],[6,7],[8,11],[19,20],[22,23],[22,23]];
+
+    for (var i = 0; i < _V9oJnc3.length; i ++) {
+        _dLdP6A = _dLdP6A.substring(0, _V9oJnc3[i][0]) + _dLdP6A.substring(_V9oJnc3[i][1]);
+    }
+
+    return _dLdP6A;
+})();;
+    })(window);
+
+                var lock = {
+        type: "",
+        text: '',
+        table: {"ban_post":[1,"\u4f60\u5df2\u7ecf\u88ab\u7981\u8a00, \u65e0\u6cd5\u8fdb\u884c\u6b64\u64cd\u4f5c, \u5982\u6709\u7591\u4e49\u8bf7\u63d0\u4ea4\u7533\u8bc9, \u6216\u8005\u53d1\u90ae\u4ef6\u5230pr@segmentfault.com"]}
+    };
+</script>
+
+     <script crossorigin="" src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/assets.js"></script>
+         
+    <script crossorigin="" src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/post.min.js"></script>
+    
+
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-918487-8']);
+    _gaq.push(['_trackPageview']);
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+                
+        
+
+            
+
+    ga('create', 'UA-918487-8', 'auto', {
+        'userID'
+    : 0,
+        'createdTime'
+    : 0,
+        'now'
+    : 1509440667,
+        'allowLinker'
+    : true });
+    ga('require', 'linker');
+    ga('linker:autoLink', ['docs.segmentfault.com'] );
+    ga('set', 'dimension1', 'guest');
+    ga('send', 'pageview');
+
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?e23800c454aa573c0ccb16b52665ac26";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+        <script type="text/javascript" src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/k.js"></script>
+            <ins id="ac_js86_mm_124884735_33830642_120592878" style="display: none;"></ins><script>
+                    ac_keywords_targeting = "cookie";
+                _acM({
+            aid: "mm_124884735_33830642_120592878",
+            format: 1,
+            mode: 1,
+            gid: 1,
+            destid: "mm_124884735_33830642_120592878",
+            sendkeywords: 1,
+            serverbaseurl: "afpeng.alimama.com/"
+        });
+        </script><script></script><script type="text/javascript" src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/ex" id="ac_js86_$301005891"></script>
+            <ins id="ac_js86_mm_124884735_33830642_121788665" style="display: none;"></ins><script>
+                _acM({
+            aid: "mm_124884735_33830642_121788665",
+            format: 1,
+            mode: 1,
+            gid: 1,
+            destid: "mm_124884735_33830642_121788665",
+            sendkeywords: 0,
+            serverbaseurl: "afpeng.alimama.com/"
+        });
+        </script><script type="text/javascript" src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/ex(1)" id="ac_js86_$607903162"></script>
+     
+
+        <script type="text/javascript" src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/k.js"></script>
+            <ins id="ac_js86_mm_124884735_33830642_143436142" style="display: none;"></ins><script>
+                _acM({
+            aid: "mm_124884735_33830642_143436142",
+            format: 1,
+            mode: 1,
+            gid: 1,
+            destid: "mm_124884735_33830642_143436142",
+            sendkeywords: 0,
+            serverbaseurl: "afpeng.alimama.com/"
+        });
+        </script><script></script><script type="text/javascript" src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/ex(2)" id="ac_js86_$8886039382"></script>
+     
+
+
+
+</div><div id="noteWidget" class="noteWidget hidden hidden-xs">
+    <div class="noteWidget-header clearfix">
+        <h2 class="h4 pull-left">记笔记</h2>
+        <ul class="list-inline pull-right mb0">
+            <li id="noteWidgetMinimize"><span class="icon-minimize"></span></li><li id="noteWidgetZoom"><span class="icon-zoom"></span></li><li id="noteWidgetClose"><span class="icon-close"></span></li>
+        </ul>
+    </div>
+    <form method="POST" action="https://segmentfault.com/api/notes/add" role="form">
+        <div class="form-group">
+            <label for="title" class="sr-only">标题</label>
+            <input type="hidden" value="" id="draftId">
+            <input type="text" name="title" data-error="" autocomplete="off" class="form-control" placeholder="笔记描述" value="">
+        </div>
+        <div class="editor-config clearfix">
+            <select name="lang" class="form-control pull-left input-sm">
+                <optgroup label="文本语法">
+                    <option value="text" data-mode="text">纯文本</option>
+                    <option value="markdown" data-mode="markdown">Markdown</option>
+                    <option value="javascript" data-mode="javascript">Javascript</option>
+                    <option value="css" data-mode="css">CSS</option>
+                    <option value="html5" data-mode="htmlmixed">HTML</option>
+                    <option value="php" data-mode="php">PHP</option>
+                    <option value="python" data-mode="python">Python</option>
+                    <option value="ruby" data-mode="ruby">Ruby</option>
+                    <option value="go" data-mode="go">Go</option>
+                    <option value="c" data-mode="clike">C/C++</option>
+                    <option value="java" data-mode="java">Java</option>
+                    <option value="bash" data-mode="shell">Shell/Bash</option>
+                </optgroup>
+            </select>
+            <div class="pull-right hidden-xs">
+                <select name="indentWithTabs" class="form-control inline-block input-sm">
+                    <optgroup label="缩进模式">
+                        <option value="false">空格缩进</option>
+                        <option value="true">Tabs 缩进</option>
+                    </optgroup>
+                </select>
+                <select name="tabSize" class="form-control inline-block input-sm">
+                    <optgroup label="缩进大小">
+                        <option value="2">2</option>
+                        <option value="4" selected="">4</option>
+                    </optgroup>
+                </select>
+                <select name="lineWrap" class="form-control inline-block input-sm">
+                    <optgroup label="换行方式">
+                        <option value="true">自动换行</option>
+                        <option value="false">不换行</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+        <textarea id="codeMirror" class="form-control" style="display: none;"></textarea><div class="CodeMirror cm-s-default CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar" style="left: 0px;"><div style="height: 100%; min-height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="min-width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"></div><div class="CodeMirror-code"></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 1px;"></div></div></div></div>
+        <div class="mt20 clearfix">
+            <div class="pull-right">
+                <span class="text-muted hidden" id="editorStatus">已保存</span>
+                <a id="dropIt" href="javascript:void(0);" class="mr10 hidden">[舍弃]</a>
+                <button data-type="note" id="publishIt2" class="btn btn-default ml10" data-id="" data-do="add" data-url="" data-text="保存私密笔记" data-name="">保存私密笔记</button>
+                <button data-type="note" id="publishIt" class="btn btn-primary ml10" data-id="" data-do="add" data-url="" data-text="保存公开笔记" data-name="">保存公开笔记</button>
+                </div>
+            </div>
+        </form></div>
+    
+<div id="atwho-container"><div id="atwho-ground-d28dc2f91509440668582"><div class="atwho-view" id="at-view-64"><ul class="atwho-view-ul"></ul></div></div></div><iframe id="p_analyse_iframe" src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/saved_resource(2).html" style="display: none;"></iframe><iframe id="google_osd_static_frame_8605865933679" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./OkHttp3之Cookies管理及持久化 - Akioss Share - SegmentFault_files/saved_resource(3).html"></iframe></body></html>

@@ -1,0 +1,729 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0037)http://lucky16.iteye.com/blog/1631253 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客</title>
+    <meta name="description" content="isAssignableFrom 是用来判断一个类Class1和另一个类Class2是否相同或是另一个类的超类或接口。      通常调用格式是            Class1.isAssignableFrom (Class2)      调用者和参数都是   java.lang.Class   类型。             而   instanceof   是用来判断一个对象实例是否是一个类 ...">
+    <meta name="keywords" content="isassignablefrom, instanceof Class.isAssignableFrom与 instanceof 区别">
+    <link rel="shortcut icon" href="http://lucky16.iteye.com/images/favicon.ico" type="image/x-icon">
+    <link rel="search" type="application/opensearchdescription+xml" href="http://lucky16.iteye.com/open_search.xml" title="ITeye">
+    <link href="http://lucky16.iteye.com/rss" rel="alternate" title="记录我的开发点滴." type="application/rss+xml">
+    <link href="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/blog.css" media="screen" rel="stylesheet" type="text/css">
+<link href="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/blue.css" media="screen" rel="stylesheet" type="text/css">
+    <script type="text/javascript" async="" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/pr.js"></script><script type="text/javascript" async="" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/jnhlkhlnbnntbgfhlfgmk.js"></script><script src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/push.js"></script><script src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/hm.js"></script><script src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/application.js" type="text/javascript"></script>    
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?e19a8b00cf63f716d774540875007664";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+
+
+        //自动推送工具代码
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+
+      <link href="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/SyntaxHighlighter.css" media="screen" rel="stylesheet" type="text/css">
+  <script src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/shCoreCommon.js" type="text/javascript"></script>
+<script src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/hotkey.js" type="text/javascript"></script>
+  <script src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/code_favorites.js" type="text/javascript"></script>
+<script src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/weiboshare.js" type="text/javascript"></script>
+
+    <!-- 请置于所有广告位代码之前 -->
+    <script src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/ds.js"></script>
+    <link ref="canonical" href="http://lucky16.iteye.com/blog/1631253">
+    <script src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/c.js"></script><style type="text/css">#cambrian0,#cambrian1,#cambrian2,#cambrian3,#cambrian4{color:#000;font-style:normal;font-weight:400;letter-spacing:normal;word-spacing:normal;white-space:normal}#cambrian0,#cambrian0 div,#cambrian0 img,#cambrian1,#cambrian1 div,#cambrian1 img,#cambrian2,#cambrian2 div,#cambrian2 img,#cambrian3,#cambrian3 div,#cambrian3 img,#cambrian4,#cambrian4 div,#cambrian4 img{width:auto;height:auto;margin:0;padding:0;background-color:transparent;background-position:0 0;background-size:auto;background-repeat:repeat;background-origin:padding-box;background-clip:border-box;background-attachment:scroll;background-image:none;border:none;outline:medium none invert;color:inherit;direction:ltr;letter-spacing:inherit;line-height:normal;text-align:left;text-decoration:none;text-indent:0;text-transform:none;white-space:inherit;word-spacing:normal;font-size:12px;font-family:HanHei SC,PingHei,PingFang SC,STHeitiSC-Light,Helvetica Neue,Helvetica,Arial,sans-serif;font-size-adjust:none;font-stretch:normal;font-style:inherit;font-variant:normal;font-weight:inherit;visibility:visible;overflow:visible;list-style:none;float:none;clear:none;display:block;position:static;top:auto;left:auto;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}#cambrian0 a,#cambrian0 b,#cambrian0 em,#cambrian0 img,#cambrian0 span,#cambrian0 strong,#cambrian1 a,#cambrian1 b,#cambrian1 em,#cambrian1 img,#cambrian1 span,#cambrian1 strong,#cambrian2 a,#cambrian2 b,#cambrian2 em,#cambrian2 img,#cambrian2 span,#cambrian2 strong,#cambrian3 a,#cambrian3 b,#cambrian3 em,#cambrian3 img,#cambrian3 span,#cambrian3 strong,#cambrian4 a,#cambrian4 b,#cambrian4 em,#cambrian4 img,#cambrian4 span,#cambrian4 strong{display:inline}</style><style type="text/css">#cambrian0 .R2CNzl,#cambrian1 .R2CNzl,#cambrian2 .R2CNzl,#cambrian3 .R2CNzl,#cambrian4 .R2CNzl{width:57px;padding:8px 0;text-align:center;font-weight:300;font-size:12px;line-height:12px;vertical-align:middle;display:inline-block;color:#fff;background:#3897f0;border-radius:3px;-webkit-tap-highlight-color:transparent}#cambrian0 .R2CNzl:active,#cambrian1 .R2CNzl:active,#cambrian2 .R2CNzl:active,#cambrian3 .R2CNzl:active,#cambrian4 .R2CNzl:active{background-color:rgba(56,151,240,.2)}#cambrian0 .j4z1dH,#cambrian1 .j4z1dH,#cambrian2 .j4z1dH,#cambrian3 .j4z1dH,#cambrian4 .j4z1dH{color:#666;background-color:#fff;position:relative;z-index:0;border-radius:2px}#cambrian0 .j4z1dH:after,#cambrian1 .j4z1dH:after,#cambrian2 .j4z1dH:after,#cambrian3 .j4z1dH:after,#cambrian4 .j4z1dH:after{content:"";position:absolute;box-sizing:border-box;top:0;left:0;border:1px solid #ccc;border-radius:4px;width:200%;height:200%;z-index:-1;transform:scale(.5);-webkit-transform:scale(.5);transform-origin:left top;-webkit-transform-origin:left top}#cambrian0 .j4z1dH:active,#cambrian1 .j4z1dH:active,#cambrian2 .j4z1dH:active,#cambrian3 .j4z1dH:active,#cambrian4 .j4z1dH:active{background-color:#fff}#cambrian0 ._1hqmP7,#cambrian1 ._1hqmP7,#cambrian2 ._1hqmP7,#cambrian3 ._1hqmP7,#cambrian4 ._1hqmP7{width:120px}#cambrian0 ._1hqmP7:active,#cambrian1 ._1hqmP7:active,#cambrian2 ._1hqmP7:active,#cambrian3 ._1hqmP7:active,#cambrian4 ._1hqmP7:active{background-color:rgba(56,151,240,.2)}#cambrian0 ._3VoMI3,#cambrian1 ._3VoMI3,#cambrian2 ._3VoMI3,#cambrian3 ._3VoMI3,#cambrian4 ._3VoMI3{padding:8px 0;width:120px;background-color:#fff;color:#666;position:relative;z-index:0;border-radius:3px}#cambrian0 ._3VoMI3:after,#cambrian1 ._3VoMI3:after,#cambrian2 ._3VoMI3:after,#cambrian3 ._3VoMI3:after,#cambrian4 ._3VoMI3:after{content:"";position:absolute;box-sizing:border-box;top:0;left:0;border:1px solid #eee;border-radius:6px;width:200%;height:200%;z-index:-1;transform:scale(.5);-webkit-transform:scale(.5);transform-origin:left top;-webkit-transform-origin:left top}#cambrian0 ._3VoMI3:active,#cambrian1 ._3VoMI3:active,#cambrian2 ._3VoMI3:active,#cambrian3 ._3VoMI3:active,#cambrian4 ._3VoMI3:active{background-color:#fff}</style><style type="text/css">#cambrian0 .tH6Qv7,#cambrian1 .tH6Qv7,#cambrian2 .tH6Qv7,#cambrian3 .tH6Qv7,#cambrian4 .tH6Qv7{background-color:#fff;overflow:hidden}#cambrian0 .tH6Qv7 ._1NMJVn,#cambrian1 .tH6Qv7 ._1NMJVn,#cambrian2 .tH6Qv7 ._1NMJVn,#cambrian3 .tH6Qv7 ._1NMJVn,#cambrian4 .tH6Qv7 ._1NMJVn{padding-top:2px;float:right}#cambrian0 .tH6Qv7 ._26Hteq,#cambrian1 .tH6Qv7 ._26Hteq,#cambrian2 .tH6Qv7 ._26Hteq,#cambrian3 .tH6Qv7 ._26Hteq,#cambrian4 .tH6Qv7 ._26Hteq{margin-right:60px;overflow:hidden}#cambrian0 .tH6Qv7 ._26Hteq ._1UhIYm,#cambrian1 .tH6Qv7 ._26Hteq ._1UhIYm,#cambrian2 .tH6Qv7 ._26Hteq ._1UhIYm,#cambrian3 .tH6Qv7 ._26Hteq ._1UhIYm,#cambrian4 .tH6Qv7 ._26Hteq ._1UhIYm{float:left;font-size:0;position:relative}#cambrian0 .tH6Qv7 ._26Hteq ._1UhIYm ._3FeqpQ,#cambrian1 .tH6Qv7 ._26Hteq ._1UhIYm ._3FeqpQ,#cambrian2 .tH6Qv7 ._26Hteq ._1UhIYm ._3FeqpQ,#cambrian3 .tH6Qv7 ._26Hteq ._1UhIYm ._3FeqpQ,#cambrian4 .tH6Qv7 ._26Hteq ._1UhIYm ._3FeqpQ{margin:0 8px 0 0;width:35px;height:35px;border-radius:50%;border:1px solid #eee;box-sizing:border-box}#cambrian0 .tH6Qv7 ._26Hteq ._2htEKn ._3oOvK-,#cambrian1 .tH6Qv7 ._26Hteq ._2htEKn ._3oOvK-,#cambrian2 .tH6Qv7 ._26Hteq ._2htEKn ._3oOvK-,#cambrian3 .tH6Qv7 ._26Hteq ._2htEKn ._3oOvK-,#cambrian4 .tH6Qv7 ._26Hteq ._2htEKn ._3oOvK-{white-space:nowrap;overflow:hidden;position:relative;font-size:0}#cambrian0 .tH6Qv7 ._26Hteq ._2htEKn .DUXzra,#cambrian1 .tH6Qv7 ._26Hteq ._2htEKn .DUXzra,#cambrian2 .tH6Qv7 ._26Hteq ._2htEKn .DUXzra,#cambrian3 .tH6Qv7 ._26Hteq ._2htEKn .DUXzra,#cambrian4 .tH6Qv7 ._26Hteq ._2htEKn .DUXzra{display:inline-block;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;font-size:16px;color:#000;font-weight:300;line-height:16px;max-width:60%}#cambrian0 .tH6Qv7 ._26Hteq ._2htEKn .ocg5pY,#cambrian1 .tH6Qv7 ._26Hteq ._2htEKn .ocg5pY,#cambrian2 .tH6Qv7 ._26Hteq ._2htEKn .ocg5pY,#cambrian3 .tH6Qv7 ._26Hteq ._2htEKn .ocg5pY,#cambrian4 .tH6Qv7 ._26Hteq ._2htEKn .ocg5pY{font-size:12px;color:#999;margin-top:5px;font-weight:300;line-height:14px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}#cambrian0 .tH6Qv7 ._26Hteq ._2htEKn ._2c3HBO,#cambrian1 .tH6Qv7 ._26Hteq ._2htEKn ._2c3HBO,#cambrian2 .tH6Qv7 ._26Hteq ._2htEKn ._2c3HBO,#cambrian3 .tH6Qv7 ._26Hteq ._2htEKn ._2c3HBO,#cambrian4 .tH6Qv7 ._26Hteq ._2htEKn ._2c3HBO{display:inline-block;overflow:hidden;box-sizing:content-box;height:10px;padding:1px 2px;font-size:10px;font-weight:400;font-style:normal;line-height:11px;vertical-align:middle;text-decoration:none;border-radius:2px;border:1px solid #b3d4f3;color:#2b99ff;position:absolute;top:1px;margin-left:5px}</style><style type="text/css">#cambrian0 ._2OGhYs,#cambrian1 ._2OGhYs,#cambrian2 ._2OGhYs,#cambrian3 ._2OGhYs,#cambrian4 ._2OGhYs{position:relative;background-color:#fff}#cambrian0 ._2RPsC2,#cambrian1 ._2RPsC2,#cambrian2 ._2RPsC2,#cambrian3 ._2RPsC2,#cambrian4 ._2RPsC2{padding:15px 0;background-color:#fff}#cambrian0 ._3YzkLk,#cambrian1 ._3YzkLk,#cambrian2 ._3YzkLk,#cambrian3 ._3YzkLk,#cambrian4 ._3YzkLk{position:relative;z-index:0;position:absolute;top:0;left:0;right:0;z-index:-1}#cambrian0 ._3YzkLk:after,#cambrian1 ._3YzkLk:after,#cambrian2 ._3YzkLk:after,#cambrian3 ._3YzkLk:after,#cambrian4 ._3YzkLk:after{content:"";position:absolute;box-sizing:border-box;top:0;left:0;border-bottom:1px solid #ddd;width:200%;height:200%;z-index:-1;transform:scale(.5);-webkit-transform:scale(.5);transform-origin:left top;-webkit-transform-origin:left top}#cambrian0 ._3YzkLk ._1ZN5uE,#cambrian1 ._3YzkLk ._1ZN5uE,#cambrian2 ._3YzkLk ._1ZN5uE,#cambrian3 ._3YzkLk ._1ZN5uE,#cambrian4 ._3YzkLk ._1ZN5uE{padding:15px 17px;background-color:#fff}</style><style type="text/css">#cambrian0 ._1PnZXZ,#cambrian1 ._1PnZXZ,#cambrian2 ._1PnZXZ,#cambrian3 ._1PnZXZ,#cambrian4 ._1PnZXZ{display:block;position:fixed;z-index:2147483646;top:0;left:0;right:0;background:#fff}</style><style type="text/css">#cambrian0 ._1zbmp3,#cambrian1 ._1zbmp3,#cambrian2 ._1zbmp3,#cambrian3 ._1zbmp3,#cambrian4 ._1zbmp3{margin:0}</style><style type="text/css">#cambrian0 ._12SnTy,#cambrian1 ._12SnTy,#cambrian2 ._12SnTy,#cambrian3 ._12SnTy,#cambrian4 ._12SnTy{padding:15px 0;background-color:#fff}</style><style type="text/css">#cambrian0 .PypvUY,#cambrian1 .PypvUY,#cambrian2 .PypvUY,#cambrian3 .PypvUY,#cambrian4 .PypvUY{background-color:#fff;margin:20px 0;position:relative;z-index:0;border-radius:4px;overflow:hidden}#cambrian0 .PypvUY:after,#cambrian1 .PypvUY:after,#cambrian2 .PypvUY:after,#cambrian3 .PypvUY:after,#cambrian4 .PypvUY:after{content:"";position:absolute;box-sizing:border-box;top:0;left:0;border:1px solid #ddd;border-radius:8px;width:200%;height:200%;z-index:-1;transform:scale(.5);-webkit-transform:scale(.5);transform-origin:left top;-webkit-transform-origin:left top}#cambrian0 .PypvUY ._2SJWnA,#cambrian1 .PypvUY ._2SJWnA,#cambrian2 .PypvUY ._2SJWnA,#cambrian3 .PypvUY ._2SJWnA,#cambrian4 .PypvUY ._2SJWnA{text-align:center}#cambrian0 .PypvUY ._2SJWnA ._2UyMHm,#cambrian1 .PypvUY ._2SJWnA ._2UyMHm,#cambrian2 .PypvUY ._2SJWnA ._2UyMHm,#cambrian3 .PypvUY ._2SJWnA ._2UyMHm,#cambrian4 .PypvUY ._2SJWnA ._2UyMHm{width:67px;height:67px;border:1px solid transparent;border-radius:50%;margin-top:26px}#cambrian0 .PypvUY ._2jUmr0,#cambrian1 .PypvUY ._2jUmr0,#cambrian2 .PypvUY ._2jUmr0,#cambrian3 .PypvUY ._2jUmr0,#cambrian4 .PypvUY ._2jUmr0{margin-top:10px;text-align:center;line-height:16px;font-size:16px;color:#333;font-weight:600}#cambrian0 .PypvUY ._1ag27m,#cambrian1 .PypvUY ._1ag27m,#cambrian2 .PypvUY ._1ag27m,#cambrian3 .PypvUY ._1ag27m,#cambrian4 .PypvUY ._1ag27m{width:78%;margin:auto;margin-top:10px;text-align:center;font-size:13px;color:#999;line-height:17px;font-weight:300}#cambrian0 .PypvUY .py4pLD,#cambrian1 .PypvUY .py4pLD,#cambrian2 .PypvUY .py4pLD,#cambrian3 .PypvUY .py4pLD,#cambrian4 .PypvUY .py4pLD{text-align:center;margin:13px 0 25px}</style><style type="text/css">._3hy-Ff{position:fixed;z-index:2147483647;top:50%;transform:translateY(-50%);-webkit-transform:translateY(-50%);left:10%;right:10%;border-radius:4px}._3hy-Ff,._3sMHvW{background-color:#fff}._3sMHvW{width:100%;height:100%;min-height:260px;border:none;outline:none;border-radius:4px}._3wCh1i{position:fixed;z-index:2147483647;top:0;bottom:0;left:0;right:0;background-color:#000;opacity:.65}</style><script src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/openBox.js" async=""></script><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style></head><body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><script onerror="window[&#39;cambrian6f6d45e0&#39;].syncLoadFail()" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/biz.d141b389.js"></script>
+  
+  
+    <div id="header">
+	      <div id="blog_site_nav">
+  <a href="http://www.iteye.com/" class="homepage">首页</a>
+  <a href="http://www.iteye.com/news">资讯</a>
+  <a href="http://www.iteye.com/magazines">精华</a>
+  <a href="http://www.iteye.com/forums">论坛</a>
+  <a href="http://www.iteye.com/ask">问答</a>
+  <a href="http://www.iteye.com/blogs">博客</a>
+  <a href="http://www.iteye.com/blogs/subjects">专栏</a>
+  <a href="http://www.iteye.com/groups">群组</a>
+  <a href="http://lucky16.iteye.com/blog/1631253#" onclick="return false;" id="msna"><u>更多</u> <small>▼</small></a>
+  <div class="quick_menu" style="display:none;">
+    <a target="_blank" href="http://job.iteye.com/iteye">知识库</a>
+    <a href="http://www.iteye.com/search">搜索</a>
+  </div>
+</div>
+
+	      <div id="user_nav">
+
+      <a href="http://lucky16.iteye.com/login" class="welcome" title="登录">您还未登录 !</a>
+    <a href="http://lucky16.iteye.com/login">登录</a>
+    <a href="http://lucky16.iteye.com/signup" class="nobg">注册</a>
+    <!--<a href="http://passport.csdn.net/account/mobileregister?from=http://www.iteye.com">注册</a>-->
+  </div>
+
+	    
+    </div>
+
+    <div id="page">
+        <div id="branding" class="clearfix" style="overflow: hidden;background: none;padding:0 0 2px;">
+          <!-- 广告位：PC端-iteye博客详情页顶部banner-960*90 -->
+          <script>
+              (function() {
+                  var s = "_" + Math.random().toString(36).slice(2);
+                  document.write('<div id="' + s + '"></div>');
+                  (window.slotbydup=window.slotbydup || []).push({
+                      id: '4773198',
+                      container: s,
+                      size: '960,60',
+                      display: 'inlay-fix'
+                  });
+              })();
+          </script><div id="_c2u04garb6oum7dh2g8k6gvi"></div><script charset="utf-8" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/lcdm"></script><div id="_8oandmlvm3qnpd3gljq93sor" style=""><iframe width="960" frameborder="0" height="90" scrolling="no" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/s.html"></iframe></div><script type="text/javascript" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/todpduxgxrvpq.js"></script>
+        </div>
+      <div id="branding" class="clearfix">
+        <div id="blog_name">
+          <h1><a href="http://lucky16.iteye.com/">记录我的开发点滴.</a></h1>
+        </div>
+        <div id="fd"></div>
+        <div id="blog_navbar">
+          <ul>
+            <li class="blog_navbar_for"><a href="http://lucky16.iteye.com/"><strong>博客</strong></a></li>
+            <li><a href="http://lucky16.iteye.com/weibo">微博</a></li>
+            <li><a href="http://lucky16.iteye.com/album">相册</a></li>
+            <li><a href="http://lucky16.iteye.com/link">收藏</a></li>
+            <li><a href="http://lucky16.iteye.com/blog/guest_book">留言</a></li>
+            <li><a href="http://lucky16.iteye.com/blog/profile">关于我</a></li>
+          </ul>
+    
+          <div class="search">
+            <form action="http://lucky16.iteye.com/blog/search" method="get">
+              <input class="search_text" id="query" name="query" style="margin-left: 10px;width: 110px;" type="text" value="">
+              <input class="submit_search" type="submit" value="">
+            </form>
+          </div> 
+          <div id="fd"></div>         
+        </div>
+      </div>
+      
+      <div id="content" class="clearfix">
+        <div id="main">
+          
+
+
+
+          
+
+
+<div class="h-entry" style="display:none">
+  <a href="http://lucky16.iteye.com/" class="p-author" target="_blank">lucky16</a>
+</div>
+
+
+<div class="blog_main">
+  <script type="application/ld+json">
+    {
+        "@context": "https://zhanzhang.baidu.com/contexts/cambrian.jsonld",
+        "@id": "http://lucky16.iteye.com/blog/1631253",
+        "title": "Class.isAssignableFrom与 instanceof 区别",
+        "images": [],
+        "description": "",
+        "pubDate": "2012-08-14T11:54:42"
+    }
+  </script>
+  <div class="blog_title">
+    <h3>
+      <a href="http://lucky16.iteye.com/blog/1631253">Class.isAssignableFrom与 instanceof 区别</a>
+      <em class="actions">      </em>
+    </h3>
+    <ul class="blog_categories"><strong>博客分类：</strong> <li><a href="http://lucky16.iteye.com/category/81014">J2SE</a></li> </ul>
+        <div class="news_tag"><a href="http://www.iteye.com/blogs/tag/isassignablefrom">isassignablefrom</a><a href="http://www.iteye.com/blogs/tag/instanceof">instanceof</a>&nbsp;</div>
+    	  
+    	
+    	
+  		
+      </div>
+
+  <div id="blog_content" class="blog_content">
+    isAssignableFrom 是用来判断一个类Class1和另一个类Class2是否相同或是另一个类的超类或接口。&nbsp;&nbsp; 
+<br>&nbsp; 通常调用格式是&nbsp;&nbsp; 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Class1.isAssignableFrom (Class2)&nbsp;&nbsp; 
+<br>&nbsp; 调用者和参数都是&nbsp;&nbsp; java.lang.Class&nbsp;&nbsp; 类型。&nbsp;&nbsp; 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<br>&nbsp; 而&nbsp;&nbsp; instanceof&nbsp;&nbsp; 是用来判断一个对象实例是否是一个类或接口的或其子类子接口的实例。&nbsp;&nbsp; 
+<br>&nbsp;&nbsp;&nbsp; 格式是：&nbsp;&nbsp; oo&nbsp;&nbsp; instanceof&nbsp;&nbsp; TypeName&nbsp;&nbsp;&nbsp;&nbsp; 
+<br>&nbsp;&nbsp;&nbsp; 第一个参数是对象实例名，第二个参数是具体的类名或接口名
+<br>具体例子如下：
+<br><div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=public%20class%20TestCase%20%7B%0A%09public%20static%20void%20main(String%5B%5D%20args)%20%7B%0A%09%09TestCase%20test%20%3D%20new%20TestCase()%3B%0A%09%09test.testIsAssignedFrom1()%3B%0A%09%09test.testIsAssignedFrom2()%3B%0A%09%09test.testIsAssignedFrom3()%3B%0A%09%09test.testInstanceOf1()%3B%0A%09%09test.testInstanceOf2()%3B%0A%09%7D%0A%0A%09public%20void%20testIsAssignedFrom1()%20%7B%0A%09%09System.out.println(String.class.isAssignableFrom(Object.class))%3B%0A%09%7D%0A%0A%09public%20void%20testIsAssignedFrom2()%20%7B%0A%09%09System.out.println(Object.class.isAssignableFrom(Object.class))%3B%0A%09%7D%0A%0A%09public%20void%20testIsAssignedFrom3()%20%7B%0A%09%09System.out.println(Object.class.isAssignableFrom(String.class))%3B%0A%09%7D%0A%0A%09public%20void%20testInstanceOf1()%20%7B%0A%09%09String%20ss%20%3D%20%22%22%3B%0A%09%09System.out.println(ss%20instanceof%20Object)%3B%0A%09%7D%0A%0A%09public%20void%20testInstanceOf2()%20%7B%0A%09%09Object%20o%20%3D%20new%20Object()%3B%0A%09%09System.out.println(o%20instanceof%20Object)%3B%0A%09%7D%0A%0A%7D%0A" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;TestCase&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String[]&nbsp;args)&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TestCase&nbsp;test&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;TestCase();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;test.testIsAssignedFrom1();&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;test.testIsAssignedFrom2();&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;test.testIsAssignedFrom3();&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;test.testInstanceOf1();&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;test.testInstanceOf2();&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;testIsAssignedFrom1()&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(String.<span class="keyword">class</span><span>.isAssignableFrom(Object.</span><span class="keyword">class</span><span>));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;testIsAssignedFrom2()&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(Object.<span class="keyword">class</span><span>.isAssignableFrom(Object.</span><span class="keyword">class</span><span>));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;testIsAssignedFrom3()&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(Object.<span class="keyword">class</span><span>.isAssignableFrom(String.</span><span class="keyword">class</span><span>));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;testInstanceOf1()&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;ss&nbsp;=&nbsp;<span class="string">""</span><span>;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(ss&nbsp;<span class="keyword">instanceof</span><span>&nbsp;Object);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;testInstanceOf2()&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Object&nbsp;o&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;Object();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(o&nbsp;<span class="keyword">instanceof</span><span>&nbsp;Object);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>}&nbsp;&nbsp;</span></li></ol></div><pre class="java" name="code" codeable_id="" codeable_type="BlogComment" source_url="http://lucky16.iteye.com/blog/1631253#" pre_index="0" title="Class.isAssignableFrom与 instanceof 区别" style="display: none;">public class TestCase {
+	public static void main(String[] args) {
+		TestCase test = new TestCase();
+		test.testIsAssignedFrom1();
+		test.testIsAssignedFrom2();
+		test.testIsAssignedFrom3();
+		test.testInstanceOf1();
+		test.testInstanceOf2();
+	}
+
+	public void testIsAssignedFrom1() {
+		System.out.println(String.class.isAssignableFrom(Object.class));
+	}
+
+	public void testIsAssignedFrom2() {
+		System.out.println(Object.class.isAssignableFrom(Object.class));
+	}
+
+	public void testIsAssignedFrom3() {
+		System.out.println(Object.class.isAssignableFrom(String.class));
+	}
+
+	public void testInstanceOf1() {
+		String ss = "";
+		System.out.println(ss instanceof Object);
+	}
+
+	public void testInstanceOf2() {
+		Object o = new Object();
+		System.out.println(o instanceof Object);
+	}
+
+}
+</pre>
+<br>
+<br>打印结果：
+<br><div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=false%0Atrue%0Atrue%0Atrue%0Atrue" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span class="keyword">false</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">true</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">true</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">true</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">true</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre class="java" name="code" codeable_id="" codeable_type="BlogComment" source_url="http://lucky16.iteye.com/blog/1631253#" pre_index="1" title="Class.isAssignableFrom与 instanceof 区别" style="display: none;">false
+true
+true
+true
+true</pre>
+  </div>
+
+  
+
+  <div>
+    <!-- 广告位：PC端-iteye博客详情页底部banner2-728*90 -->
+    <script>
+        (function() {
+            var s = "_" + Math.random().toString(36).slice(2);
+            document.write('<div id="' + s + '"></div>');
+            (window.slotbydup=window.slotbydup || []).push({
+                id: '4774193',
+                container: s,
+                size: '728,90',
+                display: 'inlay-fix'
+            });
+        })();
+    </script><div id="_h5kowvfzj4wgulslrvnf2bj4i"></div><script charset="utf-8" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/lcdm(1)"></script><div style=""><iframe width="728" frameborder="0" height="90" scrolling="no" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/s(1).html"></iframe></div><script type="text/javascript" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/togxxxgpurvpq.js"></script>
+  </div>
+
+
+
+  <div id="bottoms" class="clearfix">
+    
+    <div id="share_weibo">分享到：
+      <a data-type="sina" href="javascript:;" title="分享到新浪微博"><img src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/sina.jpg"></a>
+      <a data-type="qq" href="javascript:;" title="分享到腾讯微博"><img src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/tec.jpg"></a>
+    </div>
+  </div>
+
+  <div class="blog_nav">
+    <div class="pre_next">
+      <a href="http://lucky16.iteye.com/blog/1631529" class="next" title="多多研究Spring3源码">多多研究Spring3源码</a>
+      |
+      <a href="http://lucky16.iteye.com/blog/1629703" class="pre" title="Git:warning: LF will be replaced by CRLF in *.">Git:warning: LF will be replaced by CRLF ...</a>
+    </div>
+  </div>
+  <div class="blog_bottom">
+    <ul>
+      <li>2012-08-14 11:54</li>
+      <li>浏览 16429</li>
+      <li><a href="http://lucky16.iteye.com/blog/1631253#comments">评论(0)</a></li>
+      
+      
+      <li>分类:<a href="http://www.iteye.com/blogs/category/language">编程语言</a></li>      
+      <li class="last"><a href="http://www.iteye.com/wiki/blog/1631253" target="_blank" class="more">查看更多</a></li>
+    </ul>    
+  </div>
+
+	
+    
+    
+<div class="boutique-curr-box blog_comment">
+	  <div class="boutique-curr clearfix">
+	    <h5 class="h3titles">相关资源推荐</h5>
+			<ul style="margin-top: 15px">
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://blog.csdn.net/q454684431/article/details/52872928" target="_blank" title="unix系列系统镜像下载">unix系列系统镜像下载</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://download.csdn.net/download/l_l_laaa/9578749" target="_blank" title="SUN的UNIX操作系统">SUN的UNIX操作系统</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://download.csdn.net/download/ni_ever4/173115" target="_blank" title="UNIX操作系统设计">UNIX操作系统设计</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://blog.csdn.net/chencheng126/article/details/43191573" target="_blank" title="谈谈网络编程（基于C++）">谈谈网络编程（基于C++）</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://blog.csdn.net/sinat_20265495/article/details/51761554" target="_blank" title="C/C++ socket网络编程扫盲篇">C/C++ socket网络编程扫盲篇</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://blog.csdn.net/shenjie12345678/article/details/28321969" target="_blank" title="C++基于TCP/IP简单的客户端、服务器通信程序实例">C++基于TCP/IP简单的客户端、服务器通信程序实例</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://blog.csdn.net/u012234115/article/details/54142273" target="_blank" title="linux下C/C++网络编程基本：socket实现tcp和udp的例子">linux下C/C++网络编程基本：socket实现tcp和udp的例子</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://blog.csdn.net/mydipan396/article/details/44411171" target="_blank" title="C/C++网络编程总结与ZeroMQ">C/C++网络编程总结与ZeroMQ</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://blog.csdn.net/daoming1112/article/details/54698466" target="_blank" title="C++网络编程">C++网络编程</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://edu.csdn.net/course/detail/3528" target="_blank" title="C++之网络编程">C++之网络编程</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://blog.csdn.net/u012422855/article/details/54948604" target="_blank" title="C++网络编程方面的开源项目">C++网络编程方面的开源项目</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://download.csdn.net/download/yuchuanmin126/1782651" target="_blank" title="C++ P2P网络编程">C++ P2P网络编程</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://blog.csdn.net/nonecode/article/details/7971682" target="_blank" title="C/C++实现基于UDP的网络编程">C/C++实现基于UDP的网络编程</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://blog.csdn.net/riyuedangkong1/article/details/51713496" target="_blank" title="C++网络编程之客户端程序">C++网络编程之客户端程序</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://blog.csdn.net/Real_Myth/article/details/52367038" target="_blank" title="C\C++网络编程总结">C\C++网络编程总结</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://download.csdn.net/download/rap2009/1284592" target="_blank" title="C++网络编程 卷1和卷2 （中文，pdf版）">C++网络编程 卷1和卷2 （中文，pdf版）</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://blog.csdn.net/Truong/article/details/11799707" target="_blank" title="DB2 v8.2,v9.1,v9.5,v9.7下载地址及详细安装图解">DB2 v8.2,v9.1,v9.5,v9.7下载地址及详细安装图解</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://download.csdn.net/download/followideal/9501732" target="_blank" title="DB2全套学习资料">DB2全套学习资料</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://download.csdn.net/download/lijw2009/5088586" target="_blank" title="DB2数据库管理软件 - db2mon v1.0">DB2数据库管理软件 - db2mon v1.0</a>
+						</li>
+				
+						<li style="width: 50%;float: left;margin: 0;line-height: 25px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+							<a href="http://download.csdn.net/download/dreaming123/1523154" target="_blank" title="IBM DB2 通用数据库 在64位平台上使用DB2 通用数据库.rar">IBM DB2 通用数据库 在64位平台上使用DB2 通用数据库.rar</a>
+						</li>
+				
+			</ul>
+	  </div>
+</div>
+
+		
+<div class="boutique-curr-box blog_comment">
+	  <div class="boutique-curr clearfix">
+	    <h5 class="h3titles">参考知识库</h5>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/android"><img src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/1455589744328_328.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/android" classs="title">Android知识库</a>
+              <span>
+                 <em>38647</em>&nbsp;&nbsp;关注 <i>|</i> <em>3162</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/react"><img src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/1465887837340_340.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/react" classs="title">React知识库</a>
+              <span>
+                 <em>3831</em>&nbsp;&nbsp;关注 <i>|</i> <em>393</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/ai"><img src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/1479972981201_201.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/ai" classs="title">人工智能基础知识库</a>
+              <span>
+                 <em>17710</em>&nbsp;&nbsp;关注 <i>|</i> <em>212</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/java"><img src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/1453701371636_636.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/java" classs="title">Java 知识库</a>
+              <span>
+                 <em>37168</em>&nbsp;&nbsp;关注 <i>|</i> <em>3748</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	  </div>
+</div>
+
+      
+  <div class="blog_comment">
+    <h5>评论</h5>
+    <a id="comments" name="comments"></a>
+    
+    
+    
+  </div>
+
+  <div class="blog_comment">
+    <h5>发表评论</h5>
+            <p style="text-align:center; margin-top:30px;margin-bottom:0px;"><a href="http://lucky16.iteye.com/login" style="background-color:white;"> <img src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/login_icon.png" style="vertical-align:middle; margin-right: 10px;"></a><a href="http://lucky16.iteye.com/login">  您还没有登录,请您登录后再发表评论 </a></p>
+      </div>
+</div>
+
+
+<script type="text/javascript">
+  dp.SyntaxHighlighter.HighlightAll('code', true, true);
+
+  $$('#main .blog_content pre[name=code]').each(function(pre, index){ // blog content
+    var post_id = 1631253;
+    var location = window.location;
+    source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+    pre.writeAttribute('codeable_id', post_id);
+    pre.writeAttribute('codeable_type', "Blog");
+    pre.writeAttribute('source_url', source_url);
+    pre.writeAttribute('pre_index', index);
+    pre.writeAttribute('title', 'Class.isAssignableFrom与 instanceof 区别');
+  });
+
+  fix_image_size($$('div.blog_content img'), 700);
+
+  function processComment() {
+    $$('#main .blog_comment > div').each(function(comment){// comment
+      var post_id = comment.id.substr(2);
+      $$("#"+comment.id+" pre[name=code]").each(function(pre, index){
+        var location = window.location;
+        source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+        source_url += "#" + comment.id;
+        pre.writeAttribute('codeable_id', post_id);
+        pre.writeAttribute('codeable_type', "BlogComment");
+        pre.writeAttribute('source_url', source_url);
+        pre.writeAttribute('pre_index', index);
+        pre.writeAttribute('title', 'Class.isAssignableFrom与 instanceof 区别');
+      });
+    });
+  }
+
+  function quote_comment(id) {
+    new Ajax.Request('/editor/quote', {
+      parameters: {'id':id, 'type':'BlogComment'},
+      onSuccess:function(response){editor.bbcode_editor.textarea.insertAfterSelection(response.responseText);
+        Element.scrollTo(editor.bbcode_editor.textarea.element);}
+    });
+  }
+
+  code_favorites_init();
+  processComment();
+  new WeiboShare({share_buttons: $('share_weibo'), img_scope: $('blog_content')});
+</script>
+
+
+
+
+        </div>
+
+        <div id="local">
+          <div class="local_top"></div>
+          <div id="blog_owner">
+  <div id="blog_owner_logo"><a href="http://lucky16.iteye.com/"><img alt="lucky16的博客" class="logo" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/f3350e85-a28e-3a4e-968a-b64db47b3302.jpg" title="lucky16的博客: 记录我的开发点滴." width=""></a></div>
+  <div id="blog_owner_name">lucky16</div>
+</div>
+
+          <div id="blog_actions">
+            <ul>
+              <li>浏览: 469356 次</li>
+              <li>性别: <img alt="Icon_minigender_1" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/icon_minigender_1.gif" title="男"></li>
+              <li>来自: 重庆</li>
+              <li><img src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/offline.gif"></li>
+              
+            </ul>
+          </div>
+          <div id="user_visits" class="clearfix">
+            <h5>最近访客 <span style="font-weight:normal;font-size:12px;padding-left:30px;"><a href="http://lucky16.iteye.com/blog/user_visits">更多访客&gt;&gt;</a></span></h5>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://timothy2005.iteye.com/" target="_blank"><img alt="timothy2005的博客" class="logo" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/user-logo-thumb.gif" title="timothy2005的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://timothy2005.iteye.com/" target="_blank" title="timothy2005">timothy2005</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://eyeit-2133.iteye.com/" target="_blank"><img alt="eyeit_2133的博客" class="logo" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/user-logo-thumb.gif" title="eyeit_2133的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://eyeit-2133.iteye.com/" target="_blank" title="eyeit_2133">eyeit_2133</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://lhz783009838.iteye.com/" target="_blank"><img alt="lhz783009838的博客" class="logo" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/user-logo-thumb.gif" title="lhz783009838的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://lhz783009838.iteye.com/" target="_blank" title="lhz783009838">lhz783009838</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://wangjinghua197.iteye.com/" target="_blank"><img alt="wangjinghua197的博客" class="logo" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/user-logo-thumb.gif" title="wangjinghua197的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://wangjinghua197.iteye.com/" target="_blank" title="wangjinghua197">wangjinghua197</a></div>
+              </div>
+            
+          </div>
+
+          
+
+                      <div id="blog_menu">
+              <h5>文章分类</h5>
+              <ul>
+                <li><a href="http://lucky16.iteye.com/">全部博客 (109)</a></li>
+                
+                  <li><a href="http://lucky16.iteye.com/category/81014">J2SE (11)</a></li>
+                
+                  <li><a href="http://lucky16.iteye.com/category/81015">J2EE (36)</a></li>
+                
+                  <li><a href="http://lucky16.iteye.com/category/305325">Shiro (1)</a></li>
+                
+                  <li><a href="http://lucky16.iteye.com/category/222094">Mobile (3)</a></li>
+                
+                  <li><a href="http://lucky16.iteye.com/category/102246">Js/Web (16)</a></li>
+                
+                  <li><a href="http://lucky16.iteye.com/category/81023">DB (13)</a></li>
+                
+                  <li><a href="http://lucky16.iteye.com/category/90404">OS (6)</a></li>
+                
+                  <li><a href="http://lucky16.iteye.com/category/222095">C/C#/C++ (1)</a></li>
+                
+                  <li><a href="http://lucky16.iteye.com/category/81020">随记 (11)</a></li>
+                
+                  <li><a href="http://lucky16.iteye.com/category/230663">Maven (4)</a></li>
+                
+                  <li><a href="http://lucky16.iteye.com/category/238685">Git/Svn (4)</a></li>
+                
+                  <li><a href="http://lucky16.iteye.com/category/272749">ActiveMQ (0)</a></li>
+                
+                  <li><a href="http://lucky16.iteye.com/category/258628">Activiti/工作流 (4)</a></li>
+                
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>社区版块</h5>
+              <ul>
+                <li><a href="http://lucky16.iteye.com/blog/news">我的资讯</a> (0)</li>
+                <li>
+                  <a href="http://lucky16.iteye.com/blog/post">我的论坛</a> (197)
+                </li>
+                <li><a href="http://lucky16.iteye.com/blog/answered_problems">我的问答</a> (80)</li>
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>存档分类</h5>
+              <ul>
+                
+                  <li><a href="http://lucky16.iteye.com/blog/monthblog/2014-04">2014-04</a> (2)</li>
+                
+                  <li><a href="http://lucky16.iteye.com/blog/monthblog/2014-02">2014-02</a> (1)</li>
+                
+                  <li><a href="http://lucky16.iteye.com/blog/monthblog/2013-11">2013-11</a> (3)</li>
+                
+                <li><a href="http://lucky16.iteye.com/blog/monthblog_more">更多存档...</a></li>
+              </ul>
+            </div>
+            
+            
+
+            <div id="guest_books">
+              <h5>最新评论</h5>
+              <ul>
+                
+                <li>
+                  <a href="http://superchangme.iteye.com/" target="_blank" title="superchangme">superchangme</a>： 
+                  show it,you are you:authenticat ...<br>
+                  <a href="http://lucky16.iteye.com/blog/2020198#bc2399202">认证 (authentication) 和授权 (authorization) 的区别</a>
+                </li>
+                
+                <li>
+                  <a href="http://2922520570.iteye.com/" target="_blank" title="深度交流社区">深度交流社区</a>： 
+                  说的很清楚，学习了<br>
+                  <a href="http://lucky16.iteye.com/blog/2020198#bc2397561">认证 (authentication) 和授权 (authorization) 的区别</a>
+                </li>
+                
+                <li>
+                  <a href="http://mazhi4562qq.iteye.com/" target="_blank" title="mazhi4562qq">mazhi4562qq</a>： 
+                  你好， 可以请教个关于activiti定时边界事件的问题么？我 ...<br>
+                  <a href="http://lucky16.iteye.com/blog/1775660#bc2392280">Activiti定时任务示例</a>
+                </li>
+                
+                <li>
+                  <a href="http://zhxin20.iteye.com/" target="_blank" title="落叶萧萧">落叶萧萧</a>： 
+                  &nbsp;&nbsp;<br>
+                  <a href="http://lucky16.iteye.com/blog/1578592#bc2390191">Spring MVC HelloWorld入门例子</a>
+                </li>
+                
+                <li>
+                  <a href="http://daniaowansui.iteye.com/" target="_blank" title="daniaowansui">daniaowansui</a>： 
+                  什么垃圾东西？<br>
+                  <a href="http://lucky16.iteye.com/blog/1492473#bc2386436">使用Sping AOP记录操作日志和错误日志</a>
+                </li>
+                
+              </ul>
+            </div>
+
+            <div class="local_bottom"></div>
+          
+        </div>
+
+        <div id="nav_show_top_stop" style="height: 500px; z-index: 1000; margin-top: 10px; float: left; clear: left; position: fixed; top: 1617.48px;">
+          <div>
+            <!-- 广告位：PC端-iteye博客详情页左侧Button1-200*200 -->
+            <script>
+                (function() {
+                    var s = "_" + Math.random().toString(36).slice(2);
+                    document.write('<div id="' + s + '"></div>');
+                    (window.slotbydup=window.slotbydup || []).push({
+                        id: '4773203',
+                        container: s,
+                        size: '200,200',
+                        display: 'inlay-fix'
+                    });
+                })();
+            </script><div id="_jozbnpshi20h4e72qnk7f1or"></div><script charset="utf-8" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/lcdm(2)"></script><div id="_kyzv92mpbwscijkpkam0r7ldi" style=""><div style="padding-top:0px;"><div><div id="qzpvxg"><iframe width="200" frameborder="0" height="200" scrolling="no" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/s(2).html"></iframe></div></div></div></div><script type="text/javascript" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/sncoctctcqum.js"></script>
+          </div>
+          <div>
+            <!-- 广告位：PC端-iteye博客详情页左侧Button2-200*200 -->
+            <script>
+                (function() {
+                    var s = "_" + Math.random().toString(36).slice(2);
+                    document.write('<div id="' + s + '"></div>');
+                    (window.slotbydup=window.slotbydup || []).push({
+                        id: '4773205',
+                        container: s,
+                        size: '200,200',
+                        display: 'inlay-fix'
+                    });
+                })();
+            </script><div id="_9lqb443gpb9rju39pg1zto6r"></div><script charset="utf-8" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/lcdm(3)"></script><div id="_2aguclop63gtisxhmiwawtgldi" style=""><iframe width="200" frameborder="0" height="200" scrolling="no" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/s(3).html"></iframe><span style="display:none;padding-right:0px;"></span></div><script type="text/javascript" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/dyqegnhxubfhnqu.js"></script>
+          </div>
+        </div>
+        <script>
+
+            setTimeout(function () {
+                var naviga_offsetTop = 0;
+
+                function onload_function() {
+                    naviga_offsetTop = jQuery("#nav_show_top_stop").position().top;
+                    jQuery(window).bind("scroll", naviga_stay_top);
+                    jQuery(window).bind("mousewheel", naviga_stay_top);
+                    jQuery(document).bind("scroll", naviga_stay_top);
+                    jQuery(document).bind("mousewheel", naviga_stay_top);
+                }
+                function naviga_stay_top() {
+
+                    var scrollTop = jQuery(document).scrollTop();
+                    if (scrollTop > (naviga_offsetTop+250)) {
+                        jQuery("#nav_show_top_stop").css({ "position": "fixed" });
+                        jQuery("#nav_show_top_stop").css({ "top": "0px" });
+                    } else {
+                        jQuery("#nav_show_top_stop").css({ "position": "fixed" });
+                        jQuery("#nav_show_top_stop").css({ "top": naviga_offsetTop+250 - scrollTop + "px" }); }
+                }
+                jQuery(document).ready(onload_function());
+            }, 200);
+
+        </script>
+      </div>    
+
+      <div id="footer" class="clearfix">
+        <div id="copyright">
+          <hr>
+          声明：ITeye文章版权属于作者，受法律保护。没有作者书面许可不得转载。若作者同意转载，必须以超链接形式标明文章原始出处和作者。<br>
+          © 2003-2017 ITeye.com.   All rights reserved.  [ 京ICP证110151号  京公网安备110105010620 ]
+        </div>
+        <div id="ad_pop">
+          <div class="J_adv" data-view="true" data-mod="ad_popu_64" data-mtp="62" data-order="21" data-con="ad_content_2070">
+            <script id="popuLayer_js_q" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/popuLayer.js" defer="" type="text/javascript"></script>
+            <div id="layerd" style="position: fixed; bottom: 0px; right: 0px; line-height: 0px; z-index: 1000; width: 300px; height: 278px;">
+              <div onclick="jQuery(&#39;#ad_abc&#39;).hide();jQuery(&#39;.J_close&#39;).hide();" class="J_close layer_close" style="display:block;background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">
+                关闭
+              </div>
+              <div id="ad_abc">
+                <!-- 广告位：PC端-iteye博客详情右侧弹窗-300*250 -->
+                <script>
+                    (function() {
+                        var s = "_" + Math.random().toString(36).slice(2);
+                        document.write('<div id="' + s + '"></div>');
+                        (window.slotbydup=window.slotbydup || []).push({
+                            id: '4756560',
+                            container: s,
+                            size: '300,250',
+                            display: 'inlay-fix'
+                        });
+                    })();
+                </script><div id="_gcj7abw0faa3w8gsabawcdi"></div><script charset="utf-8" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/lcdm(4)"></script><div id="_p2fp5444h1wkd5foxndpwrk9" style=""><div style="margin-bottom:0px;"><div style="padding-right:0px;"><div><iframe width="300" frameborder="0" height="250" scrolling="no" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/s(4).html"></iframe></div></div></div></div><script type="text/javascript" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/avnebexunycx.js"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <script type="text/javascript">
+  document.write("<img src='http://stat.iteye.com/?url="+ encodeURIComponent(document.location.href) + "&referrer=" + encodeURIComponent(document.referrer) + "&user_id=' width='0' height='0' />");
+</script><img src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/saved_resource" width="0" height="0">
+
+<script src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/tracking.js" type="text/javascript"></script>
+
+    
+    
+    <script language="javascript" type="text/javascript" src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/async_new.js"></script>
+<script src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">var $csdn_iteye_jq = jQuery.noConflict();// 解决jq与prototype.js命名空间冲突的问题</script>
+<script src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/tracking(1).js" type="text/javascript"></script>
+    
+	    
+	    <script src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/web-storage-cache.min.js" type="text/javascript"></script>
+	    <script src="./Class.isAssignableFrom与 instanceof 区别 - 记录我的开发点滴. - ITeye博客_files/replace.min.js" type="text/javascript"></script>
+    
+    
+  
+
+</body></html>
