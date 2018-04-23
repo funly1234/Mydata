@@ -1,0 +1,1920 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://ju.outofmemory.cn/entry/338292 -->
+<html style="color: rgb(0, 0, 0); background-color: rgb(204, 232, 207);"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="apple-mobile-web-app-capable">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="description" content="一、概念 埋点，是对网站、App或者后台等应用程序进行数据采集的一种方法。通过埋点，可以收集用户在应用中的产生行为，进而用于分析和优化产品后续的体验，也可以
+为产品的运营提供数据支撑，其中常见的指标有PV、UV、页面时长和按钮的点击等，通常可以采集到下面这些数据。 行为数据：时间、地点、人物、交互的内容等
+质量数据：App运行情况、浏览器加载情况、错误异常等
+
+">
+    <meta name="keywords" content="技术,{可视化埋点},Android,{无埋点},{埋点},SDK Android埋点技术分析">
+    <title>Android埋点技术分析 - 为程序员服务</title>
+    <link href="./Android埋点技术分析 - 为程序员服务_files/17.1.css" type="text/css" rel="stylesheet">
+    
+    <link rel="shortcut icon" href="http://outofmemory.cn/favicon.ico" type="image/x-icon">
+    
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(204, 232, 207);"><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./Android埋点技术分析 - 为程序员服务_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div>
+
+<header class="head">
+<div class="head-left">
+    <div class="logo"><a href="http://outofmemory.cn/">OutOfMemory.CN</a></div>
+    <div class="beta"><sup>β</sup></div>
+    <div class="nav">
+        <ul id="headNav">
+            <li class="current"><a href="http://ju.outofmemory.cn/" title="聚客：编程技术网站牛人牛博聚集地">聚客</a></li>
+            <li><a href="http://outofmemory.cn/code-snippet/" title="代码：分享代码 分享经验">代码</a></li>
+            <li><a href="http://j.outofmemory.cn/" title="技术专栏，精华">专栏</a></li>
+            <li><a href="http://outofmemory.cn/tutorial/" title="简单易学的技术教程">教程</a></li>
+            <li style="width:65px"><a href="http://maven.outofmemory.cn/" title="Maven信息库速查">Maven</a></li>
+            <li><a href="http://outofmemory.cn/github/" title="Github上的中国开源人">Gitter</a></li>
+            <li><a href="http://outofmemory.cn/tag/" title="标签">标签</a></li>
+        </ul>
+    </div>
+</div>
+<div class="head-right">
+<div class="userStatus"><a class="signin" target="_self" href="http://outofmemory.cn/user/login"><i></i><b>登录</b></a><a class="signup" target="_self" href="http://outofmemory.cn/user/register"><i></i><b>注册</b></a></div>
+</div>
+</header>
+
+
+<div class="tgL books"><span>&nbsp;</span>好书：<a href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEgNUHlgRByJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIWBlAYXxAdS0IJRmsVXwxzNlhecWAIeTxmAUN7emc9HwNlDh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRHFgRBhQOVitcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBhMCVh9eCltXWwg%3D" target="_blank">第一行代码&nbsp;Android</a>[<a href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEgNUHlgRByJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIWBlAYXxAdS0IJRmsVXwxzNlhecWAIeTxmAUN7emc9HwNlDh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRHFgRBhQOVitcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBhMCVh9eCltXWwg%3D" target="_blank">京东</a> &nbsp; <a href="https://www.amazon.cn/gp/product/B01MSR5D04/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01MSR5D04&amp;linkCode=as2&amp;tag=oucn-23" target="_blank">亚马逊</a>]<span class="sep"> | </span><a href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEgFSGlgUCiJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIUAFQYWh0dS0IJRmtdBUlMIUBfZWFZYQJvI313TGwRQw91Dh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRHF4XBhcGXCtcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBBUGVhpTCltXWwg%3D" target="_blank">Android开发艺术探索</a>[<a href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEgFSGlgUCiJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIUAFQYWh0dS0IJRmtdBUlMIUBfZWFZYQJvI313TGwRQw91Dh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRHF4XBhcGXCtcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBBUGVhpTCltXWwg%3D" target="_blank">京东</a> &nbsp; <a href="https://www.amazon.cn/gp/product/B014HV1X3K/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B014HV1X3K&amp;linkCode=as2&amp;tag=oucn-23" target="_blank">亚马逊</a>]<span class="sep"> | </span><a href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEg9XE10VAyJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIaBV0dWxQdS0IJRmtXUghnVUkkcGFJADRCJm5LaFo0XQtlDh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRElMWChQCUStcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVChAPUxtaCltXWwg%3D" target="_blank">Android编程权威指南（第2版）</a>[<a href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEg9XE10VAyJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIaBV0dWxQdS0IJRmtXUghnVUkkcGFJADRCJm5LaFo0XQtlDh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRElMWChQCUStcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVChAPUxtaCltXWwg%3D" target="_blank">京东</a> &nbsp; <a href="https://www.amazon.cn/gp/product/B01FSXCBOQ/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01FSXCBOQ&amp;linkCode=as2&amp;tag=oucn-23" target="_blank">亚马逊</a>]<span class="sep"> | </span><a href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEgBQGF8RACJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIVAlYfXxcdS0IJRmtydFtvD04uRmBRfQlwOxJdV2wFHgRlDh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRE1oXAhICXStcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBRcEUR9ZCltXWwg%3D" target="_blank">移动应用UI设计模式（第2版）</a>[<a href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEgBQGF8RACJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIVAlYfXxcdS0IJRmtydFtvD04uRmBRfQlwOxJdV2wFHgRlDh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRE1oXAhICXStcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBRcEUR9ZCltXWwg%3D" target="_blank">京东</a> &nbsp; <a href="https://www.amazon.cn/gp/product/B00SFZGX08/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00SFZGX08&amp;linkCode=as2&amp;tag=oucn-23" target="_blank">亚马逊</a>]</div><div class="wrap">
+<div class="content"><h1>Android埋点技术分析</h1>
+<div class="meta">
+    <a href="http://ju.outofmemory.cn/feed/3204/" title="Uncle Chen"><i class="ico man"></i>Uncle Chen</a>
+    <time><i class="ico date"></i>2017-12-27</time>
+    <span class="pv"><b>195</b> 阅读</span>
+</div>
+<div class="tags">
+<a class="tag" href="http://ju.outofmemory.cn/tag/%E6%8A%80%E6%9C%AF/">技术</a>
+
+<a class="tag" href="http://ju.outofmemory.cn/tag/Android/">Android</a>
+
+<a class="tag" href="http://ju.outofmemory.cn/tag/SDK/">SDK</a>
+
+</div>
+
+<script src="./Android埋点技术分析 - 为程序员服务_files/hm.js"></script><script async="" src="./Android埋点技术分析 - 为程序员服务_files/analytics.js"></script><script type="text/javascript" async="" src="./Android埋点技术分析 - 为程序员服务_files/vcdm"></script><script>
+    function imgError(img){
+        if (typeof img.hasReplaceSrc != 'undefined'){
+            var refer = $('div.author a:last').attr('href');
+            img.src = '/imgr?src=' + encodeURIComponent(img.src) + '&r=' + encodeURIComponent(refer);
+        } else {
+            var urlPattern = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/;
+            for (var i=0;i<img.attributes.length;i++){
+                var attrName = img.attributes[i].nodeName;
+                var attrVal = img.attributes[i].nodeValue;
+                if(attrName.toLowerCase() != 'src' && urlPattern.test(attrVal)){
+                    img.src = attrVal;
+                    img.hasReplaceSrc=true;
+                    break;
+                }
+            }
+        }
+        return true;
+    }
+</script>
+<h1>
+ 一、概念
+</h1>
+<p>
+ 埋点，是对网站、App或者后台等应用程序进行数据采集的一种方法。通过埋点，可以收集用户在应用中的产生行为，进而用于分析和优化产品后续的体验，也可以为产品的运营提供数据支撑，其中常见的指标有PV、UV、页面时长和按钮的点击等，通常可以采集到下面这些数据。
+</p>
+<ul>
+ <li>
+  行为数据：时间、地点、人物、交互的内容等
+ </li>
+ <li>
+  质量数据：App运行情况、浏览器加载情况、错误异常等
+ </li>
+ <li>
+  环境数据：手机型号、操作系统版本、浏览器UA、地理、运营商、网络环境等
+ </li>
+ <li>
+  运营数据：PV、UV、点击量、日活、留存、渠道来源等
+ </li>
+</ul>
+<p>
+ 采集行为数据时，通常需要在Web页面/App里面添加一些代码，当用户的行为达到某种条件时，就会向服务器上报用户的行为。其实添加这些代码的过程就可以叫做“埋点”，在很久以前就已经出现了这种技术。随着技术的发展和大家对数据采集要求的不断提高，我认为埋点的技术方案走过了下面几个阶段：
+</p>
+<ul>
+ <li>
+  <p>
+   <strong>
+    代码埋点：代码埋点是指在某个事件发生时调用数据发送接口上报数据。
+   </strong>
+   例如开发人员按照产品/运营的需求，在Web页面/App的源码里面添加行为上报的代码，当用户的行为满足某一个条件时，这些代码就会被执行，向服务器上报行为数据。这种方案是最基础的方案，每次增加或者修改数据上报的条件，都需要开发人员的参与，并且只能在下一个版本上线后才能看到效果。基本上所有的数据平台都提供了这类数据上报的SDK，将行为上报的后台服务器接口封装成了简单的客户端SDK接口。开发者可以通过嵌入这类SDK，在埋点的地方调用少量的代码就可以上报行为数据。
+  </p>
+ </li>
+ <li>
+  <p>
+   <strong>
+    全埋点：全埋点指的是将Web页面/App内产生的所有的、满足某个条件的行为，全部上报到后台服务器。
+   </strong>
+   例如把一个App中所有的按钮点击都进行上报，然后由产品/运营去后台筛选所需要的行为数据。这种方案的优点非常明显，就是可以不用在新增/修改行为上报条件时，再找开发人员去修改埋点的代码。然而它的缺点也和优点一样明显，那就是上报的数据量比代码埋点大很多，里面可能很多是没有价值的数据。此外，这种方案更倾向于独立去看待用户的行为，而没有关注行为的上下文，给数据分析带来了一些难度。很多公司也提供了这类功能的SDK，通过静态或者动态的方式，
+   <strong>
+    “Hook”了原有的App代码
+   </strong>
+   ，从而实现了行为的监测，在数据上报时通常是采用累积多条再上报的方案来合并请求。
+  </p>
+ </li>
+ <li>
+  <p>
+   <strong>
+    可视化埋点：可视化埋点是指通过可视化工具配置采集节点，在App/Web解析配置查找节点，监听节点产生的事件并上报。
+   </strong>
+   例如产品在Web页面/App的界面上进行圈选，配置需要监测界面上哪一个元素，然后保存这个配置，当App启动时会从后台服务器获得产品/运营预先圈选好的配置，然后根据这份配置查找并监测App界面上的元素，当某一个元素满足条件时，就会上报行为数据到后台服务器。有了暴力的全埋点技术方案，很容易联想到按需埋点，可视化埋点就是一种按需配置埋点的方案。现在也有一些公司提供了这类SDK，圈选监测元素时，有的是提供一个Web管理界面，手机在安装并初始化了SDK之后，可以和管理界面了连接，让用户在Web管理界面上配置需要监测的元素，有的是直接让用户在手机上圈选元素进行埋点。
+  </p>
+ </li>
+</ul>
+<blockquote>
+ <p>
+  hook直译是钩子的意思，以前学信息安全的时候在windows上听到过，大体意思是通过某种手段去改变系统API的一个行为，绕过系统的某个方法，或者改变系统的工作流程。在这里其实是指把本来要执行某个方法的对象替换成另一个，一般用的是反射或者代理，需要找到hook的代码位置，甚至还可以在编译阶段实现替换。全埋点和可视化埋点都需要Hook掉App原本的代码实现。
+ </p>
+</blockquote>
+<p>
+ 业界有多家SDK都支持上面介绍的3种埋点方案中的一种或者全部，例如Mixpanel、Sensorsdata、TalkingData、GrowingIO、诸葛IO、Heap Analytics、MTA、Umeng Analytics、百度，只是大家对后两种埋点的称呼不完全相同，有的叫无埋点或者codeless埋点。由于
+ <a href="https://github.com/mixpanel/mixpanel-android" rel="external" target="_blank">
+  Mixpanel
+ </a>
+ （支持代码埋点、可视化埋点）和
+ <a href="https://github.com/sensorsdata/sa-sdk-android" rel="external" target="_blank">
+  Sensorsdata
+ </a>
+ （全部支持）都开源了自己的全部SDK，技术方案也比较类似，下面以它们的Android SDK为例，简单分析一下3种埋点方案的技术实现。关于JS的SDK技术实现，可以看下我的另一篇博客-
+ <a href="http://ju.outofmemory.cn/entry/337859">
+  JS埋点SDK技术分析
+ </a>
+ 。
+</p>
+<h1>
+ 二、代码埋点
+</h1>
+<p>
+ 包含Mixpanel SDK在内的大部分SDK，都会把这种埋点方案封装成一个比较简单的接口，在这里是
+ <code class="prettyprint prettyprinted"><span class="pln"> track</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> eventName</span><span class="pun">,</span><span class="pln"> </span><span class="typ">JSONObject</span><span class="pln"> properties</span><span class="pun">)</span><span class="pln"> </span></code>
+ ，开发者在调用这个接口时，可以把一个事件名称和事件的属性传入，然后就可以上报到后台了。一般代码埋点长这样：
+</p>
+<pre class="prettyprint prettyprinted"><code class="prettyprint"><span class="pln">button</span><span class="pun">.</span><span class="pln">setOnClickListener</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">View</span><span class="pun">.</span><span class="typ">OnClickListener</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="lit">@Override</span><span class="pln">
+  </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> onClick</span><span class="pun">(</span><span class="typ">View</span><span class="pln"> v</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="com">// 业务代码</span><span class="pln">
+    </span><span class="com">// ...</span><span class="pln">
+    </span><span class="com">// 埋点上报</span><span class="pln">
+    </span><span class="typ">JSONObject</span><span class="pln"> properties </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">JSONObject</span><span class="pun">();</span><span class="pln">
+    properties</span><span class="pun">.</span><span class="pln">put</span><span class="pun">(</span><span class="str">"price"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">6800</span><span class="pun">);</span><span class="pln">
+    properties</span><span class="pun">.</span><span class="pln">put</span><span class="pun">(</span><span class="str">"name"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Pixel2 XL"</span><span class="pun">);</span><span class="pln">
+    </span><span class="typ">Tracker</span><span class="pun">.</span><span class="pln">track</span><span class="pun">(</span><span class="str">"PURCHASE"</span><span class="pun">,</span><span class="pln"> properties</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+  </span><span class="pun">});</span></code></pre>
+<p>
+ Mixpanel SDK内部采用一条HandlerThread线程来处理事件，当开发者调用
+ <code class="prettyprint prettyprinted"><span class="pln"> track</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> eventName</span><span class="pun">,</span><span class="pln"> </span><span class="typ">JSONObject</span><span class="pln"> properties</span><span class="pun">)</span><span class="pln"> </span></code>
+ 方法时，
+ <strong>
+  主线程切换到HandlerThread
+ </strong>
+ 当中，并先将事件存入数据库。然后看SDK中是否累计到了40个事件，如果累计到40个事件的话，就合并它们上报到后台。
+</p>
+<p>
+ 当开发者设置为debug模式，或者手动调用
+ <code class="prettyprint prettyprinted"><span class="pln"> flush </span></code>
+ 接口时，可以立即上报累计的所有事件，不过由于只有一条线程，所以如果在flush的时候，前面的事件还没有处理完成，SDK会间隔1分钟再次去处理后面的这些事件。
+</p>
+<p>
+ 开发者可以设置累计上报的事件数量阈值、事件阻塞时再次尝试上报的时间间隔等。这种方案比较基础，相信大部分开发者都接触过，不需要过多分析。
+</p>
+<h1>
+ 三、全埋点
+</h1>
+<h2>
+ 3.1 基本原理
+</h2>
+<p>
+ 全埋点要对方法进行Hook，按照
+ <strong>
+  是否在运行时
+ </strong>
+ 这个条件来区分，Android全埋点可以有下面两种方式：
+</p>
+<ul>
+ <li>
+  <strong>
+   静态Hook：
+  </strong>
+  AspectJ实现AOP，编译期修改代码
+ </li>
+ <li>
+  <strong>
+   动态Hook：
+  </strong>
+  运行时替换View.OnClickListener等事件回调
+ </li>
+</ul>
+<p>
+ 这里的Hook其实就是一种AOP实现。
+</p>
+<blockquote>
+ <p>
+  那么什么是AOP？AOP为Aspect Oriented Programming的缩写，意为：面向切面编程，通过预编译方式和运行期动态代理实现程序功能的统一维护的一种技术。AOP是OOP的延续，是软件开发中的一个热点，也是Spring框架中的一个重要内容，是函数式编程的一种衍生范型。利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高了开发的效率。（from baidu baike）
+ </p>
+ <p>
+  简而言之，AOP是可以通过预编译方式和运行期动态代理实现在不修改源代码的情况下给程序动态统一添加功能的一种技术。
+ </p>
+</blockquote>
+<p>
+ <strong>
+  Sensors Analytics AndroidSDK全埋点的实现就是通过在代码编译阶段，找到源代码中需要上报事件的位置，插入SDK的事件上报代码。它用到的框架是
+  <a href="https://www.eclipse.org/aspectj/" rel="external" target="_blank">
+   AspectJ
+  </a>
+  。
+ </strong>
+</p>
+<h2>
+ 3.2 使用AspectJ做静态Hook
+</h2>
+<h3>
+ 3.2.1 AspectJ基本概念
+</h3>
+<p>
+ 在很多地方我们可以看到AspectJ的身影，例如JakeWharton大神贡献的一个注解日志和性能调优框架
+ <a href="https://github.com/JakeWharton/hugo" rel="external" target="_blank">
+  Hugo
+ </a>
+ ，在Spring框架里面也有应用到AspectJ的概念（不过Spring AOP的实现是用的动态代理）。我理解AspectJ里面的主要几个概念有：
+</p>
+<ul>
+ <li>
+  <strong>
+   JPoint：
+  </strong>
+  代码切点（就是我们要插入代码的地方）
+ </li>
+ <li>
+  <strong>
+   Aspect：
+  </strong>
+  代码切点的描述
+  <ul>
+   <li>
+    <strong>
+     Pointcut：
+    </strong>
+    描述切点具体是什么样的点，如函数被调用的地方（
+    <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="typ">Call</span><span class="pun">(</span><span class="typ">MethodSignature</span><span class="pun">)</span><span class="pln"> </span></code>
+    ）、函数执行的内部（
+    <code class="prettyprint prettyprinted"><span class="pln"> execution</span><span class="pun">(</span><span class="typ">MethodSignature</span><span class="pun">)</span><span class="pln"> </span></code>
+    ）
+   </li>
+   <li>
+    <strong>
+     Advice：
+    </strong>
+    描述在切点的什么位置插入代码，如在Pointcut前面（
+    <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="lit">@Before</span><span class="pln"> </span></code>
+    ）还是后面（
+    <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="lit">@After</span><span class="pln"> </span></code>
+    ），还是环绕整个Pointcut（
+    <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="lit">@Around</span><span class="pln"> </span></code>
+    ）
+   </li>
+  </ul>
+ </li>
+</ul>
+<p>
+ 由此可见，在实现AOP功能时，需要做下面几件事：
+</p>
+<ul>
+ <li>
+  定义一个Aspect，这个Aspect里面必须有Pointcut和Advice两个属性
+ </li>
+ <li>
+  编写在匹配到符合Pointcut和Advice描述的代码时，需要注入的代码
+ </li>
+ <li>
+  在代码编译时，通过特殊的java编译器（Aspect的ajc编译器），找到符合我们定义的Aspect的代码，将需要注入的代码插入到Advice指定的位置。
+ </li>
+</ul>
+<p>
+ 如果你对AspectJ有了解的话，已经可以猜到SDK内部是怎么实现全埋点的了；如果没有接触，我觉得也不用急于全面地去学习AspectJ，毕竟AspectJ的功能很强大（可远不止前置、后置这么简单的增强），埋点这种业务只用到了AspectJ当中的一小部分功能而已，可以直接看下面的分析。
+</p>
+<h3>
+ 3.2.2 实现
+</h3>
+<p>
+ 神策SDK里面是如何监测View点击事件呢？我把SDK代码简化一下进行分析，有下面几个步骤：
+</p>
+<h4>
+ 3.2.2.1 定义一个Aspect
+</h4>
+<pre class="prettyprint prettyprinted"><code class="prettyprint"><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">aspectj</span><span class="pun">.</span><span class="pln">lang</span><span class="pun">.</span><span class="typ">JoinPoint</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">aspectj</span><span class="pun">.</span><span class="pln">lang</span><span class="pun">.</span><span class="pln">annotation</span><span class="pun">.</span><span class="typ">After</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">aspectj</span><span class="pun">.</span><span class="pln">lang</span><span class="pun">.</span><span class="pln">annotation</span><span class="pun">.</span><span class="typ">Aspect</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">aspectj</span><span class="pun">.</span><span class="pln">lang</span><span class="pun">.</span><span class="pln">annotation</span><span class="pun">.</span><span class="typ">Pointcut</span><span class="pun">;</span><span class="pln">
+
+</span><span class="lit">@Aspect</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">ViewOnClickListenerAspectj</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+    </span><span class="com">/**
+     * android.view.View.OnClickListener.onClick(android.view.View)
+     *
+     * @param joinPoint JoinPoint
+     * @throws Throwable Exception
+     */</span><span class="pln">
+    </span><span class="lit">@After</span><span class="pun">(</span><span class="str">"execution(* android.view.View.OnClickListener.onClick(android.view.View))"</span><span class="pun">)</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> onViewClickAOP</span><span class="pun">(</span><span class="kwd">final</span><span class="pln"> </span><span class="typ">JoinPoint</span><span class="pln"> joinPoint</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Throwable</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">AopUtil</span><span class="pun">.</span><span class="pln">sendTrackEventToSDK</span><span class="pun">(</span><span class="pln">joinPoint</span><span class="pun">,</span><span class="pln"> </span><span class="str">"onViewOnClick"</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<p>
+ 这段Aspect的代码定义了：
+ <strong>
+  在执行android.view.View.OnClickListener.onClick(android.view.View)方法原有的实现后面，需要插入
+  <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="typ">AopUtil</span><span class="pun">.</span><span class="pln">sendTrackEventToSDK</span><span class="pun">(</span><span class="pln">joinPoint</span><span class="pun">,</span><span class="pln"> </span><span class="str">"onViewOnClick"</span><span class="pun">);</span><span class="pln"> </span></code>
+  这段代码。
+ </strong>
+</p>
+<p>
+ <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="typ">AopUtil</span><span class="pun">.</span><span class="pln">sendTrackEventToSDK</span><span class="pun">(</span><span class="pln">joinPoint</span><span class="pun">,</span><span class="pln"> </span><span class="str">"onViewOnClick"</span><span class="pun">);</span><span class="pln"> </span></code>
+ 这段代码做的事情就是点击事件的上报。因为神策SDK将全埋点功能和主SDK包分离成了两个jar包，所以通过AopUtil工具去调用真正的事件上报代码，这里不细述其实现，下面直接看这段代码背后真正的点击上报实现。
+</p>
+<pre class="prettyprint prettyprinted"><code class="prettyprint"><span class="typ">SensorsDataAPI</span><span class="pun">.</span><span class="pln">sharedInstance</span><span class="pun">().</span><span class="pln">track</span><span class="pun">(</span><span class="typ">AopConstants</span><span class="pun">.</span><span class="pln">APP_CLICK_EVENT_NAME</span><span class="pun">,</span><span class="pln"> properties</span><span class="pun">);</span></code></pre>
+<p>
+ 可以看到AOP实现的点击监测，最后也走
+ <code class="prettyprint prettyprinted"><span class="pln"> track </span></code>
+ 方法进行上报了。
+</p>
+<h4>
+ 3.2.2.2 使用ajc编译器向源代码中“织入”Aspect代码
+</h4>
+<p>
+ 采用AspectJ框架编写的代码，想要注入原来的工程的代码，需要在
+ <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="pun">/</span><span class="pln">app</span><span class="pun">/</span><span class="pln">build</span><span class="pun">.</span><span class="pln">gradle </span></code>
+ 中引用ajc编译器，脚本如下：
+</p>
+<pre class="prettyprint prettyprinted"><code class="prettyprint"><span class="pun">...</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">aspectj</span><span class="pun">.</span><span class="pln">bridge</span><span class="pun">.</span><span class="typ">IMessage</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">aspectj</span><span class="pun">.</span><span class="pln">bridge</span><span class="pun">.</span><span class="typ">MessageHandler</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">aspectj</span><span class="pun">.</span><span class="pln">tools</span><span class="pun">.</span><span class="pln">ajc</span><span class="pun">.</span><span class="typ">Main</span><span class="pln">
+
+buildscript </span><span class="pun">{</span><span class="pln">
+    repositories </span><span class="pun">{</span><span class="pln">
+        mavenCentral</span><span class="pun">()</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    dependencies </span><span class="pun">{</span><span class="pln">
+        classpath </span><span class="str">'org.aspectj:aspectjtools:1.8.10'</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+repositories </span><span class="pun">{</span><span class="pln">
+    mavenCentral</span><span class="pun">()</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+android </span><span class="pun">{</span><span class="pln">
+    </span><span class="pun">...</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+dependencies </span><span class="pun">{</span><span class="pln">
+    </span><span class="pun">...</span><span class="pln">
+    compile </span><span class="str">'org.aspectj:aspectjrt:1.8.10'</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">final</span><span class="pln"> </span><span class="kwd">def</span><span class="pln"> log </span><span class="pun">=</span><span class="pln"> project</span><span class="pun">.</span><span class="pln">logger
+</span><span class="kwd">final</span><span class="pln"> </span><span class="kwd">def</span><span class="pln"> variants </span><span class="pun">=</span><span class="pln"> project</span><span class="pun">.</span><span class="pln">android</span><span class="pun">.</span><span class="pln">applicationVariants
+
+variants</span><span class="pun">.</span><span class="pln">all </span><span class="pun">{</span><span class="pln"> variant </span><span class="pun">-&gt;</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(!</span><span class="pln">variant</span><span class="pun">.</span><span class="pln">buildType</span><span class="pun">.</span><span class="pln">isDebuggable</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        log</span><span class="pun">.</span><span class="pln">debug</span><span class="pun">(</span><span class="str">"Skipping non-debuggable build type '${variant.buildType.name}'."</span><span class="pun">)</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="typ">JavaCompile</span><span class="pln"> javaCompile </span><span class="pun">=</span><span class="pln"> variant</span><span class="pun">.</span><span class="pln">javaCompile
+    javaCompile</span><span class="pun">.</span><span class="pln">doLast </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="str">"-showWeaveInfo"</span><span class="pun">,</span><span class="pln">
+                     </span><span class="str">"-1.5"</span><span class="pun">,</span><span class="pln">
+                     </span><span class="str">"-inpath"</span><span class="pun">,</span><span class="pln"> javaCompile</span><span class="pun">.</span><span class="pln">destinationDir</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">(),</span><span class="pln">
+                     </span><span class="str">"-aspectpath"</span><span class="pun">,</span><span class="pln"> javaCompile</span><span class="pun">.</span><span class="pln">classpath</span><span class="pun">.</span><span class="pln">asPath</span><span class="pun">,</span><span class="pln">
+                     </span><span class="str">"-d"</span><span class="pun">,</span><span class="pln"> javaCompile</span><span class="pun">.</span><span class="pln">destinationDir</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">(),</span><span class="pln">
+                     </span><span class="str">"-classpath"</span><span class="pun">,</span><span class="pln"> javaCompile</span><span class="pun">.</span><span class="pln">classpath</span><span class="pun">.</span><span class="pln">asPath</span><span class="pun">,</span><span class="pln">
+                     </span><span class="str">"-bootclasspath"</span><span class="pun">,</span><span class="pln"> project</span><span class="pun">.</span><span class="pln">android</span><span class="pun">.</span><span class="pln">bootClasspath</span><span class="pun">.</span><span class="pln">join</span><span class="pun">(</span><span class="typ">File</span><span class="pun">.</span><span class="pln">pathSeparator</span><span class="pun">)]</span><span class="pln">
+        log</span><span class="pun">.</span><span class="pln">debug </span><span class="str">"ajc args: "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="typ">Arrays</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">(</span><span class="pln">args</span><span class="pun">)</span><span class="pln">
+
+        </span><span class="typ">MessageHandler</span><span class="pln"> handler </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">MessageHandler</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span><span class="pln">
+        </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Main</span><span class="pun">().</span><span class="pln">run</span><span class="pun">(</span><span class="pln">args</span><span class="pun">,</span><span class="pln"> handler</span><span class="pun">);</span><span class="pln">
+        </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">IMessage</span><span class="pln"> message </span><span class="pun">:</span><span class="pln"> handler</span><span class="pun">.</span><span class="pln">getMessages</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">))</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+           </span><span class="kwd">switch</span><span class="pln"> </span><span class="pun">(</span><span class="pln">message</span><span class="pun">.</span><span class="pln">getKind</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                </span><span class="kwd">case</span><span class="pln"> </span><span class="typ">IMessage</span><span class="pun">.</span><span class="pln">ABORT</span><span class="pun">:</span><span class="pln">
+                </span><span class="kwd">case</span><span class="pln"> </span><span class="typ">IMessage</span><span class="pun">.</span><span class="pln">ERROR</span><span class="pun">:</span><span class="pln">
+                </span><span class="kwd">case</span><span class="pln"> </span><span class="typ">IMessage</span><span class="pun">.</span><span class="pln">FAIL</span><span class="pun">:</span><span class="pln">
+                    log</span><span class="pun">.</span><span class="pln">error message</span><span class="pun">.</span><span class="pln">message</span><span class="pun">,</span><span class="pln"> message</span><span class="pun">.</span><span class="pln">thrown
+                    </span><span class="kwd">break</span><span class="pun">;</span><span class="pln">
+                </span><span class="kwd">case</span><span class="pln"> </span><span class="typ">IMessage</span><span class="pun">.</span><span class="pln">WARNING</span><span class="pun">:</span><span class="pln">
+                    log</span><span class="pun">.</span><span class="pln">warn message</span><span class="pun">.</span><span class="pln">message</span><span class="pun">,</span><span class="pln"> message</span><span class="pun">.</span><span class="pln">thrown
+                    </span><span class="kwd">break</span><span class="pun">;</span><span class="pln">
+                </span><span class="kwd">case</span><span class="pln"> </span><span class="typ">IMessage</span><span class="pun">.</span><span class="pln">INFO</span><span class="pun">:</span><span class="pln">
+                    log</span><span class="pun">.</span><span class="pln">info message</span><span class="pun">.</span><span class="pln">message</span><span class="pun">,</span><span class="pln"> message</span><span class="pun">.</span><span class="pln">thrown
+                    </span><span class="kwd">break</span><span class="pun">;</span><span class="pln">
+                </span><span class="kwd">case</span><span class="pln"> </span><span class="typ">IMessage</span><span class="pun">.</span><span class="pln">DEBUG</span><span class="pun">:</span><span class="pln">
+                    log</span><span class="pun">.</span><span class="pln">debug message</span><span class="pun">.</span><span class="pln">message</span><span class="pun">,</span><span class="pln"> message</span><span class="pun">.</span><span class="pln">thrown
+                    </span><span class="kwd">break</span><span class="pun">;</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<p>
+ 在SensorsAndroidSDK中，把上面这段脚本编写成了一个
+ <a href="https://github.com/sensorsdata/sa-sdk-android-plugin2" rel="external" target="_blank">
+  gradle插件
+ </a>
+ ，开发者只需要在
+ <code class="prettyprint prettyprinted"><span class="pln"> app</span><span class="pun">/</span><span class="pln">build</span><span class="pun">.</span><span class="pln">gradle </span></code>
+ 引用这个插件即可。
+</p>
+<pre class="prettyprint prettyprinted"><code class="prettyprint"><span class="pln">apply plugin</span><span class="pun">:</span><span class="pln"> </span><span class="str">'com.sensorsdata.analytics.android'</span></code></pre>
+<h4>
+ 3.2.2.3 查看织入后的class文件
+</h4>
+<p>
+ 完成上面两步，就可以实现在
+ <code class="prettyprint prettyprinted"><span class="pln"> android</span><span class="pun">.</span><span class="pln">view</span><span class="pun">.</span><span class="typ">View</span><span class="pun">.</span><span class="typ">OnClickListener</span><span class="pun">.</span><span class="pln">onClick</span><span class="pun">(</span><span class="pln">android</span><span class="pun">.</span><span class="pln">view</span><span class="pun">.</span><span class="typ">View</span><span class="pun">)</span><span class="pln"> </span></code>
+ 方法中插入我们的数据上报代码了。我们在demo代码中加一个Button，并给它set一个OnClickListener，编译一下代码，查看
+ <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="pun">/</span><span class="pln">build</span><span class="pun">/</span><span class="pln">intermediates</span><span class="pun">/</span><span class="pln">classes</span><span class="pun">/</span><span class="pln">debug</span><span class="pun">/</span><span class="pln"> </span></code>
+ 里面class文件，经过ajc编译之后，原始代码中插入了Aspect的代码，并调用了
+ <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="typ">ViewOnClickListenerAspectj</span><span class="pln"> </span></code>
+ 里面的
+ <code class="prettyprint prettyprinted"><span class="pln"> onViewClickAOP </span></code>
+ 方法。
+</p>
+<pre class="prettyprint prettyprinted"><code class="prettyprint"><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">MainActivity</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Activity</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">MainActivity</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">protected</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> onCreate</span><span class="pun">(</span><span class="typ">Bundle</span><span class="pln"> savedInstanceState</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">super</span><span class="pun">.</span><span class="pln">onCreate</span><span class="pun">(</span><span class="pln">savedInstanceState</span><span class="pun">);</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">setContentView</span><span class="pun">(</span><span class="lit">2130968603</span><span class="pun">);</span><span class="pln">
+        </span><span class="typ">Button</span><span class="pln"> btnTst </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Button</span><span class="pun">)</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">findViewById</span><span class="pun">(</span><span class="lit">2131427422</span><span class="pun">);</span><span class="pln">
+        btnTst</span><span class="pun">.</span><span class="pln">setOnClickListener</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">OnClickListener</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> onClick</span><span class="pun">(</span><span class="typ">View</span><span class="pln"> v</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                </span><span class="typ">JoinPoint</span><span class="pln"> var2 </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Factory</span><span class="pun">.</span><span class="pln">makeJP</span><span class="pun">(</span><span class="pln">ajc$tjp_0</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">,</span><span class="pln"> v</span><span class="pun">);</span><span class="pln">
+
+                </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                    </span><span class="typ">Log</span><span class="pun">.</span><span class="pln">i</span><span class="pun">(</span><span class="str">"MainActivity"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"button clicked"</span><span class="pun">);</span><span class="pln">
+                </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Throwable</span><span class="pln"> var5</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                    </span><span class="typ">ViewOnClickListenerAspectj</span><span class="pun">.</span><span class="pln">aspectOf</span><span class="pun">().</span><span class="pln">onViewClickAOP</span><span class="pun">(</span><span class="pln">var2</span><span class="pun">);</span><span class="pln">
+                    </span><span class="kwd">throw</span><span class="pln"> var5</span><span class="pun">;</span><span class="pln">
+                </span><span class="pun">}</span><span class="pln">
+
+                </span><span class="typ">ViewOnClickListenerAspectj</span><span class="pun">.</span><span class="pln">aspectOf</span><span class="pun">().</span><span class="pln">onViewClickAOP</span><span class="pun">(</span><span class="pln">var2</span><span class="pun">);</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+
+            </span><span class="kwd">static</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                ajc$preClinit</span><span class="pun">();</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+        </span><span class="pun">});</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<p>
+ AspectJ的基本用法就是这样，除了对
+ <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="typ">OnClickListener</span><span class="pln"> </span></code>
+ 进行替换，理论上可以对任何已知的方法进行替换，所以在埋点SDK中还可以采用对RatingBar、CheckBox、RadioButton等控件的点击进行监听。
+</p>
+<p>
+ 神策AndroidSDK借助AspectJ插入Aspect代码，就是一种静态Hook的方式。本质上是在程序没有运行之前，通常是编译或者链接的阶段，对字节码进行修改，插入事件上报的代码。
+</p>
+<p>
+ 修改字节码除了这种方案之外，还有Android Gradle插件提供的trasform api（1.5.0版本以上）、ASM、Javassist。在网易乐得的埋点方案，Nuwa热修复项目都可以见到这些技术的实践。
+</p>
+<h2>
+ 3.3 使用代理模式实现动态Hook
+</h2>
+<h3>
+ 3.3.1 代理模式
+</h3>
+<p>
+ 上面分析了以AspectJ为代表的
+ <strong>
+  “静态Hook”
+ </strong>
+ 实现方案，有没有其他办法可以不修改源代码，只是
+ <strong>
+  在App运行的时候去“动态Hook”
+ </strong>
+ 点击行为的处理呢？答案是肯定的，JAVA里面有一个设计模式叫代理模式，从这个角度出发，看下怎么
+ <strong>
+  在运行时
+ </strong>
+ 实现点击事件的监测上报。
+</p>
+<p>
+ 在
+ <a href="https://github.com/aosp-mirror/platform_frameworks_base/blob/master/core/java/android/view/View.java" rel="external" target="_blank">
+  android.view.View.java
+ </a>
+ 的源码（
+ <code class="prettyprint prettyprinted"><span class="pln"> API</span><span class="pun">&gt;=</span><span class="lit">14</span><span class="pln"> </span></code>
+ ）中，有这么几个关键的方法：
+</p>
+<pre class="prettyprint prettyprinted"><code class="prettyprint"><span class="com">// getListenerInfo方法：返回所有的监听器信息mListenerInfo</span><span class="pln">
+</span><span class="typ">ListenerInfo</span><span class="pln"> getListenerInfo</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">mListenerInfo </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> mListenerInfo</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    mListenerInfo </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ListenerInfo</span><span class="pun">();</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> mListenerInfo</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="com">// 监听器信息</span><span class="pln">
+</span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">ListenerInfo</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="pun">...</span><span class="pln"> </span><span class="com">// 此处省略各种xxxListener</span><span class="pln">
+    </span><span class="com">/**
+     * Listener used to dispatch click events.
+     * This field should be made private, so it is hidden from the SDK.
+     * {@hide}
+     */</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">OnClickListener</span><span class="pln"> mOnClickListener</span><span class="pun">;</span><span class="pln">
+
+    </span><span class="com">/**
+     * Listener used to dispatch long click events.
+     * This field should be made private, so it is hidden from the SDK.
+     * {@hide}
+     */</span><span class="pln">
+    </span><span class="kwd">protected</span><span class="pln"> </span><span class="typ">OnLongClickListener</span><span class="pln"> mOnLongClickListener</span><span class="pun">;</span><span class="pln">
+
+    </span><span class="pun">...</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="typ">ListenerInfo</span><span class="pln"> mListenerInfo</span><span class="pun">;</span><span class="pln">
+
+</span><span class="com">// 我们非常熟悉的方法，内部其实是把mListenerInfo的mOnClickListener设成了我们创建的OnclickListner对象</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setOnClickListener</span><span class="pun">(</span><span class="lit">@Nullable</span><span class="pln"> </span><span class="typ">OnClickListener</span><span class="pln"> l</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(!</span><span class="pln">isClickable</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        setClickable</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    getListenerInfo</span><span class="pun">().</span><span class="pln">mOnClickListener </span><span class="pun">=</span><span class="pln"> l</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="com">/**
+ * 判断这个View是否设置了点击监听器
+ * Return whether this view has an attached OnClickListener.  Returns
+ * true if there is a listener, false if there is none.
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> hasOnClickListeners</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">ListenerInfo</span><span class="pln"> li </span><span class="pun">=</span><span class="pln"> mListenerInfo</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span><span class="pln">li </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="pun">&amp;&amp;</span><span class="pln"> li</span><span class="pun">.</span><span class="pln">mOnClickListener </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<p>
+ 通过上面几个方法可以看到，点击监听器其实被保存在了
+ <strong>
+  <code class="prettyprint prettyprinted"><span class="pln"> mListenerInfo</span><span class="pun">.</span><span class="pln">mOnClickListener </span></code>
+ </strong>
+ 里面。那么实现
+ <strong>
+  Hook点击监听器
+ </strong>
+ 时，只要将这个
+ <code class="prettyprint prettyprinted"><span class="pln"> mOnClickListener </span></code>
+ 替换成我们包装的
+ <strong>
+  点击监听器代理对象
+ </strong>
+ 就可以实现点击监听的代理了。
+</p>
+<h3>
+ 3.3.2 实现
+</h3>
+<h4>
+ 3.3.2.1 创建点击监听器的代理类
+</h4>
+<pre class="prettyprint prettyprinted"><code class="prettyprint"><span class="com">// 点击监听器的代理类，具有上报点击行为的功能</span><span class="pln">
+</span><span class="kwd">class</span><span class="pln"> </span><span class="typ">OnClickListenerWrapper</span><span class="pln"> </span><span class="kwd">implements</span><span class="pln"> </span><span class="typ">View</span><span class="pun">.</span><span class="typ">OnClickListener</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="com">// 原始的点击监听器对象</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">View</span><span class="pun">.</span><span class="typ">OnClickListener</span><span class="pln"> onClickListener</span><span class="pun">;</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">OnClickListenerWrapper</span><span class="pun">(</span><span class="typ">View</span><span class="pun">.</span><span class="typ">OnClickListener</span><span class="pln"> onClickListener</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">onClickListener </span><span class="pun">=</span><span class="pln"> onClickListener</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="lit">@Override</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> onClick</span><span class="pun">(</span><span class="typ">View</span><span class="pln"> view</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">// 让原来的点击监听器正常工作</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">onClickListener </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">){</span><span class="pln">
+            onClickListener</span><span class="pun">.</span><span class="pln">onClick</span><span class="pun">(</span><span class="pln">view</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+        </span><span class="com">// 点击事件上报，可以获取被点击view的一些属性</span><span class="pln">
+        track</span><span class="pun">(</span><span class="pln">APP_CLICK_EVENT_NAME</span><span class="pun">,</span><span class="pln"> getSomeProperties</span><span class="pun">(</span><span class="pln">view</span><span class="pun">));</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<h4>
+ 3.3.2.2 反射获取一个View的mListenerInfo.mOnClickListener，替换成代理的点击监听器
+</h4>
+<pre class="prettyprint prettyprinted"><code class="prettyprint"><span class="com">// 对一个View的点击监听器进行hook</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> hookView</span><span class="pun">(</span><span class="typ">View</span><span class="pln"> view</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="com">// 1. 反射调用View的getListenerInfo方法（API&gt;=14），获得mListenerInfo对象</span><span class="pln">
+    </span><span class="typ">Class</span><span class="pln"> viewClazz </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Class</span><span class="pun">.</span><span class="pln">forName</span><span class="pun">(</span><span class="str">"android.view.View"</span><span class="pun">);</span><span class="pln">
+    </span><span class="typ">Method</span><span class="pln"> getListenerInfoMethod </span><span class="pun">=</span><span class="pln"> viewClazz</span><span class="pun">.</span><span class="pln">getDeclaredMethod</span><span class="pun">(</span><span class="str">"getListenerInfo"</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(!</span><span class="pln">getListenerInfoMethod</span><span class="pun">.</span><span class="pln">isAccessible</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        getListenerInfoMethod</span><span class="pun">.</span><span class="pln">setAccessible</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="typ">Object</span><span class="pln"> mListenerInfo </span><span class="pun">=</span><span class="pln"> listenerInfoMethod</span><span class="pun">.</span><span class="pln">invoke</span><span class="pun">(</span><span class="pln">view</span><span class="pun">);</span><span class="pln">
+    
+    </span><span class="com">// 2. 然后从mListenerInfo中反射获取mOnClickListener对象</span><span class="pln">
+    </span><span class="typ">Class</span><span class="pln"> listenerInfoClazz </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Class</span><span class="pun">.</span><span class="pln">forName</span><span class="pun">(</span><span class="str">"android.view.View$ListenerInfo"</span><span class="pun">);</span><span class="pln">
+    </span><span class="typ">Field</span><span class="pln"> onClickListenerField </span><span class="pun">=</span><span class="pln"> listenerInfoClazz</span><span class="pun">.</span><span class="pln">getDeclaredField</span><span class="pun">(</span><span class="str">"mOnClickListener"</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(!</span><span class="pln">onClickListenerField</span><span class="pun">.</span><span class="pln">isAccessible</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        onClickListenerField</span><span class="pun">.</span><span class="pln">setAccessible</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="typ">View</span><span class="pun">.</span><span class="typ">OnClickListener</span><span class="pln"> mOnClickListener </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="typ">View</span><span class="pun">.</span><span class="typ">OnClickListener</span><span class="pun">)</span><span class="pln"> onClickListenerField</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="pln">mListenerInfo</span><span class="pun">);</span><span class="pln">
+    
+    </span><span class="com">// 3. 创建代理的点击监听器对象</span><span class="pln">
+    </span><span class="typ">View</span><span class="pun">.</span><span class="typ">OnClickListener</span><span class="pln"> mOnClickListenerWrapper </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">OnClickListenerWrapper</span><span class="pun">(</span><span class="pln">mOnClickListener</span><span class="pun">);</span><span class="pln">
+    
+    </span><span class="com">// 4. 把mListenerInfo的mOnClickListener设成新的onClickListenerWrapper</span><span class="pln">
+    onClickListenerField</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="pln">mListenerInfo</span><span class="pun">,</span><span class="pln"> mOnClickListenerWrapper</span><span class="pun">);</span><span class="pln">
+    </span><span class="com">// 用这个似乎也可以：view.setOnClickListener(mOnClickListenerWrapper);     </span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<p>
+ 注意，如果是
+ <code class="prettyprint prettyprinted"><span class="pln"> API</span><span class="pun">&lt;</span><span class="lit">14</span><span class="pln"> </span></code>
+ 的话，mOnClickListener直接是直接以一个Field保存在View对象中的，没有ListenerInfo，因此反射的次数要更少一些。
+</p>
+<h4>
+ 3.3.2.3 对App中所有的View进行动态Hook
+</h4>
+<p>
+ 我们在分析的是全埋点，那么怎样把App里面所有的View点击都Hook到呢？有两种方式：
+</p>
+<ul>
+ <li>
+  <p>
+   第一种：当Activity创建完成后，开始从Activity的DecorView开始自顶向下深度遍历ViewTree，遍历到一个View的时候，对它进行hookView操作。这种方式有点暴力，由于这里面遍历ViewTree的时候用到了大量反射，性能会有影响。
+  </p>
+ </li>
+ <li>
+  <p>
+   第二种：比第一种方式稍微优秀一些，来源是一个Github上的开源库
+   <a href="https://github.com/foolchen/AndroidTracker" rel="external" target="_blank">
+    AndroidTracker
+   </a>
+   （Kotlin实现）。他的处理方式是当Activity创建完成后，在DecorView中添加一个透明的View作为子View，在这个子View的onTouchEvent方法中，根据触摸坐标找到屏幕中包含了这个坐标的View，再对这些View尝试进行hookView操作。
+   <strong>
+    这种方式比较取巧，首先是拿到了手指按下的位置，根据这个位置来找需要被Hook的View，避免了在遍历ViewTree的同时对View进行反射。具体实现是在遍历ViewTree中的每个View时，判断这个View的坐标是否包含手指按下的坐标，以及View是否Visible，如果满足这两个条件，就把这个View保存到一个ArrayListhitViews。然后再遍历这个ArrayList里面的View，如果一个View#hasOnClickListeners返回true，那么才对他进行hookView操作。
+   </strong>
+  </p>
+ </li>
+</ul>
+<h3>
+ 3.3.3 动态Hook小结
+</h3>
+<p>
+ 整体来看，动态Hook的思路这里用到了反射，难免对程序性能产生影响，如果要采用这种方式实现全埋点方案，还需要好好评估。既然提到了代理，要说一下
+ <strong>
+  这里的“代理模式”其实还是JAVA的静态代理
+ </strong>
+ ，不是动态代理。因为
+ <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="typ">OnClickListener</span><span class="pln"> </span></code>
+ 和
+ <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="typ">OnClickListenerWrapper</span><span class="pln"> </span></code>
+ 是在编写代码的时候就确定了，并不是在运行时动态生成了一个
+ <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="typ">OnClickListenerWrapper</span><span class="pln"> </span></code>
+ 。在JDK中动态代理是使用Native去生成了代理类的字节码（比如使用ASM等工具），并使用ClassLoader加载进来的。
+</p>
+<h2>
+ 3.4 全埋点参考资料
+</h2>
+<ul>
+ <li>
+  Aspect Oriented Programming in Android：
+  <a href="https://fernandocejas.com/2014/08/03/aspect-oriented-programming-in-android/" rel="external" target="_blank">
+   https://fernandocejas.com/2014/08/03/aspect-oriented-programming-in-android/
+  </a>
+ </li>
+ <li>
+  AOP之AspectJ全面剖析in Android（AspectJ详细用法）：
+  <a rel="nofollow external" href="http://www.jianshu.com/p/f90e04bcb326" target="_blank">
+   http://www.jianshu.com/p/f90e04bcb326
+  </a>
+ </li>
+ <li>
+  沪江开源了一个叫做AspectJX的插件，扩展了AspectJ，除了对src代码进行AOP，还支持kotlin、工程中引用的jar和aar进行AOP：
+  <a href="https://github.com/HujiangTechnology/gradle_plugin_android_aspectjx" rel="external" target="_blank">
+   https://github.com/HujiangTechnology/gradle_plugin_android_aspectjx
+  </a>
+ </li>
+ <li>
+  关于 Spring AOP (AspectJ) 你该知晓的一切：
+  <a rel="nofollow external" href="http://blog.csdn.net/javazejian/article/details/56267036" target="_blank">
+   http://blog.csdn.net/javazejian/article/details/56267036
+  </a>
+ </li>
+</ul>
+<h1>
+ 四、可视化埋点
+</h1>
+<p>
+ 第三章介绍的是App全埋点，显然这种方式产生的数据太多，无论是对用户资源的节约，还是后续的数据分析都不太好。那么能否
+ <strong>
+  同样借助动态Hook技术，在运行时，只对我们感兴趣的控件进行埋点呢？
+ </strong>
+ 这就是可视化埋点。
+</p>
+<h2>
+ 4.1 可视化埋点原理
+</h2>
+<p>
+ 可视化埋点，需要经过两个步骤，可以由非技术人员操作完成。
+</p>
+<ul>
+ <li>
+  <strong>
+   第一步：通过可视化工具配置采集的View。
+  </strong>
+  例如使用已经嵌入了SDK的App连接管理界面，当手机App与后台同步时，后台管理界面上会显示和手机App一样的界面，用户可以在管理界面上用鼠标选择需要监测的元素，设置事件名称，保存这个配置。（也有一些SDK，比如GrowingIO的SDK圈选操作是在手机悬浮了一个原点，拖动圆点到需要监测的元素上来设置埋点位置的，不管是什么方式本质上是一样的，需要保存一份配置到后台）。
+ </li>
+ <li>
+  <strong>
+   第二步：App解析配置，找到View，Hook它的事件并上报数据。
+  </strong>
+  例如嵌入了SDK的App启动时，会从服务器获取到一份配置，再根据这份配置去检测App中的界面及其元素，满足配置的条件时向服务器上报事件。
+ </li>
+</ul>
+<p>
+ 这里面最重要的技术点就是如何把手机上需要埋点的元素记录下来，然后根据配置信息找到需要埋点的控件，再替换这个控件的交互事件处理方法（如点击、长按等）。下面以Mixpanel、SensorsdataSDK为例（这两个SDK实现是一样的），简单分析一下技术方案的实现。
+</p>
+<h2>
+ 4.2 可视化埋点实现
+</h2>
+<h3>
+ 4.2.1 圈选需要监测的View，保存配置
+</h3>
+<h4>
+ 4.2.1.1 创建WebSocket连接后台
+</h4>
+<p>
+ 采用WebSocket连接是因为要让手机和后台长时间保持连接，是一个
+ <strong>
+  持续的、实时的双向通信
+ </strong>
+ ，WebSocket正适合这种场景。
+</p>
+<p>
+ 在Mixpanel和神策SDK里面其实都用到了开源的
+ <a href="https://github.com/TooTallNate/Java-WebSocket" rel="external" target="_blank">
+  Java-WebSocket
+ </a>
+ 实现。此外，还有一个非常著名的Android同屏工具
+ <a href="https://www.vysor.io/" rel="external" target="_blank">
+  Vysor
+ </a>
+ ，里面也有一个基于WebSocket的网络框架
+ <a href="https://github.com/koush/AndroidAsync" rel="external" target="_blank">
+  AndroidAsync
+ </a>
+ 。如果对WebSocket感兴趣，可以看看它们。这里其实只要是用Java实现的WebSocket通信就行。
+</p>
+<h4>
+ 4.2.1.2 把App界面截图和里面的子View信息发送到后台
+</h4>
+<p>
+ 创建WebSocket连接后，SDK会在主线程中，对App中启动的Activity进行扫描，找到界面的RootView（其实是DecorView）。在查找RootView的同时，会采用反射调用View类
+ <code class="prettyprint prettyprinted"><span class="pln"> createSnapshot </span></code>
+ 方法对RootView进行截图，从而实现了对屏幕的截图。
+</p>
+<p>
+ 截图之后，SDK内部会判断图片的hash值，如果图片发生了变化，会采用
+ <strong>
+  先序
+ </strong>
+ 的方式遍历Activity的ViewTree，遍历同时读取View的属性（id、top、left、width、height、class名称、layoutRules等等）。下面举一个栗子：
+</p>
+<p>
+ <img alt="" src="./Android埋点技术分析 - 为程序员服务_files/imgr" onerror="return imgError(this)">
+</p>
+<p>
+ 一个简单的Activity，ContentView里面有一个LineaLayout，LinearLayout里面放了一个Button。先序遍历Activity的ViewTree后，SDK会把下面这些数据传到WebSocket的服务器（数据有点多，大概有13k，数据主要来自截图）：
+</p>
+<pre class="prettyprint prettyprinted"><code class="prettyprint"><span class="pun">{</span><span class="pln">
+    </span><span class="str">"type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"snapshot_response"</span><span class="pun">,</span><span class="pln"> 
+    </span><span class="str">"payload"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"activities"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+            </span><span class="pun">{</span><span class="pln">
+                </span><span class="str">"activity"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"com.sensorsdata.analytics.android.demo.MainActivity"</span><span class="pun">,</span><span class="pln"> 
+                </span><span class="str">"scale"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0.3809524</span><span class="pun">,</span><span class="pln"> 
+                </span><span class="str">"serialized_objects"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                    </span><span class="str">"rootObject"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">88528516</span><span class="pun">,</span><span class="pln"> 
+                    </span><span class="str">"objects"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+                        </span><span class="pun">{</span><span class="pln">
+                            </span><span class="str">"hashCode"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">88528516</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"index"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"sa_id_name"</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"top"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"left"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"width"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1080</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"height"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1920</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"visibility"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"classes"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+                                </span><span class="str">"com.android.internal.policy.DecorView"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.widget.FrameLayout"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.view.ViewGroup"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.view.View"</span><span class="pln">
+                            </span><span class="pun">],</span><span class="pln"> 
+                            </span><span class="str">"subviews"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+</span><span class="lit">5077</span><span class="pun">,</span><span class="pln"> 
+</span><span class="lit">53242</span><span class="pln">
+                            </span><span class="pun">]</span><span class="pln">
+                        </span><span class="pun">},</span><span class="pln"> 
+                        </span><span class="pun">{</span><span class="pln">
+                            </span><span class="str">"hashCode"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">57495077</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">16908822</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"index"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"sa_id_name"</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"top"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"left"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"width"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1080</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"height"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1920</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"visibility"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"classes"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+                                </span><span class="str">"com.android.internal.widget.ActionBarOverlayLayout"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.view.ViewGroup"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.view.View"</span><span class="pln">
+                            </span><span class="pun">],</span><span class="pln"> 
+                            </span><span class="str">"subviews"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+</span><span class="lit">0808</span><span class="pun">,</span><span class="pln"> 
+</span><span class="lit">3121</span><span class="pln">
+                            </span><span class="pun">]</span><span class="pln">
+                        </span><span class="pun">},</span><span class="pln"> 
+                        </span><span class="pun">{</span><span class="pln">
+                            </span><span class="str">"hashCode"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">12620808</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">16908290</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"index"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"sa_id_name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"android:content"</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"top"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">210</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"left"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"width"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1080</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"height"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1710</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"visibility"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"classes"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+                                </span><span class="str">"android.widget.FrameLayout"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.view.ViewGroup"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.view.View"</span><span class="pln">
+                            </span><span class="pun">],</span><span class="pln"> 
+                            </span><span class="str">"subviews"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+</span><span class="lit">14438</span><span class="pln">
+                            </span><span class="pun">]</span><span class="pln">
+                        </span><span class="pun">},</span><span class="pln"> 
+                        </span><span class="pun">{</span><span class="pln">
+                            </span><span class="str">"hashCode"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">150314438</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"index"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"sa_id_name"</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"top"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"left"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"width"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1080</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"height"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1710</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"visibility"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"classes"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+                                </span><span class="str">"android.widget.LinearLayout"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.view.ViewGroup"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.view.View"</span><span class="pln">
+                            </span><span class="pun">],</span><span class="pln"> 
+                            </span><span class="str">"subviews"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+</span><span class="lit">40701</span><span class="pln">
+                            </span><span class="pun">]</span><span class="pln">
+                        </span><span class="pun">},</span><span class="pln"> 
+                        </span><span class="pun">{</span><span class="pln">
+                            </span><span class="str">"hashCode"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">104340701</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2131427422</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"index"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"sa_id_name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"buttonTest"</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"top"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"left"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"width"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1080</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"height"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">126</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"visibility"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"classes"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+                                </span><span class="str">"android.widget.Button"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.widget.TextView"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.view.View"</span><span class="pln">
+                            </span><span class="pun">],</span><span class="pln"> 
+                            </span><span class="str">"subviews"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">]</span><span class="pln">
+                        </span><span class="pun">},</span><span class="pln"> 
+                        </span><span class="pun">{</span><span class="pln">
+                            </span><span class="str">"hashCode"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">88713121</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">16908669</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"index"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"sa_id_name"</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"top"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">63</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"left"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"width"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1080</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"height"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">147</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"visibility"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"classes"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+                                </span><span class="str">"com.android.internal.widget.ActionBarContainer"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.widget.FrameLayout"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.view.ViewGroup"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.view.View"</span><span class="pln">
+                            </span><span class="pun">],</span><span class="pln"> 
+                            </span><span class="str">"subviews"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+</span><span class="lit">55104</span><span class="pun">,</span><span class="pln"> 
+</span><span class="lit">93113</span><span class="pln">
+                            </span><span class="pun">]</span><span class="pln">
+                        </span><span class="pun">},</span><span class="pln"> 
+                        </span><span class="pun">{</span><span class="pln">
+                            </span><span class="str">"hashCode"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">164355104</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">16908668</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"index"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"sa_id_name"</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"top"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"left"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"width"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1080</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"height"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">147</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"visibility"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"classes"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+                                </span><span class="str">"android.widget.Toolbar"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.view.ViewGroup"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.view.View"</span><span class="pln">
+                            </span><span class="pun">],</span><span class="pln"> 
+                            </span><span class="str">"subviews"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+</span><span class="lit">58006</span><span class="pun">,</span><span class="pln"> 
+</span><span class="lit">7783</span><span class="pln">
+                            </span><span class="pun">]</span><span class="pln">
+                        </span><span class="pun">},</span><span class="pln"> 
+                        </span><span class="pun">{</span><span class="pln">
+                            </span><span class="str">"hashCode"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">222758006</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"index"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"sa_id_name"</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"top"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">38</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"left"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">42</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"width"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">553</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"height"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">71</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"visibility"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"classes"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+                                </span><span class="str">"android.widget.TextView"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.view.View"</span><span class="pln">
+                            </span><span class="pun">],</span><span class="pln"> 
+                            </span><span class="str">"subviews"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">]</span><span class="pln">
+                        </span><span class="pun">},</span><span class="pln"> 
+                        </span><span class="pun">{</span><span class="pln">
+                            </span><span class="str">"hashCode"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">64817783</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"index"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"sa_id_name"</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"top"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"left"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1080</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"width"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"height"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">147</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"visibility"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"classes"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+                                </span><span class="str">"android.widget.ActionMenuView"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.widget.LinearLayout"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.view.ViewGroup"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.view.View"</span><span class="pln">
+                            </span><span class="pun">],</span><span class="pln"> 
+                            </span><span class="str">"subviews"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">]</span><span class="pln">
+                        </span><span class="pun">},</span><span class="pln"> 
+                        </span><span class="pun">{</span><span class="pln">
+                            </span><span class="str">"hashCode"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">161393113</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">16908673</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"index"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"sa_id_name"</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"top"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"left"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"width"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"height"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"visibility"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">8</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"classes"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+                                </span><span class="str">"com.android.internal.widget.ActionBarContextView"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"com.android.internal.widget.AbsActionBarView"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.view.ViewGroup"</span><span class="pun">,</span><span class="pln"> 
+                                </span><span class="str">"android.view.View"</span><span class="pln">
+                            </span><span class="pun">],</span><span class="pln"> 
+                            </span><span class="str">"subviews"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">]</span><span class="pln">
+                        </span><span class="pun">},</span><span class="pln"> 
+                        </span><span class="pun">{</span><span class="pln">
+                            </span><span class="str">"hashCode"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">150453242</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">16908335</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"index"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"sa_id_name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"android:statusBarBackground"</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"top"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"left"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"width"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1080</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"height"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">63</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"scrollY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"visibility"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationX"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"translationY"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> 
+                            </span><span class="str">"classes"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+                                </span><span class="str">"android.view.View"</span><span class="pln">
+                            </span><span class="pun">],</span><span class="pln"> 
+                            </span><span class="str">"subviews"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">]</span><span class="pln">
+                        </span><span class="pun">}</span><span class="pln">
+                    </span><span class="pun">]</span><span class="pln">
+                </span><span class="pun">},</span><span class="pln"> 
+                </span><span class="str">"image_hash"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"785C4DC3B01B4AFA56BA0E3A56CE8657"</span><span class="pun">,</span><span class="pln"> 
+                </span><span class="str">"screenshot"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"iVBORw0KGgoAAAANSUhEUgAAAZsAAALbCAIAAACjSrpeAAAAA3NCSVQFBgUzC42AAAAZnklEQVR4nO3dUWhc96Hn8X8XPZwLfpiAFyxIIYIWKnMDtdnASpCHqOTBErkQmxRikUAjN3Bjr6Gx2gdH5KEoeUilFFKrFxKrgRY7sEUK1EiGDVEeAtKCi1TIxRNoYAIJWHADGbiGDFxB9+FMx5LsJI7i4Oa3nw9+mDmaMzqj0Xznf/7njPydMz8/UwAi/Le7vQEAd4yiATkUDcihaEAORQNyKBqQQ9GAHIoG5FA0IIeiATkUDcihaEAORQNyKBqQQ9GAHIoG5FA0IIeiATkUDcihaEAORQNyKBqQQ9GAHN/57LPP7vY2ANwZxmhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgBx9e16z+X5z/InxzlanlFL1VeNPjp/5X2fu3IbdfYeHDm+/WlXV6MOjE09P9O/vvyvbM/2r6cXFxfry+tr6rq/OvzE/98rc9iXDDwwff/z48NDwjoUPDne2OlVftfruar3k2I+PtT5q7Vrx6GNHRx4cucMPAL55e/y/oI79+Fiz2bx5+Zlnz0z8ZOJrb9U/hIP3H7zl8qqqpl+cHn149Cvd28rayoU/XCilzL4029jX2MP2HH7gcKfTqS8vXV4auHdg+1fnXp+be3nuVuuVmZdnelt78NDBslVKX7m6cbVeMjI6svnR5i1XPPro0annp6q+ag9bC3fFXvY6516bq3N24LsHZl6eOf/q+ZGHRurR3vzv5u/s9t19fWX0yOjokdHBwcHG/kYppdPpTD47ufjm4le6m43/u7H27trau2tlay9b0el0ejkrpXzB28boI6Mnnzk58eTEge8eqJdMPju5fd3PXfHI6OiR0UMPHOqtuPjm4uiR0XoYDt8Ke9nrnPttdyywsrxSXxgeGu5sdaaen5p+fvqObdo/hgP7D8y8NNO72ny/eeyxY6WUqeenhoaG+g/c7h5oq9X68ht9vomnJ0opVV/V6G9sfrS5ublZ7zzefMujjxyt9zTP/PzM4qXFqbNTpZTxp8YXLi588bfY/jDb7fboo6PtT9qbm5tz/zYXNp9AsD0dGbjVKKPqq2ZenKmqG6+x9vX25NnJg/cfrP+NPDyy8eeN3lebHzTr5c33m9c2rw0/NFxfHRsdu/bJte33PPvr2d6dHLz/4NSLU+3r7R3f5dkb3+XwA4frnbue8afG6y+VUub+ba53uZTSfL858vBIb92xfxnrzS59nsEfDE6/2K325NnJ+sK1T65N/2r64KGD2x/s6tqNuzp4/8GVd/5e/weHe9vQvt6e/fXs4QcO91Ycfmi4d8uezlZnY2OjlHLogUO97779/j9Pb2ez9dev1tNGo7FyubsZ86/uGHev/nl1ZPTGD23y7I4BYP1Yhh8cLtueuMMPHN74y0YppfVxq/dEjz81vmv01/ygeezHx77S0wG77KVog4OD9YXhB4fb7fYt90o6W53hoeHlS8ullKqqSl/Z3Nwc/8l4/Zu9XfOvzR89/KP2J91ItT5qjR0Z63314KGDN/Zk+0opZfGNxXp6u5Ry7ZNrw0PDy28t3/i+nc4LL70w8vDIzVs1/avp3uiylNL6sHXssWObm5u9e261WieeObH93m7p6CNH6wsbV7qPZf71+Yu/v1jPT9V3tbm5eeLpE4uXvmTP9MIbF+Z/N9/pdHortj9pnzp9av6NHRFpfdDt0ezLs8M/7M70z/5q9ovv/Guqquro491HuvrnblnmXps78ZMT9bxb/e61fGn58NDhXT/tdrs98fRE74nrdDrjT4y3PmyNHRnrPdEbVzbGj4/3Vlm+vHzs0R2Ts/XTMfubb/ZhEmYvRZv+ZXeY0G63hx8cHn5wePrF6V0zNfW7dFVV61fW639HHz1aSukdHu2ZOjs1eP/g0qWlC290x1a9OaNrm9fq8eDJ0yevvnf16sbVpctLg/cPnn/tfL3D1Wvf+VfPr2+sr66tDj0wVErZ3NzcNVIrpVz8/cWqrzp5+uSZX5wppUz+ojvCWr+yfnXj6vqV9elfTpe+cjtT/gcOHNh+deKJiYmnJt5+5+2rG1evblx9+523ez+o+sGuvrs68P3uRP7S5aXVd1fr0cf4Y+PHHzu+Y8W+UkqZfWl2+09p5uXu/mB9SGFoaKjc3m5sb7g3+P3BL73xzUYf6v4olv+0XEppfdiqD6cef+r41feurl9ZX313taqqslVOPnNy17pra2szL8/Uz1e9ZOyRscb+xtKlpd5T02w26ye63W73no6lS0tX37v69jtv17OW86/Ob/z77ndB+Dx7GqP9YHDhzYX6F66U0rneufjGxcMPHJ765VS9pPVxq3O9U0o598q5+p286qt6HVx5a8deVbWvWri4MHDfwKF/PnTut+fqhfUuVW/vsvle91d/4N6BhYsLw/9juJSy8ZeNeuHoI6PDQ8NVX9XY1+iNC2Zf3v3e3mg01jfWT/705MQTE6WUXoJbH7ZKPSR59GjvCOAXOzi44zBo/4H+Mz870zuro39/f53FTqdTF7nRuHFw85599zQajXpJo9GYen5q+4rdAeBWqX+AtbW1tVLK0ce6I6bxJ7pDm11DudrGXzaWLy8vXlo89cypXibmXr31YdAvds8999QXmh80y7Yf6dTPuk90o9Go36jWrqztWvfcK+dGHx4duHdg+07r6jurA/cNHPrhodFHdrxtzP+he5uFNxcG7hsopfTv77/wejd8vaDDl9rj+WiD3xtceWvl0/ank6cnN97rvoUu/nGx/Un73Cvnmu919x1OPXvq5nXXN9ZHj9z4hZ76xVTv8sB3uwOZumX1L3cpZeWdlcMPHN512sTS8lJ9YfvOSyllaGioTkCn09k+rzf/2o7X/9D/HKqHOcceO1b6ysiDIzMv7ZgH/AJ1BHfZ+PeNcy+fq38at3Nssaf5fnPulbnVK6vbV/xs67NGaZRSVta6bwATT3aPb/ZOMbvwhwsTj+8+6Ll9z7o2/eL03s4X+fT6p/WF+kyR3ohv+5l63Q3eKu12e3u460F6+fu4spQy8tCNE9wGBwfrGYm6+L3qDX7vxliy9+z39u7hS+39DNuqr+rf33/h4oXOVmf+tfn6hbTyzkpnq/Npu/tK2D7Q6Nn1at8RkZ2bU/VVS5eWxh8frwNXnzYxWSbP/+H88A+HeyO4A/t37AP+075/qi982v50+7HIge/tOIFr6uxU+3q797qqozny0Mi5V8596WPftcfXOwDa3ex9VbWvuuVj330/H7bGHh3rHWm55Ypzv+4W6uZUbX602bneqfbtqPDA4EBdlv79/cOHhkcfHd3zCWXL/6c7pbhrSHXLh9ZL8OfZ/kQ7x41vyF6Ktuu8gaqvOvmvJxcuLdQTxp3rnXsa3b2VpUtLvXfavRm4b2B1bbX1YWvy7GTrr626hid+cmL9ynrvzX9zc3N7uXo9vWf/PV985zMvzsy8ODP/2vz8xfl6xnrlnZXFS4u9uf9bWnm3O1TpTY3VOauqqjuvVMrU2akvPSxQShl7ZKyUUvrK+tp6veL0i9MX37jYu0Fnq9ObLF++fItDFhf+eGHXuWnP/ey5XZ8T2JvOVmfxje5D6H5+oK87pLr63m3tm38Ffbc+gA5f1V7m0SZ/MVmf5bRd5z+779vVvqo3GTz7ytc9UFVPqA3cN7BwcWF1bXVgYKCUUrZK2Spjo93DAhcu7jgI0NtJuc2BwMRPJ1bfWX37re50/vrG7g8YbXftk2unnunuSs+8OFMv6d7PUxO3s9P62Vb3QxrtdneMefSRo5+34vqV7saMPDwycmTHv3r5zdOFd0Rnq9ObGegN0HoHCr7SPvXtOPl098BC76Bq2bZrXx8JgdvxlYu2ura68tbK4qXFg/cfnP3N7Mq7K8uXlo/9+Fj9+hwcHKz6qoF7uzs+K2+tzL8+X78AWh+2Jn8xuX0y5Us1P2ieePrEsR8f2/j3jc5Wp3O989l/flZK9ySJQz88VO9wLV9eXnxzsbPVabfbx4529/6ee/65L77zsX8ZO3j/wfk/zNcnoPTO2Dp8/46Pc7avt+dfn59/fX72N7NjR8d+9NCP6uXHHzs++IPBUso9+7ojwd4008ZfNm4eoB3650P1heVLy51Op/Vxq1ex3su4+X5z+wCtlHLq9Kn68c68NHPupXPb//XOoWl9/LXO3e2pH+bca3Onnj11+NDh+ryWat+NQzonn+12Z+Thkeb7zVJKp9NZeXdl+KHh+tDBno0/3p0JPfHTE90z1z5sHXu8+1Te/PYJn+cr73UODw0fOHCg/nXfde5lVVUL/7t7Yvrqu6v1RwhnX57dNY5oftDcPgH8Beqjos1ms/cbXztz+kw9/lq5vDL80HDZKlPPT009v+0Iw8DA+GPj5fN1tjrXrl0rpcy+NDv70rbN6yv1wbsbt7zeuXkctP3jq1XVnfxqNpu9c3cb+xv1bmxnq1OVqpQy8fRE/cGp3g/k6ntX6xU3P9q8xYqdTmerexbLoUOHbh5vHn386AvPv1BKufDGhamf34HX/M0Pc2BgYGFxofetB+4dOHP2zOyLs+12e/u8YSll/Inxmz88f/sajca5V86dOn2qbN04kls7efrk15y44P8re9nrXHlr5cIbF3bsC/SV584+t+ss9vW19fqzOz3Hnzy++u7qbeaslHLyX0++/dbb26elG43G+dfP92rSaDTW19aPP3m8d4NqX3Xu5XNLf1r64nuu+qr1K+szL+84uHn88eO9vbybNRqNoaGh6V9Or19Z3zV1tfLWSm83sKqq86+e7515sHSpuyUD9w70Bjv1dpZSVt9ZvRHQvnLulXMLf+y+JSxfWu5d3n44uGf80e4r/+LFizd/dc+qqhocHDz5zMmly0tLf1raVdKJxycW3lzozSqUUg4cOHDulXNfJ2e1kYdGli4vDT1445dqcHBw4Y8LJ3+6+0w3+AJ7/NsbAP+A/MVHIIeiATkUDcihaEAORQNyKBqQQ9GAHIoG5FA0IIeiATkUDcihaEAORQNyKBqQQ9GAHIoG5FA0IIeiATkUDcjxnb/919/u9jYA3BnGaEAORQNyKBqQQ9GAHIoG5OjbfqX5YbNs3a0tAdiLgXsHqqqqL+8co8kZ8G3T2mz1LtvrBHIoGpBD0YAcigbkUDQgh6IBORQNyKFoQA5FA3IoGpBD0YAcfV9+EyillDL90nTrr62bl8+/Nn/q9KnPPvvs5uWllOZfmzO/ntn8aLOqqsHvD06enWzsa0z8dOLm++n/bv/089O9qxM/mbjnv98z89LMHX0QhDNG47b9/Q8ZbH68ufnx5vavtD5qbX68efNfOrj2ybXJ05ObH20Ofn+wv79/Y2Nj/LHxTqfTu8HNd9XZ6ixeWhw7Mra5ufnpf3z6TTwOghmjcbumzk7VF8aOjJVS5n4z1/sTLrXJs5OD3x/cscrPp0op518/37+/v5TS6XQWLi9UVVUP3zpbnWOPHCt/H83Vqr5q/rfzQw8Prb219s0+HhIZo/EN6mx1SimLi4v11aqqxh8d/9K1li4vTT079c1uGaEUjTtm8vTk2JGx+t/yO8ullLnfzJVSlt9cHjsyNvfbuXa7fbe3kXCKxjeo0Wic/935A/ceKKUsX1oef3x87rdzd3ujSGYejTtm5pWZXfNopZT+/v56mmz+9/OLbywuX1oef3K8sa9xNzaQfMZofIM6W516Kq2UMvHkxMDAQCnl2rVrd3WjSGaMxh3zafvT1kc3Tlgb+O7A+GPjVVWdfPbk4UOHm81mq9UqpdRdg2+ConHHvPD8C9uvLl1eGnloZPny8vblz/3yuaqvumlVuDO+87f/+lvvSvOD5l3cFL4t2tfbpZTtc2H1kl3qG3Q6nWv/ca31Qav/3v6BgYHtOetsdeqzbW85rda+3q76ql2nvMEt9JXB+7oTuIoGfMttK5ojA0AORQNyKBqQQ9GAHIoG5FA0IIeiATkUDcihaEAORQNyKBrw7TZw4MZfc9nxuU6AbzVjNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuRQNCCHogE5FA3IoWhADkUDcigakEPRgByKBuT4f1ZVvXKwGu9EAAAAAElFTkSuQmCC"</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+        </span><span class="pun">],</span><span class="pln"> 
+        </span><span class="str">"snapshot_time_millis"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">403</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<p>
+ 最后面的
+ <code class="prettyprint prettyprinted"><span class="pln"> screenshot </span></code>
+ 就是手机的截图，以base64编码。
+</p>
+<blockquote>
+ <p>
+  <strong>
+   为了简化分析，在上面的数据里面没有体现View的一些属性，例如Button上显示的text文字，实际上在遍历ViewTree里面每一个View的同时也会上报这个信息，因为我们的Activity和里面View大部分情况下都会是复用的，一个购物的Activity界面，里面的按钮可以显示不同的文字，我们需要统计不同商品的点击次数，就必须要知道按钮上显示的文字是什么。
+  </strong>
+ </p>
+</blockquote>
+<p>
+ 对于View来讲，关键信息有这些：
+</p>
+<ul>
+ <li>
+  activity：Activity类名
+ </li>
+ <li>
+  hashcode：view的hashcode
+ </li>
+ <li>
+  id：在Apk中的id
+ </li>
+ <li>
+  index：在父控件中的同类元素的顺序，如果是根View，那么为-1，如果父View没有多个同类型的子View，那么为0（例如LinearLayout中只有一个Button）
+ </li>
+ <li>
+  sa_id_name：在Apk中的控件的id的字符串名称，例如android:id=”@+id/button2”，结果就是
+  <code class="prettyprint prettyprinted"><span class="pln"> button2 </span></code>
+ </li>
+ <li>
+  top：距离屏幕上边距
+ </li>
+ <li>
+  left：距离屏幕的左边距
+ </li>
+ <li>
+  width：宽
+ </li>
+ <li>
+  height：高
+ </li>
+ <li>
+  classes：View自身以及所有的父类类名，是一个数组，这里决定了一个View到底可以有哪些交互，比如点击、长按等
+ </li>
+ <li>
+  subviews：子View的hashcode，是一个数组
+ </li>
+</ul>
+<h4>
+ 4.2.1.3 保存待监测的元素的关键信息
+</h4>
+<p>
+ 将上面收集到数据发送到连接的WebSocket后台，由后台解析之后，可以把App界面的截图展示在Web页面。然后把可以监测的元素以方框的形式添加在界面上提示用户（web页面实现时，我推测只需要用到这个View的left、top、width、height属性在html上加一个div标签，然后设置一个有颜色的border属性即可）。用户可以在这个Web页面点击需要监测的元素，设置这个元素的事件名称（event_type和event_name），点击保存。保存一个需要监测的元素时，需要保存这个元素在当前Activity的ViewTree的路径
+ <code class="prettyprint prettyprinted"><span class="pln"> path </span></code>
+ ，以及这个View在父控件中的
+ <code class="prettyprint prettyprinted"><span class="pln"> index </span></code>
+ ，具体有下面几个信息：
+</p>
+<ul>
+ <li>
+  target_activity：View所在的Activity类名
+ </li>
+ <li>
+  event_type：事件类型，例如点击事件
+ </li>
+ <li>
+  event_name：事件名称
+ </li>
+ <li>
+  trigger_id：事件id
+ </li>
+ <li>
+  path：View在ViewTree中查找路径
+  <ul>
+   <li>
+    prefix：表示是否需要监测这个View的兄弟元素，当为
+    <code class="prettyprint prettyprinted"><span class="pln"> shortest </span></code>
+    时，表示只匹配到索引为index那一个元素，否则匹配所有的父控件下面所有的同类子元素
+   </li>
+   <li>
+    view_class：view的类名
+   </li>
+   <li>
+    index：View在父控件中同类元素的下标索引，
+    <strong>
+     这个属性一定程序上可以对抗ViewTree的更新导致的元素监测失效问题，因为父控件加入一个不同类的元素时，index的值不会发生改变
+    </strong>
+   </li>
+   <li>
+    id：View在Apk中的id
+   </li>
+   <li>
+    sa_id_name：View在Apk中的id的字符串名称
+   </li>
+  </ul>
+ </li>
+</ul>
+<h3>
+ 4.2.2 获取配置，查找View，监测View的行为后上报事件
+</h3>
+<h4>
+ 4.2.2.1 获取配置，查找View
+</h4>
+<p>
+ SDK启动时，会从服务器拉取一份JSON格式的配置，保存到sharedPreference里，同时SDK会扫描
+ <code class="prettyprint prettyprinted"><span class="pln"> android</span><span class="pun">.</span><span class="pln">R </span></code>
+ 文件里面的资源id和资源的name并缓存起来。
+</p>
+<p>
+ SDK得到配置之后，解析成JSON对象，读取
+ <code class="prettyprint prettyprinted"><span class="pln"> event_bindings </span></code>
+ 字段，再进一步读取
+ <code class="prettyprint prettyprinted"><span class="pln"> events </span></code>
+ 字段，这个字段下面包含了一个数组，数组的每个元素都描述了一类事件，并包含了这类事件需要监测的元素所在的Activity和元素的路径。这份配置基本上是这样的一个结构：
+</p>
+<pre class="prettyprint prettyprinted"><code class="prettyprint"><span class="pln">event_bindings</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    events</span><span class="pun">:[</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">
+            target_activity</span><span class="pun">:</span><span class="pln"> </span><span class="str">""</span><span class="pln">
+            event_name</span><span class="pun">:</span><span class="pln"> </span><span class="str">""</span><span class="pun">,</span><span class="pln">
+            event_type</span><span class="pun">:</span><span class="pln"> </span><span class="str">""</span><span class="pun">,</span><span class="pln">
+            </span><span class="pun">...</span><span class="pln">
+            path</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+                </span><span class="pun">{</span><span class="pln">
+                    prefix</span><span class="pun">:</span><span class="pln">
+                    view_class</span><span class="pun">:</span><span class="pln">
+                    index</span><span class="pun">:</span><span class="pln">
+                    id</span><span class="pun">:</span><span class="pln">
+                    sa_id_name</span><span class="pun">:</span><span class="pln">
+                </span><span class="pun">},</span><span class="pln"> 
+                </span><span class="pun">{</span><span class="pln">
+                    </span><span class="pun">...</span><span class="pln">
+                </span><span class="pun">}</span><span class="pln">
+                </span><span class="pun">...</span><span class="pln">
+            </span><span class="pun">]</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">]</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<p>
+ 收到了这份配置之后，SDK会把根据每个event信息，生成一个
+ <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="typ">ViewVisitor</span><span class="pln"> </span></code>
+ 。
+ <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="typ">ViewVisitor</span><span class="pln"> </span></code>
+ 的作用就是把
+ <code class="prettyprint prettyprinted"><span class="pln"> path </span></code>
+ 数组里面指向的所有View元素都找到，并且根据event_type，
+ <strong>
+  给这个View设置相应的行为监测器
+ </strong>
+ ，当这个View发生指定行为时，监测器就会监测到，并上报行为。
+</p>
+<p>
+ 在生成ViewVisitor之后，SDK内部是以
+ <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="typ">Map</span><span class="pun">&lt;</span><span class="pln">activity</span><span class="pun">,</span><span class="pln"> </span><span class="typ">ViewVisitor</span><span class="pun">&gt;</span><span class="pln"> </span></code>
+ 结构保存它们的，这也比较容易理解，毕竟我们的界面是随着一个一个的Activity被create，onResume之后才被用户看见的嘛。在ViewVisitor对象中还有一个
+ <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="typ">PathFinder</span><span class="pln"> </span></code>
+ 对象，这个对象负责在ViewTree中根据path去查找View（这里其实是在一个tree里面查找node的问题）。
+</p>
+<h4>
+ 4.2.2.2 监测View的行为，上报事件
+</h4>
+<p>
+ <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="typ">ViewVisitor</span><span class="pln"> </span></code>
+ 是怎么给View设置监听器，监测元素的产生的行为呢？
+ <strong>
+  答案就是
+  <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="typ">View</span><span class="pun">.</span><span class="typ">AccessibilityDelegate</span><span class="pln"> </span></code>
+  。
+ </strong>
+</p>
+<p>
+ 在Android SDK里面，AccessibilityService（无障碍服务）为我们提供了一系列的事件回调，帮助我们指示一些用户界面的状态变化。我们可以派生辅助功能类，进而对不同的AccessibilityEvent进行处理，我们看下AccessibilityEvent里面有哪些事件类型：
+</p>
+<pre class="prettyprint prettyprinted"><code class="prettyprint"><span class="com">/**
+ * Represents the event of clicking on a {@link android.view.View} like
+ * {@link android.widget.Button}, {@link android.widget.CompoundButton}, etc.
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> TYPE_VIEW_CLICKED </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0x00000001</span><span class="pun">;</span><span class="pln">
+
+</span><span class="com">/**
+ * Represents the event of long clicking on a {@link android.view.View} like
+ * {@link android.widget.Button}, {@link android.widget.CompoundButton}, etc.
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> TYPE_VIEW_LONG_CLICKED </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0x00000002</span><span class="pun">;</span><span class="pln">
+
+</span><span class="com">/**
+ * Represents the event of selecting an item usually in the context of an
+ * {@link android.widget.AdapterView}.
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> TYPE_VIEW_SELECTED </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0x00000004</span><span class="pun">;</span><span class="pln">
+
+</span><span class="com">/**
+ * Represents the event of setting input focus of a {@link android.view.View}.
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> TYPE_VIEW_FOCUSED </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0x00000008</span><span class="pun">;</span><span class="pln">
+
+</span><span class="com">/**
+ * Represents the event of changing the text of an {@link android.widget.EditText}.
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> TYPE_VIEW_TEXT_CHANGED </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0x00000010</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">...</span></code></pre>
+<p>
+ <strong>
+  以点击事件
+  <code class="prettyprint prettyprinted"><span class="pln"> TYPE_VIEW_CLICKED </span></code>
+  为例
+ </strong>
+ ，当Activity界面的RootView开始绘制的时候（ViewTreeObserver.OnGlobalLayoutListener的onGlobalLayout回调时），ViewVisitor也会开始寻找指定的View，并给这个View设置新的AccessibilityDelegate。简单看一下这个新的View.AccessibilityDelegate是怎么写的：
+</p>
+<pre class="prettyprint prettyprinted"><code class="prettyprint"><span class="kwd">private</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">TrackingAccessibilityDelegate</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">View</span><span class="pun">.</span><span class="typ">AccessibilityDelegate</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+</span><span class="pun">...</span><span class="pln">
+            </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">TrackingAccessibilityDelegate</span><span class="pun">(</span><span class="typ">View</span><span class="pun">.</span><span class="typ">AccessibilityDelegate</span><span class="pln"> realDelegate</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                mRealDelegate </span><span class="pun">=</span><span class="pln"> realDelegate</span><span class="pun">;</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+
+            </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">View</span><span class="pun">.</span><span class="typ">AccessibilityDelegate</span><span class="pln"> getRealDelegate</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                </span><span class="kwd">return</span><span class="pln"> mRealDelegate</span><span class="pun">;</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+
+            </span><span class="pun">...</span><span class="pln">
+            
+            </span><span class="lit">@Override</span><span class="pln">
+            </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> sendAccessibilityEvent</span><span class="pun">(</span><span class="typ">View</span><span class="pln"> host</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> eventType</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">eventType </span><span class="pun">==</span><span class="pln"> mEventType</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                    fireEvent</span><span class="pun">(</span><span class="pln">host</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 事件上报</span><span class="pln">
+                </span><span class="pun">}</span><span class="pln">
+
+                </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">null</span><span class="pln"> </span><span class="pun">!=</span><span class="pln"> mRealDelegate</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                    mRealDelegate</span><span class="pun">.</span><span class="pln">sendAccessibilityEvent</span><span class="pun">(</span><span class="pln">host</span><span class="pun">,</span><span class="pln"> eventType</span><span class="pun">);</span><span class="pln">
+                </span><span class="pun">}</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+
+            </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">View</span><span class="pun">.</span><span class="typ">AccessibilityDelegate</span><span class="pln"> mRealDelegate</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+        </span><span class="pun">...</span></code></pre>
+<p>
+ 可以看到在SDK的
+ <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="typ">TrackingAccessibilityDelegate</span><span class="com">#sendAccessibilityEvent </span></code>
+ 方法里面，发出了事件上报。
+</p>
+<p>
+ 这么说View的点击处理方法中应该要调用
+ <code class="prettyprint prettyprinted"><span class="pln"> sendAccessibilityEvent </span></code>
+ 才行，那么View在点击方法的内部实现里有调用
+ <code class="prettyprint prettyprinted"><span class="pln"> sendAccessibilityEvent </span></code>
+ 方法吗？看一下View处理点击事件 -
+ <code class="prettyprint prettyprinted"><span class="pln"> </span><span class="typ">View</span><span class="pun">.</span><span class="pln">performClick </span></code>
+ 的源码：
+</p>
+<pre class="prettyprint prettyprinted"><code class="prettyprint"><span class="kwd">public</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> performClick</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">final</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> result</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">ListenerInfo</span><span class="pln"> li </span><span class="pun">=</span><span class="pln"> mListenerInfo</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">li </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="pun">&amp;&amp;</span><span class="pln"> li</span><span class="pun">.</span><span class="pln">mOnClickListener </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        playSoundEffect</span><span class="pun">(</span><span class="typ">SoundEffectConstants</span><span class="pun">.</span><span class="pln">CLICK</span><span class="pun">);</span><span class="pln">
+        li</span><span class="pun">.</span><span class="pln">mOnClickListener</span><span class="pun">.</span><span class="pln">onClick</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">);</span><span class="pln">
+        result </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        result </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    sendAccessibilityEvent</span><span class="pun">(</span><span class="typ">AccessibilityEvent</span><span class="pun">.</span><span class="pln">TYPE_VIEW_CLICKED</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> result</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="pun">...</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> sendAccessibilityEvent</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> eventType</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">mAccessibilityDelegate </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        mAccessibilityDelegate</span><span class="pun">.</span><span class="pln">sendAccessibilityEvent</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">,</span><span class="pln"> eventType</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        sendAccessibilityEventInternal</span><span class="pun">(</span><span class="pln">eventType</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="pun">...</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setAccessibilityDelegate</span><span class="pun">(</span><span class="lit">@Nullable</span><span class="pln"> </span><span class="typ">AccessibilityDelegate</span><span class="pln"> </span><span class="kwd">delegate</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    mAccessibilityDelegate </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">delegate</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<p>
+ 由此可见View的点击处理内部确实调用到了
+ <code class="prettyprint prettyprinted"><span class="pln"> sendAccessibilityEvent </span></code>
+ ，所以在RootView开始绘制的时候，给View注册AccessibilityDelegate可以监测到它的点击事件。可视化埋点这里对View的事件监测也是一种
+ <strong>
+  “动态Hook”
+ </strong>
+ 的实现，不过没有采用第三章中介绍的反射获取OnClickListener的方案，而是采用了获取AccessibilityDelegate来实现，这种方式反射次数少一些，效率上会更好一些。
+</p>
+<blockquote>
+ <p>
+  在网上看到有网友提出，setAccessibilityDelegate来监测View的点击对大多数厂商的机型和版本都是可以的，但是有部分机型是无法成功捕获监控到点击事件。从View的标识生成，以及监测原理来讲，这个方案的稳定性存在一些疑问。
+ </p>
+</blockquote>
+<h2>
+ 4.3 可视化埋点的难点和优化
+</h2>
+<p>
+ 上面简单分析了Mixpanel和SensorsSDK可视化埋点的基本实现，里面最重要有一个技术点值得仔细琢磨，那就是
+ <strong>
+  如何唯一标识App中的一个View？由于View是长在ViewTree上的一个节点，那么用纵向的路径，以及横向的下标应该可以标识一个View。
+ </strong>
+</p>
+<ul>
+ <li>
+  纵向的路径：是指从根View到这个View的父控件的路径上经过的每一个节点
+ </li>
+ <li>
+  横向的下标：是指这个View在父控件中的同类元素的下标索引（例如一个LinearLayout中有两个Button，那么第一个Button的下标就是0，第二个Button的下标就是1，这种方式可以抵抗父控件中加入一个非Button类型的元素时对ViewTree的改变，保证仍然可以找到Button，但是无法抵抗父控件中加入同类型的元素）
+ </li>
+</ul>
+<p>
+ 上面仅仅提到了标识一个View的基本方法，但是有很多实际场景，会对View的查找造成毁灭性的影响，例如界面中Fragment的变化，ViewTree的变化，ListView中控件的复用等等，这里有两篇网易的博客，里面对一些场景的优化做了详细地说明，可以仔细看看：
+</p>
+<ul>
+ <li>
+  <a rel="nofollow external" href="http://www.infoq.com/cn/presentations/netease-happy-to-no-burial-point-data-collection-practice-road" target="_blank">
+   http://www.infoq.com/cn/presentations/netease-happy-to-no-burial-point-data-collection-practice-road
+  </a>
+ </li>
+ <li>
+  <a rel="nofollow external" href="http://www.jianshu.com/p/b5ffe845fe2d" target="_blank">
+   http://www.jianshu.com/p/b5ffe845fe2d
+  </a>
+ </li>
+</ul>
+<h2>
+ 4.4 可视化埋点参考资料
+</h2>
+<ul>
+ <li>
+  sensorsdata git，包含了Android、iOS、js、JAVA等多个版本的SDK：
+  <a href="https://github.com/sensorsdata" rel="external" target="_blank">
+   https://github.com/sensorsdata
+  </a>
+ </li>
+ <li>
+  Mixpanel git，包含了Android、iOS、js、JAVA等多个版本的SDK：
+  <a href="https://github.com/mixpanel" rel="external" target="_blank">
+   https://github.com/mixpanel
+  </a>
+ </li>
+ <li>
+  网易移动端数据收集和分析博客：
+  <a rel="nofollow external" href="http://www.jianshu.com/c/ee326e36f556" target="_blank">
+   http://www.jianshu.com/c/ee326e36f556
+  </a>
+ </li>
+ <li>
+  美团点评前端无痕埋点实践：
+  <a href="https://tech.meituan.com/mt-mobile-analytics-practice.html" rel="external" target="_blank">
+   https://tech.meituan.com/mt-mobile-analytics-practice.html
+  </a>
+ </li>
+</ul>
+<h1>
+ 五、总结
+</h1>
+<p>
+ 最后简单总结一下几种方案的优缺点和使用场景，在实际应用中多种方式配合使用，平衡效率和可靠性，适合自己的业务才是最好的。
+</p>
+<table>
+ <thead>
+  <tr>
+   <th style="text-align: center;">
+    埋点方案
+   </th>
+   <th style="text-align: left;">
+    优点
+   </th>
+   <th style="text-align: left;">
+    缺点
+   </th>
+   <th style="text-align: left;">
+    适用场景
+   </th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td style="text-align: center;">
+    代码埋点
+   </td>
+   <td style="text-align: left;">
+    1.使用灵活，精确控制发送时机
+    <br>
+    2.方便设置自定义业务相关的属性
+   </td>
+   <td style="text-align: left;">
+    1.埋点成本高，工作量大，必须是技术人员才能完成
+    <br>
+    2.更新成本高，一旦上线很难修改。只能通过热修复或者重新发版
+    <br>
+    3.对业务代码的侵入大
+   </td>
+   <td style="text-align: left;">
+    对业务上下文理解要求较高的业务数据，如电商购物这类可能经过多次页面跳转，埋点时还需要带上前面页面中的一些信息
+   </td>
+  </tr>
+  <tr>
+   <td style="text-align: center;">
+    全埋点
+   </td>
+   <td style="text-align: left;">
+    1.开发、维护成本低
+    <br>
+    2.可以追溯历史数据
+    <br>
+    3.对业务代码侵入小
+    <br>
+    4.可以收集到一些额外信息，例如界面的热力图
+   </td>
+   <td style="text-align: left;">
+    1.高额流量和计算成本
+    <br>
+    2.无法灵活收集属性
+    <br>
+    3.动态的Hook方式支持的控件有限、事件类型有限，大量事件监测时反射对App运行性能有影响
+    <br>
+    4.静态的Hook方式需要第三方编译器参与，打包时间增长
+   </td>
+   <td style="text-align: left;">
+    上下文相对独立的、通用的数据，如点击热力图，性能监控和日志
+   </td>
+  </tr>
+  <tr>
+   <td style="text-align: center;">
+    可视化埋点
+   </td>
+   <td style="text-align: left;">
+    1.开发、维护成本低
+    <br>
+    2.可以按需埋点，灵活性好
+    <br>
+    3.对业务代码侵入小
+   </td>
+   <td style="text-align: left;">
+    1.界面的结构发生变化时，圈选的待监测元素可能会失效
+    <br>
+    2.支持的控件和事件类型有限
+    <br>
+    3.无法灵活地收集到上下文属性
+   </td>
+   <td style="text-align: left;">
+    上下文相对简单，依靠控件可以获得上下文信息，界面结构比较简单固定，如新闻阅读、游戏分享界面
+   </td>
+  </tr>
+ </tbody>
+</table>
+<h1>
+ 一、概念
+</h1>
+<p>
+ 埋点，是对网站、App或者后台等应用程序进行数据采集的一种方法。通过埋点，可以收集用户在应用中的产生行为，进而用于分析和优化产品后续的体验，也可以为产品的运营提供数据支撑，其中常见的指标有PV、UV、页面时长和按钮的点击等，通常可以采集到下面这些数据。
+</p>
+<ul>
+ <li>
+  行为数据：时间、地点、人物、交互的内容等
+ </li>
+ <li>
+  质量数据：App运行情况、浏览器加载情况、错误异常等
+ </li>
+ <li>
+  环境数据：手机型号、操作系统版本、浏览器UA、地理、运营商、网络环境等
+ </li>
+ <li>
+  运营数据：PV、UV、点击量、日活、留存、渠道来源等
+ </li>
+</ul>
+<p>
+ 采集行为数据时，通常需要在Web页面/App里面添加一些代码，当用户的行为达到某种条件时，就会向服务器上报用户的行为。其实添加这些代码的过程就可以叫做“埋点”，在很久以前就已经出现了这种技术。随着技术的发展和大家对数据采集要求的不断提高，我认为埋点的技术方案走过了下面几个阶段：
+</p>
+<ul>
+ <li>
+  <p>
+   <strong>
+    代码埋点：代码埋点是指在某个事件发生时调用数据发送接口上报数据。
+   </strong>
+   例如开发人员按照产品/运营的需求，在Web页面/App的源码里面添加行为上报的代码，当用户的行为满足某一个条件时，这些代码就会被执行，向服务器上报行为数据。这种方案是最基础的方案，每次增加或者修改数据上报的条件，都需要开发人员的参与，并且只能在下一个版本上线后才能看到效果。基本上所有的数据平台都提供了这类数据上报的SDK，将行为上报的后台服务器接口封装成了简单的客户端SDK接口。开发者可以通过嵌入这类SDK，在埋点的地方调用少量的代码就可以上报行为数据。
+  </p>
+ </li>
+ <li>
+  <p>
+   <strong>
+    全埋点：全埋点指的是将Web页面/App内产生的所有的、满足某个条件的行为，全部上报到后台服务器。
+   </strong>
+   例如把一个App中所有的按钮点击都进行上报，然后由产品/运营去后台筛选所需要的行为数据。这种方案的优点非常明显，就是可以不用在新增/修改行为上报条件时，再找开发人员去修改埋点的代码。然而它的缺点也和优点一样明显，那就是上报的数据量比代码埋点大很多，里面可能很多是没有价值的数据。此外，这种方案更倾向于独立去看待用户的行为，而没有关注行为的上下文，给数据分析带来了一些难度。很多公司也提供了这类功能的SDK，通过静态或者动态的方式，
+   <strong>
+    “Hook”了原有的App代码
+   </strong>
+   ，从而实现了行为的监测，在数据上报时通常是采用累积多条再上报的方案来合并请求。
+  </p>
+ </li>
+ <li>
+  <p>
+   <strong>
+    可视化埋点：可视化埋点是指通过可视化工具配置采集节点，在App/Web解析配置查找节点，监听节点产生的事件并上报。
+   </strong>
+   例如产品在Web页面/App的界面上进行圈选，配置需要监测界面上哪一个元素，然后保存这个配置，当App启动时会从后台服务器获得产品/运营预先圈选好的配置，然后根据这份配置查找并监测App界面上的元素，当某一个元素满足条件时，就会上报行为数据到后台服务器。有了暴力的全埋点技术方案，很容易联想到按需埋点，可视化埋点就是一种按需配置埋点的方案。现在也有一些公司提供了这类SDK，圈选监测元素时，有的是提供一个Web管理界面，手机在安装并初始化了SDK之后，可以和管理界面了连接，让用户在Web管理界面上配置需要监测的元素，有的是直接让用户在手机上圈选元素进行埋点。
+  </p>
+ </li>
+</ul>
+<blockquote>
+ <p>
+  hook直译是钩子的意思，以前学信息安全的时候在windows上听到过，大体意思是通过某种手段去改变系统API的一个行为，绕过系统的某个方法，或者改变系统的工作流程。在这里其实是指把本来要执行某个方法的对象替换成另一个，一般用的是反射或者代理，需要找到hook的代码位置，甚至还可以在编译阶段实现替换。全埋点和可视化埋点都需要Hook掉App原本的代码实现。
+ </p>
+</blockquote>
+<p>
+ 业界有多家SDK都支持上面介绍的3种埋点方案中的一种或者全部，例如Mixpanel、Sensorsdata、TalkingData、GrowingIO、诸葛IO、Heap Analytics、MTA、Umeng Analytics、百度，只是大家对后两种埋点的称呼不完全相同，有的叫无埋点或者codeless埋点。由于
+ <a href="https://github.com/mixpanel/mixpanel-android" rel="external" target="_blank">
+  Mixpanel
+ </a>
+ （支持代码埋点、可视化埋点）和
+ <a href="https://github.com/sensorsdata/sa-sdk-android" rel="external" target="_blank">
+  Sensorsdata
+ </a>
+ （全部支持）都开源了自己的全部SDK，技术方案也比较类似，下面以它们的Android SDK为例，简单分析一下3种埋点方案的技术实现。关于JS的SDK技术实现，可以看下我的另一篇博客-
+ <a href="http://ju.outofmemory.cn/entry/337859">
+  JS埋点SDK技术分析
+ </a>
+ 。
+</p>
+<div class="like">
+    <a href="javascript:void(0)" class="assertLogin" rel="nofollow" target="_self">点赞</a>
+</div>
+<div class="tags">
+<a class="tag" href="http://ju.outofmemory.cn/tag/%E6%8A%80%E6%9C%AF/">技术</a>
+
+<a class="tag" href="http://ju.outofmemory.cn/tag/Android/">Android</a>
+
+<a class="tag" href="http://ju.outofmemory.cn/tag/SDK/">SDK</a>
+
+</div>
+
+<div class="author">
+    <span class="name">作者：<a href="http://ju.outofmemory.cn/feed/3204/" title="Uncle Chen">Uncle Chen</a></span>
+    <div class="authorAvatar">
+        <a href="http://ju.outofmemory.cn/feed/3204/">
+            <img width="128" align="center" valign="absmiddle" src="./Android埋点技术分析 - 为程序员服务_files/3204.png" alt="Uncle Chen">
+        </a>
+    </div>
+    <div class="small">
+    </div>
+    <div class="small">原文地址：<a rel="nofollow external" target="_blank" href="http://unclechen.github.io/2017/12/18/Android%E5%9F%8B%E7%82%B9%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90/">Android埋点技术分析</a>, 感谢原作者分享。</div>
+</div>
+
+<div class="pn">
+    <span class="pre"><mark>←</mark><a href="http://ju.outofmemory.cn/entry/338291">JS埋点技术分析</a></span>
+</div>
+<div class="tgBD" style="width: 1234px; text-align: center; overflow: hidden; border: 1px solid transparent; border-radius: 2px;">
+<script type="text/javascript">
+
+var cpro_id = "u2191912"
+</script>
+<script src="./Android埋点技术分析 - 为程序员服务_files/cm.js" type="text/javascript"></script><div id="BAIDU_SSP__wrapper_u2191912_0"><iframe id="iframeu2191912_0" name="iframeu2191912_0" src="./Android埋点技术分析 - 为程序员服务_files/vcdm.html" width="760" height="90" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:760px;height:90px" allowtransparency="true"></iframe></div>
+</div>
+
+<div class="comments">
+<a name="comments"></a>
+<h3>评论</h3>
+<ul>
+<li><a name="comment-906"></a>
+    <div class="comment md"><p>哥哥  我找了这么久  你貌似是唯一的解析mixpanel的  谢谢</p></div>
+    <div class="commentFoot">
+        <a href="http://ju.outofmemory.cn/entry/338292#newComment" class="replyComment">回复</a> &nbsp; | &nbsp;
+        <a href="http://ju.outofmemory.cn/user/61621">小学留了三年级</a> 发表于 <span class="time" title="2018-02-23 21:54:36">1月前</span>
+    </div>
+</li>
+</ul>
+
+
+
+</div>
+
+
+<div class="newComment"><a name="newComment"></a>
+<h3>发表评论</h3>
+<form action="http://ju.outofmemory.cn/entry/comment/add" method="POST">
+    <input type="hidden" name="targetId" value="338292">
+    <input type="hidden" name="title" value="回复:Android埋点技术分析">
+    <input type="hidden" name="replyId">
+    <textarea name="content" cols="100" rows="6" class="mdInput" style="width:98%"></textarea>
+    <p>
+        <button type="button" id="btnComment">发表评论</button><span id="commentTip"></span>
+    </p>
+</form>
+</div>
+
+
+
+
+</div>
+<div class="sidebar">
+    <div class="tgSide booksNail"><div class="cTitle">好书推荐</div><div><ul><li><div class="nail"><a href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEgNUHlgRByJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIWBlAYXxAdS0IJRmsVXwxzNlhecWAIeTxmAUN7emc9HwNlDh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRHFgRBhQOVitcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBhMCVh9eCltXWwg%3D" target="_blank"><img src="./Android埋点技术分析 - 为程序员服务_files/first-line-android.jpg"></a></div><div class="title"><a class="bookName" href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEgNUHlgRByJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIWBlAYXxAdS0IJRmsVXwxzNlhecWAIeTxmAUN7emc9HwNlDh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRHFgRBhQOVitcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBhMCVh9eCltXWwg%3D" target="_blank"><nobr>第一行代码&nbsp;Android</nobr></a>[<a href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEgNUHlgRByJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIWBlAYXxAdS0IJRmsVXwxzNlhecWAIeTxmAUN7emc9HwNlDh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRHFgRBhQOVitcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBhMCVh9eCltXWwg%3D" target="_blank">京东</a> &nbsp; <a href="https://www.amazon.cn/gp/product/B01MSR5D04/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01MSR5D04&amp;linkCode=as2&amp;tag=oucn-23" target="_blank">亚马逊</a>]</div></li><li><div class="nail"><a href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEgFSGlgUCiJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIUAFQYWh0dS0IJRmtdBUlMIUBfZWFZYQJvI313TGwRQw91Dh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRHF4XBhcGXCtcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBBUGVhpTCltXWwg%3D" target="_blank"><img src="./Android埋点技术分析 - 为程序员服务_files/android-develop-art.jpg"></a></div><div class="title"><a class="bookName" href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEgFSGlgUCiJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIUAFQYWh0dS0IJRmtdBUlMIUBfZWFZYQJvI313TGwRQw91Dh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRHF4XBhcGXCtcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBBUGVhpTCltXWwg%3D" target="_blank"><nobr>Android开发艺术探索</nobr></a>[<a href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEgFSGlgUCiJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIUAFQYWh0dS0IJRmtdBUlMIUBfZWFZYQJvI313TGwRQw91Dh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRHF4XBhcGXCtcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBBUGVhpTCltXWwg%3D" target="_blank">京东</a> &nbsp; <a href="https://www.amazon.cn/gp/product/B014HV1X3K/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B014HV1X3K&amp;linkCode=as2&amp;tag=oucn-23" target="_blank">亚马逊</a>]</div></li><li><div class="nail"><a href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEg9XE10VAyJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIaBV0dWxQdS0IJRmtXUghnVUkkcGFJADRCJm5LaFo0XQtlDh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRElMWChQCUStcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVChAPUxtaCltXWwg%3D" target="_blank"><img src="./Android埋点技术分析 - 为程序员服务_files/android-high-guid.jpg"></a></div><div class="title"><a class="bookName" href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEg9XE10VAyJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIaBV0dWxQdS0IJRmtXUghnVUkkcGFJADRCJm5LaFo0XQtlDh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRElMWChQCUStcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVChAPUxtaCltXWwg%3D" target="_blank"><nobr>Android编程权威指南（第2版）</nobr></a>[<a href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEg9XE10VAyJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIaBV0dWxQdS0IJRmtXUghnVUkkcGFJADRCJm5LaFo0XQtlDh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRElMWChQCUStcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVChAPUxtaCltXWwg%3D" target="_blank">京东</a> &nbsp; <a href="https://www.amazon.cn/gp/product/B01FSXCBOQ/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01FSXCBOQ&amp;linkCode=as2&amp;tag=oucn-23" target="_blank">亚马逊</a>]</div></li><li><div class="nail"><a href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEgBQGF8RACJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIVAlYfXxcdS0IJRmtydFtvD04uRmBRfQlwOxJdV2wFHgRlDh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRE1oXAhICXStcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBRcEUR9ZCltXWwg%3D" target="_blank"><img src="./Android埋点技术分析 - 为程序员服务_files/mobile-app-ui-pattern.jpg"></a></div><div class="title"><a class="bookName" href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEgBQGF8RACJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIVAlYfXxcdS0IJRmtydFtvD04uRmBRfQlwOxJdV2wFHgRlDh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRE1oXAhICXStcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBRcEUR9ZCltXWwg%3D" target="_blank"><nobr>移动应用UI设计模式（第2版）</nobr></a>[<a href="http://union-click.jd.com/jdc?e=0&amp;p=AyIHZR5aEQISA1AYUyUCEgBQGF8RACJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIVAlYfXxcdS0IJRmtydFtvD04uRmBRfQlwOxJdV2wFHgRlDh43UxhZHQQRBVIZaxUDEwZUElsUBxA3ZRtaJVB83%2BOtg7CzDtP%2FlI6dlSIBUB9fHQEQAFwrWxAKEgBRE1oXAhICXStcJVlHaVMbXkAGRgcASAlBAkA3ZStr&amp;t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBRcEUR9ZCltXWwg%3D" target="_blank">京东</a> &nbsp; <a href="https://www.amazon.cn/gp/product/B00SFZGX08/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00SFZGX08&amp;linkCode=as2&amp;tag=oucn-23" target="_blank">亚马逊</a>]</div></li></ul></div></div><div class="similar entry">
+    <span class="title">您可能感兴趣的博客</span>
+    <div><ul class="similarEntries">
+    <li><span class="meta"><a href="http://ju.outofmemory.cn/feed/3204/" title="博主">博主</a> 发表 <span class="time" title="2017-12-19 08:50:04">3月前</span></span>
+<a href="http://ju.outofmemory.cn/entry/337420" class="codeTitle">Android埋点SDK技术分析</a>
+</li>
+    <li><span class="meta"><a href="http://ju.outofmemory.cn/feed/3204/" title="博主">博主</a> 发表 <span class="time" title="2017-12-27 08:28:37">3月前</span></span>
+<a href="http://ju.outofmemory.cn/entry/338292" class="codeTitle">Android埋点技术分析</a>
+</li>
+    <li><span class="meta"><a href="http://ju.outofmemory.cn/feed/1280/" title="jiacheo">jiacheo</a> 发表 <span class="time" title="2014-04-08 02:16:46">4年前</span></span>
+<a href="http://ju.outofmemory.cn/entry/69782" class="codeTitle">Android – AsyncTask 源码分析</a>
+</li>
+    <li><span class="meta"><a href="http://ju.outofmemory.cn/feed/1311/" title="Mr.Android君">Mr.Android君</a> 发表 <span class="time" title="2014-10-02 11:51:13">3年前</span></span>
+<a href="http://ju.outofmemory.cn/entry/93649" class="codeTitle">简单实现天气预报，解决乱码和Json解析</a>
+</li>
+    <li><span class="meta"><a href="http://ju.outofmemory.cn/feed/3204/" title="博主">博主</a> 发表 <span class="time" title="2016-08-21 00:00:00">1年前</span></span>
+<a href="http://ju.outofmemory.cn/entry/276418" class="codeTitle">不写代码，快速实现px转换成dp</a>
+</li>
+    <li><span class="meta"><a href="http://ju.outofmemory.cn/feed/4290/" title="奋斗小土豆丶">奋斗小土豆丶</a> 发表 <span class="time" title="2015-11-04 08:07:43">2年前</span></span>
+<a href="http://ju.outofmemory.cn/entry/217862" class="codeTitle">Eclispe环境启动遇This&amp;nbsp;Android&amp;nbsp;SDK&amp;nbsp;requir</a>
+</li>
+    <li><span class="meta"><a href="http://ju.outofmemory.cn/feed/4771/" title="legendmohe">legendmohe</a> 发表 <span class="time" title="2015-10-26 03:10:50">2年前</span></span>
+<a href="http://ju.outofmemory.cn/entry/224002" class="codeTitle">[Android] Handler源码解析 (Native层)</a>
+</li>
+    <li><span class="meta"><a href="http://ju.outofmemory.cn/feed/2539/" title="">博主</a> 发表 <span class="time" title="2009-05-20 00:00:00">8年前</span></span>
+<a href="http://ju.outofmemory.cn/entry/134737" class="codeTitle">参加了一下Android技术大会</a>
+</li>
+    <li><span class="meta"><a href="http://ju.outofmemory.cn/feed/2166/" title="drakeet">drakeet</a> 发表 <span class="time" title="2015-04-25 10:03:03">2年前</span></span>
+<a href="http://ju.outofmemory.cn/entry/139402" class="codeTitle">拿到一份开源项目，快速定位感兴趣的功能代码</a>
+</li>
+    <li><span class="meta"><a href="http://ju.outofmemory.cn/feed/2855/" title="">博主</a> 发表 <span class="time" title="2014-10-25 08:00:00">3年前</span></span>
+<a href="http://ju.outofmemory.cn/entry/142503" class="codeTitle">Android应用程序创建热点以及自动链接Wifi，我遇到的问题以及我是怎么解决的</a>
+</li>
+    <li><span class="meta"><a href="http://ju.outofmemory.cn/feed/3204/" title="博主">博主</a> 发表 <span class="time" title="2017-05-22 12:37:41">10月前</span></span>
+<a href="http://ju.outofmemory.cn/entry/314918" class="codeTitle">Android N App分屏模式完全解析（下）</a>
+</li>
+    <li><span class="meta"><a href="http://ju.outofmemory.cn/feed/2048/" title="zrong">zrong</a> 发表 <span class="time" title="2016-02-23 08:27:00">2年前</span></span>
+<a href="http://ju.outofmemory.cn/entry/241714" class="codeTitle">error: ‘to_string’ is not a member of ‘std’</a>
+</li>
+</ul>
+</div>
+</div>
+
+
+
+
+    <div class="tgSide"><script type="text/javascript">var jd_union_unid="1000081043",jd_ad_ids="512:6",jd_union_pid="CKvGvfKzKxCTjfDcAxoAIMH+guICKgA=";var jd_width=336;var jd_height=280;var jd_union_euid="";var p="BBcEUB5aEwUbNwpfBkgyTUMIRmtKRk9aZV8ETVxNNwpfBkgyeWcXBSJifWVlDFMYfkNLDwxmRRwAYgtZK10WABoBVhlcFzISBlQaWhwCEwJXK2tKRk9aZVA1FDJNQwhGaxUHGgdXE1MUBxIOVxxrFDIiNw%3D%3D";</script><script type="text/javascript" charset="utf-8" src="./Android埋点技术分析 - 为程序员服务_files/auto.js"></script><div style="position: relative; width: 336px; height: 280px;"><iframe scrolling="no" frameborder="0" width="336" height="280" src="./Android埋点技术分析 - 为程序员服务_files/auto.html"></iframe><div style="position: absolute; top: 1px; right: 0px; background: url(&quot;//img1.360buyimg.com/da/jfs/t2404/310/2196729438/1126/702d4c79/56a598b6N82664dfc.png&quot;); height: 20px; width: 20px;"></div></div></div>
+    <div class="similar code">
+    <span class="title">您可能感兴趣的代码</span>
+    <div><ul class="similarCodes">
+    <li><span class="time" title="2015-05-25 09:01:29">2年前</span><a href="http://outofmemory.cn/code-snippet/37203/Android-changyong-function">Android中常用的函数</a> by <a href="http://outofmemory.cn/user/102">firedtoad</a>
+</li>
+    <li><span class="time" title="2015-07-01 21:35:26">2年前</span><a href="http://outofmemory.cn/code-snippet/37380/Activity-switch-daozhi-onCreate-repeat-execution">Activity切换导致的onCreate重复执行</a> by <a href="http://outofmemory.cn/user/174">屁屁果</a>
+</li>
+    <li><span class="time" title="2015-12-14 16:28:07">2年前</span><a href="http://outofmemory.cn/code-snippet/38543/Android-Splash-Screen">Android Splash Screen</a> by <a href="http://outofmemory.cn/user/114">小菜的粉丝</a>
+</li>
+    <li><span class="time" title="2016-01-18 18:02:04">2年前</span><a href="http://outofmemory.cn/code-snippet/38955/program-look-Android-mobile-dianchi-usage-setting">在程序中查看 Android 手机的电池使用设置</a> by <a href="http://outofmemory.cn/user/114">小菜的粉丝</a>
+</li>
+    <li><span class="time" title="2017-06-20 11:11:09">9月前</span><a href="http://outofmemory.cn/code-snippet/80987/android-zidong-dabao-method-ant-proguard-qianming">android自动打包方法(ant+proguard+签名)</a> by <a href="http://outofmemory.cn/user/162">antkingwei</a>
+</li>
+    <li><span class="time" title="2015-06-05 11:54:19">2年前</span><a href="http://outofmemory.cn/code-snippet/37236/usage-PopupWindow-achieve-zidingyi-view-duihuakuang">使用PopupWindow实现自定义视图对话框</a> by <a href="http://outofmemory.cn/user/150">JoanneTou</a>
+</li>
+    <li><span class="time" title="2015-07-02 09:17:14">2年前</span><a href="http://outofmemory.cn/code-snippet/37381/Android-bitmap-serialize">Android bitmap序列化</a> by <a href="http://outofmemory.cn/user/174">屁屁果</a>
+</li>
+    <li><span class="time" title="2015-08-06 09:00:50">2年前</span><a href="http://outofmemory.cn/code-snippet/37602/Android-ListView-and-ArrayAdapter-peihe-usage">Android中ListView与ArrayAdapter配合使用</a> by <a href="http://outofmemory.cn/user/114">小菜的粉丝</a>
+</li>
+    <li><span class="time" title="2015-12-19 09:05:15">2年前</span><a href="http://outofmemory.cn/code-snippet/38579/TouchCalculator-Android-platform-de-chumoshi-counter">TouchCalculator - Android 平台上的触摸式计算器</a> by <a href="http://outofmemory.cn/user/30">王忠强</a>
+</li>
+    <li><span class="time" title="2016-01-21 17:13:37">2年前</span><a href="http://outofmemory.cn/code-snippet/38994/Android-create-single-xuanzhuan-bohaopan">Android 创建一个旋转的拨号盘</a> by <a href="http://outofmemory.cn/user/54">sunqi</a>
+</li>
+    <li><span class="time" title="2015-06-06 11:40:12">2年前</span><a href="http://outofmemory.cn/code-snippet/37238/Android-dan-chu-keyboard">Android 弹出键盘</a> by <a href="http://outofmemory.cn/user/174">屁屁果</a>
+</li>
+    <li><span class="time" title="2015-07-03 09:04:34">2年前</span><a href="http://outofmemory.cn/code-snippet/37390/Android-AlertDialog-Toast-usage">Android中AlertDialog和Toast的使用</a> by <a href="http://outofmemory.cn/user/126">panzaitang</a>
+</li>
+</ul>
+</div>
+</div>
+
+
+
+    
+    
+    
+    
+</div>
+
+
+</div>
+<script src="./Android埋点技术分析 - 为程序员服务_files/jquery-1.11.3.min.js"></script>
+<script>var isMobile= $('.sidebar').css('clear') == 'both';</script>
+<script src="./Android埋点技术分析 - 为程序员服务_files/loginUser_v5" charset="utf-8"></script>
+<script src="./Android埋点技术分析 - 为程序员服务_files/prettify.js" type="text/javascript"></script>
+<script src="./Android埋点技术分析 - 为程序员服务_files/5.js"></script>
+<script>
+    var removeAD=false;
+    var voteTargetType='entry';var voteTargetId =338292;
+    var voting=false;
+    function onGetVoteStatus(status){
+        if(status.type != 0){
+            voting=true;
+            $('.like a').html('1赞');
+        }
+    }
+    $('.like a').click(function(){
+        if (!voting){
+            voting = true;
+            $.post("/"+voteTargetType+"/"+voteTargetId+"/vote", { type: '1'},
+            function (response, textStatus){
+                if(!response.success){
+                    alert(response.message);
+                } else {
+                    $('.like a').html((response.upCount||1) + '赞');
+                }
+            }, "json");
+        } else {
+            $('.like a').html('已赞');
+        }
+    });
+    $('pre,code').removeClass('prettyprint').addClass('prettyprint');
+    prettyPrint();
+    function displayPv(pv){
+        $('.pv b').html(pv + '');
+    }
+    function resizeImg(o,maxWidth) {
+        var img = $(o);
+        if(img.width() > maxWidth) {
+            var h = Math.round(maxWidth / img.width() * img.height());
+            img.width(maxWidth).height(h);
+        }
+    }
+    function resizeImgs(){
+        var maxWidth = $('div.author').width();
+        $('.content img').each(
+            function(i,o){resizeImg(o,maxWidth);}
+        );
+        var tg = $('.tgBD');
+        if(tg.width()>maxWidth){
+            tg.width(maxWidth+'px').css({'text-align':'center','overflow':'hidden',border:'1px solid transparent','border-radius':'2px','-moz-border-radius':'2px'});
+        }
+    }
+    $(resizeImgs);
+    $(window).resize(resizeImgs);
+    function showBooks(books) {
+        var h = '<div class="tgL books"><span>&nbsp;</span>好书：';
+        var maxCount = 5;
+        var lineCn = books.length>maxCount?maxCount:books.length;
+        function getProvidersHtml(b) {
+            var h='';
+            if (b.providers) {
+                h += '[';
+                var first = true;
+                for (var p in b.providers) {
+                    var pUrl = b.providers[p]['url'];
+                    
+                    if (first) {
+                        first = false;
+                    } else {
+                        h += ' &nbsp; ';
+                    }
+                    h += ('<a href="' + pUrl +'" target="_blank">' + p +  '</a>');
+                    
+                }
+                h += ']';
+            }
+            return h;
+        }
+
+        for (var i=0; i<lineCn;i++) {
+            if (i>0) h += '<span class="sep"> | </span>';
+            var book = books[i];
+            h += ('<a href="'+ book.url +'" target="_blank">' + book.title + '</a>');
+            h += getProvidersHtml(book);
+        }
+
+
+        h += '</div>';
+        $(h).insertBefore($('div.wrap'));
+
+        var rightHtml = '<div class="tgSide booksNail"><div class="cTitle">好书推荐</div>';
+        rightHtml += '<div><ul>';
+        var startIdx = books.length > 4 ? books.length-4 : 0;
+        for (var i=startIdx; i<books.length;i++) {
+            var book = books[i];
+            rightHtml += ('<li><div class="nail"><a href="' + book.url + '" target="_blank"><img src="//outofmemory.cn/static/book/' + book.image + '" /></a></div>');
+            rightHtml += ('<div class="title"><a class="bookName" href="'+book.url+'" target="_blank"><nobr>'+book.title+ '</nobr></a>');
+            var providerH = getProvidersHtml(book);
+            rightHtml += providerH;
+            rightHtml += '</div></li>';
+        }
+        rightHtml += '</ul></div>';
+        rightHtml += '</div>';
+
+        $(rightHtml).insertBefore($('div.sidebar div:first'))
+    }
+</script>
+<script src="./Android埋点技术分析 - 为程序员服务_files/list" type="text/javascript"></script>
+
+
+<footer class="foot">
+© 2015 <a href="http://outofmemory.cn/">内存溢出</a>
+</footer>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36036446-1', 'outofmemory.cn');
+    ga('send', 'pageview');
+    ga('set',  '&uid', window.loginUser.id); // 使用已登录的 user_id 来设置用户 ID。
+</script>
+
+<div class="bdtj"><script type="text/javascript">
+
+
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?2051de3619785a7bff6213250ea9fbbd";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</div>
+<script>
+    function displayTG(k, h){
+        var display = typeof removeAD != 'undefined' && !removeAD;
+        if (!display) {
+            return;
+        }
+        if(k == 'jukeTopLine'){
+            $(h).insertBefore($('div.wrap'));
+        }
+    }
+    if(parseInt($('.content').css('marginRight')) > 50){
+        var contentHeight=$('.content').height();var sideHeight=$('.sidebar').height();
+        if(contentHeight<sideHeight) $('.content').css({'minHeight':sideHeight+'px'});
+    }
+</script>
+
+
+
+
+<script>window.__key__ = '300525af40b1dbfad01d5ab29b7e3d6d';</script>
+<script src="./Android埋点技术分析 - 为程序员服务_files/aes.js" type="text/javascript"></script>
+<script>
+$('form').submit(
+        function(e){
+            $('input[type="password"]').each(function(o){
+                var oPwd = $(this);
+                var pwd = oPwd.val();
+                if (pwd){
+                    var key = CryptoJS.enc.Latin1.parse(window.__key__.substring(0, 16));
+                    var iv = CryptoJS.enc.Latin1.parse(window.__key__.substring(16));
+                    //加密
+                    var encrypted = CryptoJS.AES.encrypt(pwd, key, {iv:iv,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.ZeroPadding});
+                    oPwd.val(encrypted.toString());
+                }
+            });
+        }
+);
+</script></body></html>

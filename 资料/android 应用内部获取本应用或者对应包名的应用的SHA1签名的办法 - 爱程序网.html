@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0037)http://www.aichengxu.com/view/2460399 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style id="znBdcsStyle" type="text/css">#bdcs-rec{display:none;}</style>
+        <title>android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网</title>
+        <meta name="Keywords" content="android,sha1,hash,签名,证书,">
+        <meta name="Description" content="">        
+        <link type="text/css" rel="stylesheet" href="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/layout.css">
+<script type="text/javascript" async="" src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/insideText.js"></script><script type="text/javascript" async="" src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/js"></script><script src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/hm.js"></script><script type="text/javascript" async="" src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/bcjm"></script><script type="text/javascript" async="" src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/bcjm(1)"></script><script type="text/javascript" async="" src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/bcjm(2)"></script><script type="text/javascript" src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/notice.js"></script>
+
+    </head>
+    <body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div>
+        <div id="wrap">
+            <div id="header">
+    <div class="logo">
+        <a href="http://www.aichengxu.com/"><img width="311" height="48" alt="爱程序网" src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/logo.png"></a>
+    </div>
+    <div class="search">
+        <form target="_blank" action="http://zhannei.baidu.com/cse/search">           
+            <div class="search-ipt">
+                <input id="bdcsMain" type="text" value="" name="q">
+            </div>
+            <div class="search-btn">
+                <input type="submit" value="搜索" class="sub-btn">
+            </div>
+        <div><input type="hidden" name="s" value="13701196898887196136"><input type="hidden" name="entry" value="1"></div></form>
+    </div>
+</div>
+<div id="nav">
+    <ul>
+        <li><a href="http://www.aichengxu.com/">首页</a></li>
+        <li><a href="http://www.aichengxu.com/item/1">PHP学习</a></li><li><a href="http://www.aichengxu.com/item/2">Java教程</a></li><li><a href="http://www.aichengxu.com/item/3">.NET开发</a></li><li><a href="http://www.aichengxu.com/item/4">C语言&amp;C++</a></li><li><a href="http://www.aichengxu.com/item/5">HTML语法</a></li><li><a href="http://www.aichengxu.com/item/6">CSS特效</a></li><li><a href="http://www.aichengxu.com/item/7">JS特效</a></li><li><a href="http://www.maiziedu.com/pages/yy1605/web.html?yy=aichengxu" target="_blank">web前端教程</a></li> 
+
+        <li>   <a class="nav-more">更多</a>   <b class="verify-b"></b>   
+        <div class="drop-sub-nav" style="display:none;">   
+            <a href="http://www.aichengxu.com/item/10">MySQL学习</a><a href="http://www.aichengxu.com/item/12">电脑优化</a><a href="http://www.aichengxu.com/item/14">ThinkPHP</a><a href="http://www.aichengxu.com/item/15">Python教程</a><a href="http://www.aichengxu.com/item/22">Android开发</a><a href="http://www.aichengxu.com/item/23">IOS开发</a><a href="http://www.aichengxu.com/item/24">Linux技术知识</a><a href="http://www.aichengxu.com/item/25">nginx技术知识 </a><a href="http://www.aichengxu.com/item/26">Apache技术知识 </a><a href="http://www.aichengxu.com/item/21">整理收藏</a>        </div>
+        </li>                
+    </ul>
+</div>           
+<div class="top-nav-ad">
+    <script type="text/javascript">ad.bdtop_96060();</script>
+</div> 
+
+<div id="user-loc">
+    当前位置：<a href="http://www.aichengxu.com/">首页</a> » <a href="http://www.aichengxu.com/item/22">Android开发</a></div>
+
+             
+
+<div id="post">
+    <div class="post-left">   
+        <div class="post-detail">
+            <h1>android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法</h1>
+            <div class="p-info">
+                <span class="p-time">2014-07-15 18:16</span>
+                <span class="p-author">本站整理</span>
+                <span class="p-view">浏览(239)</span>
+            </div>
+        <div class="ad-float"><script type="text/javascript">ad.bdDesc_120600();</script><script type="text/javascript">            var cpro_id="u2051914";        (window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"160",rsi1:"600",pat:"6",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"1",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"14",rss2:"#000000",titSU:"0",ptbg:"90",piw:"0",pih:"0",ptp:"0"}        </script>            <script src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/f.js" type="text/javascript"></script><div id="BAIDU_SSP__wrapper_u2051914_0"><iframe id="iframeu2051914_0" src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/bcjm.html" width="160" height="600" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div></div>
+            <div class="p-text">
+<div id="ad-left"><script type="text/javascript">ad.bdDesc_300250();</script><a href="http://www.maiziedu.com/pages/yy1605/web.html?yy=aichengxu" target="_blank"><img src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/maizi600_120.jpg"></a></div>
+             我这个人比较懒，每次做的都是心血来潮，所以打算改掉这个坏毛病。昨晚很晚才睡，躺在床上一直在回想。这两年来，我曾经的目标是什么，我放弃了什么，我完成了什么。结果目标很多，也放弃了一些。完成的几乎没有。想来，还是挺失败的。<br><br>生活逐渐磨平了棱角，其实不怨生活，还是自己信心不够坚定。不是只有年轻才有梦想，是因为有梦想，所以才年轻。<br><br>那些和我一样曾经有些目标，却中途逐渐遗忘的朋友们，坚持下去。身埋黄土半生沙，雕镂逐梦尽铅华。<br><br><a href="http://www.lai18.com/content/2460399.html" target="_blank">欢迎转载，请注明出处：http://www.lai18.com/content/2460399.html</a><br><br>哈哈，闲言少叙，言归正传！<br><br>在讲正文之前，还是先了解一下：什么是哈希算法？哈希算法将任意长度的二进制值映射为较短的固定长度的二进制值，这个小的二进制值称为哈希值。哈希值是一段数据唯一且极其紧凑的数值表示形式。如果散列一段明文而且哪怕只更改该段落的一个字母，随后的哈希都将产生不同的值。要找到散列为同一个值的两个不同的输入，在计算上是不可能的，所以数据的哈希值可以检验数据的完整性。一般用于快速查找和加密算法。<br><br>基于哈希的消息验证模式有很多种： MD2, MD4, MD5,SHA1等。<br><br>  今天讲的内容是android中，如何通过代码，在应用内部获得签名的SHA1值。SHA1叫安全哈希算法（Secure<br> Hash Algorithm）。主要适用于数字签名标准 （Digital Signature Standard DSS）里面定义的数字签名算法（Digital Signature Algorithm DSA）。对于长度小于2^64位的消息，SHA1会产生一个160位的消息摘要。当接收到消息的时候，这个消息摘要可以用来验证数据的完整性。在传输的过程中，数据很可能会发生变化，那么这时候就会产生不同的消息摘要。 SHA1有如下特性：不可以从消息摘要中复原信息；两个不同的消息不会产生同样的消息摘要。<a href="http://baike.baidu.com/view/1228622.htm?fr=aladdin" target="_blank">》》》引自百度百科</a>感兴趣的朋友可以进入阅读。<br><br>android中获取应用的SHA1有三种方法，一种是：通过keytool工具，在cmd命令中输入 keytool -list -v -keystore<br> 你的签名证书所在位置，比如我的再D盘根目录，则输入：keytool -list -v -keystore d:\key2.keystore 回车后输入生成证书的密码。可得到以下信息<br><br><img src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/20140716103026142" border="0"><br><br>第二种获取SHA1值的方式是Eclipse的属性中。这里不做重点。<br><br>还有就是下面的代码获取，主要的应用场景为：当我们的应用需要跟数据库进行数据交互等网络服务时，基于SHA1的唯一性，通过验证SHA1的值，来判断应用是否是官方正版应用，如果不是，则拒绝服务。<br><br><pre>//这个是获取SHA1的方法
+public static String getCertificateSHA1Fingerprint(Context context) {
+                //获取包管理器
+		PackageManager pm = context.getPackageManager();
+                //获取当前要获取SHA1值的包名，也可以用其他的包名，但需要注意，
+                //在用其他包名的前提是，此方法传递的参数Context应该是对应包的上下文。
+		String packageName = context.getPackageName();
+                //返回包括在包中的签名信息
+		int flags = PackageManager.GET_SIGNATURES;
+		PackageInfo packageInfo = null;
+		try {
+                //获得包的所有内容信息类
+			packageInfo = pm.getPackageInfo(packageName, flags);
+		} catch (PackageManager.NameNotFoundException e) {
+			e.printStackTrace();
+		}
+                //签名信息
+		Signature[] signatures = packageInfo.signatures;
+		byte[] cert = signatures[0].toByteArray();
+                //将签名转换为字节数组流
+		InputStream input = new ByteArrayInputStream(cert);
+                //证书工厂类，这个类实现了出厂合格证算法的功能
+		CertificateFactory cf = null;
+		try {
+			cf = CertificateFactory.getInstance("X509");
+		} catch (CertificateException e) {
+			e.printStackTrace();
+		}
+                //X509证书，X.509是一种非常通用的证书格式
+		X509Certificate c = null;
+		try {
+			c = (X509Certificate) cf.generateCertificate(input);
+		} catch (CertificateException e) {
+			e.printStackTrace();
+		}
+		String hexString = null;
+		try {
+                        //加密算法的类，这里的参数可以使MD4,MD5等加密算法
+			MessageDigest md = MessageDigest.getInstance("SHA1");
+                        //获得公钥
+			byte[] publicKey = md.digest(c.getEncoded());
+                        //字节到十六进制的格式转换
+			hexString = byte2HexFormatted(publicKey);
+		} catch (NoSuchAlgorithmException e1) {
+			e1.printStackTrace();
+		} catch (CertificateEncodingException e) {
+			e.printStackTrace();
+		}
+		return hexString;
+	}
+//这里是将获取到得编码进行16进制转换
+	private static String byte2HexFormatted(byte[] arr) {
+		StringBuilder str = new StringBuilder(arr.length * 2);
+		for (int i = 0; i &lt; arr.length; i++) {
+			String h = Integer.toHexString(arr[i]);
+			int l = h.length();
+			if (l == 1)
+				h = "0" + h;
+			if (l &gt; 2)
+				h = h.substring(l - 2, l);
+			str.append(h.toUpperCase());
+			if (i &lt; (arr.length - 1))
+				str.append(':');
+		}
+		return str.toString();
+	}</pre><br><br><img src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/20140716110534064" border="0"><br><br>获得的SHA1和Eclipse中的一致，证明读取正确。OK，任务完成了。<br><br>欢迎加群畅聊163411187<br><br>613411187163411187<br><br><a href="http://www.lai18.com/content/2460399.html" target="_blank">欢迎转载，请注明出处：http://www.lai18.com/content/2460399.html</a>            </div>
+           <div class="ad-under"><script type="text/javascript">ad.bdDesc_336280();</script><script type="text/javascript">                          var cpro_id="u2341972";                      (window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"600",rsi1:"250",pat:"6",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"0",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"14",rss2:"#000000",titSU:"0",ptbg:"90",piw:"0",pih:"0",ptp:"0"}                      </script>                          <script src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/c.js" type="text/javascript"></script><div id="BAIDU_SSP__wrapper_u2341972_0"><iframe id="iframeu2341972_0" src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/bcjm(4).html" width="600" height="250" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div></div>
+        </div>
+        <div class="connect">
+            <i class="connect-left"></i>
+            <i class="connect-right"></i>
+        </div>
+        <div class="p-extra">
+            <h3>猜你在找</h3>
+            <ul>
+	<li><a href="http://www.aichengxu.com/view/2460400" title="Android 微信分享，无需那么麻烦。">Android 微信分享，无需那么麻烦。</a></li><li><a href="http://www.aichengxu.com/view/2460401" title="Android 友盟分享，让你后顾无忧，麻麻再也不用担心我的学习。">Android 友盟分享，让你后顾无忧，麻麻再也不用</a></li><li><a href="http://www.aichengxu.com/view/2460402" title="Android 传感器介绍">Android 传感器介绍</a></li><li><a href="http://www.aichengxu.com/view/2460403" title="Android 播放器之流媒体，边下边播如此简单。">Android 播放器之流媒体，边下边播如此简单。</a></li><li><a href="http://www.aichengxu.com/view/2460404" title="收集整理的Android color.xml文件的颜色配置">收集整理的Android color.xml文件的颜色配</a></li><li><a href="http://www.aichengxu.com/view/2460405" title="Android 全界面悬浮按钮实现，you can do it！">Android 全界面悬浮按钮实现，you can do it！</a></li><li><a href="http://www.aichengxu.com/view/2460406" title="Android WiFi功能实现，知其然必知其所以然！（一）">Android WiFi功能实现，知其然必知其所以然！（一</a></li><li><a href="http://www.aichengxu.com/view/2460407" title="Android WiFi功能实现，知其然必知其所以然！ （二）">Android WiFi功能实现，知其然必知其所以然！ （</a></li><li><a href="http://www.aichengxu.com/view/2460408" title="Android 简单的封装，可以更高效——AsyncTask">Android 简单的封装，可以更高效——AsyncTas</a></li><li><a href="http://www.aichengxu.com/view/2460409" title="Android 自定义RadioButton 实现文字上下左右方向的图片大小设置">Android 自定义RadioButton 实现文字上下左</a></li><li><a href="http://www.aichengxu.com/view/2460398" title="Android 百度推送实现">Android 百度推送实现</a></li><li><a href="http://www.aichengxu.com/view/2460397" title="android自定义状态开关-modeswitch">android自定义状态开关-modeswitch</a></li><li><a href="http://www.aichengxu.com/view/2460396" title="浅谈android的selector，背景选择器">浅谈android的selector，背景选择器</a></li><li><a href="http://www.aichengxu.com/view/2460395" title="Android Fragments 详细使用">Android Fragments 详细使用</a></li><li><a href="http://www.aichengxu.com/view/2460394" title="Android 轻松实现语音识别">Android 轻松实现语音识别</a></li><li><a href="http://www.aichengxu.com/view/2460393" title="Android Volley完全解析(三)，定制自己的Request">Android Volley完全解析(三)，定制自己的Requ</a></li><li><a href="http://www.aichengxu.com/view/2460392" title="Android Volley完全解析(二)，使用Volley加载网络图片">Android Volley完全解析(二)，使用Volley加载</a></li><li><a href="http://www.aichengxu.com/view/2460391" title="Android Volley完全解析(一)，初识Volley的基本用法">Android Volley完全解析(一)，初识Volley的基</a></li><li><a href="http://www.aichengxu.com/view/2460390" title="Android知识体系树">Android知识体系树</a></li><li><a href="http://www.aichengxu.com/view/2460389" title="Android性能优化">Android性能优化</a></li></ul>
+</div>
+    </div>
+    <div class="post-right">     
+        <div id="side-box" class="box-fixed">
+            <h3>阅读榜</h3>
+            <ul> <li><span class="list-num hot-num hot-1">1</span><a href="http://www.aichengxu.com/view/623021" title="Retrofit 实现上传下载文件">Retrofit 实现上传下载文件</a></li><li><span class="list-num hot-num hot-2">2</span><a href="http://www.aichengxu.com/view/932076" title="android studio如何导入android-support-v7-appcompat包">android studio如何导入android-support-v7</a></li><li><span class="list-num hot-num hot-3">3</span><a href="http://www.aichengxu.com/view/964410" title="Android 5.1 SystemUi 之 StatusBar的简单分析">Android 5.1 SystemUi 之 StatusBar的简单</a></li><li><span class="list-num hot-num ">4</span><a href="http://www.aichengxu.com/view/975597" title="调用RadioGroup的check(id)方法，监听onCheckedChanged方法被执行多次；调用clearCheck()，onCheckedChanged方法仍被执行的原因和解决办法">调用RadioGroup的check(id)方法，监听onCheck</a></li><li><span class="list-num hot-num ">5</span><a href="http://www.aichengxu.com/view/1000216" title="[Android Debug]aapt.exe&amp;#39;&amp;#39;  finished with non-zero exit value 1">[Android Debug]aapt.exe&amp;#39;&amp;#39;  finis</a></li><li><span class="list-num hot-num ">6</span><a href="http://www.aichengxu.com/view/1029456" title="cts_gts认证一些fail项解决办法">cts_gts认证一些fail项解决办法</a></li><li><span class="list-num hot-num ">7</span><a href="http://www.aichengxu.com/view/1029465" title="cts/gts中一些fail项解决办法总结">cts/gts中一些fail项解决办法总结</a></li><li><span class="list-num hot-num ">8</span><a href="http://www.aichengxu.com/view/1125489" title="Android studio中自定义属性访问不了的解决办法">Android studio中自定义属性访问不了的解决</a></li><li><span class="list-num hot-num ">9</span><a href="http://www.aichengxu.com/view/1193854" title="Android 裁剪图片 aspectX aspectY outputX outputY的设置规则纠正">Android 裁剪图片 aspectX aspectY outputX</a></li><li><span class="list-num hot-num ">10</span><a href="http://www.aichengxu.com/view/1385784" title="Genymotion模拟器不能上网的解决办法">Genymotion模拟器不能上网的解决办法</a></li><li><span class="list-num hot-num ">11</span><a href="http://www.aichengxu.com/view/1417768" title="Error:Cause: org/gradle/api/publication/maven/internal/DefaultMavenFactory Android">Error:Cause: org/gradle/api/publication/</a></li><li><span class="list-num hot-num ">12</span><a href="http://www.aichengxu.com/view/1435971" title="Android studio无法使用HttpClient解决">Android studio无法使用HttpClient解决</a></li><li><span class="list-num hot-num ">13</span><a href="http://www.aichengxu.com/view/1455231" title="Android RecyclerView之添加Item分割线">Android RecyclerView之添加Item分割线</a></li><li><span class="list-num hot-num ">14</span><a href="http://www.aichengxu.com/view/1509767" title="Android Studio Lint 自动检查清除冗余资源">Android Studio Lint 自动检查清除冗余资源</a></li><li><span class="list-num hot-num ">15</span><a href="http://www.aichengxu.com/view/1608472" title="解决failed to find Build Tools revision xxx问题">解决failed to find Build Tools revision </a></li></ul>            
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //右侧浮动
+    var oDiv = document.getElementById("side-box");
+    var H = 0, iE6;
+    var Y = oDiv;
+    while (Y) {
+        H += Y.offsetTop;
+        Y = Y.offsetParent;
+    }
+    iE6 = window.ActiveXObject && !window.XMLHttpRequest;
+    if (!iE6) {
+        window.onscroll = function() {
+            var s = document.body.scrollTop || document.documentElement.scrollTop;
+            if (s > H) {
+                oDiv.className = "box-fixed";
+                if (iE6) {
+                    oDiv.style.top = (s - H) + "px";
+                }
+            }
+            else {
+                oDiv.removeAttribute("class");
+            }
+        };
+    }
+</script>
+
+		<div id="footer">
+                <p>Copyright&nbsp;©&nbsp;2011-2015&nbsp;&nbsp;爱程序网&nbsp;&nbsp;沪ICP备14001972号-1&nbsp;&nbsp;业务咨询：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1218824751&amp;site=qq&amp;menu=yes"><img border="0" src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/pa" alt="业务咨询" title="业务咨询"></a> &nbsp;&nbsp;</p>
+            </div>
+            <script type="text/javascript" src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/common.js"></script>
+		<!--Baidu Search-->
+		<script type="text/javascript">
+			/*内文搜索*/
+			var cpro_id = "u2051930";
+		</script>
+		<script src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/cnw.js" type="text/javascript"></script><div id="BAIDU_SSP__wrapper_u2051930_0"><script id="ScriptIdu2051930_0" src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/bcjm(3)" charset="utf-8"></script></div>
+		<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?5d8a73b687ddb89431a8684d2f1c4afa";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!--站内搜索-->
+<script type="text/javascript">(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=13701196898887196136' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script><div id="bdcs"><div class="bdcs-container"><meta http-equiv="x-ua-compatible" content="IE=9">                          </div></div>
+
+<div style="display:none;">
+<script src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/stat.php" language="JavaScript"></script><script src="./android 应用内部获取本应用或者对应包名的应用的SHA1签名的办法 - 爱程序网_files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=4489656" target="_blank" title="站长统计">站长统计</a>
+</div>
+
+            
+        </div>
+    
+</body></html>

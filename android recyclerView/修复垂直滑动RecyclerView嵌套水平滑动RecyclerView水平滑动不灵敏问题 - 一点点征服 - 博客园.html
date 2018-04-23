@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)https://www.cnblogs.com/ldq2016/p/5952726.html -->
+<html lang="zh-cn" style="color: rgb(0, 0, 0); background-color: rgb(204, 232, 207);"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>修复垂直滑动RecyclerView嵌套水平滑动RecyclerView水平滑动不灵敏问题 - 一点点征服 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./修复垂直滑动RecyclerView嵌套水平滑动RecyclerView水平滑动不灵敏问题 - 一点点征服 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./修复垂直滑动RecyclerView嵌套水平滑动RecyclerView水平滑动不灵敏问题 - 一点点征服 - 博客园_files/bundle-MountainInk.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./修复垂直滑动RecyclerView嵌套水平滑动RecyclerView水平滑动不灵敏问题 - 一点点征服 - 博客园_files/bundle-MountainInk-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/ldq2016/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/ldq2016/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/ldq2016/wlwmanifest.xml">
+<script async="" src="./修复垂直滑动RecyclerView嵌套水平滑动RecyclerView水平滑动不灵敏问题 - 一点点征服 - 博客园_files/analytics.js"></script><script src="./修复垂直滑动RecyclerView嵌套水平滑动RecyclerView水平滑动不灵敏问题 - 一点点征服 - 博客园_files/jquery-2.2.0.min.js"></script>
+<script type="text/javascript">var currentBlogApp = 'ldq2016', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./修复垂直滑动RecyclerView嵌套水平滑动RecyclerView水平滑动不灵敏问题 - 一点点征服 - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(204, 232, 207);">
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/ldq2016/"><img id="blogLogo" src="./修复垂直滑动RecyclerView嵌套水平滑动RecyclerView水平滑动不灵敏问题 - 一点点征服 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/ldq2016/">一点点征服</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/ldq2016/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E4%B8%80%E7%82%B9%E7%82%B9%E5%BE%81%E6%9C%8D">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/ldq2016/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/ldq2016/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 531&nbsp; </span>
+<span id="stats_article_count">文章 - 1&nbsp; </span>
+<span id="stats-comment_count">评论 - 15</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/ldq2016/p/5952726.html">修复垂直滑动RecyclerView嵌套水平滑动RecyclerView水平滑动不灵敏问题</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><div id="nei" class="article_body">
+<div>
+<p>在 Android 应用中，大部分情况下都会使用一个垂直滚动的 View 来显示内容（比如 ListView、RecyclerView 等）。但是有时候你还希望垂直滚动的View 里面的内容可以水平滚动。如果直接在垂直滚动的 View 里面使用水平滚动的 View，则滚动操作并不是很流畅。</p>
+<p>比如下图中的示例：</p>
+<p><img class="alignCenter" src="./修复垂直滑动RecyclerView嵌套水平滑动RecyclerView水平滑动不灵敏问题 - 一点点征服 - 博客园_files/VzeyUzQ.gif" alt=""></p>
+<h4>为什么会出现这个问题呢？</h4>
+<p>上图中的布局为一个 RecyclerView 使用的是垂直滚动的 LinearLayoutManager 布局管理器，而里面每个 Item 为另外一个 RecyclerView 使用的是水平滚动的 LinearLayoutManager。而在 <a href="https://www.youtube.com/watch?v=EZAoJU-nUyI" rel="nofollow,noindex" target="_blank">Android系统的事件分发</a> 中，即使最上层的 View 只能垂直滚动，当用户水平拖动的时候，最上层的 View 依然会拦截点击事件。下面是 RecyclerView.java 中 onInterceptTouchEvent 的相关代码：</p>
+<pre class="prettyprint java"><span class="annotation">@Override
+<span class="keyword">public <span class="keyword">boolean onInterceptTouchEvent(MotionEvent e) {&nbsp;&nbsp;
+&nbsp;&nbsp;...
+&nbsp;
+&nbsp;&nbsp;<span class="keyword">switch (action) {
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">case MotionEvent.ACTION_DOWN:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">case MotionEvent.ACTION_MOVE: {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if (mScrollState != SCROLL_STATE_DRAGGING) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">boolean startScroll = <span class="keyword">false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if (canScrollHorizontally &amp;&amp; Math.abs(dx) &gt; mTouchSlop) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;startScroll = <span class="keyword">true;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if (canScrollVertically &amp;&amp; Math.abs(dy) &gt; mTouchSlop) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;startScroll = <span class="keyword">true;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if (startScroll) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setScrollState(SCROLL_STATE_DRAGGING);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;} <span class="keyword">break;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+&nbsp;
+&nbsp;&nbsp;}
+&nbsp;&nbsp;<span class="keyword">return mScrollState == SCROLL_STATE_DRAGGING;
+}
+&nbsp;
+</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<p>注意上面的 if 判断：</p>
+<pre class="perl"><span class="keyword">if(canScrollVertically &amp;&amp; Math.<span class="keyword">abs(dy) &gt; mTouchSlop) {...}&nbsp;&nbsp;
+&nbsp;
+</span></span></pre>
+<p>RecyclerView 并没有判断用户拖动的角度， 只是用来判断拖动的距离是否大于滚动的最小尺寸。 如果是一个只能垂直滚动的 View，这样实现是没有问题的。如果我们在里面再放一个 水平滚动的 RecyclerView ，则就出现问题了。</p>
+<p>可以通过如下的方式来修复该问题：</p>
+<pre class="prettyprint perl"><span class="keyword">if(canScrollVertically &amp;&amp; Math.<span class="keyword">abs(dy) &gt; mTouchSlop &amp;&amp; (canScrollHorizontally || Math.<span class="keyword">abs(dy) &gt; Math.<span class="keyword">abs(dx))) {...}&nbsp;&nbsp;
+&nbsp;
+</span></span></span></span></pre>
+<p>下面是一个完整的实现 <a href="https://gist.github.com/manidesto/ecccd38787fa8e287a3f18bcd9867189" rel="nofollow,noindex" target="_blank">BetterRecyclerView.java</a> ：</p>
+<pre class="prettyprint java"><span class="keyword">public <span class="class"><span class="keyword">class <span class="title">BetterRecyclerView <span class="keyword">extends <span class="title">RecyclerView{
+&nbsp;&nbsp;<span class="keyword">private <span class="keyword">static <span class="keyword">final <span class="keyword">int INVALID_POINTER = -<span class="number">1;
+&nbsp;&nbsp;<span class="keyword">private <span class="keyword">int mScrollPointerId = INVALID_POINTER;
+&nbsp;&nbsp;<span class="keyword">private <span class="keyword">int mInitialTouchX, mInitialTouchY;
+&nbsp;&nbsp;<span class="keyword">private <span class="keyword">int mTouchSlop;
+&nbsp;&nbsp;<span class="keyword">public BetterRecyclerView(Contextcontext) {
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this(context, <span class="keyword">null);
+&nbsp;&nbsp;}
+&nbsp;
+&nbsp;&nbsp;<span class="keyword">public BetterRecyclerView(Contextcontext, <span class="annotation">@Nullable AttributeSetattrs) {
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this(context, attrs, <span class="number">0);
+&nbsp;&nbsp;}
+&nbsp;
+&nbsp;&nbsp;<span class="keyword">public BetterRecyclerView(Contextcontext, <span class="annotation">@Nullable AttributeSetattrs, <span class="keyword">int defStyle) {
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">super(context, attrs, defStyle);
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final ViewConfigurationvc = ViewConfiguration.get(getContext());
+&nbsp;&nbsp;&nbsp;&nbsp;mTouchSlop = vc.getScaledTouchSlop();
+&nbsp;&nbsp;}
+&nbsp;
+&nbsp;&nbsp;<span class="annotation">@Override
+&nbsp;&nbsp;<span class="keyword">public <span class="keyword">void setScrollingTouchSlop(<span class="keyword">int slopConstant) {
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">super.setScrollingTouchSlop(slopConstant);
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final ViewConfigurationvc = ViewConfiguration.get(getContext());
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">switch (slopConstant) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">case TOUCH_SLOP_DEFAULT:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mTouchSlop = vc.getScaledTouchSlop();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">break;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">case TOUCH_SLOP_PAGING:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mTouchSlop = ViewConfigurationCompat.getScaledPagingTouchSlop(vc);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">break;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">default:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">break;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;}
+&nbsp;
+&nbsp;&nbsp;<span class="annotation">@Override
+&nbsp;&nbsp;<span class="keyword">public <span class="keyword">boolean onInterceptTouchEvent(MotionEvent e) {
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final <span class="keyword">int action = MotionEventCompat.getActionMasked(e);
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final <span class="keyword">int actionIndex = MotionEventCompat.getActionIndex(e);
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">switch (action) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">case MotionEvent.ACTION_DOWN:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mScrollPointerId = MotionEventCompat.getPointerId(e, <span class="number">0);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mInitialTouchX = (<span class="keyword">int) (e.getX() + <span class="number">0.5f);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mInitialTouchY = (<span class="keyword">int) (e.getY() + <span class="number">0.5f);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return <span class="keyword">super.onInterceptTouchEvent(e);
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">case MotionEventCompat.ACTION_POINTER_DOWN:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mScrollPointerId = MotionEventCompat.getPointerId(e, actionIndex);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mInitialTouchX = (<span class="keyword">int) (MotionEventCompat.getX(e, actionIndex) + <span class="number">0.5f);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mInitialTouchY = (<span class="keyword">int) (MotionEventCompat.getY(e, actionIndex) + <span class="number">0.5f);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return <span class="keyword">super.onInterceptTouchEvent(e);
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">case MotionEvent.ACTION_MOVE: {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final <span class="keyword">int index = MotionEventCompat.findPointerIndex(e, mScrollPointerId);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if (index &lt; <span class="number">0) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return <span class="keyword">false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final <span class="keyword">int x = (<span class="keyword">int) (MotionEventCompat.getX(e, index) + <span class="number">0.5f);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final <span class="keyword">int y = (<span class="keyword">int) (MotionEventCompat.getY(e, index) + <span class="number">0.5f);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if (getScrollState() != SCROLL_STATE_DRAGGING) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final <span class="keyword">int dx = x - mInitialTouchX;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final <span class="keyword">int dy = y - mInitialTouchY;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final <span class="keyword">boolean canScrollHorizontally = getLayoutManager().canScrollHorizontally();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final <span class="keyword">boolean canScrollVertically = getLayoutManager().canScrollVertically();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">boolean startScroll = <span class="keyword">false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if (canScrollHorizontally &amp;&amp; Math.abs(dx) &gt; mTouchSlop &amp;&amp; (Math.abs(dx) &gt;= Math.abs(dy) || canScrollVertically)) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;startScroll = <span class="keyword">true;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if (canScrollVertically &amp;&amp; Math.abs(dy) &gt; mTouchSlop &amp;&amp; (Math.abs(dy) &gt;= Math.abs(dx) || canScrollHorizontally)) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;startScroll = <span class="keyword">true;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return startScroll &amp;&amp; <span class="keyword">super.onInterceptTouchEvent(e);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return <span class="keyword">super.onInterceptTouchEvent(e);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">default:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return <span class="keyword">super.onInterceptTouchEvent(e);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;}
+}
+&nbsp;
+</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<h4>其他问题</h4>
+<p>当用户快速滑动（fling）RecyclerView 的时候， RecyclerView 需要一段时间来确定其最终位置。 如果用户在快速滑动一个子的水平 RecyclerView，在子 RecyclerView 还在滑动的过程中，如果用户垂直滑动，则是无法垂直滑动的。原因是子 RecyclerView 依然处理了这个垂直滑动事件。</p>
+<p><img class="alignCenter" src="./修复垂直滑动RecyclerView嵌套水平滑动RecyclerView水平滑动不灵敏问题 - 一点点征服 - 博客园_files/N3YZJze.gif" alt=""></p>
+<p>所以，在快速滑动后的滚动到静止的状态中，子 View 不应该响应滑动事件了，再次看看 RecyclerView 的 onInterceptTouchEvent() 代码：</p>
+<pre class="prettyprint java"><span class="annotation">@Override
+<span class="keyword">public <span class="keyword">boolean onInterceptTouchEvent(MotionEvent e) {&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;...
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">switch (action) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">case MotionEvent.ACTION_DOWN:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if (mScrollState == SCROLL_STATE_SETTLING) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getParent().requestDisallowInterceptTouchEvent(<span class="keyword">true);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setScrollState(SCROLL_STATE_DRAGGING);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return mScrollState == SCROLL_STATE_DRAGGING;
+}
+&nbsp;
+</span></span></span></span></span></span></span></span></pre>
+<p>可以看到，当 RecyclerView 的状态为 SCROLL_STATE_SETTLING （快速滑动后到滑动静止之间的状态）时， RecyclerView 告诉父控件不要拦截事件。</p>
+<p>同样的，如果只有一个方向固定，这样处理是没问题的。</p>
+<p>针对我们这个嵌套的情况，父 RecyclerView 应该只拦截垂直滚动事件，所以可以这么修改父 RecyclerView：</p>
+<pre class="prettyprint java"><span class="keyword">public <span class="class"><span class="keyword">class <span class="title">FeedRootRecyclerView <span class="keyword">extends <span class="title">BetterRecyclerView{&nbsp;&nbsp;
+&nbsp;&nbsp;<span class="keyword">public FeedRootRecyclerView(Contextcontext) {
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this(context, <span class="keyword">null);
+&nbsp;&nbsp;}
+&nbsp;
+&nbsp;&nbsp;<span class="keyword">public FeedRootRecyclerView(Contextcontext, <span class="annotation">@Nullable AttributeSetattrs) {
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this(context, attrs, <span class="number">0);
+&nbsp;&nbsp;}
+&nbsp;
+&nbsp;&nbsp;<span class="keyword">public FeedRootRecyclerView(Contextcontext, <span class="annotation">@Nullable AttributeSetattrs, <span class="keyword">int defStyle) {
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">super(context, attrs, defStyle);
+&nbsp;&nbsp;}
+&nbsp;
+&nbsp;&nbsp;<span class="annotation">@Override
+&nbsp;&nbsp;<span class="keyword">public <span class="keyword">void requestDisallowInterceptTouchEvent(<span class="keyword">boolean disallowIntercept) {
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/* do nothing */
+&nbsp;&nbsp;}
+}
+&nbsp;
+</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<p>下图为最终的结果：</p>
+<p><img class="alignCenter" src="./修复垂直滑动RecyclerView嵌套水平滑动RecyclerView水平滑动不灵敏问题 - 一点点征服 - 博客园_files/uMfmQfU.gif" alt=""></p>
+<p>如果感兴趣可以下载 <a href="https://github.com/manidesto/scrolling-demo" rel="nofollow,noindex" target="_blank">示例项目</a> ，注意示例项目中使用 kotlin，所以需要配置 kotlin 插件。</p>
+<p>原文：http://nerds.headout.com/fix-horizontal-scrolling-in-your-android-app/</p>
+</div>
+</div></div><div id="MySignature" style="display: block;"><p style="background: rgb(230,250.230); padding: 10px 10px 10px 10px; border: 1px dashed rgb(224,224,224); font-family: 微软雅黑; font-size: 13px text-indent: Oem;">
+作者: <a href="http://www.cnblogs.com/ldq2016/" target="_blank">一点点征服</a>
+<br>
+出处：<a href="http://www.cnblogs.com/ldq2016/" target="_blank">http://www.cnblogs.com/ldq2016/</a>
+<br>
+本文版权归作者所有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文链接，否则保留追究法律责任的权利
+</p></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/ldq2016/category/787997.html" target="_blank">android</a>,<a href="http://www.cnblogs.com/ldq2016/category/792830.html" target="_blank">android 细节详解</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/ldq2016/tag/recyclerView/">recyclerView</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5952726,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;0e64e486-15d5-e511-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./修复垂直滑动RecyclerView嵌套水平滑动RecyclerView水平滑动不灵敏问题 - 一点点征服 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./修复垂直滑动RecyclerView嵌套水平滑动RecyclerView水平滑动不灵敏问题 - 一点点征服 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/ldq2016/" target="_blank"><img src="./修复垂直滑动RecyclerView嵌套水平滑动RecyclerView水平滑动不灵敏问题 - 一点点征服 - 博客园_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/ldq2016/">一点点征服</a><br>
+            <a href="http://home.cnblogs.com/u/ldq2016/followees">关注 - 5</a><br>
+            <a href="http://home.cnblogs.com/u/ldq2016/followers">粉丝 - 37</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;0e64e486-15d5-e511-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5952726,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(5952726,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/ldq2016/p/5909390.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/ldq2016/p/5909390.html" title="发布于2016-09-26 15:34">AndroidStudio 混淆打包</a><br><a href="http://www.cnblogs.com/ldq2016/p/5969202.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/ldq2016/p/5969202.html" title="发布于2016-10-17 11:40">Android中使用Gson解析JSON数据的两种方法</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-10-12 14:33</span> <a href="http://www.cnblogs.com/ldq2016/">一点点征服</a> 阅读(<span id="post_view_count">7196</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5952726" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/ldq2016/p/5952726.html#" onclick="AddToWz(5952726);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=266970,cb_entryId=5952726,cb_blogApp=currentBlogApp,cb_blogUserGuid='0e64e486-15d5-e511-9fc1-ac853d9f53cc',cb_entryCreatedDate='2016/10/12 14:33:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/ldq2016/p/5952726.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/ldq2016/p/5952726.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】超50万VC++源码: 大型工控、组态\仿真、建模CAD源码2018！</a><br><a href="https://www.cnblogs.com/cmt/p/8505033.html" target="_blank">【活动】世界各地的青年团体，将在 2050 握手团聚</a><br><a href="https://dnspod.cloud.tencent.com/act/yearendsales?from=IT&amp;fromSource=gwzcw.781137.781137.781137" target="_blank">【抢购】新注册用户域名抢购1元起</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://dnspod.cloud.tencent.com/act/weapp?fromSource=gwzcw.781158.781158.781158" target="_blank"><img width="300" height="250" src="./修复垂直滑动RecyclerView嵌套水平滑动RecyclerView水平滑动不灵敏问题 - 一点点征服 - 博客园_files/24442-20180228164005211-881957482.jpg" alt="tencent0228"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/591043/" target="_blank">被遗忘的MacBook Air ，今年有望推出低价新款</a><br> ·  <a href="https://news.cnblogs.com/n/591042/" target="_blank">Spectre衍生漏洞危及英特尔SGX安全区</a><br> ·  <a href="https://news.cnblogs.com/n/591041/" target="_blank">微软新商标Mixplay曝光：疑似为便携式视频编辑器</a><br> ·  <a href="https://news.cnblogs.com/n/591040/" target="_blank">vivo全面屏APEX将于年中量产：搭载骁龙845</a><br> ·  <a href="https://news.cnblogs.com/n/591039/" target="_blank">丁磊：为女儿读书租五年房，小朋友应有同等教育机会</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/34770/" target="_blank"><img width="468" height="60" src="./修复垂直滑动RecyclerView嵌套水平滑动RecyclerView水平滑动不灵敏问题 - 一点点征服 - 博客园_files/24442-20171208101900738-116140477.jpg" alt="阿里云C2-1208"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/575255/" target="_blank">写给自学者的入门指南</a><br> ·  <a href="http://kb.cnblogs.com/page/578690/" target="_blank">和程序员谈恋爱</a><br> ·  <a href="http://kb.cnblogs.com/page/585734/" target="_blank">学会学习</a><br> ·  <a href="http://kb.cnblogs.com/page/588938/" target="_blank">优秀技术人的管理陷阱</a><br> ·  <a href="http://kb.cnblogs.com/page/590141/" target="_blank">作为一个程序员，数学对你到底有多重要</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/ldq2016/">一点点征服</a><br>园龄：<a href="https://home.cnblogs.com/u/ldq2016/" title="入园时间：2016-02-17">2年</a><br>粉丝：<a href="https://home.cnblogs.com/u/ldq2016/followers/">37</a><br>关注：<a href="https://home.cnblogs.com/u/ldq2016/followees/">5</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;0e64e486-15d5-e511-9fc1-ac853d9f53cc&#39;)">+加关注</a></div><script>getFollowStatus('0e64e486-15d5-e511-9fc1-ac853d9f53cc')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/02/01&#39;);return false;">&lt;</a></td><td align="center">2018年3月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/04/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td align="center">1</td><td align="center">2</td><td class="CalWeekendDay" align="center">3</td></tr><tr><td class="CalWeekendDay" align="center">4</td><td class="CalTodayDay" align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td class="CalWeekendDay" align="center">10</td></tr><tr><td class="CalWeekendDay" align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td class="CalWeekendDay" align="center">17</td></tr><tr><td class="CalWeekendDay" align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td class="CalWeekendDay" align="center">24</td></tr><tr><td class="CalWeekendDay" align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalWeekendDay" align="center">31</td></tr><tr><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/ldq2016/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/ldq2016/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/ldq2016/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/ldq2016/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/ldq2016/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/ldq2016/tag/android/">android</a>(99)</li><li><a href="http://www.cnblogs.com/ldq2016/tag/%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96/">内存优化</a>(17)</li><li><a href="http://www.cnblogs.com/ldq2016/tag/fragment/">fragment</a>(12)</li><li><a href="http://www.cnblogs.com/ldq2016/tag/git/">git</a>(12)</li><li><a href="http://www.cnblogs.com/ldq2016/tag/MVC/">MVC</a>(11)</li><li><a href="http://www.cnblogs.com/ldq2016/tag/%E5%8A%A8%E7%94%BB/">动画</a>(9)</li><li><a href="http://www.cnblogs.com/ldq2016/tag/volley/">volley</a>(8)</li><li><a href="http://www.cnblogs.com/ldq2016/tag/%E4%BC%98%E5%8C%96/">优化</a>(8)</li><li><a href="http://www.cnblogs.com/ldq2016/tag/MVP/">MVP</a>(8)</li><li><a href="http://www.cnblogs.com/ldq2016/tag/recyclerView/">recyclerView</a>(8)</li><li><a href="http://www.cnblogs.com/ldq2016/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/ldq2016/category/797386.html"> Java基础详解(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/ldq2016/category/1006503.html">Activity启动流程(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/ldq2016/category/1007128.html">activity启动模式(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/ldq2016/category/1009631.html">andrid attr,style和theme(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/ldq2016/category/787997.html">android(409)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/ldq2016/category/1142088.html">android &nbsp;多线程(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/ldq2016/category/1008058.html">android context(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/ldq2016/category/1078476.html">android fragment(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/ldq2016/category/999426.html">android UI(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/ldq2016/category/1003619.html">android 动画(15)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/ldq2016/category/932753.html">android 基础(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/ldq2016/category/930256.html">android 进程 线程(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/ldq2016/category/1159859.html">Android 进程通信(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/ldq2016/category/793528.html">android 开源项目(18)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/ldq2016/category/1004300.html">android 面试(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/ldq2016/category/1025611.html">android 权限(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/ldq2016/category/1005159.html">android 事件分发机制(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/ldq2016/category/978702.html">android 特效(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/ldq2016/category/792829.html">android 系列学习(52)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/ldq2016/category/792830.html">android 细节详解(31)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/ldq2016/category/1168301.html">Android 性能优化(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/ldq2016/category/1168303.html">Android 性能优化之ANR优化(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/ldq2016/category/1168304.html">Android 性能优化之卡顿优化(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/ldq2016/category/1166769.html">Android 性能优化之内存优化(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/ldq2016/category/929730.html">android 学习一（第一行代码第二版）(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/ldq2016/category/1004433.html">android 异步处理(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/ldq2016/category/792699.html">android 优化(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_27" href="http://www.cnblogs.com/ldq2016/category/992397.html">android 智能终端(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_28" href="http://www.cnblogs.com/ldq2016/category/1008722.html">android 状态栏，导航栏，虚拟键盘(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_29" href="http://www.cnblogs.com/ldq2016/category/1008749.html">android 自定义view，viewgroup(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_30" href="http://www.cnblogs.com/ldq2016/category/881552.html">android测试(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_31" href="http://www.cnblogs.com/ldq2016/category/814508.html">android源码解析(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_32" href="http://www.cnblogs.com/ldq2016/category/814901.html">android中文api(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_33" href="http://www.cnblogs.com/ldq2016/category/934924.html">api(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_34" href="http://www.cnblogs.com/ldq2016/category/1014687.html">BroadcastReceiver(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_35" href="http://www.cnblogs.com/ldq2016/category/933362.html">file(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_36" href="http://www.cnblogs.com/ldq2016/category/805402.html">fragment(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_37" href="http://www.cnblogs.com/ldq2016/category/815162.html">git 详解(13)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_38" href="http://www.cnblogs.com/ldq2016/category/810837.html">github讲解(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_39" href="http://www.cnblogs.com/ldq2016/category/1044239.html">glide(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_40" href="http://www.cnblogs.com/ldq2016/category/800179.html">handler(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_41" href="http://www.cnblogs.com/ldq2016/category/799646.html">java(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_42" href="http://www.cnblogs.com/ldq2016/category/1141716.html">java GC 垃圾回收机制</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_43" href="http://www.cnblogs.com/ldq2016/category/1141718.html">java 线程池</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_44" href="http://www.cnblogs.com/ldq2016/category/1141714.html">java内存</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_45" href="http://www.cnblogs.com/ldq2016/category/825869.html">mac 新手入门(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_46" href="http://www.cnblogs.com/ldq2016/category/794330.html">SQLite(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_47" href="http://www.cnblogs.com/ldq2016/category/810865.html">studio错误和异常(25)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_48" href="http://www.cnblogs.com/ldq2016/category/803179.html">Studio使用教程(13)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_49" href="http://www.cnblogs.com/ldq2016/category/1037337.html">Toolbar(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_50" href="http://www.cnblogs.com/ldq2016/category/865749.html">创业(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_51" href="http://www.cnblogs.com/ldq2016/category/1084183.html">打包(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_52" href="http://www.cnblogs.com/ldq2016/category/973769.html">单例模式(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_53" href="http://www.cnblogs.com/ldq2016/category/930229.html">果林公共号</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_54" href="http://www.cnblogs.com/ldq2016/category/1134880.html">技术大牛博客(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_55" href="http://www.cnblogs.com/ldq2016/category/1051140.html">进程通信(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_56" href="http://www.cnblogs.com/ldq2016/category/1130590.html">进阶学习(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_57" href="http://www.cnblogs.com/ldq2016/category/934965.html">开发辅助工具(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_58" href="http://www.cnblogs.com/ldq2016/category/988425.html">开发遇到的坑(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_59" href="http://www.cnblogs.com/ldq2016/category/1024333.html">开源项目使用源码分析(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_60" href="http://www.cnblogs.com/ldq2016/category/934986.html">可学习的项目(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_61" href="http://www.cnblogs.com/ldq2016/category/933812.html">框架(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_62" href="http://www.cnblogs.com/ldq2016/category/1013745.html">蓝牙(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_63" href="http://www.cnblogs.com/ldq2016/category/940655.html">录制视频(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_64" href="http://www.cnblogs.com/ldq2016/category/1130073.html">面试(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_65" href="http://www.cnblogs.com/ldq2016/category/802093.html">屏幕适配(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_66" href="http://www.cnblogs.com/ldq2016/category/793531.html">设计模式(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_67" href="http://www.cnblogs.com/ldq2016/category/932780.html">实践问题(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_68" href="http://www.cnblogs.com/ldq2016/category/797307.html">数据结构和算法(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_69" href="http://www.cnblogs.com/ldq2016/category/1019965.html">双卡(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_70" href="http://www.cnblogs.com/ldq2016/category/1072212.html">网络请求(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_71" href="http://www.cnblogs.com/ldq2016/category/973667.html">性能优化(31)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_72" href="http://www.cnblogs.com/ldq2016/category/1002881.html">悬浮窗 windowmanage(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_73" href="http://www.cnblogs.com/ldq2016/category/1017910.html">原创(2)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/ldq2016/archive/2018/02.html">2018年2月 (29)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/ldq2016/archive/2018/01.html">2018年1月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/ldq2016/archive/2017/12.html">2017年12月 (21)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/ldq2016/archive/2017/11.html">2017年11月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/ldq2016/archive/2017/10.html">2017年10月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/ldq2016/archive/2017/09.html">2017年9月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/ldq2016/archive/2017/08.html">2017年8月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/ldq2016/archive/2017/07.html">2017年7月 (19)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/ldq2016/archive/2017/06.html">2017年6月 (32)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/ldq2016/archive/2017/05.html">2017年5月 (55)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/ldq2016/archive/2017/04.html">2017年4月 (55)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/ldq2016/archive/2017/03.html">2017年3月 (41)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/ldq2016/archive/2017/02.html">2017年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/ldq2016/archive/2017/01.html">2017年1月 (34)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/ldq2016/archive/2016/12.html">2016年12月 (24)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/ldq2016/archive/2016/11.html">2016年11月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/ldq2016/archive/2016/10.html">2016年10月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/ldq2016/archive/2016/09.html">2016年9月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/ldq2016/archive/2016/08.html">2016年8月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/ldq2016/archive/2016/07.html">2016年7月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/ldq2016/archive/2016/06.html">2016年6月 (19)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/ldq2016/archive/2016/05.html">2016年5月 (18)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/ldq2016/archive/2016/04.html">2016年4月 (51)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/ldq2016/archive/2016/03.html">2016年3月 (41)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/ldq2016/archive/2016/02.html">2016年2月 (26)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_articlecategory" class="catListArticleCategory sidebar-block">
+<h3 class="catListTitle">文章分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/ldq2016/category/787999.html">android(1)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ldq2016/p/6626670.html#3898321">1. Re:Java内部类持有外部类的引用详细分析与解决方案</a></li>
+        <li class="recent_comment_body">写的什么玩意，不清不楚的，复制粘贴的还是贴上原来的链接吧</li>
+        <li class="recent_comment_author">--王小军军军</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ldq2016/p/7000300.html#3877794">2. Re:用户手势检测-GestureDetector使用详解</a></li>
+        <li class="recent_comment_body">onFling 并不是所有的滑动都会调用，只有当滑动速度较快时才会被调用。</li>
+        <li class="recent_comment_author">--NeilZhang</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ldq2016/p/6669009.html#3840296">3. Re:【Android - 框架】之Fresco的使用</a></li>
+        <li class="recent_comment_body">缓存机制没有Glide强大？麻烦您看完Fresco的源代码和运行原理之后再下定论。不要妄加评论。。</li>
+        <li class="recent_comment_author">--代码丶如风</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ldq2016/p/5407061.html#3834515">4. Re:Android  三种动画详解</a></li>
+        <li class="recent_comment_body">很不错，赞一个。</li>
+        <li class="recent_comment_author">--L了个V</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ldq2016/p/7088787.html#3829365">5. Re:Android6.0动态权限申请步骤以及需要注意的一些坑</a></li>
+        <li class="recent_comment_body">你好 关于你这个工具 我按照你的步骤来写 但是回调一直不起作用 甚至手动开启了权限 还是识别不了 还是要求开启权限 不知道是什么问题呢?</li>
+        <li class="recent_comment_author">--gsoncc</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/ldq2016/p/5528177.html">1. 正则表达式基本语法(42697)</a></li><li><a href="http://www.cnblogs.com/ldq2016/p/5407061.html">2. Android  三种动画详解(38121)</a></li><li><a href="http://www.cnblogs.com/ldq2016/p/5217590.html">3. 安卓开发中非常炫的效果集合(20030)</a></li><li><a href="http://www.cnblogs.com/ldq2016/p/5356535.html">4. 错误异常 （1）Android Studio错误提示：Gradle project sync failed. Basic functionality (eg. editing, debugging) will not work properly(11012)</a></li><li><a href="http://www.cnblogs.com/ldq2016/p/6122393.html">5. 一个简单的Android富文本TextView实现(9846)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/ldq2016/p/5407061.html">1. Android  三种动画详解(3)</a></li><li><a href="http://www.cnblogs.com/ldq2016/p/5528177.html">2. 正则表达式基本语法(2)</a></li><li><a href="http://www.cnblogs.com/ldq2016/p/5217507.html">3. Android开源项目分类汇总(1)</a></li><li><a href="http://www.cnblogs.com/ldq2016/p/5390254.html">4. dexDebug ExecException finished with non-zero exit value 2(1)</a></li><li><a href="http://www.cnblogs.com/ldq2016/p/6891009.html">5. Activity启动流程(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/ldq2016/p/5528177.html">1. 正则表达式基本语法(5)</a></li><li><a href="http://www.cnblogs.com/ldq2016/p/5217590.html">2. 安卓开发中非常炫的效果集合(4)</a></li><li><a href="http://www.cnblogs.com/ldq2016/p/5407061.html">3. Android  三种动画详解(4)</a></li><li><a href="http://www.cnblogs.com/ldq2016/p/6222364.html">4. Android开发书籍推荐：从入门到精通系列学习路线书籍介绍(2)</a></li><li><a href="http://www.cnblogs.com/ldq2016/p/5629395.html">5. Fragment的startActivityForResult详细解决方案(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 一点点征服
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

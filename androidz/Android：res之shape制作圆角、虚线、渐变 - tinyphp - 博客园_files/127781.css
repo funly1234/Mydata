@@ -1,0 +1,42 @@
+.tinyTitle{background:url(//images.cnblogs.com/cnblogs_com/tinyphp/903928/o_title.png) repeat-y;
+font-family: "微软雅黑","宋体","黑体",Arial;height:28px;line-height:28px;margin:15px 0;padding:5px 0 5px 36px;color:#fff;font-size:16px;}
+table.list{ border-collapse:collapse; background:#fff; width:100%}
+table.list td{line-heitht:30px;text-align:left;}
+table.list th{border:1px solid #CCC;line-heitht:30px;text-align:center;}
+table.list th{background:#D3E9FF; }
+.tinydownload{display:inline-block;background:url("//images.cnblogs.com/cnblogs_com/tinyphp/523503/o_down_ico.gif") no-repeat 0 4px;padding-left:25px;}
+
+
+.demoimg{box-shadow: 0 0 10px rgba(0,0,0,.4);}
+.cmdbg{background:#000;color:#fff;border-radius:5px;}
+
+
+
+.downbtn{
+width:195px;height:35px;line-height:35px;
+    margin: 10px;
+    text-decoration: none;
+    font: bold 1.5em 'Trebuchet MS',Arial, Helvetica;
+    display: inline-block;
+    text-align: center;
+    color: #fff;
+    border: 1px solid #9c9c9c;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+    box-shadow: 0 0 0.05em rgba(0,0,0,0.4);
+    -moz-box-shadow: 0 0 .05em rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0 0 0.05em rgba(0,0,0,0.4);
+    border-radius:5px;
+    background: #f09c15;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f8c939), to(#f09c15) );
+    background: -moz-linear-gradient(-90deg, #f8c939, #f09c15);
+    filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#f8c939', EndColorStr='#f09c15');
+}
+
+.downbtn:hover {
+    background: #f8c939;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f09c15), to(#f8c939) );
+    background: -moz-linear-gradient(-90deg, #f09c15, #f8c939);
+    filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#f09c15', EndColorStr='#f8c939');
+}
+a.downbtn:link,a.downbtn:visited {color:#fff;text-decoration:none;}

@@ -1,0 +1,1771 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0054)http://blog.chinaunix.net/uid-26993600-id-3303022.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><style type="text/css" id="52078038463"></style><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" async="" src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/ga.js"></script><script>
+var ua = navigator.userAgent.toLowerCase();
+if(ua.match(/MicroMessenger/i)=="micromessenger") {
+    location.href='http://blog.chinaunix.net/article.php?url='+ window.location.href;
+}
+</script>
+        <style>
+    .Blog_nav1_2 a em { display:inline-block; width:16px; height:13px; background:url(/image/v.jpg) no-repeat; overflow:hidden;}
+</style>
+
+<link rel="stylesheet" type="text/css" href="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/style.css">
+<link rel="stylesheet" type="text/css" href="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/qqFace.css">
+<link rel="stylesheet" type="text/css" href="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/asyncbox.css">
+<link rel="stylesheet" type="text/css" href="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/pager.css">
+<script type="text/javascript" src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/jquery.min.js"></script>
+<script type="text/javascript" src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/jquery.cookies.min.js"></script>
+<script type="text/javascript" src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/AsyncBox.v1.4.5.js"></script>
+<title>Android中JNI编程详解-nice_future-ChinaUnix博客</title>
+<meta name="description" content="
+Android系统不允许一个纯粹使用C/C++的程序出现，它要求必须是通过Java代码嵌入Native C/C++——即通过JNI的方式来使用本地（Native）代码。因此JNI对Android底层开发人员非常重要。
+如何将.so文件">
+<script type="text/javascript" src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/h600.js"></script><script type="text/javascript" src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/h600(1).js"></script>
+
+<script type="text/javascript">
+if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){
+	try{
+		if(!/iPad/i.test(navigator.userAgent)){
+			var oldurl=window.location.href;
+			var wapUrl= oldurl.replace('blog.chinaunix.net', "m.blog.chinaunix.net") ;
+			window.location.href = wapUrl;
+		}
+	}catch(e){}
+}
+</script>
+
+
+<script language="javascript">
+//用户是否在线
+var isOnLine = '';
+$(document).ready(function(){
+	var blog = {'name': '', 'name_url': '', 'brief': ''};
+	//消息通知显示和隐藏控制
+	$('#show_message_slide_button').hover(
+		function(){
+			$('#message_slide_div').slideDown(100);											   
+		},
+		function(){
+			
+		}
+	);
+
+	$('#message_slide_div').hover(
+		function(){
+			
+		},
+		function(){
+			$('#message_slide_div').slideUp(100);
+		}
+	);
+	
+	//编辑博客名
+	$('#editbna').click(function(){
+		blog.name = $('#bnaspan a').text();
+		var val = '<input id="bnainput" type="text" style="float:left" value="" rel="' +$(this).attr('rel') + '" /><input id="bnasub" type="button" style="float:left" class="btn1"><input id="bnacanl" type="button" style="float:left" class="btn2"><div class="clear"></div>';
+		$('#bnaspan').html(val);
+		$('#bnainput').val(blog.name);
+		$(this).parent().hide();
+	});
+	
+	$('#bnasub').live('click', function(){
+	    var rel = eval('({' + $('#bnainput').attr('rel') + '})');
+		var name = $('#bnainput').val();
+		if(name != blog.name){
+	        $.ajax({
+			    type: "POST",
+			    url: rel.url,	
+			    data: {
+				    'name' : name
+			    },
+			    success:function(data){
+				    if(data == 0){
+						$('#bnaspan').html(blog.name);
+						$('#bnaspan').html('<a href="' + rel.href + '">' + $('#bnaspan').html() + '</a>');
+				    }else{
+						$('#bnaspan').html(data);
+						$('#bnaspan').html('<a href="' + rel.href + '">' + $('#bnaspan').html() + '</a>');
+				    }
+					$('#editbna').parent().show();
+				}
+			});
+		}else{
+		    $('#bnaspan').text(blog.name).html();
+			$('#bnaspan').html('<a href="' + rel.href + '">' + $('#bnaspan').html() + '</a>');
+			$('#editbna').parent().show();
+		}
+	});
+	
+	$('#bnacanl').live('click', function(){
+		var rel = eval('({' + $('#bnainput').attr('rel') + '})');
+		$('#bnaspan').html('<a href="' + rel.href + '">' + blog.name + '</a>');
+		$('#editbna').parent().show();
+	});
+	
+	//编辑签名
+	$('#editbrief').click(function(){
+	    blog.brief = $('#briefem').text();
+		var val = '<input id="brfinput" type="text" style="float:left" value="" rel="' + $(this).attr('rel') + '" /><input id="brfsub" style="float:left"  type="button" class="btn1"><input style="float:left"  id="brfcanl" type="button" class="btn2"><div class="clear"></div>';
+		$('#briefem').html(val);
+		$('#brfinput').val(blog.brief);
+		$(this).parent().hide();
+	});
+	
+	$('#brfsub').live('click', function(){
+	    var url = $('#brfinput').attr('rel');
+		var brief = $('#brfinput').val();
+		if(brief != blog.brief){
+	        $.ajax({
+			    type: "POST",
+			    url: url,	
+			    data: {
+				    'brief' : brief
+			    },
+			    success:function(data){
+				    if(data == 0){
+				        $('#briefem').html(blog.brief);
+				    }else{
+						$('#briefem').html(data);
+				    }
+					$('#editbrief').parent().show();
+				}
+			});
+		}else{
+		    $('#briefem').text(blog.brief).html();
+			$('#editbrief').parent().show();
+		}
+	});
+	
+	$('#brfcanl').live('click', function(){
+		$('#briefem').html(blog.brief);
+		$('#editbrief').parent().show();
+	});
+
+});
+</script>
+<script src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/share.js"></script><link rel="stylesheet" href="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/share_style0_16.css"></head><style type="text/css" id="52078037463"></style>
+<body>
+<div class="box">
+  <!-- 一级导航 -->
+  <div class="Blog_nav1">
+    <div class="Blog_nav1_2"><a href="http://blog.chinaunix.net/"><img src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/1.png"></a><a href="http://www.chinaunix.net/" class="Blog_a1">Chinaunix首页</a> | <a href="http://bbs.chinaunix.net/" target="_blank">论坛</a> | <a href="http://u.it168.com/vip/"><font color="red">认证专区</font></a> | <a href="http://blog.chinaunix.net/" target="_blank">博客</a><span class="Blog_span1"></span>
+              <a href="http://blog.chinaunix.net/site/login.html" class="Blog_a1" onclick="linkto()">登录</a> | <a href="http://u.it168.com/Register?webid=5&returnUrl=http%3A%2F%2Fblog.chinaunix.net%2Fuid-26993600-id-3303022.html" class="Blog_a1">注册</a>
+          </div>
+	<!--自动提示层-->
+	<style>
+	.bor13221{border:1px #bbb solid;width:206px;position:absolute;top:34px;left:0;background:#fff; z-index:9999;display:none}
+	.bor13221 li{height:26px;line-height:26px;padding-left:6px;color:#555;font-size:14px;cursor:pointer;}
+	.here{background:#f3f3f3;}
+    </style>
+
+	<!--自动提示层-->
+    <div class="Blog_nav1_3" style="position:relative; z-index:9999;">
+	 <div class="bor13221">
+      <ul>
+      </ul>
+    </div>
+	  <form action="http://blog.chinaunix.net/site/search.html" method="post">
+		<input type="text" autocomplete="off" class="Blog_txt1" id="search_input_id" name="keywords">
+		<select class="Bolg_sel1" name="type" id="search_type_blog">
+		  <option value="blog">博文</option>
+		  <option value="author">博主</option>
+		</select>
+		<input type="submit" value="" name="submit" class="Blog_btn1">
+	 </form>
+    </div>
+    <div class="clear"></div>
+    <div class="Blog_nav1_layer1" id="message_slide_div" style="display:none;">
+	    <ul>
+	    	<li><a href="http://blog.chinaunix.net/message/private.html">私人消息()</a></li>
+	    	<li><a href="http://blog.chinaunix.net/message/system.html">系统消息()</a></li>
+	    	<li><a href="http://blog.chinaunix.net/member/request.html">好友请求()</a></li>
+	    	<li><a href="http://blog.chinaunix.net/member/notification.html">通知管理()</a></li>
+	    </ul>
+    </div>
+  </div>
+   <script type="text/javascript">
+  	$(function(){
+		//点击添加进文本框
+		$(".bor13221 li").live( 'click' , function(e){
+			if ( e && e.stopPropagation )
+			{
+				//因此它支持W3C的stopPropagation()方法
+				e.stopPropagation();
+			}
+			else
+			{
+				//否则，我们需要使用IE的方式来取消事件冒泡
+				window.event.cancelBubble = true; 
+			}
+			$('#search_input_id').val($(this).text());
+			$(".bor13221 ul").html('');
+			$(".bor13221").hide();
+		});
+		$(".bor13221 ul li").live({
+			mouseenter:
+			function()
+			{
+				$(".bor13221 ul li").removeClass("here");
+				$(this).addClass('here');
+			},
+			mouseleave:
+			function()
+			{
+				$(".bor13221 ul li").removeClass("here");
+				$(this).removeClass('here');
+			}
+		});
+		//自动提示
+		$('#search_input_id').keyup(function(event){
+			//取消博主的提示
+			var search_type_blog = $('#search_type_blog').val();
+			if(search_type_blog == 'author') return false;
+
+			var key = $(this).val();
+			//获取键值
+			var keycode = event.which; //38 上 40 下
+			var count = $('.bor13221 ul li').length;
+			if(key != '' && keycode != 38 && keycode != 40)
+			{
+				$.getJSON("http://api.sou.it168.com/autoWenKuCloud?jsoncallback=?",{"ty":"json","offset":"0","limit":"10","q":key}, function(result)
+					{
+						var arr = result.data;
+
+						var html ='';
+						for (i=0;i<arr.length ;i++ )   
+						{   
+							html += '<li>'+arr[i]+'</li>';
+						} 
+						
+						$('.bor13221 ul').html(html);
+						(arr.length > 1) ?  $(".bor13221").show() : $(".bor13221").hide();
+					}
+				);
+			}
+			else if(keycode == 38)
+			{
+				if(count > 0)
+				{
+					//遍历li
+					var curr_li_num;
+					$('.bor13221 ul li').each(function(index , dom){
+						if($(dom).attr('class') == 'here')
+						{
+							curr_li_num = index;
+							return false;
+						}
+					}); 
+					var next_li_num;
+					if(typeof(curr_li_num) == 'undefined')
+					{
+						next_li_num = count - 1;
+					}
+					else
+					{
+						if(curr_li_num == 0)
+						{
+							next_li_num = count - 1;
+						}
+						else
+						{
+							next_li_num = curr_li_num - 1;
+						}
+					}
+					$(".bor13221 ul li").removeClass("here");
+					$(".bor13221 ul li:eq(" + next_li_num + ")").addClass("here");
+					$('#search_input_id').val($(".bor13221 ul li:eq(" + next_li_num + ")").text());
+				}
+			}
+			else if(keycode == 40)
+			{
+				if(count > 0)
+				{
+					//遍历li
+					var curr_li_num;
+					$('.bor13221 ul li').each(function(index , dom){
+						if($(dom).attr('class') == 'here')
+						{
+							curr_li_num = index;
+							return false;
+						}
+					}); 
+					var next_li_num;
+					if(typeof(curr_li_num) == 'undefined')
+					{
+						next_li_num = 0;
+					}
+					else
+					{
+						if(curr_li_num == count - 1)
+						{
+							next_li_num = 0;
+						}
+						else
+						{
+							next_li_num = curr_li_num + 1;
+						}
+					}
+					$(".bor13221 ul li").removeClass("here");
+					$(".bor13221 ul li:eq(" + next_li_num + ")").addClass("here");
+					$('#search_input_id').val($(".bor13221 ul li:eq(" + next_li_num + ")").text());
+				}
+			}
+		});
+		$(document).click(function(e){
+			$(".bor13221").hide();
+		});
+
+	});
+  </script>
+  <!-- 头 -->
+  <!-- 推荐博客-->
+  <div class="Blog_header1">
+	    <div class="Blog_header1_1">
+      <p class="Blog_p1"><em><a href="http://blog.chinaunix.net/uid/26993600.html">Nice_Future</a></em><a href="http://nicefuture.blog.chinaunix.net/">nicefuture.blog.chinaunix.net</a></p>      <p class="Blog_p2" style="color:#125A94">暂无签名</p>
+    </div>
+        <div class="Blog_header1_2" id="hide_div1">
+    	<span class="Blog_span3"></span>
+    	<div class="float_div1" style="white-space:nowrap;" onmouseover="javascript:isMove=false" onmouseout="javascript:isMove=true">
+	    <ul id="noticev2" style="line-height: 25px; margin-top: -25px;">  
+		    		    <li><a href="http://blog.chinaunix.net/uid-30204791-id-5705047.html" target="_blank">2016中国数据库技术大会门票申请 </a></li>
+		    		    <li><a href="http://blog.chinaunix.net/uid-24789255-id-5568211.html" target="_blank">新注册用户开通“博客写作”功能，需要申请与实名认证 </a></li>
+		    		    <li><a href="http://blog.chinaunix.net/uid-10718265-id-5141960.html" target="_blank"> 互动：数据分析与云计算应用案例 （征集|参与）</a></li>
+		    	    </ul>
+	    </div>
+    </div>
+            <div class="Blog_header1_3"><a href="http://blog.chinaunix.net/uid/26993600.html">首页</a>　| 　<a href="http://blog.chinaunix.net/uid/26993600/abstract/1.html">博文目录</a>　| 　<a href="http://blog.chinaunix.net/member/profile/uid/26993600.html">关于我</a></div>
+  </div>
+    
+  <!-- 内容部分 -->
+  	<script type="text/javascript" src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/XRegExp.js"></script> <!-- XRegExp is bundled with the final shCore.js during build -->
+<script type="text/javascript" src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/shCore.js"></script><script language="javascript" src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/shCore(1).js"></script><script language="javascript" src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/query"></script>
+<script type="text/javascript" src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/shAutoloader.js"></script><script language="javascript" src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/shAutoloader(1).js"></script><script language="javascript" src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/query"></script>
+<link type="text/css" rel="stylesheet" href="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/shCore.css">
+<link type="text/css" rel="Stylesheet" href="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/shThemeDefault.css">
+<link href="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/fck_editorarea.css" rel="stylesheet" type="text/css">
+<style>
+.Blog_p5 em{ display:inline-block; width:16px; height:13px; background:url(/image/v.jpg) no-repeat; overflow:hidden;}
+</style>
+  <div class="Blog_contain"> 
+    <!-- 左 -->
+	<style>
+    .Blog_left1_1 p a em { display:inline-block; width:16px; height:13px; background:url(/image/v.jpg) no-repeat; overflow:hidden;}
+</style>
+
+<script language="javascript">
+$(document).ready(function(){
+	$('#ConcernBtn').bind('click',function(){
+			var cuid = '26993600';
+			var url =  '/member/concern.html';
+			var type = $(this).attr('rel');
+		
+			if(type == 'addConcern'){
+				$.ajax({
+					type : 'get',
+					url  : url,
+					data : {'op' : 'ajaxadd' , 'cuid' : cuid, 'random' : Math.random()},
+					success : function(msg){	
+					   if(msg == -1){
+						   showErrorMsg('参数错误！');
+					   } else if (msg == 0){
+						   showErrorMsg('关注失败，没有该用户！');
+					   } else if (msg == 1){
+						   showErrorMsg('关注失败，您已经关注了该用户！');
+					   } else if (msg == 2){
+						   $('#ConcernBtn').val('已关注');
+						   $('#ConcernBtn').attr('rel','delConcern');
+						   showSucceedMsg('关注成功!');
+					   } else if (msg == 3){
+						   showErrorMsg('未知错误');
+					   }
+					}
+				});	
+			} else if ( type == 'delConcern'){
+				$.ajax({
+					type : 'get',
+					url  : url,
+					data : {'op' : 'ajaxdel' , 'cuid' : cuid, 'random' : Math.random()},
+					success : function(msg){
+					   if(msg == 0){
+						   showErrorMsg('参数错误！','消息提示');
+					   } else if (msg == 1){
+						   showErrorMsg('操作失败，请尝试刷新页面重试！','消息提示');
+					   } else if (msg == 2){
+						   $('#ConcernBtn').val('加关注');
+						   $('#ConcernBtn').attr('rel','addConcern');
+						   showSucceedMsg('成功取消关注！','消息提示');
+					   } else if (msg == 3){
+						   showErrorMsg('未知错误！','消息提示'); 
+					   }
+					}
+				});	
+			}
+	});					   
+});
+
+//加好友
+function addFriend(fuid, url){
+	if(fuid == '' || fuid.length == 0){
+		showErrorMsg('缺少参数！','信息提示');
+		return false;
+	}
+	$.ajax({
+		   type : 'get',
+		   url : url,
+		   data : {'op' : 'add', 'fuid' : fuid , 'random' : Math.random()},
+		   success : function(msg){
+				if(msg == -1){
+					showErrorMsg('参数错误！','消息提示');
+				} else if (msg == -2){
+					showErrorMsg('添加好友失败,没有该用户的信息！','消息提示');
+				} else if (msg == -3){
+					showErrorMsg('添加好友失败,你不能添加自己为好友！','消息提示');
+				} else if (msg == -4){
+					showErrorMsg('添加好友未知错误,该错误已被记录！','消息提示');
+				} else if (msg == -5){
+					showErrorMsg('添加好友失败,你之前已经发送过好友请求,请耐心等待对方同意申请！','消息提示');
+				} else if (msg == -6){
+					showErrorMsg('添加好友失败,你们已经是好友了！','消息提示');
+				} else {
+					$.cover(true);
+					asyncbox.open({
+						id : 'addFriend',
+						title : '添加好友',
+						url : url,
+						data : {'op' : 'add', 'fuid' : fuid , 'random' : Math.random()},
+						width : 490,
+						height : 180,
+						scroll : 'no',
+						callback : function(action) {
+							if (action == 'close'){
+								$.cover(false);
+							}	
+						}
+					});	
+				}
+		   }
+	});	
+	
+}
+
+//发送短消息
+function postMessage(msguid, url){
+	if(msguid == '' || msguid.length == 0){
+		showErrorMsg('缺少参数！','信息提示');
+		return false;
+	}
+	
+	$.ajax({
+		   type : 'post',
+		   url : url,
+		   data : {'op' : 'ajaxpost', 'msguid' : msguid , 'random' : Math.random()},
+		   success : function(msg){
+				if(msg == -1){
+					showErrorMsg('发送失败，缺少收件人对象！','消息提示');
+				} else if(msg == -2){
+					showErrorMsg('发送失败，自己不能给自己发送短消息！','消息提示');
+				} else {
+					$.cover(true);
+					asyncbox.open({
+						id : 'postMessage',
+						title : '发送短消息',
+						url : url,
+						data : {'op' : 'ajaxpost', 'msguid' : msguid , 'random' : Math.random()},
+						width : 510,
+						height : 255,
+						scroll : 'no',
+						callback : function(action) {
+							if (action == 'close'){
+								$.cover(false);
+							}	
+						}
+					});	
+				}
+		   }
+	});	
+}
+
+</script>
+<div class="Blog_left">
+      <div class="Blog_left1 Blog_bg1">
+        <div class="Blog_left1_1">
+			<!-- 专家博客-->
+			<a href="http://blog.chinaunix.net/uid/26993600.html"><img src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/00_avatar_middle.jpg" onerror="this.onerror=null;this.src=&#39;http://passport.ixpub.net/images/noavatar_middle.gif&#39;"></a>
+                        <p><a href="http://blog.chinaunix.net/uid/26993600.html">nice_future</a></p>
+                     </div>
+        <ul class="Blog_ul1 Blog_noline1">
+          <li>博客访问： 198629 </li>
+          <li>博文数量： 118 </li>
+          <li>博客积分： 271 </li>
+          <!--<li>专家积分： 180</li>-->
+          <li>博客等级： 二等列兵 </li>
+		  <li>技术积分： 742 </li>
+          <li>用  户  组：  普通用户</li>
+          <li>注册时间： 2012-06-24 13:40 </li>
+                            </ul>  
+
+
+        
+                <div class="HT_line3 HT_line3_1"></div>
+        <ul class="Blog_ul2">
+          <li><input type="button" value="加关注" id="ConcernBtn" onclick="showErrorMsg(&#39;操作失败,您需要先登录!&#39;, &#39;消息提示&#39;, &#39;/site/login.html&#39;)"></li>
+          <li><input type="button" value="短消息" id="postMessageBtn" onclick="showErrorMsg(&#39;操作失败,您需要先登录!&#39;, &#39;消息提示&#39;, &#39;/site/login.html&#39;)"></li>
+          <li><input type="button" value="论坛" onclick="location.href=&#39;http://bbs.chinaunix.net&#39;"></li>
+          <li><input type="button" value="加好友" id="addFriendBtn" onclick="showErrorMsg(&#39;操作失败,您需要先登录!&#39;, &#39;消息提示&#39;, &#39;/site/login.html&#39;)"></li>
+        </ul>
+              </div>
+        
+         
+      <div class="Blog_left2 Blog_bg1">
+        <div class="Blog_tit1">文章分类</div>
+        <div class="Blog_left2_1">
+          <p class="Blog_p4"><a href="http://blog.chinaunix.net/uid/26993600/list/1.html">全部博文</a>（118）</p>
+          <ul id="blogCla">
+                            <li><a href="http://blog.chinaunix.net/uid/26993600/cid-170760-list-1.html" title="随笔">随笔</a>（9）
+                                </li>
+                            <li><a href="http://blog.chinaunix.net/uid/26993600/cid-162796-list-1.html" title="Android">Android</a>（6）
+                                </li>
+                            <li><a href="http://blog.chinaunix.net/uid/26993600/cid-161009-list-1.html" title="linux内核移植相关">linux内核移植相</a>（6）
+                                </li>
+                            <li><a href="http://blog.chinaunix.net/uid/26993600/cid-161008-list-1.html" title="uboot移植相关">uboot移植相关</a>（3）
+                                </li>
+                            <li><a href="http://blog.chinaunix.net/uid/26993600/cid-160986-list-1.html" title="linux驱动">linux驱动</a>（43）
+                                </li>
+                            <li><a href="http://blog.chinaunix.net/uid/26993600/cid-160985-list-1.html" title="java学习笔记">java学习笔记</a>（6）
+                                </li>
+                            <li><a href="http://blog.chinaunix.net/uid/26993600/cid--1-list-1.html" title="未分配的博文">未分配的博文</a>（45）
+                                </li>
+                      </ul>
+        </div>
+      </div>
+      	              <div class="Blog_left2 Blog_bg1">
+        <div class="Blog_tit1">文章存档</div>
+        <div class="Blog_left2_1" id="blogdtr">
+                    <p class="Blog_p4"><span class="Blog_jia1"></span><a href="http://blog.chinaunix.net/uid/26993600/year-2014-list-1.html">2014年</a>（7）</p>
+          <ul style="display:none;" class="Blog_ul3 zk">
+                        <li><a href="http://blog.chinaunix.net/uid/26993600/year-201411-list-1.html">2014年11月</a>（1）</li>
+                        <li><a href="http://blog.chinaunix.net/uid/26993600/year-201410-list-1.html">2014年10月</a>（2）</li>
+                        <li><a href="http://blog.chinaunix.net/uid/26993600/year-201408-list-1.html">2014年08月</a>（3）</li>
+                        <li><a href="http://blog.chinaunix.net/uid/26993600/year-201401-list-1.html">2014年01月</a>（1）</li>
+                      </ul>
+                    <p class="Blog_p4"><span class="Blog_jia1"></span><a href="http://blog.chinaunix.net/uid/26993600/year-2013-list-1.html">2013年</a>（15）</p>
+          <ul style="display:none;" class="Blog_ul3 zk">
+                        <li><a href="http://blog.chinaunix.net/uid/26993600/year-201312-list-1.html">2013年12月</a>（2）</li>
+                        <li><a href="http://blog.chinaunix.net/uid/26993600/year-201309-list-1.html">2013年09月</a>（1）</li>
+                        <li><a href="http://blog.chinaunix.net/uid/26993600/year-201307-list-1.html">2013年07月</a>（1）</li>
+                        <li><a href="http://blog.chinaunix.net/uid/26993600/year-201306-list-1.html">2013年06月</a>（2）</li>
+                        <li><a href="http://blog.chinaunix.net/uid/26993600/year-201305-list-1.html">2013年05月</a>（2）</li>
+                        <li><a href="http://blog.chinaunix.net/uid/26993600/year-201302-list-1.html">2013年02月</a>（1）</li>
+                        <li><a href="http://blog.chinaunix.net/uid/26993600/year-201301-list-1.html">2013年01月</a>（6）</li>
+                      </ul>
+                    <p class="Blog_p4"><span class="Blog_jia1"></span><a href="http://blog.chinaunix.net/uid/26993600/year-2012-list-1.html">2012年</a>（96）</p>
+          <ul style="display:none;" class="Blog_ul3 zk">
+                        <li><a href="http://blog.chinaunix.net/uid/26993600/year-201212-list-1.html">2012年12月</a>（3）</li>
+                        <li><a href="http://blog.chinaunix.net/uid/26993600/year-201211-list-1.html">2012年11月</a>（1）</li>
+                        <li><a href="http://blog.chinaunix.net/uid/26993600/year-201210-list-1.html">2012年10月</a>（1）</li>
+                        <li><a href="http://blog.chinaunix.net/uid/26993600/year-201209-list-1.html">2012年09月</a>（9）</li>
+                        <li><a href="http://blog.chinaunix.net/uid/26993600/year-201208-list-1.html">2012年08月</a>（10）</li>
+                        <li><a href="http://blog.chinaunix.net/uid/26993600/year-201207-list-1.html">2012年07月</a>（32）</li>
+                        <li><a href="http://blog.chinaunix.net/uid/26993600/year-201206-list-1.html">2012年06月</a>（40）</li>
+                      </ul>
+                  </div>
+      </div>
+      	  	        <div class="Blog_left2 Blog_bg1">
+        <div class="Blog_tit1">我的朋友</div>
+        <ul class="Blog_ul4">
+                    <li><a href="http://blog.chinaunix.net/uid/27875.html"><img src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/75_avatar_small.jpg" onerror="this.onerror=null;this.src=&#39;http://passport.ixpub.net/images/noavatar_small.gif&#39;"></a>
+            <p><a href="http://blog.chinaunix.net/uid/27875.html" title="iibull">iibull</a></p>
+          </li>
+                    <li><a href="http://blog.chinaunix.net/uid/20396502.html"><img src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/02_avatar_small.jpg" onerror="this.onerror=null;this.src=&#39;http://passport.ixpub.net/images/noavatar_small.gif&#39;"></a>
+            <p><a href="http://blog.chinaunix.net/uid/20396502.html" title="华清远见">华清远见</a></p>
+          </li>
+                    <li><a href="http://blog.chinaunix.net/uid/21659111.html"><img src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/11_avatar_small.jpg" onerror="this.onerror=null;this.src=&#39;http://passport.ixpub.net/images/noavatar_small.gif&#39;"></a>
+            <p><a href="http://blog.chinaunix.net/uid/21659111.html" title="panyunlai">panyunla</a></p>
+          </li>
+                    <li><a href="http://blog.chinaunix.net/uid/20543672.html"><img src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/72_avatar_small.jpg" onerror="this.onerror=null;this.src=&#39;http://passport.ixpub.net/images/noavatar_small.gif&#39;"></a>
+            <p><a href="http://blog.chinaunix.net/uid/20543672.html" title="tekkamanninja">tekkaman</a></p>
+          </li>
+                  </ul>
+      </div>
+	  	        <div class="Blog_left2 Blog_bg1">
+        <div class="Blog_tit1">最近访客</div>
+        <ul class="Blog_ul4">
+                    <li><a href="http://blog.chinaunix.net/uid/31346471.html"><img src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/noavatar_small.gif" onerror="this.onerror=null;this.src=&#39;http://passport.ixpub.net/images/noavatar_small.gif&#39;"></a>
+            <p><a href="http://blog.chinaunix.net/uid/31346471.html" title="wanghuaiqing2010">wanghuai</a></p>
+          </li>
+                    <li><a href="http://blog.chinaunix.net/uid/31339701.html"><img src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/noavatar_small.gif" onerror="this.onerror=null;this.src=&#39;http://passport.ixpub.net/images/noavatar_small.gif&#39;"></a>
+            <p><a href="http://blog.chinaunix.net/uid/31339701.html" title="polices121">polices1</a></p>
+          </li>
+                    <li><a href="http://blog.chinaunix.net/uid/19016907.html"><img src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/noavatar_small.gif" onerror="this.onerror=null;this.src=&#39;http://passport.ixpub.net/images/noavatar_small.gif&#39;"></a>
+            <p><a href="http://blog.chinaunix.net/uid/19016907.html" title="pleasehyj">pleasehy</a></p>
+          </li>
+                    <li><a href="http://blog.chinaunix.net/uid/30295921.html"><img src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/noavatar_small.gif" onerror="this.onerror=null;this.src=&#39;http://passport.ixpub.net/images/noavatar_small.gif&#39;"></a>
+            <p><a href="http://blog.chinaunix.net/uid/30295921.html" title="八佾为三">八佾为三</a></p>
+          </li>
+                    <li><a href="http://blog.chinaunix.net/uid/31145973.html"><img src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/noavatar_small.gif" onerror="this.onerror=null;this.src=&#39;http://passport.ixpub.net/images/noavatar_small.gif&#39;"></a>
+            <p><a href="http://blog.chinaunix.net/uid/31145973.html" title="wangxinxu">wangxinx</a></p>
+          </li>
+                    <li><a href="http://blog.chinaunix.net/uid/28950453.html"><img src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/noavatar_small.gif" onerror="this.onerror=null;this.src=&#39;http://passport.ixpub.net/images/noavatar_small.gif&#39;"></a>
+            <p><a href="http://blog.chinaunix.net/uid/28950453.html" title="wm320923">wm320923</a></p>
+          </li>
+                    <li><a href="http://blog.chinaunix.net/uid/15640727.html"><img src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/noavatar_small.gif" onerror="this.onerror=null;this.src=&#39;http://passport.ixpub.net/images/noavatar_small.gif&#39;"></a>
+            <p><a href="http://blog.chinaunix.net/uid/15640727.html" title="f22sword">f22sword</a></p>
+          </li>
+                    <li><a href="http://blog.chinaunix.net/uid/30743687.html"><img src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/noavatar_small.gif" onerror="this.onerror=null;this.src=&#39;http://passport.ixpub.net/images/noavatar_small.gif&#39;"></a>
+            <p><a href="http://blog.chinaunix.net/uid/30743687.html" title="xinming_song">xinming_</a></p>
+          </li>
+                    <li><a href="http://blog.chinaunix.net/uid/30155375.html"><img src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/noavatar_small.gif" onerror="this.onerror=null;this.src=&#39;http://passport.ixpub.net/images/noavatar_small.gif&#39;"></a>
+            <p><a href="http://blog.chinaunix.net/uid/30155375.html" title="Crazy_Skyer">Crazy_Sk</a></p>
+          </li>
+                  </ul>
+      </div>
+	           <div class="Blog_left2 Blog_left3 Blog_bg1">
+        <div class="Blog_tit1">微信关注</div>
+        <div class="">
+                <div class="" style="float:left; margin-right:5px;">
+                 <img width="90" height="90" alt="" src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/IT168.jpg">
+                 </div><br>
+                <div class="" style="margin-top:10px;">
+                 <p class="">
+                         IT168企业级官微
+                </p>
+                 <p class="">
+
+                 <br><br>
+                 微信号：IT168qiye
+                </p>
+                </div>
+        </div>
+<hr size="1" style="clear:both;">
+        <div class="" style="clear:both;">
+                <div class="" style="float:left; margin-right:5px;">
+                 <img width="90" height="90" alt="" src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/itpub.jpg">
+                 </div><br>
+                <div class="" style="margin-top:10px;">
+                 <p class="">
+                         系统架构师大会
+                </p>
+                 <p class="">
+
+                 <br><br>
+                 微信号：SACC2013
+                </p>
+                </div>
+        </div>
+
+</div>
+      <div class="Blog_left2 Blog_bg1">
+        <div class="Blog_tit1">订阅</div>
+        <ul class="Blog_ul5">
+          <li><a href="http://blog.chinaunix.net/blog/rss/uid/26993600.html" class="Blog_a4"></a></li>
+          <li><a href="http://www.google.com/ig/add?feedurl=http%3A%2F%2Fblog.chinaunix.net%2Fuid%2F26993600.html" class="Blog_a5"></a></li>
+        </ul>
+      </div>
+      <div class="Blog_left2 Blog_left3 Blog_bg1">
+        <div class="Blog_tit1">推荐博文</div>
+        <ul class="Blog_ul6">
+				  			<li>·<a href="http://blog.chinaunix.net/uid-30509496-id-5731886.html" title="linux下非阻塞的tcp研究">linux下非阻塞的tcp研究...</a></li>
+		  			<li>·<a href="http://blog.chinaunix.net/uid-29148502-id-5731851.html" title="详解zabbix安装部署（Server端篇）">详解zabbix安装部署（Server...</a></li>
+		  			<li>·<a href="http://blog.chinaunix.net/uid-31126106-id-5732658.html" title="通过Ruby on Rails和docker构建微服务架构之入门教程">通过Ruby on Rails和docker构...</a></li>
+		  			<li>·<a href="http://blog.chinaunix.net/uid-28704089-id-5732656.html" title="slim框架配置">slim框架配置</a></li>
+		  			<li>·<a href="http://blog.chinaunix.net/uid-26168435-id-5732463.html" title="启动sshd时，报“Could not load host key”错">启动sshd时，报“Could not l...</a></li>
+		  						
+        </ul>
+      </div>
+      <div class="Blog_left2 Blog_left3 Blog_bg1">
+        <div class="Blog_tit1">热词专题</div>
+        <ul class="Blog_ul6">
+                        <li>·<a href="http://blog.chinaunix.net/zt/1013/freebsdhong_1013921.shtml" target="blank" title="FreeBSD 挂载光驱和软驱">FreeBSD 挂载光驱和软驱...</a></li>
+                        <li>·<a href="http://blog.chinaunix.net/zt/1014/gnome_1014075.shtml" target="blank" title="CentOS 7:如何安装Gnome GUI 图形界面">CentOS 7:如何安装Gnome GUI ...</a></li>
+                        <li>·<a href="http://blog.chinaunix.net/zt/1016/androidlistviewbuttonfocus_1016587.shtml" target="blank" title="Android/OPhone ListView中如何使用Button，让onClick和onItemClick事件共存">Android/OPhone ListView中如...</a></li>
+                        <li>·<a href="http://blog.chinaunix.net/zt/1009/linux_1009330.shtml" target="blank" title="Linux下文本处理工具">Linux下文本处理工具</a></li>
+                        <li class="no_line1">·<a href="http://blog.chinaunix.net/zt/1042/linuxcguiji_1042517.shtml" target="blank" title="学习linux编程4">学习linux编程4</a></li>
+          <!--              <li>·<a href="http://www.dataguru.cn/zhuanti/hadoop220peizhi.shtml" target='blank' title='配置hadoop2.2.0格式化namenode问题'></a></li>
+              <li>·<a href="http://www.dataguru.cn/zhuanti/hadoopshouce.shtml" target='blank' title='hadoop2.2.0安装手册'></a></li>-->
+        </ul>
+      </div>
+	  
+
+	</div>
+<script language="javascript">
+$(document).ready(function(){
+    /*目录树JS效果*/
+	$('#blogCla li > span').click(function(){
+		var cla = $(this).attr('class');
+		if(cla == 'Blog_jia1'){
+			//$('#blogCla li > span').removeClass('Blog_jian1').addClass('Blog_jia1');
+			//$('#blogCla li > .zk').css('display', 'none');
+				
+			$(this).removeClass('Blog_jia1').addClass('Blog_jian1');
+            $(this).parent().children('.zk').css('display', 'block');
+		}else{
+			$(this).removeClass('Blog_jian1').addClass('Blog_jia1');
+            $(this).parent().children('.zk').css('display', 'none');
+		}
+	});
+		
+	$('#blogdtr > p > span').click(function(){
+		var cla = $(this).attr('class');
+		if(cla == 'Blog_jia1'){
+			//$('#blogdtr > .Blog_p4 > span').removeClass('Blog_jian1').addClass('Blog_jia1');
+			//$('#blogdtr ul').css('display', 'none');
+				
+			$(this).removeClass('Blog_jia1').addClass('Blog_jian1');
+            $(this).parent().next().css('display', 'block');
+		}else{
+			$(this).removeClass('Blog_jian1').addClass('Blog_jia1');
+            $(this).parent().next().css('display', 'none');
+		}
+	});
+});
+</script>    <!-- 右 -->
+    <div class="Blog_right1">
+      <div class="Blog_right1_1 Blog_right1_11">
+        <div class="Blog_right1_2 ">
+			<!--推荐博文-->
+          <div class="Blog_tit4 Blog_tit5">
+                        <b class="Blog_b2"></b>
+            <a href="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/Android中JNI编程详解-nice_future-ChinaUnix博客.html">Android中JNI编程详解</a>
+            <em>2012-08-06 23:06:52</em>
+          </div>
+          <div class="Blog_con2">
+            <div class="Blog_con3">
+              <p>分类： <span></span></p>
+			                <p>原文地址：<span><a href="http://blog.chinaunix.net/uid-25838286-id-3204208.html">Android中JNI编程详解</a></span> 作者：<span><a href="http://blog.chinaunix.net/uid/25838286.html">wenhuihhwh</a></span></p>
+			                <p></p>
+            </div>
+           <div class="Blog_wz1" style="word-wrap: break-word;">
+						<div>
+<p><strong>Android</strong>系统不允许一个纯粹使用C/C++的程序出现，它要求必须是通过Java代码嵌入Native C/C++——即通过JNI的方式来使用本地（Native）代码。因此JNI对Android底层开发人员非常重要。</p>
+<p><strong>如何将.so文件打包到.APK</strong></p>
+<p>让我们 先 从最简单的情况开始，假如已有一个JNI实现——libxxx.so文件，那么如何在APK中使用它呢？</p>
+<p>在我最初写类似程序的时候，我会将libxxx.so文件push到/system/lib/目录下，然后在Java代码中执行System.loadLibrary(xxx)，这是个可行的做法，但需要取得/system/lib 目录 的写权限（模拟器通过adb remount取得该权限）。但模拟器 重启之 后libxxx.so文件会消失。现在 我找到了更好的方法，把.so文件打包到apk中分发给最终用户，不管是模拟器 或者 真机 ，都不再需要system分区的写权限。实现步骤如下：</p>
+<p>1、在你的项目根目录下建立libs/armeabi目录；</p>
+<p>2、将libxxx.so文件copy到 libs/armeabi/下；</p>
+<p>3、此时ADT插件自动编译输出的.apk文件中已经包括.so文件了；</p>
+<p>4、安装APK文件，即可直接使用JNI中的方法；</p>
+<p>我想还需要简单说明一下libxxx.so的命名规则，沿袭Linux传统，lib<something>.so是类库文件名称的格式，但在Java的System.loadLibrary(" something ")方法中指定库名称时，不能包括 前缀—— lib，以及后缀——.so。</something></p>
+<p><strong>准备编写自己的JNI模块</strong></p>
+<p>你一定想知道如何编写自己的xxx.so，不过这涉及了太多有关JNI的知识。简单的说：JNI是Java平台定义的用于和宿主平台上的本地代码进行交互的“Java标准”，它通常有两个使用场景：1.使用(之前使用c/c++、delphi开发的)遗留代码；2.为了更好、更直接地与硬件交互并获得更高性能 。</p>
+<p><strong>1、首先创建含有native方法的Java类：</strong></p>
+<ol class="dp-xml">
+<li class="alt"><span><span>package com.okwap.testjni; </span></span>
+</li><li><span>public final class MyJNI { </span>
+</li><li class="alt"><span>//native方法, </span>
+</li><li><span>public static native String sayHello(String name); </span>
+</li><li class="alt"><span>} </span></li></ol>
+<p><strong>2、通过javah命令生成.h文件，内容如下(com_okwap_testjni.h文件)：</strong></p>
+<ol class="dp-xml">
+<li class="alt"><span><span>/* DO NOT EDIT THIS FILE - it is machine generated */ </span></span>
+</li><li><span>#include </span><font color="#000000"><span class="tag">&lt;</span><span class="tag-name">jni.h</span><span class="tag">&gt;</span><span> </span></font>
+</li><li class="alt"><span>/* Header for class com_okwap_testjni_MyJNI */ </span>
+</li><li><span>#ifndef _Included_com_okwap_testjni_MyJNI </span>
+</li><li class="alt"><span>#define _Included_com_okwap_testjni_MyJNI </span>
+</li><li><span>#ifdef __cplusplus </span>
+</li><li class="alt"><span>extern "C" { </span>
+</li><li><span>#endif </span>
+</li><li class="alt"><span>/* </span>
+</li><li><span>* Class: com_okwap_testjni_MyJNI </span>
+</li><li class="alt"><span>* Method: sayHello </span>
+</li><li><span>* Signature: (Ljava/lang/String;)Ljava/lang/String; </span>
+</li><li class="alt"><span>*/ </span>
+</li><li><span>JNIEXPORT jstring JNICALL Java_com_okwap_testjni_MyJNI_sayHello </span>
+</li><li class="alt"><span>(JNIEnv *, jclass, jstring); </span>
+</li><li><span>#ifdef __cplusplus </span>
+</li><li class="alt"><span>} </span>
+</li><li><span>#endif </span>
+</li><li class="alt"><span>#endif </span></li></ol>
+<p>这是一个标准的C语言头文件，其中的JNIEXPORT、JNICALL是JNI关键字(事实上它是没有任何内容的宏，仅用于指示性说明)，而jint、jstring是JNI环境下对int及java.lang.String类型的映射。这些关键字的定义都可以在jni.h中看到。</p>
+<p><strong>3、在 com_okwap_testjni.c文件中实现以上方法：</strong></p>
+<ol class="dp-xml">
+<li class="alt"><span><span>#include </span><font color="#000000"><span class="tag">&lt;</span><span class="tag-name">string.h</span><span class="tag">&gt;</span><span> </span></font></span>
+</li><li><span>#include </span><font color="#000000"><span class="tag">&lt;</span><span class="tag-name">jni.h</span><span class="tag">&gt;</span><span> </span></font>
+</li><li class="alt"><span>#include "com_okwap_testjni.h" </span>
+</li><li><span>JNIEXPORT jstring JNICALL Java_com_okwap_testjni_MyJNI_sayHello(JNIEnv* env, jclass, jstring str){ </span>
+</li><li class="alt"><span>//从jstring类型取得c语言环境下的char*类型 </span>
+</li><li><span>const char* </span><font color="#000000"><span class="attribute">name</span><span> = (*env)-</span><span class="tag">&gt;</span><span>GetStringUTFChars(env, str, 0); </span></font>
+</li><li class="alt"><span>//本地常量字符串 </span>
+</li><li><span>char* </span><font color="#000000"><span class="attribute">hello</span><span> = </span><span class="attribute-value">"你好，"</span><span>; </span></font>
+</li><li class="alt"><span>//动态分配目标字符串空间 </span>
+</li><li><span>char* </span><font color="#000000"><span class="attribute">result</span><span> = </span><span class="attribute-value">malloc</span><span>((strlen(name) + strlen(hello) + 1)*sizeof(char)); </span></font>
+</li><li class="alt"><span>memset(result,0,sizeof(result)); </span>
+</li><li><span>//字符串链接 </span>
+</li><li class="alt"><span>strcat(result,hello); </span>
+</li><li><span>strcat(result,name); </span>
+</li><li class="alt"><span>//释放jni分配的内存 </span>
+</li><li><span>(*env)-</span><font color="#000000"><span class="tag">&gt;</span><span>ReleaseStringUTFChars(env,str,name); </span></font>
+</li><li class="alt"><span>//生成返回值对象 </span>
+</li><li><span></span><font color="#000000"><span class="attribute">str</span><span> = (*env)-</span><span class="tag">&gt;</span><span>NewStringUTF(env, "你好 JNI~!"); </span></font>
+</li><li class="alt"><span>//释放动态分配的内存 </span>
+</li><li><span>free(result); </span>
+</li><li class="alt"><span>// </span>
+</li><li><span>return str; </span>
+</li><li class="alt"><span>}&nbsp;&nbsp; </span></li></ol><span>
+<p><strong>4、编译——两种不同的编译环境</strong></p>
+<p>以上的C语言代码要编译成最终.so动态库文件，有两种途径：</p>
+<p>Android NDK ：全称是Native Developer Kit，是用于编译本地JNI源码的工具，为开发人员将本地方法整合到<a href="http://mobile.51cto.com/mobile-182392.htm" target="_blank">Android</a>应用中提供了方便。事实上NDK和完整源码编译环境一样，都使用Android的编译系统——即通过Android.mk文件控制编译。NDK可以运行在Linux、Mac、Window(+cygwin)三个平台上。有关NDK的使用方法及更多细节请参考以下资料：<br><br>eoe特刊第七期《NDK总结》http://blog.eoemobile.com/?p=27</p>
+<p>http://androidappdocs.appspot.com/sdk/ndk/index.html ；</p>
+<p>完整源码编译环境 ：<a href="http://mobile.51cto.com/android/" target="_blank">Android</a>平台提供有基于make的编译系统，为App编写正确的Android.mk文件就可使用该编译系统。该环境需要通过git从官方网站获取完整源码副本并成功编译，更多细节请参考：http://source.android.com/index.html</p>
+<p>不管你选择以上两种方法的哪一个，都必须编写自己的Android.mk文件，有关该文件的编写请参考相关文档。</p>
+<p><strong>JNI组件的入口函数——JNI_OnLoad()、JNI_OnUnload()</strong></p>
+<p>JNI组件被成功加载和卸载时，会进行函数回调，当VM执行到System.loadLibrary(xxx)函数时，首先会去执行JNI组件中的JNI_OnLoad()函数，而当VM释放该组件时会呼叫JNI_OnUnload()函数。先看示例代码：</p>
+<ol class="dp-xml">
+<li class="alt"><span><span>//onLoad方法，在System.loadLibrary()执行时被调用 </span></span>
+</li><li><span>jint JNI_OnLoad(JavaVM* vm, void* reserved){ </span>
+</li><li class="alt"><span>LOGI("JNI_OnLoad startup~~!"); </span>
+</li><li><span>return JNI_VERSION_1_4; </span>
+</li><li class="alt"><span>} </span>
+</li><li><span></span>
+</li><li class="alt"><span>//onUnLoad方法，在JNI组件被释放时调用 </span>
+</li><li><span>void JNI_OnUnload(JavaVM* vm, void* reserved){ </span>
+</li><li class="alt"><span>LOGE("call JNI_OnUnload ~~!!"); </span>
+</li><li><span>} </span></li></ol>
+<p><strong>JNI_OnLoad()有两个重要的作用：</strong></p>
+<p>指定JNI版本：告诉VM该组件使用那一个JNI版本(若未提供JNI_OnLoad()函数，VM会默认该使用最老的JNI 1.1版)，如果要使用新版本的JNI，例如JNI 1.4版，则必须由JNI_OnLoad()函数返回常量JNI_VERSION_1_4(该常量定义在jni.h中) 来告知VM。</p>
+<p>初始化设定，当VM执行到System.loadLibrary()函数时，会立即先呼叫JNI_OnLoad()方法，因此在该方法中进行各种资源的初始化操作最为恰当。</p>
+<p>JNI_OnUnload()的作用与JNI_OnLoad()对应，当VM释放JNI组件时会呼叫它，因此在该方法中进行善后清理，资源释放的动作最为合适。</p>
+<p><strong>使用registerNativeMethods方法</strong></p>
+<p>对Java程序员来说，可能我们总是会遵循：1.编写带有native方法的Java类；---&gt;2.使用javah命令生成.h头文件；---&gt;3.编写代码实现头文件中的方法，这样的“官方” 流程，但也许有人无法忍受那“丑陋”的方法名称，RegisterNatives方法能帮助你把c/c++中的方法隐射到Java中的native方法，而无需遵循特定的方法命名格式。来看一段示例代码吧：</p>
+<ol class="dp-xml">
+<li class="alt"><span><span>//定义目标类名称 </span></span>
+</li><li><span>static const char *</span><font color="#000000"><span class="attribute">className</span><span> = </span><span class="attribute-value">"com/okwap/testjni/MyJNI"</span><span>; </span></font>
+</li><li class="alt"><span>//定义方法隐射关系 </span>
+</li><li><span>static JNINativeMethod methods[] = { </span>
+</li><li class="alt"><span>{"sayHello", "(Ljava/lang/String;)Ljava/lang/String;", (void*)sayHello}, </span>
+</li><li><span>}; </span>
+</li><li class="alt"><span>jint JNI_OnLoad(JavaVM* vm, void* reserved){ </span>
+</li><li><span>//声明变量 </span>
+</li><li class="alt"><span>jint </span><font color="#000000"><span class="attribute">result</span><span> = </span><span class="attribute-value">JNI_ERR</span><span>; </span></font>
+</li><li><span>JNIEnv* </span><font color="#000000"><span class="attribute">env</span><span> = </span><span class="attribute-value">NULL</span><span>; </span></font>
+</li><li class="alt"><span>jclass clazz; </span>
+</li><li><span>int methodsLenght; </span>
+</li><li class="alt"><span>//获取JNI环境对象 </span>
+</li><li><span>if ((*vm)-</span><font color="#000000"><span class="tag">&gt;</span><span>GetEnv(vm, (void**) &amp;env, JNI_VERSION_1_4) != JNI_OK) { </span></font>
+</li><li class="alt"><span>LOGE("ERROR: GetEnv failed\n"); </span>
+</li><li><span>return JNI_ERR; </span>
+</li><li class="alt"><span>} </span>
+</li><li><span>assert(env != NULL); </span>
+</li><li class="alt"><span>//注册本地方法.Load 目标类 </span>
+</li><li><span></span><font color="#000000"><span class="attribute">clazz</span><span> = (*env)-</span><span class="tag">&gt;</span><span>FindClass(env,className); </span></font>
+</li><li class="alt"><span>if (</span><font color="#000000"><span class="attribute">clazz</span><span> == NULL) { </span></font>
+</li><li><span>LOGE("Native registration unable to find class '%s'", className); </span>
+</li><li class="alt"><span>return JNI_ERR; </span>
+</li><li><span>} </span>
+</li><li class="alt"><span>//建立方法隐射关系 </span>
+</li><li><span>//取得方法长度 </span>
+</li><li class="alt"><span></span><font color="#000000"><span class="attribute">methodsLenght</span><span> = </span><span class="attribute-value">sizeof</span><span>(methods) / sizeof(methods[0]); </span></font>
+</li><li><span>if ((*env)-</span><font color="#000000"><span class="tag">&gt;</span><span>RegisterNatives(env,clazz, methods, methodsLenght) </span><span class="tag">&lt;</span><span> </span><span class="tag-name">0</span><span>) { </span></font>
+</li><li class="alt"><span>LOGE("RegisterNatives failed for '%s'", className); </span>
+</li><li><span>return JNI_ERR; </span>
+</li><li class="alt"><span>} </span>
+</li><li><span>// </span>
+</li><li class="alt"><span></span><font color="#000000"><span class="attribute">result</span><span> = </span><span class="attribute-value">JNI_VERSION_1_4</span><span>; </span></font>
+</li><li><span>return result; </span>
+</li><li class="alt"><span>}&nbsp;&nbsp; </span></li></ol><span>
+<p>建立c/c++方法和Java方法之间映射关系的关键是 JNINativeMethod 结构，该结构定义在jni.h中，具体定义如下：</p>
+<ol class="dp-xml">
+<li class="alt"><span><span>typedef struct { </span></span>
+</li><li><span>const char* name;//java方法名称 </span>
+</li><li class="alt"><span>const char* signature; //java方法签名 </span>
+</li><li><span>void* fnPtr;//c/c++的函数指针 </span>
+</li><li class="alt"><span>} JNINativeMethod </span></li></ol>
+<p>参照上文示例中初始化该结构的代码：</p>
+<ol class="dp-xml">
+<li class="alt"><span><span>//定义方法隐射关系 </span></span>
+</li><li><span>static JNINativeMethod methods[] = { </span>
+</li><li class="alt"><span>{"sayHello", "(Ljava/lang/String;)Ljava/lang/String;", (void*)sayHello}, </span>
+</li><li><span>}; </span></li></ol>
+<p>其中比较难以理解的是第二个参数——signature字段的取值，实际上这些字符与函数的参数类型/返回类型一一对应，其中"()" 中的字符表示参数，后面的则代表返回值。例如"()V" 就表示void func()，"(II)V" 表示 void func(int, int)，具体的每一个字符的对应关系如下：</p>
+<p>字符 Java类型 C/C++类型<br>V void void<br>Z jboolean boolean<br>I jint int<br>J jlong long<br>D jdouble double<br>F jfloat float<br>B jbyte byte<br>C jchar char<br>S jshort short</p>
+<p>数组则以"["开始，用两个字符表示：</p>
+<p>字符 java类型 c/c++类型<br>[Z jbooleanArray boolean[]<br>[I jintArray int[]<br>[F jfloatArray float[]<br>[B jbyteArray byte[]<br>[C jcharArray char[]<br>[S jshortArray short[]<br>[D jdoubleArray double[]<br>[J jlongArray long[]</p>
+<p>上面的都是基本类型，如果参数是Java类，则以"L"开头，以";"结尾，中间是用"/"隔开包及类名，而其对应的C函数的参数则为jobject，一个例外是String类，它对应C类型jstring，例如：Ljava/lang /String; 、Ljava/net/Socket; 等，如果JAVA函数位于一个嵌入类（也被称为内部类），则用$作为类名间的分隔符，例如："Landroid/os/FileUtils$FileStatus;"。</p>
+<p>使用registerNativeMethods方法不仅仅是为了改变那丑陋的长方法名，最重要的是可以提高效率，因为当Java类别透过VM呼叫到本地函数时，通常是依靠VM去动态寻找.so中的本地函数(因此它们才需要特定规则的命名格式)，如果某方法需要连续呼叫很多次，则每次都要寻找一遍，所以使用RegisterNatives将本地函数向VM进行登记，可以让其更有效率的找到函数。</p>
+<p>registerNativeMethods方法的另一个重要用途是，运行时动态调整本地函数与Java函数值之间的映射关系，只需要多次调用registerNativeMethods()方法，并传入不同的映射表参数即可。</p>
+<p><strong>JNI中的日志输出</strong></p>
+<p>你一定非常熟悉在Java代码中使用Log.x(TAG,“message”)系列方法，在c/c++代码中也一样，不过首先你要include相关头文件。遗憾的是你使用不同的编译环境( 请参考上文中两种编译环境的介绍) ，对应的头文件略有不同。。</p>
+<p>如果是在完整源码编译环境下，只要include <utils log.h="">头文件，就可以使用对应的LOGI、LOGD等方法了，同时请定义LOG_TAG，LOG_NDEBUG等宏值，示例代码如下：</utils></p>
+<ol class="dp-xml">
+<li class="alt"><span><span>#define LOG_TAG "HelloJni" </span></span>
+</li><li><span>#define LOG_NDEBUG 0 </span>
+</li><li class="alt"><span>#define LOG_NIDEBUG 0 </span>
+</li><li><span>#define LOG_NDDEBUG 0 </span>
+</li><li class="alt"><span>#include </span><font color="#000000"><span class="tag">&lt;</span><span class="tag-name">string.h</span><span class="tag">&gt;</span><span> </span></font>
+</li><li><span>#include </span><font color="#000000"><span class="tag">&lt;</span><span class="tag-name">jni.h</span><span class="tag">&gt;</span><span> </span></font>
+</li><li class="alt"><span>#include </span><font color="#000000"><span class="tag">&lt;</span><span class="tag-name">utils</span><span>/Log.h</span><span class="tag">&gt;</span><span> </span></font>
+</li><li><span>jstring Java_com_inc_android_ime_HelloJni_stringFromJNI(JNIEnv* env,jobject thiz){ </span>
+</li><li class="alt"><span>LOGI("Call stringFromJNI!\n"); </span>
+</li><li><span>return (*env)-</span><font color="#000000"><span class="tag">&gt;</span><span>NewStringUTF(env, "Hello from JNI （中文）!"); </span></font>
+</li><li class="alt"><span>} </span></li></ol>
+<p>与日志相关的.h头文件，在以下源码路径：</p>
+<ol class="dp-xml">
+<li class="alt"><span><span>myeclair\frameworks\base\include\utils\Log.h </span></span>
+</li><li><span>myeclair\system\core\include\cutils\log.h </span></li></ol>
+<p><br>如果你是在NDK环境下编译，则需要#include <android log.h="">，示例代码如下：</android></p>
+<ol class="dp-xml">
+<li class="alt"><span><span>/* </span></span>
+</li><li><span>* jnilogger.h </span>
+</li><li class="alt"><span>* </span>
+</li><li><span>* Created on: 2010-11-15 </span>
+</li><li class="alt"><span>* Author: INC062805 </span>
+</li><li><span>*/ </span>
+</li><li class="alt"><span>#ifndef __JNILOGGER_H_ </span>
+</li><li><span>#define __JNILOGGER_H_ </span>
+</li><li class="alt"><span>#include </span><font color="#000000"><span class="tag">&lt;</span><span class="tag-name">android</span><span>/log.h</span><span class="tag">&gt;</span><span> </span></font>
+</li><li><span>#ifdef _cplusplus </span>
+</li><li class="alt"><span>extern "C" { </span>
+</li><li><span>#endif </span>
+</li><li class="alt"><span>#ifndef LOG_TAG </span>
+</li><li><span>#define LOG_TAG "MY_LOG_TAG" </span>
+</li><li class="alt"><span>#endif </span>
+</li><li><span>#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__) </span>
+</li><li class="alt"><span>#define LOGI(...) __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__) </span>
+</li><li><span>#define LOGW(...) __android_log_print(ANDROID_LOG_WARN,LOG_TAG,__VA_ARGS__) </span>
+</li><li class="alt"><span>#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__) </span>
+</li><li><span>#define LOGF(...) __android_log_print(ANDROID_LOG_FATAL,LOG_TAG,__VA_ARGS__) </span>
+</li><li class="alt"><span>#ifdef __cplusplus </span>
+</li><li><span>} </span>
+</li><li class="alt"><span>#endif </span>
+</li><li><span>#endif /* __JNILOGGER_H_ */ </span></li></ol>
+<p>你可以下载以上头文件，来统一两种不同环境下的使用差异。另外，不要忘了在你的Android.mk文件中加入对类库的应用，两种环境下分别是</p>
+<p>ifeq ($(HOST_OS),windows) <br><strong>#NDK环境下 <br></strong>LOCAL_LDLIBS := -llog <br>else <br><strong>#完整源码环境下 </strong><br>LOCAL_SHARED_LIBRARIES := libutils <br>endif</p>
+<p><strong>Android为JNI提供的助手方法</strong></p>
+<ol class="dp-xml">
+<li class="alt"><span><span>myeclair\dalvik\libnativehelper\include\nativehelper </span></span></li></ol>
+<p>在完整源码编译环境下，Android在myeclair\dalvik\libnativehelper\include\nativehelper\JNIHelp.h头文件中 提供了助手函数 ，用于本地方法注册、异常处理等任务，还有一个用于计算方法隐射表长度的宏定义：</p>
+<ol class="dp-xml">
+<li class="alt"><span><span>#ifndef NELEM </span></span>
+</li><li><span># define NELEM(x) ((int) (sizeof(x) / sizeof((x)[0]))) </span>
+</li><li class="alt"><span>#endif </span>
+</li><li><span>//有了以上宏定义后，注册方法可以按如下写，该宏定义可以直接copy到NDK环境下使用： </span>
+</li><li class="alt"><span>(*env)-</span><font color="#000000"><span class="tag">&gt;</span><span>RegisterNatives(env,clazz, methods,NELEM(methods));&nbsp; </span></font></li></ol>
+<p class="alt"><span></span>&nbsp;</p><font color="#000000"><span>
+<p style="TEXT-INDENT: 21pt"><a href="http://blog.chinaunix.net/uid-25838286-id-3068153.html" target="_blank" _xhe_href="http://blog.chinaunix.net/uid-25838286-id-3068153.html"><font color="#63401b">谈程序员的出路</font></a> </p>
+<p style="TEXT-INDENT: 21pt"><a href="http://blog.chinaunix.net/uid-25838286-id-3204190.html" target="_blank" _xhe_href="http://blog.chinaunix.net/uid-25838286-id-3204190.html">为IT程序员量身定制的12个目标——很经典</a></p>
+<p style="TEXT-INDENT: 21pt"><a href="http://blog.chinaunix.net/uid-25838286-id-3068150.html" target="_blank" _xhe_href="http://blog.chinaunix.net/uid-25838286-id-3068150.html"><font color="#63401b">我的25年嵌入式生涯--周立功 (很值得一读)</font></a> </p>
+<p style="TEXT-INDENT: 21pt"><a href="http://blog.chinaunix.net/uid-25838286-id-3068179.html" target="_blank" _xhe_href="http://blog.chinaunix.net/uid-25838286-id-3068179.html"><font color="#63401b">技术七年之感受</font></a> </p>
+<p style="TEXT-INDENT: 21pt"><a href="http://blog.chinaunix.net/uid-25838286-id-3035574.html" target="_blank" _xhe_href="http://blog.chinaunix.net/uid-25838286-id-3035574.html">成为Java高手的25个学习目标--经典</a></p>
+<p style="TEXT-INDENT: 21pt"><a href="http://blog.chinaunix.net/uid-25838286-id-3067465.html" target="_blank" _xhe_href="http://blog.chinaunix.net/uid-25838286-id-3067465.html"><font color="#63401b">程序员每年要做的十件事</font></a> </p>
+</span></font><p style="TEXT-INDENT: 21pt"><font color="#000000"></font><a href="http://blog.chinaunix.net/uid-25838286-id-3204201.html" target="_blank" _xhe_href="http://blog.chinaunix.net/uid-25838286-id-3204201.html">一年轻女董事长对同龄人的忠告：不想穷的要看看</a></p>
+<p style="TEXT-INDENT: 21pt"><a href="http://blog.chinaunix.net/uid-25838286-id-3204182.html" target="_blank" _xhe_href="http://blog.chinaunix.net/uid-25838286-id-3204182.html">如何让IT人远离慢性疲劳</a></p>
+<p style="TEXT-INDENT: 21pt"><a href="http://blog.chinaunix.net/uid-25838286-id-3068160.html" target="_blank" _xhe_href="http://blog.chinaunix.net/uid-25838286-id-3068160.html"><font color="#63401b">长期操作电脑需要养成的好习惯</font></a> </p>
+<p style="TEXT-INDENT: 21pt"><a href="http://blog.chinaunix.net/uid-25838286-id-3204163.html" target="_blank" _xhe_href="http://blog.chinaunix.net/uid-25838286-id-3204163.html">IT程序员，为什么会无奈苦逼</a></p>
+<p style="TEXT-INDENT: 21pt"><a href="http://blog.chinaunix.net/uid-25838286-id-3067460.html" target="_blank" _xhe_href="http://blog.chinaunix.net/uid-25838286-id-3067460.html"><font color="#63401b">Java 的工作原理</font></a> </p>
+<p style="TEXT-INDENT: 21pt"><a href="http://blog.chinaunix.net/uid-25838286-id-3202538.html" target="_blank" _xhe_href="http://blog.chinaunix.net/uid-25838286-id-3202538.html">IT人程序员着装穿衣7大盲区，教你穿得更帅气更精神更个性！</a></p>
+<p style="TEXT-INDENT: 21pt"><a href="http://blog.chinaunix.net/uid-25838286-id-3066766.html" target="_blank" _xhe_href="http://blog.chinaunix.net/uid-25838286-id-3066766.html"><font color="#63401b">Java语言的辉煌，还能延续多久？</font></a> </p>
+<p style="TEXT-INDENT: 21pt">&nbsp;</p>
+<p class="alt"><font color="#000000"><span></span></font>&nbsp;</p></span></span></div>                                   </div>
+            <!-- <div class="Blog_con3_1">管理员在2009年8月13日编辑了该文章文章。</div> -->
+            <div class="Blog_con2_1 Blog_con3_2">
+              <div>
+			  <!--<img src="/image/default/tu_8.png">-->
+			  <!-- JiaThis Button BEGIN -->
+				<div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1464104596596"><a class="bds_more" href="http://blog.chinaunix.net/uid-26993600-id-3303022.html#" data-cmd="more"></a><a class="bds_qzone" title="分享到QQ空间" href="http://blog.chinaunix.net/uid-26993600-id-3303022.html#" data-cmd="qzone"></a><a class="bds_tsina" title="分享到新浪微博" href="http://blog.chinaunix.net/uid-26993600-id-3303022.html#" data-cmd="tsina"></a><a class="bds_tqq" title="分享到腾讯微博" href="http://blog.chinaunix.net/uid-26993600-id-3303022.html#" data-cmd="tqq"></a><a class="bds_renren" title="分享到人人网" href="http://blog.chinaunix.net/uid-26993600-id-3303022.html#" data-cmd="renren"></a><a class="bds_weixin" title="分享到微信" href="http://blog.chinaunix.net/uid-26993600-id-3303022.html#" data-cmd="weixin"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+				<!-- JiaThis Button END -->
+			  </div>
+              阅读(5243) | 评论(0) | 转发(0) |
+			                <div class="HT_line3"></div>
+            </div>
+            <div class="Blog_con3_3">
+              <div><span id="digg_num">0</span><a href="javascript:void(0)" id="digg" bid="3303022" url="/blog/digg.html"></a></div>
+              <p>上一篇：<a href="http://blog.chinaunix.net/uid-26993600-id-3301139.html">NFS配置</a></p>
+              <p>下一篇：<a href="http://blog.chinaunix.net/uid-26993600-id-3303023.html">android JNI编程 一些技巧（整理）</a></p>
+            </div>
+          </div>
+          <div class="Blog_con3_4">
+            <div class="Blog_tit2 Blog_tit6">相关热门文章</div>
+			            <ul class="Blog_ul7">
+						  <li><span class="Blog_span6"></span><a href="http://blog.chinaunix.net/uid-31051391-id-5711255.html" title="app开发需要多少钱" target="blank">app开发需要多少钱</a></li>
+						  <li><span class="Blog_span6"></span><a href="http://blog.chinaunix.net/uid-30280182-id-5711246.html" title="c++ virtual析构函数详解" target="blank">c++ virtual析构函数详解...</a></li>
+						  <li><span class="Blog_span6"></span><a href="http://blog.chinaunix.net/uid-29449724-id-5711137.html" title="【Android体系】Android基础知识——日志系统" target="blank">【Android体系】Android基础知...</a></li>
+						  <li><span class="Blog_span6"></span><a href="http://blog.chinaunix.net/uid-29057948-id-5711067.html" title="Linux 驱动 之 模块化编程" target="blank">Linux 驱动 之 模块化编程...</a></li>
+						  <li><span class="Blog_span6"></span><a href="http://blog.chinaunix.net/uid-29057948-id-5711066.html" title="Linux 驱动 之 模块化编程" target="blank">Linux 驱动 之 模块化编程...</a></li>
+			            </ul>
+			            <ul class="Blog_ul7">
+						  <li><span class="Blog_span7"></span><a href="http://blog.chinaunix.net/uid-20330529-id-1703602.html" title="A sample .exrc file for vi editor users" target="blank">A sample .exrc file for vi e...</a></li>
+						  <li><span class="Blog_span7"></span><a href="http://blog.chinaunix.net/uid-20083-id-2785293.html" title="游标的特征" target="blank">游标的特征</a></li>
+						  <li><span class="Blog_span7"></span><a href="http://blog.chinaunix.net/uid-10218589-id-348929.html" title="IBM System p5 服务器 HACMP 安装指南" target="blank">IBM System p5 服务器 HACMP ...</a></li>
+						  <li><span class="Blog_span7"></span><a href="http://blog.chinaunix.net/uid-537631-id-2098311.html" title="busybox的httpd使用CGI脚本(BusyBox httpd CGI scripts)" target="blank">busybox的httpd使用CGI脚本(Bu...</a></li>
+						  <li><span class="Blog_span7"></span><a href="http://blog.chinaunix.net/uid-2272-id-56805.html" title="DB2 9 应用开发（733 考试）认证指南，第 9 部分: 用户定义的例程(8)" target="blank">DB2 9 应用开发（733 考试）认...</a></li>
+			            </ul>
+            <ul class="Blog_ul7">
+						  <li><span class="Blog_span6"></span><a href="http://ask.chinaunix.net/question/785970" title="linux dhcp  peizhi roc" target="blank">linux dhcp  peizhi roc</a></li>
+						  <li><span class="Blog_span6"></span><a href="http://ask.chinaunix.net/question/785964" title="关于Unix文件的软链接" target="blank">关于Unix文件的软链接</a></li>
+						  <li><span class="Blog_span6"></span><a href="http://ask.chinaunix.net/question/785935" title="求教这个命令什么意思，我是新手，刚刚学习solaris" target="blank">求教这个命令什么意思，我是新...</a></li>
+						  <li><span class="Blog_span6"></span><a href="http://ask.chinaunix.net/question/785919" title="sed -e &quot;/grep/d&quot; 是什么意思？谢谢" target="blank">sed -e "/grep/d" 是什么意思...</a></li>
+						  <li><span class="Blog_span6"></span><a href="http://ask.chinaunix.net/question/785702" title="谁能够帮我解决LINUX  2.6  10版本驱动" target="blank">谁能够帮我解决LINUX  2.6  10...</a></li>
+			            </ul>
+            <div class="clear"></div>
+          </div>
+		  <!--
+          <div class="Blog_con3_4 Blog_con3_5">
+            <div class="Blog_tit2 Blog_tit7">热门推荐</div>
+            <ul>
+			              <li><a href="" title="" target='blank' ></a></li>
+			            </ul>
+          </div>
+		  -->
+        </div>
+      </div>
+      <div class="Blog_right1_7" id="replyList">
+		<div class="Blog_tit3">给主人留下些什么吧！~~</div>
+				<!--暂无内容-->
+				<!-- 评论分页-->
+		<div class="Blog_right1_6 Blog_right1_12">
+        		</div>
+		<!-- 评论分页-->
+        <div class="Blog_right1_10">
+          <div class="Blog_tit3">评论热议</div>
+		  		 <!--未登录 -->
+        <div class="Blog_right1_8">
+          <div class="nologin_con1"> 请登录后评论。
+            <p><a href="http://blog.chinaunix.net/site/login.html" onclick="linkto()">登录</a> <a href="http://sso.chinaunix.net/Register?return_url=http%3A%2F%2Ft.cublog.com%2F">注册</a></p>
+          </div>
+        </div>
+        <br>
+        <div>
+            <div style="float:left;margin-left:70px;margin-right:10px;">
+             <script type="text/javascript">
+            var cpro_id = "u1625692";
+            </script>
+            <script src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/c.js" type="text/javascript"></script>
+            </div>
+            <div style="margin-left:10px;">
+            <script type="text/javascript">
+            var cpro_id = "u1625694";
+            </script>
+            <script src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/c.js" type="text/javascript"></script>
+            </div>
+        </div>
+		
+        </div>
+      </div>
+    </div>
+  </div>
+  <input type="hidden" id="report_url" value="/blog/ViewReport.html">
+
+<script type="text/javascript">
+  	//测试字符串的长度 一个汉字算2个字节
+	function mb_strlen(str)
+	{
+		var len=str.length;
+		var totalCount=0;
+		for(var i=0;i<len;i++)
+		{
+			var c = str.charCodeAt(i);
+			if ((c >= 0x0001 && c <= 0x007e) || (0xff60<=c && c<=0xff9f)) {
+				totalCount++;
+			}else{
+				totalCount+=2;
+			}
+		}
+		return totalCount;
+	}
+	/*
+	var Util = {};
+	Util.calWbText = function (text, max){
+		if(max === undefined)
+			max = 500;
+		var cLen=0;
+		var matcher = text.match(/[^\x00-\xff]/g),
+			wlen  = (matcher && matcher.length) || 0;
+		//匹配url链接正则 http://***
+		var pattern = /http:\/\/([\w-]+\.)+[\w-]+(\/*[\w-\.\/\?%&=][^\s^\u4e00-\u9fa5]*)?/gi;
+		//匹配的数据存入数组
+		var arrPt = new Array();
+		var i = 0;
+		while((result = pattern.exec(text)) != null){
+			arrPt[i] = result[0];
+			i++;
+		}
+		//替换掉原文本中的链接
+		for(var j = 0;j<arrPt.length;j++){
+			text = text.replace(arrPt[j],"");
+		}
+		//减掉链接所占的长度
+		return Math.floor((max*2 - text.length - wlen)/2 - 12*i);
+	};
+	*/
+	var allowComment = '0';
+	
+	//举报弹出层
+	function showJuBao(url, cid){
+		
+			$.cover(false);
+			asyncbox.open({
+				id  : 'report_thickbox',
+				url : url,
+				title : '举报违规',
+				width : 378,
+				height : 240,
+				scroll : 'no',
+				data : {
+					'cid'	 : cid,
+					'idtype' : 2 ,
+                                        'blogurl' : window.location.href
+				},
+				callback : function(action){
+					if(action == 'close'){
+						$.cover(false);
+					}
+				}
+			});
+	}
+
+	$(function(){
+
+		//创建管理员删除的弹出层
+		$('#admin_article_del').click(function(){
+			$.cover(false);
+			asyncbox.open({
+				id : 'class_thickbox',
+				html : '<div class="HT_layer3_1"><ul><li class="HT_li1">操作原因：<select class="HT_sel7" id="del_type" name="del_type"><option value="广告文章">广告文章</option><option value="违规内容">违规内容</option><option value="标题不明">标题不明</option><option value="文不对题">文不对题</option></select></li><li class="HT_li1" ><input class="HT_btn4" id="admin_delete"  type="button" /></li></ul></div>',
+				title : '选择类型',
+				width : 300,
+				height : 150,
+				scroll : 'no',
+				callback : function(action){
+					if(action == 'close'){
+						$.cover(false);
+					}
+				}
+			});
+		});
+		$('#admin_delete').live('click' , function(){
+			///blog/logicdel/id/3480184/url/%252Fblog%252Findex.html.html
+			var type = $('#del_type').val();
+			var url = '/blog/logicdel/id/3303022/url/%252Fuid%252F26993600.html.html';
+			window.location.href= url + '?type=' + type;
+		});
+
+
+		//顶  js中暂未添加&过滤 
+		$('#digg').live('click' , function(){
+
+			if(isOnLine == '' )
+			{
+				//showErrorMsg('登录之后才能进行此操作' , '消息提示');
+				showErrorMsg('操作失败,您需要先登录!', '消息提示', '/site/login.html');
+				return false;
+			}
+
+			var bid = $('#digg').attr('bid');
+			var url = $('#digg').attr('url');
+
+			var digg_str = $.cookie('digg_id');
+			if(digg_str != null)
+			{
+				var arr= new Array(); //定义一数组
+
+				arr = digg_str.split(","); //字符分割     
+				for( i=0 ; i < arr.length ; i++ )   
+				{   
+					if(bid == arr[i])
+					{
+						showErrorMsg('已经赞过该文章', '消息提示'); 
+						return false;
+					}
+				} 
+			}
+			$.ajax({
+				type:"POST",
+				url:url,	
+				data: {
+					'bid' : bid 
+				},
+				dataType: 'json',
+				success:function(msg){
+					if(msg.error == 0)
+					{
+						var num = parseInt($('#digg_num').html(),10);
+						num += 1;
+						$('#digg_num').html(num);
+						$('#digg').die();
+
+						if(digg_str == null)
+						{
+							$.cookie('digg_id', bid, {expires: 30 , path: '/'});
+						}
+						else
+						{
+							$.cookie('digg_id', digg_str + ',' + bid, {expires: 30 , path: '/'});
+						}
+						showSucceedMsg('谢谢' , '消息提示');
+					}
+					else if(msg.error == 1)
+					{
+						//showErrorMsg(msg.error_content , '消息提示'); 
+						showErrorMsg('操作失败,您需要先登录!', '消息提示', '/site/login.html');
+					}
+					else if(msg.error == 2)
+					{
+						showErrorMsg(msg.error_content , '消息提示'); 
+					}
+				}
+			});
+		});
+		//举报弹出层
+		/*$('.box_report').live('click' , function(){
+			if(isOnLine == '' )
+			{
+				//showErrorMsg('登录之后才能进行此操作' , '消息提示');
+				showErrorMsg('操作失败,您需要先登录!', '消息提示', '/site/login.html');
+				return false;
+			}
+			var url = $('#report_url').val();
+			var cid = $(this).attr('cid');
+			$.cover(false);
+			asyncbox.open({
+				id  : 'report_thickbox',
+				url : url,
+				title : '举报违规',
+				width : 378,
+				height : 240,
+				scroll : 'no',
+				data : {
+					'cid'	 : cid,
+					'idtype' : 2 
+				},
+				callback : function(action){
+					if(action == 'close'){
+						$.cover(false);
+					}
+				}
+			});
+		});*/
+
+
+		//评论相关代码
+		
+		//点击回复显示评论框
+		$('.Blog_a10').live('click' , function(){
+			if(isOnLine == '' )
+			{
+				//showErrorMsg('登录之后才能进行此操作' , '消息提示');
+				showErrorMsg('操作失败,您需要先登录!', '消息提示', '/site/login.html');
+				return false;
+			}
+
+			if(allowComment == 1)
+			{
+				showErrorMsg('该博文不允许评论' , '消息提示'); 
+				return false;
+			}
+			var tid = $(this).attr('toid');//留言作者id
+			var bid = $(this).attr('bid');//blogid
+			var cid = $(this).attr('cid');//留言id
+			var tname = $(this).attr('tname');
+                         			var tpl  = '<div class="Blog_right1_9">';
+				tpl +=	 '<div class="div2">';
+				tpl +=     '<textarea name="" cols="" rows="" class="Blog_ar1_1" id="rmsg">文明上网，理性发言...</textarea>';
+				tpl +=	 '</div>';
+				tpl +=   '<div class="div3">';
+				tpl +=		'<div class="div3_2"><a href="javascript:void(0);" class="Blog_a11" id="quota_sbumit" url="/Comment/PostComment.html" tid="'+tid+'" bid="'+bid+'" cid="'+cid+'" tname="'+tname+'" ></a><a href="javascript:void(0)" id="qx_comment" class="Blog_a12"></a></div>';
+				tpl +=		'<div class="div3_1"><a href="javascript:void(0);" id="mface"><span></span>表情</a></div>';
+				tpl +=		'<div class="clear"></div>';
+				tpl +=	 '</div>';
+				tpl +=  '</div>';
+                                 			$('.z_move_comment').html('');
+			$(this).parents('.Blog_right1_8').find('.z_move_comment').html(tpl).show();
+		});
+		//引用的评论提交
+		$('#quota_sbumit').live('click' , function(){
+
+			if(isOnLine == '' )
+			{
+				//showErrorMsg('登录之后才能进行此操作' , '消息提示');
+				showErrorMsg('操作失败,您需要先登录!', '消息提示', '/site/login.html');
+				return false;
+			}
+
+			var bid   = $(this).attr('bid');
+			var tid   = $(this).attr('tid');//被引用人的id
+			var qid   = $(this).attr('cid');//引用的id
+			var url = $(this).attr('url');
+			var text = $('#rmsg').val();
+			var tname = $(this).attr('tname');
+			if(text == '' || text=='文明上网，理性发言...')
+			{
+				showErrorMsg('评论内容不能为空！' , '消息提示'); 
+				return false;
+			}
+			else
+			{
+				if(mb_strlen(text) > 1000){
+					showErrorMsg('评论内容不能超过500个汉字' , '消息提示'); 
+					return false;
+				}
+			}
+		    $.ajax({
+		        type: "post",
+			    url: url ,
+			    data: {'bid': bid , 'to' : tid , 'qid' : qid , 'text': text , 'tname' : tname },
+				dataType: 'json',
+			    success: function(data){
+				    if(data.code == 1){
+						var tpl =  '<div class="Blog_right1_8">';
+							tpl+=     '<div class="Blog_right_img1"><a href="' +data.info.url+ '" >' + data.info.header + '</a></div>';
+							tpl+=     '<div class="Blog_right_font1">';
+							tpl+=         '<p class="Blog_p5"><span><a href="' +data.info.url+ '" >' + data.info.username + '</a></span>' + data.info.dateline + '</p>';
+							tpl+=         '<p class="Blog_p7"><a href="' + data.info.quota.url + '">' + data.info.quota.username + '</a>：'+ data.info.quota.content + '</p>';
+							tpl+=         '<p class="Blog_p8">' + data.info.content + '</p><span class="span_text1"><a href="javascript:void(0);" class="Blog_a10" toid=' + data.info.fuid + ' bid=' + data.info.bid + ' cid=' + data.info.cid + '  tname = ' + data.info.username + ' >回复</a> | 　<a class="comment_del_mark" style="cursor:pointer" url="' + data.info.delurl + '" >删除</a>　| 　<a href="javascript:showJuBao(\'/blog/ViewReport.html\','+data.info.cid+')" class="box_report" cid="' + data.info.cid + '" >举报</a></span></div>';
+							tpl+=         '<div class="z_move_comment" style="display:none"></div>';
+							tpl+=	      '<div class="Blog_line1"></div></div>';
+							$('#replyList .Blog_right1_8:first').before(tpl);
+							$('.z_move_comment').html('').hide();
+				    }
+					else if(data.code == -1){
+						//showErrorMsg(data.info , '消息提示'); 
+						showErrorMsg('操作失败,您需要先登录!', '消息提示', '/site/login.html');
+			        }
+                },
+			    error: function(){//请求出错处理
+                        
+                }
+			});
+		});
+		//底部发表评论
+		$('#submitmsg').click(function(){
+			if(allowComment == 1)
+			{
+				showErrorMsg('该博文不允许评论' , '消息提示'); 
+				return false;
+			}
+			var bid   = $(this).attr('bid');
+			var toid  = $(this).attr('toid');
+			var text = $('#reply').val();
+			var url = $(this).attr('url');
+			if(text == '' || text=='文明上网，理性发言...')
+			{
+				showErrorMsg('评论内容不能为空！' , '消息提示'); 
+				return false;
+			}
+			else
+			{
+				if(mb_strlen(text) > 1000){
+					showErrorMsg('评论内容不能超过500个汉字' , '消息提示'); 
+					return false;
+				}
+			}
+		    $.ajax({
+		        type: "post",
+			    url: url ,
+			    data: {'bid': bid , 'to' : toid ,'text': text},
+				dataType: 'json',
+			    success: function(data){
+				    if(data.code == 1)
+					{
+						var tpl   = '<div class="Blog_right1_8">';
+							tpl  +=   '<div class="Blog_right_img1"><a href="' +data.info.url+ '" >' + data.info.header + '</a></div>';
+							tpl  +=	  '<div class="Blog_right_font1">';
+							tpl  +=       '<p class="Blog_p5"><span><a href="' +data.info.url+ '" >' + data.info.username + '</a></span>' + data.info.dateline + '</p>';
+							tpl  +=       '<p class="Blog_p6">' + data.info.content + '</p>';
+							tpl  +=		  '<div class="div1"><a href="javascript:void(0);" class="Blog_a10"  toid=' + data.info.fuid + ' bid=' + data.info.bid + ' cid=' + data.info.cid + '>回复</a> | 　<a class="comment_del_mark" style="cursor:pointer" url="' + data.info.delurl + '">删除</a>　| 　<a href="javascript:showJuBao(\'/blog/ViewReport.html\','+data.info.cid+')" class="box_report" cid="' + data.info.cid + '">举报</a></div>';
+							tpl  +=		  '<div class="z_move_comment" style="display:none"></div>';
+							tpl  +=    '</div><div class="Blog_line1"></div></div>';
+							$('.Blog_tit3:first').after(tpl);
+							$('#reply').val('文明上网，理性发言...');
+					}
+					else if(data.code == -1)
+					{
+						showErrorMsg(data.info , '消息提示'); 
+			        }
+                },
+			    error: function(){//请求出错处理
+                        
+                }
+		    });
+			
+		});
+		//底部评论重置
+		$('#reset_comment').click(function(){
+			$('#reply').val('文明上网，理性发言...');
+		});
+		//取消回复
+		$('#qx_comment').live('click' , function(){
+			$('.z_move_comment').html('').hide();
+		});
+
+
+		$('#rmsg, #reply').live({
+		    focus:function(){
+			    if($(this).val() == '文明上网，理性发言...'){
+			        $(this).val('');
+			    }
+			},
+			blur:function(){
+		        if($(this).val() == ''){
+			        $(this).val('文明上网，理性发言...');
+			    }
+			}
+		});
+		//删除留言确认
+		$('.comment_del_mark').live('click' , function(){
+			var url = $(this).attr('url');
+			asyncbox.confirm('删除留言','确认', function(action){
+				if(action == 'ok')
+				{
+					location.href = url;
+				}
+			});
+		});
+		//删除时间确认
+		$('.del_article_id').click(function(){
+			var delurl = $(this).attr('delurl');
+			asyncbox.confirm('删除文章','确认', function(action){
+				if(action == 'ok')
+				{
+					location.href = delurl;
+				}
+			});
+		});
+		/*
+		//字数限制
+		$('#rmsg, #reply').live('keyup', function(){
+			var id = $(this).attr('id');
+			var left = Util.calWbText($(this).val(), 500);
+			var eid = '#errmsg';
+			
+			if(id == 'reply') eid =  '#rerrmsg';
+			if (left >= 0)
+		        $(eid).html('您还可以输入<span>' + left + '</span>字');
+		    else
+		        $(eid).html('<font color="red">您已超出<span>' + Math.abs(left) + '</span>字 </font>');
+		});
+		*/
+		//加载表情
+	    $('#face').qqFace({id : 'facebox1', assign : 'reply', path : '/image/qqface/'});
+	    $('#mface').qqFace({id : 'facebox', assign : 'rmsg', path:'/image/qqface/'});
+	    
+		/*
+		$('#class_one_id').change(function(){
+			alert(123213);
+			var id = parseInt($(this).val() , 10);
+			if(id == 0) return false;
+			$('.hidden_son_class span').each(function( index , dom ){
+				if( dom.attr('cid')  == id )
+				{
+				}
+			});
+		});
+		*/
+		//转载文章
+		var turn_url = "/blog/viewClassPart.html";
+		$('#repost_bar').click(function(){
+			if(isOnLine == '' )
+			{
+				//showErrorMsg('登录之后才能进行此操作' , '消息提示');
+				showErrorMsg('操作失败,您需要先登录!', '消息提示', '/site/login.html');
+				return false;
+			}
+			var id = $(this).attr('bid');
+			asyncbox.open({
+				id  : 'turn_class_thickbox',
+				url : turn_url,
+				title : '转载文章',
+				width : 330,
+				height : 131,
+				scroll : 'no',
+				data : {
+					'id'	 : id
+				},
+				callback : function(action){
+					if(action == 'close'){
+						$.cover(false);
+					}
+				}
+			});
+		});
+		/*
+	    //转发文章
+	    $('#repost_bar').live('click' , function(){
+			if(isOnLine == '' )
+			{
+				//showErrorMsg('登录之后才能进行此操作' , '消息提示');
+				showErrorMsg('操作失败,您需要先登录!', '消息提示', '/site/login.html');
+				return false;
+			}
+	    	var bid  = $(this).attr('bid');
+	    	var url  = $(this).attr('url');
+	    	asyncbox.confirm('转载文章','确认', function(action){
+	    	  if(action == 'ok'){
+	    	    $.ajax({
+				type:"POST",
+				url:url,	
+				data: {
+					'bid' : bid 
+				},
+				dataType: 'json',
+				success:function(msg){
+				  if(msg.error == 0){
+				    showSucceedMsg('转发成功！', '消息提示');
+				  }else if(msg.error == 1){
+				    //location.href = '/index.php?r=site/login';
+					showErrorMsg('操作失败,您需要先登录!', '消息提示', '/site/login.html');
+				  }else{
+				    showErrorMsg(msg.error_content, '消息提示');
+			      }
+				}
+			  });
+	    	  }
+	    	});
+
+		});
+		*/
+
+	});
+</script>
+<!--该部分应该放在输出代码块的后面才起作用 -->
+<script type="text/javascript">
+
+SyntaxHighlighter.autoloader(
+	'applescript			/highlight/scripts/shBrushAppleScript.js',
+	'actionscript3 as3		/highlight/scripts/shBrushAS3.js',
+	'bash shell				/highlight/scripts/shBrushBash.js',
+	'coldfusion cf			/highlight/scripts/shBrushColdFusion.js',
+	'cpp c					/highlight/scripts/shBrushCpp.js',
+	'c# c-sharp csharp		/highlight/scripts/shBrushCSharp.js',
+	'css					/highlight/scripts/shBrushCss.js',
+	'delphi pascal			/highlight/scripts/shBrushDelphi.js',
+	'diff patch pas			/highlight/scripts/shBrushDiff.js',
+	'erl erlang				/highlight/scripts/shBrushErlang.js',
+	'groovy					/highlight/scripts/shBrushGroovy.js',
+	'java					/highlight/scripts/shBrushJava.js',
+	'jfx javafx				/highlight/scripts/shBrushJavaFX.js',
+	'js jscript javascript	/highlight/scripts/shBrushJScript.js',
+	'perl pl				/highlight/scripts/shBrushPerl.js',
+	'php					/highlight/scripts/shBrushPhp.js',
+	'text plain				/highlight/scripts/shBrushPlain.js',
+	'py python				/highlight/scripts/shBrushPython.js',
+	'ruby rails ror rb		/highlight/scripts/shBrushRuby.js',
+	'scala					/highlight/scripts/shBrushScala.js',
+	'sql					/highlight/scripts/shBrushSql.js',
+	'vb vbnet				/highlight/scripts/shBrushVb.js',
+	'xml xhtml xslt html	/highlight/scripts/shBrushXml.js'
+);
+SyntaxHighlighter.all();
+
+
+function code_hide(id){
+	var code = document.getElementById(id).style.display;
+	if(code == 'none'){
+		document.getElementById(id).style.display = 'block';
+	}else{
+		document.getElementById(id).style.display = 'none';
+	}
+}
+</script>
+<!--回顶部js2011.12.30-->
+<script language="javascript">
+ lastScrollY=0;
+ function heartBeat(){
+ var diffY;
+ if (document.documentElement && document.documentElement.scrollTop)
+     diffY = document.documentElement.scrollTop;
+ else if (document.body)
+     diffY = document.body.scrollTop
+ else
+     {/*Netscape stuff*/}
+ percent=.1*(diffY-lastScrollY);
+ if(percent>0)percent=Math.ceil(percent);
+ else percent=Math.floor(percent);
+ document.getElementById("full").style.top=parseInt(document.getElementById("full").style.top)+percent+"px";
+ lastScrollY=lastScrollY+percent;
+ if(lastScrollY<200)
+ {
+ document.getElementById("full").style.display="none";
+ }
+ else
+ {
+ document.getElementById("full").style.display="block";
+ }
+ }
+ var gkuan=document.body.clientWidth;
+ var ks=(gkuan-960)/2-30;
+ suspendcode="<div id=\"full\" style='right:4px;POSITION:absolute;TOP:500px;z-index:100;width:20px; height:50px;cursor:pointer;'><a href=\"javascript:void(0)\" onclick=\"window.scrollTo(0,0);\"><img src=\"\/image\/top.png\" /></a></div>"
+ document.write(suspendcode);
+ window.setInterval("heartBeat()",1);
+ </script><div id="full" style="right: 4px; position: absolute; top: 500px; z-index: 100; width: 20px; height: 50px; cursor: pointer; display: none;"><a href="javascript:void(0)" onclick="window.scrollTo(0,0);"><img src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/top.png"></a></div>  <!-- footer -->
+  <div class="Blog_footer" style="clear:both">
+    <div><a href="http://www.chinaunix.net/about/index.shtml" target="_blank" rel="nofollow">关于我们</a> | <a href="http://www.it168.com/bottomfile/it168.shtml" target="_blank" rel="nofollow">关于IT168</a> | <a href="http://www.chinaunix.net/about/connect.html" target="_blank" rel="nofollow">联系方式</a> | <a href="http://www.chinaunix.net/about/service.html" target="_blank" rel="nofollow">广告合作</a> | <a href="http://www.it168.com//bottomfile/flgw/fl.htm" target="_blank" rel="nofollow">法律声明</a> | <a href="http://sso.chinaunix.net/Register?return_url=http%3A%2F%2Fblog.chinaunix.net%2F" target="_blank" rel="nofollow">免费注册</a>
+      <p>Copyright  2001-2010 ChinaUnix.net All Rights Reserved 北京皓辰网域网络信息技术有限公司. 版权所有 </p>
+      <div>感谢所有关心和支持过ChinaUnix的朋友们
+        <p>京ICP证041476号 京ICP证060528号</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script language="javascript">
+
+//全局错误提示弹出框
+function showErrorMsg(content, title, url){
+	var url = url || '';
+	var title = title || '消息提示';
+	var html = '';
+	html += '<div class="HT_layer3_1 HT_layer3_2"><ul><li><p><span class="login_span1"></span>' + content + '</p></li>';
+	if(url == '' || url.length == 0){
+		html += '<li class="HT_li1"><input type="button" class="HT_btn2"  onclick=\'close_windows("error_msg")\'></li>';	
+	} else {
+		html += '<li class="HT_li1"><input type="button" class="login_btn1" onclick="location.href=\'' + url + '\'"></li>';
+	}
+	html += '</ul></div>';
+	$.cover(true);
+	   asyncbox.open({
+		 id: 'error_msg',
+		 title : title,
+		 html : html,
+		 'callback' : function(action){
+			 if(action == 'close'){
+				 $.cover(false);
+			 }
+		 }
+	});
+}
+
+//全局正确提示
+function showSucceedMsg(content, title , url ){
+	var url = url || '';
+	var title = title || '消息提示';
+	var html = '';
+	html += '<div class="HT_layer3_1 HT_layer3_2"><ul><li><p><span class="login_span2"></span>' + content + '</p></li>';
+	if(url == '' || url.length == 0){
+		html += '<li class="HT_li1"><input type="button" class="HT_btn2"  onclick=\'close_windows("error_msg")\'></li>';	
+	} else {
+		html += '<li class="HT_li1"><input type="button" class="HT_btn2" onclick="location.href=\'' + url + '\'"></li>';
+	}
+	html += '</ul></div>';
+	$.cover(true);
+	asyncbox.open({
+		 id: 'error_msg',
+		 title : title,
+		 html : html,
+		 'callback' : function(action){
+			 if(action == 'close'){
+				 $.cover(false);
+			 }
+		 }
+	});
+}
+
+//关闭指定id的窗口
+function close_windows(id){
+	$.cover(false);
+	$.close(id);
+}
+
+
+//公告
+var tID;
+var tn;                        // 高度
+var nStopTime = 5000;        // 不同行间滚动时间隔的时间，值越小，移动越快
+var nSpeed = 50;            // 滚动时，向上移动一像素间隔的时间，值越小，移动越快
+var isMove = true;
+var nHeight = 25;
+var nS = 0;
+var nNewsCount = 3;
+
+/**
+ * n 用于表示是否为第一次运行
+ **/
+function moveT(n)
+{
+    clearTimeout(tID)
+    var noticev2 = document.getElementById("noticev2")
+    nS = nSpeed;
+    
+    // 只在第一次调用时运行，初始化环境（有没有参数）
+    if (n)
+    {
+        // 设置行高
+        noticev2.style.lineHeight = nHeight + "px";
+        // 初始化显示位置
+        tn = 0;
+        // 刚进入时在第一行停止时间
+        nS = nStopTime;
+    }
+    
+    // 判断鼠标是否指向层
+    if (isMove)
+    {
+        // 向上移动一像素
+        tn--;
+        // 如果移动到最下面一行了，则移到顶行
+        if (Math.abs(tn) == nNewsCount * nHeight)
+        {
+            tn = 0;
+        }
+        // 设置位置
+        noticev2.style.marginTop = tn + "px";
+        // 完整显示一行时，停止一段时间
+        if (tn % nHeight == 0)
+        {
+            nS = nStopTime;
+        }
+    }
+
+    tID = setTimeout("moveT()", nS);
+}
+moveT(1);    // 此处可以传入任何参数
+</script>
+<script language="javascript" src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/pv.js"></script>
+<script>
+function sendPV(){
+    var pvTrack = new PvTrack();
+    pvTrack.type = 35; // 频道类别ID
+    pvTrack.channel = 189; // 频道ID
+    pvTrack.pageType = 0;
+    pvTrack.track();
+}
+window.setTimeout("sendPV()", 1000);
+</script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20237423-2']);
+  _gaq.push(['_setDomainName', '.chinaunix.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F0ee5e8cdc4d43389b3d1bfd76e83216b' type='text/javascript'%3E%3C/script%3E"));
+
+function linkto(){
+    setCookie("returnUrl", location.href, 1464190852, "/");
+}
+function linktoOut(){
+    setCookie("returnOutUrl", location.href, 1464190852, "/");
+}
+//JS写COOKIE
+function setCookie(name, value, expires, path, domain){
+	if(!arguments[2]) expires = 3600 * 24;
+	if(!arguments[3]) path = "";
+	if(!arguments[4]) domain = "";
+	var str=name+"="+escape(value);
+	if(expires!=""){
+		var date=new Date();
+		date.setTime(date.getTime()+expires*1000);
+		str+=";expires="+date.toGMTString();
+	}
+	if(path!=""){
+		str+=";path="+path;//指定可访问cookie的目录
+	}
+	if(domain!=""){
+		str+=";domain="+domain;//指定可访问cookie的域
+	}
+	document.cookie = str;
+}
+
+</script><script src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/h.js" type="text/javascript"></script>
+<script type="text/javascript" src="./Android中JNI编程详解-nice_future-ChinaUnix博客_files/jquery.qqFace.js"></script>
+
+
+<div id="asyncbox_cover" unselectable="on" style="opacity:0.1;filter:alpha(opacity=10);background:#000"></div><div id="asyncbox_clone"></div><div id="asyncbox_focus"></div><div id="asyncbox_load"><div><span></span></div></div></body></html>

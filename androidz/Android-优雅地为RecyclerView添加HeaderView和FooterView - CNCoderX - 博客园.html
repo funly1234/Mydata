@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)https://www.cnblogs.com/canf963/p/7681608.html -->
+<html lang="zh-cn" style="color: rgb(0, 0, 0); background-color: rgb(204, 232, 207);"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/bundle-ChinaHeart.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/bundle-ChinaHeart-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/canf963/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/canf963/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/canf963/wlwmanifest.xml">
+<script async="" src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/analytics.js"></script><script type="text/javascript" src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/encoder.js"></script><script src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/jquery-2.2.0.min.js"></script>
+<script type="text/javascript">var currentBlogApp = 'canf963', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(204, 232, 207);">
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/canf963/"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/canf963/">残风的追逐</a></h1>
+<h2>Github主页：https://github.com/CNCoderX</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<!--done-->
+			<ul id="navList">
+				<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+				<li><a id="MyLinks1_SpaceLink" class="menu" href="http://home.cnblogs.com/">园子</a></li>
+				<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/canf963/">首页</a></li>
+				<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+				<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/CNCoderX">联系</a></li>
+				<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+				<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/canf963/rss">订阅</a>
+				<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/canf963/rss"><img src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/xml.gif" alt="订阅"></a></li>
+			</ul>
+
+
+		<div class="clear"></div>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔- 3&nbsp;
+文章- 0&nbsp;
+评论- 1&nbsp;
+</div>			
+						
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="topicList">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/canf963/p/7681608.html">Android-优雅地为RecyclerView添加HeaderView和FooterView</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>怎么给RecycerView添加Header/FooterView？答案在网上一搜一大把，实现原理大体相同。我第一次实现这种功能，参考了ListView的方式，使用代理模式设计一个代理类，代理RecyclerView.Adapter的所有行为。并且添加Header和Footer的功能都在代理类里面实现。</p>
+<p>新建Adapter代理类ProxyAdapter，继承RecyclerView.Adapter，将Adapter通过构造方法传递给ProxyAdapter。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> ProxyAdapter <span style="color: #0000ff">extends</span><span style="color: #000000"> RecyclerView.Adapter {
+    </span><span style="color: #0000ff">final</span><span style="color: #000000"> RecyclerView.Adapter mAdapter;
+    </span><span style="color: #008000">//</span><span style="color: #008000"> ......</span>
+    
+    <span style="color: #0000ff">public</span><span style="color: #000000"> ProxyAdapter(RecyclerView.Adapter adapter) {
+        </span><span style="color: #0000ff">if</span> (adapter == <span style="color: #0000ff">null</span><span style="color: #000000">) {
+            </span><span style="color: #0000ff">throw</span> <span style="color: #0000ff">new</span><span style="color: #000000"> IllegalArgumentException();
+        }
+        mAdapter </span>=<span style="color: #000000"> adapter;
+    }
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>创建两个数组容器分别存储HeaderView和FooterView，并增加add/remove方法用来添加和删除Header/FooterView。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>List&lt;View&gt; mHeaderViews = <span style="color: #0000ff">new</span> ArrayList&lt;&gt;<span style="color: #000000">();
+List</span>&lt;View&gt; mFooterViews = <span style="color: #0000ff">new</span> ArrayList&lt;&gt;<span style="color: #000000">();
+
+</span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> addHeaderView(View view) {
+　　</span><span style="color: #0000ff">if</span><span style="color: #000000"> (mHeaderViews.add(view)) {
+　　　　mAdapter.notifyDataSetChanged();
+　　}
+}
+
+</span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> removeHeaderView(View view) {
+　　</span><span style="color: #0000ff">if</span><span style="color: #000000"> (mHeaderViews.remove(view)) {
+　　　　mAdapter.notifyDataSetChanged();
+　　}
+}
+
+</span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> addFooterView(View view) {
+　　</span><span style="color: #0000ff">if</span><span style="color: #000000"> (mFooterViews.add(view)) {
+　　　　mAdapter.notifyDataSetChanged();
+　　}
+}
+
+</span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> removeFooterView(View view) {
+　　</span><span style="color: #0000ff">if</span><span style="color: #000000"> (mFooterViews.remove(view)) {
+　　　　mAdapter.notifyDataSetChanged();
+　　}
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>重写ProxyAdapter的getItemCount()和getItemViewType(int position)方法， 为HeaderView和FooterView分配独立的ViewType。如果ItemView的当前位置position小于headerView的数量时，ItemView为HEADER类型。如果position大于等于headerView数量和adapter的item数量时，ItemView为FOOTER类型。通过ViewTypeSpec工具，将算出来的ItemView类型和Header/FooterView的索引位置（在容器中的位置）打包成一个整型结果，作为ItemViewType返回。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000">@Override
+</span><span style="color: #0000ff">public</span> <span style="color: #0000ff">int</span><span style="color: #000000"> getItemCount() {
+　　</span><span style="color: #0000ff">return</span> mHeaderViews.size() + mFooterViews.size() +<span style="color: #000000"> mAdapter.getItemCount();
+}
+
+@Override
+</span><span style="color: #0000ff">public</span> <span style="color: #0000ff">int</span> getItemViewType(<span style="color: #0000ff">int</span><span style="color: #000000"> position) {
+　　</span><span style="color: #0000ff">final</span> <span style="color: #0000ff">int</span> numHeaderView =<span style="color: #000000"> mHeaderViews.size();
+</span><span style="color: #008000">//</span><span style="color: #008000">　　final int numFooterView = mFooterViewInfos.size();</span>
+
+　　<span style="color: #0000ff">if</span> (position &lt;<span style="color: #000000"> numHeaderView)
+　　　　</span><span style="color: #0000ff">return</span><span style="color: #000000"> ViewTypeSpec.makeItemViewTypeSpec(position, ViewTypeSpec.HEADER);
+
+　　</span><span style="color: #0000ff">final</span> <span style="color: #0000ff">int</span> adjPosition = position -<span style="color: #000000"> numHeaderView;
+　　</span><span style="color: #0000ff">final</span> <span style="color: #0000ff">int</span> itemCount =<span style="color: #000000"> mAdapter.getItemCount();
+　　</span><span style="color: #0000ff">if</span> (adjPosition &gt;=<span style="color: #000000"> itemCount)
+　　　　</span><span style="color: #0000ff">return</span> ViewTypeSpec.makeItemViewTypeSpec(adjPosition -<span style="color: #000000"> itemCount, ViewTypeSpec.FOOTER);
+
+　　</span><span style="color: #0000ff">int</span> itemViewType =<span style="color: #000000"> mAdapter.getItemViewType(adjPosition);
+　　</span><span style="color: #0000ff">if</span> (itemViewType &lt; 0 || itemViewType &gt; (1 &lt;&lt; ViewTypeSpec.TYPE_SHIFT) - 1<span style="color: #000000">) {
+　　　　</span><span style="color: #0000ff">throw</span> <span style="color: #0000ff">new</span> IllegalArgumentException("Invalid item view type: RecyclerView.Adapter.getItemViewType return " +<span style="color: #000000"> itemViewType);
+　　}
+　　</span><span style="color: #0000ff">return</span><span style="color: #000000"> itemViewType;
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>接下来重写<span>onCreateViewHolder</span>方法。需要实现的逻辑是通过ViewTypeSpec工具分离viewType，得到ItemView的类型(type)和索引位置(value)。根据类型type创建匹配的ViewHolder，根据索引位置从数组容器中获取Header/FooterView</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000">@Override
+</span><span style="color: #0000ff">public</span> RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, <span style="color: #0000ff">int</span><span style="color: #000000"> viewType) {
+　　RecyclerView.ViewHolder viewHolder;
+</span><span style="color: #0000ff">　　final</span> <span style="color: #0000ff">int</span> type =<span style="color: #000000"> ViewTypeSpec.getType(viewType);
+</span><span style="color: #0000ff">　　final</span> <span style="color: #0000ff">int</span> value =<span style="color: #000000"> ViewTypeSpec.getValue(viewType);
+
+</span><span style="color: #0000ff">　　if</span> (type ==<span style="color: #000000"> ViewTypeSpec.HEADER) {
+　　　　viewHolder </span>= <span style="color: #0000ff">new</span><span style="color: #000000"> FixedViewHolder(mHeaderViews.get(value));
+　　} </span><span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span> (type ==<span style="color: #000000"> ViewTypeSpec.FOOTER) {
+　　　　viewHolder </span>= <span style="color: #0000ff">new</span><span style="color: #000000"> FixedViewHolder(mFooterViews.get(value));
+　　} </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+　　　　viewHolder </span>=<span style="color: #000000"> mAdapter.onCreateViewHolder(parent, viewType);
+　　}
+　　</span><span style="color: #0000ff">return</span><span style="color: #000000"> viewHolder;
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>大致实现流程就是这样，下面是ProxyAdapter的使用。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000">@Override
+</span><span style="color: #0000ff">protected</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onCreate(Bundle savedInstanceState) {
+    </span><span style="color: #0000ff">super</span><span style="color: #000000">.onCreate(savedInstanceState);<br>　　// ......<br>
+　　mRecyclerView </span>=<span style="color: #000000"> (RecyclerView) findViewById(R.id.recycler_view);
+　　ContactAdapter adapter </span>= <span style="color: #0000ff">new</span><span style="color: #000000"> ContactAdapter();
+　　// ......</span><span style="color: #000000">
+        
+   ProxyAdapter proxyAdapter </span>= <span style="color: #0000ff">new</span><span style="color: #000000"> ProxyAdapter(adapter);
+   mRecyclerView.setAdapter(proxyAdapter)<br>}<br><br></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>最后需要注意的是，如果列表数据需要刷新，调用的是ContactAdapter的<span>notifyDataSetChanged()而不是ProxyAdapter的notifyDataSetChanged()。否则不会有刷新效果。</span></p>
+<p>&nbsp;</p>
+<p><span>全部代码：</span></p>
+<div class="cnblogs_code"><img id="code_img_closed_fc65cd63-e37c-406b-9711-2b4572d44dca" class="code_img_closed" src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/ContractedBlock.gif" alt="" style="display: none;"><img id="code_img_opened_fc65cd63-e37c-406b-9711-2b4572d44dca" class="code_img_opened" style="" src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_fc65cd63-e37c-406b-9711-2b4572d44dca" class="cnblogs_code_hide" style="display: block;"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff">package</span><span style="color: #000000"> cncoderx.myapplication.recyclerviewhelper;
+
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> android.support.annotation.IntDef;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> android.support.annotation.IntRange;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> android.support.v7.widget.RecyclerView;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> android.view.View;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> android.view.ViewGroup;
+
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> java.lang.annotation.Retention;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> java.lang.annotation.RetentionPolicy;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> java.util.ArrayList;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> java.util.List;
+
+</span><span style="color: #008000">/**</span><span style="color: #008000">
+ * </span><span style="color: #808080">@author</span><span style="color: #008000"> cncoderx
+ </span><span style="color: #008000">*/</span>
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> ProxyAdapter <span style="color: #0000ff">extends</span><span style="color: #000000"> RecyclerView.Adapter {
+    List</span>&lt;View&gt; mHeaderViews = <span style="color: #0000ff">new</span> ArrayList&lt;&gt;<span style="color: #000000">();
+    List</span>&lt;View&gt; mFooterViews = <span style="color: #0000ff">new</span> ArrayList&lt;&gt;<span style="color: #000000">();
+
+    </span><span style="color: #0000ff">final</span><span style="color: #000000"> RecyclerView.Adapter mAdapter;
+
+    </span><span style="color: #0000ff">public</span><span style="color: #000000"> ProxyAdapter(RecyclerView.Adapter adapter) {
+        </span><span style="color: #0000ff">if</span> (adapter == <span style="color: #0000ff">null</span><span style="color: #000000">) {
+            </span><span style="color: #0000ff">throw</span> <span style="color: #0000ff">new</span><span style="color: #000000"> IllegalArgumentException();
+        }
+        mAdapter </span>=<span style="color: #000000"> adapter;
+        setHasStableIds(adapter.hasStableIds());
+    }
+
+    @Override
+    </span><span style="color: #0000ff">public</span> RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, <span style="color: #0000ff">int</span><span style="color: #000000"> viewType) {
+        RecyclerView.ViewHolder viewHolder;
+        </span><span style="color: #0000ff">final</span> <span style="color: #0000ff">int</span> type =<span style="color: #000000"> ViewTypeSpec.getType(viewType);
+        </span><span style="color: #0000ff">final</span> <span style="color: #0000ff">int</span> value =<span style="color: #000000"> ViewTypeSpec.getValue(viewType);
+
+        </span><span style="color: #0000ff">if</span> (type ==<span style="color: #000000"> ViewTypeSpec.HEADER) {
+            viewHolder </span>= <span style="color: #0000ff">new</span><span style="color: #000000"> FixedViewHolder(mHeaderViews.get(value));
+        } </span><span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span> (type ==<span style="color: #000000"> ViewTypeSpec.FOOTER) {
+            viewHolder </span>= <span style="color: #0000ff">new</span><span style="color: #000000"> FixedViewHolder(mFooterViews.get(value));
+        } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+            viewHolder </span>=<span style="color: #000000"> mAdapter.onCreateViewHolder(parent, viewType);
+        }
+        </span><span style="color: #0000ff">return</span><span style="color: #000000"> viewHolder;
+    }
+
+    @Override
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> onBindViewHolder(RecyclerView.ViewHolder holder, <span style="color: #0000ff">int</span><span style="color: #000000"> position) {
+        </span><span style="color: #0000ff">if</span> (holder <span style="color: #0000ff">instanceof</span><span style="color: #000000"> FixedViewHolder) {
+            ((FixedViewHolder) holder).onBind();
+        } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+            </span><span style="color: #0000ff">int</span> adjPosition = position -<span style="color: #000000"> mHeaderViews.size();
+            mAdapter.onBindViewHolder(holder, adjPosition);
+        }
+    }
+
+    @Override
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">int</span><span style="color: #000000"> getItemCount() {
+        </span><span style="color: #0000ff">return</span> mHeaderViews.size() + mFooterViews.size() +<span style="color: #000000"> mAdapter.getItemCount();
+    }
+
+    @Override
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">int</span> getItemViewType(<span style="color: #0000ff">int</span><span style="color: #000000"> position) {
+        </span><span style="color: #0000ff">final</span> <span style="color: #0000ff">int</span> numHeaderView =<span style="color: #000000"> mHeaderViews.size();
+</span><span style="color: #008000">//</span><span style="color: #008000">        final int numFooterView = mFooterViewInfos.size();</span>
+
+        <span style="color: #0000ff">if</span> (position &lt;<span style="color: #000000"> numHeaderView)
+            </span><span style="color: #0000ff">return</span><span style="color: #000000"> ViewTypeSpec.makeItemViewTypeSpec(position, ViewTypeSpec.HEADER);
+
+        </span><span style="color: #0000ff">final</span> <span style="color: #0000ff">int</span> adjPosition = position -<span style="color: #000000"> numHeaderView;
+        </span><span style="color: #0000ff">final</span> <span style="color: #0000ff">int</span> itemCount =<span style="color: #000000"> mAdapter.getItemCount();
+        </span><span style="color: #0000ff">if</span> (adjPosition &gt;=<span style="color: #000000"> itemCount)
+            </span><span style="color: #0000ff">return</span> ViewTypeSpec.makeItemViewTypeSpec(adjPosition -<span style="color: #000000"> itemCount, ViewTypeSpec.FOOTER);
+
+        </span><span style="color: #0000ff">int</span> itemViewType =<span style="color: #000000"> mAdapter.getItemViewType(adjPosition);
+        </span><span style="color: #0000ff">if</span> (itemViewType &lt; 0 || itemViewType &gt; (1 &lt;&lt; ViewTypeSpec.TYPE_SHIFT) - 1<span style="color: #000000">) {
+            </span><span style="color: #0000ff">throw</span> <span style="color: #0000ff">new</span> IllegalArgumentException("Invalid item view type: RecyclerView.Adapter.getItemViewType return " +<span style="color: #000000"> itemViewType);
+        }
+        </span><span style="color: #0000ff">return</span><span style="color: #000000"> itemViewType;
+    }
+
+    @Override
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onDetachedFromRecyclerView(RecyclerView recyclerView) {
+        mAdapter.onDetachedFromRecyclerView(recyclerView);
+    }
+
+    @Override
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onAttachedToRecyclerView(RecyclerView recyclerView) {
+        mAdapter.onAttachedToRecyclerView(recyclerView);
+    }
+
+    @Override
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> unregisterAdapterDataObserver(RecyclerView.AdapterDataObserver observer) {
+        mAdapter.unregisterAdapterDataObserver(observer);
+    }
+
+    @Override
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> registerAdapterDataObserver(RecyclerView.AdapterDataObserver observer) {
+        mAdapter.registerAdapterDataObserver(observer);
+    }
+
+    @Override
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onViewDetachedFromWindow(RecyclerView.ViewHolder holder) {
+        </span><span style="color: #0000ff">if</span> (holder <span style="color: #0000ff">instanceof</span> FixedViewHolder) <span style="color: #0000ff">return</span><span style="color: #000000">;
+        mAdapter.onViewDetachedFromWindow(holder);
+    }
+
+    @Override
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
+        </span><span style="color: #0000ff">if</span> (holder <span style="color: #0000ff">instanceof</span> FixedViewHolder) <span style="color: #0000ff">return</span><span style="color: #000000">;
+        mAdapter.onViewAttachedToWindow(holder);
+    }
+
+    @Override
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">boolean</span><span style="color: #000000"> onFailedToRecycleView(RecyclerView.ViewHolder holder) {
+        </span><span style="color: #0000ff">if</span> (holder <span style="color: #0000ff">instanceof</span> FixedViewHolder) <span style="color: #0000ff">return</span> <span style="color: #0000ff">false</span><span style="color: #000000">;
+        </span><span style="color: #0000ff">return</span><span style="color: #000000"> mAdapter.onFailedToRecycleView(holder);
+    }
+
+    @Override
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onViewRecycled(RecyclerView.ViewHolder holder) {
+        </span><span style="color: #0000ff">if</span> (holder <span style="color: #0000ff">instanceof</span> FixedViewHolder) <span style="color: #0000ff">return</span><span style="color: #000000">;
+        mAdapter.onViewRecycled(holder);
+    }
+
+    @Override
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">long</span> getItemId(<span style="color: #0000ff">int</span><span style="color: #000000"> position) {
+        </span><span style="color: #0000ff">int</span> adjPosition = position -<span style="color: #000000"> mHeaderViews.size();
+        </span><span style="color: #0000ff">if</span> (adjPosition &gt;= 0 &amp;&amp; adjPosition &lt;<span style="color: #000000"> mAdapter.getItemCount())
+            </span><span style="color: #0000ff">return</span><span style="color: #000000"> mAdapter.getItemId(adjPosition);
+
+        </span><span style="color: #0000ff">return</span><span style="color: #000000"> RecyclerView.NO_ID;
+    }
+
+    </span><span style="color: #0000ff">private</span> <span style="color: #0000ff">boolean</span> isFixedViewType(<span style="color: #0000ff">int</span><span style="color: #000000"> viewType) {
+        </span><span style="color: #0000ff">final</span> <span style="color: #0000ff">int</span> type =<span style="color: #000000"> ViewTypeSpec.getType(viewType);
+        </span><span style="color: #0000ff">return</span> type == ViewTypeSpec.HEADER || type ==<span style="color: #000000"> ViewTypeSpec.FOOTER;
+    }
+
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> addHeaderView(View view) {
+        </span><span style="color: #0000ff">if</span><span style="color: #000000"> (mHeaderViews.add(view)) {
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> removeHeaderView(View view) {
+        </span><span style="color: #0000ff">if</span><span style="color: #000000"> (mHeaderViews.remove(view)) {
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> addFooterView(View view) {
+        </span><span style="color: #0000ff">if</span><span style="color: #000000"> (mFooterViews.add(view)) {
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> removeFooterView(View view) {
+        </span><span style="color: #0000ff">if</span><span style="color: #000000"> (mFooterViews.remove(view)) {
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    </span><span style="color: #0000ff">static</span> <span style="color: #0000ff">class</span><span style="color: #000000"> ViewTypeSpec {
+        </span><span style="color: #0000ff">static</span> <span style="color: #0000ff">final</span> <span style="color: #0000ff">int</span> TYPE_SHIFT = 30<span style="color: #000000">;
+        </span><span style="color: #0000ff">static</span> <span style="color: #0000ff">final</span> <span style="color: #0000ff">int</span> TYPE_MASK  = 0x3 &lt;&lt;<span style="color: #000000"> TYPE_SHIFT;
+
+        </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #0000ff">final</span> <span style="color: #0000ff">int</span> UNSPECIFIED = 0 &lt;&lt;<span style="color: #000000"> TYPE_SHIFT;
+        </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #0000ff">final</span> <span style="color: #0000ff">int</span> HEADER = 1 &lt;&lt;<span style="color: #000000"> TYPE_SHIFT;
+        </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #0000ff">final</span> <span style="color: #0000ff">int</span> FOOTER = 2 &lt;&lt;<span style="color: #000000"> TYPE_SHIFT;
+
+        @IntDef({UNSPECIFIED, HEADER, FOOTER})
+        @Retention(RetentionPolicy.SOURCE)
+        </span><span style="color: #0000ff">public</span> @<span style="color: #0000ff">interface</span><span style="color: #000000"> ViewTypeSpecMode {}
+
+        </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #0000ff">int</span> makeItemViewTypeSpec(@IntRange(from = 0, to = (1 &lt;&lt; TYPE_SHIFT) - 1) <span style="color: #0000ff">int</span><span style="color: #000000"> value,
+                                               @ViewTypeSpecMode </span><span style="color: #0000ff">int</span><span style="color: #000000"> type) {
+            </span><span style="color: #0000ff">return</span> (value &amp; ~TYPE_MASK) | (type &amp;<span style="color: #000000"> TYPE_MASK);
+        }
+
+        @ViewTypeSpecMode
+        </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #0000ff">int</span> getType(<span style="color: #0000ff">int</span><span style="color: #000000"> viewType) {
+            </span><span style="color: #008000">//</span><span style="color: #008000">noinspection ResourceType</span>
+            <span style="color: #0000ff">return</span> (viewType &amp;<span style="color: #000000"> TYPE_MASK);
+        }
+
+        </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #0000ff">int</span> getValue(<span style="color: #0000ff">int</span><span style="color: #000000"> viewType) {
+            </span><span style="color: #0000ff">return</span> (viewType &amp; ~<span style="color: #000000">TYPE_MASK);
+        }
+    }
+
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #0000ff">class</span> FixedViewHolder <span style="color: #0000ff">extends</span><span style="color: #000000"> RecyclerView.ViewHolder {
+
+        </span><span style="color: #0000ff">public</span><span style="color: #000000"> FixedViewHolder(View itemView) {
+            </span><span style="color: #0000ff">super</span><span style="color: #000000">(itemView);
+            setIsRecyclable(</span><span style="color: #0000ff">false</span><span style="color: #000000">);
+        }
+
+        </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onBind() {
+
+        }
+    }
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<span class="cnblogs_code_collapse" style="display: none;">View Code</span></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px">需要了解更多RecyclerView的功能，请访问<a href="https://github.com/CNCoderX/RecyclerViewHelper" target="_blank">RecyclerViewHelper</a>。</span></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(7681608,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;fb463475-2a6f-e511-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/canf963/" target="_blank"><img src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/20171017165207.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/canf963/">CNCoderX</a><br>
+            <a href="http://home.cnblogs.com/u/canf963/followees">关注 - 0</a><br>
+            <a href="http://home.cnblogs.com/u/canf963/followers">粉丝 - 1</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;fb463475-2a6f-e511-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(7681608,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(7681608,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/canf963/p/7541509.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/canf963/p/7541509.html" title="发布于2017-09-18 09:18">Android-仿IOS滚轮选择器</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2017-10-17 16:33</span> <a href="http://www.cnblogs.com/canf963/">CNCoderX</a> 阅读(<span id="post_view_count">331</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=7681608" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/canf963/p/7681608.html#" onclick="AddToWz(7681608);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=248604,cb_entryId=7681608,cb_blogApp=currentBlogApp,cb_blogUserGuid='fb463475-2a6f-e511-9fc1-ac853d9f53cc',cb_entryCreatedDate='2017/10/17 16:33:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/canf963/p/7681608.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/canf963/p/7681608.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】超50万VC++源码: 大型工控、组态\仿真、建模CAD源码2018！</a><br><a href="https://www.cnblogs.com/cmt/p/8505033.html" target="_blank">【活动】世界各地的青年团体，将在 2050 握手团聚</a><br><a href="https://dnspod.cloud.tencent.com/act/yearendsales?from=IT&amp;fromSource=gwzcw.781137.781137.781137" target="_blank">【抢购】新注册用户域名抢购1元起</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://dnspod.cloud.tencent.com/act/weapp?fromSource=gwzcw.781158.781158.781158" target="_blank"><img width="300" height="250" src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/24442-20180228164005211-881957482.jpg" alt="tencent0228"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/590988/" target="_blank">16岁赚到 20万美元，我是怎么做到的？</a><br> ·  <a href="https://news.cnblogs.com/n/591015/" target="_blank">融资8.18亿美金后，张颖对话杨浩涌：让时间解决一切，包括对手</a><br> ·  <a href="https://news.cnblogs.com/n/590995/" target="_blank">智能驾驶测试道路实地探查：行人闯红灯、电瓶车抢道，咋办？</a><br> ·  <a href="https://news.cnblogs.com/n/591021/" target="_blank">富士康光速级IPO：特事特办，从申报到上市或仅2个月</a><br> ·  <a href="https://news.cnblogs.com/n/591006/" target="_blank">将配送费提到15元的京东 对得起PLUS会员吗？</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/34770/" target="_blank"><img width="468" height="60" src="./Android-优雅地为RecyclerView添加HeaderView和FooterView - CNCoderX - 博客园_files/24442-20171208101900738-116140477.jpg" alt="阿里云C2-1208"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/575255/" target="_blank">写给自学者的入门指南</a><br> ·  <a href="http://kb.cnblogs.com/page/578690/" target="_blank">和程序员谈恋爱</a><br> ·  <a href="http://kb.cnblogs.com/page/585734/" target="_blank">学会学习</a><br> ·  <a href="http://kb.cnblogs.com/page/588938/" target="_blank">优秀技术人的管理陷阱</a><br> ·  <a href="http://kb.cnblogs.com/page/590141/" target="_blank">作为一个程序员，数学对你到底有多重要</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: topicList 文章列表容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/canf963/">CNCoderX</a><br>园龄：<a href="https://home.cnblogs.com/u/canf963/" title="入园时间：2015-10-10">2年4个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/canf963/followers/">1</a><br>关注：<a href="https://home.cnblogs.com/u/canf963/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;fb463475-2a6f-e511-9fc1-ac853d9f53cc&#39;)">+加关注</a></div><script>getFollowStatus('fb463475-2a6f-e511-9fc1-ac853d9f53cc')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/02/01&#39;);return false;">&lt;</a></td><td align="center">2018年3月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/04/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td align="center">1</td><td align="center">2</td><td class="CalWeekendDay" align="center">3</td></tr><tr><td class="CalWeekendDay" align="center">4</td><td class="CalTodayDay" align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td class="CalWeekendDay" align="center">10</td></tr><tr><td class="CalWeekendDay" align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td class="CalWeekendDay" align="center">17</td></tr><tr><td class="CalWeekendDay" align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td class="CalWeekendDay" align="center">24</td></tr><tr><td class="CalWeekendDay" align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalWeekendDay" align="center">31</td></tr><tr><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/canf963/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/canf963/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/canf963/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/canf963/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/canf963/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="https://www.cnblogs.com/canf963/p/7681608.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/canf963/tag/%E7%BD%91%E7%BB%9C%E5%AF%B9%E8%AE%B2%E6%9C%BA/">网络对讲机</a>(1)</li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/canf963/archive/2017/10.html">2017年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/canf963/archive/2017/09.html">2017年9月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/canf963/archive/2015/10.html">2015年10月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/canf963/p/4875228.html#3678652">1. Re:Android网络对讲机的实现</a></li>
+        <li class="recent_comment_body">如果直接用UDP发好像是不用解码的,但怎么发文件啊</li>
+        <li class="recent_comment_author">--小小程序员12</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/canf963/p/4875228.html">1. Android网络对讲机的实现(3771)</a></li><li><a href="http://www.cnblogs.com/canf963/p/7681608.html">2. Android-优雅地为RecyclerView添加HeaderView和FooterView(330)</a></li><li><a href="http://www.cnblogs.com/canf963/p/7541509.html">3. Android-仿IOS滚轮选择器(17)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/canf963/p/4875228.html">1. Android网络对讲机的实现(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/canf963/p/4875228.html">1. Android网络对讲机的实现(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

@@ -1,0 +1,1820 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0058)http://blog.csdn.net/sunhuaqiang1/article/details/47657791 -->
+<html xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(0, 0, 0); background-color: rgb(204, 232, 207);"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script charset="utf-8" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/b.js"></script><script type="text/javascript" async="" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/pr.js"></script>
+        <link rel="canonical" href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791">
+
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <link rel="alternate" media="handheld" href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#">
+
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+
+    <title>java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客</title>
+    
+    <meta name="description" content="Java实现根据经纬度计算距离在项目开发过程中，需要根据两地经纬度坐标计算两地间距离，所用的工具类如下:Demo1:public static double getDistatce(double lat1, double lat2, double lon1, double lon2) {         double R = 6371;         double distanc">
+
+    <meta name="keywords" content="">
+    <script src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/hm.js"></script><script type="text/javascript" async="" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/jdhlyho.js"></script><script src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/blog_static_head.min.js" type="text/javascript"></script>
+
+
+        <link rel="Stylesheet" type="text/css" href="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/style.css">
+
+    
+
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/sunhuaqiang1/rss/list">
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/default_relax.css">
+
+
+
+
+
+    <link href="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/csdn_public_blog_detail.min.css" type="text/css" rel="stylesheet">
+
+        <link rel="stylesheet" href="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/csdn_blog_detail.min.css">
+
+    <!-- 请置于所有广告位代码之前 -->
+    <script src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/ds.js"></script>
+
+</head>
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(204, 232, 207);"><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><svg aria-hidden="true" style="position: absolute; width: 0px; height: 0px; overflow: hidden;"><symbol id="icon-xiajiantou" viewBox="0 0 1024 1024"><path d="M328.208 346.062h368.494c20.393 0 36.887 16.366 36.887 36.757 0 9.484-3.637 18.056-9.483 24.55L541.873 650.522c-12.211 16.105-35.2 19.484-51.438 7.275-2.859-2.08-5.324-4.547-7.274-7.275L298.853 404.772c-12.08-16.106-8.83-39.225 7.404-51.306 6.626-5.066 14.289-7.404 21.95-7.404z"></path></symbol><symbol id="icon-shouji" viewBox="0 0 1024 1024"><path d="M537.754 795.889c-26.41 0-47.893 21.478-47.893 47.892s21.484 47.893 47.893 47.893 47.892-21.479 47.892-47.893-21.483-47.892-47.892-47.892z"></path><path d="M774.697 42.071H300.815c-39.864 0-72.3 32.43-72.3 72.3v795.264c0 39.869 32.43 72.3 72.3 72.3h473.872c39.87 0 72.3-32.431 72.3-72.3v-795.27c0.004-39.864-32.426-72.294-72.29-72.294zM300.815 90.266h473.872a24.125 24.125 0 0 1 24.1 24.1v595.809H276.72v-595.81a24.125 24.125 0 0 1 24.094-24.1z m473.882 843.463H300.815a24.125 24.125 0 0 1-24.1-24.1V762.501h522.072V909.63a24.115 24.115 0 0 1-24.09 24.1z"></path></symbol><symbol id="icon-tianxie" viewBox="0 0 1024 1024"><path d="M121.905 780.19h780.19v97.524h-780.19V780.19zM823.296 298.496l-68.974-68.974-344.795 344.796-34.475 103.448 103.424-34.475zM875.008 246.76l17.237-17.238-68.949-68.949-17.262 17.237-17.237 17.238 68.974 68.973z"></path></symbol><symbol id="icon-sousuo" viewBox="0 0 1024 1024"><path d="M1023.972002 964.002812l-59.981188 59.981189-271.443276-271.459276c-166.600191 136.489602-412.812649 126.986048-568.309361-28.494664-165.624236-165.624236-165.624236-434.187647 0-599.859881 165.624236-165.592238 434.187647-165.592238 599.827883 0 155.52871 155.52871 164.984266 401.789166 28.462666 568.389356L1023.972002 964.002812zM663.364906 184.007375c-132.585785-132.585785-347.327719-132.761777-479.705514-0.43198-132.329797 132.345796-132.121807 347.119729 0.463978 479.705514s347.375717 132.793775 479.705514 0.41598c132.329797-132.281799 132.169805-347.10373-0.463978-479.689514z"></path></symbol><symbol id="icon-guanbi" viewBox="0 0 1024 1024"><path d="M1002.211316 933.90818c24.46369 24.46369 29.007633 59.583246 10.159871 78.447007-18.863761 18.863761-53.983317 14.303819-78.447007-10.159871L21.807724 90.09486C-2.655966 65.631169-7.199909 30.495614 11.647853 11.647853c18.863761-18.863761 53.983317-14.303819 78.447007 10.159871L1002.211316 933.90818z"></path><path d="M933.92418 21.807724C958.38787-2.655966 993.507426-7.199909 1012.371187 11.647853c18.863761 18.863761 14.303819 53.983317-10.159871 78.447007L90.09486 1002.211316c-24.46369 24.46369-59.583246 29.007633-78.447007 10.159871-18.847761-18.863761-14.303819-53.983317 10.159871-78.463007L933.92418 21.807724z"></path></symbol><symbol id="icon-caidan" viewBox="0 0 1024 1024"><path d="M0 132.8a48.496 48.496 0 0 0 48.496 48.496h927.008a48.496 48.496 0 1 0 0-96.992H48.496A48.496 48.496 0 0 0 0 132.8s0-26.784 0 0zM0 512.016a48.48 48.48 0 0 0 48.48 48.48h927.04a48.48 48.48 0 0 0 0-96.96H48.48A48.48 48.48 0 0 0 0 512.016s0-26.784 0 0zM0 891.2a48.496 48.496 0 0 0 48.496 48.496h927.008a48.496 48.496 0 1 0 0-96.992H48.496A48.496 48.496 0 0 0 0 891.2s0-26.784 0 0z"></path></symbol><symbol id="icon-yonghudenglu" viewBox="0 0 1024 1024"><path d="M1022.26704 962.432c-43.888-157.584-162.16-281.216-312.064-340.144 92.8-61.376 153.92-164.496 153.92-281.168C864.12304 153.04 706.04304 0 511.70704 0 317.35504 0 159.19504 153.04 159.19504 341.136c0 116.704 61.152 219.84 154.064 281.184C164.13904 681.024 46.18704 803.792 1.80304 960.16c-7.344 26.016 8.464 52.864 35.36 60.032a52.016 52.016 0 0 0 38.4-4.608 49.072 49.072 0 0 0 23.712-29.568c50.768-178.96 220.352-303.92 412.448-303.92 193.04 0 362.848 125.712 412.944 305.744 7.296 26.048 34.992 41.456 61.952 34.48 26.912-7.04 42.88-33.824 35.648-59.888zM260.25104 341.136c0-134.256 112.816-243.424 251.472-243.424 138.576 0 251.328 109.184 251.328 243.424 0 133.904-112.768 242.864-251.328 242.864-138.672 0-251.472-108.976-251.472-242.864z m0 0"></path></symbol><symbol id="toolbar-csdnlogo" viewBox="0 0 1024 1024"><path d="M533.941333 419.264c14.709333-1.621333 37.290667-3.264 68.352-3.264 51.872 0 93.802667 9.152 119.776 28.416 23.338667 17.952 38.858667 47.008 34.56 89.130667-3.978667 39.189333-24.042667 66.634667-53.312 83.594666C676.544 633.152 642.837333 640 592.106667 640c-29.888 0-58.421333-1.642667-80.106667-4.896l21.941333-215.84z m42.869334 172.938667c4.981333 0.992 11.562667 1.973333 24.533333 1.973333 51.882667 0 88.469333-25.877333 92.16-62.24 5.333333-52.554667-27.125333-70.944-81.802667-70.624-7.072 0-16.917333 0-22.133333 0.970667L576.8 592.213333h0.010667z m223.498666-164.704c210.954667-39.872 229.162667 31.776 222.645334 95.189333L1010.656 640h-66.944l11.210667-106.986667c2.421333-23.562667 17.504-69.653333-55.338667-67.914666-25.184 0.608-37.706667 4.064-37.706667 4.064s-2.186667 28.469333-4.832 49.514666L844.32 640H778.666667l13.024-119.573333" fill="#231916"></path><path d="M226.634667 632.682667c-12.373333 4.341333-38.037333 7.317333-73.909334 7.317333C49.6 640-6.048 590.933333 0.522667 526.090667 8.416 448.810667 90.858667 405.333333 181.141333 405.333333c34.976 0 55.552 2.858667 74.858667 7.637334l-6.208 52.064c-12.821333-4.384-42.890667-8.405333-67.232-8.405334-53.141333 0-98.250667 16.042667-103.424 66.762667-4.608 45.354667 27.061333 67.04 86.816 67.04 20.8 0 51.477333-3.018667 65.653333-7.370667l-4.992 49.6 0.021334 0.021334z" fill="#C92027"></path><path d="M272.714667 580.021333c19.285333 6.762667 59.488 13.504 92 13.504 35.029333 0 54.528-9.333333 56.096-23.797333 1.418667-13.205333-12.928-14.986667-52.490667-24.010667-54.666667-12.896-89.546667-32.842667-86.133333-64.704C286.176 443.989333 337.685333 416 416.725333 416c38.56 0 75.914667 2.613333 95.274667 8.714667l-6.656 46.666666c-12.565333-4.202667-60.672-10.037333-93.205333-10.037333-32.992 0-50.069333 9.973333-51.253334 20.917333-1.493333 13.845333 15.658667 14.485333 58.528 25.450667 58.026667 14.154667 83.402667 34.090667 80.085334 64.992C495.605333 609.109333 449.258667 640 356.714667 640c-38.528 0-71.744-6.762667-90.048-13.525333l6.048-46.453334z" fill="#231916"></path></symbol><symbol id="icon-morentouxiang" viewBox="0 0 1024 1024"><path d="M512 512m-512 0a512 512 0 1 0 1024 0 512 512 0 1 0-1024 0Z" fill="#A0C3FF"></path><path d="M691.2 887.466667c-55.466667-25.6-123.733333-51.2-123.733333-51.2v-38.4c68.266667-25.6 119.466667-89.6 132.266666-166.4 12.8-4.266667 38.4-17.066667 46.933334-55.466667l8.533333-46.933333s4.266667-59.733333-42.666667-46.933334c4.266667-38.4 4.266667-81.066667 4.266667-115.2-4.266667-64-89.6-98.133333-89.6-98.133333l12.8-17.066667s-42.666667-12.8-59.733333-4.266666l12.8-29.866667s-85.333333 0-132.266667 38.4h-4.266667v-17.066667s-145.066667 21.333333-140.8 243.2c-46.933333-12.8-42.666667 46.933333-42.666666 46.933334l8.533333 46.933333c4.266667 38.4 29.866667 51.2 46.933333 55.466667 12.8 81.066667 64 145.066667 132.266667 166.4v38.4s-68.266667 29.866667-123.733333 51.2c-29.866667 12.8-59.733333 34.133333-81.066667 59.733333 68.266667 51.2 157.866667 76.8 256 76.8s187.733333-25.6 264.533333-72.533333c-21.333333-29.866667-51.2-46.933333-85.333333-64z" fill="#4374E0"></path></symbol><symbol id="icon-icon_boke" viewBox="0 0 1024 1024"><path d="M512 1024C229.248 1024 0 794.752 0 512S229.248 0 512 0s512 229.248 512 512-229.248 512-512 512z m298.667-256H213.333v42.667h597.334V768z m-21.334-448L704 234.667 341.333 597.333l-42.666 128 128-42.666L789.333 320z"></path></symbol><symbol id="icon-icon_gitchatx" viewBox="0 0 1024 1024"><path d="M810.667 533.333v-64h-384v85.334h298.666v128h85.334V533.333zM256 810.667h426.667v-85.334h-384V298.667h426.666V384h85.334V213.333H213.333v597.334H256zM512 1024C229.248 1024 0 794.752 0 512S229.248 0 512 0s512 229.248 512 512-229.248 512-512 512z m213.333-298.667v85.334h85.334v-85.334h-85.334z"></path></symbol><symbol id="icon-guanbi1" viewBox="0 0 1024 1024"><path d="M512 1024A512 512 0 1 1 512 0a512 512 0 0 1 0 1024z m160-768L512 416 352 256l-96 96 160 160-160 160 96 96 160-160 160 160 96-96-160-160 160-160-96-96z"></path></symbol></svg><div class="csdn-toolbar csdn-toolbar tb_disnone ">        <div class="container row center-block ">          <ul class="pull-left left-menu clearfix">            <li>              <a href="http://www.csdn.net/" title="CSDN首页" target="_blank">              <svg class="icon" aria-hidden="true">                  <use xlink:href="#toolbar-csdnlogo"></use>              </svg>                </a>            </li>            <li><a href="http://blog.csdn.net/" class="toolbar_to_feed" title="博客" target="_blank">博客</a></li>            <li><a href="http://edu.csdn.net/" title="学院" target="_blank">学院</a></li>            <li><a href="http://download.csdn.net/" title="下载" target="_blank">下载</a></li>            <li><a href="http://gitbook.cn/?ref=csdn" title="GitChat" target="_blank">GitChat</a></li>            <li class="tb_is1090hide"><a href="http://bbs.csdn.net/" title="论坛" target="_blank">论坛</a></li>            <li class="tb_is1150hide"><a href="http://ask.csdn.net/" title="问答" target="_blank">问答</a></li>            <li class="tb_is1210hide"><a href="http://mall.csdn.net/" title="商城" target="_blank">商城</a></li>            <li class="tb_is1270hide"><a href="http://geek.csdn.net/" title="极客头条" target="_blank">头条</a></li>            <li class="tb_is1330hide"><a href="http://huiyi.csdn.net/" title="活动" target="_blank">活动</a></li>            <li class="tb_is1400hide"><a href="http://job.csdn.net/" title="招聘" target="_blank">招聘</a></li>            <li class="tb_is1452hide"><a href="http://www.iteye.com/" title="ITeye" target="_blank">ITeye</a></li>            <li class="tb_is1513hide"><a href="http://www.gitee.com/" title="码云" target="_blank">码云</a></li>            <li class="tb_is1513hide"><a href="http://www.csto.com/" title="CSTO" target="_blank">CSTO</a></li>            <li class="show-more">            <a href="javascript:;" class="show-more-a"><svg width="22" height="4" xmlns="http://www.w3.org/2000/svg"><path d="M2 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm9 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm9 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="#4F4F4F" fill-rule="evenodd"></path></svg></a>              <div class="more">                <div class="tb_is1090show"><a href="http://bbs.csdn.net/" target="_blank">论坛</a></div>                <div class="tb_is1150show"><a href="http://ask.csdn.net/" target="_blank">问答</a></div>                <div class="tb_is1210show"><a href="http://mall.csdn.net/" target="_blank">商城</a></div>                <div class="tb_is1270show"><a href="http://geek.csdn.net/" target="_blank">极客头条</a></div>                <div class="tb_is1330show"><a href="http://huiyi.csdn.net/" target="_blank">活动</a></div>                <div class="tb_is1400show"><a href="http://job.csdn.net/" target="_blank">招聘</a></div>                <div class="tb_is1452show"><a href="http://www.iteye.com/" target="_blank">ITeye</a></div>                <div class="tb_is1513show"><a href="http://www.gitee.com/" target="_blank">码云</a></div>                <div class="tb_is1513show"><a href="http://www.csto.com/" target="_blank">CSTO</a></div>              </div>            </li>          </ul>          <div class="pull-right login-wrap unlogin">            <ul class="btns">            <li class="toolbar-tracking csdn-tracking-statistics tracking-click" data-mod="popu_369"><a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" style="padding:0" target="_blank"></a></li>              <li>                <div class="search_bar csdn-tracking-statistics tracking-click" data-mod="popu_366">                  <input type="text" class="input_search" name="">                  <a href="http://so.csdn.net/so/" target="_blank" class="btn-nobg-noborder btn-search"><i class="iconfont-toolbar toolbar-sousuo"></i></a>                </div>              </li>              <li class="write-bolg-btn csdn-tracking-statistics tracking-click" data-mod="popu_370"><a class="" href="http://mp.blog.csdn.net/postedit" target="_blank"><i class="iconfont-toolbar toolbar-icon_boke"></i><span>写博客</span></a></li>              <li class="gitChat"><a class="" href="http://gitbook.cn/new/gitchat/activity?utm_source=csdnblog1" target="_blank"><i class="iconfont-toolbar toolbar-icon_gitchatx"></i><span>发Chat</span></a></li>              <li class="userinfo"><a href="https://passport.csdn.net/account/login">登录</a><span></span><a href="https://passport.csdn.net/account/mobileregister?action=mobileRegister">注册</a></li>              <li class="userLogin">                <div class="loginCenter"><a href="http://my.csdn.net/" target="_blank"><img class="login_img" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/100x100.jpg"><div class="toolbar-circle"></div></a></div>                <div class="userControl">                  <div><a href="http://blog.csdn.net/" target="_blank">我的博客</a></div>                  <div><a class="xiaoxi" href="http://msg.csdn.net/" target="_blank">消息<span class="toolbar-newsL">(3)</span></a></div>                  <div><a href="http://my.csdn.net/my/account/changepwd" target="_blank">设置</a></div>                  <div><a href="http://bbs.csdn.net/forums/Service" target="_blank">反馈</a></div>                  <div><a href="http://oldblog.csdn.net/home/help.html" target="_blank">帮助</a></div>                  <div><a href="http://passport.csdn.net/account/logout">退出</a></div>                </div>              </li>            </ul>          </div>        </div>    </div><script class="toolbar-s" type="text/javascript" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/iconfont.js"></script>
+        <div class="csdn-tracking-statistics" data-pid="blog" data-view="true" data-mod="ad_popu_72" data-mtp="62" data-order="40" data-con="ad_content_2072">
+            <script id="popuLayer_js_q" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/popuLayer.js" defer="defer" type="text/javascript"></script>
+            <div id="layerd" style="position: fixed; bottom: 0px; right: 0px; line-height: 0px; z-index: 1000; width: 300px; height: 278px;">
+                <div class="J_close layer_close" style="display:;background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">关闭</div><!-- 广告占位容器 -->
+                <div id="cpro_u2895327">
+                    <!-- 投放代码 -->
+                            <div id="_x8qj9hq4kbtm04jujwhcwhfr" style="width: 100%;"><iframe width="300" frameborder="0" height="250" scrolling="no" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/s.html"></iframe></div><script type="text/javascript" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/ojylrgbyk.js"></script>
+
+
+
+                </div>
+            </div>
+            <script>
+                document.getElementById("popuLayer_js_q").onload = function () {
+                    var styObjd = styObj = { width: "300px", "height": parseInt(250) + 28 };
+                    window.CSDN.Layer.PopuLayer("#layerd", { storageName: "layerd", styleObj: styObjd, total: 50, expoire: 1000 * 60 });
+                }</script>
+
+
+        </div>
+
+
+    <!--new top-->
+    <script id="toolbar-tpl-scriptId" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/content_toolbar.js" type="text/javascript" domain="http://blog.csdn.net"></script>
+
+    <link rel="stylesheet" href="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/content_toolbar.css">
+    <!--new top-->
+    <div id="container">
+        
+<div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/sunhuaqiang1">IT全栈 华强工作室</a></h2>
+            <h3>No Silver Bullet                   吾国泱泱 华夏栋梁 以梦为马 不负韶华</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+    
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/sunhuaqiang1?viewmode=contents"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_mulu&#39;])">
+                    <img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/sunhuaqiang1?viewmode=list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_zhaiyao&#39;])">
+                    <img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/sunhuaqiang1/rss/list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])">
+                    <img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/ico_rss.gif">订阅</span></a></li>                   
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "sunhuaqiang1";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/sunhuaqiang1";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+	var curUserFace = "http://avatar.csdn.net/2_guest.jpg";
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                    <div class="ad_class">
+
+
+
+                    </div>
+
+                    
+
+ <script src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/main-1.0.5.js"></script>
+
+<script type="text/javascript" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/category.js"></script>
+
+  <script type="text/ecmascript">
+      var title="java工具类(六)根据经纬度计算距离";
+      window.quickReplyflag = true;
+      var isBole = false; 
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=java%e5%b7%a5%e5%85%b7%e7%b1%bb(%e5%85%ad)%e6%a0%b9%e6%8d%ae%e7%bb%8f%e7%ba%ac%e5%ba%a6%e8%ae%a1%e7%ae%97%e8%b7%9d%e7%a6%bb&u=http://blog.csdn.net/sunhuaqiang1/article/details/47657791"
+    </script>
+<style>
+    .texCommend {
+        position: absolute;
+        background-color: #fff;
+        color: #000;
+        padding: 5px;
+        border: 1px solid #ccc;
+        cursor: default;
+        text-align: left;
+        z-index: 201;
+        border-radius: 5px;
+        box-shadow: 0 10px 20px #808080;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    .MJX_Assistive_MathML {
+        display: none;
+    }
+    span.MathJax {
+        outline: none
+    }
+</style>
+<div id="article_details" class="details">
+    
+<div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+    <h1>
+        <span class="link_title"><a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791">
+        java工具类(六)根据经纬度计算距离        
+           
+        </a>
+        </span>
+
+         
+    </h1>
+</div>
+
+
+    
+    <div class="article_manage clearfix">
+        <div class="article_r">
+            <span class="link_postdate">2015-08-14 10:21</span>
+            <span class="link_view" title="阅读次数">50397人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#comments" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_pinglun&#39;])">评论</a>(0)</span>
+            <span class="link_collect csdn-tracking-statistics" data-pid="blog" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;java%e5%b7%a5%e5%85%b7%e7%b1%bb(%e5%85%ad)%e6%a0%b9%e6%8d%ae%e7%bb%8f%e7%ba%ac%e5%ba%a6%e8%ae%a1%e7%ae%97%e8%b7%9d%e7%a6%bb&#39;,&#39;47657791&#39;);return false;" title="收藏" target="_blank">收藏</a></span>
+             <span class="link_report"> <a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#report" onclick="javascript:report(47657791,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label onclick="GetCategoryArticles(&#39;3130685&#39;,&#39;sunhuaqiang1&#39;,&#39;top&#39;,&#39;47657791&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">Java<em>（66）</em></span>
+                      <img class="arrow-down" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/sunhuaqiang1/article/category/3130685" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_3130685">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+        <div class="bog_copyright">         
+            <p class="copyright_p">版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+
+
+
+
+
+<div style="clear:both"></div><div style="border:solid 1px #ccc; background:#eee; float:left; min-width:200px;padding:4px 10px;"><p style="text-align:right;margin:0;"><span style="float:left;">目录<a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" title="系统根据文章中H1到H6标签自动生成文章目录">(?)</a></span><a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" onclick="javascript:return openct(this);" title="展开">[+]</a></p><ol style="display:none;margin-left:14px;padding-left:14px;line-height:160%;"><li><a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#t0">Java实现根据经纬度计算距离</a></li><ol><li><a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#t1">Demo1</a></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#t2">Demo2</a></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#t3">Demo3</a></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#t4">Demo4</a></li></ol></ol></div><div style="clear:both"></div><div id="article_content" class="article_content csdn-tracking-statistics" data-pid="blog" data-mod="popu_307" data-dsm="post" style="overflow: hidden;">
+
+<h1 style="text-align:center"><a name="t0"></a>Java实现根据经纬度计算距离</h1>
+<p>在项目开发过程中，需要根据两地经纬度坐标计算两地间距离，所用的工具类如下:</p>
+<h2><a name="t1"></a>Demo1:</h2>
+<p></p><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 665px; top: 584px; width: 25px; height: 12px; z-index: 99;"><embed id="ZeroClipboardMovie_1" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="25" height="12" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=25&amp;height=12" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">double</span><span>&nbsp;getDistatce(</span><span class="keyword">double</span><span>&nbsp;lat1,&nbsp;</span><span class="keyword">double</span><span>&nbsp;lat2,&nbsp;</span><span class="keyword">double</span><span>&nbsp;lon1,&nbsp;</span><span class="keyword">double</span><span>&nbsp;lon2)&nbsp;{&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;R&nbsp;=&nbsp;</span><span class="number">6371</span><span>;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;distance&nbsp;=&nbsp;</span><span class="number">0.0</span><span>;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;dLat&nbsp;=&nbsp;(lat2&nbsp;-&nbsp;lat1)&nbsp;*&nbsp;Math.PI&nbsp;/&nbsp;</span><span class="number">180</span><span>;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;dLon&nbsp;=&nbsp;(lon2&nbsp;-&nbsp;lon1)&nbsp;*&nbsp;Math.PI&nbsp;/&nbsp;</span><span class="number">180</span><span>;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;a&nbsp;=&nbsp;Math.sin(dLat&nbsp;/&nbsp;</span><span class="number">2</span><span>)&nbsp;*&nbsp;Math.sin(dLat&nbsp;/&nbsp;</span><span class="number">2</span><span>)&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;Math.cos(lat1&nbsp;*&nbsp;Math.PI&nbsp;/&nbsp;<span class="number">180</span><span>)&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Math.cos(lat2&nbsp;*&nbsp;Math.PI&nbsp;/&nbsp;<span class="number">180</span><span>)&nbsp;*&nbsp;Math.sin(dLon&nbsp;/&nbsp;</span><span class="number">2</span><span>)&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Math.sin(dLon&nbsp;/&nbsp;<span class="number">2</span><span>);&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;distance&nbsp;=&nbsp;(<span class="number">2</span><span>&nbsp;*&nbsp;Math.atan2(Math.sqrt(a),&nbsp;Math.sqrt(</span><span class="number">1</span><span>&nbsp;-&nbsp;a)))&nbsp;*&nbsp;R;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;distance;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="java" style="display: none;">public static double getDistatce(double lat1, double lat2, double lon1, double lon2) { 
+        double R = 6371; 
+        double distance = 0.0; 
+        double dLat = (lat2 - lat1) * Math.PI / 180; 
+        double dLon = (lon2 - lon1) * Math.PI / 180; 
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) 
+                + Math.cos(lat1 * Math.PI / 180) 
+                * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) 
+                * Math.sin(dLon / 2); 
+        distance = (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))) * R; 
+        return distance; 
+    }</pre><p></p>
+<h2><a name="t2"></a>Demo2:</h2>
+<p><span style="color:rgb(255,0,255)"></span></p><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 665px; top: 963px; width: 25px; height: 12px; z-index: 99;"><embed id="ZeroClipboardMovie_2" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="25" height="12" name="ZeroClipboardMovie_2" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=25&amp;height=12" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">private</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">final</span><span>&nbsp;</span><span class="keyword">double</span><span>&nbsp;EARTH_RADIUS&nbsp;=&nbsp;</span><span class="number">6378.137</span><span>&nbsp;*&nbsp;</span><span class="number">1000</span><span>;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">double</span><span>&nbsp;rad(</span><span class="keyword">double</span><span>&nbsp;d)&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;d&nbsp;*&nbsp;Math.PI&nbsp;/&nbsp;</span><span class="number">180.0</span><span>;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">double</span><span>&nbsp;GetDistance(</span><span class="keyword">double</span><span>&nbsp;lat1,&nbsp;</span><span class="keyword">double</span><span>&nbsp;lng1,&nbsp;</span><span class="keyword">double</span><span>&nbsp;lat2,&nbsp;</span><span class="keyword">double</span><span>&nbsp;lng2)&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;radLat1&nbsp;=&nbsp;rad(lat1);&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;radLat2&nbsp;=&nbsp;rad(lat2);&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;a&nbsp;=&nbsp;radLat1&nbsp;-&nbsp;radLat2;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;b&nbsp;=&nbsp;rad(lng1)&nbsp;-&nbsp;rad(lng2);&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;s&nbsp;=&nbsp;</span><span class="number">2</span><span>&nbsp;*&nbsp;Math.asin(Math.sqrt(Math.pow(Math.sin(a/</span><span class="number">2</span><span>),</span><span class="number">2</span><span>)&nbsp;+&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/<span class="number">2</span><span>),</span><span class="number">2</span><span>)));&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s&nbsp;=&nbsp;s&nbsp;*&nbsp;EARTH_RADIUS&nbsp;;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s&nbsp;=&nbsp;Math.round(s&nbsp;*&nbsp;<span class="number">10000</span><span>)&nbsp;/&nbsp;</span><span class="number">10000</span><span>;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;s;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="java" style="display: none;">private static final double EARTH_RADIUS = 6378.137 * 1000; 
+    private static double rad(double d) 
+    { 
+       return d * Math.PI / 180.0; 
+    } 
+    public static double GetDistance(double lat1, double lng1, double lat2, double lng2) 
+    { 
+       double radLat1 = rad(lat1); 
+       double radLat2 = rad(lat2); 
+       double a = radLat1 - radLat2; 
+       double b = rad(lng1) - rad(lng2); 
+       double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2) +  
+        Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2))); 
+       s = s * EARTH_RADIUS ; 
+       s = Math.round(s * 10000) / 10000; 
+       return s; 
+    } </pre><p></p>
+<h2><a name="t3"></a>Demo3:</h2>
+<p></p><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 665px; top: 1460px; width: 25px; height: 12px; z-index: 99;"><embed id="ZeroClipboardMovie_3" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="25" height="12" name="ZeroClipboardMovie_3" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=3&amp;width=25&amp;height=12" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">private</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">final</span><span>&nbsp;</span><span class="keyword">double</span><span>&nbsp;EARTH_RADIUS&nbsp;=&nbsp;</span><span class="number">6378137</span><span>;</span><span class="comment">//赤道半径(单位m)&nbsp;&nbsp;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/**&nbsp;</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;转化为弧度(rad)&nbsp;</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;*/</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">double</span><span>&nbsp;rad(</span><span class="keyword">double</span><span>&nbsp;d)&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;d&nbsp;*&nbsp;Math.PI&nbsp;/&nbsp;</span><span class="number">180.0</span><span>;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/**&nbsp;</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;基于余弦定理求两经纬度距离&nbsp;</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;lon1&nbsp;第一点的精度&nbsp;</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;lat1&nbsp;第一点的纬度&nbsp;</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;lon2&nbsp;第二点的精度&nbsp;</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;lat3&nbsp;第二点的纬度&nbsp;</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;返回的距离，单位km&nbsp;</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;*/</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">double</span><span>&nbsp;LantitudeLongitudeDist(</span><span class="keyword">double</span><span>&nbsp;lon1,&nbsp;</span><span class="keyword">double</span><span>&nbsp;lat1,</span><span class="keyword">double</span><span>&nbsp;lon2,&nbsp;</span><span class="keyword">double</span><span>&nbsp;lat2)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;radLat1&nbsp;=&nbsp;rad(lat1);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;radLat2&nbsp;=&nbsp;rad(lat2);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;radLon1&nbsp;=&nbsp;rad(lon1);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;radLon2&nbsp;=&nbsp;rad(lon2);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(radLat1&nbsp;&lt;&nbsp;</span><span class="number">0</span><span>)&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radLat1&nbsp;=&nbsp;Math.PI&nbsp;/&nbsp;<span class="number">2</span><span>&nbsp;+&nbsp;Math.abs(radLat1);</span><span class="comment">//&nbsp;south&nbsp;&nbsp;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(radLat1&nbsp;&gt;&nbsp;</span><span class="number">0</span><span>)&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radLat1&nbsp;=&nbsp;Math.PI&nbsp;/&nbsp;<span class="number">2</span><span>&nbsp;-&nbsp;Math.abs(radLat1);</span><span class="comment">//&nbsp;north&nbsp;&nbsp;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(radLon1&nbsp;&lt;&nbsp;</span><span class="number">0</span><span>)&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radLon1&nbsp;=&nbsp;Math.PI&nbsp;*&nbsp;<span class="number">2</span><span>&nbsp;-&nbsp;Math.abs(radLon1);</span><span class="comment">//&nbsp;west&nbsp;&nbsp;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(radLat2&nbsp;&lt;&nbsp;</span><span class="number">0</span><span>)&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radLat2&nbsp;=&nbsp;Math.PI&nbsp;/&nbsp;<span class="number">2</span><span>&nbsp;+&nbsp;Math.abs(radLat2);</span><span class="comment">//&nbsp;south&nbsp;&nbsp;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(radLat2&nbsp;&gt;&nbsp;</span><span class="number">0</span><span>)&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radLat2&nbsp;=&nbsp;Math.PI&nbsp;/&nbsp;<span class="number">2</span><span>&nbsp;-&nbsp;Math.abs(radLat2);</span><span class="comment">//&nbsp;north&nbsp;&nbsp;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(radLon2&nbsp;&lt;&nbsp;</span><span class="number">0</span><span>)&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radLon2&nbsp;=&nbsp;Math.PI&nbsp;*&nbsp;<span class="number">2</span><span>&nbsp;-&nbsp;Math.abs(radLon2);</span><span class="comment">//&nbsp;west&nbsp;&nbsp;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;x1&nbsp;=&nbsp;EARTH_RADIUS&nbsp;*&nbsp;Math.cos(radLon1)&nbsp;*&nbsp;Math.sin(radLat1);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;y1&nbsp;=&nbsp;EARTH_RADIUS&nbsp;*&nbsp;Math.sin(radLon1)&nbsp;*&nbsp;Math.sin(radLat1);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;z1&nbsp;=&nbsp;EARTH_RADIUS&nbsp;*&nbsp;Math.cos(radLat1);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;x2&nbsp;=&nbsp;EARTH_RADIUS&nbsp;*&nbsp;Math.cos(radLon2)&nbsp;*&nbsp;Math.sin(radLat2);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;y2&nbsp;=&nbsp;EARTH_RADIUS&nbsp;*&nbsp;Math.sin(radLon2)&nbsp;*&nbsp;Math.sin(radLat2);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;z2&nbsp;=&nbsp;EARTH_RADIUS&nbsp;*&nbsp;Math.cos(radLat2);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;d&nbsp;=&nbsp;Math.sqrt((x1&nbsp;-&nbsp;x2)&nbsp;*&nbsp;(x1&nbsp;-&nbsp;x2)&nbsp;+&nbsp;(y1&nbsp;-&nbsp;y2)&nbsp;*&nbsp;(y1&nbsp;-&nbsp;y2)+&nbsp;(z1&nbsp;-&nbsp;z2)&nbsp;*&nbsp;(z1&nbsp;-&nbsp;z2));&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//余弦定理求夹角&nbsp;&nbsp;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;theta&nbsp;=&nbsp;Math.acos((EARTH_RADIUS&nbsp;*&nbsp;EARTH_RADIUS&nbsp;+&nbsp;EARTH_RADIUS&nbsp;*&nbsp;EARTH_RADIUS&nbsp;-&nbsp;d&nbsp;*&nbsp;d)&nbsp;/&nbsp;(</span><span class="number">2</span><span>&nbsp;*&nbsp;EARTH_RADIUS&nbsp;*&nbsp;EARTH_RADIUS));&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;dist&nbsp;=&nbsp;theta&nbsp;*&nbsp;EARTH_RADIUS;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;dist;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="java" style="display: none;">private static final double EARTH_RADIUS = 6378137;//赤道半径(单位m)  
+      
+    /** 
+     * 转化为弧度(rad) 
+     * */  
+    private static double rad(double d)  
+    {  
+       return d * Math.PI / 180.0;  
+    }  
+      
+    /** 
+     * 基于余弦定理求两经纬度距离 
+     * @param lon1 第一点的精度 
+     * @param lat1 第一点的纬度 
+     * @param lon2 第二点的精度 
+     * @param lat3 第二点的纬度 
+     * @return 返回的距离，单位km 
+     * */  
+    public static double LantitudeLongitudeDist(double lon1, double lat1,double lon2, double lat2) {  
+        double radLat1 = rad(lat1);  
+        double radLat2 = rad(lat2);  
+  
+        double radLon1 = rad(lon1);  
+        double radLon2 = rad(lon2);  
+  
+        if (radLat1 &lt; 0)  
+            radLat1 = Math.PI / 2 + Math.abs(radLat1);// south  
+        if (radLat1 &gt; 0)  
+            radLat1 = Math.PI / 2 - Math.abs(radLat1);// north  
+        if (radLon1 &lt; 0)  
+            radLon1 = Math.PI * 2 - Math.abs(radLon1);// west  
+        if (radLat2 &lt; 0)  
+            radLat2 = Math.PI / 2 + Math.abs(radLat2);// south  
+        if (radLat2 &gt; 0)  
+            radLat2 = Math.PI / 2 - Math.abs(radLat2);// north  
+        if (radLon2 &lt; 0)  
+            radLon2 = Math.PI * 2 - Math.abs(radLon2);// west  
+        double x1 = EARTH_RADIUS * Math.cos(radLon1) * Math.sin(radLat1);  
+        double y1 = EARTH_RADIUS * Math.sin(radLon1) * Math.sin(radLat1);  
+        double z1 = EARTH_RADIUS * Math.cos(radLat1);  
+  
+        double x2 = EARTH_RADIUS * Math.cos(radLon2) * Math.sin(radLat2);  
+        double y2 = EARTH_RADIUS * Math.sin(radLon2) * Math.sin(radLat2);  
+        double z2 = EARTH_RADIUS * Math.cos(radLat2);  
+  
+        double d = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)+ (z1 - z2) * (z1 - z2));  
+        //余弦定理求夹角  
+        double theta = Math.acos((EARTH_RADIUS * EARTH_RADIUS + EARTH_RADIUS * EARTH_RADIUS - d * d) / (2 * EARTH_RADIUS * EARTH_RADIUS));  
+        double dist = theta * EARTH_RADIUS;  
+        return dist;  
+    }</pre><p></p>
+<h2><a name="t4"></a>Demo4:</h2>
+<p></p><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 665px; top: 2770px; width: 25px; height: 12px; z-index: 99;"><embed id="ZeroClipboardMovie_4" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="25" height="12" name="ZeroClipboardMovie_4" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=4&amp;width=25&amp;height=12" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/sunhuaqiang1/article/details/47657791#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="comment">//google&nbsp;map</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">private</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">final</span><span>&nbsp;&nbsp;</span><span class="keyword">double</span><span>&nbsp;EARTH_RADIUS&nbsp;=&nbsp;</span><span class="number">6378137</span><span>;</span><span class="comment">//赤道半径(单位m)&nbsp;&nbsp;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/**&nbsp;</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;转化为弧度(rad)&nbsp;</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;*/</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">double</span><span>&nbsp;rad(</span><span class="keyword">double</span><span>&nbsp;d)&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;d&nbsp;*&nbsp;Math.PI&nbsp;/&nbsp;</span><span class="number">180.0</span><span>;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/**&nbsp;</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;基于googleMap中的算法得到两经纬度之间的距离,计算精度与谷歌地图的距离精度差不多，相差范围在0.2米以下&nbsp;</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;lon1&nbsp;第一点的精度&nbsp;</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;lat1&nbsp;第一点的纬度&nbsp;</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;lon2&nbsp;第二点的精度&nbsp;</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;lat3&nbsp;第二点的纬度&nbsp;</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;返回的距离，单位km&nbsp;</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;*/</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">double</span><span>&nbsp;GetDistance(</span><span class="keyword">double</span><span>&nbsp;lon1,</span><span class="keyword">double</span><span>&nbsp;lat1,</span><span class="keyword">double</span><span>&nbsp;lon2,&nbsp;</span><span class="keyword">double</span><span>&nbsp;lat2)&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;radLat1&nbsp;=&nbsp;rad(lat1);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;radLat2&nbsp;=&nbsp;rad(lat2);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;a&nbsp;=&nbsp;radLat1&nbsp;-&nbsp;radLat2;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;b&nbsp;=&nbsp;rad(lon1)&nbsp;-&nbsp;rad(lon2);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span><span>&nbsp;s&nbsp;=&nbsp;</span><span class="number">2</span><span>&nbsp;*&nbsp;Math.asin(Math.sqrt(Math.pow(Math.sin(a/</span><span class="number">2</span><span>),</span><span class="number">2</span><span>)+Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/</span><span class="number">2</span><span>),</span><span class="number">2</span><span>)));&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s&nbsp;=&nbsp;s&nbsp;*&nbsp;EARTH_RADIUS;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s&nbsp;=&nbsp;Math.round(s&nbsp;*&nbsp;<span class="number">10000</span><span>)&nbsp;/&nbsp;</span><span class="number">10000</span><span>;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;s;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="java" style="display: none;">//google map
+private static final  double EARTH_RADIUS = 6378137;//赤道半径(单位m)  
+      
+    /** 
+     * 转化为弧度(rad) 
+     * */  
+    private static double rad(double d)  
+    {  
+       return d * Math.PI / 180.0;  
+    }  
+    /** 
+     * 基于googleMap中的算法得到两经纬度之间的距离,计算精度与谷歌地图的距离精度差不多，相差范围在0.2米以下 
+     * @param lon1 第一点的精度 
+     * @param lat1 第一点的纬度 
+     * @param lon2 第二点的精度 
+     * @param lat3 第二点的纬度 
+     * @return 返回的距离，单位km 
+     * */  
+    public static double GetDistance(double lon1,double lat1,double lon2, double lat2)  
+    {  
+       double radLat1 = rad(lat1);  
+       double radLat2 = rad(lat2);  
+       double a = radLat1 - radLat2;  
+       double b = rad(lon1) - rad(lon2);  
+       double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2)+Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2)));  
+       s = s * EARTH_RADIUS;  
+       s = Math.round(s * 10000) / 10000;  
+       return s;  
+    }</pre><br>
+<br>
+<p></p>
+   
+</div>
+
+
+
+
+
+
+
+
+    <div class="readall_box csdn-tracking-statistics tracking-click readall_box_nobg" data-pid="blog" data-mod="popu_596" style="display: none;">
+        <div class="read_more_mask"></div>
+        <a class="btn btn-large btn-gray-fred read_more_btn" target="_self">阅读全文</a>
+    </div>
+
+    <div class="csdn-tracking-statistics" data-pid="blog" data-mod="popu_222"><a href="javascript:void(0);" target="_blank">&nbsp;</a>   </div>
+    <div class="csdn-tracking-statistics" data-pid="blog" data-mod="popu_223"> <a href="javascript:void(0);" target="_blank">&nbsp;</a></div>
+        <div id="digg" articleid="47657791">
+            <dl id="btnDigg" class="digg digg_disable" onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>3</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable" onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+    <script type="text/javascript">
+        function btndigga() {
+            $(".csdn-tracking-statistics[data-mod='popu_222'] a").click();
+        }
+        function btnburya() {
+            $(".csdn-tracking-statistics[data-mod='popu_223'] a").click();
+        }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;]);location.href=&#39;http://blog.csdn.net/sunhuaqiang1/article/details/47447805&#39;;">上一篇</span><a href="http://blog.csdn.net/sunhuaqiang1/article/details/47447805" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;])">LM**项目开发感悟</a></li>
+                <li class="next_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;http://blog.csdn.net/sunhuaqiang1/article/details/47699341&#39;;">下一篇</span><a href="http://blog.csdn.net/sunhuaqiang1/article/details/47699341" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;])">Java进阶(十三)servlet监听器</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+   
+      
+</div>
+
+     <div>
+         
+         <!-- 广告位：PC端-博客详情页底部banner-960*90 -->
+            <script>
+                (function() {
+                    var s = "_" + Math.random().toString(36).slice(2);
+                    document.write('<div id="' + s + '"></div>');
+                    (window.slotbydup=window.slotbydup || []).push({
+                        id: '4770928',
+                        container: s,
+                        size: '960,90',
+                        display: 'inlay-fix'
+                    });
+                })();
+            </script><div id="_12y7geegxed58prnm20ju1sjor"></div><script charset="utf-8" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/qcum"></script><div style="width: 100%;"><iframe width="960" frameborder="0" height="90" scrolling="no" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/s(1).html"></iframe><abbr class="rclzxbeerel" style="width:0px;height:0px;padding-top:0px;"></abbr></div><script type="text/javascript" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/kfunnhoouimhnlou.js"></script>
+    </div>
+
+<div id="suggest">
+
+
+
+</div>
+         <script language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/sunhuaqiang1/svc/GetSuggestContent/47657791",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+
+
+            
+                                    
+            
+                                    
+
+        <!-- 广告位开始 -->
+        <!-- 广告位结束 -->
+
+
+
+<div class="comment_class">
+	<div class="commentform"><!--<div class="panel_head">发表评论</div>--></div>
+    <div id="comment_form"><div class="guest_link">您还没有登录,请<a href="javascript:void(0);" onclick="javascript:loginbox();">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Fsunhuaqiang1%2Farticle%2Fdetails%2F47657791">[注册]</a></div></div>
+    <div id="comment_title" class="panel_head" style="display: none;">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list" style="display: none;"><br>&nbsp;&nbsp;暂无评论<br><br><div class="clear"></div></div>
+    <div id="comment_bar">
+    </div>
+    <!--<div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>-->
+</div>
+<div class="recommend_list">
+
+    
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="true" data-dsm="post">
+<a href="http://blog.csdn.net/sanyuesan0000/article/details/51683464" target="_blank" strategy="BlogCommendFromBaidu_0">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">java根据经纬度坐标计算两点的距离算法</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_sanyuesan0000.jpg" alt="sanyuesan0000" title="sanyuesan0000"></li>
+                        <li class="user_name">sanyuesan0000</li>
+                        <li class="time">2016-06-15 16:45</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>15566</span></li>
+                    </ul><div class="summary">
+                        根据经纬度计算距离，这个方法很精确，与百度地图的测距相差不到1米。
+我是利用百度地图拾取坐标系统(http://api.map.baidu.com/lbsapi/getpoint/index.html)和百度地图测距的工具测试的。
+    /** 
+     * Created by yulia...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="true" data-dsm="post">
+<a href="http://blog.csdn.net/wangwuyilove/article/details/48273089" target="_blank" strategy="BlogCommendFromBaidu_1">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">java通过经纬度计算两个点的之间的距离的算法</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_wangwuyilove.jpg" alt="wangwuyilove" title="wangwuyilove"></li>
+                        <li class="user_name">wangwuyilove</li>
+                        <li class="time">2015-09-07 20:54</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>8531</span></li>
+                    </ul><div class="summary">
+                        public class Distance{
+
+    //地球平均半径
+    private static final double EARTH_RADIUS = 6378137;
+    //把经纬度转为度（°）
+    private static double rad(doubl...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            <script>(function() {var s = "_" + Math.random().toString(36).slice(2);document.write('<div id="' + s + '"></div>');(window.slotbydup = window.slotbydup || []).push({id: '4765209',container: s,size: '808,120',display: 'inlay-fix'});})();</script><div id="_noxskvr3nlvk3mmytylr0y66r"></div><script charset="utf-8" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/qcum(1)"></script><iframe scrolling="no" style="width: 100%; height: 96px; border: 0px;" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/saved_resource.html"></iframe> 
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/hxm_code/article/details/77046855" target="_blank" strategy="searchFromBaidu_2">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">根据经纬度计算两地距离java实现</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_hxm_code.jpg" alt="hxm_Code" title="hxm_Code"></li>
+                        <li class="user_name">hxm_Code</li>
+                        <li class="time">2017-08-10 13:10</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>217</span></li>
+                    </ul><div class="summary">
+                        最近项目有个需求是：已知两地经纬度，计算两地的距离。于是网上搜索了一下计算公式，在这里记录一下，方便以后使用，数学公式理解起来太复杂，所以直接上代码：public static double getDistance(double lon1, double lat1, double lon2, dou...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/yanghongchang_/article/details/39890435" target="_blank" strategy="searchFromBaidu_3">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">java通过经纬度计算两个点的之间的距离的算法</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_yhc13429826359.jpg" alt="yhc13429826359" title="yhc13429826359"></li>
+                        <li class="user_name">yhc13429826359</li>
+                        <li class="time">2014-10-08 10:21</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>914</span></li>
+                    </ul><div class="summary">
+                        public&nbsp;class&nbsp;Distance{&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;static&nbsp;final&nbsp;double&nbsp;EARTH_RADIUS&nbsp;=&nbsp;6378137;&nbsp;&nbsp;&amp;...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            <!-- 广告位：PC端-博客详情通栏7（feed流）-808*120 --><iframe scrolling="no" style="width: 100%; height: 123px; border: 0px;" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/saved_resource(1).html"></iframe>
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/qq939782569/article/details/53994890" target="_blank" strategy="BlogCommendFromBaidu_4">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">Android 高德获取经纬度工具类</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_qq939782569.jpg" alt="qq939782569" title="qq939782569"></li>
+                        <li class="user_name">qq939782569</li>
+                        <li class="time">2017-01-03 15:29</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>791</span></li>
+                    </ul><div class="summary">
+                        以上就能获取定位并且能够计算两地的距离了。
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/xingyunchen/article/details/51863487" target="_blank" strategy="BlogCommendFromBaidu_5">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">根据两点经纬度计算两点距离...工具类</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_xingyunchen.jpg" alt="xingyunchen" title="xingyunchen"></li>
+                        <li class="user_name">xingyunchen</li>
+                        <li class="time">2016-07-08 19:31</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>634</span></li>
+                    </ul><div class="summary">
+                        /**
+&nbsp;* 根据两点经纬度计算距离
+&nbsp;* 直接调用使用即可
+
+&nbsp;* @author tarena
+&nbsp;*
+&nbsp;*/
+public class DistanceUtil {
+&nbsp;&nbsp; &nbsp;public static...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/liuwei063608/article/details/49584119" target="_blank" strategy="searchFromBaidu_6">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">java根据经纬度计算距离</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_liuwei063608.jpg" alt="liuwei063608" title="liuwei063608"></li>
+                        <li class="user_name">liuwei063608</li>
+                        <li class="time">2015-11-02 11:07</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>610</span></li>
+                    </ul><div class="summary">
+                        public class Distance
+{
+
+
+&nbsp; &nbsp; private static final double EARTH_RADIUS = 6378137;
+&nbsp; &nbsp; private static double rad(double d)
+&amp;#...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/qq87802343/article/details/48087095" target="_blank" strategy="searchFromBaidu_7">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">百度地图获取当前位置坐标，并计算距离</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_qq87802343.jpg" alt="qq87802343" title="qq87802343"></li>
+                        <li class="user_name">qq87802343</li>
+                        <li class="time">2015-08-29 14:22</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>2632</span></li>
+                    </ul><div class="summary">
+                        百度地图获取当前位置坐标
+
+//引用
+var geolocation = new BMap.Geolocation();
+
+geolocation.getCurrentPosition(function (pos) {
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/qq_32198277/article/details/63252720" target="_blank" strategy="BlogCommendFromBaidu_8">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">JavaWeb日记——SQL和hibernate实现经纬度求距离并排序</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_qq_32198277.jpg" alt="qq_32198277" title="qq_32198277"></li>
+                        <li class="user_name">qq_32198277</li>
+                        <li class="time">2017-03-18 12:08</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>351</span></li>
+                    </ul><div class="summary">
+                        我们在做定位的时候，App端获取到定位，经度和维度都是Double，获取附近的人，就要根据用户经纬度求出附近的人的距离，并按降序排序。以一个user表为例 
+表的结构如下CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/lijixianglijixiang/article/details/73826640" target="_blank" strategy="BlogCommendFromBaidu_9">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">java实现经纬度勾股定理计算距离</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_lijixianglijixiang.jpg" alt="lijixianglijixiang" title="lijixianglijixiang"></li>
+                        <li class="user_name">lijixianglijixiang</li>
+                        <li class="time">2017-06-28 10:11</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>562</span></li>
+                    </ul><div class="summary">
+                        package com.hive;
+public class GetDist{
+
+private static final &nbsp;double EARTH_RADIUS = 6378137;//赤道半径(单位m)
+private static double rad(double d) ...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/u014182690/article/details/78598764" target="_blank" strategy="searchFromBaidu_10">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">java根据经纬度坐标计算两点的距离算法，与百度地图测距工具相符</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_u014182690.jpg" alt="u014182690" title="u014182690"></li>
+                        <li class="user_name">u014182690</li>
+                        <li class="time">2017-11-22 08:26</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>66</span></li>
+                    </ul><div class="summary">
+                        public IdDTO getDistance(Listdouble[]&gt; latLngs) {
+    double distance = 0.0;
+    if (latLngs.size() &gt;= 2) {
+        for (int i = 1; i latLngs.si...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/greenapple_shan/article/details/51251151" target="_blank" strategy="BlogCommendFromBaidu_11">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">根据两点经纬度计算距离</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_greenapple_shan.jpg" alt="greenapple_shan" title="greenapple_shan"></li>
+                        <li class="user_name">greenapple_shan</li>
+                        <li class="time">2016-04-26 15:55</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>1221</span></li>
+                    </ul><div class="summary">
+                        根据两点经纬度计算距离
+
+这些经纬线是怎样定出来的呢？地球是在不停地绕地轴旋转（地轴是一根通过地球南北两极和地球中心的
+假想线），在地球中腰画一个与地轴垂直的大圆圈，使圈上的每一点都和南北两极的距离相等，这个圆圈
+就叫作“赤道”。在赤道的南北两边，画出许多和赤道平行的圆圈，就是“纬圈”；构成这些圆圈...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/baidu_18607183/article/details/54378179" target="_blank" strategy="BlogCommendFromBaidu_12">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">java根据经纬度坐标计算两点的距离算法</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_baidu_18607183.jpg" alt="baidu_18607183" title="baidu_18607183"></li>
+                        <li class="user_name">baidu_18607183</li>
+                        <li class="time">2017-01-12 15:10</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>777</span></li>
+                    </ul><div class="summary">
+                        根据经纬度计算距离，这个方法很精确，与百度地图的测距相差不到1米。
+
+我是利用百度地图拾取坐标系统(http://api.map.baidu.com/lbsapi/getpoint/index.html)和百度地图测距的工具测试的。
+
+
+
+
+
+[html]&nbsp;view
+ p...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/kidoo1012/article/details/70214328" target="_blank" strategy="BlogCommendFromBaidu_13">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">java-经纬度有关的计算(半径内的经纬度范围和两点间距离)</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_kidoo1012.jpg" alt="kidoo1012" title="kidoo1012"></li>
+                        <li class="user_name">kidoo1012</li>
+                        <li class="time">2017-04-17 18:03</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>1571</span></li>
+                    </ul><div class="summary">
+                        java-经纬度有关的计算
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/sanyuesan0000/article/details/51683464" target="_blank" strategy="BlogCommendFromQuerySearch_14">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">java根据经纬度坐标计算两点的距离算法</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_sanyuesan0000.jpg" alt="sanyuesan0000" title="sanyuesan0000"></li>
+                        <li class="user_name">sanyuesan0000</li>
+                        <li class="time">2016-06-15 16:45</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>15566</span></li>
+                    </ul><div class="summary">
+                        根据经纬度计算距离，这个方法很精确，与百度地图的测距相差不到1米。
+我是利用百度地图拾取坐标系统(http://api.map.baidu.com/lbsapi/getpoint/index.html)和百度地图测距的工具测试的。
+    /** 
+     * Created by yulia...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/eff666/article/details/52125615" target="_blank" strategy="BlogCommendFromQuerySearch_15">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">java中根据两个位置的经纬度计算距离</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_eff666.jpg" alt="eff666" title="eff666"></li>
+                        <li class="user_name">eff666</li>
+                        <li class="time">2016-08-05 08:42</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>4109</span></li>
+                    </ul><div class="summary">
+                        1、代码
+ /**
+   * 根据两个位置的经纬度，来计算两地的距离（单位为KM）
+   * 参数为double类型
+   *  long1 位置1经度
+   *  lat1  位置1纬度
+   *  long2 位置2经度
+   *  lat2  位置2纬度
+   */
+ public class...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/u011159417/article/details/53993402" target="_blank" strategy="BlogCommendFromQuerySearch_16">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">根据两点经纬度计算距离-mysql方式和java方式</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_u011159417.jpg" alt="u011159417" title="u011159417"></li>
+                        <li class="user_name">u011159417</li>
+                        <li class="time">2017-01-03 12:56</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>1256</span></li>
+                    </ul><div class="summary">
+                        一、mysql&nbsp;下&nbsp;计算&nbsp;两点&nbsp;经纬度&nbsp;之间的距离
+
+
+
+
+公式如下，单位米：
+
+第一点经纬度：lng1 lat1
+
+第二点经纬度：lng2&nbsp;lat2
+round(6378.138*2*asin(sqrt(pow(sin((lat1*pi(...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/yu1441/article/details/60962227" target="_blank" strategy="BlogCommendFromQuerySearch_17">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">根据两点经纬度计算精确距离，结果和百度地图测距一样——java实现</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_yu1441.jpg" alt="Yu1441" title="Yu1441"></li>
+                        <li class="user_name">Yu1441</li>
+                        <li class="time">2017-03-09 16:10</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>3066</span></li>
+                    </ul><div class="summary">
+                        根据两点经纬度计算精确距离——java实现百度地图拾取经纬度坐标：http://api.map.baidu.com/lbsapi/getpoint/index.html
+在网上看了好多根据经纬度计算距离的代码都不精确，而且我测试了把经度调整到北极点（lon=90），纬度不改变，结果距离还是那么多！
+...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/xiejm2333/article/details/73297004" target="_blank" strategy="BlogCommendFromQuerySearch_18">
+                <dd>
+                    <h2>根据经纬度计算两点之间的距离的公式推导过程以及google.maps的测距函数</h2>
+                    <div class="summary">
+                        网上有很多关于谷歌地图计算两点距离函数的代码，却没有人解释这个算法由何依据而得，这是因为我要做毕业设计，刚好又是在高考期间，所以通过计算这道数学题来打赢这场仗吧。希望可以给后来人一点帮助。
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_xiejm2333.jpg" alt="xiejm2333" title="xiejm2333"></li>
+                        <li class="user_name">xiejm2333</li>
+                        <li class="time">2017-06-15 18:28</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>4134</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_614" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/avgworkld/article/details/77989578" target="_blank" strategy="BlogCommendFromQuerySearch_19">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">根据两个位置的经纬度，来计算两地的距离（单位为KM）</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/2_avgworkld.jpg" alt="AVGworkld" title="AVGworkld"></li>
+                        <li class="user_name">AVGworkld</li>
+                        <li class="time">2017-09-15 11:15</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>759</span></li>
+                    </ul><div class="summary">
+                        上代码/**
+ * 根据两个位置的经纬度，来计算两地的距离（单位为KM）
+ * 参数为double类型
+ *  long1 位置1经度
+ *  lat1  位置1纬度
+ *  long2 位置2经度
+ *  lat2  位置2纬度
+ */
+public class Distance {
+
+  pri...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            </div>
+<script type="text/javascript">
+    var fileName = '47657791';
+    var commentscount = 0;
+    var islock = false
+document.domain = "csdn.net";
+</script>
+
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top" style="bottom:60px;">
+
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop" style="display: none;" title="返回顶部" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_huidaodingbu&#39;])">         
+         <img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+
+
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+
+<script type="text/javascript">
+    $(function(){        
+        
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+    var showTexComDom = $('<div class="texCommend" style="position:absolute;display:none;">显示当前公式源码</div>');
+    $('body').append(showTexComDom);
+    $("#article_content").on('contextmenu', 'span.MathJax', function (ev) {
+        ev.preventDefault ? ev.preventDefault() : (ev.returnValue = false);
+        var scrollleft = document.documentElement.scrollLeft || document.body.scrollLeft;
+        var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+        var left = ev.clientX + scrollleft + 10 + "px";
+        var top = ev.clientY + scrolltop + 10 + "px";
+        showTexComDom.css({
+            top: top,
+            left: left
+        }).show();
+        showTexComDom.html('显示当前公式源码');
+        var curSpan = $(this);
+        var commendId = curSpan.attr('id').replace('-Frame', '');
+        console.log(commendId);
+        $("body").bind('click', function (ev) {
+            console.log(ev);
+            var className = ev.originalEvent.target.className;
+            if (className.indexOf('texCommend') === -1) {
+                showTexComDom.hide();
+                $("body").unbind('click');
+            }
+        });
+        showTexComDom.one('click', function () {
+            $(this).text($("#" + commendId).html());
+        });
+    });
+        (function () {
+            var viewImg = function viewImg(dom) {
+                var dom = dom ? dom : 'body';
+                var imgDOM = $(dom + ' img');
+                var ua = navigator.userAgent.toLowerCase();
+
+                if (imgDOM.length === 0) return false
+
+                if ($('.imgViewDom').length === 0) {
+                    $('body').append('<div class="imgViewDom disnone" style="display: none;"><img src=""></div>')
+                    $('body').append('<style>.imgViewDom{display:none;position:fixed;top:0;left:0;height:100%;width:100%;z-index:99999999;background: rgba(255, 255, 255,0.8);overflow: auto;display:-webkit-box;-webkit-box-align:center;-webkit-box-pack:center;display:-moz-box;-moz-box-align:center;-moz-box-pack:center;display:-o-box;-o-box-align:center;-o-box-pack:center;display:-ms-box;-ms-box-align:center;-ms-box-pack:center; display:box;box-align:center;box-pack:center;}.imgViewDom img{cursor: zoom-out;}</style>')
+                    $('.imgViewDom').on('click', function () {
+                        if (ua.indexOf('windows ') > -1) {
+                            $('body').css({ 'overflow': 'auto', 'margin-left': '0' })
+                        } else {
+                            $('body').css({ 'overflow': 'auto' })
+                        }
+                        $('.imgViewDom').fadeOut(500).children('img').attr('src', "");
+                    })
+                }
+                imgDOM.bind('click', function (e) {
+                    if (e.currentTarget.src) {
+                        $('.imgViewDom').fadeIn(500).children('img').css({ 'width': e.currentTarget.naturalWidth, 'height': e.currentTarget.naturalheight }).attr('src', e.currentTarget.src)
+                        if (ua.indexOf('windows ') > -1) {
+                            $('body').css({ 'overflow': 'hidden', 'margin-left': '-17px' })
+                        } else {
+                            $('body').css({ 'overflow': 'hidden' })
+                        }
+
+                    }
+                })
+
+            }
+            window.CSDNviewImg = viewImg;
+
+        })()
+    CSDNviewImg('#article_details')
+    var articletitle='java工具类(六)根据经纬度计算距离';
+
+</script>
+<script src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/appendMark.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    appendMark($('.recommend_list').children('a').find('dt'),$('.extension_other'))
+</script>
+
+
+
+
+
+
+
+
+
+                    <div class="clear">
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="side">
+                
+
+    <div class="side">
+
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/sunhuaqiang1" target="_blank">
+    <img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/1_sunhuaqiang1.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/sunhuaqiang1" class="user_name" target="_blank">孙华强</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter" title="[发私信]" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=sunhuaqiang1&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])"></a>  
+</div>
+<div id="blog_medal">
+                       <div class="ico_expert" onclick="javascript:location=&#39;http://blog.csdn.net/experts/rule.html&#39;" title="CSDN认证专家" style="cursor:pointer;width:60px;height:60px;background:url(&#39;http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/bokezhuanjiamiddle.png&#39;) no-repeat"></div>
+                <div id="bms_box">
+                                            <a target="_blank">
+                                                    <img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/zhuanlandaren.png" onmouseover="m_over_m(this,2)" onmouseout="m_out_m()" alt="6">
+                                            </a>
+                                            <a target="_blank">
+                                                    <img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="5">
+                                            </a>
+               </div>
+
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>23660133次</span></li>
+    <li>积分：<span>58026</span> </li>    
+    <li>等级： <span style="position:relative;display:inline-block;z-index:1">
+                 <a title="9级,点击查看等级说明" href="http://blog.csdn.net/home/help.html#level" target="_blank"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/blog9.png" alt="" style="vertical-align: middle;" id="leveImg"></a>
+            
+        </span>  </li>
+    <li>排名：<span>第55名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>473篇</span></li>
+    <li>转载：<span>41篇</span></li>
+    <li>译文：<span>2篇</span></li>
+    <li>评论：<span>415条</span></li>
+</ul>
+</ul>
+</div>
+
+
+                        
+ 
+
+<div id="custom_column_45576410" class="panel">
+<ul class="panel_body">
+<ul class="panel_head"><span><a href="http://lib.csdn.net/expert/plat">Welcome to 华强blog~</a></span></ul>
+<ul class="panel_body">
+<script charset="Shift_JIS" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/honehone_clock_tr.js"></script><object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="160" height="70" id="honehoneclock" align="middle"><param name="allowScriptAccess" value="always"><param name="movie" value="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf"><param name="quality" value="high"><param name="bgcolor" value="#ffffff"><param name="wmode" value="transparent"><embed wmode="transparent" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf" quality="high" bgcolor="#ffffff" width="160" height="70" name="honehoneclock" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"></object>
+<br>
+<iframe style="background:transparent !important" scrolling="no" frameborder="0" allowtransparency="true" width="220" height="220" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/a2.html"></iframe><script type="text/javascript" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/8.js" async="async"></script>
+</ul>
+</ul>
+</div>
+ 
+
+<div id="custom_column_42381546" class="panel">
+<ul class="panel_head"><span>流量统计</span></ul>
+<ul class="panel_body">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261806240'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261806240%26online%3D1' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_1261806240"><a href="http://www.cnzz.com/stat/website.php?web_id=1261806240" target="_blank">站长统计</a><a href="http://www.cnzz.com/stat/website.php?web_id=1261806240" target="_blank"><br> 今日IP[433]<br>今日PV[669]<br>昨日IP[226]<br> 昨日PV[292]<br></a><a href="http://www.cnzz.com/stat/website.php?web_id=1261806240&amp;method=online" target="_blank">当前在线[14]</a></span><script src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/z_stat.php" type="text/javascript"></script><script src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/core.php" charset="utf-8" type="text/javascript"></script>
+</ul>
+</div><div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" class="form_search csdn-tracking-statistics" data-pid="blog" target="_blank" data-mod="popu_306">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog">
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+   
+    $(function () {
+        $("#btnSubmit").unbind("click");
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {           
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            if ($("#inputSearch").val() == "") {               
+                alert("请录入搜索关键词！");                         
+                return false;
+            }
+            //var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";           
+            var url = "https://www.baidu.com/s?wd=" + encodeURIComponent($("#inputSearch").val()) + "%20site%3Ablog.csdn.net"
+            var url = "/" + username + "?q=" + encodeURIComponent($("#inputSearch").val());
+            window.location.href = url;
+        }   
+    });
+</script>
+ 
+
+<div id="custom_column_42430460" class="panel">
+<ul class="panel_head"><span>你问我答</span></ul>
+<ul class="panel_body">
+<div align="center"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=752487551&amp;site=qq&amp;menu=yes"><img border="0" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/20161008211012070" style="height:110px; weight:110px" =""="" alt=" 有问题？联系我。" title="有问题？联系我。"></a></div><br>
+<div align="center"><a href="https://github.com/SunnyForever"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/20170326110503401" ;="" style="height:50px; weight:30px"></a> <a href="http://www.cnblogs.com/csdn-sunhuaqiang"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/20160925180800733" ;="" style="height:50px; weight:30px"></a></div>
+</ul>
+</div>
+<div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>博客专栏</span></ul>
+    <ul class="panel_body" id="sp_column">
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/15328.html" target="_blank"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/20170421111639319" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/15328.html" target="_blank">JVM进阶</a>
+    <p>文章：19篇</p>
+    <span>阅读：817737</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/14984.html" target="_blank"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/20170324113239871" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/14984.html" target="_blank">Python3进阶</a>
+    <p>文章：57篇</p>
+    <span>阅读：2185585</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/14042.html" target="_blank"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/20161227214544160" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/14042.html" target="_blank">J2EE进阶</a>
+    <p>文章：19篇</p>
+    <span>阅读：838053</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/12920.html" target="_blank"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/20160914215157991" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/12920.html" target="_blank">剑指Offer</a>
+    <p>文章：23篇</p>
+    <span>阅读：1000938</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/distributedsystem.html" target="_blank"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/20160304083001693" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/distributedsystem.html" target="_blank">分布式系统进阶</a>
+    <p>文章：20篇</p>
+    <span>阅读：1013388</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/mysqlcentury.html" target="_blank"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/20170421203910463" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/mysqlcentury.html" target="_blank">MySQL进阶</a>
+    <p>文章：25篇</p>
+    <span>阅读：1245908</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/androidcentury.html" target="_blank"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/20160229172421401" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/androidcentury.html" target="_blank">Android开发进阶</a>
+    <p>文章：28篇</p>
+    <span>阅读：1413074</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/java1989.html" target="_blank"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/20160228173511359" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/java1989.html" target="_blank">Java开发进阶</a>
+    <p>文章：66篇</p>
+    <span>阅读：3130603</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/sunnycentury.html" target="_blank"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/20160226092243610" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/sunnycentury.html" target="_blank">网站开发进阶</a>
+    <p>文章：44篇</p>
+    <span>阅读：2079301</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/angularjs-sunny1989.html" target="_blank"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/20160114083817873" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/angularjs-sunny1989.html" target="_blank">Angularjs 1.x进阶</a>
+    <p>文章：41篇</p>
+    <span>阅读：2097178</span>
+    </td>
+    </tr></tbody></table>
+    </ul>
+</div> 
+<div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/7363168" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Oracle</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/6788536" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Python</a><span>(57)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/6210638" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Data Structure</a><span>(8)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/6336602" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">剑指Offer</a><span>(81)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/5991195" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">J2EE</a><span>(21)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/3130685" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Java</a><span>(67)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/5795559" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">AngularJS</a><span>(42)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/6670597" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">JVM</a><span>(19)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/5897079" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Web Development</a><span>(47)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/3220641" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">MySQL</a><span>(34)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/3125413" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android</a><span>(28)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/3202653" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Distributed Processing</a><span>(22)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/3090151" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Web Service</a><span>(8)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/6083233" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Ionic</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/3090153" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Struts2</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/3090155" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">MyBatis</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/3095699" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Design pattern</a><span>(10)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/5641389" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Cross-platform Mobile APP</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/5670079" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Server Tech</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/5676321" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">json</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/5722919" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">IT Essays</a><span>(27)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/6029909" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">HTML5</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/6053788" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">JavaScript</a><span>(10)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/5823455" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Project Management</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/5956161" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Data mining</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/5983573" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Software Security</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/6029163" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Party Building</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/6195707" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Paper</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/6209607" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">mxGraph</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/6223844" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Ajax</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/6261038" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Tomcat</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunhuaqiang1/article/category/6298786" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Software Testing</a><span>(2)</span>
+                </li>
+</ul>
+</div>
+<div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list"><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2018/01">2018年01月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2017/12">2017年12月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2017/09">2017年09月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2017/08">2017年08月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2017/06">2017年06月</a><span>(1)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2017/05">2017年05月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2017/04">2017年04月</a><span>(27)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2017/03">2017年03月</a><span>(40)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2017/02">2017年02月</a><span>(9)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2017/01">2017年01月</a><span>(19)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2016/12">2016年12月</a><span>(19)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2016/11">2016年11月</a><span>(22)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2016/10">2016年10月</a><span>(18)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2016/09">2016年09月</a><span>(28)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2016/08">2016年08月</a><span>(17)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2016/07">2016年07月</a><span>(31)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2016/06">2016年06月</a><span>(19)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2016/05">2016年05月</a><span>(13)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2016/04">2016年04月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2016/03">2016年03月</a><span>(16)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2016/02">2016年02月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2016/01">2016年01月</a><span>(28)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2015/12">2015年12月</a><span>(29)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2015/11">2015年11月</a><span>(31)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2015/10">2015年10月</a><span>(11)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2015/09">2015年09月</a><span>(14)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2015/08">2015年08月</a><span>(21)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2015/07">2015年07月</a><span>(26)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2015/06">2015年06月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2015/05">2015年05月</a><span>(21)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2015/04">2015年04月</a><span>(22)</span></li><li><a href="http://blog.csdn.net/sunhuaqiang1/article/month/2014/11">2014年11月</a><span>(1)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+</ul>
+</div>
+
+ 
+
+<div id="custom_column_42430551" class="panel">
+<ul class="panel_head"><span>汪国真--《热爱生命》</span></ul>
+<ul class="panel_body">
+<ul class="panel_body">
+<!--方向-速度-间隔(ms)-重复滚定-->
+<marquee direction="up" scrollamount="2" scrolldelay="100" behavior="slide" onmouseout="this.start()" onmouseover="this.stop()">
+<font size="3" color="#0000dd" font-family="LiSu">
+    热 爱 生 命<br>
+     <font size="2" color="red">汪国真</font><br><br>
+  我不去想是否能够成功<br><br>
+　　既然选择了远方<br><br>
+　　便只顾风雨兼程<br><br>
+　　我不去想能否赢得爱情<br><br>
+　　既然钟情于玫瑰<br><br>
+　　就勇敢地吐露真诚<br><br>
+　　我不去想身后会不会袭来寒风冷雨<br><br>
+　　既然目标是地平线<br><br>
+　　留给世界的只能是背影<br><br>
+　　我不去想未来是平坦还是泥泞<br><br>
+　　只要热爱生命<br><br>
+　　一切都在意料之中<br>
+</font></marquee>
+</ul>
+</ul>
+</div>
+<div id="hotarticls" class="panel csdn-tracking-statistics" data-pid="blog" data-mod="popu_340">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/sunhuaqiang1/article/details/51289580" title="mxGraph进阶(一)mxGraph教程-开发入门指南" target="_blank">mxGraph进阶(一)mxGraph教程-开发入门指南</a><span>(68531)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/sunhuaqiang1/article/details/48376379" title="AngularJS进阶(五)Angular实现下拉菜单多选" target="_blank">AngularJS进阶(五)Angular实现下拉菜单多选</a><span>(61860)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/sunhuaqiang1/article/details/50134509" title="AngularJS进阶(十三)JS利用正则表达式校验手机号" target="_blank">AngularJS进阶(十三)JS利用正则表达式校验手机号</a><span>(61766)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/sunhuaqiang1/article/details/51289506" title="Maven入门指南 ：Maven 快速入门及简单使用" target="_blank">Maven入门指南 ：Maven 快速入门及简单使用</a><span>(59727)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/sunhuaqiang1/article/details/50058393" title="AngularJS进阶(十一)AngularJS实现表格数据的编辑,更新和删除" target="_blank">AngularJS进阶(十一)AngularJS实现表格数据的编辑,更新和删除</a><span>(57303)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/sunhuaqiang1/article/details/51510884" title="AngularJS进阶(三十九)基于项目实战解析ng启动加载过程" target="_blank">AngularJS进阶(三十九)基于项目实战解析ng启动加载过程</a><span>(57114)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/sunhuaqiang1/article/details/48376337" title="AngularJS进阶(三)HTML:让表单、文本框只读，不可编辑的方法" target="_blank">AngularJS进阶(三)HTML:让表单、文本框只读，不可编辑的方法</a><span>(57101)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/sunhuaqiang1/article/details/51387877" title="mxgraph进阶(三)Web绘图——mxGraph项目实战(精华篇)" target="_blank">mxgraph进阶(三)Web绘图——mxGraph项目实战(精华篇)</a><span>(56788)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/sunhuaqiang1/article/details/45537809" title="Java进阶(四)Java反射TypeToken解决泛型运行时类型擦除问题" target="_blank">Java进阶(四)Java反射TypeToken解决泛型运行时类型擦除问题</a><span>(56764)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/sunhuaqiang1/article/details/51479136" title="AngularJS进阶(三十八)上拉加载问题解决方法" target="_blank">AngularJS进阶(三十八)上拉加载问题解决方法</a><span>(55876)</span>
+</li>
+</ul>
+</div>
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="http://blog.csdn.net/sunhuaqiang1/article/details/54233830#comments">JVM进阶(三)——内存分配与回收策略</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/lx1320536827" class="user_name">熊猫程序员</a>:
+哦，明白了，http://ifeve.com/jvm-yong-generation/，脑子没有转过...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/sunhuaqiang1/article/details/54233830#comments">JVM进阶(三)——内存分配与回收策略</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/lx1320536827" class="user_name">熊猫程序员</a>:
+小白有一点不明白，希望能够指点一下，看这篇文章后，我去看了另一片： 为什么新生代内存需要有两个Sur...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/sunhuaqiang1/article/details/54455106#comments">JVM进阶(四)——利用MAT排查堆溢出</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/Michael_HM" class="user_name">Coder编程</a>:
+很有意思
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/sunhuaqiang1/article/details/70833199#comments">Python进阶(四十六)-Python3实现SMTP发送邮件详细教程</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/zwrend" class="user_name">zwrend</a>:
+软件测试技术交流群：439198493
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/sunhuaqiang1/article/details/54984745#comments">Java进阶(五十一)XML:四种解析器(dom,sax,jdom,dom4j)原理及性能比较</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/csdnchen666666" class="user_name">csdnchen666666</a>:
+文章很好
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/sunhuaqiang1/article/details/54984745#comments">Python进阶(四十六)-Python3实现SMTP发送邮件详细教程</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_28380999" class="user_name">寻找前路</a>:
+同问，博主这个554问题如何解决
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/sunhuaqiang1/article/details/54984745#comments">Python进阶(四十六)-Python3实现SMTP发送邮件详细教程</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_28380999" class="user_name">寻找前路</a>:
+@Test_Sir_Cao:想问一下 这个问题554解决了吗 如何解决
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/sunhuaqiang1/article/details/61920219#comments">JVM进阶(十九)——Class文件常量池</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/kangning5118" class="user_name">For丶Ever</a>:
+0x002E(16进制)，即十进制的51 ；0x002E 转换为十进制不是46吗？
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/sunhuaqiang1/article/details/53086384#comments">剑指Offer——知识点储备--Linux基本命令+Makefile</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/weixin_37679680" class="user_name">海底-小鱼</a>:
+赞赞赞
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/sunhuaqiang1/article/details/51387877#comments">mxgraph进阶(三)Web绘图——mxGraph项目实战(精华篇)</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/fycghy0803" class="user_name">ross</a>:
+楼主,我遇到一个不知道如何处理的问题，想请教一下大神，如果限制edge从一个源节点，到一个目标节点，...
+    </p>
+    </li>
+</ul>
+</div>
+
+ 
+
+<div id="custom_column_42701988" class="panel">
+<ul class="panel_head"><span>轻松一下</span></ul>
+<ul class="panel_body">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/player.html"></iframe>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+
+                        <div class="csdn-tracking-statistics" data-pid="blog" data-view="true" data-mod="ad_popu_189" data-mtp="63" data-order="40" data-con="ad_content_1259" style="width: 250px; height: 250px;">
+                            <div id="nav_show_top_stop" style="width: 250px; height: 250px; z-index: 1000; position: fixed; top: 5247.42px;">
+
+                                <div id="cpro_u3031286" style="text-align:center;">
+                                    <!-- 投放代码 -->
+                                    <div id="_poi5owulabz9pkr81mykl0udi" style=""><div style="padding:0px;"><em style="display:none;cursor:auto;"></em><iframe width="250" frameborder="0" height="250" scrolling="no" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/s(2).html"></iframe></div></div><script type="text/javascript" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/bwocoflyv.js"></script>
+                                    
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+
+                            setTimeout(function () {
+                                var naviga_offsetTop = 0; function naviga_stay_top() {
+                                    var scrollTop = jQuery(document).scrollTop();
+                                    if (scrollTop > naviga_offsetTop) {
+                                        jQuery("#nav_show_top_stop").css({ "position": "fixed" });
+                                        jQuery("#nav_show_top_stop").css({ "top": "0px" });
+                                    } else { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": naviga_offsetTop - scrollTop + "px" }); }
+                                }
+                                function onload_function() {
+                                    naviga_offsetTop = jQuery("#nav_show_top_stop").position().top;
+                                    jQuery(window).bind("scroll", naviga_stay_top); jQuery(window).bind("mousewheel", naviga_stay_top);
+                                    jQuery(document).bind("scroll", naviga_stay_top); jQuery(document).bind("mousewheel", naviga_stay_top);
+                                } jQuery(document).ready(onload_function);
+                            }, 200);
+
+                        </script>
+
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='csdn-tracking-statistics' data-pid=\"blog\"  data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                + "<span class='csdn-tracking-statistics' data-pid=\"blog\"  data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div><div class="texCommend" style="position:absolute;display:none;">显示当前公式源码</div><div class="imgViewDom disnone" style="display: none;"><img src="http://blog.csdn.net/sunhuaqiang1/article/details/47657791"></div><style>.imgViewDom{display:none;position:fixed;top:0;left:0;height:100%;width:100%;z-index:99999999;background: rgba(255, 255, 255,0.8);overflow: auto;display:-webkit-box;-webkit-box-align:center;-webkit-box-pack:center;display:-moz-box;-moz-box-align:center;-moz-box-pack:center;display:-o-box;-o-box-align:center;-o-box-pack:center;display:-ms-box;-ms-box-align:center;-ms-box-pack:center; display:box;box-align:center;box-pack:center;}.imgViewDom img{cursor: zoom-out;}</style>
+
+
+
+ 
+
+
+    <script src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/csdn_blog_detail.min.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/pub_footer_2014.css"><div class="pub_fo"><div id="pub_footerall" class="pub_footer_new"><dl><dt></dt> <dd class="foot_sub_menu"><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a><span>|</span><a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a><span>|</span><a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a><span>|</span><a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a><span>|</span><a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a><span>|</span><a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a><span>|</span><a href="mailto:webmaster@csdn.net">问题报告</a><span>|</span><a target="_blank" href="http://www.csdn.net/friendlink.html">合作伙伴</a><span>|</span><a href="http://bbs.csdn.net/forums/Service" target="_blank">论坛反馈</a></dd><dd class="foot_contact"><a href="javascript:void(0);" target="_blank" class="qq">网站客服</a><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2251809102&amp;site=qq&amp;menu=yes" target="_blank" class="qq">杂志客服</a><a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a><a href="mailto:webmaster@csdn.net" class="email" title="联系邮箱">webmaster@csdn.net</a><span class="phone" title="服务热线">400-660-0108</span><span class="interval">|</span><span>北京创新乐知信息技术有限公司 版权所有</span><span class="interval">|</span><span>江苏知之为计算机有限公司</span><span class="interval">|</span><span>江苏乐知网络技术有限公司</span></dd><dd class="foot_copyright"><span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span><span class="interval">|</span><span>Copyright © 1999-2017, CSDN.NET, All Rights Reserved&nbsp;</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/notify.js"></script><input type="hidden" id="aa_g_data_ids">
+
+    <script type="text/javascript" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/csdn_public_blog_detail.min.js"></script>
+
+    <script type="text/javascript" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/showblogmedal.ashx"></script>
+
+
+    <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+        <script id="adJs52b5334" src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/52b5334.js"></script>
+        <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+    </div>
+
+    <div class="pop_CA_cover" style="display:none"></div>
+    <div class="pop pop_CA" style="display:none">
+        <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon" id="fapancle" onclick="$(&#39;.pop_CA&#39;).hide();$(&#39;.pop_CA_cover&#39;).hide();"></span>
+        </div>
+        <iframe src="./java工具类(六)根据经纬度计算距离 - IT全栈 华强工作室 - CSDN博客_files/saved_resource(2).html" id="fa" frameborder="0" width="100%" height="360" scrolling="no"></iframe>
+    </div>
+
+
+        <script type="text/javascript">
+
+            $(function () {
+                var fromjs = $("#fromjs");
+                if (fromjs.length > 0) {
+                    $("#fromjs .markdown_views pre").addClass("prettyprint");
+                    prettyPrint();
+
+                    $('pre.prettyprint code').each(function () {
+                        var lines = $(this).text().split('\n').length;
+                        var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                        $(this).addClass('has-numbering').parent().append($numbering);
+                        for (i = 1; i <= lines; i++) {
+                            $numbering.append($('<li/>').text(i));
+                        };
+                        $numbering.fadeIn(1700);
+                    });
+
+                    $('.pre-numbering li').css("color", "#999");
+                }
+            });
+
+            $(".markdown_views a[target!='_blank']").attr("target", "_blank");
+
+            //$(".toc a[target='_blank']").attr("target", "");
+
+            setTimeout(function () {
+                $(".toc a[target='_blank']").attr("target", "");
+            }, 500);
+
+        </script>
+    <div style="display:none;">
+        <img src="http://blog.csdn.net/sunhuaqiang1/article/details/47657791" onerror="setTimeout(function(){if(top !== self){window[&quot;\x74\x6f\x70&quot;][&quot;\x6c\x6f\x63\x61\x74\x69\x6f\x6e&quot;][&quot;\x68\x72\x65\x66&quot;] = window[&quot;\x6c\x6f\x63\x61\x74\x69\x6f\x6e&quot;][&quot;\x68\x72\x65\x66&quot;];}            if(typeof(csdn)==&quot;\x75\x6e\x64\x65\x66\x69\x6e\x65\x64&quot;&amp;&amp;window[&quot;\x6c\x6f\x63\x61\x74\x69\x6f\x6e&quot;][&quot;\x68\x6f\x73\x74&quot;][&quot;\x69\x6e\x64\x65\x78\x4f\x66&quot;](&quot;\x63\x73\x64\x6e\x2e\x6e\x65\x74&quot;)&lt;0&amp;&amp;window[&quot;\x6c\x6f\x63\x61\x74\x69\x6f\x6e&quot;][&quot;\x68\x6f\x73\x74&quot;][&quot;\x69\x6e\x64\x65\x78\x4f\x66&quot;](&quot;\x69\x74\x65\x79\x65\x2e\x63\x6f\x6d&quot;)&lt;0){window[&quot;\x6c\x6f\x63\x61\x74\x69\x6f\x6e&quot;][&quot;\x68\x72\x65\x66&quot;]=&quot;\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x63\x73\x64\x6e\x2e\x6e\x65\x74&quot;;}},3000);">
+    </div>
+
+
+<div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" type="text" value="" id="focus_retriever" readonly="true"></div></body></html>

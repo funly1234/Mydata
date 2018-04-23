@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0063)http://www.cnblogs.com/shortboy/archive/2013/03/12/2956673.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn"><style type="text/css" id="52454827201"></style><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>使用javah生成.h文件, 出现无法访问android.app,Activity的错误的解决 - 3H - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./使用javah生成.h文件, 出现无法访问android.app,Activity的错误的解决 - 3H - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./使用javah生成.h文件, 出现无法访问android.app,Activity的错误的解决 - 3H - 博客园_files/bundle-LessIsMore.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/shortboy/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/shortboy/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/shortboy/wlwmanifest.xml">
+<script async="" src="./使用javah生成.h文件, 出现无法访问android.app,Activity的错误的解决 - 3H - 博客园_files/analytics.js"></script><script src="./使用javah生成.h文件, 出现无法访问android.app,Activity的错误的解决 - 3H - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'shortboy', cb_enable_mathjax=false;</script>
+<script src="./使用javah生成.h文件, 出现无法访问android.app,Activity的错误的解决 - 3H - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head><style type="text/css" id="52454826201"></style>
+<body>
+<a name="top"></a>
+
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/shortboy/">3H</a></div>
+<div class="subtitle"></div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li id="nav_sitehome"><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li id="nav_myhome"><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/shortboy/">首页</a></li>
+<li id="nav_newpost"><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li id="nav_contact"><a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://msg.cnblogs.com/send/3H">联系</a></li>
+<li id="nav_rss"><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/shortboy/rss">订阅</a>
+<!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/shortboy/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li id="nav_admin"><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+</ul>
+
+		<div class="blogStats">
+			
+			
+<!--done-->
+随笔-155&nbsp;
+文章-0&nbsp;
+评论-39&nbsp;
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="./使用javah生成.h文件, 出现无法访问android.app,Activity的错误的解决 - 3H - 博客园_files/使用javah生成.h文件, 出现无法访问android.app,Activity的错误的解决 - 3H - 博客园.html">使用javah生成.h文件, 出现无法访问android.app,Activity的错误的解决</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">我同学在工程ndk22/bin/classes中 运行javah&nbsp; com.cn.ndk22.Ndk22.Activity ,出现了.h文件<br>&nbsp;<img style="border-width: 0px; border-image: initial;" src="./使用javah生成.h文件, 出现无法访问android.app,Activity的错误的解决 - 3H - 博客园_files/93eceab7-0d20-30fc-b810-4b871cdea270.jpg" alt=""> <img style="border-width: 0px; border-image: initial;" src="./使用javah生成.h文件, 出现无法访问android.app,Activity的错误的解决 - 3H - 博客园_files/22fe6289-883c-370b-8c4c-a1bcec1a4da1.jpg" alt=""> &nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;我在bin/classes目录中 ,就是无法访问,</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;: 错误:无法访问android.app.Activity</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">找不到android.app.Activity&nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp; 如下图所示</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;"><img style="border-width: 0px; border-image: initial;" src="./使用javah生成.h文件, 出现无法访问android.app,Activity的错误的解决 - 3H - 博客园_files/d1445d6c-80d4-3eaf-a64b-a99f0d31a405.png" alt=""></p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp; 于是我cmd定位到ndk/src,中运行 javah com.heima.ndk.ndkActivity, 成功了就能成功了 ...我也不知道为什么.,如下图</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;"><img style="border-width: 0px; border-image: initial;" src="./使用javah生成.h文件, 出现无法访问android.app,Activity的错误的解决 - 3H - 博客园_files/5624ed93-63f3-320d-a584-74abd157611c.png" alt=""></p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">总结:&nbsp; 使用javah生成.h文件时,</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 如果在D:\Android\project\ndk\bin\classes中,执行javah com.heima.ndk.ndkActivity无法访问,找不到类文件的话</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;&nbsp;&nbsp; 那就在D:\Android\project\ndk\src中,执行javah com.heima.ndk.ndkActivity,或许能成功</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 我也不知道为什么了,反正能用了就行...</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">&nbsp;</p>
+<p style="font: 14px/25px Helvetica, Tahoma, Arial, sans-serif; margin: 0px; padding: 0px; text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">转载于:<a href="http://201202212729.iteye.com/blog/1625779">http://201202212729.iteye.com/blog/1625779</a></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/shortboy/category/363894.html">android注意的问题</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2956673,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://msg.cnblogs.com/send/3H" target="_blank">联系我</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./使用javah生成.h文件, 出现无法访问android.app,Activity的错误的解决 - 3H - 博客园_files/icon_weibo_24.png" alt=""></a>
+<a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./使用javah生成.h文件, 出现无法访问android.app,Activity的错误的解决 - 3H - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/shortboy/" target="_blank"><img src="./使用javah生成.h文件, 出现无法访问android.app,Activity的错误的解决 - 3H - 博客园_files/u384610.jpg" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/shortboy/">3H</a><br>
+<a href="http://home.cnblogs.com/u/shortboy/followees">关注 - 2</a><br>
+<a href="http://home.cnblogs.com/u/shortboy/followers">粉丝 - 26</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow">
+    <a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+    <div class="diggit" onclick="votePost(2956673,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+	<div class="buryit" onclick="votePost(2956673,&#39;Bury&#39;)"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/shortboy/archive/2013/03/11/2953685.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/shortboy/archive/2013/03/11/2953685.html" title="发布于2013-03-11 11:33">android 图片加载过多崩溃</a><br><a href="http://www.cnblogs.com/shortboy/archive/2013/03/14/2958635.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/shortboy/archive/2013/03/14/2958635.html" title="发布于2013-03-14 00:36">基于x86 Android ndk应用移植指南(android ndk 生成libs/x86)</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2013-03-12 22:59</span> <a href="http://www.cnblogs.com/shortboy/">3H</a> 阅读(<span id="post_view_count">4389</span>) 评论(<span id="post_comment_count">1</span>)  <a href="http://i.cnblogs.com/EditPosts.aspx?postid=2956673" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/shortboy/archive/2013/03/12/2956673.html#" onclick="AddToWz(2956673);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=111321,cb_entryId=2956673,cb_blogApp=currentBlogApp,cb_blogUserGuid='ea489976-e56b-e111-aa3f-842b2b196315',cb_entryCreatedDate='2013/3/12 22:59:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shortboy/archive/2013/03/12/2956673.html#3374815" class="layer">#1楼</a><a name="3374815" id="comment_anchor_3374815"></a><span id="comment-maxId" style="display:none;">3374815</span><span id="comment-maxDate" style="display:none;">2016/3/8 16:43:06</span>  <span class="comment_date">2016-03-08 16:43</span> <a id="a_comment_author_3374815" href="http://www.cnblogs.com/wudicainiao/" target="_blank">超级无敌大帅哥</a> <a href="http://msg.cnblogs.com/send/%E8%B6%85%E7%BA%A7%E6%97%A0%E6%95%8C%E5%A4%A7%E5%B8%85%E5%93%A5" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3374815" class="blog_comment_body">1.7：在src目录下执行javah 包名.类名 *1.6：在bin/classes目录下执行</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3374815,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3374815,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/shortboy/archive/2013/03/12/2956673.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/shortboy/archive/2013/03/12/2956673.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/546008/" target="_blank">360手机N4拆机评测 899元内心大公开</a><br> ·  <a href="http://news.cnblogs.com/n/546007/" target="_blank">工会代表称诺基亚或在全球裁员1.5万人</a><br> ·  <a href="http://news.cnblogs.com/n/546006/" target="_blank">途牛网第一季度净亏损8370万美元 同比亏损扩大</a><br> ·  <a href="http://news.cnblogs.com/n/546005/" target="_blank">安全公司称40%的机器人都在为非作歹</a><br> ·  <a href="http://news.cnblogs.com/n/546004/" target="_blank">音乐和YouTube：相爱容易，相处太难</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/545784/" target="_blank">一个前端的自我修养</a><br> ·  <a href="http://kb.cnblogs.com/page/543110/" target="_blank">架构漫谈（九）：理清技术、业务和架构的关系</a><br> ·  <a href="http://kb.cnblogs.com/page/542725/" target="_blank">架构漫谈（八）：从架构的角度看如何写好代码</a><br> ·  <a href="http://kb.cnblogs.com/page/542257/" target="_blank">架构漫谈（七）：不要空设架构师这个职位，给他实权</a><br> ·  <a href="http://kb.cnblogs.com/page/541740/" target="_blank">架构漫谈（六）：软件架构到底是要解决什么问题？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);    
+});
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/shortboy/">3H</a><br>园龄：<a href="http://home.cnblogs.com/u/shortboy/" title="入园时间：2012-03-12">4年2个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/shortboy/followers/">26</a><br>关注：<a href="http://home.cnblogs.com/u/shortboy/followees/">2</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="cnblogs.UserManager.FollowBlogger(&#39;ea489976-e56b-e111-aa3f-842b2b196315&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2013/02/01&#39;);return false;">&lt;</a></td><td align="center">2013年3月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2013/04/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">24</td><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td align="center"><a href="http://www.cnblogs.com/shortboy/archive/2013/03/01.html"><u>1</u></a></td><td class="CalWeekendDay" align="center">2</td></tr><tr><td class="CalWeekendDay" align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center"><a href="http://www.cnblogs.com/shortboy/archive/2013/03/06.html"><u>6</u></a></td><td align="center"><a href="http://www.cnblogs.com/shortboy/archive/2013/03/07.html"><u>7</u></a></td><td align="center">8</td><td class="CalWeekendDay" align="center">9</td></tr><tr><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/shortboy/archive/2013/03/10.html"><u>10</u></a></td><td align="center"><a href="http://www.cnblogs.com/shortboy/archive/2013/03/11.html"><u>11</u></a></td><td align="center"><a href="http://www.cnblogs.com/shortboy/archive/2013/03/12.html"><u>12</u></a></td><td align="center">13</td><td align="center"><a href="http://www.cnblogs.com/shortboy/archive/2013/03/14.html"><u>14</u></a></td><td align="center">15</td><td class="CalWeekendDay" align="center">16</td></tr><tr><td class="CalWeekendDay" align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td class="CalWeekendDay" align="center">23</td></tr><tr><td class="CalWeekendDay" align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td class="CalWeekendDay" align="center">30</td></tr><tr><td class="CalWeekendDay" align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/shortboy/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/shortboy/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/shortboy/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/shortboy/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/shortboy/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/shortboy/category/663534.html"> Python开发(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/shortboy/category/660313.html">activiti 工作流遇到的问题(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/shortboy/category/678909.html">Android Studio(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/shortboy/category/598285.html">android 自动化Test遇到的问题(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/shortboy/category/363894.html">android注意的问题(69)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/shortboy/category/801444.html">Angular.js有关问题(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/shortboy/category/365349.html">eclipse(19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/shortboy/category/399354.html">HTML(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/shortboy/category/363560.html">javascript(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/shortboy/category/367266.html">java常用代码(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/shortboy/category/412271.html">JBoss服务器(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/shortboy/category/371752.html">Jquery相关问题(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/shortboy/category/387012.html">linux有关问题(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/shortboy/category/470537.html">maven常用知识(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/shortboy/category/392678.html">struts2(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/shortboy/category/380775.html">Tomcat服务器(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/shortboy/category/596935.html">报表(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/shortboy/category/367302.html">常用的SQL语句</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/shortboy/category/396952.html">电脑相关知识(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/shortboy/category/678923.html">翻墙</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/shortboy/category/457690.html">犯傻的开发(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/shortboy/category/824511.html">脑补系列(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/shortboy/category/362868.html">手机软件(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/shortboy/category/362232.html">数据库(12)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/shortboy/archive/2016/05.html">2016年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/shortboy/archive/2016/04.html">2016年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/shortboy/archive/2016/03.html">2016年3月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/shortboy/archive/2016/01.html">2016年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/shortboy/archive/2015/12.html">2015年12月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/shortboy/archive/2015/10.html">2015年10月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/shortboy/archive/2015/09.html">2015年9月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/shortboy/archive/2015/08.html">2015年8月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/shortboy/archive/2015/07.html">2015年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/shortboy/archive/2015/06.html">2015年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/shortboy/archive/2015/05.html">2015年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/shortboy/archive/2015/04.html">2015年4月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/shortboy/archive/2015/03.html">2015年3月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/shortboy/archive/2015/02.html">2015年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/shortboy/archive/2014/11.html">2014年11月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/shortboy/archive/2014/09.html">2014年9月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/shortboy/archive/2014/08.html">2014年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/shortboy/archive/2014/07.html">2014年7月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/shortboy/archive/2014/05.html">2014年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/shortboy/archive/2014/04.html">2014年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/shortboy/archive/2013/10.html">2013年10月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/shortboy/archive/2013/09.html">2013年9月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/shortboy/archive/2013/08.html">2013年8月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/shortboy/archive/2013/07.html">2013年7月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/shortboy/archive/2013/06.html">2013年6月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/shortboy/archive/2013/04.html">2013年4月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/shortboy/archive/2013/03.html">2013年3月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/shortboy/archive/2013/02.html">2013年2月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/shortboy/archive/2013/01.html">2013年1月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/shortboy/archive/2012/12.html">2012年12月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_30" href="http://www.cnblogs.com/shortboy/archive/2012/11.html">2012年11月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_31" href="http://www.cnblogs.com/shortboy/archive/2012/10.html">2012年10月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_32" href="http://www.cnblogs.com/shortboy/archive/2012/09.html">2012年9月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_33" href="http://www.cnblogs.com/shortboy/archive/2012/08.html">2012年8月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_34" href="http://www.cnblogs.com/shortboy/archive/2012/07.html">2012年7月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_35" href="http://www.cnblogs.com/shortboy/archive/2012/06.html">2012年6月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_36" href="http://www.cnblogs.com/shortboy/archive/2012/05.html">2012年5月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_37" href="http://www.cnblogs.com/shortboy/archive/2012/04.html">2012年4月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_38" href="http://www.cnblogs.com/shortboy/archive/2012/03.html">2012年3月 (8)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shortboy/p/3860132.html#3390351">1. Re:IReport5.6.0创建数据库连接找不到驱动（iReport中ClassNotFoundError错误的解决）</a></li>
+        <li class="recent_comment_body">@3H能够解释一下吗？ 有点不懂啊》。 我QQ号 1015770053 请帮忙解释一下...</li>
+        <li class="recent_comment_author">--问求知</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shortboy/p/3860132.html#3390346">2. Re:IReport5.6.0创建数据库连接找不到驱动（iReport中ClassNotFoundError错误的解决）</a></li>
+        <li class="recent_comment_body">@问求知有百度过？...</li>
+        <li class="recent_comment_author">--3H</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shortboy/p/3860132.html#3390327">3. Re:IReport5.6.0创建数据库连接找不到驱动（iReport中ClassNotFoundError错误的解决）</a></li>
+        <li class="recent_comment_body">请问5.6.0怎么连接mysql数据库，数据库放在服务器上面，错误信息是SQL problems: Communications link failureThe last packet sent su......</li>
+        <li class="recent_comment_author">--问求知</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shortboy/archive/2013/03/12/2956673.html#3374815">4. Re:使用javah生成.h文件, 出现无法访问android.app,Activity的错误的解决</a></li>
+        <li class="recent_comment_body">1.7：在src目录下执行javah 包名.类名 *1.6：在bin/classes目录下执行</li>
+        <li class="recent_comment_author">--超级无敌大帅哥</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shortboy/archive/2013/04/08/3008710.html#3357978">5. Re:android之ScrollView里嵌套ListView（转）</a></li>
+        <li class="recent_comment_body">nice,很有用</li>
+        <li class="recent_comment_author">--slowwalker</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/shortboy/archive/2012/07/19/2599352.html">1. Android TableLayout中的使用说明(47523)</a></li><li><a href="http://www.cnblogs.com/shortboy/archive/2013/04/08/3008710.html">2. android之ScrollView里嵌套ListView（转）(27582)</a></li><li><a href="http://www.cnblogs.com/shortboy/archive/2012/04/12/2443497.html">3. Android layout属性大全(16145)</a></li><li><a href="http://www.cnblogs.com/shortboy/archive/2013/03/11/2953610.html">4. 安装android的IntelHaxm.exe时出错的问题(13820)</a></li><li><a href="http://www.cnblogs.com/shortboy/p/4424944.html">5. 在Android Eclipse 开发如何 使用 (*.aar)文件(12723)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/shortboy/archive/2013/03/01/2938664.html">1. 关于sqlserver的sql中的中括号不好之处(10)</a></li><li><a href="http://www.cnblogs.com/shortboy/p/3860132.html">2. IReport5.6.0创建数据库连接找不到驱动（iReport中ClassNotFoundError错误的解决）(4)</a></li><li><a href="http://www.cnblogs.com/shortboy/p/4519860.html">3. 关于Eclipse如何加入Gradle文件与Android Studio两个平台一起开发，工作目录不发生变化(3)</a></li><li><a href="http://www.cnblogs.com/shortboy/p/3303207.html">4. Darwin Streaming Server for Windows 安装(3)</a></li><li><a href="http://www.cnblogs.com/shortboy/archive/2013/04/08/3008710.html">5. android之ScrollView里嵌套ListView（转）(2)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/shortboy/archive/2012/07/19/2599352.html">1. Android TableLayout中的使用说明(4)</a></li><li><a href="http://www.cnblogs.com/shortboy/p/4519860.html">2. 关于Eclipse如何加入Gradle文件与Android Studio两个平台一起开发，工作目录不发生变化(2)</a></li><li><a href="http://www.cnblogs.com/shortboy/p/4428137.html">3. Android Studio 1.1.0 切换主题和绑定 代码提示 快捷键(2)</a></li><li><a href="http://www.cnblogs.com/shortboy/archive/2012/09/29/2708079.html">4. Android项目-几种常见的应用架构(2)</a></li><li><a href="http://www.cnblogs.com/shortboy/p/4424944.html">5. 在Android Eclipse 开发如何 使用 (*.aar)文件(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2016 3H
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

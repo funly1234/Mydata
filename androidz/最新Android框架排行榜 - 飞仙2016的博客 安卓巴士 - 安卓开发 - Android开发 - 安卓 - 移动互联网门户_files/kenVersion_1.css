@@ -1,0 +1,195 @@
+.index_top_grid {
+    border: 1px /*solid*/ #cdcdcd; 
+    margin-bottom: 10px;
+}
+
+.index_top_grid ul.grid_left {
+        float: left;
+        width: 49.3%;
+        border-bottom:1px solid #cdcdcd;
+        border-right: 1px solid #cdcdcd;
+        border-top: 1px solid #cdcdcd;
+        border-left: 1px solid #cdcdcd;
+}
+
+.index_top_grid ul.grid_right {
+        float: right;
+        width: 49.3%;
+        border-bottom:1px solid #cdcdcd;
+        border-right: 1px solid #cdcdcd;
+        border-top: 1px solid #cdcdcd;
+        border-left: 1px solid #cdcdcd;
+}
+
+.index_top_grid ul.grid_main{
+        position: relative;
+        height: 269px;;
+}
+    
+.index_top_grid ul.grid_main li {
+        float: left;
+        width: 33.33333%;
+        /*background: #EBF5F6;*/  
+        line-height: 35px;
+        text-align: center;
+        height: 40px;
+        border-bottom:1px solid #cdcdcd;
+}
+
+.index_top_grid ul.grid_main li span.grid_title {
+        color: #444;
+        font-size: 15px;
+        display: block;
+        margin: 0 18px;
+        position: relative;
+        top:4px;
+}
+
+.index_top_grid ul.grid_main li.active span.grid_title {
+        color: #76c158;
+        background: #fff;
+        border-bottom: 2px solid #76c158; 
+}
+
+.index_top_grid ul.grid_main li.active .grid_box{
+        display: block;
+}
+
+.index_top_grid .grid_box {
+        position: absolute;
+        left: 0;
+        top: 48px;
+        width: 100%;
+        background: #fff;
+        display: none;
+}
+
+.index_top_grid .g_typename{
+        float: left;
+        text-align: left;
+        padding-left:18px;
+        padding-right: 6px;
+        color: #00abde;
+        border-right: 1px solid #00abde;
+        max-width: 180px;
+        height: 14px;
+        overflow: hidden;
+}
+    
+.index_top_grid .g_time{
+        float: right;
+        text-align: left;
+        padding-right: 18px;
+        color: #99999a;
+        font-size: 12px;
+}
+
+.index_top_grid .g_title{
+        float: left;
+        text-align: right;
+        padding-left: 6px;
+}
+
+.index_top_grid .g_line{
+        clear: both;
+        line-height: 13px;
+        padding: 6px 0;
+        float: left;
+        width: 100%;
+}
+
+
+/*以下部分内容来自 style.css*/
+.bm_h, .tl th, .tl td { border-bottom-color: #CDCDCD; }
+.fl .bm_h { border-color: #C5E6DF; /*background: #EBF5F6 url(titlebg.png)*/ repeat-x 0 0; }
+
+/* 重定义 {SPECIALBG} */
+.bmn, .bm_h, td.pls, .ad td.plc, div.exfm, .tb a, .tb_h, .ttp li.a a, div.uo a, input#addsubmit_btn, #gh .bm .bm_h, .appnew, .apphot { /*background-color: #EBF5F6;*//*border-bottom: 1px solid #cdcdcd; */}
+/*以上部分内容来自 style.css*/
+
+
+
+/*以下部分内容来自 style_1_common.css*/
+form {
+    /*margin: 5px;*/ padding-bottom: 15px;  
+}
+
+.ptm {
+    /*padding-top: 10px !important;*/
+    padding-top: 10px !important;
+}
+
+/*.bm 是注释掉的其中一个*/
+/*.bm {
+    margin-bottom: 10px;
+}*/
+
+.apkbus .bm {
+/*    background: rgb(255, 255, 255); */
+    border: none;
+}
+
+/*.bm_h {
+    background: rgb(242, 242, 242); padding: 0px 10px; height: 31px; line-height: 31px; overflow: hidden; border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(194, 213, 227); border-top-width: 1px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid; white-space: nowrap;
+}*/
+
+.bm_h{
+    overflow: hidden; 
+    padding: 5px;
+    height: 20px;
+    line-height: 1.5em;
+    background: none;
+    border: none;
+    /*/*border-bottom:1px solid #cdcdcd;
+    border-right: 1px solid #cdcdcd;
+    border-top: 1px solid #cdcdcd;
+    border-left: 1px solid #cdcdcd; */
+}
+
+.bmw .bm_h {
+    /*background: rgb(229, 237, 242); */ border-color: rgb(255, 255, 255) rgb(255, 255, 255) rgb(194, 213, 227); border-right-width: 1px; border-left-width: 1px; border-right-style: solid; border-left-style: solid;
+}
+
+/*.fl {
+    background: rgb(255, 255, 255); border-width: medium 1px 1px; border-style: none solid solid; border-color: currentColor rgb(205, 205, 205) rgb(205, 205, 205); border-image: none;
+}*/
+
+.fl .bm_h {
+    background: none;
+    border: none;
+    border-width: 1px 0px;
+    margin: 10px 0px 10px;
+}
+.fl .bm_c {
+    padding-top: 0px; padding-bottom: 0px;
+    /*border: 1px solid rgb(205,205,205);*/
+    border-bottom:1px solid rgb(205,205,205);
+    border-right:1px solid rgb(205,205,205);
+    border-left:1px solid rgb(205,205,205);
+    border-top: 1px solid rgb(205,205,205);
+}
+
+/*.focus dt {
+    padding-top: 15px;
+}*/
+
+.controlfocus{
+    text-align: center;
+    border-top: 1px solid rgb(205,205,205);
+    padding: 10px 0px;
+    border-bottom: 1px dashed rgb(205,205,205);
+}
+.bm_h>h2>a{
+    color: #000 !important;
+    font-size: 15px !important;
+}
+#sitefocus{
+    border: 1px solid rgb(205,205,205);
+    top:30%;
+    bottom: auto;
+}
+/*以上部分内容来自 style_1_common.css*/
+.bm_h>.y{
+    bottom: -9px;
+    position: relative;
+}

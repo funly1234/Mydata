@@ -1,0 +1,29 @@
+ctrl+n   	搜索类名
+ctrl+空格       语句自动补齐
+ctrl+shift+空格   智能提示
+alt+f7 		全局搜索
+ctrl+q 		查看文档
+ctrl+b 	或按住ctrl鼠标点击  查看类属性
+ctrl+f12 	批量修改
+shift+f6 	批量修改
+ctrl+o 		重写父类方法
+ctrl+i 		实现接口方法或抽象方法
+alt+Insert       get，set，构造方法等自动补齐
+alt+f1		元素在各view
+ctrl+alt+T 	环绕如if ， try catch
+ctrl+alt+v 	重构
+ctrl+/  ctrl+shift+/  各种注释
+shift+f1  	看文档
+ctrl+d		复制选定
+ctrl+p		括号内提示
+Ctrl+Shift+Backspace 回退
+Code| Reformat Code 整理
+Code | Optimize Imports  整理导入
+Local History | Show History 代码修改历史
+alt+p          	查看当前方法的声明
+ctrl+e 		最近访问
+ F2/Shift+F2 keys to jump between highlighted syntax errors.
+Ctrl+Alt+向上箭头/Ctrl+Alt+向下箭头 shortcuts to jump between compiler error messages or search operation results.
+ctrl+j         提示
+Ctrl+Shift+J    代码两行变一行 去空格
+Ctrl+Shift+V 	最近输入

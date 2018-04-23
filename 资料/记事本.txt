@@ -1,0 +1,17 @@
+首先Drawable资源分为xxhdpi，xhdpi，hdpi，mdpi，ldpi，分别为超超高密度400dpi（左右），超高密度320dpi，高密度240dpi，中密度160dpi，低密度120dpi。
+然后手机的屏幕又分为FWVGA，WVGA，VGA，HVGA，QVGA，其中
+    VGA是：Video Graphic Array，显示标准为480 x 640；
+    WVGA是Wide VGA，分辨率为480 x 800；
+    FWVGA是Full Wide VGA，分辨率为：480 x 854；
+    HVGA是Half VGA，分辨率为：320 x 480；
+    QVGA是Quarter VGA，分辨率为：240 x 320；
+xxhdpi：主要存放超超高密度图片，背景图：1080 x 1920，Icon：144 x 144，适配机型：谷歌 Nexus 4
+xhdpi：主要存放超高密度图片，背景图：720 x 1280，Icon：96 x 96，适配机型：小米2等大屏手机
+hdpi：主要放高密度图片：背景图：480 x 800，Icon：72 x 72，适配机型：WVGA(480 x 800)和FWVGA(480 x 854)
+mdpi：主要放中密度图片：背景图 ：320 x 480，Icon：48 x 48，适配机型：HVGA(320 x 480)
+ldpi：主要放低密度图片：背景图：240 x 320，Icon：36 x 36，适配机型：QVGA(240 x 320)
+
+
+
+
+

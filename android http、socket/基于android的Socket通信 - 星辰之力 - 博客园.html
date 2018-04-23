@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://www.cnblogs.com/zhujiabin/p/5675716.html -->
+<html lang="zh-cn" style="color: rgb(0, 0, 0); background-color: rgb(204, 232, 207);"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="same-origin">
+<title>基于android的Socket通信 - 星辰之力 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./基于android的Socket通信 - 星辰之力 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./基于android的Socket通信 - 星辰之力 - 博客园_files/bundle-SimpleBlue.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./基于android的Socket通信 - 星辰之力 - 博客园_files/bundle-SimpleBlue-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/zhujiabin/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/zhujiabin/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/zhujiabin/wlwmanifest.xml">
+<script async="" src="./基于android的Socket通信 - 星辰之力 - 博客园_files/analytics.js"></script><script type="text/javascript" src="./基于android的Socket通信 - 星辰之力 - 博客园_files/encoder.js"></script><script src="./基于android的Socket通信 - 星辰之力 - 博客园_files/jquery-2.2.0.min.js"></script>
+<script type="text/javascript">var currentBlogApp = 'zhujiabin', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./基于android的Socket通信 - 星辰之力 - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(204, 232, 207);">
+<a name="top"></a>
+
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/zhujiabin/">星辰</a></div>
+<div class="subtitle">android,ios,j2ee</div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li id="nav_sitehome"><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li id="nav_myhome"><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/zhujiabin/">首页</a></li>
+<li id="nav_newpost"><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li id="nav_contact"><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E6%98%9F%E8%BE%B0%E4%B9%8B%E5%8A%9B">联系</a></li>
+<li id="nav_rss"><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/zhujiabin/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/zhujiabin/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li id="nav_admin"><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔-2999&nbsp;
+文章-0&nbsp;
+评论-31&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/zhujiabin/p/5675716.html">基于android的Socket通信</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>一、Socket通信简介&nbsp;</p>
+<p>Android与服务器的通信方式主要有两种，一是Http通信，一是Socket通信。两者的最大差异在于，http连接使用的是“请求—响应方式”，即在请求时建立连接通道，当客户端向服务器发送请求后，服务器端才能向客户端返回数据。<span style="color: #ff0000; background-color: #ffffff;">而Socket通信则是在双方建立起连接后就可以直接进行数据的传输，在连接时可实现信息的主动推送，而不需要每次由客户端想服务器发送请求。</span> 那么，什么是socket？Socket又称套接字，在程序内部提供了与外界通信的端口，即端口通信。通过建立socket连接，可为通信双方的数据传输传提供通道。socket的主要特点有数据丢失率低，使用简单且易于移植。</p>
+<p>1.1什么是Socket Socket<br>是一种抽象层，应用程序通过它来发送和接收数据，使用Socket可以将应用程序添加到网络中，与处于同一网络中的其他应用程序进行通信。简单来说，Socket提供了程序内部与外界通信的端口并为通信双方的提供了数据传输通道。</p>
+<p>&nbsp;1.2Socket的分类<br>&nbsp;根据不同的的底层协议，Socket的实现是多样化的。本指南中只介绍TCP/IP协议族的内容，在这个协议族当中主要的Socket类型为流套接字（streamsocket）和数据报套接字(datagramsocket)。流套接字将TCP作为其端对端协议，提供了一个可信赖的字节流服务。数据报套接字使用UDP协议，提供数据打包发送服务。 下面，我们来认识一下这两种Socket类型的基本实现模型。</p>
+<p>二、Socket 基本通信模型</p>
+<p><img src="./基于android的Socket通信 - 星辰之力 - 博客园_files/20130621185516921" alt=""></p>
+<p>三、Socket基本实现原理</p>
+<p><br>&nbsp;3.1基于TCP协议的Socket&nbsp;<br>服务器端首先声明一个ServerSocket对象并且指定端口号，然后调用Serversocket的accept（）方法接收客户端的数据。accept（）方法在没有数据进行接收的处于堵塞状态。（Socketsocket=serversocket.accept()）,一旦接收到数据，通过inputstream读取接收的数据。<br>&nbsp; 客户端创建一个Socket对象，指定服务器端的ip地址和端口号（Socketsocket=newSocket("172.168.10.108",8080);）,通过inputstream读取数据，获取服务器发出的数据（OutputStreamoutputstream=socket.getOutputStream()），最后将要发送的数据写入到outputstream即可进行TCP协议的socket数据传输。<br>3.2基于UDP协议的数据传输&nbsp;<br>服务器端首先创建一个DatagramSocket对象，并且指点监听的端口。接下来创建一个空的DatagramSocket对象用于接收数据（bytedata[]=newbyte[1024;]DatagramSocketpacket=newDatagramSocket（data，data.length））,使用DatagramSocket的receive方法接收客户端发送的数据，receive（）与serversocket的accepet（）类似，在没有数据进行接收的处于堵塞状态。<br>客户端也创建个DatagramSocket对象，并且指点监听的端口。接下来创建一个InetAddress对象，这个对象类似与一个网络的发送地址（InetAddressserveraddress=InetAddress.getByName（"172.168.1.120"））.定义要发送的一个字符串，创建一个DatagramPacket对象，并制定要讲这个数据报包发送到网络的那个地址以及端口号，最后使用DatagramSocket的对象的send（）发送数据。*（Stringstr="hello";bytedata[]=str.getByte();DatagramPacketpacket=new DatagramPacket(data,data.length,serveraddress,4567);socket.send(packet);）</p>
+<p>四、android 实现socket简单通信</p>
+<p>前言：添加权限</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./基于android的Socket通信 - 星辰之力 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>&lt;!--允许应用程序改变网络状态--&gt;    
+&lt;uses-permission android:name=<span style="color: #800000;">"</span><span style="color: #800000;">android.permission.CHANGE_NETWORK_STATE</span><span style="color: #800000;">"</span>/&gt;    
+    
+&lt;!--允许应用程序改变WIFI连接状态--&gt;    
+&lt;uses-permission android:name=<span style="color: #800000;">"</span><span style="color: #800000;">android.permission.CHANGE_WIFI_STATE</span><span style="color: #800000;">"</span>/&gt;    
+    
+&lt;!--允许应用程序访问有关的网络信息--&gt;    
+&lt;uses-permission android:name=<span style="color: #800000;">"</span><span style="color: #800000;">android.permission.ACCESS_NETWORK_STATE</span><span style="color: #800000;">"</span>/&gt;    
+    
+&lt;!--允许应用程序访问WIFI网卡的网络信息--&gt;    
+&lt;uses-permission android:name=<span style="color: #800000;">"</span><span style="color: #800000;">android.permission.ACCESS_WIFI_STATE</span><span style="color: #800000;">"</span>/&gt;    
+    
+&lt;!--允许应用程序完全使用网络--&gt;    
+&lt;uses-permission android:name=<span style="color: #800000;">"</span><span style="color: #800000;">android.permission.INTERNET</span><span style="color: #800000;">"</span>/&gt;   </pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./基于android的Socket通信 - 星辰之力 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>4.1使用TCP协议通信</p>
+<p>android端实现：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./基于android的Socket通信 - 星辰之力 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre> <span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> connectServerWithTCPSocket() {  
+  
+        Socket socket;  
+        </span><span style="color: #0000ff;">try</span> {<span style="color: #008000;">//</span><span style="color: #008000;"> 创建一个Socket对象，并指定服务端的IP及端口号  </span>
+            socket = <span style="color: #0000ff;">new</span> Socket(<span style="color: #800000;">"</span><span style="color: #800000;">192.168.1.32</span><span style="color: #800000;">"</span>, <span style="color: #800080;">1989</span><span style="color: #000000;">);  
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 创建一个InputStream用户读取要发送的文件。  </span>
+            InputStream inputStream = <span style="color: #0000ff;">new</span> FileInputStream(<span style="color: #800000;">"</span><span style="color: #800000;">e://a.txt</span><span style="color: #800000;">"</span><span style="color: #000000;">);  
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 获取Socket的OutputStream对象用于发送数据。  </span>
+            OutputStream outputStream =<span style="color: #000000;"> socket.getOutputStream();  
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 创建一个byte类型的buffer字节数组，用于存放读取的本地文件  </span>
+            <span style="color: #0000ff;">byte</span> buffer[] = <span style="color: #0000ff;">new</span> <span style="color: #0000ff;">byte</span>[<span style="color: #800080;">4</span> * <span style="color: #800080;">1024</span><span style="color: #000000;">];  
+            </span><span style="color: #0000ff;">int</span> temp = <span style="color: #800080;">0</span><span style="color: #000000;">;  
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 循环读取文件  </span>
+            <span style="color: #0000ff;">while</span> ((temp = inputStream.read(buffer)) != -<span style="color: #800080;">1</span><span style="color: #000000;">) {  
+                </span><span style="color: #008000;">//</span><span style="color: #008000;"> 把数据写入到OuputStream对象中  </span>
+                outputStream.write(buffer, <span style="color: #800080;">0</span><span style="color: #000000;">, temp);  
+            }  
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 发送读取的数据到服务端  </span>
+<span style="color: #000000;">            outputStream.flush();  
+  
+            </span><span style="color: #008000;">/*</span><span style="color: #008000;">* 或创建一个报文，使用BufferedWriter写入,看你的需求 *</span><span style="color: #008000;">*/</span>  
+<span style="color: #008000;">//</span><span style="color: #008000;">          String socketData = "[2143213;21343fjks;213]";  
+</span><span style="color: #008000;">//</span><span style="color: #008000;">          BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(  
+</span><span style="color: #008000;">//</span><span style="color: #008000;">                  socket.getOutputStream()));  
+</span><span style="color: #008000;">//</span><span style="color: #008000;">          writer.write(socketData.replace("\n", " ") + "\n");  
+</span><span style="color: #008000;">//</span><span style="color: #008000;">          writer.flush();  </span>
+            <span style="color: #008000;">/*</span><span style="color: #008000;">**********************************************</span><span style="color: #008000;">*/</span><span style="color: #000000;">  
+        } </span><span style="color: #0000ff;">catch</span><span style="color: #000000;"> (UnknownHostException e) {  
+            e.printStackTrace();  
+        } </span><span style="color: #0000ff;">catch</span><span style="color: #000000;"> (IOException e) {  
+            e.printStackTrace();  
+        }  
+  
+    }  </span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./基于android的Socket通信 - 星辰之力 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>服务器端简单实现：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./基于android的Socket通信 - 星辰之力 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> ServerReceviedByTcp() {  
+    </span><span style="color: #008000;">//</span><span style="color: #008000;"> 声明一个ServerSocket对象  </span>
+    ServerSocket serverSocket = <span style="color: #0000ff;">null</span><span style="color: #000000;">;  
+    </span><span style="color: #0000ff;">try</span><span style="color: #000000;"> {  
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 创建一个ServerSocket对象，并让这个Socket在1989端口监听  </span>
+        serverSocket = <span style="color: #0000ff;">new</span> ServerSocket(<span style="color: #800080;">1989</span><span style="color: #000000;">);  
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 调用ServerSocket的accept()方法，接受客户端所发送的请求，  
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 如果客户端没有发送数据，那么该线程就停滞不继续  </span>
+        Socket socket =<span style="color: #000000;"> serverSocket.accept();  
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 从Socket当中得到InputStream对象  </span>
+        InputStream inputStream =<span style="color: #000000;"> socket.getInputStream();  
+        </span><span style="color: #0000ff;">byte</span> buffer[] = <span style="color: #0000ff;">new</span> <span style="color: #0000ff;">byte</span>[<span style="color: #800080;">1024</span> * <span style="color: #800080;">4</span><span style="color: #000000;">];  
+        </span><span style="color: #0000ff;">int</span> temp = <span style="color: #800080;">0</span><span style="color: #000000;">;  
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 从InputStream当中读取客户端所发送的数据  </span>
+        <span style="color: #0000ff;">while</span> ((temp = inputStream.read(buffer)) != -<span style="color: #800080;">1</span><span style="color: #000000;">) {  
+            System.</span><span style="color: #0000ff;">out</span>.println(<span style="color: #0000ff;">new</span> String(buffer, <span style="color: #800080;">0</span><span style="color: #000000;">, temp));  
+        }  
+        serverSocket.close();  
+    } </span><span style="color: #0000ff;">catch</span><span style="color: #000000;"> (IOException e) {  
+        e.printStackTrace();  
+    }  
+}  </span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./基于android的Socket通信 - 星辰之力 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>4.2使用UDP协议通信</p>
+<p>客户端发送数据实现：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./基于android的Socket通信 - 星辰之力 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> connectServerWithUDPSocket() {  
+      
+    DatagramSocket socket;  
+    </span><span style="color: #0000ff;">try</span><span style="color: #000000;"> {  
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">创建DatagramSocket对象并指定一个端口号，注意，如果客户端需要接收服务器的返回数据,  
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">还需要使用这个端口号来receive，所以一定要记住  </span>
+        socket = <span style="color: #0000ff;">new</span> DatagramSocket(<span style="color: #800080;">1985</span><span style="color: #000000;">);  
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">使用InetAddress(Inet4Address).getByName把IP地址转换为网络地址    </span>
+        InetAddress serverAddress = InetAddress.getByName(<span style="color: #800000;">"</span><span style="color: #800000;">192.168.1.32</span><span style="color: #800000;">"</span><span style="color: #000000;">);  
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">Inet4Address serverAddress = (Inet4Address) Inet4Address.getByName("192.168.1.32");    </span>
+        String str = <span style="color: #800000;">"</span><span style="color: #800000;">[2143213;21343fjks;213]</span><span style="color: #800000;">"</span>;<span style="color: #008000;">//</span><span style="color: #008000;">设置要发送的报文    </span>
+        <span style="color: #0000ff;">byte</span> data[] = str.getBytes();<span style="color: #008000;">//</span><span style="color: #008000;">把字符串str字符串转换为字节数组    
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">创建一个DatagramPacket对象，用于发送数据。    
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">参数一：要发送的数据  参数二：数据的长度  参数三：服务端的网络地址  参数四：服务器端端口号   </span>
+        DatagramPacket packet = <span style="color: #0000ff;">new</span> DatagramPacket(data, data.length ,serverAddress ,<span style="color: #800080;">10025</span><span style="color: #000000;">);    
+        socket.send(packet);</span><span style="color: #008000;">//</span><span style="color: #008000;">把数据发送到服务端。    </span>
+    } <span style="color: #0000ff;">catch</span><span style="color: #000000;"> (SocketException e) {  
+        e.printStackTrace();  
+    } </span><span style="color: #0000ff;">catch</span><span style="color: #000000;"> (UnknownHostException e) {  
+        e.printStackTrace();  
+    } </span><span style="color: #0000ff;">catch</span><span style="color: #000000;"> (IOException e) {  
+        e.printStackTrace();  
+    }    
+}  </span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./基于android的Socket通信 - 星辰之力 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>客户端接收服务器返回的数据：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./基于android的Socket通信 - 星辰之力 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> ReceiveServerSocketData() {  
+    DatagramSocket socket;  
+    </span><span style="color: #0000ff;">try</span><span style="color: #000000;"> {  
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">实例化的端口号要和发送时的socket一致，否则收不到data  </span>
+        socket = <span style="color: #0000ff;">new</span> DatagramSocket(<span style="color: #800080;">1985</span><span style="color: #000000;">);  
+        </span><span style="color: #0000ff;">byte</span> data[] = <span style="color: #0000ff;">new</span> <span style="color: #0000ff;">byte</span>[<span style="color: #800080;">4</span> * <span style="color: #800080;">1024</span><span style="color: #000000;">];  
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">参数一:要接受的data 参数二：data的长度  </span>
+        DatagramPacket packet = <span style="color: #0000ff;">new</span><span style="color: #000000;"> DatagramPacket(data, data.length);  
+        socket.receive(packet);  
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">把接收到的data转换为String字符串  </span>
+        String result = <span style="color: #0000ff;">new</span><span style="color: #000000;"> String(packet.getData(), packet.getOffset(),  
+                packet.getLength());  
+        socket.close();</span><span style="color: #008000;">//</span><span style="color: #008000;">不使用了记得要关闭  </span>
+        System.<span style="color: #0000ff;">out</span>.println(<span style="color: #800000;">"</span><span style="color: #800000;">the number of reveived Socket is  :</span><span style="color: #800000;">"</span> +<span style="color: #000000;"> flag  
+                </span>+ <span style="color: #800000;">"</span><span style="color: #800000;">udpData:</span><span style="color: #800000;">"</span> +<span style="color: #000000;"> result);  
+    } </span><span style="color: #0000ff;">catch</span><span style="color: #000000;"> (SocketException e) {  
+        e.printStackTrace();  
+    } </span><span style="color: #0000ff;">catch</span><span style="color: #000000;"> (IOException e) {  
+        e.printStackTrace();  
+    }  
+}  </span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./基于android的Socket通信 - 星辰之力 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>服务器接收客户端实现：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./基于android的Socket通信 - 星辰之力 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> ServerReceviedByUdp(){  
+    </span><span style="color: #008000;">//</span><span style="color: #008000;">创建一个DatagramSocket对象，并指定监听端口。（UDP使用DatagramSocket）    </span>
+<span style="color: #000000;">    DatagramSocket socket;  
+    </span><span style="color: #0000ff;">try</span><span style="color: #000000;"> {  
+        socket </span>= <span style="color: #0000ff;">new</span> DatagramSocket(<span style="color: #800080;">10025</span><span style="color: #000000;">);  
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">创建一个byte类型的数组，用于存放接收到得数据    </span>
+        <span style="color: #0000ff;">byte</span> data[] = <span style="color: #0000ff;">new</span> <span style="color: #0000ff;">byte</span>[<span style="color: #800080;">4</span>*<span style="color: #800080;">1024</span><span style="color: #000000;">];    
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">创建一个DatagramPacket对象，并指定DatagramPacket对象的大小    </span>
+        DatagramPacket packet = <span style="color: #0000ff;">new</span><span style="color: #000000;"> DatagramPacket(data,data.length);    
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">读取接收到得数据    </span>
+<span style="color: #000000;">        socket.receive(packet);    
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">把客户端发送的数据转换为字符串。    
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">使用三个参数的String方法。参数一：数据包 参数二：起始位置 参数三：数据包长    </span>
+        String result = <span style="color: #0000ff;">new</span><span style="color: #000000;"> String(packet.getData(),packet.getOffset() ,packet.getLength());    
+    } </span><span style="color: #0000ff;">catch</span><span style="color: #000000;"> (SocketException e) {  
+        e.printStackTrace();  
+    } </span><span style="color: #0000ff;">catch</span><span style="color: #000000;"> (IOException e) {  
+        e.printStackTrace();  
+    }    
+}  </span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./基于android的Socket通信 - 星辰之力 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>五、总结：</p>
+<p>使用UDP方式android端和服务器端接收可以看出，其实android端和服务器端的发送和接收大庭相径，只要端口号正确了，相互通信就没有问题，TCP使用的是流的方式发送，UDP是以包的形式发送。</p>
+<p>&nbsp;demo地址：http://download.csdn.net/detail/mad1989/5626975</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/zhujiabin/category/642489.html" target="_blank">android</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5675716,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;2297c2c6-5b64-e111-aa3f-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./基于android的Socket通信 - 星辰之力 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./基于android的Socket通信 - 星辰之力 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/zhujiabin/" target="_blank"><img src="./基于android的Socket通信 - 星辰之力 - 博客园_files/20140924212415.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/zhujiabin/">星辰之力</a><br>
+            <a href="http://home.cnblogs.com/u/zhujiabin/followees">关注 - 12</a><br>
+            <a href="http://home.cnblogs.com/u/zhujiabin/followers">粉丝 - 69</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;2297c2c6-5b64-e111-aa3f-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5675716,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(5675716,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/zhujiabin/p/5675490.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/zhujiabin/p/5675490.html" title="发布于2016-07-16 10:23">Java 引用 WeakReference</a><br><a href="http://www.cnblogs.com/zhujiabin/p/5676023.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/zhujiabin/p/5676023.html" title="发布于2016-07-16 12:59">自定义ActionProvider ToolBar 自定义Menu小红点</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-07-16 10:27</span> <a href="http://www.cnblogs.com/zhujiabin/">星辰之力</a> 阅读(<span id="post_view_count">15051</span>) 评论(<span id="post_comment_count">1</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5675716" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/zhujiabin/p/5675716.html#" onclick="AddToWz(5675716);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=110485,cb_entryId=5675716,cb_blogApp=currentBlogApp,cb_blogUserGuid='2297c2c6-5b64-e111-aa3f-842b2b196315',cb_entryCreatedDate='2016/7/16 10:27:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/zhujiabin/p/5675716.html#3715203" class="layer">#1楼</a><a name="3715203" id="comment_anchor_3715203"></a><span id="comment-maxId" style="display:none;">3715203</span><span id="comment-maxDate" style="display:none;">2017/6/15 16:53:50</span>  <span class="comment_date">2017-06-15 16:53</span> <a id="a_comment_author_3715203" href="http://www.cnblogs.com/tong123/" target="_blank">tong__</a> <a href="http://msg.cnblogs.com/send/tong__" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3715203" class="blog_comment_body">推荐一个socket编程的异步socket类库，<a href="https://github.com/typ0520/bizsocket" target="_blank">https://github.com/typ0520/bizsocket</a>，对一些业务场景做了支持<br>断线重连<br>一对一请求<br>通知、粘性通知<br>串行请求合并<br>包分片处理<br>缓存<br>拦截器<br>支持rxjava，提供类似于retrofit的支持</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3715203,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3715203,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/zhujiabin/p/5675716.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/zhujiabin/p/5675716.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】超50万VC++源码: 大型组态工控、电力仿真CAD与GIS源码库！</a><br><a href="http://click.aliyun.com/m/43774/" target="_blank">【缅怀】传奇谢幕，回顾霍金76载传奇人生</a><br><a href="http://arction.cn/" target="_blank">【推荐】业界最快速.NET数据可视化图表组件</a><br><a href="https://buy.cloud.tencent.com/domain?fromSource=gwzcw.882687.882687.882687" target="_blank">【腾讯云】买域名送解析+SSL证书+建站</a><br><a href="https://www.yunqi2050.com/#/index" target="_blank">【活动】2050 科技公益大会 - 年青人因科技而团聚</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;C1&#39;);" href="https://cloud.tencent.com/solution/la?fromSource=gwzcw.883654.883654.883654" target="_blank"><img width="300" height="250" src="./基于android的Socket通信 - 星辰之力 - 博客园_files/24442-20180326113514896-610961046.jpg" alt="腾讯云0326"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/593067/" target="_blank">央视怒斥Wi-Fi万能钥匙泄密 官方：损失可索赔</a><br> ·  <a href="https://news.cnblogs.com/n/593056/" target="_blank">融创乐视474天恩仇录：孙宏斌165亿“打水漂”</a><br> ·  <a href="https://news.cnblogs.com/n/593066/" target="_blank">新的人体器官被发现 科学家认为它可以解释癌症的扩散</a><br> ·  <a href="https://news.cnblogs.com/n/593065/" target="_blank">爱奇艺纳斯达克上市：百度大厦爆灯庆祝</a><br> ·  <a href="https://news.cnblogs.com/n/593064/" target="_blank">微软小冰全双工技术：让对话像河流一样进行</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;C2&#39;);" href="http://click.aliyun.com/m/42835/" target="_blank"><img width="468" height="60" src="./基于android的Socket通信 - 星辰之力 - 博客园_files/TB1mEZFaWmWBuNjy1XaXXXCbXXa-468-60.jpg" alt="阿里云0308"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/575255/" target="_blank">写给自学者的入门指南</a><br> ·  <a href="http://kb.cnblogs.com/page/578690/" target="_blank">和程序员谈恋爱</a><br> ·  <a href="http://kb.cnblogs.com/page/585734/" target="_blank">学会学习</a><br> ·  <a href="http://kb.cnblogs.com/page/588938/" target="_blank">优秀技术人的管理陷阱</a><br> ·  <a href="http://kb.cnblogs.com/page/590141/" target="_blank">作为一个程序员，数学对你到底有多重要</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"><b>历史上的今天:</b><br>2015-07-16 <a href="http://www.cnblogs.com/zhujiabin/p/4651743.html">Android自定义View——自定义搜索框（SearchView）</a><br>2015-07-16 <a href="http://www.cnblogs.com/zhujiabin/p/4651350.html">自定义searchview的编辑框，搜索按钮，删除按钮，光标等</a><br>2015-07-16 <a href="http://www.cnblogs.com/zhujiabin/p/4650437.html">Android 自定义过滤搜索框</a><br></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/zhujiabin/">星辰之力</a><br>园龄：<a href="https://home.cnblogs.com/u/zhujiabin/" title="入园时间：2012-03-02">6年</a><br>粉丝：<a href="https://home.cnblogs.com/u/zhujiabin/followers/">69</a><br>关注：<a href="https://home.cnblogs.com/u/zhujiabin/followees/">12</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;2297c2c6-5b64-e111-aa3f-842b2b196315&#39;)">+加关注</a></div><script>getFollowStatus('2297c2c6-5b64-e111-aa3f-842b2b196315')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/02/01&#39;);return false;">&lt;</a></td><td align="center">2018年3月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/04/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td align="center">1</td><td align="center">2</td><td class="CalWeekendDay" align="center">3</td></tr><tr><td class="CalWeekendDay" align="center">4</td><td align="center">5</td><td align="center"><a href="http://www.cnblogs.com/zhujiabin/archive/2018/03/06.html"><u>6</u></a></td><td align="center">7</td><td align="center"><a href="http://www.cnblogs.com/zhujiabin/archive/2018/03/08.html"><u>8</u></a></td><td align="center">9</td><td class="CalWeekendDay" align="center">10</td></tr><tr><td class="CalWeekendDay" align="center">11</td><td align="center"><a href="http://www.cnblogs.com/zhujiabin/archive/2018/03/12.html"><u>12</u></a></td><td align="center"><a href="http://www.cnblogs.com/zhujiabin/archive/2018/03/13.html"><u>13</u></a></td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td class="CalWeekendDay" align="center">17</td></tr><tr><td class="CalWeekendDay" align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td class="CalWeekendDay" align="center">24</td></tr><tr><td class="CalWeekendDay" align="center">25</td><td align="center"><a href="http://www.cnblogs.com/zhujiabin/archive/2018/03/26.html"><u>26</u></a></td><td align="center">27</td><td align="center"><a href="http://www.cnblogs.com/zhujiabin/archive/2018/03/28.html"><u>28</u></a></td><td align="center"><a href="http://www.cnblogs.com/zhujiabin/archive/2018/03/29.html"><u>29</u></a></td><td class="CalTodayDay" align="center">30</td><td class="CalWeekendDay" align="center">31</td></tr><tr><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/zhujiabin/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/zhujiabin/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/zhujiabin/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/zhujiabin/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/zhujiabin/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/zhujiabin/category/642489.html">android(2199)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/zhujiabin/category/683664.html">android 服务器端(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/zhujiabin/category/687422.html">HTML5(83)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/zhujiabin/category/642490.html">ios(34)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/zhujiabin/category/642491.html">j2ee(568)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/zhujiabin/category/862651.html">Linix(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/zhujiabin/category/730231.html">mysql(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/zhujiabin/category/1139578.html">python(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/zhujiabin/category/730232.html">SQLite Expert (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/zhujiabin/category/644077.html">美工(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/zhujiabin/category/629317.html">实用技巧(55)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/zhujiabin/category/643527.html">中级软件工程师(6)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/zhujiabin/archive/2018/03.html">2018年3月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/zhujiabin/archive/2018/02.html">2018年2月 (18)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/zhujiabin/archive/2018/01.html">2018年1月 (79)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/zhujiabin/archive/2017/12.html">2017年12月 (18)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/zhujiabin/archive/2017/11.html">2017年11月 (38)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/zhujiabin/archive/2017/10.html">2017年10月 (25)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/zhujiabin/archive/2017/09.html">2017年9月 (86)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/zhujiabin/archive/2017/08.html">2017年8月 (139)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/zhujiabin/archive/2017/07.html">2017年7月 (52)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/zhujiabin/archive/2017/06.html">2017年6月 (38)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/zhujiabin/archive/2017/05.html">2017年5月 (25)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/zhujiabin/archive/2017/04.html">2017年4月 (25)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/zhujiabin/archive/2017/03.html">2017年3月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/zhujiabin/archive/2017/02.html">2017年2月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/zhujiabin/archive/2017/01.html">2017年1月 (29)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/zhujiabin/archive/2016/12.html">2016年12月 (56)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/zhujiabin/archive/2016/11.html">2016年11月 (71)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/zhujiabin/archive/2016/10.html">2016年10月 (19)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/zhujiabin/archive/2016/09.html">2016年9月 (92)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/zhujiabin/archive/2016/08.html">2016年8月 (103)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/zhujiabin/archive/2016/07.html">2016年7月 (188)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/zhujiabin/archive/2016/06.html">2016年6月 (81)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/zhujiabin/archive/2016/05.html">2016年5月 (58)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/zhujiabin/archive/2016/04.html">2016年4月 (86)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/zhujiabin/archive/2016/03.html">2016年3月 (119)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/zhujiabin/archive/2016/02.html">2016年2月 (68)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/zhujiabin/archive/2016/01.html">2016年1月 (166)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/zhujiabin/archive/2015/12.html">2015年12月 (134)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/zhujiabin/archive/2015/11.html">2015年11月 (108)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/zhujiabin/archive/2015/10.html">2015年10月 (161)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_30" href="http://www.cnblogs.com/zhujiabin/archive/2015/09.html">2015年9月 (134)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_31" href="http://www.cnblogs.com/zhujiabin/archive/2015/08.html">2015年8月 (95)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_32" href="http://www.cnblogs.com/zhujiabin/archive/2015/07.html">2015年7月 (65)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_33" href="http://www.cnblogs.com/zhujiabin/archive/2015/06.html">2015年6月 (76)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_34" href="http://www.cnblogs.com/zhujiabin/archive/2015/05.html">2015年5月 (118)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_35" href="http://www.cnblogs.com/zhujiabin/archive/2015/04.html">2015年4月 (34)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_36" href="http://www.cnblogs.com/zhujiabin/archive/2015/03.html">2015年3月 (22)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_37" href="http://www.cnblogs.com/zhujiabin/archive/2015/02.html">2015年2月 (75)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_38" href="http://www.cnblogs.com/zhujiabin/archive/2015/01.html">2015年1月 (174)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_39" href="http://www.cnblogs.com/zhujiabin/archive/2014/12.html">2014年12月 (82)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_40" href="http://www.cnblogs.com/zhujiabin/archive/2014/11.html">2014年11月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_41" href="http://www.cnblogs.com/zhujiabin/archive/2014/05.html">2014年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_42" href="http://www.cnblogs.com/zhujiabin/archive/2014/04.html">2014年4月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhujiabin/p/6866203.html#3934811">1. Re:Android 一个异步SocketHelper</a></li>
+        <li class="recent_comment_body">MyBytesList的代码没有啊</li>
+        <li class="recent_comment_author">--grf123</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhujiabin/p/5893144.html#3914413">2. Re:Android 怎么使用Bitmap+Canvas 自适应屏幕</a></li>
+        <li class="recent_comment_body">这个方法不是很准，图片还是不能完全适应手机，bitmap.getWidth();获取到的宽度实际和桌面上看到的图片尺寸大小不一样</li>
+        <li class="recent_comment_author">--国国分享8</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhujiabin/p/5697255.html#3904837">3. Re:Android  自定义带刻度的seekbar</a></li>
+        <li class="recent_comment_body">楼主：我的这里为什么获得都为空呢thumb = BitmapFactory.decodeResource(getResources(), R.drawable.set_button_0); spot.......</li>
+        <li class="recent_comment_author">--zhaoyingtao</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhujiabin/p/5498272.html#3895181">4. Re:JSON的三种解析方式</a></li>
+        <li class="recent_comment_body">里面泛型的东西都没了？</li>
+        <li class="recent_comment_author">--frankchao1005</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhujiabin/p/5404771.html#3882097">5. Re:Java 四种线程池newCachedThreadPool,newFixedThreadPool,newScheduledThreadPool,newSingleThreadExecutor</a></li>
+        <li class="recent_comment_body">你好大神，对于newSingleThreadExecutor有点疑惑，它和不用线程的顺序执行的代码比较有什么优势吗？</li>
+        <li class="recent_comment_author">--1001y</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/zhujiabin/p/6168671.html">1. java获取当前时间戳的方法(114093)</a></li><li><a href="http://www.cnblogs.com/zhujiabin/p/5498272.html">2. JSON的三种解析方式(76120)</a></li><li><a href="http://www.cnblogs.com/zhujiabin/p/4860279.html">3. jquery $.each遍历json数组方法(35381)</a></li><li><a href="http://www.cnblogs.com/zhujiabin/p/5498555.html">4. java生成json字符串的方法(30877)</a></li><li><a href="http://www.cnblogs.com/zhujiabin/p/5542790.html">5. java获得指定日期的前一天，后一天的代码(30832)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/zhujiabin/p/4995591.html">1. Spring MVC+JSP实现三级联动(4)</a></li><li><a href="http://www.cnblogs.com/zhujiabin/p/4935557.html">2. Spring MVC RedirectAttributes的用法解决办法(3)</a></li><li><a href="http://www.cnblogs.com/zhujiabin/p/5697255.html">3. Android  自定义带刻度的seekbar(3)</a></li><li><a href="http://www.cnblogs.com/zhujiabin/p/6124486.html">4. Android studio关于真机调试DDMS中的data文件夹打不开的解决方法(2)</a></li><li><a href="http://www.cnblogs.com/zhujiabin/p/4183014.html">5. android之画板功能之橡皮擦 画笔大小和画笔颜色(2)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/zhujiabin/p/5734864.html">1. 解决“重新安装vmware-tools”灰色而无法安装的问题(2)</a></li><li><a href="http://www.cnblogs.com/zhujiabin/p/5498272.html">2. JSON的三种解析方式(2)</a></li><li><a href="http://www.cnblogs.com/zhujiabin/p/5404771.html">3. Java 四种线程池newCachedThreadPool,newFixedThreadPool,newScheduledThreadPool,newSingleThreadExecutor(2)</a></li><li><a href="http://www.cnblogs.com/zhujiabin/p/5382740.html">4. viewpager中彻底性动态添加、删除Fragment(1)</a></li><li><a href="http://www.cnblogs.com/zhujiabin/p/5697172.html">5. Android 拖动条（SeekBar）实例 附完整demo项目代码(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 星辰之力
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

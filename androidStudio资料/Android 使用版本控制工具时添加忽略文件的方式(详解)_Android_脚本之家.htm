@@ -1,0 +1,763 @@
+<!DOCTYPE HTML>
+<!-- saved from url=(0038)http://www.jb51.net/article/103785.htm -->
+<!DOCTYPE html PUBLIC "" ""><HTML lang="zh-CN"><HEAD><META content="IE=11.0000" 
+http-equiv="X-UA-Compatible">
+ 
+<META charset="gb2312"> 
+<META name="applicable-device" content="pc"> 
+<META name="viewport" content="width=device-width, initial-scale=1"> 
+<META http-equiv="Cache-Control" content="no-siteapp"> 
+<META http-equiv="Cache-Control" content="no-transform"> <TITLE>Android 
+使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家</TITLE> 
+<META http-equiv="X-UA-Compatible" content="IE=EDGE"> 
+<META name="keywords" content="android,添加忽略文件"> 
+<META name="description" content="下面小编就为大家带来一篇Android 使用版本控制工具时添加忽略文件的方式(详解)。小编觉得挺不错的，现在就分享给大家，也给大家做个参考。一起跟随小编过来看看吧"> 
+<LINK href="https://m.jb51.net/article/103785.htm" rel="alternate" media="only screen and(max-width: 640px)"> 
+<META http-equiv="mobile-agent" content="format=html5; url=https://m.jb51.net/article/103785.htm"> 
+<META http-equiv="mobile-agent" content="format=xhtml; url=https://m.jb51.net/article/103785.htm"> 
+<SCRIPT type="text/javascript">
+var tougao="jingxian",lmname="Android",suoyin="no";
+(function(){var reWriteUrl=function(url){if(url){var Splits=url.split("/"),siteName=window.location.pathname;if(typeof siteName!=="undefined"){return "https://m.jb51.net"+siteName}}};if(/Android|webOS|iPhone|iPad|Windows Phone|iPod|BlackBerry|SymbianOS|Nokia|Mobile/i.test(navigator.userAgent)){var url=window.location.href;var pathname=window.location.pathname;if(url.indexOf("?pc")<0){try{window.location.href=reWriteUrl(url)}catch(e){}}}})();
+</SCRIPT>
+ <LINK href="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/base.css" rel="stylesheet" 
+type="text/css"> <LINK href="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/common.css" 
+rel="stylesheet" type="text/css"> 
+<SCRIPT src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/jquery.min.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT>
+if (!window.jQuery) {
+	var script = document.createElement('script');
+	script.src = "/skin/js/jquery.js";
+	document.body.appendChild(script);}
+</SCRIPT>
+ 
+<SCRIPT src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/function.js" type="text/javascript"></SCRIPT>
+ 
+<META name="GENERATOR" content="MSHTML 11.00.10570.1001"></HEAD> 
+<BODY><!--topTools Start --> 
+<DIV class="topTools">
+<DIV class="wrap clear_fix">
+<DIV class="topToolsLeft"><A href="http://www.jb51.net/" 
+target="_blank">脚本之家</A><A href="http://s.jb51.net/" target="_blank" rel="nofollow">服务器常用软件</A></DIV>
+<DIV class="right">
+<UL>
+  <LI><I class="sprite md left"></I><A href="https://m.jb51.net/" target="_blank" 
+  rel="nofollow">手机版</A></LI>
+  <LI><I class="sprite tg left"></I><A href="http://tougao.jb51.net/" target="_blank" 
+  rel="nofollow">投稿中心</A></LI>
+  <LI id="wxHide"><I class="sprite wx left"></I><A href="http://www.jb51.net/article/103785.htm#" 
+  target="_blank">关注微信</A>					 
+  <DIV class="wxHide_box" id="wxShow"><IMG width="84" alt="扫一扫" src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/erwm.jpg" 
+  data-baiduimageplus-ignore="" hight="84"></DIV></LI></UL><!--快捷导航 开始 -->			 
+<DIV class="text_d right" id="navHide"><A href="javascript:void(0);" rel="nofollow">快捷导航 
+<I class="sprite arrowRight" id="icon"></I></A>         
+<DIV class="nwebNav" id="navBox" style="display: none;">
+<DIV class="ndealList clear_fix">
+<DIV class="navTitle left">
+<H4><A href="http://www.jb51.net/softs/" target="_blank" 
+rel="nofollow">软件下载</A></H4></DIV>
+<DL class="right">
+  <DD><A href="http://www.jb51.net/softs/android.html" target="_blank" rel="nofollow">android</A><A 
+  href="http://www.jb51.net/softs/mac.html" target="_blank" 
+  rel="nofollow">MAC</A><A href="http://www.jb51.net/qudong/" target="_blank" 
+  rel="nofollow">驱动下载</A><A href="http://www.jb51.net/fonts/" target="_blank" 
+  rel="nofollow">字体下载</A><A href="http://www.jb51.net/dll/" target="_blank" rel="nofollow">DLL</A></DD></DL></DIV>
+<DIV class="ndealList clear_fix">
+<DIV class="navTitle left">
+<H4><A href="http://www.jb51.net/codes/" target="_blank" 
+rel="nofollow">源码下载</A></H4></DIV>
+<DL class="right">
+  <DD><A href="http://www.jb51.net/codes/php.html" target="_blank" rel="nofollow">PHP</A><A 
+  href="http://www.jb51.net/codes/aspnet.html" target="_blank" 
+  rel="nofollow">ASP.NET</A><A href="http://www.jb51.net/codes/asp.html" target="_blank" 
+  rel="nofollow">ASP</A><A href="http://www.jb51.net/codes/jsp.html" target="_blank" 
+  rel="nofollow">JSP</A></DD></DL></DIV>
+<DIV class="ndealList clear_fix">
+<DIV class="navTitle left">
+<H4><A href="http://www.jb51.net/list/index_84.htm" target="_blank" rel="nofollow">软件编程</A></H4></DIV>
+<DL class="right">
+  <DD><A href="http://www.jb51.net/list/list_85_1.htm" target="_blank" rel="nofollow">C#</A><A 
+  href="http://www.jb51.net/list/list_134_1.htm" target="_blank" 
+  rel="nofollow">JAVA</A><A href="http://www.jb51.net/list/list_159_1.htm" 
+  target="_blank" rel="nofollow">C 语言</A><A href="http://www.jb51.net/list/list_206_1.htm" 
+  target="_blank" rel="nofollow">Delphi</A><A href="http://www.jb51.net/list/list_233_1.htm" 
+  target="_blank" rel="nofollow">Android</A></DD></DL></DIV>
+<DIV class="ndealList clear_fix">
+<DIV class="navTitle left">
+<H4><A href="http://www.jb51.net/list/index_1.htm" target="_blank" rel="nofollow">网络编程</A></H4></DIV>
+<DL class="right">
+  <DD><A href="http://www.jb51.net/list/list_15_1.htm" target="_blank" rel="nofollow">PHP</A><A 
+  href="http://www.jb51.net/list/list_21_1.htm" target="_blank" 
+  rel="nofollow">ASP.NET</A><A href="http://www.jb51.net/list/list_2_1.htm" 
+  target="_blank" rel="nofollow">ASP</A><A href="http://www.jb51.net/list/list_3_1.htm" 
+  target="_blank" rel="nofollow">JavaScript</A></DD></DL></DIV>
+<DIV class="ndealList clear_fix">
+<DIV class="navTitle left">
+<H4><A href="http://tools.jb51.net/" target="_blank" 
+rel="nofollow">在线工具</A></H4></DIV>
+<DL class="right">
+  <DD><A href="http://www.jb51.net/tools/cssyasuo.shtml" target="_blank" rel="nofollow">CSS格式化</A><A 
+  href="http://tools.jb51.net/tools/js_geshihua.asp" target="_blank" rel="nofollow">JS格式化</A><A 
+  href="http://www.jb51.net/tools/html-js.htm" target="_blank" 
+  rel="nofollow">Html转化为Js</A></DD></DL></DIV>
+<DIV class="ndealList clear_fix">
+<DIV class="navTitle left">
+<H4><A href="http://www.jb51.net/list/index_104.htm" target="_blank" rel="nofollow">数据库</A></H4></DIV>
+<DL class="right">
+  <DD><A href="http://www.jb51.net/list/list_112_1.htm" target="_blank" rel="nofollow">MYSQL</A><A 
+  href="http://www.jb51.net/list/list_113_1.htm" target="_blank" 
+  rel="nofollow">MSSQL</A><A href="http://www.jb51.net/list/list_154_1.htm" 
+  target="_blank" rel="nofollow">oracle</A><A href="http://www.jb51.net/list/list_155_1.htm" 
+  target="_blank" rel="nofollow">DB2</A><A href="http://www.jb51.net/list/list_252_1.htm" 
+  target="_blank" rel="nofollow">MARIADB</A></DD></DL></DIV>
+<DIV class="ndealList clear_fix">
+<DIV class="navTitle left">
+<H4><A href="http://www.jb51.net/cms/" target="_blank" 
+rel="nofollow">CMS</A></H4></DIV>
+<DL class="right">
+  <DD><A href="http://www.jb51.net/cms/list411_1.html" target="_blank" rel="nofollow">PHPCMS</A><A 
+  href="http://www.jb51.net/cms/list408_1.html" target="_blank" 
+  rel="nofollow">DEDECMS</A><A href="http://www.jb51.net/cms/list578_1.html" 
+  target="_blank" rel="nofollow">帝国CMS</A><A href="http://www.jb51.net/cms/list419_1.html" 
+  target="_blank" rel="nofollow">WordPress</A></DD></DL></DIV>
+<DIV class="ndealList clear_fix">
+<DIV class="navTitle left">
+<H4><A href="javascript:0;" target="_blank" rel="nofollow">常用工具</A></H4></DIV>
+<DL class="right">
+  <DD><A href="http://www.jb51.net/zt/phphuanjing.html" target="_blank" rel="nofollow">PHP开发工具</A><A 
+  href="http://www.jb51.net/zt/python.html" target="_blank" 
+  rel="nofollow">python</A><A href="http://www.jb51.net/zt/photoshopxz.html" 
+  target="_blank" rel="nofollow">Photoshop</A><A href="http://www.jb51.net/bibei/win/index.html" 
+  target="_blank" rel="nofollow">必备软件</A></DD></DL></DIV></DIV></DIV><!--快捷导航 结束 -->
+		 </DIV></DIV></DIV><!--topTools end --> 
+<DIV class="header"><!-- Logo start -->	 
+<DIV class="wrap">
+<DIV class="mtb10 clearfix">
+<DIV class="logo"><A href="http://www.jb51.net/"><IMG title="脚本之家" alt="脚本之家" 
+src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/logo.gif"></A></DIV>
+<DIV class="logom fl"><SPAN class="jbTestPos" id="logo_m"></SPAN></DIV>
+<DIV class="logor fr"><SPAN class="jbTestPos" 
+id="logo_r"></SPAN></DIV></DIV></DIV><!--Logo end -->		 <!-- 导航开始 -->	 
+<DIV class="nav_top clearfix">
+<UL>
+  <LI><A href="http://www.jb51.net/">网站首页</A></LI>
+  <LI><A href="http://www.jb51.net/web/">网页制作</A></LI>
+  <LI><A href="http://www.jb51.net/list/index_1.htm">网络编程</A></LI>
+  <LI><A href="http://www.jb51.net/list/index_96.htm">脚本专栏</A></LI>
+  <LI><A href="http://www.jb51.net/jiaoben/">脚本下载</A></LI>
+  <LI><A href="http://www.jb51.net/list/index_104.htm">数据库</A></LI>
+  <LI><A href="http://www.jb51.net/list/list_82_1.htm">服务器</A></LI>
+  <LI><A href="http://www.jb51.net/books/">电子书籍</A></LI>
+  <LI><A href="http://www.jb51.net/os/">操作系统</A></LI>
+  <LI><A href="http://www.jb51.net/yunying/">网站运营</A></LI>
+  <LI>
+  <P><I>其它</I><SPAN><A href="http://www.jb51.net/pingmian/">平面设计</A><A href="http://www.jb51.net/media/">媒体动画</A><A 
+  href="http://www.jb51.net/diannaojichu/">电脑基础</A><A href="http://www.jb51.net/hardware/">硬件教程</A><A 
+  href="http://www.jb51.net/hack/">网络安全</A></SPAN></P></LI></UL></DIV><!--导航结束--> 
+</DIV><!-- 二级菜单开始 --> 
+<DIV class="wrap">
+<DIV class="subnav clearfix">
+<UL>
+  <LI><A title="C#教程" 
+  href="http://www.jb51.net/list/list_85_1.htm">C#教程</A></LI> 
+  <LI><A title="vb" href="http://www.jb51.net/list/list_93_1.htm">vb</A></LI> 
+  <LI><A title="vb.net" 
+  href="http://www.jb51.net/list/list_205_1.htm">vb.net</A></LI> 
+  <LI><A title="C 语言" href="http://www.jb51.net/list/list_159_1.htm">C 
+  语言</A></LI> 
+  <LI><A title="Java编程" 
+  href="http://www.jb51.net/list/list_134_1.htm">Java编程</A></LI> 
+  <LI><A title="Delphi" 
+  href="http://www.jb51.net/list/list_206_1.htm">Delphi</A></LI> 
+  <LI><A title="java" 
+  href="http://www.jb51.net/list/list_207_1.htm">java</A></LI> 
+  <LI><A title="Android" 
+  href="http://www.jb51.net/list/list_233_1.htm">Android</A></LI> 
+  <LI><A title="IOS" href="http://www.jb51.net/list/list_238_1.htm">IOS</A></LI> 
+  <LI><A title="Swift" 
+  href="http://www.jb51.net/list/list_244_1.htm">Swift</A></LI> 
+  <LI><A title="Scala" 
+  href="http://www.jb51.net/list/list_250_1.htm">Scala</A></LI> 
+  <LI><A title="易语言" href="http://www.jb51.net/list/list_254_1.htm">易语言</A></LI> 
+  <LI><A title="其它相关" 
+  href="http://www.jb51.net/list/list_188_1.htm">其它相关</A></LI> </UL></DIV></DIV><!-- 二级菜单结束 -->	
+<DIV class="main mb10 clearfix">
+<DIV class="clearfix"><SPAN class="jbTestPos" id="tonglan1"></SPAN></DIV></DIV>
+<DIV class="main clearfix">
+<DIV class="NavBar clearfix ptb10">
+<DIV class="fl w690">
+<DIV class="box mb15 mt10"><I class="icon"></I>您的位置：<A href="http://www.jb51.net/">首页</A> 
+→ <A title="软件编程" href="http://www.jb51.net/list/index_84.htm">软件编程</A> → <A 
+title="Android" href="http://www.jb51.net/list/list_233_1.htm">Android</A> → 
+正文内容 android 添加忽略文件</DIV></DIV>
+<DIV class="fr w300">
+<DIV class="search">
+<FORM action="/do/search.php" 
+target="_blank"><INPUT name="s" type="hidden" value="10520733385329581432">
+			 <INPUT name="ie" type="hidden" value="gbk">			 <INPUT name="q" class="key_input" type="text" placeholder="请输入关键词" value="">
+			 <INPUT class="c_btn" type="submit" value=" ">
+		 </FORM></DIV></DIV></DIV></DIV><!--content Star --> 
+<DIV id="contents"><!--share start-->  
+<DIV id="right-share">
+<DIV class="right-share jb-share" id="jb-share"><A title="" class="rshare-weixin">微信</A><A 
+title="投稿" class="rshare-qzone" href="http://tougao.jb51.net/" 
+target="_blank">投稿</A><A title="交流社区" class="rshare-sqq" href="http://shequ.jb51.net/" 
+target="_blank">交流社区</A><A title="领取优惠券" class="rshare-tsina" href="http://youhui.jb51.net/" 
+target="_blank">领取优惠券</A></DIV><A class="rshare-top" onclick="javascript:;"></A>
+<DIV class="hide" id="weixin-code">
+<DIV class="popup_weixin_head">
+<P>关注微信公众号</P>
+<DIV id="code"><IMG width="100" alt="扫一扫" src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/erwm.jpg" 
+hight="100"></DIV></DIV></DIV></DIV><!--share end-->  
+<DIV class="main clearfix bgf">
+<DIV class="w750 fl">
+<DIV class="article-content border">
+<DIV class="title">
+<H1 class="YaHei">Android 使用版本控制工具时添加忽略文件的方式(详解)</H1>
+<P><I>转载</I> &nbsp;2017-01-21 &nbsp; 投稿：jingxian  &nbsp; <A href="http://www.jb51.net/article/103785.htm#comments"><IMG 
+width="15" height="15" src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/text-message.png"> 
+我要评论</A> </P></DIV>
+<DIV class="art_desc mt10">
+<DIV id="art_demo">下面小编就为大家带来一篇Android 
+使用版本控制工具时添加忽略文件的方式(详解)。小编觉得挺不错的，现在就分享给大家，也给大家做个参考。一起跟随小编过来看看吧</DIV></DIV>
+<DIV class="lbd clearfix"><SPAN class="jbTestPos" id="art_up"></SPAN></DIV>
+<DIV id="content">
+<P>Android Studio 
+配合SVN时，添加忽略文件相对简单，首先打开项目的<STRONG>Settings</STRONG>选项，切换到<STRONG>Version 
+Control</STRONG>下的<STRONG>Ignored Files</STRONG>目录，如下图：</P>
+<P style="text-align: center;"><IMG alt="" src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/20170121103524.jpg"></P>
+<P>ignore1.png</P>
+<P>点击右上角绿色加号，出现如下对话框：</P>
+<P style="text-align: center;"><IMG alt="" src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/20170121103535.jpg"></P>
+<P>ignore2.png</P>
+<P>其中</P>
+<P><STRONG>Ignore specified file</STRONG>选项是忽略指定的文件<BR><STRONG>Ignore all files 
+under</STRONG>选项是忽略指定文件夹下的文件<BR><STRONG>Ignore all files 
+matching</STRONG>选项是忽略匹配指定格式的文件</P>
+<P>一般需要忽略的文件如下：</P>
+<P><SPAN 
+style="color: rgb(255, 0, 0);"><STRONG>1、.idea文件夹<BR></STRONG></SPAN></P>
+<P><SPAN 
+style="color: rgb(255, 0, 0);"><STRONG>2、.gradle文件夹<BR></STRONG></SPAN></P>
+<P><SPAN 
+style="color: rgb(255, 0, 0);"><STRONG>3、所有的build文件夹<BR></STRONG></SPAN></P>
+<P><SPAN 
+style="color: rgb(255, 0, 0);"><STRONG>4、所有的.iml文件<BR></STRONG></SPAN></P>
+<P><SPAN 
+style="color: rgb(255, 0, 0);"><STRONG>5、local.properties文件</STRONG></SPAN></P>
+<P>根据需求选择对应的选项添加要忽略的文件即可，下图是我测试项目添加的忽略文件：</P>
+<P style="text-align: center;"><IMG alt="" src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/20170121103546.jpg"></P>
+<P>ignore3.png</P>
+<P>添加完成后，项目的目录结构中对应文件会变成如下样式：</P>
+<P style="text-align: center;"><IMG alt="" src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/20170121103559.jpg"></P>
+<P>ignore4.png</P>
+<P>此时再提交文件会发现被忽略的文件（即黄色字体颜色的文件）不会出现在SVN的提交列表中。</P>
+<P><SPAN 
+style="color: rgb(255, 0, 0);"><STRONG>二、使用Git管理项目时，添加忽略文件的方式</STRONG></SPAN></P>
+<P>Android 
+Studio创建项目后，在项目的根目录下会生成一个<STRONG>.gitignore</STRONG>文件，Android的项目<STRONG>.gitignore</STRONG>文件建议按如下方式书写：</P>
+<DIV class="jb51code">
+<PRE class="brush:xhtml;"># Built application files //
+*.apk
+*.ap_
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+
+# Gradle files
+.gradle/
+build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Proguard folder generated by Eclipse
+proguard/
+
+# Log Files
+*.log
+
+# Android Studio Navigation editor temp files
+.navigation/
+
+# Android Studio captures folder
+captures/
+
+# Intellij
+*.iml
+.idea/workspace.xml
+
+# Keystore files
+*.jks</PRE></DIV>
+<P>也就是GitHub官方推荐的.gitignore文件书写格式：<BR>Android.gitignore<BR>当然我们可以根据需求继续添加，例如在<STRONG># 
+Intellij</STRONG>下继续添加：</P>
+<PRE class="hljs undefined"><CODE><FONT color="#000000">*.iws.idea/</FONT></CODE></PRE>
+<P>相关过滤规则举例说明：<BR><STRONG>#</STRONG>：注释符号，自动被Git忽略<BR><STRONG>*.iml</STRONG>：过滤所有的.iml后缀的文件<BR><STRONG>.gradle/</STRONG>：过滤掉.gradle文件夹<BR><STRONG>local.properties</STRONG>：过滤掉local.properties文件</P>
+<P>Git文件忽略正是通过编写<STRONG>.gitignore</STRONG>文件实现的。之后通过.gitignore忽略的文件则不会被提交到GitHub。<BR>
+对比下本地AS的工程目录和提交到GitHub上的工程目录：</P>
+<P style="text-align: center;"><IMG alt="" src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/20170121103613.jpg"></P>
+<P>local.PNG</P>
+<P style="text-align: center;"><IMG alt="" src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/20170121103634.jpg"></P>
+<P>github.PNG</P>
+<P>无论是通过SVN还是Git管理项目，建议在项目初创建时就做好文件忽略的工作，再提交到服务器。</P>
+<P>以上这篇Android 
+使用版本控制工具时添加忽略文件的方式(详解)就是小编分享给大家的全部内容了，希望能给大家一个参考，也希望大家多多支持脚本之家。</P>
+<DIV class="art_xg">
+<H4>您可能感兴趣的文章:</H4>
+<UL>
+  <LI><A title="使用AndroidStudio上传忽略文件至SVN Server的解决办法" href="http://www.jb51.net/article/87024.htm" 
+  target="_blank">使用AndroidStudio上传忽略文件至SVN Server的解决办法</A></LI></UL></DIV>
+<DIV class="clearfix"><SPAN class="jbTestPos" id="art_bot"></SPAN> </DIV></DIV><!--endmain--> 
+<DIV class="tags clearfix"><I class="icon-tag"></I>	 
+<UL class="meta-tags items">
+  <LI class="tag item"><A title="搜索关于android的文章" href="http://common.jb51.net/tag/android/1.htm" 
+  target="_blank" rel="nofollow">android</A></LI>
+  <LI class="tag item"><A title="搜索关于添加的文章" href="http://common.jb51.net/tag/%E6%B7%BB%E5%8A%A0/1.htm" 
+  target="_blank" rel="nofollow">添加</A></LI>
+  <LI class="tag item"><A title="搜索关于忽略文件的文章" href="http://common.jb51.net/tag/%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6/1.htm" 
+  target="_blank" rel="nofollow">忽略文件</A></LI></UL></DIV>
+<DIV class="lbd clearfix"><SPAN class="jbTestPos" id="art_down"></SPAN> </DIV>
+<DIV id="shoucang"></DIV>
+<DIV class="xgcomm clearfix">
+<H2>相关文章</H2>
+<UL>
+  <LI class="lbd clearfix"><SPAN class="jbTestPos" id="art_xg"></SPAN></LI>
+  <LI>
+  <DIV class="item-inner"><A title="Android实现读取SD卡下所有TXT文件名并用listView显示出来的方法" 
+  class="img-wrap" href="http://www.jb51.net/article/117474.htm" 
+  target="_blank"><IMG alt="Android实现读取SD卡下所有TXT文件名并用listView显示出来的方法" src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/bcimg0.png"> 
+  </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="Android实现读取SD卡下所有TXT文件名并用listView显示出来的方法" class="link title" 
+  href="http://www.jb51.net/article/117474.htm" 
+  target="_blank">Android实现读取SD卡下所有TXT文件名并用listView显示出来的方法</A></P>
+  <DIV class="item-info">
+  <DIV 
+  class="js">这篇文章主要介绍了Android实现读取SD卡下所有TXT文件名并用listView显示出来的方法,涉及Android针对SD卡的读取及文件遍历等相关操作技巧,需要的朋友可以参考下</DIV><SPAN 
+  class="lbtn" style="float: right;">2017-06-06 
+  </SPAN></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class="item-inner"><A title="Android 获得屏幕宽高的三种方式" class="img-wrap" href="http://www.jb51.net/article/76046.htm" 
+  target="_blank"><IMG alt="Android 获得屏幕宽高的三种方式" src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/bcimg1.png"> 
+  </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="Android 获得屏幕宽高的三种方式" class="link title" href="http://www.jb51.net/article/76046.htm" 
+  target="_blank">Android 获得屏幕宽高的三种方式</A></P>
+  <DIV class="item-info">
+  <DIV class="js">这篇文章主要介绍了Android 获得屏幕宽高的三种方式的相关资料,需要的朋友可以参考下</DIV><SPAN class="lbtn" 
+  style="float: right;">2015-12-12 </SPAN></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class="item-inner"><A title="Android实现图片浏览器示例" class="img-wrap" href="http://www.jb51.net/article/52964.htm" 
+  target="_blank"><IMG alt="Android实现图片浏览器示例" src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/bcimg2.png"> 
+  </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="Android实现图片浏览器示例" class="link title" href="http://www.jb51.net/article/52964.htm" 
+  target="_blank">Android实现图片浏览器示例</A></P>
+  <DIV class="item-info">
+  <DIV class="js">这篇文章主要介绍了Android实现图片浏览器示例,需要的朋友可以参考下</DIV><SPAN class="lbtn" 
+  style="float: right;">2014-07-07 </SPAN></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class="item-inner"><A title="Android程序启动时出现黑屏问题的解决方法" class="img-wrap" 
+  href="http://www.jb51.net/article/90534.htm" target="_blank"><IMG alt="Android程序启动时出现黑屏问题的解决方法" 
+  src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/bcimg3.png"> </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="Android程序启动时出现黑屏问题的解决方法" class="link title" href="http://www.jb51.net/article/90534.htm" 
+  target="_blank">Android程序启动时出现黑屏问题的解决方法</A></P>
+  <DIV class="item-info">
+  <DIV 
+  class="js">这篇文章主要介绍了Android程序启动时出现黑屏问题的解决方法,分析了黑屏出现的原因及相应的解决方法,需要的朋友可以参考下</DIV><SPAN 
+  class="lbtn" style="float: right;">2016-08-08 
+  </SPAN></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class="item-inner"><A title="Android实现Service下载文件，Notification显示下载进度的示例" 
+  class="img-wrap" href="http://www.jb51.net/article/102613.htm" 
+  target="_blank"><IMG alt="Android实现Service下载文件，Notification显示下载进度的示例" src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/bcimg4.png"> 
+  </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="Android实现Service下载文件，Notification显示下载进度的示例" class="link title" 
+  href="http://www.jb51.net/article/102613.htm" 
+  target="_blank">Android实现Service下载文件，Notification显示下载进度的示例</A></P>
+  <DIV class="item-info">
+  <DIV 
+  class="js">本篇文章主要介绍了Android实现Service下载文件，Notification显示下载进度，具有一定的参考价值，有兴趣的可以了解一下。</DIV><SPAN 
+  class="lbtn" style="float: right;">2017-01-01 
+  </SPAN></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class="item-inner"><A title="Android实现授权访问网页的方法" class="img-wrap" href="http://www.jb51.net/article/52692.htm" 
+  target="_blank"><IMG alt="Android实现授权访问网页的方法" src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/bcimg5.png"> 
+  </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="Android实现授权访问网页的方法" class="link title" href="http://www.jb51.net/article/52692.htm" 
+  target="_blank">Android实现授权访问网页的方法</A></P>
+  <DIV class="item-info">
+  <DIV class="js">这篇文章主要介绍了Android实现授权访问网页的方法,需要的朋友可以参考下</DIV><SPAN class="lbtn" 
+  style="float: right;">2014-07-07 </SPAN></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class="item-inner"><A title="去掉activity默认动画效果的简单方法" class="img-wrap" 
+  href="http://www.jb51.net/article/100357.htm" target="_blank"><IMG alt="去掉activity默认动画效果的简单方法" 
+  src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/bcimg6.png"> </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="去掉activity默认动画效果的简单方法" class="link title" href="http://www.jb51.net/article/100357.htm" 
+  target="_blank">去掉activity默认动画效果的简单方法</A></P>
+  <DIV class="item-info">
+  <DIV 
+  class="js">下面小编就为大家带来一篇去掉activity默认动画效果的简单方法。小编觉得挺不错的，现在就分享给大家，也给大家做个参考。一起跟随小编过来看看吧</DIV><SPAN 
+  class="lbtn" style="float: right;">2016-12-12 
+  </SPAN></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class="item-inner"><A title="详解Android首选项框架的使用实例" class="img-wrap" href="http://www.jb51.net/article/97498.htm" 
+  target="_blank"><IMG alt="详解Android首选项框架的使用实例" src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/bcimg7.png"> 
+  </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="详解Android首选项框架的使用实例" class="link title" href="http://www.jb51.net/article/97498.htm" 
+  target="_blank">详解Android首选项框架的使用实例</A></P>
+  <DIV class="item-info">
+  <DIV 
+  class="js">首选项这个名词对于熟悉Android的朋友们一定不会感到陌生，它经常用来设置软件的运行参数。本篇文章主要介绍详解Android首选项框架的使用实例，有兴趣的可以了解一下。</DIV><SPAN 
+  class="lbtn" style="float: right;">2016-11-11 
+  </SPAN></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class="item-inner"><A title="Android自定义Material进度条效果" class="img-wrap" 
+  href="http://www.jb51.net/article/104119.htm" target="_blank"><IMG alt="Android自定义Material进度条效果" 
+  src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/bcimg8.png"> </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="Android自定义Material进度条效果" class="link title" href="http://www.jb51.net/article/104119.htm" 
+  target="_blank">Android自定义Material进度条效果</A></P>
+  <DIV class="item-info">
+  <DIV 
+  class="js">这篇文章主要为大家详细介绍了Android自定义Material进度条效果的相关资料，具有一定的参考价值，感兴趣的小伙伴们可以参考一下</DIV><SPAN 
+  class="lbtn" style="float: right;">2017-01-01 
+  </SPAN></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class="item-inner"><A title="Android编程四大组件分别是什么" class="img-wrap" href="http://www.jb51.net/article/85624.htm" 
+  target="_blank"><IMG alt="Android编程四大组件分别是什么" src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/bcimg9.png"> 
+  </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="Android编程四大组件分别是什么" class="link title" href="http://www.jb51.net/article/85624.htm" 
+  target="_blank">Android编程四大组件分别是什么</A></P>
+  <DIV class="item-info">
+  <DIV 
+  class="js">大家知道Android编程四大组件分别是什么吗？这篇文章主要为大家详细介绍了Android四大组件，感兴趣的小伙伴们可以参考一下</DIV><SPAN 
+  class="lbtn" style="float: right;">2016-06-06 
+  </SPAN></DIV></DIV></DIV></DIV></LI></UL></DIV>
+<DIV class="lbd clearfix mt5"><SPAN class="jbTestPos" id="art_down2"></SPAN> 
+</DIV><A href="http://www.jb51.net/article/103785.htm#comments"></A> 
+<DIV id="comments">
+<H2>最新评论</H2>
+<DIV class="pd5">
+<DIV id="SOHUCS" sid="art_103785"></DIV></DIV></DIV></DIV><!--endborder-->       
+</DIV><!--end fl-->       
+<DIV class="w350 fr">
+<DIV class="article-right">
+<DIV class="r300 clearfix"><SPAN class="jbTestPos" id="side_up"></SPAN></DIV>
+<DIV class="tabTitleBar mt10 bgf borderTblue">
+<DIV class="borderTnone pb10 YaHei">
+<H4 class="blue">大家感兴趣的内容</H4>
+<UL class="newsList newList-in">
+  <LI><EM class="no1">1</EM><A title="一看就懂的Android APP开发入门教程" href="http://www.jb51.net/article/50395.htm" 
+  target="_blank">一看就懂的Android APP开发入门教</A></LI>
+  <LI><EM class="no2">2</EM><A title="微信公众平台开发入门教程(图文详解)" href="http://www.jb51.net/article/41750.htm" 
+  target="_blank">微信公众平台开发入门教程(图文详</A></LI>
+  <LI><EM class="no3">3</EM><A title="Android基础之使用Fragment控制切换多个页面" href="http://www.jb51.net/article/40108.htm" 
+  target="_blank">Android基础之使用Fragment控制切</A></LI>
+  <LI><EM class="no4">4</EM><A title="六款值得推荐的android（安卓）开源框架简介" href="http://www.jb51.net/article/51052.htm" 
+  target="_blank">六款值得推荐的android（安卓）开</A></LI>
+  <LI><EM class="no5">5</EM><A title="android TextView设置中文字体加粗实现方法" href="http://www.jb51.net/article/33060.htm" 
+  target="_blank">android TextView设置中文字体加</A></LI>
+  <LI><EM class="no6">6</EM><A title="Android应用开发SharedPreferences存储数据的使用方法" 
+  href="http://www.jb51.net/article/31911.htm" 
+  target="_blank">Android应用开发SharedPreferenc</A></LI>
+  <LI><EM class="no7">7</EM><A title="Android 动画之TranslateAnimation应用详解" href="http://www.jb51.net/article/32339.htm" 
+  target="_blank">Android 动画之TranslateAnimati</A></LI>
+  <LI><EM class="no8">8</EM><A title="Android按钮单击事件的四种常用写法总结" href="http://www.jb51.net/article/55329.htm" 
+  target="_blank">Android按钮单击事件的四种常用写</A></LI>
+  <LI><EM class="no9">9</EM><A title="android压力测试命令monkey详解" href="http://www.jb51.net/article/48557.htm" 
+  target="_blank">android压力测试命令monkey详解</A></LI>
+  <LI><EM class="no10">10</EM><A title="android调试工具DDMS的使用详解" href="http://www.jb51.net/article/36668.htm" 
+  target="_blank">android调试工具DDMS的使用详解</A></LI></UL></DIV></DIV>
+<DIV class="r300 clearfix mt10"><SPAN class="jbTestPos" id="idctu"></SPAN></DIV>
+<DIV class="tabTitleBar mt10 bgf borderTblue">
+<DIV class="borderTnone pb10 YaHei">
+<H4 class="blue">最近更新的内容</H4>
+<UL class="newsListA">
+  <LI><A title="Android选择图片或视频进行循环播放" href="http://www.jb51.net/article/126536.htm" 
+  target="_blank">Android选择图片或视频进行循环播放</A></LI>
+  <LI><A title="如何正确理解和使用Activity的4种启动模式" href="http://www.jb51.net/article/108417.htm" 
+  target="_blank">如何正确理解和使用Activity的4种启动模式</A></LI>
+  <LI><A title="android 获取文件的扩展名和去掉文件扩展名的小例子" href="http://www.jb51.net/article/37765.htm" 
+  target="_blank">android 获取文件的扩展名和去掉文件扩展</A></LI>
+  <LI><A title="Android自带emoji表情的使用方法详解" href="http://www.jb51.net/article/120358.htm" 
+  target="_blank">Android自带emoji表情的使用方法详解</A></LI>
+  <LI><A title="Android自定义View实现纵向跑马灯效果详解" href="http://www.jb51.net/article/96611.htm" 
+  target="_blank">Android自定义View实现纵向跑马灯效果详解</A></LI>
+  <LI><A title="Android时分秒计时器的两种实现方法" href="http://www.jb51.net/article/91172.htm" 
+  target="_blank">Android时分秒计时器的两种实现方法</A></LI>
+  <LI><A title="Android中Dialog去黑边的方法" href="http://www.jb51.net/article/54071.htm" 
+  target="_blank">Android中Dialog去黑边的方法</A></LI>
+  <LI><A title="Android使用Jsoup解析Html表格的方法" href="http://www.jb51.net/article/77166.htm" 
+  target="_blank">Android使用Jsoup解析Html表格的方法</A></LI>
+  <LI><A title="Android下录制App操作生成Gif动态图的全过程" href="http://www.jb51.net/article/78236.htm" 
+  target="_blank">Android下录制App操作生成Gif动态图的全过</A></LI>
+  <LI><A title="Android仿微信图片点击浏览的效果" href="http://www.jb51.net/article/91932.htm" 
+  target="_blank">Android仿微信图片点击浏览的效果</A></LI></UL></DIV></DIV>
+<DIV class="r300 clearfix mt10"><SPAN class="jbTestPos" 
+id="idctu1"></SPAN></DIV>
+<DIV class="tabTitleBar mt10 bgf borderTblue">
+<DIV class="borderTnone pb10 YaHei">
+<H4 class="blue">常用在线小工具</H4>
+<UL class="newsListA"><SPAN class="jbTestPos" 
+id="bctools"></SPAN></UL></DIV></DIV>
+<DIV class="r300 clearfix mt10 mb10"><SPAN class="jbTestPos" 
+id="idctu2"></SPAN></DIV>
+<DIV class="rFixedBox">
+<SCRIPT type="text/javascript">jb51_a_d("jb51xf");</SCRIPT>
+ </DIV></DIV></DIV><!--end fr-->       </DIV></DIV><!--end content--> 
+<DIV id="footer">
+<DIV class="main clearfix">
+<P><A href="http://www.jb51.net/about.htm" target="_blank" 
+rel="nofollow">关于我们</A> -  <A href="http://www.jb51.net/support.htm" target="_blank" 
+rel="nofollow">广告合作</A> -  <A href="http://www.jb51.net/linkus.htm" target="_blank" 
+rel="nofollow">联系我们</A> -   <A href="http://www.jb51.net/sm.htm" target="_blank" 
+rel="nofollow">免责声明</A> -   <A href="http://www.jb51.net/sitemap.htm" target="_blank" 
+rel="nofollow">网站地图</A> -  <A href="tencent://message/?uin=461478385&amp;Site=http://www.jb51.net" 
+target="_blank" rel="nofollow">投诉建议</A> -  <A href="http://www.jb51.net/up.htm" 
+target="_blank" rel="nofollow">在线投稿</A> </P>
+<P><A class="ba" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32031102000137" 
+target="_blank" rel="nofollow"><IMG src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/ghs.png"> 
+苏公网安备 32031102000137号</A>&nbsp;&nbsp;<A class="ba" href="http://www.miibeian.gov.cn/" 
+target="_blank" rel="nofollow">苏ICP备14036222号</A></P>
+<P>&copy;CopyRight 2006-2018 JB51.Net Inc All Rights Reserved. 脚本之家 
+版权所有</P></DIV></DIV><!--end footer--> <LINK href="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/shCore.css" 
+rel="stylesheet" type="text/css"> <LINK href="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/shThemeDefault.css" 
+rel="Stylesheet" type="text/css"> 
+<SCRIPT src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/shCore.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/shAutoloader.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+(function(){
+	var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+/*更多导航*/
+$(".nav_top p").hover(function(){$(this).addClass("hover")},function(){$(this).removeClass("hover")});
+
+if (top.location != self.location)top.location=self.location;
+
+var varwindow=$(window);
+$(function(){
+	$('#content').find('img').each(function(){
+        var img = this;
+        if (img.width >= 650){
+            img.style.width = "650px";
+            img.style.height = "auto";
+            //$(img).removeAttr('height');
+            var aTag = document.createElement('a');
+            aTag.href = img.src;
+			aTag.target="_blank";
+            $(aTag).addClass('bPic')
+            .insertAfter(img).append(img)
+          }
+    });
+	varwindow.scroll(function()
+    {	
+    	//rFixedBox跟随滚动
+    	var h = varwindow.height();
+        var top = varwindow.scrollTop();
+    	var rFixedBox = $('.rFixedBox').prev().offset();
+        var fixedTop = rFixedBox.top;
+		
+        if(top>=fixedTop+344)
+        {
+			var h1 = parseInt($('#content').children('.main').height());
+			if(parseInt(top) + 340 < h1){
+				$('.rFixedBox').css({'position':'fixed','top': 0});
+			}else{
+				$('.rFixedBox').css({'position':'absolute','top': h1-510});
+			}
+        }
+        else
+        {
+            $('.rFixedBox').css({'position':'static', 'top':0});   
+        }	
+       /* return true;*/
+	   
+	   /*右侧快捷菜单*/
+	   sideFixed();
+    });
+	var ww = varwindow.width();
+	
+	function sideFixed(){
+	var scrolltop = document.body.scrollTop || document.documentElement.scrollTop;
+	var a1 = 550;
+	if(ww>440){
+		if(a1<=scrolltop){
+			$('#right-share').slideDown();
+			}
+		else{
+			$('#right-share').slideUp();
+			}
+		}
+	}
+	$('.rshare-weixin').hover(function(){
+			$('#weixin-code').removeClass('hide');
+		},function(){
+			$('#weixin-code').addClass('hide');
+		});
+	/*二维码*/
+	$('#right-share .rshare-top').on('click',function(){
+        $('html,body').animate({'scrollTop':0},500);
+    });
+/*$(document).ready(function() {
+  $("#content img").unveil();
+});	*/
+
+if(suoyin=="ok"){
+	GenerateContentList();
+}
+
+SyntaxHighlighter.autoloader(
+	'applescript			/jslib/syntaxhighlighter/scripts/shBrushAppleScript.js',
+	'actionscript3 as3		/jslib/syntaxhighlighter/scripts/shBrushAS3.js',
+	'bash shell				/jslib/syntaxhighlighter/scripts/shBrushBash.js',
+	'coldfusion cf			/jslib/syntaxhighlighter/scripts/shBrushColdFusion.js',
+	'cpp c					/jslib/syntaxhighlighter/scripts/shBrushCpp.js',
+	'obj-c objc				/jslib/syntaxhighlighter/scripts/shBrushObjC.js',
+	'c# c-sharp csharp		/jslib/syntaxhighlighter/scripts/shBrushCSharp.js',
+	'css					/jslib/syntaxhighlighter/scripts/shBrushCss.js',
+	'delphi pascal			/jslib/syntaxhighlighter/scripts/shBrushDelphi.js',
+	'diff patch pas			/jslib/syntaxhighlighter/scripts/shBrushDiff.js',
+	'erl erlang				/jslib/syntaxhighlighter/scripts/shBrushErlang.js',
+	'groovy					/jslib/syntaxhighlighter/scripts/shBrushGroovy.js',
+	'haxe hx				/jslib/syntaxhighlighter/scripts/shBrushHaxe.js',
+	'java					/jslib/syntaxhighlighter/scripts/shBrushJava.js',
+	'jfx javafx				/jslib/syntaxhighlighter/scripts/shBrushJavaFX.js',
+	'js jscript javascript	/jslib/syntaxhighlighter/scripts/shBrushJScript.js',
+	'perl pl				/jslib/syntaxhighlighter/scripts/shBrushPerl.js',
+	'php					/jslib/syntaxhighlighter/scripts/shBrushPhp.js',
+	'text plain				/jslib/syntaxhighlighter/scripts/shBrushPlain.js',
+	'py python				/jslib/syntaxhighlighter/scripts/shBrushPython.js',
+	'ruby rails ror rb		/jslib/syntaxhighlighter/scripts/shBrushRuby.js',
+	'scala					/jslib/syntaxhighlighter/scripts/shBrushScala.js',
+	'sql					/jslib/syntaxhighlighter/scripts/shBrushSql.js',
+	'vb vbnet				/jslib/syntaxhighlighter/scripts/shBrushVb.js',
+	'ps powershell			/jslib/syntaxhighlighter/scripts/shBrushPowerShell.js',
+	'xml xhtml xslt html	/jslib/syntaxhighlighter/scripts/shBrushXml.js'
+);
+SyntaxHighlighter.all();
+});
+var ourl="";
+</SCRIPT>
+ 
+<SCRIPT src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/arcts.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<DIV id="tongji">
+<SCRIPT src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/tongji.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+//tu+
+var cpro_id = "u1893014";
+document.write('<scri'+'pt src="//cpro.baidustatic.com/cpro/ui/i.js" type="text/javascript"></s'+'cript>');
+</SCRIPT>
+ 
+<SCRIPT src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/changyan.js" type="text/javascript" charset="utf-8"></SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?2f793ca9dd6f4c32488903eed5c7fbcb":"https://jspassport.ssl.qhimg.com/11.0.1.js?2f793ca9dd6f4c32488903eed5c7fbcb";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+window.changyan.api.config({
+appid: 'cyrHH3dwi',
+conf: 'prod_1dc5dc80970106099d43fe242b7465fc'
+});
+</SCRIPT>
+ </DIV>
+<SCRIPT src="Android%20使用版本控制工具时添加忽略文件的方式(详解)_Android_脚本之家_files/pl.htm" type="text/javascript"></SCRIPT>
+ </BODY></HTML><!-- published at 2018/3/26 22:56:29By dxycms qq:461478385  -->

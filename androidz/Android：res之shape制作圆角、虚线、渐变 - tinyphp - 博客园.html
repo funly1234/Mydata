@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)https://www.cnblogs.com/tinyphp/p/3829895.html -->
+<html lang="zh-cn" style="color: rgb(0, 0, 0); background-color: rgb(204, 232, 207);"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/bundle-En_summerGarden.css">
+<link type="text/css" rel="stylesheet" href="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/127781.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/bundle-En_summerGarden-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/tinyphp/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/tinyphp/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/tinyphp/wlwmanifest.xml">
+<script async="" src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/analytics.js"></script><script type="text/javascript" src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/encoder.js"></script><script src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/jquery-2.2.0.min.js"></script>
+<script type="text/javascript">var currentBlogApp = 'tinyphp', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(204, 232, 207);">
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/tinyphp/"><img id="blogLogo" src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/logo.gif" alt="Return Home"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/tinyphp/">tinyphp</a></h1>
+<h2>Life goes on, code goes on!</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<!--done-->
+			<ul id="navList">
+				<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">CnBlogs</a></li>
+				<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/tinyphp/">Home</a></li>
+				<li></li>
+				<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/tinyphp">Contact</a></li>
+				<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">Admin</a></li>
+				<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/tinyphp/rss">Rss</a>
+				<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/tinyphp/rss"><img src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/xml.gif" alt="Rss"></a></li>
+			</ul>
+
+
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+Posts - 635&nbsp;
+Articles - 1&nbsp;
+Comments - 145&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/tinyphp/p/3829895.html">Android：res之shape制作圆角、虚线、渐变</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p><span style="line-height: 1.5;">xml控件配置属性</span></p>
+<div class="cnblogs_code">
+<pre>android:background="@drawable/shape"</pre>
+</div>
+<p><strong>标签</strong></p>
+<p>corners ----------圆角<br>gradient ----------渐变<br>padding ----------内容离边界距离<br>size　------------大小　<br>solid 　----------填充颜色<br>stroke ----------描边</p>
+<p>&nbsp;</p>
+<p>注意的是corners的属性bottomLeftRadius为右下角、bottomRightRadius为左下角</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong style="line-height: 1.5;">shape制作圆角</strong></p>
+<p><img src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/081033462854239.jpg" alt=""></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">Button 
+    </span><span style="color: #ff0000;">android:layout_width</span><span style="color: #0000ff;">="160dp"</span><span style="color: #ff0000;">
+    android:layout_height</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+    android:background</span><span style="color: #0000ff;">="@drawable/button_shape"</span><span style="color: #ff0000;">
+    android:text</span><span style="color: #0000ff;">="圆角按钮"</span>
+    <span style="color: #0000ff;">/&gt;</span></pre>
+</div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff;">?&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">shape </span><span style="color: #ff0000;">xmlns:android</span><span style="color: #0000ff;">="http://schemas.android.com/apk/res/android"</span> <span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">solid </span><span style="color: #ff0000;">android:color</span><span style="color: #0000ff;">="#fff"</span><span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">padding </span><span style="color: #ff0000;">android:top</span><span style="color: #0000ff;">="10px"</span><span style="color: #ff0000;"> android:bottom</span><span style="color: #0000ff;">="10px"</span><span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">corners </span><span style="color: #ff0000;">android:radius</span><span style="color: #0000ff;">="16px"</span><span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">stroke </span><span style="color: #ff0000;">android:width</span><span style="color: #0000ff;">="1px"</span><span style="color: #ff0000;"> android:color</span><span style="color: #0000ff;">="#000"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">shape</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><strong>shape制作虚线</strong></p>
+<p><strong><img src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/131803152801255.jpg" alt=""></strong></p>
+<p>没有dashGap属性则为实线</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">View 
+    </span><span style="color: #ff0000;">android:layout_width</span><span style="color: #0000ff;">="match_parent"</span><span style="color: #ff0000;">
+    android:layout_height</span><span style="color: #0000ff;">="5px"</span><span style="color: #ff0000;">
+    android:layout_marginTop</span><span style="color: #0000ff;">="10dp"</span><span style="color: #ff0000;">
+    android:background</span><span style="color: #0000ff;">="@drawable/line_shape"</span>
+    <span style="color: #0000ff;">/&gt;</span></pre>
+</div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff;">?&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">shape </span><span style="color: #ff0000;">xmlns:android</span><span style="color: #0000ff;">="http://schemas.android.com/apk/res/android"</span><span style="color: #ff0000;">
+    android:shape</span><span style="color: #0000ff;">="line"</span> <span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">stroke
+        </span><span style="color: #ff0000;">android:dashGap</span><span style="color: #0000ff;">="3dp"</span><span style="color: #ff0000;">
+        android:dashWidth</span><span style="color: #0000ff;">="8dp"</span><span style="color: #ff0000;">
+        android:width</span><span style="color: #0000ff;">="1dp"</span><span style="color: #ff0000;">
+        android:color</span><span style="color: #0000ff;">="#63a219"</span> <span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">size </span><span style="color: #ff0000;">android:height</span><span style="color: #0000ff;">="1dp"</span> <span style="color: #0000ff;">/&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">shape</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><strong>shape制作渐变</strong></p>
+<p><strong><img src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/131810498898008.jpg" alt=""></strong></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">View 
+    </span><span style="color: #ff0000;">android:layout_width</span><span style="color: #0000ff;">="match_parent"</span><span style="color: #ff0000;">
+    android:layout_height</span><span style="color: #0000ff;">="50dp"</span><span style="color: #ff0000;">
+    android:layout_marginTop</span><span style="color: #0000ff;">="10dp"</span><span style="color: #ff0000;">
+    android:background</span><span style="color: #0000ff;">="@drawable/gra_shape"</span>
+    <span style="color: #0000ff;">/&gt;</span></pre>
+</div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff;">?&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">shape </span><span style="color: #ff0000;">xmlns:android</span><span style="color: #0000ff;">="http://schemas.android.com/apk/res/android"</span> <span style="color: #0000ff;">&gt;</span>
+
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">gradient
+        </span><span style="color: #ff0000;">android:angle</span><span style="color: #0000ff;">="270.0"</span><span style="color: #ff0000;">
+        android:endColor</span><span style="color: #0000ff;">="#ffffff"</span><span style="color: #ff0000;">
+        android:startColor</span><span style="color: #0000ff;">="#000000"</span> <span style="color: #0000ff;">/&gt;</span>
+
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">shape</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;相关文章：</p>
+<p><a href="http://blog.csdn.net/huiwolf2008/article/details/8028615" target="_blank">http://blog.csdn.net/huiwolf2008/article/details/8028615</a></p></div><div id="MySignature" style="display: block;"><a href="https://shop114564329.taobao.com/?spm=2013.1.1000126.2.959eebeHAQBpu"><img src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/446475-20170810114505636-1850837926.jpg"></a></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/tinyphp/category/475564.html" target="_blank">Android</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/tinyphp/tag/shape%E7%89%B9%E6%95%88/">shape特效</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3829895,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;7ac5dae2-45fb-e111-aa3f-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/tinyphp/" target="_blank"><img src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/20140627114133.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/tinyphp/">tinyphp</a><br>
+            <a href="http://home.cnblogs.com/u/tinyphp/followees">关注 - 35</a><br>
+            <a href="http://home.cnblogs.com/u/tinyphp/followers">粉丝 - 147</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;7ac5dae2-45fb-e111-aa3f-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(3829895,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">1</span>
+    </div>
+    <div class="buryit" onclick="votePost(3829895,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/tinyphp/p/3907570.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/tinyphp/p/3907570.html" title="发布于2014-08-12 16:18">Android：dimen尺寸资源文件的使用</a><br><a href="http://www.cnblogs.com/tinyphp/p/3919800.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/tinyphp/p/3919800.html" title="发布于2014-08-18 17:01">Android：自定义适配器</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2014-08-13 18:24</span> <a href="http://www.cnblogs.com/tinyphp/">tinyphp</a> Views(<span id="post_view_count">38049</span>) Comments(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=3829895" rel="nofollow">Edit</a> <a href="https://www.cnblogs.com/tinyphp/p/3829895.html#" onclick="AddToWz(3829895);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=127781,cb_entryId=3829895,cb_blogApp=currentBlogApp,cb_blogUserGuid='7ac5dae2-45fb-e111-aa3f-842b2b196315',cb_entryCreatedDate='2014/8/13 18:24:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div>
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/tinyphp/p/3829895.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/tinyphp/p/3829895.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】超50万VC++源码: 大型工控、组态\仿真、建模CAD源码2018！</a><br><a href="https://dnspod.cloud.tencent.com/act/weapp?fromSource=gwzcw.741360.741360.741360" target="_blank">【腾讯云】小程序普惠节精美模板1元起</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://cloud.tencent.com/act/first_purchase?fromSource=gwzcw.741358.741358.741358" target="_blank"><img width="300" height="250" src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/24442-20180122123322209-1359966176.jpg" alt="tencent0122"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/588045/" target="_blank">媒体：那只吃饭睡觉的青蛙 其实正是孤独的空巢青年</a><br> ·  <a href="https://news.cnblogs.com/n/588041/" target="_blank">外媒：B站计划在美国IPO 筹资4亿美元</a><br> ·  <a href="https://news.cnblogs.com/n/588005/" target="_blank">阿里巴巴2017日均纳税超1亿、创造就业3300万</a><br> ·  <a href="https://news.cnblogs.com/n/588040/" target="_blank">Wine 3.0新玩法：让Android手机运行Windows应用</a><br> ·  <a href="https://news.cnblogs.com/n/588039/" target="_blank">微软向ID2020机构注资100万 基于区块链推进数字身份认证网络</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/34770/" target="_blank"><img width="468" height="60" src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/24442-20171208101900738-116140477.jpg" alt="阿里云C2-1208"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/586236/" target="_blank">领域驱动设计在互联网业务开发中的实践</a><br> ·  <a href="http://kb.cnblogs.com/page/585502/" target="_blank">步入云计算</a><br> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/tinyphp/">tinyphp</a><br>园龄：<a href="https://home.cnblogs.com/u/tinyphp/" title="入园时间：2012-09-10">5年4个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/tinyphp/followers/">147</a><br>关注：<a href="https://home.cnblogs.com/u/tinyphp/followees/">35</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;7ac5dae2-45fb-e111-aa3f-842b2b196315&#39;)">+加关注</a></div><script>getFollowStatus('7ac5dae2-45fb-e111-aa3f-842b2b196315')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div class="mySearch">
+<h3 class="catListTitle">Search</h3>
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="ZZK" id="btnZzk" class="btn_my_zzk"></div>
+
+</div></div><div id="sidebar_shortcut" class="sidebar-block">
+<!--
+<div class="catListLink">
+<h3 class ="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/tinyphp/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/tinyphp/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/tinyphp/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/tinyphp/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/tinyphp/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass('itemListLink', 'itemListLin_con');return false;" href="#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div>
+--></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">Post Categories<span style="font-size:11px;font-weight:normal">(599)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/tinyphp/category/475564.html">Android(95)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/tinyphp/category/733946.html">Bootstrap(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/tinyphp/category/777468.html">Cocos2d(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/tinyphp/category/493157.html">CSS3(20)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/tinyphp/category/419702.html">HTML/CSS(39)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/tinyphp/category/492687.html">HTML5(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/tinyphp/category/479316.html">JAVA(37)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/tinyphp/category/592328.html">Javascript(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/tinyphp/category/417684.html">jQuery(67)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/tinyphp/category/769980.html">Linux(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/tinyphp/category/849789.html">MongoDB(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/tinyphp/category/750039.html">NodeJS(37)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/tinyphp/category/509852.html">Photoshop(30)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/tinyphp/category/416348.html">PHP(35)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/tinyphp/category/520243.html">ThinkPHP(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/tinyphp/category/675277.html">WordPress主题制作(66)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/tinyphp/category/416367.html">工具(106)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/tinyphp/category/756475.html">前端优化(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/tinyphp/category/564026.html">淘宝设计师(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/tinyphp/category/765287.html">网络安全(3)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListArticleCategory">
+<h3 class="catListTitle">Article Categories</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/tinyphp/category/416100.html">代码小偷</a> </li>
+
+</ul>
+
+</div>
+
+</div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 tinyphp
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5152012'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s6.cnzz.com/stat.php%3Fid%3D5152012%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_5152012"><a href="http://www.cnzz.com/stat/website.php?web_id=5152012" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/pic.gif"></a></span><script src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/stat.php" type="text/javascript"></script><script src="./Android：res之shape制作圆角、虚线、渐变 - tinyphp - 博客园_files/core.php" charset="utf-8" type="text/javascript"></script>
+<!--PageEndHtml Block End-->
+
+
+</body></html>

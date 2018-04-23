@@ -1,0 +1,1658 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0057)http://blog.csdn.net/lvwenbo0107/article/details/51655161 -->
+<html xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(0, 0, 0); background-color: rgb(204, 232, 207);"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script charset="utf-8" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/b.js"></script><script type="text/javascript" async="" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/pr.js"></script>
+        <link rel="canonical" href="http://blog.csdn.net/lvwenbo0107/article/details/51655161">
+
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <link rel="alternate" media="handheld" href="http://blog.csdn.net/lvwenbo0107/article/details/51655161#">
+
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+
+    <title>Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客</title>
+    
+    <meta name="description" content="转载请注明出处：http://blog.csdn.net/guolin_blog/article/details/50727753 好像有挺久时间没更新博客了，最近我为了准备下一个系列的博客，也是花了很长的时间研读源码。很遗憾的是，下一个系列的博客我可能还要再过一段时间才能写出来，那么为了不至于让大家等太久，今天就给大家更新一篇单篇的文章，讲一讲Android drawable方面的微技巧。">
+
+    <meta name="keywords" content="">
+    <script src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/hm.js"></script><script type="text/javascript" async="" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/qkosouoh.js"></script><script src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/blog_static_head.min.js" type="text/javascript"></script>
+
+
+        <link rel="Stylesheet" type="text/css" href="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/style.css">
+
+    
+
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/lvwenbo0107/rss/list">
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/blue.css">
+
+
+
+
+
+    <link href="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/csdn_public_blog_detail.min.css" type="text/css" rel="stylesheet">
+
+        <link rel="stylesheet" href="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/csdn_blog_detail.min.css">
+
+    <!-- 请置于所有广告位代码之前 -->
+    <script src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/ds.js"></script>
+
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style></head>
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(204, 232, 207);"><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><div id="MathJax_Message" style="display: none;"></div><svg aria-hidden="true" style="position: absolute; width: 0px; height: 0px; overflow: hidden;"><symbol id="icon-xiajiantou" viewBox="0 0 1024 1024"><path d="M328.208 346.062h368.494c20.393 0 36.887 16.366 36.887 36.757 0 9.484-3.637 18.056-9.483 24.55L541.873 650.522c-12.211 16.105-35.2 19.484-51.438 7.275-2.859-2.08-5.324-4.547-7.274-7.275L298.853 404.772c-12.08-16.106-8.83-39.225 7.404-51.306 6.626-5.066 14.289-7.404 21.95-7.404z"></path></symbol><symbol id="icon-shouji" viewBox="0 0 1024 1024"><path d="M537.754 795.889c-26.41 0-47.893 21.478-47.893 47.892s21.484 47.893 47.893 47.893 47.892-21.479 47.892-47.893-21.483-47.892-47.892-47.892z"></path><path d="M774.697 42.071H300.815c-39.864 0-72.3 32.43-72.3 72.3v795.264c0 39.869 32.43 72.3 72.3 72.3h473.872c39.87 0 72.3-32.431 72.3-72.3v-795.27c0.004-39.864-32.426-72.294-72.29-72.294zM300.815 90.266h473.872a24.125 24.125 0 0 1 24.1 24.1v595.809H276.72v-595.81a24.125 24.125 0 0 1 24.094-24.1z m473.882 843.463H300.815a24.125 24.125 0 0 1-24.1-24.1V762.501h522.072V909.63a24.115 24.115 0 0 1-24.09 24.1z"></path></symbol><symbol id="icon-tianxie" viewBox="0 0 1024 1024"><path d="M121.905 780.19h780.19v97.524h-780.19V780.19zM823.296 298.496l-68.974-68.974-344.795 344.796-34.475 103.448 103.424-34.475zM875.008 246.76l17.237-17.238-68.949-68.949-17.262 17.237-17.237 17.238 68.974 68.973z"></path></symbol><symbol id="icon-sousuo" viewBox="0 0 1024 1024"><path d="M1023.972002 964.002812l-59.981188 59.981189-271.443276-271.459276c-166.600191 136.489602-412.812649 126.986048-568.309361-28.494664-165.624236-165.624236-165.624236-434.187647 0-599.859881 165.624236-165.592238 434.187647-165.592238 599.827883 0 155.52871 155.52871 164.984266 401.789166 28.462666 568.389356L1023.972002 964.002812zM663.364906 184.007375c-132.585785-132.585785-347.327719-132.761777-479.705514-0.43198-132.329797 132.345796-132.121807 347.119729 0.463978 479.705514s347.375717 132.793775 479.705514 0.41598c132.329797-132.281799 132.169805-347.10373-0.463978-479.689514z"></path></symbol><symbol id="icon-guanbi" viewBox="0 0 1024 1024"><path d="M1002.211316 933.90818c24.46369 24.46369 29.007633 59.583246 10.159871 78.447007-18.863761 18.863761-53.983317 14.303819-78.447007-10.159871L21.807724 90.09486C-2.655966 65.631169-7.199909 30.495614 11.647853 11.647853c18.863761-18.863761 53.983317-14.303819 78.447007 10.159871L1002.211316 933.90818z"></path><path d="M933.92418 21.807724C958.38787-2.655966 993.507426-7.199909 1012.371187 11.647853c18.863761 18.863761 14.303819 53.983317-10.159871 78.447007L90.09486 1002.211316c-24.46369 24.46369-59.583246 29.007633-78.447007 10.159871-18.847761-18.863761-14.303819-53.983317 10.159871-78.463007L933.92418 21.807724z"></path></symbol><symbol id="icon-caidan" viewBox="0 0 1024 1024"><path d="M0 132.8a48.496 48.496 0 0 0 48.496 48.496h927.008a48.496 48.496 0 1 0 0-96.992H48.496A48.496 48.496 0 0 0 0 132.8s0-26.784 0 0zM0 512.016a48.48 48.48 0 0 0 48.48 48.48h927.04a48.48 48.48 0 0 0 0-96.96H48.48A48.48 48.48 0 0 0 0 512.016s0-26.784 0 0zM0 891.2a48.496 48.496 0 0 0 48.496 48.496h927.008a48.496 48.496 0 1 0 0-96.992H48.496A48.496 48.496 0 0 0 0 891.2s0-26.784 0 0z"></path></symbol><symbol id="icon-yonghudenglu" viewBox="0 0 1024 1024"><path d="M1022.26704 962.432c-43.888-157.584-162.16-281.216-312.064-340.144 92.8-61.376 153.92-164.496 153.92-281.168C864.12304 153.04 706.04304 0 511.70704 0 317.35504 0 159.19504 153.04 159.19504 341.136c0 116.704 61.152 219.84 154.064 281.184C164.13904 681.024 46.18704 803.792 1.80304 960.16c-7.344 26.016 8.464 52.864 35.36 60.032a52.016 52.016 0 0 0 38.4-4.608 49.072 49.072 0 0 0 23.712-29.568c50.768-178.96 220.352-303.92 412.448-303.92 193.04 0 362.848 125.712 412.944 305.744 7.296 26.048 34.992 41.456 61.952 34.48 26.912-7.04 42.88-33.824 35.648-59.888zM260.25104 341.136c0-134.256 112.816-243.424 251.472-243.424 138.576 0 251.328 109.184 251.328 243.424 0 133.904-112.768 242.864-251.328 242.864-138.672 0-251.472-108.976-251.472-242.864z m0 0"></path></symbol><symbol id="toolbar-csdnlogo" viewBox="0 0 1024 1024"><path d="M533.941333 419.264c14.709333-1.621333 37.290667-3.264 68.352-3.264 51.872 0 93.802667 9.152 119.776 28.416 23.338667 17.952 38.858667 47.008 34.56 89.130667-3.978667 39.189333-24.042667 66.634667-53.312 83.594666C676.544 633.152 642.837333 640 592.106667 640c-29.888 0-58.421333-1.642667-80.106667-4.896l21.941333-215.84z m42.869334 172.938667c4.981333 0.992 11.562667 1.973333 24.533333 1.973333 51.882667 0 88.469333-25.877333 92.16-62.24 5.333333-52.554667-27.125333-70.944-81.802667-70.624-7.072 0-16.917333 0-22.133333 0.970667L576.8 592.213333h0.010667z m223.498666-164.704c210.954667-39.872 229.162667 31.776 222.645334 95.189333L1010.656 640h-66.944l11.210667-106.986667c2.421333-23.562667 17.504-69.653333-55.338667-67.914666-25.184 0.608-37.706667 4.064-37.706667 4.064s-2.186667 28.469333-4.832 49.514666L844.32 640H778.666667l13.024-119.573333" fill="#231916"></path><path d="M226.634667 632.682667c-12.373333 4.341333-38.037333 7.317333-73.909334 7.317333C49.6 640-6.048 590.933333 0.522667 526.090667 8.416 448.810667 90.858667 405.333333 181.141333 405.333333c34.976 0 55.552 2.858667 74.858667 7.637334l-6.208 52.064c-12.821333-4.384-42.890667-8.405333-67.232-8.405334-53.141333 0-98.250667 16.042667-103.424 66.762667-4.608 45.354667 27.061333 67.04 86.816 67.04 20.8 0 51.477333-3.018667 65.653333-7.370667l-4.992 49.6 0.021334 0.021334z" fill="#C92027"></path><path d="M272.714667 580.021333c19.285333 6.762667 59.488 13.504 92 13.504 35.029333 0 54.528-9.333333 56.096-23.797333 1.418667-13.205333-12.928-14.986667-52.490667-24.010667-54.666667-12.896-89.546667-32.842667-86.133333-64.704C286.176 443.989333 337.685333 416 416.725333 416c38.56 0 75.914667 2.613333 95.274667 8.714667l-6.656 46.666666c-12.565333-4.202667-60.672-10.037333-93.205333-10.037333-32.992 0-50.069333 9.973333-51.253334 20.917333-1.493333 13.845333 15.658667 14.485333 58.528 25.450667 58.026667 14.154667 83.402667 34.090667 80.085334 64.992C495.605333 609.109333 449.258667 640 356.714667 640c-38.528 0-71.744-6.762667-90.048-13.525333l6.048-46.453334z" fill="#231916"></path></symbol><symbol id="icon-morentouxiang" viewBox="0 0 1024 1024"><path d="M512 512m-512 0a512 512 0 1 0 1024 0 512 512 0 1 0-1024 0Z" fill="#A0C3FF"></path><path d="M691.2 887.466667c-55.466667-25.6-123.733333-51.2-123.733333-51.2v-38.4c68.266667-25.6 119.466667-89.6 132.266666-166.4 12.8-4.266667 38.4-17.066667 46.933334-55.466667l8.533333-46.933333s4.266667-59.733333-42.666667-46.933334c4.266667-38.4 4.266667-81.066667 4.266667-115.2-4.266667-64-89.6-98.133333-89.6-98.133333l12.8-17.066667s-42.666667-12.8-59.733333-4.266666l12.8-29.866667s-85.333333 0-132.266667 38.4h-4.266667v-17.066667s-145.066667 21.333333-140.8 243.2c-46.933333-12.8-42.666667 46.933333-42.666666 46.933334l8.533333 46.933333c4.266667 38.4 29.866667 51.2 46.933333 55.466667 12.8 81.066667 64 145.066667 132.266667 166.4v38.4s-68.266667 29.866667-123.733333 51.2c-29.866667 12.8-59.733333 34.133333-81.066667 59.733333 68.266667 51.2 157.866667 76.8 256 76.8s187.733333-25.6 264.533333-72.533333c-21.333333-29.866667-51.2-46.933333-85.333333-64z" fill="#4374E0"></path></symbol><symbol id="icon-icon_boke" viewBox="0 0 1024 1024"><path d="M512 1024C229.248 1024 0 794.752 0 512S229.248 0 512 0s512 229.248 512 512-229.248 512-512 512z m298.667-256H213.333v42.667h597.334V768z m-21.334-448L704 234.667 341.333 597.333l-42.666 128 128-42.666L789.333 320z"></path></symbol><symbol id="icon-icon_gitchatx" viewBox="0 0 1024 1024"><path d="M810.667 533.333v-64h-384v85.334h298.666v128h85.334V533.333zM256 810.667h426.667v-85.334h-384V298.667h426.666V384h85.334V213.333H213.333v597.334H256zM512 1024C229.248 1024 0 794.752 0 512S229.248 0 512 0s512 229.248 512 512-229.248 512-512 512z m213.333-298.667v85.334h85.334v-85.334h-85.334z"></path></symbol><symbol id="icon-guanbi1" viewBox="0 0 1024 1024"><path d="M512 1024A512 512 0 1 1 512 0a512 512 0 0 1 0 1024z m160-768L512 416 352 256l-96 96 160 160-160 160 96 96 160-160 160 160 96-96-160-160 160-160-96-96z"></path></symbol></svg><div class="csdn-toolbar csdn-toolbar tb_disnone ">        <div class="container row center-block ">          <ul class="pull-left left-menu clearfix">            <li>              <a href="http://www.csdn.net/" title="CSDN首页" target="_blank">              <svg class="icon" aria-hidden="true">                  <use xlink:href="#toolbar-csdnlogo"></use>              </svg>                </a>            </li>            <li><a href="http://blog.csdn.net/" class="toolbar_to_feed" title="博客" target="_blank">博客</a></li>            <li><a href="http://edu.csdn.net/" title="学院" target="_blank">学院</a></li>            <li><a href="http://download.csdn.net/" title="下载" target="_blank">下载</a></li>            <li><a href="http://gitbook.cn/?ref=csdn" title="GitChat" target="_blank">GitChat</a></li>            <li class="tb_is1090hide"><a href="http://bbs.csdn.net/" title="论坛" target="_blank">论坛</a></li>            <li class="tb_is1150hide"><a href="http://ask.csdn.net/" title="问答" target="_blank">问答</a></li>            <li class="tb_is1210hide"><a href="http://mall.csdn.net/" title="商城" target="_blank">商城</a></li>            <li class="tb_is1270hide"><a href="http://geek.csdn.net/" title="极客头条" target="_blank">头条</a></li>            <li class="tb_is1330hide"><a href="http://huiyi.csdn.net/" title="活动" target="_blank">活动</a></li>            <li class="tb_is1400hide"><a href="http://job.csdn.net/" title="招聘" target="_blank">招聘</a></li>            <li class="tb_is1452hide"><a href="http://www.iteye.com/" title="ITeye" target="_blank">ITeye</a></li>            <li class="tb_is1513hide"><a href="http://www.gitee.com/" title="码云" target="_blank">码云</a></li>            <li class="tb_is1513hide"><a href="http://www.csto.com/" title="CSTO" target="_blank">CSTO</a></li>            <li class="show-more">            <a href="javascript:;" class="show-more-a"><svg width="22" height="4" xmlns="http://www.w3.org/2000/svg"><path d="M2 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm9 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm9 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="#4F4F4F" fill-rule="evenodd"></path></svg></a>              <div class="more">                <div class="tb_is1090show"><a href="http://bbs.csdn.net/" target="_blank">论坛</a></div>                <div class="tb_is1150show"><a href="http://ask.csdn.net/" target="_blank">问答</a></div>                <div class="tb_is1210show"><a href="http://mall.csdn.net/" target="_blank">商城</a></div>                <div class="tb_is1270show"><a href="http://geek.csdn.net/" target="_blank">极客头条</a></div>                <div class="tb_is1330show"><a href="http://huiyi.csdn.net/" target="_blank">活动</a></div>                <div class="tb_is1400show"><a href="http://job.csdn.net/" target="_blank">招聘</a></div>                <div class="tb_is1452show"><a href="http://www.iteye.com/" target="_blank">ITeye</a></div>                <div class="tb_is1513show"><a href="http://www.gitee.com/" target="_blank">码云</a></div>                <div class="tb_is1513show"><a href="http://www.csto.com/" target="_blank">CSTO</a></div>              </div>            </li>          </ul>          <div class="pull-right login-wrap unlogin">            <ul class="btns">            <li class="toolbar-tracking csdn-tracking-statistics tracking-click" data-mod="popu_369"><a href="http://blog.csdn.net/lvwenbo0107/article/details/51655161#" style="padding:0" target="_blank"></a></li>              <li>                <div class="search_bar csdn-tracking-statistics tracking-click" data-mod="popu_366">                  <input type="text" class="input_search" name="">                  <a href="http://so.csdn.net/so/" target="_blank" class="btn-nobg-noborder btn-search"><i class="iconfont-toolbar toolbar-sousuo"></i></a>                </div>              </li>              <li class="write-bolg-btn csdn-tracking-statistics tracking-click" data-mod="popu_370"><a class="" href="http://mp.blog.csdn.net/postedit" target="_blank"><i class="iconfont-toolbar toolbar-icon_boke"></i><span>写博客</span></a></li>              <li class="gitChat"><a class="" href="http://gitbook.cn/new/gitchat/activity?utm_source=csdnblog1" target="_blank"><i class="iconfont-toolbar toolbar-icon_gitchatx"></i><span>发Chat</span></a></li>              <li class="userinfo"><a href="https://passport.csdn.net/account/login">登录</a><span></span><a href="https://passport.csdn.net/account/mobileregister?action=mobileRegister">注册</a></li>              <li class="userLogin">                <div class="loginCenter"><a href="http://my.csdn.net/" target="_blank"><img class="login_img" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/100x100.jpg"><div class="toolbar-circle"></div></a></div>                <div class="userControl">                  <div><a href="http://blog.csdn.net/" target="_blank">我的博客</a></div>                  <div><a class="xiaoxi" href="http://msg.csdn.net/" target="_blank">消息<span class="toolbar-newsL">(3)</span></a></div>                  <div><a href="http://my.csdn.net/my/account/changepwd" target="_blank">设置</a></div>                  <div><a href="http://bbs.csdn.net/forums/Service" target="_blank">反馈</a></div>                  <div><a href="http://oldblog.csdn.net/home/help.html" target="_blank">帮助</a></div>                  <div><a href="http://passport.csdn.net/account/logout">退出</a></div>                </div>              </li>            </ul>          </div>        </div>    </div><script class="toolbar-s" type="text/javascript" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/iconfont.js"></script>
+        <div class="csdn-tracking-statistics" data-pid="blog" data-view="true" data-mod="ad_popu_72" data-mtp="62" data-order="40" data-con="ad_content_2072">
+            <script id="popuLayer_js_q" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/popuLayer.js" defer="defer" type="text/javascript"></script>
+            <div id="layerd" style="position: fixed; bottom: 0px; right: 0px; line-height: 0px; z-index: 1000; width: 300px; height: 278px; display: none;">
+                <div class="J_close layer_close" style="display:;background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">关闭</div><!-- 广告占位容器 -->
+                <div id="cpro_u2895327">
+                    <!-- 投放代码 -->
+                            <div id="_gv8hbrlxijmwbh50uir0h33di" style=""><iframe width="300" frameborder="0" height="250" scrolling="no" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/s.html"></iframe></div><script type="text/javascript" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/ojylrgbyk.js"></script>
+
+
+
+                </div>
+            </div>
+            <script>
+                                document.getElementById("popuLayer_js_q").onload = function ()
+                                {
+                                    var styObjd = styObj = { width: "300px", "height": parseInt(250) + 28 };
+                                    window.CSDN.Layer.PopuLayer("#layerd", { storageName: "layerd", styleObj: styObjd, total: 50, expoire: 1000 * 60 });
+                                }</script>
+
+
+        </div>
+
+
+    <!--new top-->
+    <script id="toolbar-tpl-scriptId" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/content_toolbar.js" type="text/javascript" domain="http://blog.csdn.net"></script>
+
+    <link rel="stylesheet" href="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/content_toolbar.css">
+    <!--new top-->
+    <div id="container">
+        
+<div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/lvwenbo0107">潮男阿狸的博客</a></h2>
+            <h3>掉在水里你不会淹死，呆在水里你才会淹死，你只有游，不停的往前游。失败并不可怕，害怕失败才真正可怕</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+    
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/lvwenbo0107?viewmode=contents"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_mulu&#39;])">
+                    <img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/lvwenbo0107?viewmode=list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_zhaiyao&#39;])">
+                    <img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/lvwenbo0107/rss/list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])">
+                    <img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/ico_rss.gif">订阅</span></a></li>                   
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "lvwenbo0107";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/lvwenbo0107";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                    <div class="ad_class">
+
+
+
+                    </div>
+
+                    
+
+ <script src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/main-1.0.5.js"></script>
+
+<script type="text/javascript" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/category.js"></script>
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+      var isBole = false; 
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=Android+drawable%26mipmap+%e8%b5%84%e6%ba%90%e6%a3%80%e7%b4%a2%e9%a1%ba%e5%ba%8f+%e6%9c%80%e4%bd%b3%e8%b5%84%e6%ba%90%e5%ad%98%e6%94%be%e7%9b%ae%e5%bd%95&u=http://blog.csdn.net/lvwenbo0107/article/details/51655161"
+    </script>
+<div id="article_details" class="details">
+    
+<div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+    <h1>
+        <span class="link_title"><a href="http://blog.csdn.net/lvwenbo0107/article/details/51655161">
+        Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录        
+           
+        </a>
+        </span>
+
+         
+    </h1>
+</div>
+
+
+    
+    <div class="article_manage clearfix">
+        <div class="article_r">
+            <span class="link_postdate">2016-06-13 09:50</span>
+            <span class="link_view" title="阅读次数">2799人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="http://blog.csdn.net/lvwenbo0107/article/details/51655161#comments" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_pinglun&#39;])">评论</a>(0)</span>
+            <span class="link_collect csdn-tracking-statistics" data-pid="blog" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;Android+drawable%26mipmap+%e8%b5%84%e6%ba%90%e6%a3%80%e7%b4%a2%e9%a1%ba%e5%ba%8f+%e6%9c%80%e4%bd%b3%e8%b5%84%e6%ba%90%e5%ad%98%e6%94%be%e7%9b%ae%e5%bd%95&#39;,&#39;51655161&#39;);return false;" title="收藏" target="_blank">收藏</a></span>
+             <span class="link_report"> <a href="http://blog.csdn.net/lvwenbo0107/article/details/51655161#report" onclick="javascript:report(51655161,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label onclick="GetCategoryArticles(&#39;6117016&#39;,&#39;lvwenbo0107&#39;,&#39;top&#39;,&#39;51655161&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">MutipleScreenSupport<em>（9）</em></span>
+                      <img class="arrow-down" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/lvwenbo0107/article/category/6117016" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_6117016">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+        <div class="bog_copyright">         
+            <p class="copyright_p">版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+
+
+
+
+
+<div id="article_content" class="article_content csdn-tracking-statistics" data-pid="blog" data-mod="popu_307" data-dsm="post" style="overflow: hidden;">
+
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; line-height:35px">
+<span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:18px">1.mipmap &amp; drawable</span></span></p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px">
+<span style="font-size:18px"><span style="color:rgb(51,51,51); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:26px"><span style="white-space:pre"></span>The mipmap folders are for placing your app icons in</span><span style="font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:26px"><span style="color:#ff6666">only</span></span><span style="color:rgb(51,51,51); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:26px">.
+ Any other drawable assets you use should be placed in the relevant drawable folders as before.&nbsp;</span><br style="color:rgb(51,51,51); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:26px">
+<span style="font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:26px"><strong><span style="color:#333333">mipmap文件夹</span><span style="color:#ff6666">只放应用图标(HomeScreen启动图标)</span></strong><span style="color:#333333">。</span></span><span style="font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:26px"><span style="color:#6600cc"><strong>其他需要使用的drawable资源象之前一样放到对应的drawable文件夹</strong></span></span><span style="color:rgb(51,51,51); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:26px">。</span></span></p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px">
+<span style="font-family:microsoft yahei"><span style="font-size:14px; line-height:26px"><span style="color:#333333">为什么？1.好找。。2.</span><span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">将icon放置在mipmap文件夹还可以让我们程序的</span><span style="font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px"><span style="color:#ff9966">launcher图标</span></span><span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">自动拥有跨设备密度展示的能力</span></span></span></p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px">
+<span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">比如说一台屏幕密度是xxhdpi的设备可以自动加载mipmap-xxxhdpi下的icon来作为应用程序的launcher图标，这样图标看上去就会更加细腻。&nbsp;</span><span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">关于建议使用mipmap的原文可以参阅这篇文章：</span><a target="_blank" href="http://android-developers.blogspot.de/2014/10/getting-your-apps-ready-for-nexus-6-and.html" style="text-decoration:none; color:rgb(12,137,207); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">Getting
+ Your Apps Ready for Nexus 6 and Nexus 9</a><span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">， 当然你还是要科学上网的。&nbsp;</span></p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px">
+<span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">除此之外，对于每种密度下的icon应该设计成什么尺寸其实Android也是给出了最佳建议，icon的尺寸最好不要随意设计，因为过低的分辨率会造成图标模糊，而过高的分辨率只会徒增APK大小。建议尺寸如下表所示：</span></p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">
+</p>
+<table style="width:948px; border-collapse:collapse; border-spacing:0px; border:1px solid rgb(238,238,238); color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">
+<thead style="">
+<tr style="">
+<th style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+密度</th>
+<th style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+建议尺寸</th>
+</tr>
+</thead>
+<tbody style="">
+<tr style="">
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+mipmap-mdpi</td>
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+48 * 48</td>
+</tr>
+<tr style="">
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+mipmap-hdpi</td>
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+72 * 72</td>
+</tr>
+<tr style="">
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+mipmap-xhdpi</td>
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+96 * 96</td>
+</tr>
+<tr style="">
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+mipmap-xxhdpi</td>
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+144 * 144</td>
+</tr>
+<tr style="">
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+mipmap-xxxhdpi</td>
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+192 * 192</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">
+然后我们引用mipmap的方式和之前引用drawable的方式是完全一致的，在资源中就使用@mipmap/res_id，在代码就使用R.mipmap.res_id。比如AndroidManifest.xml中就是这样引用ic_launcher图标的：</p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">
+</p>
+<div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/lvwenbo0107/article/details/51655161#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/lvwenbo0107/article/details/51655161#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 665px; top: 1109px; width: 25px; height: 12px; z-index: 99;"><embed id="ZeroClipboardMovie_1" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="25" height="12" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=25&amp;height=12" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/lvwenbo0107/article/details/51655161#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/lvwenbo0107/article/details/51655161#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span>&lt;application&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;android:allowBackup=<span class="string">"true"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;android:icon=<span class="string">"@mipmap/ic_launcher"</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;android:label=<span class="string">"@string/app_name"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;android:supportsRtl=<span class="string">"true"</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;android:theme=<span class="string">"@style/AppTheme"</span><span>&gt;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&lt;activity&nbsp;android:name=<span class="string">".MainActivity"</span><span>&gt;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;intent-filter&gt;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;action&nbsp;android:name=<span class="string">"android.intent.action.MAIN"</span><span>/&gt;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;category&nbsp;android:name=<span class="string">"android.intent.category.LAUNCHER"</span><span>/&gt;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/intent-filter&gt;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/activity&gt;&nbsp;&nbsp;</span></li><li class="alt"><span>&lt;/application&gt;&nbsp;&nbsp;</span></li></ol></div><pre code_snippet_id="1714982" snippet_file_name="blog_20160613_1_8186563" name="code" class="java" style="display: none;">&lt;application
+    android:allowBackup="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme"&gt;
+    &lt;activity android:name=".MainActivity"&gt;
+        &lt;intent-filter&gt;
+            &lt;action android:name="android.intent.action.MAIN"/&gt;
+            &lt;category android:name="android.intent.category.LAUNCHER"/&gt;
+        &lt;/intent-filter&gt;
+    &lt;/activity&gt;
+&lt;/application&gt;</pre>
+<p><span style="font-size:18px">2.获取手机DPI的方法</span></p>
+<p></p>
+<div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/lvwenbo0107/article/details/51655161#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/lvwenbo0107/article/details/51655161#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 665px; top: 1433px; width: 25px; height: 12px; z-index: 99;"><embed id="ZeroClipboardMovie_2" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="25" height="12" name="ZeroClipboardMovie_2" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=25&amp;height=12" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/lvwenbo0107/article/details/51655161#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/lvwenbo0107/article/details/51655161#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">float</span><span>&nbsp;xdpi&nbsp;=&nbsp;getResources().getDisplayMetrics().xdpi;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">float</span><span>&nbsp;ydpi&nbsp;=&nbsp;getResources().getDisplayMetrics().ydpi;&nbsp;&nbsp;</span></span></li></ol></div><pre code_snippet_id="1714982" snippet_file_name="blog_20160613_2_2875509" name="code" class="java" style="display: none;">float xdpi = getResources().getDisplayMetrics().xdpi;
+float ydpi = getResources().getDisplayMetrics().ydpi;</pre>
+<p></p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">
+在我的手机上这两个值都约等于403。那么403又代表着什么意思呢？我们直接参考下面这个表格就知道了：</p>
+<table style="width:948px; border-collapse:collapse; border-spacing:0px; border:1px solid rgb(238,238,238); color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">
+<thead style="">
+<tr style="">
+<th style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+dpi范围</th>
+<th style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+密度</th>
+</tr>
+</thead>
+<tbody style="">
+<tr style="">
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+0dpi ~ 120dpi</td>
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+ldpi</td>
+</tr>
+<tr style="">
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+120dpi ~ 160dpi</td>
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+mdpi</td>
+</tr>
+<tr style="">
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+160dpi ~ 240dpi</td>
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+hdpi</td>
+</tr>
+<tr style="">
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+240dpi ~ 320dpi</td>
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+xhdpi</td>
+</tr>
+<tr style="">
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+320dpi ~ 480dpi</td>
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+xxhdpi</td>
+</tr>
+<tr style="">
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+480dpi ~ 640dpi</td>
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+xxxhdpi</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">
+从表中可以看出，403dpi是处于320dpi到480dpi之间的，因此属于xxhdpi的范围。&nbsp;<br style="">
+图片放好了之后，下面我在布局文件中引用这张图片，如下所示：</p>
+<div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/lvwenbo0107/article/details/51655161#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/lvwenbo0107/article/details/51655161#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 665px; top: 1907px; width: 25px; height: 12px; z-index: 99;"><embed id="ZeroClipboardMovie_3" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="25" height="12" name="ZeroClipboardMovie_3" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=3&amp;width=25&amp;height=12" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/lvwenbo0107/article/details/51655161#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/lvwenbo0107/article/details/51655161#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span>&lt;?xml&nbsp;version=</span><span class="string">"1.0"</span><span>&nbsp;encoding=</span><span class="string">"utf-8"</span><span>?&gt;&nbsp;&nbsp;</span></span></li><li class=""><span>&lt;LinearLayout&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;android:layout_width=<span class="string">"match_parent"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;android:layout_height=<span class="string">"match_parent"</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&lt;ImageView&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:id=<span class="string">"@+id/image"</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:layout_width=<span class="string">"wrap_content"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:layout_height=<span class="string">"wrap_content"</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:src=<span class="string">"@drawable/android_logo"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&gt;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&lt;/LinearLayout&gt;&nbsp;&nbsp;</span></li></ol></div><pre code_snippet_id="1714982" snippet_file_name="blog_20160613_3_1065366" name="code" class="java" style="display: none;">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   &gt;
+
+    &lt;ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/android_logo"
+        /&gt;
+
+&lt;/LinearLayout&gt;</pre><br>
+<span style="font-size:18px">3.同一张图片放在不同文件夹下有什么不同？Android默认的资源检索顺序？</span>
+<p><span style="font-size:14px">比如真机分辨率是xxhdpi，那么如果将图片放在xhdpi下图片会被放大，而将图片放在xxxhdpi中图片会被缩小。</span></p>
+<p><span style="font-size:14px"><span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">drawable-xxhdpi文件夹下有这张图就会优先被使用，在这种情况下，图片是不会被缩放的。但是，如果drawable-xxhdpi文件夹下没有这张图时， 系统就会自动去其它文件夹下找这张图了，优先会去更高密度的文件夹下找这张图片，我们当前的场景就是drawable-xxxhdpi文件夹，然后发现这里也没有android_logo这张图，接下来会尝试再找更高密度的文件夹，发现没有更高密度的了，这个时候会去drawable-nodpi文件夹找这张图，发现也没有，那么就会去更低密度的文件夹下面找，依次是drawable-xhdpi
+ -&gt; drawable-hdpi -&gt; drawable-mdpi -&gt; drawable-ldpi。&nbsp;</span><br style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">
+<span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">总体匹配规则就是这样，那么比如说现在终于在drawable-mdpi文件夹下面找到android_logo这张图了，但是系统会认为你这张图是专门为低密度的设备所设计的，如果直接将这张图在当前的高密度设备上使用就有可能会出现像素过低的情况，于是系统自动帮我们做了这样一个放大操作。&nbsp;</span><br style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">
+<span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">那么同样的道理，如果系统是在drawable-xxxhdpi文件夹下面找到这张图的话，它会认为这张图是为更高密度的设备所设计的，如果直接将这张图在当前设备上使用就有可能会出现像素过高的情况，于是会自动帮我们做一个缩小的操作。</span><br>
+</span></p>
+<p><span style="font-size:14px"><span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px"><span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">drawable-nodpi文件夹，这个文件夹是一个密度无关的文件夹，放在这里的图片系统就不会对它进行自动缩放，原图片是多大就会实际展示多大。但是要注意一个加载的顺序，drawable-nodpi文件夹是在匹配密度文件夹和更高密度文件夹都找不到的情况下才会去这里查找图片的，因此放在drawable-nodpi文件夹里的图片通常情况下不建议再放到别的文件夹里面。&nbsp;</span><br>
+</span></span></p>
+<p><span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; line-height:35px"><span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; line-height:35px"><span style="font-size:18px">4.那么缩放比例是怎样的？</span></span></span></p>
+<p><span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; line-height:35px"><span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; line-height:35px"><span style="font-size:14px; color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; line-height:35px">还是看一下刚才的
+ dpi范围-密度 表格：</span></span></span></p>
+<p style="font-size:14px; margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; line-height:35px">
+</p>
+<table style="font-size:14px; width:948px; border-collapse:collapse; border-spacing:0px; border:1px solid rgb(238,238,238); color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; line-height:35px">
+<thead style="">
+<tr style="">
+<th style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+dpi范围</th>
+<th style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+密度</th>
+</tr>
+</thead>
+<tbody style="">
+<tr style="">
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+0dpi ~ 120dpi</td>
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+ldpi</td>
+</tr>
+<tr style="">
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+120dpi ~ 160dpi</td>
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+mdpi</td>
+</tr>
+<tr style="">
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+160dpi ~ 240dpi</td>
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+hdpi</td>
+</tr>
+<tr style="">
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+240dpi ~ 320dpi</td>
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+xhdpi</td>
+</tr>
+<tr style="">
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+320dpi ~ 480dpi</td>
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+xxhdpi</td>
+</tr>
+<tr style="">
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+480dpi ~ 640dpi</td>
+<td style="padding:8px; line-height:20px; vertical-align:top; border:1px solid rgb(238,238,238)">
+xxxhdpi</td>
+</tr>
+</tbody>
+</table>
+<p style="font-size:14px; margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; line-height:35px">
+可以看到，每一种密度的dpi范围都有一个最大值，这个最大值之间的比例就是图片会被系统自动放大的比例。&nbsp;<span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">面我们来开始分析，mdpi密度的最高dpi值是160，而xxhdpi密度的最高dpi值是480，因此是一个3倍的关系，那么我们就可以猜测，放到drawable-mdpi文件夹下的图片在xxhdpi密度的设备上显示会被放大3倍。对应到android_logo这张图，原始像素是270*480，放大3倍之后就应该是810*1440像素。</span></p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; line-height:35px">
+<span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; line-height:35px"><span style="font-size:18px">5.图片放错容易产生的问题是？</span></span></p>
+<p style="font-size:14px; margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; line-height:35px">
+<span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px"><span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">如果将一张图片放在低密度文件夹下，那么在高密度设备上显示图片时就会被自动放大，而如果将一张图片放在高密度文件夹下，那么在低密度设备上显示图片时就会被自动缩小。那我们可以通过成本的方式来评估一下，一张原图片被缩小了之后显示其实并没有什么副作用，但是一张原图片被放大了之后显示就意味着要占用更多的内存了。因为图片被放大了，像素点也就变多了，而每个像素点都是要占用内存的。&nbsp;</span><br style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">
+<span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">我们仍然可以通过例子来直观地体会一下，首先将android_logo.png图片移动到drawable-xxhdpi目录下，运行程序后我们通过Android Monitor来观察程序内存使用情况：&nbsp;</span><br style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">
+</span></p>
+<center style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">
+<img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/20160423221840743" alt="" title="" style="border:none"></center>
+<br style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">
+<span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">可以看到，程序所占用的内存大概稳定在19.45M左右。然后将android_logo.png图片移动到drawable-mdpi目录下，重新运行程序，结果如下图所示：&nbsp;</span><br style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">
+<center style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">
+<img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/20160423222108212" alt="" title="" style="border:none"></center>
+<br style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">
+<span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">现在涨到23.40M了，占用内存明显增加了。如果你将图片移动到drawable-ldpi目录下，你会发现占用内存会更高。&nbsp;</span><br>
+<p></p>
+<p><span style="font-size:18px">4.如果只有一套切图放在哪个文件夹下？</span></p>
+<p><span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">我相信有不少比较有经验的Android程序员可能都遇到过这个情况，就是当你的项目变得越来越大，有的时候加载一张drawable-hdpi下的图片，程序就直接OOM崩掉了，但如果将这张图放到drawable-xhdpi或drawable-xxhdpi下就不会崩掉，其实就是这个道理。&nbsp;</span><br style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">
+<span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">那么经过上面一系列的分析，答案自然也就出来了，图片资源应该尽量放在高密度文件夹下，这样可以节省图片的内存开支，而UI在设计图片的时候也应该尽量面向高密度屏幕的设备来进行设计。就目前来讲，<strong>最佳放置图片资源的文件夹就是drawable-xxhdpi</strong>。那么有的朋友可能会问了，不是还有更高密度的drawable-xxxhdpi吗？干吗不放在这里？这是因为，市面上480dpi到640dpi的设备实在是太少了，如果针对这种级别的屏幕密度来设计图片，图片在不缩放的情况下本身就已经很大了，基本也起不到节省内存开支的作用了。</span><br>
+</p>
+<span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">总结郭霖博客</span><span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">：</span><a target="_blank" href="http://blog.csdn.net/guolin_blog/article/details/50727753" style="font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px; text-decoration:none; color:rgb(12,137,207)">http://blog.csdn.net/guolin_blog/article/details/50727753</a><span style="color:rgb(85,85,85); font-family:&#39;microsoft yahei&#39;; font-size:14px; line-height:35px">&nbsp;</span><br>
+<p></p>
+   
+</div>
+
+
+
+
+
+
+
+
+    <div class="readall_box csdn-tracking-statistics tracking-click readall_box_nobg" data-pid="blog" data-mod="popu_596" style="display: none;">
+        <div class="read_more_mask"></div>
+        <a class="btn btn-large btn-gray-fred read_more_btn" target="_self">阅读全文</a>
+    </div>
+
+    <div class="csdn-tracking-statistics" data-pid="blog" data-mod="popu_222"><a href="javascript:void(0);" target="_blank">&nbsp;</a>   </div>
+    <div class="csdn-tracking-statistics" data-pid="blog" data-mod="popu_223"> <a href="javascript:void(0);" target="_blank">&nbsp;</a></div>
+        <div id="digg" articleid="51655161">
+            <dl id="btnDigg" class="digg digg_disable" onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>0</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable" onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+    <script type="text/javascript">
+        function btndigga() {
+            $(".csdn-tracking-statistics[data-mod='popu_222'] a").click();
+        }
+        function btnburya() {
+            $(".csdn-tracking-statistics[data-mod='popu_223'] a").click();
+        }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;]);location.href=&#39;http://blog.csdn.net/lvwenbo0107/article/details/51647776&#39;;">上一篇</span><a href="http://blog.csdn.net/lvwenbo0107/article/details/51647776" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;])">EventBus 3.0使用及源码分析</a></li>
+                <li class="next_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;http://blog.csdn.net/lvwenbo0107/article/details/51659543&#39;;">下一篇</span><a href="http://blog.csdn.net/lvwenbo0107/article/details/51659543" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;])">美团Android DEX自动拆包及动态加载简介</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+   
+      
+</div>
+
+     <div>
+         
+         <!-- 广告位：PC端-博客详情页底部banner-960*90 -->
+            <script>
+                (function() {
+                    var s = "_" + Math.random().toString(36).slice(2);
+                    document.write('<div id="' + s + '"></div>');
+                    (window.slotbydup=window.slotbydup || []).push({
+                        id: '4770928',
+                        container: s,
+                        size: '960,90',
+                        display: 'inlay-fix'
+                    });
+                })();
+            </script><div id="_s29f9q5lmocbnjj6k9ey7gb9"></div><script charset="utf-8" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/acxm"></script><div id="_22zzqs6f9zsbenzt94u72mlsor" style=""><iframe width="960" frameborder="0" height="90" scrolling="no" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/s(1).html"></iframe></div><script type="text/javascript" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/kfunnhoouimhnlou.js"></script>
+    </div>
+
+<div id="suggest">
+
+
+
+</div>
+         <script language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/lvwenbo0107/svc/GetSuggestContent/51655161",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+
+
+            
+                                    
+            
+                                    
+
+        <!-- 广告位开始 -->
+        <!-- 广告位结束 -->
+
+
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head" style="display: none;">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list" style="display: none;"><br>&nbsp;&nbsp;暂无评论<br><br><div class="clear"></div></div>
+    <div id="comment_bar">
+    </div>
+<div class="commentform"><div class="panel_head">发表评论</div></div>
+    <div id="comment_form"><div class="guest_link">您还没有登录,请<a href="javascript:void(0);" onclick="javascript:loginbox();">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Flvwenbo0107%2Farticle%2Fdetails%2F51655161">[注册]</a></div></div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+<div class="recommend_list">
+
+    
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/fkq_2016/article/details/52434946" target="_blank" strategy="BlogCommendFromCsdn_0">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">Android Studio的图片到底是放在drawable还是mipmap呢</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/2_fkq_2016.jpg" alt="fkq_2016" title="fkq_2016"></li>
+                        <li class="user_name">fkq_2016</li>
+                        <li class="time">2016-09-04 21:33</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>15447</span></li>
+                    </ul><div class="summary">
+                        从事Android 开发的工程师们一直以为都在讨论一个问题，那就是图片到底应该放在Android Studio软件drawable文件夹下，还是应该放在mipmap下？今天把网络上出现的讨论做一个小小...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/lihenair/article/details/49871453" target="_blank" strategy="BlogCommendFromQuerySearch_1">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">mipmap和drawable文件夹的区别</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/2_lihenair.jpg" alt="lihenair" title="lihenair"></li>
+                        <li class="user_name">lihenair</li>
+                        <li class="time">2015-11-16 20:41</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>23247</span></li>
+                    </ul><div class="summary">
+                        mipmap和drawable文件夹的区别
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            <script>(function() {var s = "_" + Math.random().toString(36).slice(2);document.write('<div id="' + s + '"></div>');(window.slotbydup = window.slotbydup || []).push({id: '4765209',container: s,size: '808,120',display: 'inlay-fix'});})();</script><div id="_a3qyu3key6qvk0swe566o5hfr"></div><script charset="utf-8" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/acxm(1)"></script><iframe scrolling="no" style="width: 100%; height: 123px; border: 0px;" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/saved_resource.html"></iframe> 
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/hunanqi/article/details/51882673" target="_blank" strategy="BlogCommendFromCsdn_2">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">android 资源文件命名规则 drawable mipmap一样的</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/2_hunanqi.jpg" alt="hunanqi" title="hunanqi"></li>
+                        <li class="user_name">hunanqi</li>
+                        <li class="time">2016-07-11 17:33</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>1799</span></li>
+                    </ul><div class="summary">
+                        原文链接：http://ivan-ru.iteye.com/blog/1711414 &nbsp;记录一下笔记
+
+
+说明：本文档目的为分析android工程res目录下的资源文件夹(drawable,va...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/kedi_study/article/details/47295699" target="_blank" strategy="BlogCommendFromCsdn_3">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">Android中批处理drawable-xxx目录中图片资源的那些事儿</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/2_kedi_study.jpg" alt="kedi_study" title="kedi_study"></li>
+                        <li class="user_name">kedi_study</li>
+                        <li class="time">2015-08-05 13:19</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>622</span></li>
+                    </ul><div class="summary">
+                        在Android平台的技术学习或开发项目中，有时我们会遇到对图片的批量处理，比如依次播放图片，依次上传图片等。我先简单介绍一下图片拷贝到drawable-xxx目录后发生了些什么事？
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            <!-- 广告位：PC端-博客详情通栏7（feed流）-808*120 --><iframe scrolling="no" style="width: 100%; height: 123px; border: 0px;" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/saved_resource(1).html"></iframe>
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/love_xsq/article/details/50158695" target="_blank" strategy="BlogCommendFromCsdn_4">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">android mipmap目录和drawable目录的区别</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/2_u011467537.jpg" alt="u011467537" title="u011467537"></li>
+                        <li class="user_name">u011467537</li>
+                        <li class="time">2015-12-03 11:48</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>552</span></li>
+                    </ul><div class="summary">
+                        我简单总结一下：
+
+使用上没有任何区别,你把它当drawable用就好了。
+
+但是用mipmap系统会在缩放上提供一定的性能优化。
+
+官方介绍：
+
+Mipmapping for dra...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/u011123714/article/details/49943899" target="_blank" strategy="BlogCommendFromCsdn_5">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">Android-Studio之mipmap目录和drawable目录详解</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/2_u011123714.jpg" alt="u011123714" title="u011123714"></li>
+                        <li class="user_name">u011123714</li>
+                        <li class="time">2015-11-20 10:30</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>1872</span></li>
+                    </ul><div class="summary">
+                        简单说一下：使用上没有任何区别,你把它当drawable用就好了。但是用mipmap系统会在缩放上提供一定的性能优化。官方介绍：Mipmapping for drawablesUsing a mipm...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/u011240877/article/details/48135639" target="_blank" strategy="BlogCommendFromCsdn_6">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">Android Studio中mipmap目录和drawable目录有什么区别</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/2_u011240877.jpg" alt="u011240877" title="u011240877"></li>
+                        <li class="user_name">u011240877</li>
+                        <li class="time">2015-08-31 16:18</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>3593</span></li>
+                    </ul><div class="summary">
+                        使用Android Studio开发时发现有2个目录可以放置图片： mipmap vs drawable，那么他们有什么区别呢?该选择哪个呢？
+这里网罗各位大神的答案，共同学习：
+答案1：
+图片...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/logicsboy/article/details/52077641" target="_blank" strategy="BlogCommendFromCsdn_7">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">Android资源解析之mipmap</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/2_logicsboy.jpg" alt="logicsboy" title="logicsboy"></li>
+                        <li class="user_name">logicsboy</li>
+                        <li class="time">2016-07-31 11:22</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>770</span></li>
+                    </ul><div class="summary">
+                        分组资源类型您应将各种资源放入项目 res/ 目录的特定子目录下。例如，以下是一个简单项目的文件层次结构：MyProject/
+    src/ 
+        MyActivity.java
+  ...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics downloadElement" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+        <a href="http://download.csdn.net/download/double2hao/9324287" target="_blank" strategy="BlogCommendFromCsdn_8">       
+		<dd class="floatL">
+			<div class="summary">
+				<h2>android修改控件外观（使用drawable资源）</h2>
+				<div class="summary">
+				  <ul>
+					  <li class="time">2015-12-03 21:15</li>
+					  <li class="visited_num fileSize">5.95MB</li>
+					  <li class="download_btn">下载</li>
+				  </ul>
+				</div> 
+			</div>
+		</dd>
+	</a><dt class="floatR"><a href="http://download.csdn.net/download/double2hao/9324287" target="_blank" strategy="BlogCommendFromCsdn_8"></a><a href="http://download.csdn.net/download/double2hao/9324287" target="_blank" strategy="BlogCommendFromCsdn_8"><img class="maxwidth" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/rar.svg" alt="" title=""></a></dt>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics downloadElement" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+        <a href="http://download.csdn.net/download/dianyueneo/4018011" target="_blank" strategy="BlogCommendFromCsdn_9">       
+		<dd class="floatL">
+			<div class="summary">
+				<h2>Android所有系统资源图标android.R.drawable.xxx查看软件</h2>
+				<div class="summary">
+				  <ul>
+					  <li class="time">2012-01-12 18:07</li>
+					  <li class="visited_num fileSize">15KB</li>
+					  <li class="download_btn">下载</li>
+				  </ul>
+				</div> 
+			</div>
+		</dd>
+	</a><dt class="floatR"><a href="http://download.csdn.net/download/dianyueneo/4018011" target="_blank" strategy="BlogCommendFromCsdn_9"></a><a href="http://download.csdn.net/download/dianyueneo/4018011" target="_blank" strategy="BlogCommendFromCsdn_9"><img class="maxwidth" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/unkonw.svg" alt="" title=""></a></dt>
+            </dl>
+            
+
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/daishuqi_good/article/details/44464263" target="_blank" strategy="BlogCommendFromCsdn_10">
+                <dd>
+                    <h2>android 中px dp sp 及资源目录drawable-hdpi drawable-ldpi drawable-mdpi等的分析</h2>
+                    <div class="summary">
+                        我们在编写android的界面布局时，经常对px、dp、sp、像素密度、drawable、drawable-hdpi等等跟图像和像素相关的概念感到迷惑，下面就一一对这些概念进行解析。
+&nbsp; &nbsp; 1、px...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/2_daishuqi_good.jpg" alt="daishuqi_good" title="daishuqi_good"></li>
+                        <li class="user_name">daishuqi_good</li>
+                        <li class="time">2015-03-19 20:33</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>622</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/u013398960/article/details/62444225" target="_blank" strategy="BlogCommendFromCsdn_11">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">Android图片资源的存放目录(hdpi/xhdp...)</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/2_u013398960.jpg" alt="u013398960" title="u013398960"></li>
+                        <li class="user_name">u013398960</li>
+                        <li class="time">2017-03-16 21:29</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>413</span></li>
+                    </ul><div class="summary">
+                        1.问题引入
+在项目中遇到这么一个问题，大致是说Settings下的Battery各耗电子项的图片ICON分辨率太低。
+
+
+
+
+由于图片是黑白的，加上分辨率可能确实是低一点，和彩色的ICO...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/u011484134/article/details/49149895" target="_blank" strategy="BlogCommendFromCsdn_12">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">android studio -- 图片应该放在drawable还是mipmap？</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/2_u011484134.jpg" alt="u011484134" title="u011484134"></li>
+                        <li class="user_name">u011484134</li>
+                        <li class="time">2015-10-15 11:06</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>1578</span></li>
+                    </ul><div class="summary">
+                        最近使用android studio做一些简单的开发，最后需要放置图片的时候看一下历来的目录，还是有写迷惑，果断google了一下。在Eclipse中根据图片的像素大小把,png或.jpg的图片放在d...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/superbigcupid/article/details/52182852" target="_blank" strategy="BlogCommendFromCsdn_13">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">Android Drawable Mipmap Vector使用及Vector兼容</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/2_superbigcupid.jpg" alt="superbigcupid" title="superbigcupid"></li>
+                        <li class="user_name">superbigcupid</li>
+                        <li class="time">2016-08-11 15:15</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>1452</span></li>
+                    </ul><div class="summary">
+                        原文地址：http://blog.csdn.net/eclipsexys/article/details/51838119http://blog.csdn.net/qq_15545283/articl...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/xcymorningsun/article/details/50412386" target="_blank" strategy="BlogCommendFromCsdn_14">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">android开发那些事儿（二）--Drawable资源</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/2_xcymorningsun.jpg" alt="xcymorningsun" title="xcymorningsun"></li>
+                        <li class="user_name">xcymorningsun</li>
+                        <li class="time">2015-12-27 14:48</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>218</span></li>
+                    </ul><div class="summary">
+                        在Android应用中，常常会用到Drawable资源，比如图片资源等，在Android开发中我们是用Drawable类来Drawable类型资源的。
+
+Drawable资源一般存储在应用程序目录的\...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/csdnzouqi/article/details/53508233" target="_blank" strategy="BlogCommendFromCsdn_15">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">Android中自定义drawable资源实现布局的圆角边框效果</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/2_csdnzouqi.jpg" alt="csdnzouqi" title="csdnzouqi"></li>
+                        <li class="user_name">csdnzouqi</li>
+                        <li class="time">2016-12-07 17:11</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>3142</span></li>
+                    </ul><div class="summary">
+                        布局的圆角边框效果图如下所示：如上图红色标注的部分就是一个圆角边框效果的自定义搜索框。实现起来很简单，让布局（Relativelayout或者LinearLayout）的background属性引用自...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/tech_universe/article/details/43900557" target="_blank" strategy="BlogCommendFromCsdn_16">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">Android中向drawable图片资源命名须知</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/2_tech_universe.jpg" alt="tech_universe" title="tech_universe"></li>
+                        <li class="user_name">tech_universe</li>
+                        <li class="time">2015-02-21 22:45</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>247</span></li>
+                    </ul><div class="summary">
+                        今天在文件浏览器中需要添加几张图片，在添加资源后总是报错，非常郁闷。重命名图片时才明白报错红色字体的意思，即图片资源命名时必须仅仅包含小写字母，0~9和_，贴出来希望大家引以为戒。
+[2015-02...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/soulscarrier/article/details/44407105" target="_blank" strategy="BlogCommendFromCsdn_17">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">Android学习15--使用（Drawable）资源</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/2_soulscarrier.jpg" alt="SoulsCarrier" title="SoulsCarrier"></li>
+                        <li class="user_name">SoulsCarrier</li>
+                        <li class="time">2015-03-18 10:43</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>551</span></li>
+                    </ul><div class="summary">
+                        1、图片资源
+　　图片资源是最简单的Drawable资源，只要把*.png、*.jpg*、.gif等格式的图片放入/res/drawable-XXX目录下，Android SDK就会在编译应用自动加...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/daoren1/article/details/51228591" target="_blank" strategy="BlogCommendFromCsdn_18">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">android中drawable资源文件的使用</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/2_daoren1.jpg" alt="daoren1" title="daoren1"></li>
+                        <li class="user_name">daoren1</li>
+                        <li class="time">2016-04-23 21:59</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>388</span></li>
+                    </ul><div class="summary">
+                        android中drawable资源文件的使用，android自定义控件
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article recommend_article_out" data-mod="popu_36" data-poputype="feed" data-feed-show="false" data-dsm="post">
+<a href="http://blog.csdn.net/raph_/article/details/24006991" target="_blank" strategy="BlogCommendFromCsdn_19">
+                <dd>
+                    <h2 style="margin-bottom: 0px;">android2.2系统自带drawable资源</h2>
+                    <ul class="floatR">
+                        <li class="avatar_img"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/2_u011212300.jpg" alt="u011212300" title="u011212300"></li>
+                        <li class="user_name">u011212300</li>
+                        <li class="time">2014-04-18 11:59</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ccc"><defs><style></style></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"></path></svg><span>571</span></li>
+                    </ul><div class="summary">
+                        将SDKDIR/platforms/android-x/android.jar解开（本文是android-8），可以找到android系统自带的所有资源。
+引用： &nbsp;android:icon="@an...
+                    </div>
+                    
+                </dd>
+</a>
+            </dl>
+            </div>
+<script type="text/javascript">
+    var fileName = '51655161';
+    var commentscount = 0;
+    var islock = false
+document.domain = "csdn.net";
+</script>
+
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top" style="bottom:60px;">
+
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop" style="display: none;" title="返回顶部" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_huidaodingbu&#39;])">         
+         <img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+
+
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+
+<script type="text/javascript">
+    $(function(){        
+        
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+    var articletitle='Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录';
+
+</script>
+<script src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/appendMark.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    appendMark($('.recommend_list').children('a').find('dt'),$('.extension_other'))
+</script>
+
+
+
+
+
+
+
+
+
+                    <div class="clear">
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="side">
+                
+
+    <div class="side">
+
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/lvwenbo0107" target="_blank">
+    <img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/1_lvwenbo0107.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/lvwenbo0107" class="user_name" target="_blank">阿姆斯特狸</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter" title="[发私信]" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=lvwenbo0107&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+                                            <a target="_blank">
+                                                    <img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="1">
+                                            </a>
+               </div>
+
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>229187次</span></li>
+    <li>积分：<span>3763</span> </li>    
+    <li>等级： <span style="position:relative;display:inline-block;z-index:1">
+            <img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/blog5.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：3763 </div>
+        </span>  </li>
+    <li>排名：<span>第9907名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>136篇</span></li>
+    <li>转载：<span>114篇</span></li>
+    <li>译文：<span>1篇</span></li>
+    <li>评论：<span>34条</span></li>
+</ul>
+</ul>
+</div>
+
+
+     
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" class="form_search csdn-tracking-statistics" data-pid="blog" target="_blank" data-mod="popu_306">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog">
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+   
+    $(function () {
+        $("#btnSubmit").unbind("click");
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {           
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            if ($("#inputSearch").val() == "") {               
+                alert("请录入搜索关键词！");                         
+                return false;
+            }
+            //var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";           
+            var url = "https://www.baidu.com/s?wd=" + encodeURIComponent($("#inputSearch").val()) + "%20site%3Ablog.csdn.net"
+            var url = "/" + username + "?q=" + encodeURIComponent($("#inputSearch").val());
+            window.location.href = url;
+        }   
+    });
+</script> 
+<div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="http://blog.csdn.net/lvwenbo0107/article/category/6089330" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android Basic Technology</a><span>(112)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lvwenbo0107/article/category/6089325" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android Error Solution</a><span>(43)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lvwenbo0107/article/category/6089326" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">NDK&amp;Utils</a><span>(28)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lvwenbo0107/article/category/6117016" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">MutipleScreenSupport</a><span>(10)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lvwenbo0107/article/category/6170758" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">AndroidStudio</a><span>(24)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lvwenbo0107/article/category/6170757" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">ThirdSupport</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lvwenbo0107/article/category/6195444" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">design pattern</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lvwenbo0107/article/category/6088993" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Java</a><span>(12)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lvwenbo0107/article/category/5798705" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">c#</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lvwenbo0107/article/category/5753101" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lvwenbo0107/article/category/6177190" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">C++</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lvwenbo0107/article/category/6200724" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">decompile&amp;ProGuard</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lvwenbo0107/article/category/6236820" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Face</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lvwenbo0107/article/category/6242621" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">CustomView</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lvwenbo0107/article/category/6380620" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">test</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lvwenbo0107/article/category/6558574" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Web</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lvwenbo0107/article/category/6932044" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">dba</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lvwenbo0107/article/category/6933089" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">优化</a><span>(1)</span>
+                </li>
+</ul>
+</div>
+<div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list"><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2017/10">2017年10月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2017/08">2017年08月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2017/07">2017年07月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2017/06">2017年06月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2017/05">2017年05月</a><span>(3)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2017/04">2017年04月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2017/03">2017年03月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2017/02">2017年02月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2017/01">2017年01月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2016/12">2016年12月</a><span>(12)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2016/11">2016年11月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2016/10">2016年10月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2016/09">2016年09月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2016/08">2016年08月</a><span>(12)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2016/07">2016年07月</a><span>(11)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2016/06">2016年06月</a><span>(17)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2016/05">2016年05月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2016/04">2016年04月</a><span>(19)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2016/03">2016年03月</a><span>(20)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2016/02">2016年02月</a><span>(9)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2016/01">2016年01月</a><span>(18)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2015/12">2015年12月</a><span>(28)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2015/11">2015年11月</a><span>(26)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2015/10">2015年10月</a><span>(13)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2015/09">2015年09月</a><span>(24)</span></li><li><a href="http://blog.csdn.net/lvwenbo0107/article/month/2015/08">2015年08月</a><span>(5)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+</ul>
+</div>
+
+<div id="hotarticls" class="panel csdn-tracking-statistics" data-pid="blog" data-mod="popu_340">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/50738725" title="Error:Error converting bytecode to dex: Cause: java.lang.RuntimeException: Exception parsing classes" target="_blank">Error:Error converting bytecode to dex: Cause: java.lang.RuntimeException: Exception parsing classes</a><span>(11721)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/51769602" title="解决API&lt;21时 GridLayout平均分配格行/列的问题" target="_blank">解决API&lt;21时 GridLayout平均分配格行/列的问题</a><span>(10774)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/50577785" title="Execution failed for task &#39;:app:transformResourcesWithMergeJavaResForDebug&#39;" target="_blank">Execution failed for task ':app:transformResourcesWithMergeJavaResForDebug'</a><span>(10193)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/50965161" title="Glide 使用 +圆形图+圆角图" target="_blank">Glide 使用 +圆形图+圆角图</a><span>(7974)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/73331727" title="vs2017 使用Git 连接Github" target="_blank">vs2017 使用Git 连接Github</a><span>(7846)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/52126076" title="Logger 最好用的log框架介绍" target="_blank">Logger 最好用的log框架介绍</a><span>(6742)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/51798615" title="AppbarLayout appbar_scrolling_view_behavior 导致的ContentFooter显示不全问题" target="_blank">AppbarLayout appbar_scrolling_view_behavior 导致的ContentFooter显示不全问题</a><span>(6003)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/50953352" title="使用SDK23报错：Binary XML file line #17: invalid drawable tag vector" target="_blank">使用SDK23报错：Binary XML file line #17: invalid drawable tag vector</a><span>(4870)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/51507365" title="使用LeakCanary遇到的问题 就是不弹出来" target="_blank">使用LeakCanary遇到的问题 就是不弹出来</a><span>(4838)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/51179803" title="sharedSDK 三方分享" target="_blank">sharedSDK 三方分享</a><span>(4126)</span>
+</li>
+</ul>
+</div>
+
+<div id="hotarticls2" class="panel csdn-tracking-statistics" data-pid="blog" data-mod="popu_341" "="">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/54410504" title="freeline的使用" target="_blank">freeline的使用</a><span>(4)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/51507365" title="使用LeakCanary遇到的问题 就是不弹出来" target="_blank">使用LeakCanary遇到的问题 就是不弹出来</a><span>(3)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/51769602" title="解决API&lt;21时 GridLayout平均分配格行/列的问题" target="_blank">解决API&lt;21时 GridLayout平均分配格行/列的问题</a><span>(3)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/50738725" title="Error:Error converting bytecode to dex: Cause: java.lang.RuntimeException: Exception parsing classes" target="_blank">Error:Error converting bytecode to dex: Cause: java.lang.RuntimeException: Exception parsing classes</a><span>(3)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/48708457" title="greenDao的使用---重点来啦 实现ORM连表 增删改查 颤抖吧凡人" target="_blank">greenDao的使用---重点来啦 实现ORM连表 增删改查 颤抖吧凡人</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/51179803" title="sharedSDK 三方分享" target="_blank">sharedSDK 三方分享</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/50555189" title="Gradle version 2.10 is required.  Current version is 2.8." target="_blank">Gradle version 2.10 is required.  Current version is 2.8.</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/51133213" title="JNI 常用的JNI操作Demo 良心作品" target="_blank">JNI 常用的JNI操作Demo 良心作品</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/51087461" title="如何在C++代码中访问并调用Java的成员呢？" target="_blank">如何在C++代码中访问并调用Java的成员呢？</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lvwenbo0107/article/details/50965161" title="Glide 使用 +圆形图+圆角图" target="_blank">Glide 使用 +圆形图+圆角图</a><span>(1)</span>
+</li>
+</ul>
+</div>
+
+<div id="homepageArticles" class="panel csdn-tracking-statistics" data-pid="blog" data-mod="popu_4" style="height:250px;">
+
+    <div id="cpro_u2734133" style="text-align:center;">
+      
+        <!-- 投放代码 -->
+        <div id="_hila3oufce6wudrea4viy66r" style=""><div id="quzjamupr" style="margin-top:0px;"><div style="text-align:left;"><iframe width="250" frameborder="0" height="250" scrolling="no" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/s(2).html"></iframe></div></div></div><script type="text/javascript" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/bwlxosfoo.js"></script>
+      
+
+    </div>
+
+
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="http://blog.csdn.net/lvwenbo0107/article/details/52193861#comments">当RxLifecycle遇到MVP 在P中没有Bind怎么破？</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/lovexiang1314" class="user_name">lovexiang1314</a>:
+赞一个!
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lvwenbo0107/article/details/51798615#comments">AppbarLayout appbar_scrolling_view_behavior 导致的ContentFooter显示不全问题</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_33046363" class="user_name">哒哒哒丶</a>:
+感谢感谢  哈哈  特意登录上来给你点赞  解决了我困扰了半天的问题
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lvwenbo0107/article/details/51507365#comments">使用LeakCanary遇到的问题 就是不弹出来</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/AA5279AA" class="user_name">失落夏天</a>:
+楼主，你的意思是：compile &amp;#39;com.squareup.leakcanary:leak...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lvwenbo0107/article/details/51769602#comments">解决API&lt;21时 GridLayout平均分配格行/列的问题</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u010356768" class="user_name">Errol_King</a>:
+谢谢分享
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lvwenbo0107/article/details/51769602#comments">解决API&lt;21时 GridLayout平均分配格行/列的问题</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/hqyhqyhq" class="user_name">漫步企鹅</a>:
+android.support.v7.widget.这个属性很重要！
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lvwenbo0107/article/details/52416053#comments">Exception dispatching input event 缩放2个MpChart时发生终于搞定了</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_19277683" class="user_name">qq_752545313</a>:
+省了不少时间谢谢P主
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lvwenbo0107/article/details/56286584#comments">Android网络请求库 - Say hello to retrofit</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/sunhuaqiang1" class="user_name">孙华强</a>:
+CSDN博友你好，我是孙华强，现将此篇博文收录进“Android知识库”。CSDN现在在做CSDN博...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lvwenbo0107/article/details/51732163#comments">Android卸载程序之后跳转到指定的反馈页面</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/w77996" class="user_name">七七九九六</a>:
+楼主，5.0过后如果杀死主进程，那么fork的子线程也会被杀死，就实现不了这个功能了吧？
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lvwenbo0107/article/details/51732163#comments">使用LeakCanary遇到的问题 就是不弹出来</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/m0_38036456" class="user_name">m0_38036456</a>:
+从哪里能获得LeakCanary的jar包，以及如何修改android.mk文件，请指教。
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lvwenbo0107/article/details/51732163#comments">使用LeakCanary遇到的问题 就是不弹出来</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/m0_38036456" class="user_name">m0_38036456</a>:
+大神，能把这个工具应用到android源码中吗？
+    </p>
+    </li>
+</ul>
+</div>
+
+    </div>
+    <div class="clear">
+    </div>
+
+                        <div class="csdn-tracking-statistics" data-pid="blog" data-view="true" data-mod="ad_popu_189" data-mtp="63" data-order="40" data-con="ad_content_1259" style="width: 250px; height: 250px;">
+                            <div id="nav_show_top_stop" style="width: 250px; height: 250px; z-index: 1000; position: fixed; top: 669.674px;">
+
+                                <div id="cpro_u3031286" style="text-align:center;">
+                                    <!-- 投放代码 -->
+                                    <div id="_u74wlmofa7hl004t58ahmpldi" style=""><iframe width="250" frameborder="0" height="250" scrolling="no" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/s(3).html"></iframe></div><script type="text/javascript" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/bwocoflyv.js"></script>
+                                    
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+
+                            setTimeout(function ()
+                            {
+                                var naviga_offsetTop = 0; function naviga_stay_top()
+                                {
+                                    var scrollTop = jQuery(document).scrollTop();
+                                    if (scrollTop > naviga_offsetTop) {
+                                        jQuery("#nav_show_top_stop").css({ "position": "fixed" });
+                                        jQuery("#nav_show_top_stop").css({ "top": "0px" });
+                                    } else { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": naviga_offsetTop - scrollTop + "px" }); }
+                                }
+                                function onload_function()
+                                {
+                                    naviga_offsetTop = jQuery("#nav_show_top_stop").position().top;
+                                    jQuery(window).bind("scroll", naviga_stay_top); jQuery(window).bind("mousewheel", naviga_stay_top);
+                                    jQuery(document).bind("scroll", naviga_stay_top); jQuery(document).bind("mousewheel", naviga_stay_top);
+                                } jQuery(document).ready(onload_function);
+                            }, 200);
+
+                        </script>
+
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='csdn-tracking-statistics' data-pid=\"blog\"  data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                + "<span class='csdn-tracking-statistics' data-pid=\"blog\"  data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div>
+
+
+
+        <script type="text/javascript" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/MathJax.js"></script>
+
+    <script src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/csdn_blog_detail.min.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/pub_footer_2014.css"><div class="pub_fo"><div id="pub_footerall" class="pub_footer_new"><dl><dt></dt> <dd class="foot_sub_menu"><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a><span>|</span><a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a><span>|</span><a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a><span>|</span><a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a><span>|</span><a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a><span>|</span><a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a><span>|</span><a href="mailto:webmaster@csdn.net">问题报告</a><span>|</span><a target="_blank" href="http://www.csdn.net/friendlink.html">合作伙伴</a><span>|</span><a href="http://bbs.csdn.net/forums/Service" target="_blank">论坛反馈</a></dd><dd class="foot_contact"><a href="javascript:void(0);" target="_blank" class="qq">网站客服</a><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2251809102&amp;site=qq&amp;menu=yes" target="_blank" class="qq">杂志客服</a><a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a><a href="mailto:webmaster@csdn.net" class="email" title="联系邮箱">webmaster@csdn.net</a><span class="phone" title="服务热线">400-660-0108</span><span class="interval">|</span><span>北京创新乐知信息技术有限公司 版权所有</span><span class="interval">|</span><span>江苏知之为计算机有限公司</span><span class="interval">|</span><span>江苏乐知网络技术有限公司</span></dd><dd class="foot_copyright"><span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span><span class="interval">|</span><span>Copyright © 1999-2017, CSDN.NET, All Rights Reserved&nbsp;</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/notify.js"></script><input type="hidden" id="aa_g_data_ids">
+
+    <script type="text/javascript" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/csdn_public_blog_detail.min.js"></script>
+
+    <script type="text/javascript" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/showblogmedal.ashx"></script>
+
+
+    <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+        <script id="adJs52b5334" src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/52b5334.js"></script>
+        <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+    </div>
+
+    <div class="pop_CA_cover" style="display:none"></div>
+    <div class="pop pop_CA" style="display:none">
+        <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon" id="fapancle" onclick="$(&#39;.pop_CA&#39;).hide();$(&#39;.pop_CA_cover&#39;).hide();"></span>
+        </div>
+        <iframe src="./Android drawable&amp;mipmap 资源检索顺序 最佳资源存放目录 - 潮男阿狸的博客 - CSDN博客_files/saved_resource(2).html" id="fa" frameborder="0" width="100%" height="360" scrolling="no"></iframe>
+    </div>
+
+
+        <script type="text/javascript">
+
+            $(function ()
+            {
+                var fromjs = $("#fromjs");
+                if (fromjs.length > 0) {
+                    $("#fromjs .markdown_views pre").addClass("prettyprint");
+                    prettyPrint();
+
+                    $('pre.prettyprint code').each(function ()
+                    {
+                        var lines = $(this).text().split('\n').length;
+                        var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                        $(this).addClass('has-numbering').parent().append($numbering);
+                        for (i = 1; i <= lines; i++) {
+                            $numbering.append($('<li/>').text(i));
+                        };
+                        $numbering.fadeIn(1700);
+                    });
+
+                    $('.pre-numbering li').css("color", "#999");
+                }
+            });
+
+            $(".markdown_views a[target!='_blank']").attr("target", "_blank");
+
+            //$(".toc a[target='_blank']").attr("target", "");
+
+            setTimeout(function ()
+            {
+                $(".toc a[target='_blank']").attr("target", "");
+            }, 500);
+
+        </script>
+
+
+
+<div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" type="text" value="" id="focus_retriever" readonly="true"></div></body></html>

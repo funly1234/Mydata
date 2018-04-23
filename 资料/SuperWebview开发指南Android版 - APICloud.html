@@ -1,0 +1,601 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0084)http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn" slick-uniqueid="3"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="./SuperWebview开发指南Android版 - APICloud_files/hm.js"></script><script src="./SuperWebview开发指南Android版 - APICloud_files/hm(1).js"></script><script type="text/javascript">
+var siteurl='/';
+var tmplurl='/templates/qunlun_ji_0601/';
+var isRTL = false;
+</script>
+
+  <!--<base href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android">--><base href=".">
+  
+  <meta name="keywords" content="SuperWebview开发指南, SuperWebview Android, SuperWebview">
+  <meta name="author" content="Super User">
+  <meta name="description" content="SuperWebview开发指南Android版">
+  <meta name="generator" content="www.android-studio.org">
+  <title>SuperWebview开发指南Android版 - APICloud</title>
+  <link rel="stylesheet" href="./SuperWebview开发指南Android版 - APICloud_files/css_f1c3b.css" type="text/css">
+  <script src="./SuperWebview开发指南Android版 - APICloud_files/js_f3e9f.js" type="text/javascript"></script>
+  <script type="text/javascript">
+window.addEvent('load', function() {
+				new JCaption('img.caption');
+			});
+  </script>
+
+<!--[if ie]><link href="/plugins/system/jat3/jat3/base-themes/default/css/template-ie.css" type="text/css" rel="stylesheet" /><![endif]--> 
+<!--[if ie 7]><link href="/plugins/system/jat3/jat3/base-themes/default/css/template-ie7.css" type="text/css" rel="stylesheet" /><![endif]--> 
+<!--[if ie 7]><link href="/templates/qunlun_ji_0601/css/template-ie7.css" type="text/css" rel="stylesheet" /><![endif]--> 
+
+
+
+
+<link href="http://apicloud.android-studio.org/plugins/system/jat3/jat3/base-themes/default/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    
+    <style type="text/css">
+/*dynamic css*/
+
+    body.bd .main {width: 960px;}
+    body.bd #ja-wrapper {min-width: 960px;}
+</style><script src="./SuperWebview开发指南Android版 - APICloud_files/share.js"></script><link rel="stylesheet" href="./SuperWebview开发指南Android版 - APICloud_files/slide_share.css"><link rel="stylesheet" href="./SuperWebview开发指南Android版 - APICloud_files/imgshare.css"><link rel="stylesheet" href="./SuperWebview开发指南Android版 - APICloud_files/share_style0_16.css"><link rel="stylesheet" href="./SuperWebview开发指南Android版 - APICloud_files/share_popup.css"><link rel="stylesheet" href="./SuperWebview开发指南Android版 - APICloud_files/select_share.css"></head>
+
+<body id="bd" class="bd body-slideshow  fs3 com_content">
+<a name="Top" id="Top"></a>
+<div id="ja-wrapper">
+
+
+                <div id="ja-topbar" class="wrap ">
+                   <div class="main">
+                           <div class="main-inner1 clearfix">
+                <div id="ja-topbar-left">
+	
+
+<div class="custom">
+	<p><a href="http://www.android-studio.org/index.php/contactus" target="_blank">联系我们</a> | <a href="http://www.android-studio.org/index.php/aboutus" target="_blank">关于我们</a> | <a href="http://www.android-studio.org/" target="_blank">返回首页</a></p></div>
+
+</div>
+
+<div id="ja-topbar-right">
+	
+
+<div class="custom">
+	<p><a href="http://www.apicloud.com/index?uzchannel=11" target="_blank">注册APICloud</a></p></div>
+
+</div>                </div>
+                            </div>
+                        </div>
+                        <div id="ja-header" class="wrap ">
+                   <div class="main">
+                           <div class="main-inner1 clearfix">
+                <h1 class="logo">
+	<a href="http://apicloud.android-studio.org/index.php" title="ApiCloud"><span>ApiCloud</span></a>
+</h1>
+
+<div id="ja-top" class="clearfix">
+	
+
+<div class="custom">
+	<pre> APICloud为开发者从“云”和“端”两个方向提供API！</pre></div>
+
+</div>                </div>
+                            </div>
+                        </div>
+                        <div id="ja-mainnav" class="wrap ">
+                   <div class="main">
+                           <div class="main-inner1 clearfix">
+                <div class="ja-megamenu clearfix" id="ja-megamenu">
+<ul class="megamenu level0"><li class="mega first"><a href="http://apicloud.android-studio.org/" class="mega first" id="menu435" title="APICloud"><span class="menu-title">APICloud</span></a></li><li class="mega active"><a href="http://apicloud.android-studio.org/index.php/apicloud-guide" class="mega active" id="menu518" title="技术文档"><span class="menu-title">技术文档</span></a></li><li class="mega"><a href="http://apicloud.android-studio.org/index.php/apicloud-video" class="mega" id="menu521" title="视频教程"><span class="menu-title">视频教程</span></a></li><li class="mega"><a href="http://ask.android-studio.org/?/topic/APICloud" target="_blank" class="mega" id="menu519" title="问答社区"><span class="menu-title">问答社区</span></a></li><li class="mega"><a href="http://apicloud.android-studio.org/index.php/apicloud-blog" class="mega" id="menu520" title="BLOG"><span class="menu-title">BLOG</span></a></li><li class="mega last"><a href="http://www.android-studio.org/" target="_blank" class="mega last" id="menu522" title="Android Studio"><span class="menu-title">Android Studio</span></a></li></ul>
+</div>            <script type="text/javascript">
+                var megamenu = new jaMegaMenuMoo ('ja-megamenu', {
+                    'bgopacity': 0,
+                    'delayHide': 300,
+                    'slide'    : 0,
+                    'fading'   : 0,
+                    'direction': 'down',
+                    'action'   : 'mouseover',
+                    'tips'     : false,
+                    'duration' : 300,
+                    'hidestyle': 'fastwhenshow'
+                });
+            </script>
+            <!-- jdoc:include type="menu" level="0" / -->
+
+
+<ul class="no-display">
+    <li><a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android#ja-content" title="Skip to content">Skip to content</a></li>
+</ul>                </div>
+                            </div>
+                        </div>
+                        <div id="ja-slideshow" class="wrap ">
+                   <div class="main">
+                           <div class="main-inner1 clearfix">
+                
+
+<div class="custom">
+	<p><img src="./SuperWebview开发指南Android版 - APICloud_files/topbanner-apicloud.png" border="0" alt="" data-bd-imgshare-binded="1"></p></div>
+                </div>
+                            </div>
+                        </div>
+            
+    <!-- MAIN CONTAINER -->
+    <div id="ja-container" class="wrap ja-mf">
+               <div class="main clearfix">
+                   <div id="ja-mainbody" style="width:100%">
+            <!-- CONTENT -->
+            <div id="ja-main" style="width:100%">
+            <div class="inner clearfix">
+
+                
+<div id="system-message-container">
+</div>
+                
+                <div id="ja-contentwrap" class="clearfix ">
+                    <div id="ja-content" class="column" style="width:100%">
+                        <div id="ja-current-content" class="column" style="width:100%">
+                            
+                                                        <div id="ja-content-main" class="ja-content-main clearfix">
+                                <div class="viewpage">
+<div class="item-page">
+
+	<h2 class="contentheading clearfix">
+			<a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android">
+		SuperWebview开发指南Android版 - APICloud</a>
+		
+			</h2>
+
+
+<span class="content_rating">用户评价：&nbsp;<img src="./SuperWebview开发指南Android版 - APICloud_files/rating_star.png" alt="" data-bd-imgshare-binded="1"><img src="./SuperWebview开发指南Android版 - APICloud_files/rating_star.png" alt="" data-bd-imgshare-binded="1"><img src="./SuperWebview开发指南Android版 - APICloud_files/rating_star.png" alt="" data-bd-imgshare-binded="1"><img src="./SuperWebview开发指南Android版 - APICloud_files/rating_star.png" alt="" data-bd-imgshare-binded="1"><img src="./SuperWebview开发指南Android版 - APICloud_files/rating_star_blank.png" alt="" data-bd-imgshare-binded="1">&nbsp;/&nbsp;8</span>
+<br>
+<form method="post" action="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android?hitcount=0"><div class="content_vote">差<input type="radio" title="投票1" name="user_rating" value="1"><input type="radio" title="投票2" name="user_rating" value="2"><input type="radio" title="投票3" name="user_rating" value="3"><input type="radio" title="投票4" name="user_rating" value="4"><input type="radio" title="投票5" name="user_rating" value="5" checked="checked">好&nbsp;<input class="button" type="submit" name="submit_vote" value="评价"><input type="hidden" name="task" value="article.vote"><input type="hidden" name="hitcount" value="0"><input type="hidden" name="url" value="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android?hitcount=0"><input type="hidden" name="03192874634604de7b9b4082766336df" value="1"></div></form><div class="article-tools clearfix">
+
+	<dl class="article-info">
+	<dd class="modified">
+	最后更新于 2016年4月16日	</dd>
+	<dd class="hits">
+	点击数：7211	</dd>
+	</dl>
+</div>	
+
+<div class="content-links">
+	<ul>
+		</ul></div>
+	<p><span style="font-size: 12.16px; line-height: 1.3em;">本文档面向所有使用该SDK的开发人员、测试人员、管理人员以及对此感兴趣的其他用户。阅读该文档要求用户熟悉Android应用开发，了解APICloud平台，如果能对</span><span style="font-size: 12.16px; line-height: 1.3em;">HTML/CSS/JavaScript有一定了解则更好。</span></p>
+<p>第一章 简介</p>
+ 
+<p><span style="font-size: 12.16px; line-height: 1.3em;">SuperWebview是APICloud官方推出的另一项重量级API生态产品，以SDK方式提供，致力于提升和改善移动设备Webview体验差的整套解决方案。APP通过嵌入</span><span style="font-size: 12.16px; line-height: 1.3em;">SuperWebview替代系统Webview，即可在Html5中使用APICloud平台现有的所有端API，以及包括增量更新、版本管理、数据云、推送云、统计分析、积木式模块化开发、</span><span style="font-size: 12.16px; line-height: 1.3em;">所有已经聚合的开方平台服务等在内的云服务能力，增强用户体验，解决移动设备Webview使用过程中出现的兼容能力弱、加载速度慢、功能缺陷等任何问题，帮助开发者解决</span><span style="font-size: 12.16px; line-height: 1.3em;">使用Webview过程中的所有痛点。</span></p>
+<p>SuperWebview继承APICloud终端引擎的包括跨平台能力，模块扩展机制，生命周期管理，窗口系统，事件模型，APP级别的用户体验等在内的所有优秀能力，并且全面打通<span style="font-size: 12.16px; line-height: 1.3em;">Html5与Android和IOS之间的交互，同步提供APICloud平台最新的API技术能力和服务，APICloud团队将保持对SuperWebview的持续更新和优化，兼容Html5的新特性，</span><span style="font-size: 12.16px; line-height: 1.3em;">持续推出优质服务。</span></p>
+<p>第二章 架构设计</p>
+<p>2.1 架构设计</p>
+<p>SuperWebview是APICloud终端引擎另一种形态下的开放API，提供“NativeView占主导，SuperWebview层叠辅助”的混合能力，旨在帮助企业或者个人开发者已有的<span style="font-size: 12.16px; line-height: 1.3em;">Android和IOS项目提供基于Html5能力的快速业务扩展，无缝使用APICloud云端一体能力提供的优质技术服务，同时保证最优的用户体验。您可以将APP中的某个或多个模块</span><span style="font-size: 12.16px; line-height: 1.3em;">使用SuperWebview进行实现，您甚至可以将SuperWebview SDK当作独立的APP快速开发框架在混合开发中使用。结合APICloud终端引擎的跨平台能力和各项云服务能力</span><span style="font-size: 12.16px; line-height: 1.3em;">，解决诸如跨平台，增量更新，快速版本迭代等APP开发过程中常见的痛点。</span></p>
+<p>SuperWebview整体API开放架构设计如下：<span style="font-size: 12.16px; line-height: 1.3em;">&nbsp;</span></p>
+<p><span style="font-size: 12.16px; line-height: 1.3em;"><img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-1.png" border="0" alt="" data-bd-imgshare-binded="1"></span></p>
+<p>2.2 基本能力</p>
+<p>SuperWebview在继承系统Webview接口能力的基础上，主要提供以下功能的接口：</p>
+<p style="padding-left: 30px;">1.API访问权限控制管理功能</p>
+<p style="padding-left: 30px;">2.Android/IOS与Html5之间事件/数据交互功能</p>
+<p style="padding-left: 30px;">3.Web与Native界面直接的混合布局和混合渲染功能</p>
+<p style="padding-left: 30px;">4.加速数据加载、点击响应和滚动速度</p>
+<p style="padding-left: 30px;">5.常用手势支持、界面切换动画</p>
+<p style="padding-left: 30px;">6.访问资源控制管理功能</p>
+<p style="padding-left: 30px;">7.执行Html5中指定Javascript脚本功能</p>
+<p style="padding-left: 30px;">8.模块扩展功能，该功能继承自APICloud终端引擎的模块扩展能力</p>
+<p style="padding-left: 30px;">9.Android&amp;IOS开发中常用的网络请求框架，缓存管理等工具接口</p>
+<p style="padding-left: 30px;">10.统一的生命周期管理，窗口系统，用户体验</p>
+<p>第三章 使用准备和流程</p>
+<p>3.1 运行环境</p>
+<p>3.1.1 软硬件环境及要求</p>
+<p style="padding-left: 30px;">1.本SDK要求最低Android系统版本为：2.3，Google API级别为9</p>
+<p style="padding-left: 30px;">2.本SDK要求APP开启硬件加速，如关闭，会对渲染效率有一定的影响</p>
+<p style="padding-left: 30px;">3.本SDK要求Android开发环境配置Android SDK（ADT）的最低版本为5.0，Google API级别为21</p>
+<p style="padding-left: 30px;">4.本SDK依赖Google提供的最新版的兼容包，即最新版的android-support-v4.jar</p>
+<p>3.1.2 必须的权限：</p>
+<p>使用SuperWebviewSDK的APP项目，必须在AndroidManifest中申请如下权限：</p>
+<p style="padding-left: 30px;">1, 访问网络</p>
+<pre style="padding-left: 30px;">&lt;uses-permission android:name="android.permission.INTERNET" /&gt;</pre>
+<p style="padding-left: 30px;">2, 写外部存储</p>
+<pre style="padding-left: 30px;">&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt;</pre>
+<p style="padding-left: 30px;">3, 获取运营商信息，用于支持提供运营商信息相关的接口</p>
+<pre style="padding-left: 30px;">&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;</pre>
+<p style="padding-left: 30px;">4, 访问wifi网络信息</p>
+<pre style="padding-left: 30px;">&lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /&gt;</pre>
+<p style="padding-left: 30px;">5, 读取手机当前的状态</p>
+<pre style="padding-left: 30px;">&lt;uses-permission android:name="android.permission.READ_PHONE_STATE" /&gt;</pre>
+<p>&nbsp;</p>
+<p>3.2 获取SuperWebview SDK</p>
+<p>3.2.1 创建和编译SDK</p>
+<p>1, 登录APICloud官网：http://www.apicloud.com，注册成为APICloud开发者</p>
+<p>2, 进入控制台，在“概览”界面新建APP项目，如截图：</p>
+<p><span style="font-size: 12.16px; line-height: 1.3em;"><img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-2.png" border="0" alt="" data-bd-imgshare-binded="1"></span></p>
+<p><span style="font-size: 12.16px; line-height: 1.3em;"><img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-3.png" border="0" alt="" data-bd-imgshare-binded="1">&nbsp;&nbsp;</span></p>
+<p>3, 点击控制台左侧的“模块”选项卡，导航至模块选择界面，如截图：<span style="font-size: 12.16px; line-height: 1.3em;">&nbsp;</span></p>
+<p><span style="font-size: 12.16px; line-height: 1.3em;"><img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-4.png" border="0" alt="" data-bd-imgshare-binded="1"></span></p>
+<p>勾选您的项目中将要用到的模块，如果不需要，则略过此步骤。</p>
+<p>4, 点击控制台左侧的“SuperWebView”选项卡，导航至SDK编译界面，勾选您需要编译的平台，如截图：<span style="font-size: 12.16px; line-height: 1.3em;">&nbsp;</span></p>
+<p><span style="font-size: 12.16px; line-height: 1.3em;"><img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-5.png" border="0" alt="" data-bd-imgshare-binded="1"></span></p>
+<p>5, 点击“编译SDK”按钮，开始进行SDK的编译，等待片刻，编译完成后，页面中将展示SDK的下载链接，如截图：<span style="font-size: 12.16px; line-height: 1.3em;">&nbsp;</span></p>
+<p><span style="font-size: 12.16px; line-height: 1.3em;"><img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-6.png" border="0" alt="" data-bd-imgshare-binded="1"></span></p>
+<p>6, 点击其中的下载链接，下载对应平台的SDK包至本地，并解压</p>
+<p>&nbsp;</p>
+<p>3.3 SuperWebview SDK包简介</p>
+<p>本SDK为一个压缩文件包，其中包含SDK包一份（lib）、示例代码工程一份（Samples）、文档包一份（Docs），可能还包含一份更新说明。基本目录结构如下：<span style="font-size: 12.16px; line-height: 1.3em;">&nbsp;</span></p>
+<p><span style="font-size: 12.16px; line-height: 1.3em;"><img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-7.png" border="0" alt="" data-bd-imgshare-binded="1"></span></p>
+<p>3.3.1 lib目录</p>
+<p>lib目录下包含您在APICloud网站控制台编译的SDK包的所有资源，包括代码的jar包，so库，必须的资源文件，AndroidManifest.xml文件，在使用过程中需要将这些文件依<span style="font-size: 12.16px; line-height: 1.3em;">&nbsp;</span></p>
+<p>次拷贝到您的APP项目中。lib目录下共包含libs、res、以及AndroidManifest.xml文件，可能还包含一个assets目录：</p>
+<p>其中：</p>
+<p>libs目录下为APICloud引擎及所勾选模块的jar和so库；</p>
+<p>res目录下为APICloud引擎及所勾选的模块所需的资源文件，包括xml，图片等文件；</p>
+<p>assets目录下为APICloud引擎及所勾选模块需要的assets类型资源文件；</p>
+<p>AndroidManifest.xml文件包含了APICloud引擎及所勾选的模块所需的权限、Activity、Service等配置</p>
+<p>3.3.2 Docs目录</p>
+<p>Docs目录下包含本“开发者使用指南”以及一份html格式的详细API帮助文档，在开发过程中可随时参考该文档，获取满足您APP业务所需的各种API。</p>
+<p>3.3.3 Samples目录</p>
+<p>Samples目录下为使用本SDK的几个不同场景下的Demo，包含详细的代码注释。包含以下第四章中代码示例中的项目ProjectFirst。</p>
+<p>第四章 开始嵌入SDK到APP</p>
+<p>以下操作过程中，假设您现有或者新建的APP项目名称为“ProjectFirst”。 解压下载得到的SDK包到本地，得到lib、Docs、Samples等文件夹</p>
+<p>4.1 添加SDK到APP工程</p>
+<p style="padding-left: 30px;">1.将lib/libs目录下的so库和Jar包拷贝到ProjectFirst中对应的libs目录下及armeabi目录中</p>
+<p style="padding-left: 30px;">2.将lib/res目录下的所有资源文件拷贝到ProjectFirst中对应的res同名目录中，注意values类型资源的合并</p>
+<p style="padding-left: 30px;">3.将lib/AndroidManifest.xml文件中的所有permission、activity、provider、service、receiver等全部拷贝到ProjectFirst中对应的AndroidManifest中</p>
+<p style="padding-left: 30px;">4.如果有lib/assets目录，则将lib/assets目录下的所有资源文件拷贝到ProjectFirst中对应的assets目录中</p>
+<p>4.2 开始使用API</p>
+<p>4.2.1 初始化SDK</p>
+<p>SuperWebview SDK中的所有API必须在显式的调用初始化函数后才能使用，建议在您项目入口Application的onCreate函数中调用APICloud.initialize(Context)进行初始化<span style="font-size: 12.16px; line-height: 1.3em;">。如果您的项目没有Application，可以新建一个类继承自Application，并在AndroidManifest中配置该类。比如MyApplication：</span></p>
+<pre>package com.sdk.samples;
+
+import android.app.Application;
+import com.uzmap.pkg.openapi.APICloud;
+
+public class MyApplication extends Application{
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        APICloud.initialize(this);//初始化APICloud，SDK中所有的API均需要初始化后方可调用执行
+    }
+}</pre>
+<p>同时在AndroidManifest的application节点配置该类为其name属性：<span style="font-size: 12.16px; line-height: 1.3em;">&nbsp;</span></p>
+<pre>&lt;application
+        android:name="com.sdk.samples.MyApplication"
+        android:icon="@drawable/ic_logo"
+        android:label="@string/app_name"&gt;</pre>
+<p>4.2.2 使用SuperWebview</p>
+<p>新建Activity类，继承自ExternalActivity（ExternalActivity的帮助说明请参考第五章重要API说明中的介绍，或者阅读API文档中的详细介绍）。假设ProjectFirst项目中某版<span style="font-size: 12.16px; line-height: 1.3em;">块是通过使用Android标准API中的Webview加载远程服务器的Html5页面所实现，该版块所在Activity为WebPageModule类，则将该类改造为继承自ExternalActivity类即</span><span style="font-size: 12.16px; line-height: 1.3em;">可，或者自行新建WebPageModule类继承自ExternalActivity：</span><span style="font-size: 12.16px; line-height: 1.3em;">&nbsp;</span></p>
+<pre>    package com.sdk.samples.apicloud;
+
+import android.os.Bundle;
+import com.uzmap.pkg.openapi.ExternalActivity;
+
+/**
+ * 
+ * 您原项目中加载远程Html5页面的版块，现用SuperWebview替换&lt;br&gt;
+ * 使用SuperWebview的Activity，需继承自ExternalActivity
+ * @author dexing.li
+ *
+ */
+public class WebPageModule extends ExternalActivity {
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+}</pre>
+<p>同时，在AndroidManifest中配置WebPageModule：<span style="font-size: 12.16px; line-height: 1.3em;">&nbsp;</span></p>
+<pre>&lt;activity android:name="com.sdk.samples.apicloud.WebPageModule" 
+            android:screenOrientation="portrait" 
+            android:windowSoftInputMode="adjustResize" 
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" 
+            android:configChanges="orientation|locale|keyboardHidden|screenLayout|screenSize|smallestScreenSize|keyboard" /&gt;</pre>
+<p>此外，您可以通过重写ExternalActivity下的shouldOverrideUrlLoading，onPageStarted，onPageFinished等函数，实现SuperWebview与您项目原有业务的对接。</p>
+<p>4.2.3 Html5代码的编写和配置</p>
+<p>在ProjectFirst项目的assets目录下新建名为widget的目录，并在该目录下新建名为config的xml文件，config.xml文件要求编码为无BOM头UTF-8编码，如图：</p>
+<p><img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-8.png" border="0" alt="" data-bd-imgshare-binded="1"></p>
+<p>关于widget目录的详细介绍，请登录APICloud网站参考《Widget包结构说明》文档。</p>
+<p>关于config.xml文件的详细说明及配置，请登录APICloud网站参考《APICloud应用配置说明》文档。</p>
+<p>配置完成后，开始编写第一张Html页面，例如index.html，并将其在config.xml中配置为content字段，即声明该Html为SuperWebview的默认入口Html页：</p>
+<pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;widget id="A0000000000000" version="0.0.1"&gt; 
+  &lt;name&gt;ProjectFirst&lt;/name&gt;  
+  &lt;content src="/index.html"/&gt;  
+  &lt;access origin="*"/&gt; 
+&lt;/widget&gt;</pre>
+<p>index.html的详细代码请阅读Samples中的代码，其他Html代码的编写，按照您的产品设计进行即可。</p>
+<p>关于Html代码的编写，也可通过下载APICloud开发工具进行项目的创建，编码，调试，开发完成后直接将整个项目的代码拷贝到ProjectFirst中的assets/widget目录下即可<span style="font-size: 12.16px; line-height: 1.3em;">。使用APICloud开发工具开发，可为配合第七章高级功能中的某些操作提供基础。</span></p>
+<p>4.2.4 启动SuperWebview</p>
+<p>在ProjectFirst中任意界面中，通过响应某可点击界面元素的点击事件，启动WebPageModule这个Activity即可：<span style="font-size: 12.16px; line-height: 1.3em;">&nbsp;</span></p>
+<pre>    @Override
+    public void onClick(View v) {
+        //实现由之前的加载远程webapp的体验，转向由SuperWebview提供的原生APP体验
+        if(v == mButtonWeb){
+            Intent intent = new Intent(getContext(), WebPageModule.class);
+           getContext().startActivity(intent);
+        }
+    }</pre>
+<p>启动完Activity后，接下来Html页面的加载，渲染，逻辑执行等，SuperWebview会自动帮您完成。 通过SuperWebview提供的APICloud终端引擎的能力，您基于Html的页<span style="font-size: 12.16px; line-height: 1.3em;">面，可以无缝使用APICloud云端一体能力中提供的所有API，达到原生APP级别的用户体验</span><span style="font-size: 12.16px; line-height: 1.3em;">接下来您可以通过结合第五章中的重要API说明以及SuperWebview的API文档来拓展您APP的各种场景下使用SuperWebview的能力。</span></p>
+<p>第五章 重要API功能</p>
+<p>本章节提供SuperWebview SDK中几个重要API的简单帮助说明，详细API文档请参考附件中的API文档包。 本SDK开放的API主要位于“com.uzmap.pkg.openapi.”以及<span style="font-size: 12.16px; line-height: 1.3em;">&nbsp;</span><span style="font-size: 12.16px; line-height: 1.3em;">“com.uzmap.pkg.uzkit.”路径下。</span></p>
+<p>“com.uzmap.pkg.openapi.*”中主要包含提供SuperWebview SDK能力的Activity等UI组件相关的类，主要包括4个重要的开放类：APICloud，ExternalActivity，<span style="font-size: 12.16px; line-height: 1.3em;">&nbsp;</span><span style="font-size: 12.16px; line-height: 1.3em;">Html5EventListener，WebViewProvider&nbsp;</span><span style="font-size: 12.16px; line-height: 1.3em;">“com.uzmap.pkg.uzkit.*”中主要包含一些工具类，如HTTP网络请求，Html5相关工具函数，缓存处理工具等。</span></p>
+<p>5.1 openapi相关API类简介</p>
+<p>类 : 描述及函数原型</p>
+<p>APICloud : 提供了所有使用SuperWebview的静态方法，在使用本SDK下的所有函数前，必须调用APICloud.initialize(Context)函数初始化终端引擎</p>
+<p>ExternalActivity : SuperWebview开放的基本UI组件Activity，您项目中任何使用SuperWebview能力的Activity必须继承自该Activity。该类继承自系统Activity，主要<span style="font-size: 12.16px; line-height: 1.3em;">包括以下开放API：&nbsp;</span></p>
+<p style="padding-left: 60px;">1. evaluateJavascript(String) 向某个window或者frame执行一段JS脚本&nbsp;</p>
+<p style="padding-left: 60px;">2. addHtml5EventListener(Html5EventListener) 设置一个Html5事件监听器，监听来自Html5页面广播出来的事件&nbsp;</p>
+<p style="padding-left: 60px;">3. removeHtml5EventListener(Html5EventListener) 移除一个Html5事件监听器&nbsp;</p>
+<p style="padding-left: 60px;">4. removeAllHtml5EventListener() 移除所有Html5事件监听器&nbsp;</p>
+<p style="padding-left: 60px;">5. sendEventToHtml5(eventName, extra) 发送一个事件并广播给当前所有已加载的Html5页面，如果其中有页面监听了该事件，它将收到广播&nbsp;</p>
+<p style="padding-left: 60px;">6. onProgressChanged(WebViewProvider, progress) 当Html5页面的加载进度发生变化时，引擎将通过该接口回调给应用&nbsp;</p>
+<p style="padding-left: 60px;">7. onPageStarted(WebViewProvider, url, pageIcon) 当某个Html5页面开始加载时，引擎将通过该接口回调给应用&nbsp;</p>
+<p style="padding-left: 60px;">8. onPageFinished(WebViewProvider, url) 当某个Html5页面加载结束时，引擎将通过该接口回调给应用&nbsp;</p>
+<p style="padding-left: 60px;">9. shouldOverrideUrlLoading(WebViewProvider, url) 当引擎内部某个webview即将请求加载一个url时，将通过该接口通知应用，如果应用拦截并自行处理，引擎将不再<span style="font-size: 12.16px; line-height: 1.3em;">处理该请求。&nbsp;</span></p>
+<p style="padding-left: 60px;">10. onReceivedTitle(WebViewProvider, title) 当引擎内部某个webview收到Html5页面标题时，将通过该接口回调给应用&nbsp;</p>
+<p style="padding-left: 60px;">11. shouldForbiddenAccess(host, module, api) 当某host地址的html页面即将访问某api时，将通过该接口通知应用，应用可以决定是否拦截，控制其不允许访问&nbsp;</p>
+<p style="padding-left: 60px;">12. 如果启动ExternalActivity实现的子类Activity时，Intent中传入了“startUrl”字段，那么该Activity将自动以该startUrl配置的URL作为首页加载入口。默认情况下使用<span style="font-size: 12.16px; line-height: 1.3em;">widget/config.xml中的content字段配置作为入口</span></p>
+<p><span style="font-size: 12.16px; line-height: 1.3em;">Html5EventListener : Html5页面事件监听器，该监听允许您监听来自Html5页面通过api.sendEvent发出的自定义事件广播，实现原生应用与Html5之间的数据交互及解耦。&nbsp;</span><span style="font-size: 12.16px; line-height: 1.3em;">&nbsp;</span><span style="font-size: 12.16px; line-height: 1.3em;">可通过ExternalActivity.addHtml5EventListener(Html5EventListener)进行注册监听 Html5事件将通过Html5EventListener.onReceive(WebViewProvider, Object)</span><span style="font-size: 12.16px; line-height: 1.3em;">回调</span></p>
+<p>WebViewProvider : APICloud终端引擎中SuperWebview的代理类，内部包含一个APIWebview的实例。该类以代理的形式开放了webview的诸多API，如：&nbsp;</p>
+<p style="padding-left: 60px;">1. getName() 获取webview所在frame的name，与api.openFrame时传入的name对应，主window所在frame的name为固定值“main”&nbsp;</p>
+<p style="padding-left: 60px;">2. getWinName() 获取webview所在window的name，与api.openWin时传入的name对应，根window的name为固定值“root”&nbsp;</p>
+<p style="padding-left: 60px;">3. evaluateJavascript(script) 向该webview执行一段js脚本&nbsp;</p>
+<p style="padding-left: 60px;">4. loadUrl(url) 请求该webview加载一条url&nbsp;</p>
+<p style="padding-left: 60px;">5. stopLoading() 要求当前webview停止加载&nbsp;</p>
+<p style="padding-left: 60px;">6. reload() 要求webview重新加载当前页面&nbsp;</p>
+<p style="padding-left: 60px;">7. goBack() 要求当前webview回退历史记录&nbsp;</p>
+<p style="padding-left: 60px;">8. goForward() 要求当前webview前进历史记录</p>
+<p>&nbsp;</p>
+<p>5.2 uzkit相关API类简介</p>
+<p>类 : 描述及函数原型</p>
+<p>UZUtility : 静态工具函数库，提供与Html5处理相关，APP相关的工具函数</p>
+<p>request.APICloudHttpClient : APICloud终端引擎全局标准HTTP请求处理类，包含：&nbsp;</p>
+<p style="padding-left: 60px;">request(Request) 插入一个http请求&nbsp;</p>
+<p style="padding-left: 60px;">cancelRequests(Object) 取消某个http请求&nbsp;</p>
+<p style="padding-left: 60px;">download(HttpDownload) 插入一个http下载请求&nbsp;</p>
+<p style="padding-left: 60px;">cancelDownload(Object) 取消某个http下载请求&nbsp;</p>
+<p style="padding-left: 60px;">disPlayImage(ImageOption, ImageView) 请求显示远程服务器上的某张图片资源到ImageView ….&nbsp;</p>
+<p style="padding-left: 60px;">等诸多HTTP数据请求相关的函数，非常方便客户端向服务器发起数据请求</p>
+<p>request.Request : 所有类型HTTP请求的超类</p>
+<p>request.HttpGet : HTTP的GET请求类。通过APICloudHttpClient.request(HttpGet)发起</p>
+<p>request.HttpPost<span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 15.808px;">:</span><span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 1.3em;">HTTP的POST请求类。通过APICloudHttpClient.request(HttpPost)发起</span></p>
+<p>request.HttpDownload<span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 15.808px;">:</span><span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 1.3em;">HTTP的GET请求类，通常为请求下载非文本类型数据的大文件。 通过APICloudHttpClient.download(HttpDownload)发起</span></p>
+<p>request.HttpDelete<span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 15.808px;">:</span><span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 1.3em;">HTTP的DELETE请求类。通过APICloudHttpClient.request(HttpDelete)发起</span></p>
+<p>request.HttpPut<span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 15.808px;">:</span><span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 1.3em;">HTTP的PUT请求类。通过APICloudHttpClient.request(HttpPut)发起</span></p>
+<p>request.HttpHead<span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 15.808px;">:</span><span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 1.3em;">HTTP的HEAD请求类。通过APICloudHttpClient.request(HttpHead)发起</span></p>
+<p>request.HttpOptions<span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 15.808px;">:</span><span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 1.3em;">HTTP的OPTIONS请求类。通过APICloudHttpClient.request(HttpOptions)发起</span></p>
+<p>request.HttpPatch<span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 15.808px;">:</span><span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 1.3em;">HTTP的PATCH请求类。通过APICloudHttpClient.request(HttpPatch)发起</span></p>
+<p>request.HttpTrace<span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 15.808px;">:</span><span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 1.3em;">HTTP的TRACE请求类。通过APICloudHttpClient.request(HttpTrace)发起</span></p>
+<p>request.HttpParams<span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 15.808px;">:</span><span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 1.3em;">发起POST/PUT/PATCH请求时用于配置提交的数据</span></p>
+<p>request.RequestCallback<span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 15.808px;">:</span><span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 1.3em;">HTTP请求的回调，通过request.setCallback(callback)使用</span></p>
+<p>request.HttpResult<span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 15.808px;">:</span><span style="font-size: 12.16px; line-height: 15.808px;">&nbsp;</span><span style="font-size: 12.16px; line-height: 1.3em;">HTTP请求的结果，通过RequestCallback.onFinish(HttpResult)回调</span></p>
+<p>&nbsp;</p>
+<p>第六章 其他</p>
+<p>6.1 关于代码混淆：</p>
+<p>如果开发者在发布版本时需要混淆自己的代码，请在混淆文件（一般默认为Android工程下proguard-project.txt或者proguard.cfg文件）中添加如下说明：<span style="font-size: 12.16px; line-height: 1.3em;">&nbsp;</span></p>
+<pre>-libraryjars libs/apiEngine {verion}.jar
+-dontwarn  com.uzmap.pkg.*
+-keep class  com.uzmap.pkg.** { *;}</pre>
+<p>其中，{version}为引擎jar包对应的版本</p>
+<p>6.2 SDK固有资源说明及替换</p>
+<p>原则上，SuperWebviewSDK中包含的任何XML、图片等资源文件，均需要原封不动的拷贝到您的项目中，如果熟悉APICloud平台的开发者，则可在此基础上替换或者更改这<span style="font-size: 12.16px; line-height: 1.3em;">些资源，实现UI效果的自由定制。</span></p>
+<p>第七章 高级功能</p>
+<p>7.1增量更新（云修复）</p>
+<p>注意：使用云修复功能的SuperWebview，您widget的config.xml中必须开启“云修复功能”，即config.xml中必须显式的配置：为true</p>
+<p>具体的使用流程：</p>
+<p>1）、在左侧控制台选择“云修复”，进入云修复页面，在下拉列表中选择“原生应用”，如截图：</p>
+<p><img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-9.png" border="0" alt="" data-bd-imgshare-binded="1"></p>
+<p>2）、选择“原生应用”后，点击输入框提示需要“手动输入版本号”，如截图：</p>
+<p><img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-10.png" border="0" alt="" data-bd-imgshare-binded="1"></p>
+<p>3）、点击“手动输入版本号”，如下图所示. 其中，IOS要求输入您应用的版本号（即Info.plist文件中的CFBundleShortVersionString字段值）； Android要求输入您应用<span style="font-size: 12.16px; line-height: 1.3em;">的versionCode（即AndroidManifest.xml文件中的“android:versionCode”字段值）；</span><span style="font-size: 12.16px; line-height: 1.3em;">&nbsp;</span></p>
+<p><img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-11.png" border="0" alt="" data-bd-imgshare-binded="1"></p>
+<p><img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-12.png" border="0" alt="" data-bd-imgshare-binded="1"></p>
+<p>4）、以ios版本为例：输入版本号之后，需要选择相对应的版本进行云修复操作，如截图：</p>
+<p><img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-13.png" border="0" alt="" data-bd-imgshare-binded="1"></p>
+<p>选择‘1.1.0’作为修复版本，如截图：</p>
+<p><img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-14.png" border="0" alt="" data-bd-imgshare-binded="1"></p>
+<p>5）、APICloud现支持两种云修复方式：提示修复、静默修复。 更新包上传方式分为：输入修复内容的http更新地址或直接上传更新压缩包； 压缩包格式要求为：根目录名称必<span style="font-size: 12.16px; line-height: 1.3em;">须为widget，子目录结构保持与APICloudStudio中项目目录一致，并只保留更新的文件，然后将widget目录压缩成.zip包即可：</span><span style="font-size: 12.16px; line-height: 1.3em;">&nbsp;</span></p>
+<p><img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-15.png" border="0" alt="" data-bd-imgshare-binded="1"></p>
+<p><img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-16.png" border="0" alt="" style="font-size: 12.16px; line-height: 15.808px;" data-bd-imgshare-binded="1"></p>
+<p><img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-17.png" border="0" alt="" style="font-size: 12.16px; line-height: 15.808px;" data-bd-imgshare-binded="1"></p>
+<p>下面以提示修复为例，选择‘提示修复’中‘上传更新文件’如截图：</p>
+<p>&nbsp;<img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-18.png" border="0" alt="" data-bd-imgshare-binded="1"></p>
+<p>上传完成之后，点击右侧‘更新’，成功之后会生成一条记录，如截图：</p>
+<p>&nbsp;<img src="./SuperWebview开发指南Android版 - APICloud_files/superwebview-android-19.png" border="0" alt="" data-bd-imgshare-binded="1"></p>
+<p>&nbsp;</p>
+				<ul class="pagenav">
+					<li class="pagenav-prev">
+						<a href="http://apicloud.android-studio.org/index.php/apicloud-guide/117-apicloud-ios" rel="prev">&lt; 上页</a>
+					</li>
+					<li class="pagenav-next">
+						<a href="http://apicloud.android-studio.org/index.php/apicloud-guide/114-superwebview-ios" rel="next">下页 &gt;</a>
+					</li>
+				</ul>
+	</div>
+</div>                            </div>
+                            
+                                                    </div>
+
+                                            </div>
+
+                    
+                </div>
+
+                            </div>
+            </div>
+            <!-- //CONTENT -->
+            
+        </div>
+                        </div>
+                </div>
+        <!-- //MAIN CONTAINER -->
+
+                <div id="ja-botsl1" class="wrap ">
+                        <div class="wrap-inner1">
+                         <div class="main clearfix">
+           <!-- SPOTLIGHT -->
+<div class="ja-box column ja-box-full" style="width: 100%;">
+    	<div class="ja-moduletable moduletable  clearfix" id="Mod127">
+						<h3><span>ApiCloud - SuperWebView</span></h3>
+				<div class="ja-box-ct clearfix">
+		
+
+<div class="custom">
+	<p><a href="http://www.apicloud.com/index?uzchannel=11" target="_blank"><img src="./SuperWebview开发指南Android版 - APICloud_files/footbanner-apicloud.jpg" border="0" alt="" data-bd-imgshare-binded="1"></a></p></div>
+		</div>
+    </div>
+	
+</div>
+<!-- SPOTLIGHT -->
+
+<script type="text/javascript">
+    window.addEvent('load', function (){ equalHeight ('#ja-botsl1 .ja-box') });
+</script>            </div>
+                            </div>
+                            </div>
+                        <div id="ja-botsl2" class="wrap ">
+                        <div class="wrap-inner1">
+                         <div class="main clearfix">
+           <!-- SPOTLIGHT -->
+<div class="ja-box column ja-box-left" style="width: 50%; min-height: 196px;">
+    	<div class="ja-moduletable moduletable  clearfix" id="Mod128">
+						<h3><span>热门教程</span></h3>
+				<div class="ja-box-ct clearfix">
+		<ul class="mostread">
+	<li>
+		<a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android">
+			SuperWebview开发指南Android版 - APICloud</a>
+	</li>
+	<li>
+		<a href="http://apicloud.android-studio.org/index.php/apicloud-guide/113-sdk-android-apicloud">
+			第三方SDK模块开发指南_Android - APICloud</a>
+	</li>
+	<li>
+		<a href="http://apicloud.android-studio.org/index.php/apicloud-guide/117-apicloud-ios">
+			第三方SDK模块开发指南_iOS - APICloud</a>
+	</li>
+	<li>
+		<a href="http://apicloud.android-studio.org/index.php/apicloud-guide/114-superwebview-ios">
+			SuperWebview开发指南IOS版 - APICloud</a>
+	</li>
+	<li>
+		<a href="http://apicloud.android-studio.org/index.php/apicloud-guide/112-uidev-apicloud">
+			前端框架开发指南 - APICloud</a>
+	</li>
+</ul>
+		</div>
+    </div>
+	
+</div>
+<div class="ja-box column ja-box-right" style="width: 50%; min-height: 196px;">
+    	<div class="ja-moduletable moduletable  clearfix" id="Mod129">
+						<h3><span>最新发布</span></h3>
+				<div class="ja-box-ct clearfix">
+		<ul class="latestnews">
+	<li>
+		<a href="http://apicloud.android-studio.org/index.php/apicloud-blog/123-apicloud-app">
+			基于标准化技术 APICloud上线App定制服务平台</a>
+	</li>
+	<li>
+		<a href="http://apicloud.android-studio.org/index.php/apicloud-blog/122-apicloud-giveup">
+			到底为什么你的APP项目烂尾了？</a>
+	</li>
+	<li>
+		<a href="http://apicloud.android-studio.org/index.php/apicloud-blog/121-apicloud-atom">
+			APICloud重磅支持Atom编辑器，并建立开发工具核心库</a>
+	</li>
+	<li>
+		<a href="http://apicloud.android-studio.org/index.php/apicloud-blog/120-apicloud-cli">
+			APICloud提供CLI开发工具，开发更具极客精神！</a>
+	</li>
+	<li>
+		<a href="http://apicloud.android-studio.org/">
+			APICloud是什么？</a>
+	</li>
+</ul>
+		</div>
+    </div>
+	
+</div>
+<!-- SPOTLIGHT -->
+
+<script type="text/javascript">
+    window.addEvent('load', function (){ equalHeight ('#ja-botsl2 .ja-box') });
+</script>            </div>
+                            </div>
+                            </div>
+                        <div id="ja-navhelper" class="wrap ">
+                   <div class="main">
+                           <div class="main-inner1 clearfix">
+                <div class="ja-breadcrums">
+    
+</div>
+
+<ul class="ja-links">
+        <li class="top"><a href="javascript:scroll(0,0)" title="Back to top">TOP</a></li>
+</ul>
+
+<ul class="no-display">
+    <li><a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android#ja-content" title="Skip to content">Skip to content</a></li>
+</ul>                </div>
+                            </div>
+                        </div>
+                        <div id="ja-footer" class="wrap ">
+                        <div class="wrap-inner1">
+                         <div class="main">
+                           <div class="main-inner1 clearfix">
+                <div class="ja-copyright">
+	<small>版权 © 2017 ApiCloud 保留所有权利 .
+
+<script language="javascript" type="text/javascript" src="./SuperWebview开发指南Android版 - APICloud_files/18831072.js"></script><a href="http://www.51.la/?18831072" target="_blank" title="51.La 网站流量统计系统">网站统计</a>
+
+<noscript>&lt;a href="http://www.51.la/?18831072" target="_blank"&gt;&lt;img alt="&amp;#x6211;&amp;#x8981;&amp;#x5566;&amp;#x514D;&amp;#x8D39;&amp;#x7EDF;&amp;#x8BA1;" src="http://img.users.51.la/18831072.asp" style="border:none" /&gt;&lt;/a&gt;</noscript>
+
+
+<div style="display:none">
+<!-- 分站统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?98c650e6fd718e26fd2fa11672b01388";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- 全站统计 -->
+<script language="javascript" type="text/javascript" src="./SuperWebview开发指南Android版 - APICloud_files/15867933.js"></script><a href="http://www.51.la/?15867933" target="_blank" title="51.La 网站流量统计系统">网站统计</a>
+
+<noscript>&lt;a href="http://www.51.la/?15867933" target="_blank"&gt;&lt;img alt="&amp;#x6211;&amp;#x8981;&amp;#x5566;&amp;#x514D;&amp;#x8D39;&amp;#x7EDF;&amp;#x8BA1;" src="http://img.users.51.la/15867933.asp" style="border:none" /&gt;&lt;/a&gt;</noscript>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?370933871126ddc737e5ca3e9964abd3";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<!-- Baidu Button BEGIN -->
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"right","bdTop":"100"},"image":{"viewList":["weixin","tsina","qzone","tqq","renren","tieba"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","tsina","qzone","tqq","renren","tieba"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+<!-- Baidu Button END -->
+
+
+</div>	
+
+</small>
+
+
+</div>                </div>
+                            </div>
+                            </div>
+                            </div>
+            
+</div>
+
+
+
+
+
+<div class="bdshare-slide-button-box bdshare-slide-style-r0" style="top: 100px; width: 0px; z-index: 99999; right: 0px;" data-bd-bind="1484660779099"><a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android#" onclick="return false;" class="bdshare-slide-button" style="left: -24px;"></a><div class="bdshare-slide-list-box" style="width: 0px; display: none;"><div class="bdshare-slide-top">分享到</div><div class="bdshare-slide-list"><ul class="bdshare-slide-list-ul" style="width: 226px;"></ul></div><div class="bdshare-slide-bottom" style="width: 226px;"><a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android#" onclick="return false;" class="slide-more" data-cmd="more">更多...</a></div></div></div><iframe frameborder="0" id="bdSharePopup_selectshare1484660779104bg" class="bdselect_share_bg" style="display:none;" src="./SuperWebview开发指南Android版 - APICloud_files/saved_resource.html"></iframe><div id="bdSharePopup_selectshare1484660779104box" style="display: none;" share-type="selectshare" class="bdselect_share_box" data-bd-bind="1484660779104"><div class="selectshare-mod-triangle"><div class="triangle-border"></div><div class="triangle-inset"></div></div><div class="bdselect_share_head"><span>分享到</span><a href="http://www.baidu.com/s?wd=&amp;tn=SE_hldp08010_vurs2xrp" class="bdselect_share_dialog_search" target="_blank"><i class="bdselect_share_dialog_search_i"></i><span class="bdselect_share_dialog_search_span">百度一下</span></a><a class="bdselect_share_dialog_close"></a></div><div class="bdselect_share_content"><ul class="bdselect_share_list bdshare-button-style0-16"><div class="bdselect_share_partners"><a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android#" class="bds_weixin" data-cmd="weixin"></a><a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android#" class="bds_tsina" data-cmd="tsina"></a><a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android#" class="bds_qzone" data-cmd="qzone"></a><a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android#" class="bds_tqq" data-cmd="tqq"></a><a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android#" class="bds_renren" data-cmd="renren"></a><a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android#" class="bds_tieba" data-cmd="tieba"></a></div><a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android#" class="bds_more" data-cmd="more"></a></ul></div></div><div id="bdimgshare_1484660779113" class="sr-bdimgshare sr-bdimgshare-list sr-bdimgshare-16 sr-bdimgshare-black" style="height: 36px; line-height: 26px; font-size: 12px; position: absolute; top: 12886px; left: 316px; width: 880px; display: none;" data-bd-bind="1484660779112"><div class="bdimgshare-bg"></div><div class="bdimgshare-content bdsharebuttonbox bdshare-button-style0-16"><label class="bdimgshare-lbl">分享到：</label><a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android#" onclick="return false;" class="bds_weixin" data-cmd="weixin" hidefocus=""></a><a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android#" onclick="return false;" class="bds_tsina" data-cmd="tsina" hidefocus=""></a><a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android#" onclick="return false;" class="bds_qzone" data-cmd="qzone" hidefocus=""></a><a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android#" onclick="return false;" class="bds_tqq" data-cmd="tqq" hidefocus=""></a><a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android#" onclick="return false;" class="bds_renren" data-cmd="renren" hidefocus=""></a><a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android#" onclick="return false;" class="bds_tieba" data-cmd="tieba" hidefocus=""></a><a href="http://apicloud.android-studio.org/index.php/apicloud-guide/115-superwebview-android#" onclick="return false;" class="bds_more" data-cmd="more" hidefocus=""></a></div></div></body></html>

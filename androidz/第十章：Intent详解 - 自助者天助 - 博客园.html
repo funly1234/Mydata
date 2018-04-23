@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://www.cnblogs.com/engine1984/p/4146621.html -->
+<html lang="zh-cn" style="color: rgb(0, 0, 0); background-color: rgb(204, 232, 207);"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第十章：Intent详解 - 自助者天助 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./第十章：Intent详解 - 自助者天助 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./第十章：Intent详解 - 自助者天助 - 博客园_files/bundle-iMetro_HD.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./第十章：Intent详解 - 自助者天助 - 博客园_files/bundle-iMetro_HD-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/engine1984/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/engine1984/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/engine1984/wlwmanifest.xml">
+<script async="" src="./第十章：Intent详解 - 自助者天助 - 博客园_files/analytics.js"></script><script type="text/javascript" src="./第十章：Intent详解 - 自助者天助 - 博客园_files/encoder.js"></script><script src="./第十章：Intent详解 - 自助者天助 - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'engine1984', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./第十章：Intent详解 - 自助者天助 - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(204, 232, 207);">
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/engine1984/"><img id="blogLogo" src="./第十章：Intent详解 - 自助者天助 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/engine1984/">自助者天助</a></h1>
+<h2>顺势而为,乘势而上！</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/engine1984/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E8%87%AA%E5%8A%A9%E8%80%85%E5%A4%A9%E5%8A%A9">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/engine1984/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/engine1984/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 324&nbsp; </span>
+<span id="stats_article_count">文章 - 2&nbsp; </span>
+<span id="stats-comment_count">评论 - 69</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/engine1984/p/4146621.html">第十章：Intent详解</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p><strong>【正文】</strong></p>
+<p><span style="font-size: 14px;">Intent组件虽然不是四大组件，但却是连接四大组件的桥梁，学习好这个知识，也非常的重要。</span></p>
+<p><span style="font-size: 14px;"><strong>一、什么是Intent</strong></span></p>
+<p><span style="font-size: 14px;"><strong>1、Intent的概念：</strong></span></p>
+<ul>
+<li><span style="font-size: 14px;">Android中提供了Intent<span style="color: #0000ff;">机制来协助应用间的交互与通讯，或者采用更准确的说法是，Intent不仅可用于应用程序之间，也可用于应用程序内部的<span style="color: #0000ff;">activity, service和broadcast receiver之间的交互。Intent这个英语单词的本意是“目的、意向、意图”。</span></span></span></li>
+<li><span style="font-size: 14px;">Intent是一种运行时绑定（runtime binding)机制，它能在程序运行的过程中连接两个不同的组件。通过Intent，你的程序可以向Android表达某种请求或者意愿，Android会根据意愿的内容选择适当的组件来响应。</span></li>
+</ul>
+<p><span style="font-size: 14px;"><span style="color: #0000ff;">activity、service和broadcast receiver之间是通过<span style="color: #0000ff;">Intent进行通信的，而另外一个组件Content Provider本身就是一种通信机制，不需要通过Intent。我们来看下面这个图就知道了：</span></span></span></p>
+<p><span style="font-size: 14px;"><img style="margin-right: auto; margin-left: auto; display: block;" src="./第十章：Intent详解 - 自助者天助 - 博客园_files/051436115768172.png" alt=""></span></p>
+<p><span style="font-size: 14px;">如果Activity1需要和Activity2进行联系，二者不需要直接联系，而是通过Intent作为桥梁。通俗来讲，Intnet类似于中介、媒婆的角色。</span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 14px;"><strong>2、对于向这三种组件发送intent有不同的机制： </strong></span></p>
+<ul>
+<li><span style="font-size: 14px;">使用Context.startActivity() 或 Activity.startActivityForResult()，传入一个intent来启动一个activity。<span style="line-height: 1.5;">使用 Activity.setResult()，传入一个intent来从activity中返回结果。</span></span></li>
+</ul>
+<ul>
+<li><span style="font-size: 14px;">将intent对象传给Context.startService()来启动一个service或者传消息给一个运行的service。<span style="line-height: 1.5;">将intent对象传给 Context.bindService()来绑定一个service。</span></span></li>
+</ul>
+<ul>
+<li><span style="font-size: 14px;">将intent对象传给 Context.sendBroadcast()，Context.sendOrderedBroadcast()，或者Context.sendStickyBroadcast()<span style="line-height: 1.5;">等广播方法，则它们被传给 broadcast receiver。</span></span></li>
+<li></li>
+</ul>
+<p><span style="font-size: 14px;"><strong>二、Intent的相关属性：</strong></span></p>
+<ul>
+<li><span style="font-size: 14px;">Intent由以下各个组成部分：</span></li>
+<li><span style="font-size: 14px;">component(组件)：目的组件</span></li>
+<li><span style="font-size: 14px;">action（动作）：用来表现意图的行动</span></li>
+<li><span style="font-size: 14px;">category（类别）：用来表现动作的类别</span></li>
+<li><span style="font-size: 14px;">data（数据）：表示与动作要操纵的数据</span></li>
+<li><span style="font-size: 14px;">type（数据类型）：对于data范例的描写</span></li>
+<li><span style="font-size: 14px;">extras（扩展信息）：扩展信息</span></li>
+<li><span style="font-size: 14px;">Flags（标志位）：期望这个意图的运行模式</span></li>
+</ul>
+<p><span style="font-size: 14px;">Intent类型分为<span style="color: #0000ff;">显式Intent（直接类型）、<span style="color: #0000ff;">隐式Intent（间接类型）。官方建议使用隐式Intent。上述属性中，component属性为直接类型，其他均为间接类型。</span></span></span></p>
+<p><span style="font-size: 14px;">相比与显式Intent，隐式Intnet则含蓄了许多，它并不明确指出我们想要启动哪一个活动，而是指定一系列更为抽象的action和category等信息，然后交由系统去分析这个Intent，并帮我们找出合适的活动去启动。</span></p>
+<p><span style="font-size: 14px;">Activity 中 Intent Filter 的匹配过程 ：</span></p>
+<p><span style="font-size: 14px;"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/061058457504768.png" alt=""></span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 14px;"><strong>1、component(组件)：目的组件</strong></span></p>
+<p><span style="font-size: 14px;">Component属性明确指定Intent的目标组件的类名称。（属于直接Intent）</span></p>
+<p><span style="font-size: 14px;">如果 component这个属性有指定的话，将直接使用它指定的组件。指定了这个属性以后，Intent的其它所有属性都是可选的。</span></p>
+<p><span style="font-size: 14px;">例如，启动第二个Activity时，我们可以这样来写：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 14px;"><span style="color: #008080;"> 1         button1.setOnClickListener(<span style="color: #0000ff;">new<span style="color: #000000;"> OnClickListener() {            
+<span style="color: #008080;"> 2 <span style="color: #000000;">            @Override
+<span style="color: #008080;"> 3             <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> onClick(View v) {
+<span style="color: #008080;"> 4                 <span style="color: #008000;">//<span style="color: #008000;">创建一个意图对象
+<strong><span style="color: #008080;"> 5                 Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent();
+<span style="color: #008080;"> 6                 <span style="color: #008000;">//<span style="color: #008000;">创建组件，通过组件来响应
+<span style="color: #008080;"> 7                 ComponentName component = <span style="color: #0000ff;">new ComponentName(MainActivity.<span style="color: #0000ff;">this, SecondActivity.<span style="color: #0000ff;">class<span style="color: #000000;">);
+<span style="color: #008080;"> 8 <span style="color: #000000;">                intent.setComponent(component);                
+<span style="color: #008080;"> 9 </span></span></span></span></span></span></span></span></span></span></span></span></span></span></strong><span style="color: #000000;"><strong>                startActivity(intent);</strong>                
+<span style="color: #008080;">10 <span style="color: #000000;">            }
+<span style="color: #008080;">11         });</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 14px;">如果写的简单一点，监听事件onClick()方法里可以这样写：</span></p>
+<div class="cnblogs_code">
+<pre><span style="font-size: 14px;"><strong><span style="color: #008080;">1                 Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent();
+<span style="color: #008080;">2                 <span style="color: #008000;">//<span style="color: #008000;">setClass函数的第一个参数是一个Context对象
+<span style="color: #008080;">3                 <span style="color: #008000;">//<span style="color: #008000;">Context是一个类，Activity是Context类的子类，也就是说，所有的Activity对象，都可以向上转型为Context对象
+<span style="color: #008080;">4                 <span style="color: #008000;">//<span style="color: #008000;">setClass函数的第二个参数是一个Class对象，在当前场景下，应该传入需要被启动的Activity类的class对象
+<span style="color: #008080;">5                 intent.setClass(MainActivity.<span style="color: #0000ff;">this, SecondActivity.<span style="color: #0000ff;">class<span style="color: #000000;">);
+<span style="color: #008080;">6                 startActivity(intent);</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></strong>    </span></pre>
+</div>
+<p><span style="font-size: 14px;">再简单一点，可以这样写：（当然，也是最常见的写法）</span></p>
+<div class="cnblogs_code">
+<pre><span style="font-size: 14px;"><strong><span style="color: #008080;">1                 Intent intent = <span style="color: #0000ff;">new Intent(MainActivity.<span style="color: #0000ff;">this,SecondActivity.<span style="color: #0000ff;">class<span style="color: #000000;">);
+<span style="color: #008080;">2                 startActivity(intent);</span></span></span></span></span></span></strong></span></pre>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="font-size: 14px;"><strong>2、Action（动作）：用来表现意图的行动 </strong></span></p>
+<p><span style="font-size: 14px;">当日常生活中，描述一个意愿或愿望的时候，总是有一个动词在其中。比如：我想“做”三个俯卧撑；我要“写” 一封情书，等等。在Intent中，Action就是描述做、写等动作的，当你指明了一个Action，执行者就会依照这个动作的指示，接受相关输入，表现对应行为，产生符合的输出。在Intent类中，定义了一批量的动作，比如ACTION_VIEW，ACTION_PICK等， 基本涵盖了常用动作。加的动作越多，越精确。</span></p>
+<p><span style="font-size: 14px;">Action 是一个用户定义的字符串，用于描述一个 Android 应用程序组件，一个 Intent Filter 可以包含多个 Action。在 AndroidManifest.xml 的Activity 定义时，可以在其 <span style="color: #0000ff;">&lt;intent-filter &gt;节点指定<span style="color: #0000ff;">一个 Action列表用于标识 Activity 所能接受的“动作”。</span></span></span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 14px;"><strong>3、category（类别）：用来表现动作的类别 </strong></span></p>
+<p><span style="font-size: 14px;">Category属性也是作为&lt;intent-filter&gt;子元素来声明的。例如：</span></p>
+<p><span style="font-size: 14px;">&lt;intent-filter&gt;</span></p>
+<p><span style="font-size: 14px;">　　&lt;action android:name="com.vince.intent.MY_ACTION"&gt;&lt;/action&gt;</span></p>
+<p><span style="font-size: 14px;">　　&lt;category android:name="com.vince.intent.MY_CATEGORY"&gt;&lt;/category&gt;&nbsp;</span></p>
+<p><span style="font-size: 14px;">　　&lt;category android:name="android.intent.category.DEFAULT"&gt;&lt;/category&gt;&nbsp;</span></p>
+<p><span style="font-size: 14px;">&lt;/intent-filter&gt;&nbsp;&nbsp;&nbsp;</span></p>
+<p><span style="font-size: 14px;">Action 和category通常是放在一起用的，所以这里一起介绍一下。我们来先来举一个例子：</span></p>
+<p><span style="font-size: 14px;">新建一个工程文件smyh006_Intent01，在默认文件的基础之上，新建文件SecondActicity.java和activity_second.xml。</span></p>
+<p><span style="font-size: 14px;">紧接着，我们要到清单文件中进行注册，打开AndroidManifest.xml，添加<span style="color: #0000ff;">SecondActivity的action和category的过滤器：</span></span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 14px;"><span style="color: #008080;">1         <span style="color: #0000ff;">&lt;<span style="color: #800000;">activity 
+<span style="color: #008080;">2             <span style="color: #ff0000;">android:name<span style="color: #0000ff;">=".SecondActivity"<span style="color: #0000ff;">&gt;
+<strong><span style="color: #008080;">3             <span style="color: #0000ff;">&lt;<span style="color: #800000;">intent-filter<span style="color: #0000ff;">&gt;
+<span style="color: #008080;">4                  <span style="color: #0000ff;">&lt;<span style="color: #800000;">action <span style="color: #ff0000;">android:name<span style="color: #0000ff;">="com.example.smyh006intent01.MY_ACTION"<span style="color: #0000ff;">/&gt;
+<span style="color: #008080;">5                  <span style="color: #0000ff;">&lt;<span style="color: #800000;">category <span style="color: #ff0000;">android:name<span style="color: #0000ff;">="android.intent.category.DEFAULT" <span style="color: #0000ff;">/&gt;
+<span style="color: #008080;">6             <span style="color: #0000ff;">&lt;/<span style="color: #800000;">intent-filter<span style="color: #0000ff;">&gt;  </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></strong>          
+<span style="color: #008080;">7         <span style="color: #0000ff;">&lt;/<span style="color: #800000;">activity<span style="color: #0000ff;">&gt;</span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 14px;">上方代码，表示SecondActicity可以匹配第4行的MY_ACTION这个动作，此时，如果在其他的Acticity通过这个action的条件来查找，那SecondActicity就具备了这个条件。类似于相亲时，我要求对方有哪些条件，然后对方这个SecondActicity恰巧满足了这个条件（够通俗了吧）。</span></p>
+<p><span style="font-size: 14px;">注：<span style="color: #0000ff;">如果没有指定的category，则必须使用默认的DEFAULT（即上方第5行代码）。</span></span></p>
+<p><span style="font-size: 14px;">也就是说：<span style="color: #0000ff;">只有&lt;action&gt;和&lt;category&gt;中的内容同时能够匹配上Intent中指定的action和category时，这个活动才能响应Intent。如果使用的是DEFAULT这种默认的category，在稍后调用startActivity()方法的时候会自动将这个category添加到Intent中。</span></span></p>
+<p><span style="font-size: 14px;">现在来修改MainActivity.java中按钮的点击事件，代码如下：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 14px;"><span style="color: #008080;"> 1         button1.setOnClickListener(<span style="color: #0000ff;">new<span style="color: #000000;"> OnClickListener() {            
+<span style="color: #008080;"> 2 <span style="color: #000000;">            @Override
+<span style="color: #008080;"> 3             <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> onClick(View v) {
+<span style="color: #008080;"> 4                 <span style="color: #008000;">//<span style="color: #008000;">启动另一个Activity，（通过action属性进行查找）
+<span style="color: #008080;"> 5                 Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent();
+<span style="color: #008080;"> 6                 <span style="color: #008000;">//<span style="color: #008000;">设置动作（实际action属性就是一个字符串标记而已）
+<span style="color: #008080;"> 7               <strong>  intent.setAction("com.example.smyh006intent01.MY_ACTION"); <span style="color: #008000;">//<span style="color: #008000;">方法：Intent android.content.Intent.setAction(String action)</span></span></strong>
+<span style="color: #008080;"> 8 <span style="color: #000000;">                startActivity(intent);        
+<span style="color: #008080;"> 9 <span style="color: #000000;">            }
+<span style="color: #008080;">10         });</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 14px;">上方代码中，也可以换成下面这种简洁的方式：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 14px;"><span style="color: #008080;">1         button1.setOnClickListener(<span style="color: #0000ff;">new<span style="color: #000000;"> OnClickListener() {            
+<span style="color: #008080;">2 <span style="color: #000000;">            @Override
+<span style="color: #008080;">3             <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> onClick(View v) {
+<span style="color: #008080;">4                 <span style="color: #008000;">//<span style="color: #008000;">启动另一个Activity，（通过action属性进行查找）
+<strong><span style="color: #008080;">5                 Intent intent = <span style="color: #0000ff;">new Intent("com.example.smyh006intent01.MY_ACTION");<span style="color: #008000;">//</span></span></span></strong><span style="color: #008000;"><strong>方法： android.content.Intent.Intent(String action) </strong>               
+<span style="color: #008080;">6 <span style="color: #000000;">                startActivity(intent);        
+<span style="color: #008080;">7 <span style="color: #000000;">            }
+<span style="color: #008080;">8         });</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 14px;">上方第5行代码：在这个Intent中，我并没有指定具体哪一个Activity，我只是指定了一个action的常量。所以说，隐式Intent的作用就表现的淋漓尽致了。此时，点击MainActicity中的按钮，就会跳到SecondActicity中去。</span></p>
+<p><span style="font-size: 14px;">上述情况只有SecondActicity匹配成功。<span style="color: #0000ff;">如果有多个组件匹配成功，就会以对话框列表的方式让用户进行选择。我们来详细介绍一下：</span></span></p>
+<p><span style="font-size: 14px;">我们新建文件ThirdActicity.java和activity_third.xml，然后在清单文件AndroidManifest.xml中添加<span style="color: #0000ff;">ThirdActivity的action和category的过滤器：</span></span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 14px;"><span style="color: #008080;">1         <span style="color: #0000ff;">&lt;<span style="color: #800000;">activity 
+<span style="color: #008080;">2             <span style="color: #ff0000;">android:name<span style="color: #0000ff;">=".ThirdActivity"<span style="color: #0000ff;">&gt;
+<span style="color: #008080;">3             <span style="color: #0000ff;">&lt;<span style="color: #800000;">intent-filter<span style="color: #0000ff;">&gt;
+<span style="color: #008080;">4                  <span style="color: #0000ff;">&lt;<span style="color: #800000;">action <span style="color: #ff0000;">android:name<span style="color: #0000ff;">="com.example.smyh006intent01.MY_ACTION"<span style="color: #0000ff;">/&gt;
+<span style="color: #008080;">5                  <span style="color: #0000ff;">&lt;<span style="color: #800000;">category <span style="color: #ff0000;">android:name<span style="color: #0000ff;">="android.intent.category.DEFAULT" <span style="color: #0000ff;">/&gt;
+<span style="color: #008080;">6             <span style="color: #0000ff;">&lt;/<span style="color: #800000;">intent-filter<span style="color: #0000ff;">&gt;            
+<span style="color: #008080;">7         <span style="color: #0000ff;">&lt;/<span style="color: #800000;">activity<span style="color: #0000ff;">&gt; </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 14px;">此时，运行程序，当点击MainActivity中的按钮时，弹出如下界面：</span></p>
+<p><span style="font-size: 14px;"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/061105265326026.png" alt="" width="527" height="937"></span></p>
+<p><span style="font-size: 14px;">相信大家看到了这个界面，应该就一目了然了。于是我们可以做出如下总结：</span></p>
+<p><span style="font-size: 14px;">在自定义动作时，使用activity组件时，必须添加一个默认的类别</span></p>
+<p><span style="font-size: 14px;">具体的实现为：</span></p>
+<p><span style="font-size: 14px;">&lt;intent-filter&gt;</span></p>
+<p><span style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;action android:name="com.example.action.MY_ACTION"/&gt;</span></p>
+<p><span style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;category android:name="android.intent.category.DEFAULT"/&gt;</span></p>
+<p><span style="font-size: 14px;">&lt;/intent-filter&gt;</span></p>
+<p><span style="color: #0000ff; font-size: 14px;">如果有多个组件被匹配成功，就会以对话框列表的方式让用户进行选择。</span></p>
+<p><span style="font-size: 14px;"><span style="color: #0000ff;">每个Intent中只能指定一个action，但却能指定多个category；类别越多，动作越具体，意图越明确（类似于相亲时，给对方提了很多要求）。</span></span></p>
+<p><span style="font-size: 14px;">目前我们的Intent中只有一个默认的category，现在可以通过intent.addCategory()方法来实现。修改MainActivity中按钮的点击事件，代码如下：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 14px;"><span style="color: #008080;"> 1         button1.setOnClickListener(<span style="color: #0000ff;">new<span style="color: #000000;"> OnClickListener() {            
+<span style="color: #008080;"> 2 <span style="color: #000000;">            @Override
+<span style="color: #008080;"> 3             <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> onClick(View v) {
+<span style="color: #008080;"> 4                 <span style="color: #008000;">//<span style="color: #008000;">启动另一个Activity，（通过action属性进行查找）
+<span style="color: #008080;"> 5                 Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent();
+<span style="color: #008080;"> 6                 <span style="color: #008000;">//<span style="color: #008000;">设置动作（实际action属性就是一个字符串标记而已）
+<span style="color: #008080;"> 7                 intent.setAction("com.example.smyh006intent01.MY_ACTION"); <span style="color: #008000;">//<span style="color: #008000;">方法：Intent android.content.Intent.setAction(String action)
+<strong><span style="color: #008080;"> 8                 intent.addCategory("com.example.smyh006intent01.MY_CATEGORY"<span style="color: #000000;">);
+</span></span></strong><span style="color: #008080;"> 9 <span style="color: #000000;">                startActivity(intent);        
+<span style="color: #008080;">10 <span style="color: #000000;">            }
+<span style="color: #008080;">11         });</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 14px;">既然在Intent中增加了一个category，那么我们要在清单文件中去声明这个category，不然程序将无法运行。代码如下：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 14px;"><span style="color: #008080;">1 <span style="color: #000000;">            android:name=".SecondActivity"&gt;
+<span style="color: #008080;">2             <span style="color: #0000ff;">&lt;<span style="color: #800000;">intent-filter<span style="color: #0000ff;">&gt;
+<span style="color: #008080;">3                  <span style="color: #0000ff;">&lt;<span style="color: #800000;">action <span style="color: #ff0000;">android:name<span style="color: #0000ff;">="com.example.smyh006intent01.MY_ACTION"<span style="color: #0000ff;">/&gt;
+<span style="color: #008080;">4                  <span style="color: #0000ff;">&lt;<span style="color: #800000;">category <span style="color: #ff0000;">android:name<span style="color: #0000ff;">="android.intent.category.DEFAULT" <span style="color: #0000ff;">/&gt;
+<strong><span style="color: #008080;">5                  <span style="color: #0000ff;">&lt;<span style="color: #800000;">category <span style="color: #ff0000;">android:name<span style="color: #0000ff;">="com.example.smyh006intent01.MY_CATEGORY" <span style="color: #0000ff;">/&gt;</span></span></span></span></span></span></strong>
+<span style="color: #008080;">6             <span style="color: #0000ff;">&lt;/<span style="color: #800000;">intent-filter<span style="color: #0000ff;">&gt;            
+<span style="color: #008080;">7         <span style="color: #0000ff;">&lt;/<span style="color: #800000;">activity<span style="color: #0000ff;">&gt;</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 14px;">此时，点击MainActicity中的按钮，就会跳到SecondActicity中去。</span></p>
+<p><span style="font-size: 14px;">总结如下：</span></p>
+<p><span style="font-size: 14px;">自定义类别： <span style="color: #0000ff;">在Intent添加类别可以添加多个类别，那就要求被匹配的组件必须同时满足这多个类别，才能匹配成功。操作Activity的时候，如果没有类别，须加上默认类别</span></span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 14px;"><strong>4、data（数据）：表示与动作要操纵的数据 </strong></span></p>
+<ul>
+<li><span style="font-size: 14px;">Data属性是Android要访问的数据，和action和Category声明方式相同，也是在&lt;intent-filter&gt;中。</span></li>
+<li><span style="font-size: 14px;">多个组件匹配成功显示优先级高的； 相同显示列表。</span></li>
+</ul>
+<p><span style="font-size: 14px;">Data是用一个uri对象来表示的，uri代表数据的地址，属于一种标识符。通常情况下，我们使用<span style="color: #0000ff;">action+data属性的组合来描述一个意图：做什么</span></span></p>
+<p><span style="font-size: 14px;">使用隐式Intent，我们不仅可以启动自己程序内的活动，还可以启动其他程序的活动，这使得Android多个应用程序之间的功能共享成为了可能。比如应用程序中需要展示一个网页，没有必要自己去实现一个浏览器（事实上也不太可能），而是只需要条用系统的浏览器来打开这个网页就行了。</span></p>
+<p><span style="font-size: 14px;">【实例】<span style="color: #0000ff;">打开指定网页：</span></span></p>
+<p><span style="font-size: 14px;">MainActivity.java中，监听器部分的核心代码如下：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 14px;"><span style="color: #008080;"> 1         button1.setOnClickListener(<span style="color: #0000ff;">new<span style="color: #000000;"> OnClickListener() {            
+<span style="color: #008080;"> 2 <span style="color: #000000;">            @Override
+<span style="color: #008080;"> 3             <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> onClick(View v) {
+<span style="color: #008080;"> 4                 Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent();
+<strong><span style="color: #008080;"> 5 <span style="color: #000000;">                intent.setAction(Intent.ACTION_VIEW);
+</span></span></strong><span style="color: #008080;"> 6                 Uri data = Uri.parse("http://www.baidu.com"<span style="color: #000000;">);
+<strong><span style="color: #008080;"> 7 </span></strong><span style="color: #000000;"><strong>                intent.setData(data);   </strong>             
+<span style="color: #008080;"> 8 <span style="color: #000000;">                startActivity(intent);        
+<span style="color: #008080;"> 9 <span style="color: #000000;">            }
+<span style="color: #008080;">10         });</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 14px;">当然，上方代码也可以简写成：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 14px;"><span style="color: #008080;">1         button1.setOnClickListener(<span style="color: #0000ff;">new<span style="color: #000000;"> OnClickListener() {            
+<span style="color: #008080;">2 <span style="color: #000000;">            @Override
+<span style="color: #008080;">3             <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> onClick(View v) {
+<strong><span style="color: #008080;">4                 Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent(Intent.ACTION_VIEW);
+<span style="color: #008080;">5                 intent.setData(Uri.parse("http://www.baidu.com"</span></span></span></span></strong><span style="color: #000000;"><strong>));   </strong>             
+<span style="color: #008080;">6 <span style="color: #000000;">                startActivity(intent);        
+<span style="color: #008080;">7 <span style="color: #000000;">            }
+<span style="color: #008080;">8         });</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 14px;">第4行代码：指定了Intent的action是 <strong>Intent.ACTION_VIEW</strong>，表示查看的意思，这是一个Android系统内置的动作；</span></p>
+<p><span style="font-size: 14px;">第5行代码：通过Uri.parse()方法，将一个网址字符串解析成一个Uri对象，再调用intent的setData()方法将这个Uri对象传递进去。</span></p>
+<p><span style="font-size: 14px;">当点击按钮时，将跳到如下界面：</span></p>
+<p><span style="font-size: 14px;"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/061110213918979.png" alt="" width="572" height="1017"></span></p>
+<p><span style="font-size: 14px;">此时， 调用的是系统默认的浏览器，也就是说，只调用了这一个组件。现在如果有多个组件得到了匹配，应该是什么情况呢？</span></p>
+<p><span style="font-size: 14px;">我们修改修改清单文件中对SecondAcivity的声明：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 14px;"><span style="color: #008080;">1         <span style="color: #0000ff;">&lt;<span style="color: #800000;">activity 
+<span style="color: #008080;">2             <span style="color: #ff0000;">android:name<span style="color: #0000ff;">=".SecondActivity"<span style="color: #0000ff;">&gt;
+<span style="color: #008080;">3             <span style="color: #0000ff;">&lt;<span style="color: #800000;">intent-filter<span style="color: #0000ff;">&gt;
+<strong><span style="color: #008080;">4                  <span style="color: #0000ff;">&lt;<span style="color: #800000;">action <span style="color: #ff0000;">android:name<span style="color: #0000ff;">="android.intent.action.VIEW" <span style="color: #0000ff;">/&gt;</span></span></span></span></span></span></strong>
+<span style="color: #008080;">5                  <span style="color: #0000ff;">&lt;<span style="color: #800000;">category <span style="color: #ff0000;">android:name<span style="color: #0000ff;">="android.intent.category.DEFAULT" <span style="color: #0000ff;">/&gt;
+<strong><span style="color: #008080;">6                  <span style="color: #0000ff;">&lt;<span style="color: #800000;">data <span style="color: #ff0000;">android:scheme<span style="color: #0000ff;">="http"<span style="color: #ff0000;"> android:host<span style="color: #0000ff;">="www.baidu.com"<span style="color: #0000ff;">/&gt;  </span></span></span></span></span></span></span></span></strong>               
+<span style="color: #008080;">7             <span style="color: #0000ff;">&lt;/<span style="color: #800000;">intent-filter<span style="color: #0000ff;">&gt;            
+<span style="color: #008080;">8         <span style="color: #0000ff;">&lt;/<span style="color: #800000;">activity<span style="color: #0000ff;">&gt;</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 14px;">现在，SecondActivity也匹配成功了，我们运行程序，点击MainActicity的按钮时，弹出如下界面供我们选择：</span></p>
+<p><span style="font-size: 14px;"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/061111341888940.png" alt="" width="524" height="932"></span></p>
+<p><span style="font-size: 14px;">我们可以总结如下：</span></p>
+<ul>
+<li><span style="color: #0000ff; font-size: 14px;">当Intent匹配成功的组件有多个时，显示优先级高的组件，如果优先级相同，显示列表让用户自己选择</span></li>
+<li><span style="color: #0000ff; font-size: 14px;">优先级从-1000至1000，并且其中一个必须为负的才有效</span></li>
+</ul>
+<p><span style="font-size: 14px;">注：系统默认的浏览器并没有做出优先级声明，其优先级默认为正数。</span></p>
+<p><span style="font-size: 14px;">优先级的配置如下：</span></p>
+<p><span style="font-size: 14px;">在清单文件中修改对SecondAcivity的声明，即增加一行代码，通过来android:priority设置优先级，如下：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 14px;"><span style="color: #008080;">1         <span style="color: #0000ff;">&lt;<span style="color: #800000;">activity 
+<span style="color: #008080;">2             <span style="color: #ff0000;">android:name<span style="color: #0000ff;">=".SecondActivity"<span style="color: #0000ff;">&gt;
+<span style="color: #008080;">3             <span style="color: #0000ff;">&lt;<span style="color: #800000;">intent-filter <strong><span style="color: #ff0000;">android:priority<span style="color: #0000ff;">="-1"</span></span></strong><span style="color: #0000ff;">&gt;
+<span style="color: #008080;">4                  <span style="color: #0000ff;">&lt;<span style="color: #800000;">action <span style="color: #ff0000;">android:name<span style="color: #0000ff;">="android.intent.action.VIEW" <span style="color: #0000ff;">/&gt;
+<span style="color: #008080;">5                  <span style="color: #0000ff;">&lt;<span style="color: #800000;">category <span style="color: #ff0000;">android:name<span style="color: #0000ff;">="android.intent.category.DEFAULT" <span style="color: #0000ff;">/&gt;
+<span style="color: #008080;">6                  <span style="color: #0000ff;">&lt;<span style="color: #800000;">data <span style="color: #ff0000;">android:scheme<span style="color: #0000ff;">="http"<span style="color: #ff0000;"> android:host<span style="color: #0000ff;">="www.baidu.com"<span style="color: #0000ff;">/&gt;                                  
+<span style="color: #008080;">7             <span style="color: #0000ff;">&lt;/<span style="color: #800000;">intent-filter<span style="color: #0000ff;">&gt;            
+<span style="color: #008080;">8         <span style="color: #0000ff;">&lt;/<span style="color: #800000;">activity<span style="color: #0000ff;">&gt;</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 14px;">注：</span></p>
+<p><span style="font-size: 14px;">Data属性的声明中要指定访问数据的Uri和MIME类型。可以在&lt;data&gt;元素中通过一些属性来设置：</span></p>
+<p><span style="font-size: 14px;">android:scheme、android:path、android:port、android:mimeType、android:host等，通过这些属性来对应一个典型的Uri格式scheme://host:port/path。例如：http://www.google.com。</span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 14px;"><strong>5、type（数据类型）：对于data范例的描写 </strong></span></p>
+<p><span style="font-size: 14px;">如果Intent对象中既包含Uri又包含Type，那么，在&lt;intent-filter&gt;中也必须二者都包含才能通过测试。</span></p>
+<p><span style="font-size: 14px;">Type属性用于明确指定Data属性的数据类型或MIME类型，但是通常来说，当Intent不指定Data属性时，Type属性才会起作用，否则Android系统将会根据Data属性值来分析数据的类型，所以无需指定Type属性。</span></p>
+<p><span style="font-size: 14px;">data和type属性一般只需要一个，通过setData方法会把type属性设置为null，相反设置setType方法会把data设置为null，如果想要两个属性同时设置，要使用Intent.setDataAndType()方法。</span></p>
+<p><span style="font-size: 14px;">【任务】：<span style="color: #0000ff;">data+type属性的使用 <span style="font-size: 16px;"><small><small>【实例】：<span style="color: #0000ff;">播放指定路径的mp3文件。</span></small></small></span></span></span></p>
+<p><span style="font-size: 14px;"><small><small>具体如下：</small></small></span></p>
+<p><span style="font-size: 14px;">新建工程文件smyh006_Intent02，MainActivity.java中按钮监听事件部分的代码如下：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1         button.setOnClickListener(<span style="color: #0000ff;">new<span style="color: #000000;"> OnClickListener(){
+<span style="color: #008080;"> 2 <span style="color: #000000;">            @Override
+<span style="color: #008080;"> 3             <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> onClick(View v) {
+<span style="color: #008080;"> 4                 Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent();
+<span style="color: #008080;"> 5 <span style="color: #000000;">                intent.setAction(Intent.ACTION_VIEW);
+<strong><span style="color: #008080;"> 6                 Uri data = Uri.parse("file:///storage/sdcard0/平凡之路.mp3"<span style="color: #000000;">);
+<span style="color: #008080;"> 7                 <span style="color: #008000;">//<span style="color: #008000;">设置data+type属性
+<span style="color: #008080;"> 8                 intent.setDataAndType(data, "audio/mp3"); <span style="color: #008000;">//<span style="color: #008000;">方法：Intent android.content.Intent.setDataAndType(Uri data, String type)</span></span></span></span></span></span></span></span></strong>
+<span style="color: #008080;"> 9 <span style="color: #000000;">                startActivity(intent);                
+<span style="color: #008080;">10 <span style="color: #000000;">            }            
+<span style="color: #008080;">11         });</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 14px;">代码解释：</span></p>
+<p><span style="font-size: 14px;">第6行："file://"表示查找文件，后面再加上我的小米手机存储卡的路径：<span style="color: #0000ff;">/storage/sdcard0，再加上具体歌曲的路径。</span></span></p>
+<p><span style="font-size: 14px;">第8行：设置data+type属性　　</span></p>
+<p><span style="font-size: 14px;">运行后，当点击按钮时，效果如下：</span></p>
+<p><span style="font-size: 14px;"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/061115527977932.png" alt="" width="502" height="892"></span></p>
+<p><span style="font-size: 14px;">上方界面中，使用的是小米系统默认的音乐播放器。</span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 14px;"><strong>6、extras（扩展信息）：扩展信息 </strong></span></p>
+<p><span style="font-size: 14px;">是其它所有附加信息的集合。使用extras可以为组件提供扩展信息，比如，如果要执行“发送电子邮件”这个</span></p>
+<p><span style="font-size: 14px;">动作，可以将电子邮件的标题、正文等保存在extras里，传给电子邮件发送组件。</span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 14px;"><strong>7、Flags（标志位）：期望这个意图的运行模式 </strong></span></p>
+<p><span style="font-size: 14px;">一个程序启动后系统会为这个程序分配一个task供其使用，另外同一个task里面可以拥有不同应用程序的activity。那么，同一个程序能不能拥有多个task？这就涉及到加载activity的启动模式，这个需要单独讲一下。</span></p>
+<p><span style="font-size: 14px;">注：android中一组逻辑上在一起的activity被叫做task，自己认为可以理解成一个activity堆栈。</span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 14px;"><strong>三、Activity的启动模式：（面试注意）</strong></span></p>
+<p><span style="font-size: 14px;">Activity有<span style="color: #0000ff;">四种启动模式：standard、singleTop、singleTask、singleInstance。可以在AndroidManifest.xml中activity标签的属性<span style="color: #0000ff;">android:launchMode中设置该activity的加载模式。</span></span></span></p>
+<ul>
+<li><span style="font-size: 14px;">standard模式：默认的模式，以这种模式加载时，每当启动一个新的活动，必定会构造一个新的Activity<span style="color: #0000ff;">实例放到返回栈（目标task）的栈顶，不管这个Activity是否已经存在于返回栈中；</span></span></li>
+<li><span style="font-size: 14px;">singleTop模式：如果一个以singleTop模式启动的activity的实例已经存在于返回桟的<span style="color: #0000ff;">桟顶，那么再启动这个Activity时，不会创建新的实例，而是重用位于栈顶的那个实例，并且会调用该实例的onNewIntent()方法将Intent对象传递到这个实例中；</span></span></li>
+</ul>
+<p><span style="font-size: 14px;">注：如果以singleTop模式启动的activity的一个实例已经存在于返回桟中，但是不在桟顶，那么它的行为和standard模式相同，也会创建多个实例；</span></p>
+<ul>
+<li><span style="font-size: 14px;">singleTask模式：这种模式下，每次启动一个activity时，系统首先会在返回栈中检查是否存在该活动的实例，如果存在，则直接使用该实例，并把这个活动之上的所有活动统统<span style="color: #0000ff;">清除；如果没有发现就会创建一个新的活动实例；</span></span></li>
+</ul>
+<ul>
+<li><span style="font-size: 14px;">singleInstance模式：总是在<span style="color: #0000ff;">新的任务中开启，并且这个新的任务中<span style="color: #0000ff;">有且只有这一个实例，也就是说被该实例启动的其他activity会自动运行于另一个任务中。当再次启动该activity的实例时，会重新调用已存在的任务和实例。并且会调用这个实例的onNewIntent()方法，将Intent实例传递到该实例中。和singleTask相同，同一时刻在系统中只会存在一个这样的Activity实例。(singleInstance即单实例)</span></span></span></li>
+</ul>
+<p><span style="font-size: 14px;">注：前面三种模式中，每个应用程序都有自己的返回栈，同一个活动在不同的返回栈中入栈时，必然是创建了新的实例。而使用singleInstance模式可以解决这个问题，在这种模式下会有一个单独的返回栈来管理这个活动，不管是哪一个应用程序来访问这个活动，都公用同一个返回栈，也就解决了<span style="color: #0000ff;">共享活动实例的问题。（此时可以实现<span style="color: #0000ff;">任务之间的切换，而不是单独某个栈中的实例切换）</span></span></span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 14px;">其实我们不在清单文件中设置，只在代码中通过flag来设置也是可以的，如下：</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">1         Intent intent = <span style="color: #0000ff;">new Intent(MainActivity.<span style="color: #0000ff;">this,SecondActivity.<span style="color: #0000ff;">class<span style="color: #000000;">);
+<strong><span style="color: #008080;">2         <span style="color: #008000;">//<span style="color: #008000;">相当于singleTask
+<span style="color: #008080;">3 <span style="color: #000000;">        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+</span></span></span></span></span></strong><span style="color: #008080;">4         startActivity(intent);</span></span></span></span></span></span></pre>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">1         Intent intent = <span style="color: #0000ff;">new Intent(MainActivity.<span style="color: #0000ff;">this,SecondActivity.<span style="color: #0000ff;">class<span style="color: #000000;">);
+<strong><span style="color: #008080;">2         <span style="color: #008000;">//<span style="color: #008000;">相当于singleTop
+<span style="color: #008080;">3 <span style="color: #000000;">        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+</span></span></span></span></span></strong><span style="color: #008080;">4         startActivity(intent);</span></span></span></span></span></span></pre>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong><span style="font-size: 14px;">三、Intent的常见应用：</span></strong></p>
+<p><span style="font-size: 14px;">1、<span style="color: #0000ff;">打开指定网页：（直接复制的上面的代码）</span></span></p>
+<p><span style="font-size: 14px;">MainActivity.java中，监听器部分的核心代码如下：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1         button1.setOnClickListener(<span style="color: #0000ff;">new<span style="color: #000000;"> OnClickListener() {            
+<span style="color: #008080;"> 2 <span style="color: #000000;">            @Override
+<span style="color: #008080;"> 3             <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> onClick(View v) {
+<span style="color: #008080;"> 4                 Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent();
+<strong><span style="color: #008080;"> 5                 intent.setAction(Intent.ACTION_VIEW);<span style="color: #008000;">//<span style="color: #008000;">方法：android.content.Intent.Intent(String action)
+<span style="color: #008080;"> 6                 Uri data = Uri.parse("http://www.baidu.com"<span style="color: #000000;">);
+<span style="color: #008080;"> 7 </span></span></span></span></span></span></strong><span style="color: #000000;"><strong>                intent.setData(data); </strong>               
+<span style="color: #008080;"> 8 <span style="color: #000000;">                startActivity(intent);        
+<span style="color: #008080;"> 9 <span style="color: #000000;">            }
+<span style="color: #008080;">10         });</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 14px;">当然，上方代码也可以简写成：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;">1   button1.setOnClickListener(<span style="color: #0000ff;">new<span style="color: #000000;"> OnClickListener() {            
+<span style="color: #008080;">2 <span style="color: #000000;">            @Override
+<span style="color: #008080;">3             <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> onClick(View v) {
+<strong><span style="color: #008080;">4                 Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent(Intent.ACTION_VIEW);
+<span style="color: #008080;">5                 intent.setData(Uri.parse("http://www.baidu.com"</span></span></span></span></strong><span style="color: #000000;"><strong>));    </strong>            
+<span style="color: #008080;">6 <span style="color: #000000;">                startActivity(intent);        
+<span style="color: #008080;">7 <span style="color: #000000;">            }
+<span style="color: #008080;">8         });</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 14px;">第4行代码：指定了Intent的action是 <strong>Intent.ACTION_VIEW</strong>，表示查看的意思，这是一个Android系统内置的动作；</span></p>
+<p><span style="font-size: 14px;">第5行代码：通过Uri.parse()方法，将一个网址字符串解析成一个Uri对象，再调用intent的setData()方法将这个Uri对象传递进去。</span></p>
+<p><span style="font-size: 14px;">或者可以写成：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;">1         button1.setOnClickListener(<span style="color: #0000ff;">new<span style="color: #000000;"> OnClickListener() {            
+<span style="color: #008080;">2 <span style="color: #000000;">            @Override
+<span style="color: #008080;">3             <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> onClick(View v) {
+<strong><span style="color: #008080;">4                 Uri uri = Uri.parse("http://www.baidu.com"<span style="color: #000000;">);
+<span style="color: #008080;">5                 Intent intent = <span style="color: #0000ff;">new Intent(Intent.ACTION_VIEW,uri);<span style="color: #008000;">//</span></span></span></span></span></strong><span style="color: #008000;"><strong>方法： android.content.Intent.Intent(String action, Uri uri)</strong>        
+<span style="color: #008080;">6 <span style="color: #000000;">                startActivity(intent);        
+<span style="color: #008080;">7 <span style="color: #000000;">            }
+<span style="color: #008080;">8         });</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 14px;">2、<span style="color: #0000ff;">打电话：</span></span></p>
+<p><span style="font-size: 14px;">【方式一】打开拨打电话的界面：</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">1                 Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent(Intent.ACTION_DIAL);
+<span style="color: #008080;">2                 intent.setData(Uri.parse("tel:10086"<span style="color: #000000;">));
+<span style="color: #008080;">3                 startActivity(intent);  </span></span></span></span></span></span></pre>
+</div>
+<p><span style="font-size: 14px;">运行程序后，点击按钮，显示如下界面：</span></p>
+<p><span style="font-size: 14px;"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/061127089692259.png" alt="" width="531" height="944"></span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 14px;">【方式二】直接拨打电话：</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">1                 Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent(Intent.ACTION_CALL);
+<span style="color: #008080;">2                 intent.setData(Uri.parse("tel:10086"<span style="color: #000000;">));
+<span style="color: #008080;">3                 startActivity(intent);</span></span></span></span></span></span></pre>
+</div>
+<p><span style="font-size: 14px;">要使用这个功能必须在配置文件中加入权限：（加一行代码）</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">1     &lt;uses-<span style="color: #000000;">sdk
+<span style="color: #008080;">2         android:minSdkVersion="8"
+<span style="color: #008080;">3         android:targetSdkVersion="16" /&gt;
+<span style="color: #008080;">4     &lt;uses-permission android:name="android.permission.CALL_PHONE"/&gt;</span></span></span></span></span></pre>
+</div>
+<p>&nbsp;</p>
+<p><span style="font-size: 14px;">3、<span style="color: #0000ff;">发送短信：</span></span></p>
+<p><span style="font-size: 14px;">【方式一】打开发送短信的界面：action+type</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">1         Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent(Intent.ACTION_VIEW);
+<span style="color: #008080;">2         intent.setType("vnd.android-dir/mms-sms"<span style="color: #000000;">);
+<span style="color: #008080;">3         intent.putExtra("sms_body", "具体短信内容"); <span style="color: #008000;">//<span style="color: #008000;">"sms_body"为固定内容
+<span style="color: #008080;">4         startActivity(intent); </span></span></span></span></span></span></span></span></span></pre>
+</div>
+<p><span style="font-size: 14px;">【方式二】打开发短信的界面(同时指定电话号码)：action+data</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">1         Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent(Intent.ACTION_SENDTO);
+<span style="color: #008080;">2         intent.setData(Uri.parse("smsto:18780260012"<span style="color: #000000;">));
+<span style="color: #008080;">3         intent.putExtra("sms_body", "具体短信内容"); <span style="color: #008000;">//<span style="color: #008000;">"sms_body"为固定内容        
+<span style="color: #008080;">4         startActivity(intent);</span></span></span></span></span></span></span></span></span></pre>
+</div>
+<p><span style="font-size: 14px;">4、<span style="color: #0000ff;">播放指定路径音乐：action+data+type</span></span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">1         Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent(Intent.ACTION_VIEW);
+<span style="color: #008080;">2         Uri uri = Uri.parse("file:///storage/sdcard0/平凡之路.mp3"); <span style="color: #008000;">////<span style="color: #008000;">路径也可以写成："/storage/sdcard0/平凡之路.mp3"
+<span style="color: #008080;">3         intent.setDataAndType(uri, "audio/mp3"); <span style="color: #008000;">//<span style="color: #008000;">方法：Intent android.content.Intent.setDataAndType(Uri data, String type)
+<span style="color: #008080;">4         startActivity(intent);</span></span></span></span></span></span></span></span></span></span></pre>
+</div>
+<p><span style="font-size: 14px;">5、<span style="color: #0000ff;">卸载程序：action+data（例如点击按钮，卸载某个应用程序，根据包名来识别）</span></span></p>
+<p><span style="font-size: 14px;">注：无论是安装还是卸载，应用程序是根据<span style="color: #0000ff;">包名package来识别的。</span></span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">1         Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent(Intent.ACTION_DELETE);
+<span style="color: #008080;">2         Uri data = Uri.parse("package:com.example.smyh006intent01"<span style="color: #000000;">);
+<span style="color: #008080;">3 <span style="color: #000000;">        intent.setData(data);
+<span style="color: #008080;">4         startActivity(intent);</span></span></span></span></span></span></span></span></pre>
+</div>
+<p><span style="font-size: 14px;">6、<span style="color: #0000ff;">安装程序：action+data+type</span></span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">1         Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent(Intent.ACTION_VIEW);
+<span style="color: #008080;">2         Uri data = Uri.fromFile(<span style="color: #0000ff;">new File("/storage/sdcard0/AndroidTest/smyh006_Intent01.apk"));    <span style="color: #008000;">//<span style="color: #008000;">路径不能写成："file:<span style="color: #008000;">//<span style="color: #008000;">/storage/sdcard0/···"
+<span style="color: #008080;">3         intent.setDataAndType(data, "application/vnd.android.package-archive");  <span style="color: #008000;">//<span style="color: #008000;">Type的字符串为固定内容
+<span style="color: #008080;">4         startActivity(intent);</span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+</div>
+<p><span style="font-size: 14px;">注：第2行的路径<span style="color: #0000ff;">不能写成："file:///storage/sdcard0/···"，不然报错如下：</span></span></p>
+<p><span style="font-size: 14px;"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/061132367358856.png" alt=""></span></p>
+<p><span style="font-size: 14px;">疑问：通过下面的这种方式安装程序，运行时为什么会出错呢？</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;">1     <span style="color: #008000;">//<span style="color: #008000;">通过指定的action来安装程序
+<span style="color: #008080;">2     <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> installClickTwo(View view){
+<span style="color: #008080;">3         Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent(Intent.ACTION_PACKAGE_ADDED);
+<span style="color: #008080;">4         Uri data = Uri.fromFile(<span style="color: #0000ff;">new File("/storage/sdcard0/AndroidTest/smyh006_Intent01.apk"));    <span style="color: #008000;">//<span style="color: #008000;">路径不能写成："file:<span style="color: #008000;">//<span style="color: #008000;">/storage/sdcard0/···"
+<span style="color: #008080;">5 <span style="color: #000000;">        intent.setData(data);
+<span style="color: #008080;">6 <span style="color: #000000;">        startActivity(intent);
+<span style="color: #008080;">7     }</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="font-size: 14px;">综上所述，完整版代码如下：</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1 <span style="color: #0000ff;">&lt;<span style="color: #800000;">LinearLayout <span style="color: #ff0000;">xmlns:android<span style="color: #0000ff;">="http://schemas.android.com/apk/res/android"
+<span style="color: #008080;"> 2 <span style="color: #ff0000;">    xmlns:tools<span style="color: #0000ff;">="http://schemas.android.com/tools"
+<span style="color: #008080;"> 3 <span style="color: #ff0000;">    android:layout_width<span style="color: #0000ff;">="match_parent"
+<span style="color: #008080;"> 4 <span style="color: #ff0000;">    android:layout_height<span style="color: #0000ff;">="match_parent"
+<span style="color: #008080;"> 5 <span style="color: #ff0000;">    android:paddingBottom<span style="color: #0000ff;">="@dimen/activity_vertical_margin"
+<span style="color: #008080;"> 6 <span style="color: #ff0000;">    android:paddingLeft<span style="color: #0000ff;">="@dimen/activity_horizontal_margin"
+<span style="color: #008080;"> 7 <span style="color: #ff0000;">    android:paddingRight<span style="color: #0000ff;">="@dimen/activity_horizontal_margin"
+<span style="color: #008080;"> 8 <span style="color: #ff0000;">    android:paddingTop<span style="color: #0000ff;">="@dimen/activity_vertical_margin"
+<span style="color: #008080;"> 9 <span style="color: #ff0000;">    android:orientation<span style="color: #0000ff;">="vertical"
+<span style="color: #008080;">10 <span style="color: #ff0000;">    tools:context<span style="color: #0000ff;">=".MainActivity" <span style="color: #0000ff;">&gt;
+<span style="color: #008080;">11     <span style="color: #0000ff;">&lt;<span style="color: #800000;">Button 
+<span style="color: #008080;">12         <span style="color: #ff0000;">android:id<span style="color: #0000ff;">="@+id/button1_browsePage"
+<span style="color: #008080;">13 <span style="color: #ff0000;">        android:layout_width<span style="color: #0000ff;">="match_parent"
+<span style="color: #008080;">14 <span style="color: #ff0000;">        android:layout_height<span style="color: #0000ff;">="wrap_content"
+<span style="color: #008080;">15 <span style="color: #ff0000;">        android:onClick<span style="color: #0000ff;">="browsePageClick"
+<span style="color: #008080;">16 <span style="color: #ff0000;">        android:text<span style="color: #0000ff;">="打开指定网页"<span style="color: #0000ff;">/&gt;   
+<span style="color: #008080;">17     <span style="color: #0000ff;">&lt;<span style="color: #800000;">Button 
+<span style="color: #008080;">18         <span style="color: #ff0000;">android:id<span style="color: #0000ff;">="@+id/button2_openDialPage"
+<span style="color: #008080;">19 <span style="color: #ff0000;">        android:layout_width<span style="color: #0000ff;">="match_parent"
+<span style="color: #008080;">20 <span style="color: #ff0000;">        android:layout_height<span style="color: #0000ff;">="wrap_content"
+<span style="color: #008080;">21 <span style="color: #ff0000;">        android:onClick<span style="color: #0000ff;">="openDialPageClick"
+<span style="color: #008080;">22 <span style="color: #ff0000;">        android:text<span style="color: #0000ff;">="打开拨号面板"<span style="color: #0000ff;">/&gt;
+<span style="color: #008080;">23     <span style="color: #0000ff;">&lt;<span style="color: #800000;">Button 
+<span style="color: #008080;">24         <span style="color: #ff0000;">android:id<span style="color: #0000ff;">="@+id/button3_dialPhone"
+<span style="color: #008080;">25 <span style="color: #ff0000;">        android:layout_width<span style="color: #0000ff;">="match_parent"
+<span style="color: #008080;">26 <span style="color: #ff0000;">        android:layout_height<span style="color: #0000ff;">="wrap_content"
+<span style="color: #008080;">27 <span style="color: #ff0000;">        android:onClick<span style="color: #0000ff;">="dialPhoneClick"
+<span style="color: #008080;">28 <span style="color: #ff0000;">        android:text<span style="color: #0000ff;">="直接拨打指定号码"<span style="color: #0000ff;">/&gt;
+<span style="color: #008080;">29     <span style="color: #0000ff;">&lt;<span style="color: #800000;">Button 
+<span style="color: #008080;">30         <span style="color: #ff0000;">android:id<span style="color: #0000ff;">="@+id/button4_openMsgPage"
+<span style="color: #008080;">31 <span style="color: #ff0000;">        android:layout_width<span style="color: #0000ff;">="match_parent"
+<span style="color: #008080;">32 <span style="color: #ff0000;">        android:layout_height<span style="color: #0000ff;">="wrap_content"
+<span style="color: #008080;">33 <span style="color: #ff0000;">        android:onClick<span style="color: #0000ff;">="openMsgPageClick"
+<span style="color: #008080;">34 <span style="color: #ff0000;">        android:text<span style="color: #0000ff;">="打开发短信的界面"<span style="color: #0000ff;">/&gt;
+<span style="color: #008080;">35     
+<span style="color: #008080;">36     
+<span style="color: #008080;">37      <span style="color: #0000ff;">&lt;<span style="color: #800000;">Button 
+<span style="color: #008080;">38         <span style="color: #ff0000;">android:id<span style="color: #0000ff;">="@+id/button5_sendMsg"
+<span style="color: #008080;">39 <span style="color: #ff0000;">        android:layout_width<span style="color: #0000ff;">="match_parent"
+<span style="color: #008080;">40 <span style="color: #ff0000;">        android:layout_height<span style="color: #0000ff;">="wrap_content"
+<span style="color: #008080;">41 <span style="color: #ff0000;">        android:onClick<span style="color: #0000ff;">="sendMsgClick"
+<span style="color: #008080;">42 <span style="color: #ff0000;">        android:text<span style="color: #0000ff;">="给指定的人发短信"<span style="color: #0000ff;">/&gt;  
+<span style="color: #008080;">43         
+<span style="color: #008080;">44      <span style="color: #0000ff;">&lt;<span style="color: #800000;">Button 
+<span style="color: #008080;">45         <span style="color: #ff0000;">android:id<span style="color: #0000ff;">="@+id/button6_playMusic"
+<span style="color: #008080;">46 <span style="color: #ff0000;">        android:layout_width<span style="color: #0000ff;">="match_parent"
+<span style="color: #008080;">47 <span style="color: #ff0000;">        android:layout_height<span style="color: #0000ff;">="wrap_content"
+<span style="color: #008080;">48 <span style="color: #ff0000;">        android:onClick<span style="color: #0000ff;">="playMusicClick"
+<span style="color: #008080;">49 <span style="color: #ff0000;">        android:text<span style="color: #0000ff;">="播放指定路径音乐"<span style="color: #0000ff;">/&gt;      
+<span style="color: #008080;">50      
+<span style="color: #008080;">51      <span style="color: #0000ff;">&lt;<span style="color: #800000;">Button 
+<span style="color: #008080;">52         <span style="color: #ff0000;">android:id<span style="color: #0000ff;">="@+id/button7_uninstall"
+<span style="color: #008080;">53 <span style="color: #ff0000;">        android:layout_width<span style="color: #0000ff;">="match_parent"
+<span style="color: #008080;">54 <span style="color: #ff0000;">        android:layout_height<span style="color: #0000ff;">="wrap_content"
+<span style="color: #008080;">55 <span style="color: #ff0000;">        android:onClick<span style="color: #0000ff;">="uninstallClick"
+<span style="color: #008080;">56 <span style="color: #ff0000;">        android:text<span style="color: #0000ff;">="卸载程序"<span style="color: #0000ff;">/&gt;    
+<span style="color: #008080;">57      <span style="color: #0000ff;">&lt;<span style="color: #800000;">Button 
+<span style="color: #008080;">58         <span style="color: #ff0000;">android:id<span style="color: #0000ff;">="@+id/button8_install"
+<span style="color: #008080;">59 <span style="color: #ff0000;">        android:layout_width<span style="color: #0000ff;">="match_parent"
+<span style="color: #008080;">60 <span style="color: #ff0000;">        android:layout_height<span style="color: #0000ff;">="wrap_content"
+<span style="color: #008080;">61 <span style="color: #ff0000;">        android:onClick<span style="color: #0000ff;">="installClick"
+<span style="color: #008080;">62 <span style="color: #ff0000;">        android:text<span style="color: #0000ff;">="安装程序"<span style="color: #0000ff;">/&gt;    
+<span style="color: #008080;">63         
+<span style="color: #008080;">64     
+<span style="color: #008080;">65 <span style="color: #0000ff;">&lt;/<span style="color: #800000;">LinearLayout<span style="color: #0000ff;">&gt;</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 14px;">MainActivity.java代码如下：</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1 <span style="color: #0000ff;">package<span style="color: #000000;"> com.example.m06intent01;
+<span style="color: #008080;"> 2 <span style="color: #0000ff;">import<span style="color: #000000;"> java.io.File;
+<span style="color: #008080;"> 3 <span style="color: #0000ff;">import<span style="color: #000000;"> android.app.Activity;
+<span style="color: #008080;"> 4 <span style="color: #0000ff;">import<span style="color: #000000;"> android.content.Intent;
+<span style="color: #008080;"> 5 <span style="color: #0000ff;">import<span style="color: #000000;"> android.net.Uri;
+<span style="color: #008080;"> 6 <span style="color: #0000ff;">import<span style="color: #000000;"> android.os.Bundle;
+<span style="color: #008080;"> 7 <span style="color: #0000ff;">import<span style="color: #000000;"> android.view.Menu;
+<span style="color: #008080;"> 8 <span style="color: #0000ff;">import<span style="color: #000000;"> android.view.View;
+<span style="color: #008080;"> 9 <span style="color: #0000ff;">public <span style="color: #0000ff;">class MainActivity <span style="color: #0000ff;">extends<span style="color: #000000;"> Activity {
+<span style="color: #008080;">10 <span style="color: #000000;">    @Override
+<span style="color: #008080;">11     <span style="color: #0000ff;">protected <span style="color: #0000ff;">void<span style="color: #000000;"> onCreate(Bundle savedInstanceState) {
+<span style="color: #008080;">12         <span style="color: #0000ff;">super<span style="color: #000000;">.onCreate(savedInstanceState);
+<span style="color: #008080;">13 <span style="color: #000000;">        setContentView(R.layout.activity_main);
+<span style="color: #008080;">14 <span style="color: #000000;">    }
+<span style="color: #008080;">15     <span style="color: #008000;">//<span style="color: #008000;">打开指定网页
+<span style="color: #008080;">16     <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> browsePageClick(View view){
+<span style="color: #008080;">17         Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent(Intent.ACTION_VIEW);
+<span style="color: #008080;">18         intent.setData(Uri.parse("http://www.baidu.com/"<span style="color: #000000;">));
+<span style="color: #008080;">19 <span style="color: #000000;">        startActivity(intent);  
+<span style="color: #008080;">20         
+<span style="color: #008080;">21 <span style="color: #000000;">    } 
+<span style="color: #008080;">22     
+<span style="color: #008080;">23     <span style="color: #008000;">//<span style="color: #008000;">打开拨号面板
+<span style="color: #008080;">24     <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> openDialPageClick(View view){
+<span style="color: #008080;">25         Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent(Intent.ACTION_DIAL);
+<span style="color: #008080;">26         intent.setData(Uri.parse("tel:10086"<span style="color: #000000;">));
+<span style="color: #008080;">27 <span style="color: #000000;">        startActivity(intent);        
+<span style="color: #008080;">28 <span style="color: #000000;">    }
+<span style="color: #008080;">29     
+<span style="color: #008080;">30     <span style="color: #008000;">//<span style="color: #008000;">直接拨打指定号码
+<span style="color: #008080;">31     <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> dialPhoneClick(View view){
+<span style="color: #008080;">32         Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent(Intent.ACTION_CALL);
+<span style="color: #008080;">33         intent.setData(Uri.parse("tel:10086"<span style="color: #000000;">));
+<span style="color: #008080;">34 <span style="color: #000000;">        startActivity(intent);        
+<span style="color: #008080;">35 <span style="color: #000000;">    }
+<span style="color: #008080;">36     
+<span style="color: #008080;">37     <span style="color: #008000;">//<span style="color: #008000;">打开发短信的界面:action+type
+<span style="color: #008080;">38     <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> openMsgPageClick(View view){
+<span style="color: #008080;">39         Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent(Intent.ACTION_VIEW);
+<span style="color: #008080;">40         intent.setType("vnd.android-dir/mms-sms"<span style="color: #000000;">);
+<span style="color: #008080;">41         intent.putExtra("sms_body", "具体短信内容"); <span style="color: #008000;">//<span style="color: #008000;">"sms_body"为固定内容
+<span style="color: #008080;">42 <span style="color: #000000;">        startActivity(intent);        
+<span style="color: #008080;">43 <span style="color: #000000;">    }   
+<span style="color: #008080;">44     
+<span style="color: #008080;">45     <span style="color: #008000;">//<span style="color: #008000;">打开发短信的界面(指定电话号码):action+data
+<span style="color: #008080;">46     <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> sendMsgClick(View view){
+<span style="color: #008080;">47         Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent(Intent.ACTION_SENDTO);
+<span style="color: #008080;">48         intent.setData(Uri.parse("smsto:18780260012"<span style="color: #000000;">));
+<span style="color: #008080;">49         intent.putExtra("sms_body", "具体短信内容"); <span style="color: #008000;">//<span style="color: #008000;">"sms_body"为固定内容        
+<span style="color: #008080;">50 <span style="color: #000000;">        startActivity(intent);        
+<span style="color: #008080;">51 <span style="color: #000000;">    }      
+<span style="color: #008080;">52     
+<span style="color: #008080;">53     <span style="color: #008000;">//<span style="color: #008000;">播放指定路径音乐
+<span style="color: #008080;">54     <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> playMusicClick(View view){
+<span style="color: #008080;">55         Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent(Intent.ACTION_VIEW);
+<span style="color: #008080;">56         Uri uri = Uri.parse("file:///storage/sdcard0/平凡之路.mp3");  <span style="color: #008000;">//<span style="color: #008000;">路径也可以写成："/storage/sdcard0/平凡之路.mp3"
+<span style="color: #008080;">57         intent.setDataAndType(uri, "audio/mp3"); <span style="color: #008000;">//<span style="color: #008000;">方法：Intent android.content.Intent.setDataAndType(Uri data, String type)
+<span style="color: #008080;">58 <span style="color: #000000;">        startActivity(intent);
+<span style="color: #008080;">59 <span style="color: #000000;">    } 
+<span style="color: #008080;">60     
+<span style="color: #008080;">61     <span style="color: #008000;">//<span style="color: #008000;">卸载某个应用程序，根据包名来识别
+<span style="color: #008080;">62     <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> uninstallClick(View view){
+<span style="color: #008080;">63         Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent(Intent.ACTION_DELETE);
+<span style="color: #008080;">64         Uri data = Uri.parse("package:com.example.smyh006intent01"<span style="color: #000000;">);
+<span style="color: #008080;">65 <span style="color: #000000;">        intent.setData(data);
+<span style="color: #008080;">66 <span style="color: #000000;">        startActivity(intent);
+<span style="color: #008080;">67 <span style="color: #000000;">    } 
+<span style="color: #008080;">68     
+<span style="color: #008080;">69     <span style="color: #008000;">//<span style="color: #008000;">安装某个应用程序，根据apk的文件名来识别
+<span style="color: #008080;">70     <span style="color: #0000ff;">public <span style="color: #0000ff;">void<span style="color: #000000;"> installClick(View view){
+<span style="color: #008080;">71         Intent intent = <span style="color: #0000ff;">new<span style="color: #000000;"> Intent(Intent.ACTION_VIEW);
+<span style="color: #008080;">72         Uri data = Uri.fromFile(<span style="color: #0000ff;">new File("/storage/sdcard0/AndroidTest/smyh006_Intent01.apk"));    <span style="color: #008000;">//<span style="color: #008000;">路径不能写成："file:<span style="color: #008000;">//<span style="color: #008000;">/storage/sdcard0/···"
+<span style="color: #008080;">73         intent.setDataAndType(data, "application/vnd.android.package-archive");  <span style="color: #008000;">//<span style="color: #008000;">Type的字符串为固定内容
+<span style="color: #008080;">74 <span style="color: #000000;">        startActivity(intent);
+<span style="color: #008080;">75 <span style="color: #000000;">    }
+<span style="color: #008080;">76     
+<span style="color: #008080;">77     
+<span style="color: #008080;">78 <span style="color: #000000;">    @Override
+<span style="color: #008080;">79     <span style="color: #0000ff;">public <span style="color: #0000ff;">boolean<span style="color: #000000;"> onCreateOptionsMenu(Menu menu) {
+<span style="color: #008080;">80         <span style="color: #008000;">//<span style="color: #008000;"> Inflate the menu; this adds items to the action bar if it is present.
+<span style="color: #008080;">81 <span style="color: #000000;">        getMenuInflater().inflate(R.menu.main, menu);
+<span style="color: #008080;">82         <span style="color: #0000ff;">return <span style="color: #0000ff;">true<span style="color: #000000;">;
+<span style="color: #008080;">83 <span style="color: #000000;">    }
+<span style="color: #008080;">84     
+<span style="color: #008080;">85 }</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode(1).gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 14px;">运行后，主界面如下：</span></p>
+<p><span style="font-size: 14px;"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/061134499692887.png" alt="" width="575" height="1023"></span></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/engine1984/category/633926.html" target="_blank">Android系列</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(4146621,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;e47b3d0b-63cf-dd11-9e4d-001cf0cd104b&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/engine1984/" target="_blank"><img src="./第十章：Intent详解 - 自助者天助 - 博客园_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/engine1984/">自助者天助</a><br>
+            <a href="http://home.cnblogs.com/u/engine1984/followees">关注 - 9</a><br>
+            <a href="http://home.cnblogs.com/u/engine1984/followers">粉丝 - 90</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;e47b3d0b-63cf-dd11-9e4d-001cf0cd104b&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(4146621,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">30</span>
+    </div>
+    <div class="buryit" onclick="votePost(4146621,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/engine1984/p/4140439.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/engine1984/p/4140439.html" title="发布于2014-12-03 16:41">第九章：四大组件之Broadcast Receiver</a><br><a href="http://www.cnblogs.com/engine1984/p/4156094.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/engine1984/p/4156094.html" title="发布于2014-12-10 18:40">第十一章：Android数据存储（上）</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2014-12-05 14:37</span> <a href="http://www.cnblogs.com/engine1984/">自助者天助</a> 阅读(<span id="post_view_count">45469</span>) 评论(<span id="post_comment_count">18</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=4146621" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/engine1984/p/4146621.html#" onclick="AddToWz(4146621);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=28623,cb_entryId=4146621,cb_blogApp=currentBlogApp,cb_blogUserGuid='e47b3d0b-63cf-dd11-9e4d-001cf0cd104b',cb_entryCreatedDate='2014/12/5 14:37:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/engine1984/p/4146621.html#3129736" class="layer">#1楼</a><a name="3129736" id="comment_anchor_3129736"></a>  <span class="comment_date">2015-02-14 17:25</span> <a id="a_comment_author_3129736" href="http://home.cnblogs.com/u/427886/" target="_blank">电路格格</a> <a href="http://msg.cnblogs.com/send/%E7%94%B5%E8%B7%AF%E6%A0%BC%E6%A0%BC" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3129736" class="blog_comment_body">写得如此好却没有人点个赞，我来点个赞。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3129736,&#39;Digg&#39;,this)">支持(8)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3129736,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/engine1984/p/4146621.html#3281757" class="layer">#2楼</a><a name="3281757" id="comment_anchor_3281757"></a>  <span class="comment_date">2015-10-10 11:54</span> <a id="a_comment_author_3281757" href="http://www.cnblogs.com/lipeng0824/" target="_blank">李_鹏</a> <a href="http://msg.cnblogs.com/send/%E6%9D%8E_%E9%B9%8F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3281757" class="blog_comment_body">good</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3281757,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3281757,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3281757_avatar" style="display:none;">http://pic.cnblogs.com/face/636211/20140522151231.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/engine1984/p/4146621.html#3336287" class="layer">#3楼</a><a name="3336287" id="comment_anchor_3336287"></a>  <span class="comment_date">2015-12-28 15:09</span> <a id="a_comment_author_3336287" href="http://home.cnblogs.com/u/365217/" target="_blank">瘦嘟嘟</a> <a href="http://msg.cnblogs.com/send/%E7%98%A6%E5%98%9F%E5%98%9F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3336287" class="blog_comment_body">Intern还有优先级？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3336287,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3336287,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/engine1984/p/4146621.html#3451462" class="layer">#4楼</a><a name="3451462" id="comment_anchor_3451462"></a>  <span class="comment_date">2016-06-13 21:26</span> <a id="a_comment_author_3451462" href="http://www.cnblogs.com/HongV/" target="_blank">菜牛一枚</a> <a href="http://msg.cnblogs.com/send/%E8%8F%9C%E7%89%9B%E4%B8%80%E6%9E%9A" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3451462" class="blog_comment_body">醍醐灌顶！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3451462,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3451462,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/engine1984/p/4146621.html#3486173" class="layer">#5楼</a><a name="3486173" id="comment_anchor_3486173"></a>  <span class="comment_date">2016-08-09 17:27</span> <a id="a_comment_author_3486173" href="http://home.cnblogs.com/u/1003618/" target="_blank">吾乃轩辕</a> <a href="http://msg.cnblogs.com/send/%E5%90%BE%E4%B9%83%E8%BD%A9%E8%BE%95" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3486173" class="blog_comment_body">博主继续写啊可以出书了，代码分析很细致，很适合我这样的初学者</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3486173,&#39;Digg&#39;,this)">支持(2)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3486173,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/engine1984/p/4146621.html#3528321" class="layer">#6楼</a><a name="3528321" id="comment_anchor_3528321"></a>  <span class="comment_date">2016-10-11 16:34</span> <a id="a_comment_author_3528321" href="http://home.cnblogs.com/u/1040270/" target="_blank">liwensb</a> <a href="http://msg.cnblogs.com/send/liwensb" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3528321" class="blog_comment_body">楼主，写得好，仔细看完了，大受裨益；<br>所以一定要注册帐号说一声：谢谢！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3528321,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3528321,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/engine1984/p/4146621.html#3528591" class="layer">#7楼</a><a name="3528591" id="comment_anchor_3528591"></a>  <span class="comment_date">2016-10-11 23:27</span> <a id="a_comment_author_3528591" href="http://home.cnblogs.com/u/1040507/" target="_blank">王光</a> <a href="http://msg.cnblogs.com/send/%E7%8E%8B%E5%85%89" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3528591" class="blog_comment_body">看了你写得Intent的详解月案例，深受启发。像这样思路明确条理清晰的好文应该值得推广。<br>佩服！！！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3528591,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3528591,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/engine1984/p/4146621.html#3531527" class="layer">#8楼</a><a name="3531527" id="comment_anchor_3531527"></a>  <span class="comment_date">2016-10-14 16:44</span> <a id="a_comment_author_3531527" href="http://www.cnblogs.com/QuanQingli/" target="_blank">正能量制造机</a> <a href="http://msg.cnblogs.com/send/%E6%AD%A3%E8%83%BD%E9%87%8F%E5%88%B6%E9%80%A0%E6%9C%BA" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3531527" class="blog_comment_body">很棒</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3531527,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3531527,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/engine1984/p/4146621.html#3558927" class="layer">#9楼</a><a name="3558927" id="comment_anchor_3558927"></a>  <span class="comment_date">2016-11-17 22:47</span> <a id="a_comment_author_3558927" href="http://home.cnblogs.com/u/1065615/" target="_blank">pxw</a> <a href="http://msg.cnblogs.com/send/pxw" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3558927" class="blog_comment_body">好</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3558927,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3558927,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/engine1984/p/4146621.html#3558928" class="layer">#10楼</a><a name="3558928" id="comment_anchor_3558928"></a>  <span class="comment_date">2016-11-17 22:48</span> <a id="a_comment_author_3558928" href="http://home.cnblogs.com/u/1065615/" target="_blank">pxw</a> <a href="http://msg.cnblogs.com/send/pxw" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3558928" class="blog_comment_body">最后的AndroidManifest.xml文件没有</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3558928,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3558928,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/engine1984/p/4146621.html#3566387" class="layer">#11楼</a><a name="3566387" id="comment_anchor_3566387"></a>  <span class="comment_date">2016-11-27 16:58</span> <a id="a_comment_author_3566387" href="http://home.cnblogs.com/u/1070810/" target="_blank">Newforesee</a> <a href="http://msg.cnblogs.com/send/Newforesee" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3566387" class="blog_comment_body">写的太棒啦</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3566387,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3566387,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/engine1984/p/4146621.html#3650598" class="layer">#12楼</a><a name="3650598" id="comment_anchor_3650598"></a>  <span class="comment_date">2017-03-24 15:55</span> <a id="a_comment_author_3650598" href="http://home.cnblogs.com/u/1132736/" target="_blank">sunxxybfq</a> <a href="http://msg.cnblogs.com/send/sunxxybfq" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3650598" class="blog_comment_body">很好，学习了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3650598,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3650598,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/engine1984/p/4146621.html#3673683" class="layer">#13楼</a><a name="3673683" id="comment_anchor_3673683"></a>  <span class="comment_date">2017-04-21 16:22</span> <a id="a_comment_author_3673683" href="http://www.cnblogs.com/tanglimei/" target="_blank">羊羊羊🐑</a> <a href="http://msg.cnblogs.com/send/%E7%BE%8A%E7%BE%8A%E7%BE%8A%26%23128017%3B" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3673683" class="blog_comment_body">通俗易懂，很好。给点个赞。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3673683,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3673683,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3673683_avatar" style="display:none;">http://pic.cnblogs.com/face/446967/20150106170542.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/engine1984/p/4146621.html#3738098" class="layer">#14楼</a><a name="3738098" id="comment_anchor_3738098"></a>  <span class="comment_date">2017-07-18 15:31</span> <a id="a_comment_author_3738098" href="http://home.cnblogs.com/u/669279/" target="_blank">Hsan</a> <a href="http://msg.cnblogs.com/send/Hsan" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3738098" class="blog_comment_body">学习了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3738098,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3738098,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/engine1984/p/4146621.html#3740043" class="layer">#15楼</a><a name="3740043" id="comment_anchor_3740043"></a>  <span class="comment_date">2017-07-20 19:31</span> <a id="a_comment_author_3740043" href="http://www.cnblogs.com/Dre2mspace/" target="_blank">Hogwarts</a> <a href="http://msg.cnblogs.com/send/Hogwarts" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3740043" class="blog_comment_body">博主的文章很棒，但是第二张图的判断是不是反了，没有匹配成功的Intent filter才是抛出异常吧</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3740043,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3740043,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/engine1984/p/4146621.html#3766448" class="layer">#16楼</a><a name="3766448" id="comment_anchor_3766448"></a>  <span class="comment_date">2017-08-25 15:20</span> <a id="a_comment_author_3766448" href="http://www.cnblogs.com/unicorn-up/" target="_blank">MTing</a> <a href="http://msg.cnblogs.com/send/MTing" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3766448" class="blog_comment_body">这么清晰的博文，一定要支持下</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3766448,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3766448,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/engine1984/p/4146621.html#3797314" class="layer">#17楼</a><a name="3797314" id="comment_anchor_3797314"></a>  <span class="comment_date">2017-09-26 16:00</span> <a id="a_comment_author_3797314" href="http://home.cnblogs.com/u/1248161/" target="_blank">wh98765</a> <a href="http://msg.cnblogs.com/send/wh98765" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3797314" class="blog_comment_body">好文章</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3797314,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3797314,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/engine1984/p/4146621.html#3848948" class="layer">#18楼</a><a name="3848948" id="comment_anchor_3848948"></a><span id="comment-maxId" style="display:none;">3848948</span><span id="comment-maxDate" style="display:none;">2017/11/24 8:57:24</span>  <span class="comment_date">2017-11-24 08:57</span> <a id="a_comment_author_3848948" href="http://home.cnblogs.com/u/336871/" target="_blank">mackey2011</a> <a href="http://msg.cnblogs.com/send/mackey2011" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3848948" class="blog_comment_body">确实非常棒</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3848948,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3848948,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/engine1984/p/4146621.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/engine1984/p/4146621.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://cloud.tencent.com/act/bargin?fromSource=gwzcw.705175.705175.705175" target="_blank">【促销】腾讯云技术升级10大核心产品年终让利</a><br><a href="http://click.aliyun.com/m/17164/" target="_blank">【推荐】高性能云服务器2折起，0.73元/日节省80%运维成本</a><br><a href="https://news.cnblogs.com/n/582971/" target="_blank">【新闻】H3 BPM体验平台全面上线</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://www.gcpowertools.com.cn/products/spreadjs/?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=SpreadJS2&amp;utm_campaign=community" target="_blank"><img width="300" height="250" src="./第十章：Intent详解 - 自助者天助 - 博客园_files/24442-20171206093644566-325426505.png" alt="SpreadJS2_1206"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/585288/" target="_blank">AI校招程序员最高薪酬曝光！腾讯80万年薪领跑，还送北京户口</a><br> ·  <a href="https://news.cnblogs.com/n/585321/" target="_blank">王健林讲话完整版曝光：万达苏宁明年将在资本方面有动作</a><br> ·  <a href="https://news.cnblogs.com/n/585318/" target="_blank">比特币网创始人卖掉所有比特币：投资风险太高</a><br> ·  <a href="https://news.cnblogs.com/n/585317/" target="_blank">支付宝福利：免费扫码领红包 赏金翻倍</a><br> ·  <a href="https://news.cnblogs.com/n/585316/" target="_blank">Opera Software更名为Otello公司</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/34770/" target="_blank"><img width="468" height="60" src="./第十章：Intent详解 - 自助者天助 - 博客园_files/24442-20171208101900738-116140477.jpg" alt="阿里云C2-1208"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br> ·  <a href="http://kb.cnblogs.com/page/563790/" target="_blank">关于编程，你的练习是不是有效的？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/engine1984/">自助者天助</a><br>园龄：<a href="http://home.cnblogs.com/u/engine1984/" title="入园时间：2007-08-15">10年4个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/engine1984/followers/">90</a><br>关注：<a href="http://home.cnblogs.com/u/engine1984/followees/">9</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;e47b3d0b-63cf-dd11-9e4d-001cf0cd104b&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/11/01&#39;);return false;">&lt;</a></td><td align="center">2017年12月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/01/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td class="CalWeekendDay" align="center">2</td></tr><tr><td class="CalWeekendDay" align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td class="CalWeekendDay" align="center">9</td></tr><tr><td class="CalWeekendDay" align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td class="CalWeekendDay" align="center">16</td></tr><tr><td class="CalWeekendDay" align="center">17</td><td align="center">18</td><td class="CalTodayDay" align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td class="CalWeekendDay" align="center">23</td></tr><tr><td class="CalWeekendDay" align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td class="CalWeekendDay" align="center">30</td></tr><tr><td class="CalWeekendDay" align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/engine1984/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/engine1984/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/engine1984/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/engine1984/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/engine1984/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(313)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/engine1984/category/119478.html">AJAX(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/engine1984/category/633926.html">Android系列(19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/engine1984/category/185573.html">Best practices(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/engine1984/category/119466.html">C#(28)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/engine1984/category/251193.html">C#2008与.NET 3.5 高级程序设计读书笔记(25)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/engine1984/category/187202.html">C#与.NET高级程序设计系列（读书笔记）(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/engine1984/category/119469.html">CLR(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/engine1984/category/126862.html">CSS(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/engine1984/category/119467.html">Enterprise Library(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/engine1984/category/119468.html">Javascript(17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/engine1984/category/119465.html">NET Framework(19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/engine1984/category/124290.html">SQL SERVER(34)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/engine1984/category/119501.html">Test Driven Develop(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/engine1984/category/131557.html">UML(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/engine1984/category/119471.html">WebService(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/engine1984/category/126376.html">XML(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/engine1984/category/155390.html">操作系统(13)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/engine1984/category/358234.html">从零开始学习jQuery(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/engine1984/category/514722.html">大道至简(18)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/engine1984/category/119474.html">多线程(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/engine1984/category/188261.html">关键代码</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/engine1984/category/445067.html">加密(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/engine1984/category/205733.html">架构设计(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/engine1984/category/194151.html">经济(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/engine1984/category/119475.html">面向对象(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/engine1984/category/182755.html">其他(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/engine1984/category/119476.html">设计与模式(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_27" href="http://www.cnblogs.com/engine1984/category/534010.html">数据库性能调优系列(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_28" href="http://www.cnblogs.com/engine1984/category/221360.html">数据库原理与设计(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_29" href="http://www.cnblogs.com/engine1984/category/119477.html">项目管理(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_30" href="http://www.cnblogs.com/engine1984/category/514720.html">小村系列(19)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(324)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/engine1984/archive/2015/01.html">2015年1月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/engine1984/archive/2014/12.html">2014年12月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/engine1984/archive/2014/11.html">2014年11月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/engine1984/archive/2014/03.html">2014年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/engine1984/archive/2013/12.html">2013年12月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/engine1984/archive/2013/11.html">2013年11月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/engine1984/archive/2013/10.html">2013年10月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/engine1984/archive/2013/09.html">2013年9月 (40)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/engine1984/archive/2013/01.html">2013年1月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/engine1984/archive/2012/03.html">2012年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/engine1984/archive/2012/02.html">2012年2月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/engine1984/archive/2010/09.html">2010年9月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/engine1984/archive/2010/08.html">2010年8月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/engine1984/archive/2010/07.html">2010年7月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/engine1984/archive/2010/06.html">2010年6月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/engine1984/archive/2010/05.html">2010年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/engine1984/archive/2010/04.html">2010年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/engine1984/archive/2010/03.html">2010年3月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/engine1984/archive/2009/12.html">2009年12月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/engine1984/archive/2009/11.html">2009年11月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/engine1984/archive/2009/09.html">2009年9月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/engine1984/archive/2009/08.html">2009年8月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/engine1984/archive/2009/07.html">2009年7月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/engine1984/archive/2009/06.html">2009年6月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/engine1984/archive/2009/05.html">2009年5月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/engine1984/archive/2009/04.html">2009年4月 (17)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/engine1984/archive/2009/03.html">2009年3月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/engine1984/archive/2009/01.html">2009年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/engine1984/archive/2008/12.html">2008年12月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/engine1984/archive/2008/11.html">2008年11月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_30" href="http://www.cnblogs.com/engine1984/archive/2008/10.html">2008年10月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_31" href="http://www.cnblogs.com/engine1984/archive/2008/09.html">2008年9月 (27)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_32" href="http://www.cnblogs.com/engine1984/archive/2008/08.html">2008年8月 (36)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_33" href="http://www.cnblogs.com/engine1984/archive/2008/04.html">2008年4月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_34" href="http://www.cnblogs.com/engine1984/archive/2008/03.html">2008年3月 (20)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_35" href="http://www.cnblogs.com/engine1984/archive/2008/02.html">2008年2月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_36" href="http://www.cnblogs.com/engine1984/archive/2008/01.html">2008年1月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_37" href="http://www.cnblogs.com/engine1984/archive/2007/12.html">2007年12月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_38" href="http://www.cnblogs.com/engine1984/archive/2007/08.html">2007年8月 (18)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/engine1984/p/4146621.html#3848948">1. Re:第十章：Intent详解</a></li>
+        <li class="recent_comment_body">确实非常棒</li>
+        <li class="recent_comment_author">--mackey2011</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/engine1984/p/3485193.html#3836321">2. Re:计算机学科漫谈</a></li>
+        <li class="recent_comment_body">一席话语，深入我心</li>
+        <li class="recent_comment_author">--krime</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/engine1984/p/4122742.html#3805543">3. Re:第四章：Android架构</a></li>
+        <li class="recent_comment_body">谢谢，学习了</li>
+        <li class="recent_comment_author">--mindle</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/engine1984/p/4146621.html#3797314">4. Re:第十章：Intent详解</a></li>
+        <li class="recent_comment_body">好文章</li>
+        <li class="recent_comment_author">--wh98765</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/engine1984/p/4146621.html#3766448">5. Re:第十章：Intent详解</a></li>
+        <li class="recent_comment_body">这么清晰的博文，一定要支持下</li>
+        <li class="recent_comment_author">--MTing</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/engine1984/p/4146621.html">1. 第十章：Intent详解(45469)</a></li><li><a href="http://www.cnblogs.com/engine1984/p/3628553.html">2. 使用Project进行项目管理(8680)</a></li><li><a href="http://www.cnblogs.com/engine1984/archive/2007/08/22/865562.html">3. 进程和线程的区别(7637)</a></li><li><a href="http://www.cnblogs.com/engine1984/archive/2008/09/10/1288388.html">4. XmlElement和XmlNode的区别 (4838)</a></li><li><a href="http://www.cnblogs.com/engine1984/archive/2008/03/17/1109918.html">5. SQL 连接 JOIN 例解。（左连接，右连接，全连接，内连接，交叉连接，自连接） (3058)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/engine1984/p/4146621.html">1. 第十章：Intent详解(18)</a></li><li><a href="http://www.cnblogs.com/engine1984/archive/2007/08/22/865562.html">2. 进程和线程的区别(5)</a></li><li><a href="http://www.cnblogs.com/engine1984/archive/2007/08/23/866430.html">3. 深入剖析C#多态性(3)</a></li><li><a href="http://www.cnblogs.com/engine1984/p/3628553.html">4. 使用Project进行项目管理(3)</a></li><li><a href="http://www.cnblogs.com/engine1984/archive/2008/03/17/1109918.html">5. SQL 连接 JOIN 例解。（左连接，右连接，全连接，内连接，交叉连接，自连接） (3)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/engine1984/p/4146621.html">1. 第十章：Intent详解(30)</a></li><li><a href="http://www.cnblogs.com/engine1984/p/4126946.html">2. 第六章：四大组件之Activity(3)</a></li><li><a href="http://www.cnblogs.com/engine1984/archive/2007/08/22/865562.html">3. 进程和线程的区别(3)</a></li><li><a href="http://www.cnblogs.com/engine1984/archive/2008/12/29/1364518.html">4. SQL Server TransAction 全部回滚 (2)</a></li><li><a href="http://www.cnblogs.com/engine1984/p/4120227.html">5. 第二章：界面和目录结构(2)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 自助者天助
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

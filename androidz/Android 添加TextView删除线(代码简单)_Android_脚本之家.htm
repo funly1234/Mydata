@@ -1,0 +1,730 @@
+<!DOCTYPE HTML>
+<!-- saved from url=(0037)http://www.jb51.net/article/79650.htm -->
+<!DOCTYPE html PUBLIC "" ""><HTML lang="zh-CN"><HEAD><META content="IE=11.0000" 
+http-equiv="X-UA-Compatible">
+ 
+<META charset="gb2312"> 
+<META name="applicable-device" content="pc"> 
+<META name="viewport" content="width=device-width, initial-scale=1"> 
+<META http-equiv="Cache-Control" content="no-siteapp"> 
+<META http-equiv="Cache-Control" content="no-transform"> <TITLE>Android 
+添加TextView删除线(代码简单)_Android_脚本之家</TITLE> 
+<META http-equiv="X-UA-Compatible" content="IE=EDGE"> 
+<META name="keywords" content="android添加textview,android_textview"> 
+<META name="description" content="最近接了个项目，其中有项目需求是这样的，有这么个需求，就是一个产品下有两个价格，一个是市场价，一个是销售价，这时要把市场价添加个删除线；怎么实现呢？下面小编给大家分享一段简单的代码实现Android 添加TextView删除线&#10;&#10;"> 
+<LINK href="http://m.jb51.net/article/79650.htm" rel="alternate" media="only screen and(max-width: 640px)"> 
+<META http-equiv="mobile-agent" content="format=html5; url=http://m.jb51.net/article/79650.htm"> 
+<META http-equiv="mobile-agent" content="format=xhtml; url=http://m.jb51.net/article/79650.htm"> 
+<SCRIPT type="text/javascript">
+var tougao="mrr",lmname="软件编程",suoyin="no";
+(function(){var reWriteUrl=function(url){if(url){var Splits=url.split("/"),siteName=window.location.pathname;if(typeof siteName!=="undefined"){return "http://m.jb51.net"+siteName}}};if(/Android|webOS|iPhone|iPad|Windows Phone|iPod|BlackBerry|SymbianOS|Nokia|Mobile/i.test(navigator.userAgent)){var url=window.location.href;var pathname=window.location.pathname;if(url.indexOf("?pc")<0){try{window.location.href=reWriteUrl(url)}catch(e){}}}})();
+</SCRIPT>
+ <LINK href="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/base.css" rel="stylesheet" 
+type="text/css"> <LINK href="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/common.css" 
+rel="stylesheet" type="text/css"> 
+<SCRIPT src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/jquery.min.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT>
+if (!window.jQuery) {
+	var script = document.createElement('script');
+	script.src = "/skin/js/jquery.js";
+	document.body.appendChild(script);}
+</SCRIPT>
+ 
+<SCRIPT src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/function.js" type="text/javascript"></SCRIPT>
+ 
+<META name="GENERATOR" content="MSHTML 11.00.10570.1001"></HEAD> 
+<BODY><!--topTools Start --> 
+<DIV class="topTools">
+<DIV class="wrap clear_fix">
+<DIV class="topToolsLeft"><A href="http://www.jb51.net/" 
+target="_blank">脚本之家</A><A href="http://s.jb51.net/" target="_blank" rel="nofollow">服务器常用软件</A></DIV>
+<DIV class="right">
+<UL>
+  <LI><I class="sprite md left"></I><A href="http://m.jb51.net/" target="_blank" 
+  rel="nofollow">手机版</A></LI>
+  <LI><I class="sprite tg left"></I><A href="http://tougao.jb51.net/" target="_blank" 
+  rel="nofollow">投稿中心</A></LI>
+  <LI id="wxHide"><I class="sprite wx left"></I><A href="http://www.jb51.net/article/79650.htm#" 
+  target="_blank">关注微信</A>					 
+  <DIV class="wxHide_box" id="wxShow"><IMG width="84" alt="扫一扫" src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/erwm.jpg" 
+  data-baiduimageplus-ignore="" hight="84"></DIV></LI></UL><!--快捷导航 开始 -->			 
+<DIV class="text_d right" id="navHide"><A href="javascript:void(0);">快捷导航<I 
+class="sprite arrowRight" id="icon"></I></A>				 
+<DIV class="webNav" id="navBox">
+<DIV class="dealList clear_fix">
+<H4><A href="http://www.jb51.net/softs/" target="_self" 
+rel="nofollow">软件下载</A></H4>
+<DL>
+  <DD><A href="http://www.jb51.net/softs/android.html" target="_blank" rel="nofollow">android软件</A><A 
+  href="http://www.jb51.net/softs/mac.html" target="_blank" 
+  rel="nofollow">MAC软件</A><A href="http://www.jb51.net/fonts/" target="_blank" 
+  rel="nofollow">字体下载</A><A href="http://www.jb51.net/dll/" target="_blank" rel="nofollow">DLL下载</A><A 
+  href="http://www.jb51.net/zt/php-dev.htm" target="_blank" 
+  rel="nofollow">php开发工具</A></DD></DL></DIV>
+<DIV class="dealList clear_fix">
+<H4><A href="http://www.jb51.net/codes/" target="_blank" 
+rel="nofollow">源码下载</A></H4>
+<DL>
+  <DD><A href="http://www.jb51.net/codes/asp.html" target="_blank" rel="nofollow">asp源码</A><A 
+  href="http://www.jb51.net/codes/php.html" target="_blank" 
+  rel="nofollow">php源码</A><A href="http://www.jb51.net/codes/aspnet.html" 
+  target="_blank" rel="nofollow">asp.net源码</A><A href="http://www.jb51.net/codes/jsp.html" 
+  target="_blank" rel="nofollow">jsp源码</A><A href="http://www.jb51.net/codes/editor.html" 
+  target="_blank" rel="nofollow">网页编辑器</A><A href="http://www.jb51.net/codes/list123_1.html" 
+  target="_blank" rel="nofollow">数据库管理</A></DD></DL></DIV>
+<DIV class="dealList clear_fix">
+<H4><A href="http://tools.jb51.net/" target="_blank">在线工具</A></H4>
+<DL>
+  <DD><A href="http://www.jb51.net/shouce/" target="_blank" 
+  rel="nofollow">在线手册</A><A href="http://www.jb51.net/tools/cssyasuo.shtml" 
+  target="_blank" rel="nofollow">CSS格式化</A><A href="http://tools.jb51.net/tools/js_geshihua.asp" 
+  target="_blank" rel="nofollow">JS格式化</A><A href="http://www.jb51.net/tools/html-js.htm" 
+  target="_blank" rel="nofollow">Html转化为Js</A><A href="http://tools.jb51.net/regex/javascript" 
+  target="_blank" rel="nofollow">js正则表达式</A></DD></DL></DIV></DIV></DIV><!--快捷导航 结束 -->
+		 </DIV></DIV></DIV><!--topTools end --> 
+<DIV class="header"><!-- Logo start -->	 
+<DIV class="wrap">
+<DIV class="mtb10 clearfix">
+<DIV class="logo"><A href="http://www.jb51.net/"><IMG title="脚本之家" alt="脚本之家" 
+src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/logo.gif"></A></DIV>
+<DIV class="logom fl"><SPAN class="jbTestPos" id="logo_m"></SPAN></DIV>
+<DIV class="logor fr"><SPAN class="jbTestPos" 
+id="logo_r"></SPAN></DIV></DIV></DIV><!--Logo end -->		 <!-- 导航开始 -->	 
+<DIV class="nav_top clearfix">
+<UL>
+  <LI><A href="http://www.jb51.net/">网站首页</A></LI>
+  <LI><A href="http://www.jb51.net/web/">网页制作</A></LI>
+  <LI><A href="http://www.jb51.net/list/index_1.htm">网络编程</A></LI>
+  <LI><A href="http://www.jb51.net/list/index_96.htm">脚本专栏</A></LI>
+  <LI><A href="http://www.jb51.net/jiaoben/">脚本下载</A></LI>
+  <LI><A href="http://www.jb51.net/list/index_104.htm">数据库</A></LI>
+  <LI><A href="http://www.jb51.net/cms/">CMS教程</A></LI>
+  <LI><A href="http://www.jb51.net/books/">电子书籍</A></LI>
+  <LI><A href="http://www.jb51.net/pingmian/">平面设计</A></LI>
+  <LI><A href="http://www.jb51.net/media/">媒体动画</A></LI>
+  <LI>
+  <P><I>其它</I><SPAN><A href="http://www.jb51.net/os/">操作系统</A><A href="http://www.jb51.net/yunying/">网站运营</A><A 
+  href="http://www.jb51.net/hack/">网络安全</A><A 
+  href="http://www.jb51.net/shouce/">在线手册</A></SPAN></P></LI></UL></DIV><!--导航结束--> 
+</DIV><!-- 二级菜单开始 --> 
+<DIV class="wrap">
+<DIV class="subnav clearfix">
+<UL>
+  <LI><A title="C#教程" 
+  href="http://www.jb51.net/list/list_85_1.htm">C#教程</A></LI> 
+  <LI><A title="vb" href="http://www.jb51.net/list/list_93_1.htm">vb</A></LI> 
+  <LI><A title="vb.net" 
+  href="http://www.jb51.net/list/list_205_1.htm">vb.net</A></LI> 
+  <LI><A title="C 语言" href="http://www.jb51.net/list/list_159_1.htm">C 
+  语言</A></LI> 
+  <LI><A title="Java编程" 
+  href="http://www.jb51.net/list/list_134_1.htm">Java编程</A></LI> 
+  <LI><A title="Delphi" 
+  href="http://www.jb51.net/list/list_206_1.htm">Delphi</A></LI> 
+  <LI><A title="java" 
+  href="http://www.jb51.net/list/list_207_1.htm">java</A></LI> 
+  <LI><A title="Android" 
+  href="http://www.jb51.net/list/list_233_1.htm">Android</A></LI> 
+  <LI><A title="IOS" href="http://www.jb51.net/list/list_238_1.htm">IOS</A></LI> 
+  <LI><A title="Swift" 
+  href="http://www.jb51.net/list/list_244_1.htm">Swift</A></LI> 
+  <LI><A title="Scala" 
+  href="http://www.jb51.net/list/list_250_1.htm">Scala</A></LI> 
+  <LI><A title="易语言" href="http://www.jb51.net/list/list_254_1.htm">易语言</A></LI> 
+  <LI><A title="其它相关" 
+  href="http://www.jb51.net/list/list_188_1.htm">其它相关</A></LI> </UL></DIV></DIV><!-- 二级菜单结束 -->	
+<DIV class="main mb10 clearfix">
+<DIV class="clearfix"><SPAN class="jbTestPos" id="tonglan1"></SPAN></DIV></DIV>
+<DIV class="main clearfix">
+<DIV class="NavBar clearfix ptb10">
+<DIV class="fl w690">
+<DIV class="box mb15 mt10"><I class="icon"></I>您的位置：<A href="http://www.jb51.net/index.htm">首页</A> 
+→ <A href="http://www.jb51.net/list/index_84.htm">软件编程</A> → <A href="http://www.jb51.net/list/list_233_1.htm">Android</A> 
+→ Android 添加TextView删除线(代码简单)</DIV></DIV>
+<DIV class="fr w300">
+<DIV class="search">
+<FORM action="http://so.jb51.net/cse/search" 
+target="_blank"><INPUT name="s" type="hidden" value="10520733385329581432">
+			 <INPUT name="ie" type="hidden" value="gbk">			 <INPUT name="q" class="key_input" type="text" placeholder="请输入关键词" value="">
+			 <INPUT class="c_btn" type="submit" value=" ">
+		 </FORM></DIV></DIV></DIV></DIV><!--content Star --> 
+<DIV id="contents"><!--share start-->  
+<DIV id="right-share">
+<DIV class="right-share jb-share" id="jb-share"><A title="" class="rshare-weixin">微信</A><A 
+title="投稿" class="rshare-qzone" href="http://tougao.jb51.net/" 
+target="_blank">投稿</A><A title="交流社区" class="rshare-sqq" href="http://shequ.jb51.net/" 
+target="_blank">交流社区</A><A title="领取优惠券" class="rshare-tsina" href="http://youhui.jb51.net/" 
+target="_blank">领取优惠券</A></DIV><A class="rshare-top" onclick="javascript:;"></A>
+<DIV class="hide" id="weixin-code">
+<DIV class="popup_weixin_head">
+<P>关注微信公众号</P>
+<DIV id="code"><IMG width="100" alt="扫一扫" src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/erwm.jpg" 
+hight="100"></DIV></DIV></DIV></DIV><!--share end-->  
+<DIV class="main clearfix bgf">
+<DIV class="w750 fl">
+<DIV class="article-content border">
+<DIV class="title">
+<H1 class="YaHei">Android 添加TextView删除线(代码简单)</H1>
+<P><I>转载</I> &nbsp;2016-02-18 &nbsp; 作者：rencm  &nbsp; <A href="http://www.jb51.net/article/79650.htm#comments"><IMG 
+width="15" height="15" src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/text-message.png"> 
+我要评论</A> </P></DIV>
+<DIV class="art_desc mt10">
+<DIV id="art_demo">
+<DIV 
+id="art_demo">最近接了个项目，其中有项目需求是这样的，有这么个需求，就是一个产品下有两个价格，一个是市场价，一个是销售价，这时要把市场价添加个删除线；怎么实现呢？下面小编给大家分享一段简单的代码实现Android 
+添加TextView删除线 </DIV></DIV></DIV>
+<DIV class="lbd clearfix"><SPAN class="jbTestPos" id="art_up"></SPAN></DIV>
+<DIV id="content">
+<P>在做商城的项目中，有这么个需求，就是一个产品下有两个价格，一个是市场价，一个是销售价，这时要把市场价添加个删除线；<BR></P>
+<P>刚开始遇到这个时，在网上找了半天的资料，看到最多的就是用SpannableString这个类中的方法，而且代码多，感觉有点繁琐，后来发现用Paint里的一些方法实现更好，只须一句代码</P>
+<DIV class="jb51code">
+<PRE class="brush:java;">public class TestActivity extends Activity {
+private TextView tv;
+@Override
+public void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+tv = (TextView) findViewById(R.id.tvId);
+tv.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+}
+}</PRE></DIV>
+<P>当然还有其他的属性，比如下划线等待。。。有时间的童鞋可以试试<BR></P>
+<P style="text-align: center;"><IMG alt="" src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/201602181059188.png"></P>
+<P>以上代码很简单吧，Android 
+添加TextView删除线这一问题就解决好了，本文写的不好，还请各位大侠多多提出宝贵意见，共同学习进步，谢谢大家对脚本之家网站的支持！</P>
+<DIV class="art_xg">
+<H4>您可能感兴趣的文章:</H4>
+<UL>
+  <LI><A title="Android实现TextView两端对齐的方法" href="http://www.jb51.net/article/77740.htm" 
+  target="_blank">Android实现TextView两端对齐的方法</A></LI>
+  <LI><A title="Android编程实现自动调整TextView字体大小以适应文字长度的方法" href="http://www.jb51.net/article/77892.htm" 
+  target="_blank">Android编程实现自动调整TextView字体大小以适应文字长度的方法</A></LI>
+  <LI><A title="Android编程设置TextView颜色setTextColor用法实例" href="http://www.jb51.net/article/77990.htm" 
+  target="_blank">Android编程设置TextView颜色setTextColor用法实例</A></LI>
+  <LI><A title="Android使用selector修改TextView中字体颜色和背景色的方法" href="http://www.jb51.net/article/77991.htm" 
+  target="_blank">Android使用selector修改TextView中字体颜色和背景色的方法</A></LI>
+  <LI><A title="Android TextView跑马灯效果实现方法" href="http://www.jb51.net/article/78181.htm" 
+  target="_blank">Android TextView跑马灯效果实现方法</A></LI>
+  <LI><A title="Android TextView实现跑马灯效果的方法" href="http://www.jb51.net/article/78867.htm" 
+  target="_blank">Android TextView实现跑马灯效果的方法</A></LI>
+  <LI><A title="Android中使用TextView实现图文混排的方法" href="http://www.jb51.net/article/79469.htm" 
+  target="_blank">Android中使用TextView实现图文混排的方法</A></LI>
+  <LI><A title="Android设置TextView显示指定个数字符，超过部分显示...(省略号)的方法" href="http://www.jb51.net/article/79656.htm" 
+  target="_blank">Android设置TextView显示指定个数字符，超过部分显示...(省略号)的方法</A></LI>
+  <LI><A title="Android TextView字体颜色设置方法小结" href="http://www.jb51.net/article/79744.htm" 
+  target="_blank">Android TextView字体颜色设置方法小结</A></LI>
+  <LI><A title="Android开发之TextView控件用法实例总结" href="http://www.jb51.net/article/79823.htm" 
+  target="_blank">Android开发之TextView控件用法实例总结</A></LI>
+  <LI><A title="Android基于TextView实现的跑马灯效果实例" href="http://www.jb51.net/article/79920.htm" 
+  target="_blank">Android基于TextView实现的跑马灯效果实例</A></LI></UL></DIV></DIV><!--endmain--> 
+<DIV class="tags clearfix"><I class="icon-tag"></I>	 
+<UL class="meta-tags items">
+  <LI class="tag item"><A title="搜索关于android的文章" href="http://common.jb51.net/tag/android/1.htm" 
+  target="_blank" rel="nofollow">android</A></LI>
+  <LI class="tag item"><A title="搜索关于textview的文章" href="http://common.jb51.net/tag/textview/1.htm" 
+  target="_blank" rel="nofollow">textview</A></LI>
+  <LI class="tag item"><A title="搜索关于删除线的文章" href="http://common.jb51.net/tag/%E5%88%A0%E9%99%A4%E7%BA%BF/1.htm" 
+  target="_blank" rel="nofollow">删除线</A></LI></UL></DIV>
+<DIV class="lbd clearfix"><SPAN class="jbTestPos" id="art_down"></SPAN> </DIV>
+<DIV id="shoucang"></DIV>
+<DIV class="xgcomm clearfix">
+<H2>相关文章</H2>
+<UL>
+  <LI>
+  <DIV class="item-inner"><A title="Android UI设计系列之自定义ListView仿QQ空间阻尼下拉刷新和渐变菜单栏效果（8）" 
+  class="img-wrap" href="http://www.jb51.net/article/85974.htm" 
+  target="_blank"><IMG alt="Android UI设计系列之自定义ListView仿QQ空间阻尼下拉刷新和渐变菜单栏效果（8）" 
+  src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/bcimg0.png"> </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="Android UI设计系列之自定义ListView仿QQ空间阻尼下拉刷新和渐变菜单栏效果（8）" class="link title" 
+  href="http://www.jb51.net/article/85974.htm" target="_blank">Android 
+  UI设计系列之自定义ListView仿QQ空间阻尼下拉刷新和渐变</A></P>
+  <DIV class="item-info"><SPAN class="lbtn"><A title="搜索关于Android的文章" href="http://common.jb51.net/tag/Android/1.htm" 
+  target="_blank" rel="nofollow">Android</A> <A title="搜索关于UI设计的文章" href="http://common.jb51.net/tag/UI%E8%AE%BE%E8%AE%A1/1.htm" 
+  target="_blank" rel="nofollow">UI设计</A> <A title="搜索关于下拉刷新的文章" href="http://common.jb51.net/tag/%E4%B8%8B%E6%8B%89%E5%88%B7%E6%96%B0/1.htm" 
+  target="_blank" rel="nofollow">下拉刷新</A> <A title="搜索关于菜单栏的文章" href="http://common.jb51.net/tag/%E8%8F%9C%E5%8D%95%E6%A0%8F/1.htm" 
+  target="_blank" rel="nofollow">菜单栏</A>  </SPAN><SPAN class="lbtn" style="float: right;"> 
+  2016-06-06 </SPAN></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class="item-inner"><A title="详细解读Android系统中的application标签" class="img-wrap" 
+  href="http://www.jb51.net/article/83239.htm" target="_blank"><IMG alt="详细解读Android系统中的application标签" 
+  src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/bcimg1.png"> </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="详细解读Android系统中的application标签" class="link title" href="http://www.jb51.net/article/83239.htm" 
+  target="_blank">详细解读Android系统中的application标签</A></P>
+  <DIV class="item-info"><SPAN class="lbtn"><A title="搜索关于Android的文章" href="http://common.jb51.net/tag/Android/1.htm" 
+  target="_blank" rel="nofollow">Android</A> <A title="搜索关于application的文章" href="http://common.jb51.net/tag/application/1.htm" 
+  target="_blank" rel="nofollow">application</A>  </SPAN><SPAN class="lbtn" 
+  style="float: right;"> 2016-04-04 </SPAN></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class="item-inner"><A title="Android Popupwindow弹出窗口的简单使用方法" class="img-wrap" 
+  href="http://www.jb51.net/article/119322.htm" target="_blank"><IMG alt="Android Popupwindow弹出窗口的简单使用方法" 
+  src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/bcimg2.png"> </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="Android Popupwindow弹出窗口的简单使用方法" class="link title" href="http://www.jb51.net/article/119322.htm" 
+  target="_blank">Android Popupwindow弹出窗口的简单使用方法</A></P>
+  <DIV class="item-info"><SPAN class="lbtn"><A title="搜索关于Android的文章" href="http://common.jb51.net/tag/Android/1.htm" 
+  target="_blank" rel="nofollow">Android</A> <A title="搜索关于Popupwindow的文章" href="http://common.jb51.net/tag/Popupwindow/1.htm" 
+  target="_blank" rel="nofollow">Popupwindow</A> <A title="搜索关于弹出窗口的文章" href="http://common.jb51.net/tag/%E5%BC%B9%E5%87%BA%E7%AA%97%E5%8F%A3/1.htm" 
+  target="_blank" rel="nofollow">弹出窗口</A>  </SPAN><SPAN class="lbtn" style="float: right;"> 
+  2017-07-07 </SPAN></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class="item-inner"><A title="Android数据持久化之SQLite数据库用法分析" class="img-wrap" 
+  href="http://www.jb51.net/article/112753.htm" target="_blank"><IMG alt="Android数据持久化之SQLite数据库用法分析" 
+  src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/bcimg3.png"> </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="Android数据持久化之SQLite数据库用法分析" class="link title" href="http://www.jb51.net/article/112753.htm" 
+  target="_blank">Android数据持久化之SQLite数据库用法分析</A></P>
+  <DIV class="item-info"><SPAN class="lbtn"><A title="搜索关于Android的文章" href="http://common.jb51.net/tag/Android/1.htm" 
+  target="_blank" rel="nofollow">Android</A> <A title="搜索关于数据持久化的文章" href="http://common.jb51.net/tag/%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96/1.htm" 
+  target="_blank" rel="nofollow">数据持久化</A> <A title="搜索关于SQLite的文章" href="http://common.jb51.net/tag/SQLite/1.htm" 
+  target="_blank" rel="nofollow">SQLite</A>  </SPAN><SPAN class="lbtn" style="float: right;"> 
+  2017-05-05 </SPAN></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class="item-inner"><A title="Android SDK Manager无法更新问题解决办法" class="img-wrap" 
+  href="http://www.jb51.net/article/110759.htm" target="_blank"><IMG alt="Android SDK Manager无法更新问题解决办法" 
+  src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/bcimg4.png"> </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="Android SDK Manager无法更新问题解决办法" class="link title" href="http://www.jb51.net/article/110759.htm" 
+  target="_blank">Android SDK Manager无法更新问题解决办法</A></P>
+  <DIV class="item-info"><SPAN class="lbtn"><A title="搜索关于Android的文章" href="http://common.jb51.net/tag/Android/1.htm" 
+  target="_blank" rel="nofollow">Android</A> <A title="搜索关于SDK的文章" href="http://common.jb51.net/tag/SDK/1.htm" 
+  target="_blank" rel="nofollow">SDK</A> <A title="搜索关于Manager的文章" href="http://common.jb51.net/tag/Manager/1.htm" 
+  target="_blank" rel="nofollow">Manager</A>  </SPAN><SPAN class="lbtn" style="float: right;"> 
+  2017-04-04 </SPAN></DIV></DIV></DIV></DIV></LI>
+  <LI class="lbd clearfix"><SPAN class="jbTestPos" id="art_xg"></SPAN></LI>
+  <LI>
+  <DIV class="item-inner"><A title="Android仿微信通讯录滑动快速定位功能" class="img-wrap" 
+  href="http://www.jb51.net/article/108431.htm" target="_blank"><IMG alt="Android仿微信通讯录滑动快速定位功能" 
+  src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/bcimg5.png"> </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="Android仿微信通讯录滑动快速定位功能" class="link title" href="http://www.jb51.net/article/108431.htm" 
+  target="_blank">Android仿微信通讯录滑动快速定位功能</A></P>
+  <DIV class="item-info"><SPAN class="lbtn"><A title="搜索关于android的文章" href="http://common.jb51.net/tag/android/1.htm" 
+  target="_blank" rel="nofollow">android</A> <A title="搜索关于通讯录的文章" href="http://common.jb51.net/tag/%E9%80%9A%E8%AE%AF%E5%BD%95/1.htm" 
+  target="_blank" rel="nofollow">通讯录</A> <A title="搜索关于滑动的文章" href="http://common.jb51.net/tag/%E6%BB%91%E5%8A%A8/1.htm" 
+  target="_blank" rel="nofollow">滑动</A> <A title="搜索关于定位的文章" href="http://common.jb51.net/tag/%E5%AE%9A%E4%BD%8D/1.htm" 
+  target="_blank" rel="nofollow">定位</A>  </SPAN><SPAN class="lbtn" style="float: right;"> 
+  2017-03-03 </SPAN></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class="item-inner"><A title="Android开发仿映客送礼物效果" class="img-wrap" href="http://www.jb51.net/article/93032.htm" 
+  target="_blank"><IMG alt="Android开发仿映客送礼物效果" src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/bcimg6.png"> 
+  </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="Android开发仿映客送礼物效果" class="link title" href="http://www.jb51.net/article/93032.htm" 
+  target="_blank">Android开发仿映客送礼物效果</A></P>
+  <DIV class="item-info"><SPAN class="lbtn"><A title="搜索关于android的文章" href="http://common.jb51.net/tag/android/1.htm" 
+  target="_blank" rel="nofollow">android</A> <A title="搜索关于映客的文章" href="http://common.jb51.net/tag/%E6%98%A0%E5%AE%A2/1.htm" 
+  target="_blank" rel="nofollow">映客</A> <A title="搜索关于送礼的文章" href="http://common.jb51.net/tag/%E9%80%81%E7%A4%BC/1.htm" 
+  target="_blank" rel="nofollow">送礼</A>  </SPAN><SPAN class="lbtn" style="float: right;"> 
+  2016-09-09 </SPAN></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class="item-inner"><A title="android中创建通知栏Notification代码实例" class="img-wrap" 
+  href="http://www.jb51.net/article/66394.htm" target="_blank"><IMG alt="android中创建通知栏Notification代码实例" 
+  src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/bcimg7.png"> </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="android中创建通知栏Notification代码实例" class="link title" href="http://www.jb51.net/article/66394.htm" 
+  target="_blank">android中创建通知栏Notification代码实例</A></P>
+  <DIV class="item-info"><SPAN class="lbtn"><A title="搜索关于android的文章" href="http://common.jb51.net/tag/android/1.htm" 
+  target="_blank" rel="nofollow">android</A> <A title="搜索关于通知栏的文章" href="http://common.jb51.net/tag/%E9%80%9A%E7%9F%A5%E6%A0%8F/1.htm" 
+  target="_blank" rel="nofollow">通知栏</A> <A title="搜索关于Notification的文章" href="http://common.jb51.net/tag/Notification/1.htm" 
+  target="_blank" rel="nofollow">Notification</A>  </SPAN><SPAN class="lbtn" 
+  style="float: right;"> 2015-05-05 </SPAN></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class="item-inner"><A title="Android实现自动提取短信验证码功能" class="img-wrap" href="http://www.jb51.net/article/78857.htm" 
+  target="_blank"><IMG alt="Android实现自动提取短信验证码功能" src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/bcimg8.png"> 
+  </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="Android实现自动提取短信验证码功能" class="link title" href="http://www.jb51.net/article/78857.htm" 
+  target="_blank">Android实现自动提取短信验证码功能</A></P>
+  <DIV class="item-info"><SPAN class="lbtn"><A title="搜索关于Android的文章" href="http://common.jb51.net/tag/Android/1.htm" 
+  target="_blank" rel="nofollow">Android</A> <A title="搜索关于验证码的文章" href="http://common.jb51.net/tag/%E9%AA%8C%E8%AF%81%E7%A0%81/1.htm" 
+  target="_blank" rel="nofollow">验证码</A>  </SPAN><SPAN class="lbtn" style="float: right;"> 
+  2016-01-01 </SPAN></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class="item-inner"><A title="Android编程使用自定义shape实现shadow阴影效果的方法" class="img-wrap" 
+  href="http://www.jb51.net/article/75128.htm" target="_blank"><IMG alt="Android编程使用自定义shape实现shadow阴影效果的方法" 
+  src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/bcimg9.png"> </A>
+  <DIV class="rbox">
+  <DIV class="rbox-inner">
+  <P><A title="Android编程使用自定义shape实现shadow阴影效果的方法" class="link title" href="http://www.jb51.net/article/75128.htm" 
+  target="_blank">Android编程使用自定义shape实现shadow阴影效果的方法</A></P>
+  <DIV class="item-info"><SPAN class="lbtn"><A title="搜索关于Android的文章" href="http://common.jb51.net/tag/Android/1.htm" 
+  target="_blank" rel="nofollow">Android</A> <A title="搜索关于shape的文章" href="http://common.jb51.net/tag/shape/1.htm" 
+  target="_blank" rel="nofollow">shape</A>  </SPAN><SPAN class="lbtn" style="float: right;"> 
+  2015-11-11 </SPAN></DIV></DIV></DIV></DIV></LI></UL></DIV>
+<DIV class="lbd clearfix mt5"><SPAN class="jbTestPos" id="art_down2"></SPAN> 
+</DIV><A href="http://www.jb51.net/article/79650.htm#comments"></A> 
+<DIV id="comments">
+<H2>最新评论</H2>
+<DIV class="pd5">
+<DIV id="SOHUCS" sid="art_79650"></DIV></DIV></DIV></DIV><!--endborder-->       
+</DIV><!--end fl-->       
+<DIV class="w350 fr">
+<DIV class="article-right">
+<DIV class="r300 clearfix"><SPAN class="jbTestPos" id="side_up"></SPAN></DIV>
+<DIV class="tabTitleBar mt10 bgf borderTblue">
+<DIV class="borderTnone pb10 YaHei">
+<H4 class="blue">大家感兴趣的内容</H4>
+<UL class="newsList newList-in">
+  <LI><EM class="no1">1</EM><A title="一看就懂的Android APP开发入门教程" href="http://www.jb51.net/article/50395.htm" 
+  target="_blank">一看就懂的Android APP开发入门教</A></LI>
+  <LI><EM class="no2">2</EM><A title="微信公众平台开发入门教程(图文详解)" href="http://www.jb51.net/article/41750.htm" 
+  target="_blank">微信公众平台开发入门教程(图文详</A></LI>
+  <LI><EM class="no3">3</EM><A title="Android基础之使用Fragment控制切换多个页面" href="http://www.jb51.net/article/40108.htm" 
+  target="_blank">Android基础之使用Fragment控制切</A></LI>
+  <LI><EM class="no4">4</EM><A title="六款值得推荐的android（安卓）开源框架简介" href="http://www.jb51.net/article/51052.htm" 
+  target="_blank">六款值得推荐的android（安卓）开</A></LI>
+  <LI><EM class="no5">5</EM><A title="android TextView设置中文字体加粗实现方法" href="http://www.jb51.net/article/33060.htm" 
+  target="_blank">android TextView设置中文字体加</A></LI>
+  <LI><EM class="no6">6</EM><A title="Android应用开发SharedPreferences存储数据的使用方法" 
+  href="http://www.jb51.net/article/31911.htm" 
+  target="_blank">Android应用开发SharedPreferenc</A></LI>
+  <LI><EM class="no7">7</EM><A title="Android 动画之TranslateAnimation应用详解" href="http://www.jb51.net/article/32339.htm" 
+  target="_blank">Android 动画之TranslateAnimati</A></LI>
+  <LI><EM class="no8">8</EM><A title="Android按钮单击事件的四种常用写法总结" href="http://www.jb51.net/article/55329.htm" 
+  target="_blank">Android按钮单击事件的四种常用写</A></LI>
+  <LI><EM class="no9">9</EM><A title="android压力测试命令monkey详解" href="http://www.jb51.net/article/48557.htm" 
+  target="_blank">android压力测试命令monkey详解</A></LI>
+  <LI><EM class="no10">10</EM><A title="android调试工具DDMS的使用详解" href="http://www.jb51.net/article/36668.htm" 
+  target="_blank">android调试工具DDMS的使用详解</A></LI></UL></DIV></DIV>
+<DIV class="r300 clearfix mt10"><SPAN class="jbTestPos" id="idctu"></SPAN></DIV>
+<DIV class="tabTitleBar mt10 bgf borderTblue">
+<DIV class="borderTnone pb10 YaHei">
+<H4 class="blue">最近更新的内容</H4>
+<UL class="newsListA">
+  <LI><A title="android虚拟键盘弹出遮挡登陆按钮问题的解决方法" href="http://www.jb51.net/article/103952.htm" 
+  target="_blank">android虚拟键盘弹出遮挡登陆按钮问题的解</A></LI>
+  <LI><A title="深入Android SQLite 事务处理详解" href="http://www.jb51.net/article/36645.htm" 
+  target="_blank">深入Android SQLite 事务处理详解</A></LI>
+  <LI><A title="Android TextView实现跑马灯效果的方法" href="http://www.jb51.net/article/78867.htm" 
+  target="_blank">Android TextView实现跑马灯效果的方法</A></LI>
+  <LI><A title="Android DataBinding的官方双向绑定示例" href="http://www.jb51.net/article/126566.htm" 
+  target="_blank">Android DataBinding的官方双向绑定示例</A></LI>
+  <LI><A title="Android入门之RelativeLayout、FrameLayout用法分析" href="http://www.jb51.net/article/53421.htm" 
+  target="_blank">Android入门之RelativeLayout、FrameLayo</A></LI>
+  <LI><A title="Android使用Circular Reveal动画让页面跳转更炫酷" href="http://www.jb51.net/article/121435.htm" 
+  target="_blank">Android使用Circular Reveal动画让页面跳</A></LI>
+  <LI><A title="Android提高之使用NDK把彩图转换灰度图的方法" href="http://www.jb51.net/article/53475.htm" 
+  target="_blank">Android提高之使用NDK把彩图转换灰度图的</A></LI>
+  <LI><A title="Android 侧滑关闭Activity的实例" href="http://www.jb51.net/article/119797.htm" 
+  target="_blank">Android 侧滑关闭Activity的实例</A></LI>
+  <LI><A title="Android实现多媒体之播放音乐" href="http://www.jb51.net/article/105465.htm" 
+  target="_blank">Android实现多媒体之播放音乐</A></LI>
+  <LI><A title="Android手势密码view学习笔记（二）" href="http://www.jb51.net/article/107049.htm" 
+  target="_blank">Android手势密码view学习笔记（二）</A></LI></UL></DIV></DIV>
+<DIV class="r300 clearfix mt10"><SPAN class="jbTestPos" 
+id="idctu1"></SPAN></DIV>
+<DIV class="tabTitleBar mt10 bgf borderTblue">
+<DIV class="borderTnone pb10 YaHei">
+<H4 class="blue">常用在线小工具</H4>
+<UL class="newsListA"><SPAN class="jbTestPos" 
+id="bctools"></SPAN></UL></DIV></DIV>
+<DIV class="r300 clearfix mt10 mb10" id="idctu2"><SPAN class="jbTestPos" id="idctu2"></SPAN></DIV>
+<DIV class="rFixedBox"><SPAN class="jbTestPos" id="r_2"></SPAN> 
+</DIV></DIV></DIV><!--end fr-->       </DIV></DIV><!--end content--> 
+<DIV id="footer">
+<DIV class="main clearfix">
+<P><A href="http://www.jb51.net/about.htm" target="_blank">关于我们</A> -  <A href="http://www.jb51.net/support.htm" 
+target="_blank">广告合作</A> -  <A href="http://www.jb51.net/linkus.htm" target="_blank">联系我们</A> 
+-   <A href="http://www.jb51.net/sm.htm" target="_blank">免责声明</A> -   <A href="http://www.jb51.net/sitemap.htm" 
+target="_blank">网站地图</A> -  <A href="tencent://message/?uin=461478385&amp;Site=http://www.jb51.net" 
+target="_blank">投诉建议</A> -  <A href="http://www.jb51.net/up.htm" 
+target="_blank">在线投稿</A> </P>
+<P><A class="ba" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32031102000137" 
+target="_blank" rel="nofollow"><IMG src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/ghs.png"> 
+苏公网安备 32031102000137号</A>&nbsp;&nbsp;<A class="ba" href="http://www.miibeian.gov.cn/" 
+target="_blank" rel="nofollow">苏ICP备14036222号</A></P>
+<P>&copy;CopyRight 2006-2018 JB51.Net Inc All Rights Reserved. 脚本之家 
+版权所有</P></DIV></DIV><!--end footer--> <LINK href="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/shCore.css" 
+rel="stylesheet" type="text/css"> <LINK href="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/shThemeDefault.css" 
+rel="Stylesheet" type="text/css"> 
+<SCRIPT src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/shCore.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/shAutoloader.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+/*更多导航*/
+$(".nav_top p").hover(function(){$(this).addClass("hover")},function(){$(this).removeClass("hover")});
+
+if (top.location != self.location)top.location=self.location;
+
+var varwindow=$(window);
+$(function(){
+	$('#content').find('img').each(function(){
+        var img = this;
+        if (img.width >= 650){
+            img.style.width = "650px";
+            img.style.height = "auto";
+            //$(img).removeAttr('height');
+            var aTag = document.createElement('a');
+            aTag.href = img.src;
+			aTag.target="_blank";
+            $(aTag).addClass('bPic')
+            .insertAfter(img).append(img)
+          }
+    });
+	varwindow.scroll(function()
+    {	
+    	//rFixedBox跟随滚动
+    	var h = varwindow.height();
+        var top = varwindow.scrollTop();
+    	var rFixedBox = $('.rFixedBox').prev().offset();
+        var fixedTop = rFixedBox.top;
+		
+        if(top>=fixedTop+344)
+        {
+			var h1 = parseInt($('#content').children('.main').height());
+			if(parseInt(top) + 340 < h1){
+				$('.rFixedBox').css({'position':'fixed','top': 0});
+			}else{
+				$('.rFixedBox').css({'position':'absolute','top': h1-510});
+			}
+        }
+        else
+        {
+            $('.rFixedBox').css({'position':'static', 'top':0});   
+        }	
+       /* return true;*/
+	   
+	   /*右侧快捷菜单*/
+	   sideFixed();
+    });
+	var ww = varwindow.width();
+	
+	function sideFixed(){
+	var scrolltop = document.body.scrollTop || document.documentElement.scrollTop;
+	var a1 = 550;
+	if(ww>440){
+		if(a1<=scrolltop){
+			$('#right-share').slideDown();
+			}
+		else{
+			$('#right-share').slideUp();
+			}
+		}
+	}
+	$('.rshare-weixin').hover(function(){
+			$('#weixin-code').removeClass('hide');
+		},function(){
+			$('#weixin-code').addClass('hide');
+		});
+	/*二维码*/
+	$('#right-share .rshare-top').on('click',function(){
+        $('html,body').animate({'scrollTop':0},500);
+    });
+/*$(document).ready(function() {
+  $("#content img").unveil();
+});	*/
+
+//生成目录索引列表
+        function GenerateContentList() {
+            var jquery_h1_list = $('#content h2');
+            if (jquery_h1_list.length == 0) { return; }
+            if ($('#content').length == 0) { return; }
+
+            var content = '<a name="_labelTop"></a>';
+            content += '<div id="navCategory">';
+            content += '<p style="font-size:18px"><b>目录</b></p>';
+            // 一级目录 start
+            content += '<ul class="first_class_ul">';
+
+            for (var i = 0; i < jquery_h1_list.length; i++) {
+                var go_to_top = '<div style="text-align: right"><a name="_label' + i + '">&nbsp;</a></div>';
+                $(jquery_h1_list[i]).before(go_to_top);
+
+                // 一级目录的一条
+                var li_content = '<li><a href="#_label' + i + '">' + $(jquery_h1_list[i]).text() + '</a></li>';
+
+                var nextH1Index = i + 1;
+                if (nextH1Index == jquery_h1_list.length) { nextH1Index = 0; }
+                var jquery_h2_list = $(jquery_h1_list[i]).nextUntil(jquery_h1_list[nextH1Index], "h3");
+                // 二级目录 start
+                if (jquery_h2_list.length > 0) {
+                    //li_content +='<ul style="list-style-type:none; text-align: left; margin:2px 2px;">';
+                    li_content += '<ul class="second_class_ul">';
+                }
+                for (var j = 0; j < jquery_h2_list.length; j++) {
+                    var go_to_top2 = '<div style="text-align: right"><a name="_lab2_' + i + '_' + j + '">&nbsp;</a></div>';
+                    $(jquery_h2_list[j]).before(go_to_top2);
+                    // 二级目录的一条
+                    li_content += '<li><a href="#_lab2_' + i + '_' + j + '">' + $(jquery_h2_list[j]).text() + '</a></li>';
+
+                    var nextH2Index = j + 1;
+                    var next;
+                    if (nextH2Index == jquery_h2_list.length) {
+                        if (i + 1 == jquery_h1_list.length) {
+                            next = jquery_h1_list[0];
+                        }
+                        else {
+                            next = jquery_h1_list[i + 1];
+                        }
+                    }
+                    else {
+                        next = jquery_h2_list[nextH2Index];
+                    }
+                    var jquery_h3_list = $(jquery_h2_list[j]).nextUntil(next, "h4");
+                    // 三级目录 start
+                    if (jquery_h3_list.length > 0) {
+                        li_content += '<ul class="third_class_ul">';
+                    }
+
+                    for (var k = 0; k < jquery_h3_list.length; k++) {
+                        var go_to_third_Content = '<div style="text-align: right"><a name="_label3_' + i + '_' + j + '_' + k + '">&nbsp;</a></div>';
+                        $(jquery_h3_list[k]).before(go_to_third_Content);
+                        // 三级目录的一条
+                        li_content += '<li><a href="#_label3_' + i + '_' + j + '_' + k + '">' + $(jquery_h3_list[k]).text() + '</a></li>';
+                    }
+
+                    if (jquery_h3_list.length > 0) {
+                        li_content += '</ul>';
+                    }
+                    li_content += '</li>';
+                    // 三级目录 end
+                }
+                if (jquery_h2_list.length > 0) {
+                    li_content += '</ul>';
+                }
+                li_content += '</li>';
+                // 二级目录 end
+
+                content += li_content;
+            }
+            // 一级目录 end
+            content += '</ul>';
+            content += '</div>';
+
+            $($('#content')[0]).prepend(content);
+        }
+
+if(suoyin=="ok"){
+	GenerateContentList();
+}
+
+SyntaxHighlighter.autoloader(
+	'applescript			/jslib/syntaxhighlighter/scripts/shBrushAppleScript.js',
+	'actionscript3 as3		/jslib/syntaxhighlighter/scripts/shBrushAS3.js',
+	'bash shell				/jslib/syntaxhighlighter/scripts/shBrushBash.js',
+	'coldfusion cf			/jslib/syntaxhighlighter/scripts/shBrushColdFusion.js',
+	'cpp c					/jslib/syntaxhighlighter/scripts/shBrushCpp.js',
+	'obj-c objc				/jslib/syntaxhighlighter/scripts/shBrushObjC.js',
+	'c# c-sharp csharp		/jslib/syntaxhighlighter/scripts/shBrushCSharp.js',
+	'css					/jslib/syntaxhighlighter/scripts/shBrushCss.js',
+	'delphi pascal			/jslib/syntaxhighlighter/scripts/shBrushDelphi.js',
+	'diff patch pas			/jslib/syntaxhighlighter/scripts/shBrushDiff.js',
+	'erl erlang				/jslib/syntaxhighlighter/scripts/shBrushErlang.js',
+	'groovy					/jslib/syntaxhighlighter/scripts/shBrushGroovy.js',
+	'haxe hx				/jslib/syntaxhighlighter/scripts/shBrushHaxe.js',
+	'java					/jslib/syntaxhighlighter/scripts/shBrushJava.js',
+	'jfx javafx				/jslib/syntaxhighlighter/scripts/shBrushJavaFX.js',
+	'js jscript javascript	/jslib/syntaxhighlighter/scripts/shBrushJScript.js',
+	'perl pl				/jslib/syntaxhighlighter/scripts/shBrushPerl.js',
+	'php					/jslib/syntaxhighlighter/scripts/shBrushPhp.js',
+	'text plain				/jslib/syntaxhighlighter/scripts/shBrushPlain.js',
+	'py python				/jslib/syntaxhighlighter/scripts/shBrushPython.js',
+	'ruby rails ror rb		/jslib/syntaxhighlighter/scripts/shBrushRuby.js',
+	'scala					/jslib/syntaxhighlighter/scripts/shBrushScala.js',
+	'sql					/jslib/syntaxhighlighter/scripts/shBrushSql.js',
+	'vb vbnet				/jslib/syntaxhighlighter/scripts/shBrushVb.js',
+	'ps powershell			/jslib/syntaxhighlighter/scripts/shBrushPowerShell.js',
+	'xml xhtml xslt html	/jslib/syntaxhighlighter/scripts/shBrushXml.js'
+);
+SyntaxHighlighter.all();
+});
+var ourl="";
+</SCRIPT>
+ 
+<SCRIPT src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/arcts.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<SCRIPT>jbLoader();</SCRIPT>
+
+<SCRIPT class="closetag">jbLoader(true);</SCRIPT>
+ 
+<DIV id="tongji">
+<SCRIPT src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/tongji.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+//tu+
+var cpro_id = "u1893014";
+document.write('<scri'+'pt src="http://cpro.baidustatic.com/cpro/ui/i.js" type="text/javascript"></s'+'cript>');
+</SCRIPT>
+ 
+<SCRIPT src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/changyan.js" type="text/javascript" charset="utf-8"></SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+window.changyan.api.config({
+appid: 'cyrHH3dwi',
+conf: 'prod_1dc5dc80970106099d43fe242b7465fc'
+});
+</SCRIPT>
+ </DIV>
+<SCRIPT src="Android%20添加TextView删除线(代码简单)_Android_脚本之家_files/pl.htm" type="text/javascript"></SCRIPT>
+ </BODY></HTML><!-- published at 2018/1/16 8:53:09By dxycms qq:461478385  -->
